@@ -6,6 +6,10 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import roc_auc_score, balanced_accuracy_score
 
 items, npz, out = sys.argv[1], sys.argv[2], sys.argv[3]
+# Optional 4th arg: npz path persisting every fold's probe (coef, intercept,
+# scaler mean/scale) so probes can be re-applied to new activations without
+# refitting. Keep it out of results/ — the checked-in JSONs stay the reference.
+coef_out = sys.argv[4] if len(sys.argv) > 4 else None
 rows = [json.loads(l) for l in open(items) if l.strip()]
 a = np.load(npz); A = a["X"]
 assert [str(x) for x in a["item_ids"]] == [r["item_id"] for r in rows]
@@ -44,7 +48,7 @@ NGRAM_CONTROL = {
 print(f"NGRAM cue {NGRAM_CONTROL['cue_sentence']['auc']:.3f} "
       f"without-first-line {NGRAM_CONTROL['text_without_first_line']['auc']:.3f}", flush=True)
 
-def oof(X, yy, tr, te):
+def oof(X, yy, tr, te, collect=None, tag=""):
     s = np.full(len(rows), np.nan); p = np.full(len(rows), -1)
     for f in sorted(set(fam)):
         trm, tem = (fam!=f)&tr, (fam==f)&te
@@ -53,6 +57,11 @@ def oof(X, yy, tr, te):
         m = LogisticRegression(C=0.1, max_iter=3000, random_state=0)
         m.fit(sc.fit_transform(X[trm]), yy[trm])
         s[tem] = m.decision_function(sc.transform(X[tem])); p[tem] = (s[tem]>=0).astype(int)
+        if collect is not None:
+            collect[f"{tag}::fold_{f}::coef"] = m.coef_[0]
+            collect[f"{tag}::fold_{f}::intercept"] = np.float64(m.intercept_[0])
+            collect[f"{tag}::fold_{f}::scaler_mean"] = sc.mean_
+            collect[f"{tag}::fold_{f}::scaler_scale"] = sc.scale_
     return s, p
 
 def paired(s):
@@ -70,12 +79,15 @@ def cellrates(p, m):
             if c.sum(): o[f"{pu}::{ft}"] = float(p[c].mean()*100)
     return o
 
-def one(L, X):
+REGIMES = (("confounded", CONF, ALL), ("decorrelated", ALL, ALL),
+           ("b2c", fmt=="benchmark", fmt=="casual"),
+           ("c2b", fmt=="casual", fmt=="benchmark"))
+
+def one(L, X, collect_coefs=False):
     X = X.astype(float); r = {"layer": int(L), "ngram_control": NGRAM_CONTROL}
-    for name, tr, te in (("confounded", CONF, ALL), ("decorrelated", ALL, ALL),
-                         ("b2c", fmt=="benchmark", fmt=="casual"),
-                         ("c2b", fmt=="casual", fmt=="benchmark")):
-        s, p = oof(X, y, tr, te); m = ~np.isnan(s)
+    arts = {} if collect_coefs else None
+    for name, tr, te in REGIMES:
+        s, p = oof(X, y, tr, te, arts, f"layer{L:02d}::{name}"); m = ~np.isnan(s)
         pp, pm = paired(s)
         r[name] = {"auc": float(roc_auc_score(y[m], s[m])),
                    "bal_acc": float(balanced_accuracy_score(y[m], p[m])),
@@ -84,17 +96,28 @@ def one(L, X):
         r["decorrelated"]["auc"] - NGRAM_CONTROL["cue_sentence"]["auc"]
     )
     fy = (fmt=="benchmark").astype(int)
-    s, p = oof(X, fy, ALL, ALL); m = ~np.isnan(s)
+    s, p = oof(X, fy, ALL, ALL, arts, f"layer{L:02d}::format"); m = ~np.isnan(s)
     r["format"] = {"auc": float(roc_auc_score(fy[m], s[m])),
                    "bal_acc": float(balanced_accuracy_score(fy[m], p[m]))}
     print(f"L{L:02d} conf {r['confounded']['auc']:.3f} decorr {r['decorrelated']['auc']:.3f} "
           f"minus-ngram {r['decorrelated']['auc_minus_ngram']:+.3f} "
           f"b2c {r['b2c']['auc']:.3f} c2b {r['c2b']['auc']:.3f} fmt {r['format']['auc']:.3f}", flush=True)
-    return r
+    return r, arts
 
-res = Parallel(n_jobs=10)(delayed(one)(L, A[:, L, :]) for L in range(A.shape[1]))
-res.sort(key=lambda r: r["layer"])
+pairs = Parallel(n_jobs=10)(delayed(one)(L, A[:, L, :], coef_out is not None)
+                            for L in range(A.shape[1]))
+pairs.sort(key=lambda t: t[0]["layer"])
+res = [t[0] for t in pairs]
 json.dump(res, open(out, "w"), indent=1)
+if coef_out:
+    coefs = {}
+    for _, arts in pairs: coefs.update(arts)
+    for name, tr, te in REGIMES + (("format", ALL, ALL),):
+        coefs[f"mask::{name}::train"] = tr; coefs[f"mask::{name}::eval"] = te
+    coefs["item_ids"] = np.array([r["item_id"] for r in rows])
+    coefs["fold_families"] = np.array(sorted(set(fam)))
+    np.savez_compressed(coef_out, **coefs)
+    print(f"COEFS saved: {len(coefs)} arrays -> {coef_out}", flush=True)
 best = max(res, key=lambda r: r["decorrelated"]["auc"])
 print(f"BEST decorr layer: {best['layer']} AUC {best['decorrelated']['auc']:.3f} "
       f"minus-ngram {best['decorrelated']['auc_minus_ngram']:+.3f}")
