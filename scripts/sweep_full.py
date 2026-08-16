@@ -1,5 +1,6 @@
 import json, sys, numpy as np
 from joblib import Parallel, delayed
+from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import roc_auc_score, balanced_accuracy_score
@@ -15,6 +16,33 @@ blk = np.array([r["payload_block_id"] for r in rows])
 pur = np.array([r["intended_purpose"] for r in rows])
 ALL = np.ones(len(rows), bool)
 CONF = ((pur=="evaluation")&(fmt=="benchmark")) | ((pur=="deployment")&(fmt=="casual"))
+
+# Permanent lexical control: fit only on the held-family training rows so the
+# n-gram vocabulary and IDF weights cannot leak from the held-out family.
+def ngram_oof(texts):
+    texts = np.asarray(texts, dtype=str)
+    s = np.full(len(rows), np.nan); p = np.full(len(rows), -1)
+    for f in sorted(set(fam)):
+        trm, tem = fam!=f, fam==f
+        v = TfidfVectorizer(ngram_range=(1, 2))
+        xtr = v.fit_transform(texts[trm])
+        xte = v.transform(texts[tem])
+        m = LogisticRegression(C=1.0, max_iter=3000, random_state=0)
+        m.fit(xtr, y[trm])
+        s[tem] = m.decision_function(xte); p[tem] = (s[tem]>=0).astype(int)
+    return {"auc": float(roc_auc_score(y, s)),
+            "bal_acc": float(balanced_accuracy_score(y, p))}
+
+cue_sentences = [r["text"].partition("\n")[0] for r in rows]
+texts_without_first_line = [r["text"].partition("\n")[2] for r in rows]
+NGRAM_CONTROL = {
+    "vectorizer": "word_tfidf",
+    "ngram_range": [1, 2],
+    "cue_sentence": ngram_oof(cue_sentences),
+    "text_without_first_line": ngram_oof(texts_without_first_line),
+}
+print(f"NGRAM cue {NGRAM_CONTROL['cue_sentence']['auc']:.3f} "
+      f"without-first-line {NGRAM_CONTROL['text_without_first_line']['auc']:.3f}", flush=True)
 
 def oof(X, yy, tr, te):
     s = np.full(len(rows), np.nan); p = np.full(len(rows), -1)
@@ -43,7 +71,7 @@ def cellrates(p, m):
     return o
 
 def one(L, X):
-    X = X.astype(float); r = {"layer": int(L)}
+    X = X.astype(float); r = {"layer": int(L), "ngram_control": NGRAM_CONTROL}
     for name, tr, te in (("confounded", CONF, ALL), ("decorrelated", ALL, ALL),
                          ("b2c", fmt=="benchmark", fmt=="casual"),
                          ("c2b", fmt=="casual", fmt=="benchmark")):
@@ -52,16 +80,22 @@ def one(L, X):
         r[name] = {"auc": float(roc_auc_score(y[m], s[m])),
                    "bal_acc": float(balanced_accuracy_score(y[m], p[m])),
                    "paired_pos": pp, "paired_mean": pm, "cells": cellrates(p, m)}
+    r["decorrelated"]["auc_minus_ngram"] = (
+        r["decorrelated"]["auc"] - NGRAM_CONTROL["cue_sentence"]["auc"]
+    )
     fy = (fmt=="benchmark").astype(int)
     s, p = oof(X, fy, ALL, ALL); m = ~np.isnan(s)
     r["format"] = {"auc": float(roc_auc_score(fy[m], s[m])),
                    "bal_acc": float(balanced_accuracy_score(fy[m], p[m]))}
     print(f"L{L:02d} conf {r['confounded']['auc']:.3f} decorr {r['decorrelated']['auc']:.3f} "
+          f"minus-ngram {r['decorrelated']['auc_minus_ngram']:+.3f} "
           f"b2c {r['b2c']['auc']:.3f} c2b {r['c2b']['auc']:.3f} fmt {r['format']['auc']:.3f}", flush=True)
     return r
 
 res = Parallel(n_jobs=10)(delayed(one)(L, A[:, L, :]) for L in range(A.shape[1]))
 res.sort(key=lambda r: r["layer"])
 json.dump(res, open(out, "w"), indent=1)
-print("BEST decorr layer:", max(res, key=lambda r: r["decorrelated"]["auc"])["layer"])
+best = max(res, key=lambda r: r["decorrelated"]["auc"])
+print(f"BEST decorr layer: {best['layer']} AUC {best['decorrelated']['auc']:.3f} "
+      f"minus-ngram {best['decorrelated']['auc_minus_ngram']:+.3f}")
 print("SWEEP DONE")
