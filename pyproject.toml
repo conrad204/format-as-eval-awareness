@@ -1,0 +1,29 @@
+[build-system]
+requires = ["hatchling>=1.26"]
+build-backend = "hatchling.build"
+
+[project]
+name = "eval-format-mvp"
+version = "0.1.0"
+description = "Purpose-by-format probe: activation extraction, layer sweep, and plots"
+requires-python = ">=3.11,<3.14"
+dependencies = [
+  "pyyaml>=6,<7",
+]
+
+[project.optional-dependencies]
+extract = [
+  "numpy>=1.26",
+  "torch>=2.5",
+  "transformers>=4.55",
+  "accelerate>=0.34",
+]
+analysis = [
+  "numpy>=1.26",
+  "scikit-learn>=1.5",
+  "joblib>=1.4",
+  "matplotlib>=3.9",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/eval_format_mvp"]
