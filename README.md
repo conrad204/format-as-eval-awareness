@@ -90,9 +90,12 @@ pip install -e ".[analysis,dev]"
 python -m pytest                    # 62 tests, no network/GPU needed
 
 # verify the frozen chain end to end (recomputes every recorded sha256)
-eval-format-mvp verify-manifest-v2  --manifest provenance/render_manifest_v2_pilot80.json
 eval-format-mvp verify-manifest-v3  --manifest provenance/full320-v3/render_manifest_v3_full320.json
 ```
+
+Older freezes (v1-8-14-2026, pilot80-v2) live only on HF under `format-EA/`;
+pull one to `data/<freeze>/` and run the matching `verify-manifest{,-v2}`
+against its bundled manifest to re-verify.
 
 Renders are deterministic: `render-v3 --schedule full` is a pure function of
 the payload file, so rendered files are always reproducible from their
