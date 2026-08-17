@@ -5,6 +5,19 @@ Reverse-chronological log of the v2 redesign implementation. Since the
 pipeline code, catalogs, schemas, tests, payload inputs, and frozen artifacts
 live here. `~/Projects/personal/probes` is retired as a stale copy.
 
+## 2026-08-17 — per-freeze folders: full320-v3 grouped
+
+Adopted one-folder-per-freeze locally, mirroring the HF repo-per-freeze
+convention (`format-EA/<freeze>`): `data/full320-v3/` now holds the payload
+and rendered jsonl; `provenance/full320-v3/` holds the render manifest and
+`generation_runs/` (the five full320 runs, their request files, and the
+full160-era runs + refill requests, which are the generation provenance of
+160 of full320's blocks). Manifest `path` fields rewritten to the new
+repo-relative locations (sha256 values untouched); `verify-manifest-v3`
+passes from the repo root. Older-freeze files still at `data/` /
+`provenance/` root migrate to HF next. Paths in older log entries below are
+as-of-their-date.
+
 ## 2026-08-17 — full320 generated, rendered, frozen (10 Grok + 10 Gemini per topic)
 
 Extended the kept 160 payload blocks to 320: every topic now has exactly 10

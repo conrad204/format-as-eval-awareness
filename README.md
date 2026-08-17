@@ -6,7 +6,7 @@ Minimal, self-contained chain that produces the eight plots in `plots/`:
 data/rendered_items_v1_8-14-2026.jsonl          288 frozen prompts (the 2x2 purpose x format dataset)
         |  scripts/extract_activations.py        [GPU, RunPod]
         v
-activations/<model>/activations_all_layers.npz   (not checked in; regenerable)
+activations/<freeze>/<model>/activations_all_layers.npz   (not checked in; regenerable — pilot80-v2 mirrored at hf.co/datasets/format-EA/pilot80-v2)
         |  scripts/sweep_full.py                 [CPU, sklearn]
         v
 results/layer_sweep_llama31_8b.json / layer_sweep_llama33_70b.json   (checked in)
@@ -86,16 +86,20 @@ python -m pytest                    # 62 tests, no network/GPU needed
 # verify the frozen chain end to end (recomputes every recorded sha256)
 eval-format-mvp verify-manifest     --manifest provenance/render_manifest.json
 eval-format-mvp verify-manifest-v2  --manifest provenance/render_manifest_v2_pilot80.json
-eval-format-mvp verify-manifest-v3  --manifest provenance/render_manifest_v3_full320.json
+eval-format-mvp verify-manifest-v3  --manifest provenance/full320-v3/render_manifest_v3_full320.json
 ```
 
 Renders are deterministic: `render-v3 --schedule full` is a pure function of
 the payload file, so rendered files are always reproducible from their
-payloads at the corresponding commit. The frozen v3 dataset is
-`data/rendered_items_v3_full320_8-17-2026.jsonl` (11,520 items), rendered in
-one pass from `data/payloads.grok43gemini31_gpt54.full320_8-17-2026.jsonl`:
+payloads at the corresponding commit. Each dataset freeze lives in its own
+folder (`data/<freeze>/` + `provenance/<freeze>/`, mirrored 1:1 as HF repo
+`format-EA/<freeze>`). The frozen v3 dataset is
+`data/full320-v3/rendered_items_v3_full320_8-17-2026.jsonl` (11,520 items),
+rendered in one pass from
+`data/full320-v3/payloads.grok43gemini31_gpt54.full320_8-17-2026.jsonl`:
 320 payload blocks, exactly 10 Grok-4.3 + 10 Gemini-3.1-Pro generated blocks
-per topic (generation runs `provenance/generation_runs/full320_20260817_*`).
+per topic (generation runs `provenance/full320-v3/generation_runs/`, which
+also hold the full160-era runs that produced 160 of its blocks).
 It supersedes the retired, generator-imbalanced dev/a80/b80/full160 renders
 (retirement rationale in `docs/v2_running_log.md`). Generating *new* payloads
 (`generate`) needs API keys (`OPENROUTER_API_KEY`, or gcloud auth for Vertex) —
@@ -114,6 +118,7 @@ nothing else in the repo does.
   schemas, generation prompt templates, model profiles.
 - `tests/` — the full suite (rendering, validators, generation machinery,
   frozen-chain regressions).
-- `data/` — frozen payload inputs and rendered datasets.
+- `data/` — frozen payload inputs and rendered datasets, one subfolder per
+  freeze (currently `full320-v3/`; older freezes migrate to HF).
 - `provenance/` — extraction configs, render manifests (every input/output
-  sha256), and generation run records.
+  sha256), and generation run records; per-freeze subfolders mirror `data/`.
