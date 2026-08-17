@@ -40,6 +40,7 @@ pip install -e ".[extract,analysis]"
 
 # v1 freeze is archived on HF (private) — pull it first
 huggingface-cli download format-EA/v1-8-14-2026 --repo-type dataset \
+  --revision "$(jq -r .revision provenance/v1-8-14-2026/hf_snapshot.json)" \
   --local-dir data/v1-8-14-2026
 
 # Llama-3.1-8B-Instruct — fits on one 40GB GPU
@@ -93,9 +94,24 @@ python -m pytest                    # 62 tests, no network/GPU needed
 eval-format-mvp verify-manifest-v3  --manifest provenance/full320-v3/render_manifest_v3_full320.json
 ```
 
-Older freezes (v1-8-14-2026, pilot80-v2) live only on HF under `format-EA/`;
-pull one to `data/<freeze>/` and run the matching `verify-manifest{,-v2}`
-against its bundled manifest to re-verify.
+### Data: git anchors, HF bytes
+
+`data/` is gitignored. Frozen datasets live in private HF repos —
+`format-EA/<freeze>`, one repo per freeze (`full320-v3` current;
+`pilot80-v2`, `v1-8-14-2026` archived) — while git tracks the anchors:
+`provenance/<freeze>/` holds each freeze's render manifest (+ extraction
+configs) and `hf_snapshot.json`, which pins the exact HF revision and
+per-file sha256s. To materialize a freeze locally:
+
+```bash
+huggingface-cli download format-EA/full320-v3 --repo-type dataset \
+  --revision "$(jq -r .revision provenance/full320-v3/hf_snapshot.json)" \
+  --local-dir data/full320-v3
+eval-format-mvp verify-manifest-v3 --manifest provenance/full320-v3/render_manifest_v3_full320.json
+```
+
+Never trust unpinned HF state: always fetch at the revision recorded in the
+tracked snapshot and re-verify against the tracked manifest.
 
 Renders are deterministic: `render-v3 --schedule full` is a pure function of
 the payload file, so rendered files are always reproducible from their
@@ -128,7 +144,8 @@ nothing else in the repo does.
   frozen-chain regressions). `tests/data/` holds byte-pinned fixture copies
   of frozen artifacts (v1 payloads/render, pilot80 payloads/render) so the
   regression tests run offline regardless of which freezes remain in `data/`.
-- `data/` — frozen payload inputs and rendered datasets, one subfolder per
-  freeze (currently `full320-v3/`; older freezes migrate to HF).
-- `provenance/` — extraction configs, render manifests (every input/output
-  sha256), and generation run records; per-freeze subfolders mirror `data/`.
+- `data/` — gitignored working area, one subfolder per freeze, materialized
+  from HF (see "Data: git anchors, HF bytes" above).
+- `provenance/` — tracked anchors, one subfolder per freeze forever: render
+  manifests (every input/output sha256), `hf_snapshot.json` HF-revision pins,
+  extraction configs, and (for the current freeze) generation run records.

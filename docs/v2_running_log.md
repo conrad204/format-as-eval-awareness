@@ -5,6 +5,24 @@ Reverse-chronological log of the v2 redesign implementation. Since the
 pipeline code, catalogs, schemas, tests, payload inputs, and frozen artifacts
 live here. `~/Projects/personal/probes` is retired as a stale copy.
 
+## 2026-08-17 — git anchors / HF bytes: data/ gitignored, freezes pinned
+
+Final layout contract: `data/` is gitignored (anchored `/data/` pattern;
+`tests/data/` fixtures stay tracked); frozen dataset bytes live in private
+gated HF repos `format-EA/<freeze>`; git tracks per-freeze anchors in
+`provenance/<freeze>/` — render manifest, extraction configs, and
+`hf_snapshot.json` pinning the HF revision + per-file sha256s (LFS sha256
+from the tree API, small files hashed after download). Pushed
+`format-EA/full320-v3` (payload + render + manifest, round-trip verified,
+rev 0dce7c40…; activations to be added post-extraction, then re-pin).
+Restored KB-scale anchor files for the migrated freezes from git history
+into `provenance/{pilot80-v2,v1-8-14-2026}/` so attestation lives in git,
+separate from the HF artifacts it attests. Collaborator flow: clone git →
+`huggingface-cli download --revision "$(jq -r .revision
+provenance/<freeze>/hf_snapshot.json)"` → run the matching
+`verify-manifest*`. Note the fused-gitignore trap: the file previously
+lacked a trailing newline, so a blind append produced `notes//data/`.
+
 ## 2026-08-17 — v1 freeze migrated to HF (format-EA/v1-8-14-2026)
 
 Pre-migration validation: `verify-manifest` (all sha256s) and
