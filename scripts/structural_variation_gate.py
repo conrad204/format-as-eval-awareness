@@ -10,13 +10,20 @@ from pathlib import Path
 BANNED = re.compile(r"\b(evaluation|evaluate|evaluative|deployment|deploy|benchmark|test|testing|exam|grading|assessment|assess|live[- ]use)\b", re.I)
 
 
+FUNCTION_WORDS = {
+    "a", "an", "the", "and", "or", "but", "if", "when", "while", "after",
+    "before", "as", "for", "from", "in", "into", "of", "on", "by", "to",
+    "with", "without", "is", "are", "was", "were", "be", "been", "being",
+    "has", "have", "had", "will", "would", "should", "can", "could",
+}
+
+
 def features(text: str) -> tuple:
     sentences = tuple(part.strip() for part in re.split(r"[.!?]+", text) if part.strip())
-    words = re.findall(r"[A-Za-z]+(?:'[A-Za-z]+)?", text.lower())
-    first = tuple(re.findall(r"[A-Za-z]+", sentence.lower())[:2] for sentence in sentences)
+    tokens = re.findall(r"[A-Za-z]+(?:'[A-Za-z]+)?|\d+|[^\w\s]", text.lower())
+    skeleton = tuple(token if token in FUNCTION_WORDS or not token.isalnum() else "<w>" for token in tokens)
     punctuation = tuple(ch for ch in text if ch in ",;:!?-")
-    return (len(sentences), len(words), first, punctuation)
-
+    return (len(sentences), skeleton, punctuation)
 
 def main() -> None:
     parser = argparse.ArgumentParser()
