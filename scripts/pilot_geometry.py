@@ -76,6 +76,7 @@ def main() -> None:
     parser.add_argument("items", type=Path)
     parser.add_argument("activations", type=Path)
     parser.add_argument("out", type=Path)
+    parser.add_argument("--layers", nargs="+", type=int, default=None)
     args = parser.parse_args()
     rows = [json.loads(line) for line in args.items.read_text(encoding="utf-8").splitlines() if line.strip()]
     npz = np.load(args.activations)
@@ -88,8 +89,11 @@ def main() -> None:
     labels = np.asarray([-1 if row["label"] is None else int(row["label"]) for row in rows])
     if np.any(~np.isfinite(X_all)):
         raise ValueError("activation matrix contains non-finite values")
+    layers = list(range(X_all.shape[1])) if args.layers is None else args.layers
+    if any(layer < 0 or layer >= X_all.shape[1] for layer in layers):
+        raise ValueError(f"requested layer outside activation range: {layers}")
     table = []
-    for layer in range(X_all.shape[1]):
+    for layer in layers:
         X = X_all[:, layer, :].astype(np.float64, copy=False)
         A, B, C, n_groups = geometry_vectors(X, rows)
         scores, direction = held_scores(X, rows, labels)

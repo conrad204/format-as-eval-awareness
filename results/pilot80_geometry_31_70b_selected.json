@@ -1,0 +1,79 @@
+{
+ "schema_version": 1,
+ "mode": "development",
+ "items": {
+  "path": "activations_dataset\\activations\\llama31_70b_pilot80\\meta.jsonl",
+  "sha256": "0dbcb9802924d3c2063fce87e24250d1a3430fd24856ea83b132e606843f6638"
+ },
+ "activations": {
+  "path": "activations_dataset\\activations\\llama31_70b_pilot80\\activations_all_layers.npz",
+  "sha256": "5d09f6806ac83308a93b37ebf144ed6ed90bd49f67be9267d378f4797aa0b038"
+ },
+ "script_sha256": "f332dadeeed73ab3b1a7d385743d5eca166a07d5d60c188148731e850dea9597",
+ "probe": {
+  "C": 0.1,
+  "max_iter": 3000,
+  "random_state": 0
+ },
+ "rows": 1760,
+ "layers": [
+  {
+   "layer": 31,
+   "n_complete_2x2_groups": 240,
+   "held_stated_auc": 0.9981553819444444,
+   "held_stated_balanced_accuracy": 0.978125,
+   "norm_A": 0.721882543396417,
+   "norm_B": 4.391039012059936,
+   "norm_C": 0.46139412693308207,
+   "interaction_ratio_C_over_A": 0.6391540163338049,
+   "cosine_delta_b_delta_c": 0.5277560894019556,
+   "cosine_A_C": -0.11584206702327964,
+   "principal_cosine_delta_subspaces": 0.7820142503173273,
+   "purpose_direction_projection_on_B": 0.0009702918611354051
+  }
+ ],
+ "selection_summary": {
+  "max_held_auc": {
+   "layer": 31,
+   "n_complete_2x2_groups": 240,
+   "held_stated_auc": 0.9981553819444444,
+   "held_stated_balanced_accuracy": 0.978125,
+   "norm_A": 0.721882543396417,
+   "norm_B": 4.391039012059936,
+   "norm_C": 0.46139412693308207,
+   "interaction_ratio_C_over_A": 0.6391540163338049,
+   "cosine_delta_b_delta_c": 0.5277560894019556,
+   "cosine_A_C": -0.11584206702327964,
+   "principal_cosine_delta_subspaces": 0.7820142503173273,
+   "purpose_direction_projection_on_B": 0.0009702918611354051
+  },
+  "min_interaction_eligible": {
+   "layer": 31,
+   "n_complete_2x2_groups": 240,
+   "held_stated_auc": 0.9981553819444444,
+   "held_stated_balanced_accuracy": 0.978125,
+   "norm_A": 0.721882543396417,
+   "norm_B": 4.391039012059936,
+   "norm_C": 0.46139412693308207,
+   "interaction_ratio_C_over_A": 0.6391540163338049,
+   "cosine_delta_b_delta_c": 0.5277560894019556,
+   "cosine_A_C": -0.11584206702327964,
+   "principal_cosine_delta_subspaces": 0.7820142503173273,
+   "purpose_direction_projection_on_B": 0.0009702918611354051
+  },
+  "max_interaction_eligible": {
+   "layer": 31,
+   "n_complete_2x2_groups": 240,
+   "held_stated_auc": 0.9981553819444444,
+   "held_stated_balanced_accuracy": 0.978125,
+   "norm_A": 0.721882543396417,
+   "norm_B": 4.391039012059936,
+   "norm_C": 0.46139412693308207,
+   "interaction_ratio_C_over_A": 0.6391540163338049,
+   "cosine_delta_b_delta_c": 0.5277560894019556,
+   "cosine_A_C": -0.11584206702327964,
+   "principal_cosine_delta_subspaces": 0.7820142503173273,
+   "purpose_direction_projection_on_B": 0.0009702918611354051
+  }
+ }
+}

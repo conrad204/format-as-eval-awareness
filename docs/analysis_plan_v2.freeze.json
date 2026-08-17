@@ -184,6 +184,17 @@
         "pilot_item_sha256": "0dbcb9802924d3c2063fce87e24250d1a3430fd24856ea83b132e606843f6638"
       },
       "status": "frozen_before_causal_outcomes"
+    },
+    {
+      "date": "2026-08-17",
+      "kind": "pilot_geometry_selected_layer_cli_amendment",
+      "reason": "The development geometry runner was extended with an optional --layers argument to avoid recomputing all 32 layers for the already frozen 70B pilot-selected layers. The estimator, preprocessing, held-family splits, probe settings, and geometry metrics are unchanged; this only restricts the development output rows to pre-registered layers 31 and 17.",
+      "artifacts": {
+        "scripts/pilot_geometry.py": "f332dadeeed73ab3b1a7d385743d5eca166a07d5d60c188148731e850dea9597",
+        "results/pilot80_geometry_31_70b_selected.json": "a5adcc3310ae145359ae85792546b7b7d6dc5485403c61aeb4154ad221878b6d",
+        "results/pilot80_geometry_33_70b_selected.json": "c31bdf0d43e14dba4b7b1a64e793c4a9aa096fb3e37126180871a623b4d03990"
+      },
+      "status": "development_only_before_causal_outcomes"
     }
   ]
 }
