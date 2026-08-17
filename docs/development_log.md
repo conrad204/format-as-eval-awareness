@@ -1,0 +1,16 @@
+# Development analysis log
+
+This file records post-hoc/spent-pilot analyses. It is not part of the prospective confirmation protocol.
+
+## 2026-08-17 — continuation from 4436eac
+
+- Confirmation remains prospective and unchanged. Exploratory analyses use the three imported pilot archives only.
+- All pilot activations use the recorded contract: zero-based transformer-block output before final model norm, last prompt token after chat templating, BF16 inference with float32 storage.
+- New analyses must preserve the five purpose-family held-out folds and payload-block uncertainty units.
+- The selected-layer cross-model geometry artifacts are development evidence only; no causal or awareness claim follows from them.
+- A spawn-safe initializer was added to the development all-layer sweep runner after Windows multiprocessing workers failed to inherit the global activation state. The estimator and splits were unchanged.
+- Text red-team v3 was run on the shared pilot metadata with held-vocabulary folds. The strongest available baseline is cue-only char 2–5 (stated mean AUC 0.7097, max fold 0.8906); stated verb-only cue char controls reach mean AUC 0.9037. Llama token-piece controls were not substituted because the Llama tokenizer is not cached locally.
+- A cross-fitted selected-layer format-erasure run was completed for Llama-3.1-8B. Matched-mean format removal leaves mean purpose AUC 0.992 and stated→indirect AUC 0.850 while fresh format AUC is 0.500; logistic/INLP removal did not pass the fresh format-adversary sanity check (format AUC remained 1.000). This is a development diagnostic, not a claim that format has been erased generally.
+- FineWeb `sample-10BT` was selected as an independent generic J-lens corpus at dataset revision `9bb295ddab0e05d785b879661af7260fed5140fc`; 1,000 rows were selected by a seeded permutation of 5,067 filter-passing rows (`seed=20260817`). Raw corpus SHA256: `b0dc8a013b501f2e7080067eee8f81bdaa10fc0534100c3453ae4eeda900f6bd`. Tokenization remains to be performed with the cached Llama tokenizer on cluster.
+- Confirmation generation job 52049785 failed before candidate generation because the deployment did not resolve the cached Stockmark snapshot under offline mode. The deployment was patched in the approved remote path to pass `local_files_only=True` to tokenizer/model loading; backup and patched hashes were recorded remotely. Infrastructure-only retry job 52276496 uses the unchanged scientific generation parameters and is currently pending GPU resources.
+- The synthetic format-erasure control was corrected before any new scientific run: it now uses 10,000 rows and checks that purpose remains decodable while removed-format AUC is near chance (`raw purpose AUC=1.0`, `format-after-removal AUC=0.5283`, pass). Prior pilot erasure JSONs retain their original pre-fix control field and are not treated as final evidence.

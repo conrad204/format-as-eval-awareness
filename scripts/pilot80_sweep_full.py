@@ -45,6 +45,9 @@ PROBE = dict(C=0.1, max_iter=3000, random_state=0)
 _G: dict = {}
 
 
+def _init_worker(global_state: dict) -> None:
+    _G.update(global_state)
+
 def _fit_scores(X, train, test, y):
     sc = StandardScaler().fit(X[train])
     model = LogisticRegression(**PROBE).fit(sc.transform(X[train]), y[train])
@@ -130,19 +133,26 @@ def main() -> None:
     assert [str(x) for x in npz["item_ids"]] == [r["item_id"] for r in rows], (
         "npz item_ids do not match items jsonl order"
     )
-    _G["X_all"] = npz["X"]
-    _G["stated"] = np.array([r["render_slot"] == "stated" for r in rows])
-    _G["label"] = np.array([-1 if r["label"] is None else int(r["label"]) for r in rows])
-    _G["fam"] = np.array([r["purpose_family_id"] for r in rows])
-    _G["purpose"] = np.array([r["intended_purpose"] for r in rows])
-    _G["fmt"] = np.array([r["format"] for r in rows])
-    _G["pair_key"] = np.array(
-        [f'{r["payload_block_id"]}::{r["purpose_pair_id"]}::{r["format"]}' for r in rows]
-    )
-
+    global_state = {
+        "X_all": npz["X"],
+        "stated": np.array([r["render_slot"] == "stated" for r in rows]),
+        "label": np.array([-1 if r["label"] is None else int(r["label"]) for r in rows]),
+        "fam": np.array([r["purpose_family_id"] for r in rows]),
+        "purpose": np.array([r["intended_purpose"] for r in rows]),
+        "fmt": np.array([r["format"] for r in rows]),
+        "pair_key": np.array(
+            [f'{r["payload_block_id"]}::{r["purpose_pair_id"]}::{r["format"]}' for r in rows]
+        ),
+    }
+    _G.update(global_state)
     n_layers = _G["X_all"].shape[1]
-    with Pool(min(12, os.cpu_count() or 1)) as pool:
-        table = pool.map(sweep_layer, range(n_layers))
+    if os.name == "nt":
+        # Spawn would pickle the multi-gigabyte activation tensor per worker.
+        table = [sweep_layer(layer) for layer in range(n_layers)]
+    else:
+        with Pool(min(12, os.cpu_count() or 1),
+                  initializer=_init_worker, initargs=(global_state,)) as pool:
+            table = pool.map(sweep_layer, range(n_layers))
     out_path.write_text(json.dumps(table, indent=1) + "\n")
     best = max(table, key=lambda r: r["decorrelated"]["auc"])
     print(f"wrote {out_path} ({n_layers} layers); "

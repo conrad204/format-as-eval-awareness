@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "mode": "development",
+  "implementation": "anthropics/jacobian-lens",
+  "commit": "581d398613e5602a5af361e1c34d3a92ea82ba8e",
+  "model": "meta-llama/Llama-3.1-8B-Instruct",
+  "model_revision": "0e9e39f249a16976918f6564b8830bc894c89659",
+  "corpus_manifest": "artifacts/jlens_fineweb_1000_seed20260817/manifest.json",
+  "source_layers": [4, 9, 12, 15, 20, 24],
+  "target_layer": 31,
+  "dim_batch": 8,
+  "max_seq_len": 128,
+  "skip_first": 16,
+  "precision": "bfloat16 inference; float32 accumulated Jacobian",
+  "convergence_subsets": [100, 250, 500, 1000],
+  "fit_status": "prepared_not_fitted",
+  "selection_rule": "source layers and target layer fixed before any pilot assay; no selection from J-lens outputs"
+}
