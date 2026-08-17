@@ -100,6 +100,12 @@ python scripts/extract_activations.py \
   --revision 6f6073b423013f6a7d4d9f39144961bfbfbc386b \
   --all-layers --batch-size 8 --device-map auto
 
+# Llama-3.1-70B-Instruct — third model for the full320-v3 extraction (no
+# checked-in results yet); same footprint/settings as the 3.3-70B above.
+# Revision pinned 2026-08-17 (tip of main, unchanged since 2024-12-15):
+#   --model meta-llama/Llama-3.1-70B-Instruct \
+#   --revision 1605565b47bb9346c5515c34102e054115b4f98b
+
 # Layer sweep (run on the pod; the 70B npz is ~750MB, the JSON is ~100KB —
 # download only the JSON)
 python scripts/sweep_full.py data/v1-8-14-2026/rendered_items_v1_8-14-2026.jsonl \
