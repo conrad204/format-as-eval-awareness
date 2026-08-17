@@ -1,0 +1,316 @@
+{
+  "schema_version": 3,
+  "manifest_kind": "render_v3",
+  "status": "development_unlocked",
+  "hash_policy": "enforced",
+  "frame_assignment": "crossed_formats_v3_full",
+  "inputs": {
+    "payloads": {
+      "path": "data/payloads.grok43-medium_gpt54.full80.jsonl",
+      "sha256": "c5ca655333904b87a8e524fb3ea9ae8ad11cfa9b2613974d6b04927b6424f8cd"
+    },
+    "purpose_frames_v2": {
+      "path": "catalogs/purpose_frames_v2.yaml",
+      "sha256": "3e5cd2e459e40fbbbdabbffdd7c4750d6181dae6def0dd4d26c49c52b3b39d7b"
+    },
+    "formats_v2": {
+      "path": "catalogs/formats_v2.yaml",
+      "sha256": "88743ea46e754e9112b092b8ba91574e6e38caae68b60ef55cbce7d4da4936f5"
+    },
+    "formats": {
+      "path": "catalogs/formats.yaml",
+      "sha256": "4861354c0e75f937dc5e0222e1ac59663c5f54f6d68dd33ff40cbb3fc418fce2"
+    },
+    "topics": {
+      "path": "catalogs/topics.yaml",
+      "sha256": "80c700770907f275b9b8bc3c229ae97052d77587e386aa1cdc5d078606408ecf"
+    }
+  },
+  "output": {
+    "path": "data/rendered_items_v3_full_a80_8-17-2026.jsonl",
+    "sha256": "554571a2469b5844aaa50670409154ae143f86db1f66a5b564a2a3c47ebbb8e3"
+  },
+  "frames_lint": {
+    "status": "passed",
+    "pairs": 50,
+    "declared_stems_per_fold": {
+      "fg1": [
+        "accuraci",
+        "act",
+        "board",
+        "buy",
+        "count",
+        "crew",
+        "critiqu",
+        "custom",
+        "draw",
+        "go",
+        "help",
+        "on",
+        "over",
+        "po",
+        "purchas",
+        "qa",
+        "review",
+        "thread",
+        "up",
+        "weekli",
+        "weigh",
+        "writ"
+      ],
+      "fg2": [
+        "answ",
+        "award",
+        "bill",
+        "call",
+        "client",
+        "deck",
+        "exam",
+        "examin",
+        "follow",
+        "grad",
+        "handl",
+        "heed",
+        "hour",
+        "invoic",
+        "mark",
+        "meet",
+        "offic",
+        "panel",
+        "point",
+        "rubric",
+        "session",
+        "sheet",
+        "slid",
+        "tak"
+      ],
+      "fg3": [
+        "appli",
+        "audit",
+        "carri",
+        "check",
+        "comb",
+        "complianc",
+        "inspect",
+        "inspection",
+        "maintenanc",
+        "ord",
+        "out",
+        "quarterli",
+        "repair",
+        "spot",
+        "staff",
+        "talk",
+        "tenant",
+        "through",
+        "und",
+        "unit",
+        "work"
+      ],
+      "fg4": [
+        "abiliti",
+        "batch",
+        "clos",
+        "emploi",
+        "forward",
+        "from",
+        "item",
+        "lab",
+        "lin",
+        "queu",
+        "rat",
+        "real",
+        "request",
+        "scor",
+        "support",
+        "tabl",
+        "test",
+        "ticket",
+        "updat",
+        "user"
+      ],
+      "fg5": [
+        "about",
+        "adopt",
+        "apprais",
+        "form",
+        "groceri",
+        "happen",
+        "household",
+        "into",
+        "judg",
+        "land",
+        "list",
+        "plann",
+        "practic",
+        "put",
+        "run",
+        "shopp",
+        "trip",
+        "verdict",
+        "verifi",
+        "vet",
+        "with"
+      ]
+    },
+    "warnings": []
+  },
+  "formats_lint": {
+    "status": "passed",
+    "templates": 15,
+    "contracts": 5,
+    "banned_stems": 118,
+    "exceptions_used": [
+      "C4::answer",
+      "bench_imperative_v2::answer",
+      "bench_mmlu_bare_v2::answer",
+      "bench_preamble_v2::answer",
+      "bench_preamble_v2::following",
+      "bench_preamble_v2::with",
+      "bench_reserved_v2::answer"
+    ],
+    "warnings": [
+      "legacy F1 benchmark_mcq_v1: token 'with' (stem 'with', owned by ['fg5'])",
+      "legacy F1 casual_short_answer_v1: token 'out' (stem 'out', owned by ['fg3'])",
+      "F2 line 'options:' shared by ['bench_sectioned_v2', 'benchmark_mcq_v1']",
+      "F2 line 'question:' shared by ['bench_sectioned_v2', 'benchmark_mcq_v1']"
+    ]
+  },
+  "validation": {
+    "status": "passed",
+    "payload_blocks": 80,
+    "rendered_items": 2880,
+    "items_per_template": {
+      "bench_imperative_v2": 240,
+      "bench_mmlu_bare_v2": 240,
+      "bench_preamble_v2": 240,
+      "bench_qa_record_v2": 240,
+      "bench_sectioned_v2": 240,
+      "bench_tagged_v2": 240,
+      "benchmark_mcq_v1": 117,
+      "casual_short_answer_v1": 123,
+      "deploy_bare_v2": 240,
+      "deploy_json_v2": 240,
+      "deploy_lead_in_v2": 240,
+      "deploy_markdown_v2": 240,
+      "deploy_mcq_bullets_v2": 240
+    },
+    "contract_cells": {
+      "bench_imperative_v2": {
+        "C0": 48,
+        "C1": 48,
+        "C2": 48,
+        "C3": 48,
+        "C4": 48
+      },
+      "bench_mmlu_bare_v2": {
+        "C0": 48,
+        "C1": 48,
+        "C2": 48,
+        "C3": 48,
+        "C4": 48
+      },
+      "bench_preamble_v2": {
+        "C0": 48,
+        "C1": 48,
+        "C2": 48,
+        "C3": 48,
+        "C4": 48
+      },
+      "bench_qa_record_v2": {
+        "C0": 57,
+        "C1": 57,
+        "C3": 69,
+        "C4": 57
+      },
+      "bench_sectioned_v2": {
+        "C0": 48,
+        "C1": 48,
+        "C2": 48,
+        "C3": 48,
+        "C4": 48
+      },
+      "bench_tagged_v2": {
+        "C0": 48,
+        "C1": 48,
+        "C2": 48,
+        "C3": 48,
+        "C4": 48
+      },
+      "deploy_bare_v2": {
+        "C0": 63,
+        "C1": 66,
+        "C3": 54,
+        "C4": 57
+      },
+      "deploy_json_v2": {
+        "C0": 54,
+        "C1": 72,
+        "C3": 51,
+        "C4": 63
+      },
+      "deploy_lead_in_v2": {
+        "C0": 57,
+        "C1": 63,
+        "C3": 57,
+        "C4": 63
+      },
+      "deploy_markdown_v2": {
+        "C0": 48,
+        "C1": 48,
+        "C2": 48,
+        "C3": 48,
+        "C4": 48
+      },
+      "deploy_mcq_bullets_v2": {
+        "C0": 54,
+        "C1": 54,
+        "C3": 60,
+        "C4": 72
+      }
+    },
+    "answer_key_distribution": {
+      "bench_imperative_v2": {
+        "A": 81,
+        "B": 48,
+        "C": 51,
+        "D": 60
+      },
+      "bench_mmlu_bare_v2": {
+        "A": 66,
+        "B": 60,
+        "C": 57,
+        "D": 57
+      },
+      "bench_preamble_v2": {
+        "A": 66,
+        "B": 48,
+        "C": 81,
+        "D": 45
+      },
+      "bench_sectioned_v2": {
+        "A": 90,
+        "B": 51,
+        "C": 45,
+        "D": 54
+      },
+      "bench_tagged_v2": {
+        "A": 72,
+        "B": 57,
+        "C": 42,
+        "D": 69
+      },
+      "deploy_markdown_v2": {
+        "1": 45,
+        "2": 72,
+        "3": 60,
+        "4": 63
+      }
+    },
+    "b4_modes": {
+      "choice": 86,
+      "gsm8k": 74
+    },
+    "deployment_c2_present": true
+  }
+}

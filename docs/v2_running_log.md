@@ -1,8 +1,176 @@
 # v2 running log
 
-Reverse-chronological log of the v2 redesign implementation. Parent repo =
-`~/Projects/personal/probes` (all pipeline code); this repo carries the plans
-and frozen artifacts.
+Reverse-chronological log of the v2 redesign implementation. Since the
+2026-08-17 relocation (entry below) this repo is fully self-contained: all
+pipeline code, catalogs, schemas, tests, payload inputs, and frozen artifacts
+live here. `~/Projects/personal/probes` is retired as a stale copy.
+
+## 2026-08-17 — Full self-containment: pipeline code moved into this repo
+
+Everything the chain depends on was moved from `~/Projects/personal/probes`
+into this repo (user directive: the repo must run standalone on any machine).
+Copied byte-identically (every file `cmp`-verified against its source):
+`src/eval_format_mvp/` (16 modules new here; `extract.py`/`io.py`/`__init__.py`
+were already byte-identical in both repos), `schemas/` (7), `configs/` (8),
+`prompts/` (2), `tests/` (8), the payload inputs
+`data/payloads.grok43-medium_gpt54.{full80,full.audited,full}.jsonl` +
+`data/example_payloads.jsonl`, and `provenance/render_manifest_v2_pilot80.json`.
+Smoke files, notebooks, run outputs, and the Colab one-offs were deliberately
+left behind (bloat). `pyproject.toml` gained `jsonschema`, a `dev` extra
+(pytest), the `eval-format-mvp` console script, and pytest config.
+
+**Path policy change (portability):** the five render manifests' `path` fields
+were rewritten from absolute (`/home/cfeng/...`) to repo-relative — content
+`sha256` fields untouched, same policy as the catalog canonicalization.
+Verification therefore runs from the repo root (elsewhere it fails loudly with
+"missing file", never silently). Two test constants were repointed to
+content-verified identical files: `test_housekeeping.FROZEN_ITEMS` →
+`data/rendered_items_v1_8-14-2026.jsonl` (sha `ebac61db…` = probes'
+`outputs/rendered_items.jsonl`) and `test_formats_v3.PILOT80_FROZEN` from a
+`Path.home()` absolute path to the same file ROOT-relative. Historical run
+records (`provenance/generation_runs/`, `refill_report`, pilot80 analysis
+JSONs, extraction configs) keep their original recorded paths — they are
+records of where things were at run time, not live references.
+
+**Verification (all from this repo, post-move):**
+
+- Full test suite: 62 passed (matches pre-move).
+- All five manifests verify: v1, v2-pilot80, v3-dev, v3-full-a80, v3-full-b80
+  — every input/output sha256 recomputed and matched.
+- Determinism re-renders, byte-compared against the frozen artifacts:
+  v3-full-a80, v3-full-b80, v3-dev, v2-pilot80 all **byte-identical**;
+  full160 = byte-concat of the a80+b80 re-renders. The v1 render is *not*
+  byte-reproducible by current code (the housekeeping bundle added cue-span
+  fields and `stable_hash_v1` frame assignment after the v1 freeze — predates
+  the move; probes' own code produces the byte-identical modern output, and
+  the frozen v1 file is anchored by its verified manifest sha instead).
+- Surface battery re-runs on full160 and v3-dev: output JSON identical to the
+  checked-in `results/surface_probes_v3_*.json`.
+- Plot scripts (`make_plots`, `gap_plots`, `make_plot_06a`, `pilot_plots_v2`)
+  all run clean.
+
+The probes repo was left untouched (its `catalogs/*.yaml` symlinks into this
+repo still work), but it is no longer needed by anything here and should be
+treated as read-only history.
+
+## 2026-08-17 — Option C: full-crossing schedule + 160-block generation launched
+
+User decision: scale the dev set to 160 blocks × full template crossing
+(5,760 items ≈ 3.3× pilot80 extraction). Two parts:
+
+**Full-crossing schedule** (`render-v3 --schedule full`): every rendered
+template on every block (11 + alternating anchor = 12 templates × 3 renders
+= 36 items/block), making template contrasts within-block paired — the
+§8.3 offset forest's paired estimand needs exactly this. New scheme id
+`crossed_formats_v3_full` recorded per row (schema enum extended), so the
+scheme-locked validator knows which plan reconstructs which rows; the 3+3
+rotation lane stays available unchanged under `crossed_formats_v3`. Fold
+cycling, contract appearance-rotation, answer-key hashing, and all
+F4/aggregate checks carry over; validator reads the schedule off the rows.
+Test added (`test_full_crossing_schedule`); suite green.
+
+**Generation run — two aborted starts, both instructive, then
+`full160_20260817b` (running):**
+
+1. *Aborted: bare `--per-topic 10` regenerates audit-removed ids.* The
+   full80 file's per-topic sample numbers are non-contiguous (audit removed
+   7 slots — pb_t001_01/02, pb_t002_02, pb_t004_02, pb_t018_03,
+   pb_t032_02/03 — and the 2026-08-16 refill filled them at fresh ids), so
+   the raw grid quietly re-targets retired ids. Three such payloads were
+   accepted before the run stopped; all three were stripped and the output
+   file reset to the frozen 80. **Correct path: `refill-requests
+   --per-topic 10 --reserve <pre-audit file>` → `generate --requests`** —
+   80 requests at genuinely fresh ids, zero reserved collisions.
+2. *Aborted: Gemini 3.1 Pro truncation at `max_output_tokens: 4096`.* The
+   error record shows `finish_reason: length` with 3,928 of 4,096 tokens
+   consumed by *reasoning*, leaving 154 for JSON. Profile bumped to 8192
+   (the model_profile schema max; ~2x observed need). Truncation-on-first-
+   Gemini-call is fatal-with-resume by design; two other Gemini payloads
+   had already validated fine, confirming the Vertex transport end to end.
+
+3. *Run b stopped at 55/80 on a second Gemini truncation, this time at
+   8,192 tokens (7,864 reasoning).* The reasoning-token tail is fat enough
+   that no fixed budget fully avoids fatal stops, so the policy changed:
+   **generator truncations now consume a generation attempt and retry**
+   (`generator_truncation_retry_policy: new_attempt_within_budget_v1`,
+   status `generator_truncation_rejection`, excluded from `_feedback` so
+   truncation noise never reaches the next prompt; regression test added).
+   `model_profile.schema.json` max_output_tokens cap raised 8192 → 32768
+   (it predates reasoning models); Gemini profile set to 24,576. Note:
+   the new config key means pre-change incomplete run dirs can't resume —
+   none existed.
+
+Run `full160_20260817c` (running): the remaining 25 of 80 targeted
+requests (55 accepted in b skip via the output file), hash-split Gemini
+3.1 Pro (Vertex, gcloud) / Grok 4.3 (OpenRouter), GPT-5.4 validating,
+near-dup gate against the full 160 pool (working cross-generator: run b's
+first Grok candidate was rejected as a near-dup of an accepted payload and
+retried successfully; b accepted 31 Grok / 24 Gemini).
+Est. cost ~$2–4 incl. Gemini reasoning tokens. Note: plot-pipeline `.env`
+line 2 (`HF_TOKEN =`) has a space before `=` and is not shell-sourceable —
+the OpenRouter key is extracted by grep.
+
+**Render decision for 160 blocks (pre-declared):** render the frozen
+full80 file and the new-80 file as **two separate `render-v3 --schedule
+full` calls** (own manifests), concatenated only for extraction.
+Rationale: `assign_block_folds` sorts blocks within a topic, so a combined
+160-payload render would silently reassign the *original* 80 blocks' fold
+triples away from their pilot80 assignments; per-file rendering keeps the
+old blocks' folds identical to pilot80 (comparability) and the BIBD
+guarantee holds per file (5 blocks/topic ≥ 3). Item ids are globally
+unique across the two files.
+
+**Run c COMPLETE (2026-08-17T10:02Z): 80/80 accepted, zero exhausted, zero
+truncations at the 24,576 budget.** Final new-80 split 43 Grok / 37 Gemini;
+31 attempt records in c (retries incl. near-dups). Output
+`data/payloads.grok43gemini31_gpt54.full160.jsonl` (160 blocks, sha
+8d4bbf41…); new-80 subset split out as
+`data/payloads.grok43gemini31_gpt54.new80.jsonl` for the two-file render.
+
+**Renders + battery (same day):** `render-v3 --schedule full` on the frozen
+full80 (`outputs/rendered_items_v3_full_a80.jsonl`, 2,880 items, sha
+554571a2…) and on new80 (`outputs/rendered_items_v3_full_b80.jsonl`, 2,880
+items, sha e772009d…), each validator-passed with exactly 240 items per
+rendered template per file (within-block pairing achieved); concatenated
+as `outputs/rendered_items_v3_full160.jsonl` (5,760). Surface battery on
+the concatenation: all four purpose gates 0.500 exactly; template-ID 0.884
+(13-way, chance 0.077), stratum 0.786, contract 0.984 — decodable as
+expected, reported not gated.
+
+**Artifact relocation (user directive, 2026-08-17): everything lives in
+plot-pipeline, never in the probes repo.** All full160 + v3-dev artifacts
+moved here and verified post-move (b80 revalidated at its new location;
+a80/b80 sha256 match their manifests; full160 = byte-concat of a80+b80):
+
+- `data/payloads.grok43gemini31_gpt54.full160_8-17-2026.jsonl` (160 blocks)
+  and `…new80_8-17-2026.jsonl` (the 80 new)
+- `data/rendered_items_v3_full_a80_8-17-2026.jsonl`,
+  `…_full_b80_8-17-2026.jsonl`, `…_full160_8-17-2026.jsonl` (5,760, the
+  extraction input), plus the superseded `…_v3_dev_8-17-2026.jsonl`
+- `provenance/render_manifest_v3_full_{a80,b80}.json`,
+  `provenance/refill_{requests,report}_full160_8-17-2026.*`,
+  `provenance/generation_runs/full160_20260817{,b,c}/` (run configs,
+  attempts, errors, run_report)
+- `results/surface_probes_v3_full160.json` (and `…_v3_dev.json`)
+
+**Catalogs relocated too (same directive):** the five design catalogs
+(`topics.yaml`, `purpose_frames.yaml`, `purpose_frames_v2.yaml`,
+`formats.yaml`, `formats_v2.yaml`) now live canonically in
+`plot-pipeline/catalogs/`, with symlinks left at
+`probes/catalogs/*.yaml` so all pipeline code, tests (62 green through the
+symlinks), and stored-path hash verification keep working unchanged.
+Manifest `path` fields in `render_manifest_v3_full_{a80,b80}.json` (and
+probes' `render_manifest_v2_pilot80.json`) were updated to the canonical
+plot-pipeline locations — content sha256s untouched — and
+`verify-manifest-v3`/`-v2` pass on all three post-update. The frozen v1/v2
+payload inputs (`payloads.grok43-medium_gpt54.*`) stay in the probes repo
+as upstream inputs; their content is contained in the full160 file here.
+
+Remaining before GPU: freeze the analysis addendum (leave-one-template-out
+endpoints, layer pins, the a80/b80 lineage covariate — new-80 payloads are
+Grok+Gemini vs. original all-Grok, so generator lineage should enter the
+analysis as a block-level covariate), then extraction (~5,760 prompts × 3
+Llama models) + `annotate-tokens` per model.
 
 ## 2026-08-17 — Multi-generator generation (Gemini + Grok, GPT-5.4 validating)
 

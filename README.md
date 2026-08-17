@@ -72,13 +72,44 @@ identical. The checked-in JSONs are the frozen reference; input identity is
 `sha256(data/rendered_items_v1_8-14-2026.jsonl) = ebac61db…` (recorded per run in
 `provenance/`).
 
+## Dataset pipeline (self-contained since 2026-08-17)
+
+The full generation → render → validate pipeline lives in this repo (it was
+previously in a parent repo). The `eval-format-mvp` CLI (installed by
+`pip install -e .`) exposes it; run all commands **from the repo root** —
+manifest paths are stored repo-relative.
+
+```bash
+pip install -e ".[analysis,dev]"
+python -m pytest                    # 62 tests, no network/GPU needed
+
+# verify the frozen chain end to end (recomputes every recorded sha256)
+eval-format-mvp verify-manifest     --manifest provenance/render_manifest.json
+eval-format-mvp verify-manifest-v2  --manifest provenance/render_manifest_v2_pilot80.json
+eval-format-mvp verify-manifest-v3  --manifest provenance/render_manifest_v3_full_a80.json
+eval-format-mvp verify-manifest-v3  --manifest provenance/render_manifest_v3_full_b80.json
+```
+
+Renders are deterministic: `render-v3 --schedule full` on the checked-in
+payload files reproduces `data/rendered_items_v3_full_{a80,b80}_8-17-2026.jsonl`
+byte-for-byte, and their concatenation is byte-identical to
+`data/rendered_items_v3_full160_8-17-2026.jsonl`. Generating *new* payloads
+(`generate`) needs API keys (`OPENROUTER_API_KEY`, or gcloud auth for Vertex) —
+nothing else in the repo does.
+
 ## Layout
 
-- `src/eval_format_mvp/` — extraction library (last-prompt-token residual
-  stream, every block, forward hooks before the final norm). Trimmed from the
-  parent repo: the payload-generation / validation / render machinery is gone;
-  the dataset is frozen here.
-- `scripts/` — the five runnable steps.
-- `provenance/` — extraction configs of the runs behind the checked-in
-  results (model revisions, hashes, GPU, library versions) and the render
-  manifest tying `rendered_items_v1_8-14-2026.jsonl` back to its payload source.
+- `src/eval_format_mvp/` — the library: payload generation/validation
+  (`generation.py`, `openrouter.py`, `vertex.py`), rendering + validators
+  (`render.py`, `render_v2.py`, `render_v3.py`, `formats_v2.py`,
+  `frames_v2.py`), surface-probe battery (`surface_v3.py`), activation
+  extraction (`extract.py`: last-prompt-token residual stream, every block,
+  forward hooks before the final norm), and the CLI (`cli.py`).
+- `scripts/` — the runnable analysis/plot steps.
+- `catalogs/`, `schemas/`, `prompts/`, `configs/` — design catalogs, JSON
+  schemas, generation prompt templates, model profiles.
+- `tests/` — the full suite (rendering, validators, generation machinery,
+  frozen-chain regressions).
+- `data/` — frozen payload inputs and rendered datasets.
+- `provenance/` — extraction configs, render manifests (every input/output
+  sha256), and generation run records.

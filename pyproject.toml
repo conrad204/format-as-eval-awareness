@@ -5,9 +5,10 @@ build-backend = "hatchling.build"
 [project]
 name = "eval-format-mvp"
 version = "0.1.0"
-description = "Purpose-by-format probe: activation extraction, layer sweep, and plots"
+description = "Purpose-by-format probe: generation, rendering, activation extraction, layer sweep, and plots"
 requires-python = ">=3.11,<3.14"
 dependencies = [
+  "jsonschema>=4.23,<5",
   "pyyaml>=6,<7",
 ]
 
@@ -25,5 +26,18 @@ analysis = [
   "matplotlib>=3.9",
 ]
 
+dev = [
+  "numpy>=1.26",
+  "scikit-learn>=1.5",
+  "pytest>=8.3",
+]
+
+[project.scripts]
+eval-format-mvp = "eval_format_mvp.cli:main"
+
 [tool.hatch.build.targets.wheel]
 packages = ["src/eval_format_mvp"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

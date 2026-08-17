@@ -1,0 +1,25 @@
+# Gemini 3.1 Pro via Vertex AI (gcloud-authenticated), generator role only.
+# Not wired into any run yet: pass eval_format_mvp.vertex.call_structured (or
+# structured_caller_for(profile)) as the caller when using this profile.
+# Pinning caveat: Vertex exposes this model only as versionId "default"
+# (launch stage PUBLIC_PREVIEW) — no dated slug exists, unlike OpenRouter pins.
+# Verified available in project lang-ea on 2026-08-16.
+schema_version: 1
+profile_id: gemini31_pro_generator
+role: generator
+provider: vertex
+model: google/gemini-3.1-pro-preview
+canonical_slug: google/gemini-3.1-pro-preview@default
+base_url: https://aiplatform.googleapis.com/v1/projects/lang-ea/locations/global/endpoints/openapi/chat/completions
+project: lang-ea
+location: global
+timeout_seconds: 300
+transport_attempts: 3
+temperature: 0.6
+top_p: 0.9
+# 24576, not 4096/8192: Gemini 3.1 Pro's reasoning tokens draw from the same
+# budget and the tail is fat — observed 3,928 (run full160_20260817,
+# pb_t004_02) and 7,864 (run full160_20260817b, pb_t002_10) reasoning tokens,
+# both truncating the JSON. Truncations now also retry as consumed generation
+# attempts instead of stopping the run.
+max_output_tokens: 24576
