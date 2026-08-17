@@ -195,6 +195,22 @@
         "results/pilot80_geometry_33_70b_selected.json": "c31bdf0d43e14dba4b7b1a64e793c4a9aa096fb3e37126180871a623b4d03990"
       },
       "status": "development_only_before_causal_outcomes"
+    },
+    {
+      "date": "2026-08-17",
+      "kind": "pre_outcome_generator_batch_retry",
+      "reason": "The first immutable confirmation-generation run produced 72 payload candidates because payload batch 7 returned the wrong candidate count. Before semantic outcomes, activation extraction, or bank sealing, preserve the original raw output and retry only that missing batch with the identical model, exact revision, prompt family, seed, and temperature; increase max_tokens from 4096 to 8192 solely to prevent truncation/count failure. No generated candidate was manually edited or selected based on outcomes. Two infrastructure-only submissions were rejected before model loading: one local-path model argument and one mistyped revision override.",
+      "original_generation_job": "52315277",
+      "original_run": "/scratch/jppatton/langea/confirmation_work/generation_20260817_04",
+      "retry_job": "52337294",
+      "retry_run": "/scratch/jppatton/langea/confirmation_work/generation_20260817_09_payload_retry",
+      "retry_batch": 7,
+      "generator_model": "stockmark/Stockmark-2-100B-Instruct",
+      "generator_revision": "98e959a472d0fcaf0c8b6576af19fe3cba7ca4ab",
+      "temperature": 0.2,
+      "seed": 20260817,
+      "max_tokens": 8192,
+      "status": "pre_outcome_retry_in_progress"
     }
   ]
 }
