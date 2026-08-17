@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "status": "DEVELOPMENT_REJECTED_LEXICAL_LEAKAGE",
+  "reason": "Held-fold character/subword lexical decoding exceeded the predeclared construction gate; this bank is permanently development-only and must never be transformed into confirmation data.",
+  "builder": {
+    "path": "scripts/build_confirmation_bank.py",
+    "sha256": "dd007600edf5a24b4ad0f821fb1bf77bf1813cdaee3c537efa522fa361c0b815",
+    "git_head": "98afd2597daeb0754b8e59b2622f3177ce7156a6",
+    "generator_lineage": "procedural_reconstruction_v1; no model/provider",
+    "seed": "payload index 0..79; fold assignment rank=index mod 5; random seed none",
+    "logic": "80 arithmetic payload blocks, 50 procedural purpose frame pairs, 22 rendered rows per block, deterministic canonical JSON and SHA256"
+  },
+  "inputs": {
+    "rendered_items_sha256": "ecdc9f715f86bab0a58ad4e472e1bfe43731ca2b355bbed2fc9babc4f01da096",
+    "rows": 1760,
+    "blocks": 80,
+    "strata": {"stated": 960, "indirect": 320, "second_person": 320, "no_cue": 160}
+  },
+  "lexical_gate": {
+    "path": "scripts/lexical_gates.py",
+    "sha256": "9a1c57cc0fe476ff242e64c9bf8b5f12088aafad7701c1488e5792656d012003",
+    "threshold": {"mean_auc_max": 0.60, "max_fold_auc_max": 0.70},
+    "report_sha256": "70887e0a208571f03b590473882e0d00144adc115e75bd4616a0c495b7cb1596",
+    "results": {
+      "word_1gram": {"mean_auc": 0.5000000000000001, "max_auc": 0.5000000000000001, "pass": true},
+      "word_1_2gram": {"mean_auc": 0.5000000000000001, "max_auc": 0.5000000000000001, "pass": true},
+      "word_1_3gram": {"mean_auc": 0.5000000000000001, "max_auc": 0.5000000000000001, "pass": true},
+      "char_3_5gram": {"mean_auc": 0.6402343749999999, "max_auc": 0.9997829861111112, "pass": false},
+      "char_3_6gram": {"mean_auc": 0.6261284722222222, "max_auc": 1.0, "pass": false},
+      "length_punctuation": {"mean_auc": 0.5, "max_auc": 0.5, "pass": true},
+      "first_half": {"mean_auc": 0.5003689236111111, "max_auc": 0.5018446180555555, "pass": true},
+      "second_half": {"mean_auc": 0.5000000000000001, "max_auc": 0.5000000000000001, "pass": true}
+    },
+    "overall_pass": false
+  },
+  "diagnostics": {
+    "script": "scripts/diagnose_char_leakage.py",
+    "script_sha256": "68e1d1b50575f03a50232804875690c3e87db8db5dd75d3396b91334f0357368",
+    "report": "development_char_leakage_report.json",
+    "report_sha256": "c022cca6205f21eb7e7284ac8e1f95fdbbbed46d5f4180f2a5c3b0dafd5342ae",
+    "features": "development_char_features.csv",
+    "features_sha256": "428bdb25affe0377af2ac23f900f11b437fe40a55191fd7200803fdb7b9ae080",
+    "top_n": 15
+  },
+  "semantic_validation": {
+    "status": "not_performed",
+    "reason": "No independent local validator was available in the reconstruction checkout; candidate is rejected before any confirmation consideration."
+  },
+  "activation_extraction": {"status": "FORBIDDEN", "ran": false}
+}

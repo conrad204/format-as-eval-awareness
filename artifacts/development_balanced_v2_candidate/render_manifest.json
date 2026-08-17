@@ -1,0 +1,42 @@
+{
+  "artifacts": {
+    "forbidden_lexicon": {
+      "path": "artifacts\\dev_forbidden_lexicon.json",
+      "sha256": "abf4be1d1afcb75ff063f14fc8f787413e0f671131f9112fb7d395dadc91e59e"
+    },
+    "frames": {
+      "path": "frames.json",
+      "sha256": "2d6db1ea21b5e69d09f6f4f7c429316a806c71f01d85dea1f769a863460211c3"
+    },
+    "payloads": {
+      "path": "payloads.jsonl",
+      "sha256": "c1282967879280f3a6ef395c9da05f1f3b2f579a5833898335275c29df06e5b6"
+    },
+    "rendered_items": {
+      "path": "rendered_items.jsonl",
+      "sha256": "d1b1826deea8f4ce89606d71a0a7cfc65b31aade570810709ea26baf2ba0ed0a"
+    }
+  },
+  "counts": {
+    "benchmark_answer_keys": {
+      "A": 220,
+      "B": 220,
+      "C": 220,
+      "D": 220
+    },
+    "blocks": 80,
+    "rows": 1760,
+    "strata": {
+      "indirect": 320,
+      "no_cue": 160,
+      "second_person": 320,
+      "stated": 960
+    }
+  },
+  "generator_lineage": "procedural_reconstruction_v1 (no provider/API; not Grok-4.3)",
+  "hash_policy": "immutable_sha256",
+  "note": "Procedural bank is a reconstruction candidate; do not call confirmation-grade until protocol amendment explicitly accepts non-model generation lineage and lexical gate passes.",
+  "schema_version": 1,
+  "status": "unsealed_procedural_candidate",
+  "validator_lineage": "deterministic_structural_validator_v1"
+}
