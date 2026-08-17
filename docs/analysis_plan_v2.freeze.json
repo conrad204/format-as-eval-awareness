@@ -2,13 +2,63 @@
   "schema_version": 1,
   "frozen_on": "2026-08-16",
   "governs": "single confirmatory analysis of the sealed v2 confirmation bank",
+  "git_head": "98afd2597daeb0754b8e59b2622f3177ce7156a6",
   "artifacts": {
     "docs/analysis_plan_v2.md": "11f6975b9f78d442276c6c315e72e61ce238409a0955fb9f0affa49a6bf91325",
-    "scripts/confirmation_analysis.py": "561560a697bb466e710d969c2bbae11ac050dfe92bcb90ee29b58090a73dd804"
+    "docs/analysis_plan_v2.md_worktree_sha256": "056dc8f9b3dd7401ec22c95b8b45e242c2d413c1382dc71c6e403397d4be92cc",
+    "docs/analysis_plan_v2.md_git_blob_sha256": "11f6975b9f78d442276c6c315e72e61ce238409a0955fb9f0affa49a6bf91325",
+    "scripts/confirmation_analysis.py": "561560a697bb466e710d969c2bbae11ac050dfe92bcb90ee29b58090a73dd804",
+    "scripts/confirmation_analysis.py_worktree_sha256": "d8f954b36755c496064fe0a60aa1dc818832e5df106c3372c09a0f736b48ab24",
+    "scripts/confirmation_analysis.py_git_blob_sha256": "561560a697bb466e710d969c2bbae11ac050dfe92bcb90ee29b58090a73dd804"
   },
   "development_context_hashes": {
     "purpose_frames_v2.yaml (dev catalog, NOT the confirmation catalog)": "3e5cd2e459e40fbbbdabbffdd7c4750d6181dae6def0dd4d26c49c52b3b39d7b",
-    "rendered_items_v2_pilot.jsonl": "918e57f3faae079d7645d0eb7ee5a2b26dff29c98f62eb8a1c9df4898c2218b5"
+    "rendered_items_v2_pilot.jsonl": "918e57f3faae079d7645d0eb7ee5a2b26dff29c98f62eb8a1c9df4898c2218b5",
+    "payloads.grok43-medium_gpt54.full80.jsonl": "c5ca655333904b87a8e524fb3ea9ae8ad11cfa9b2613974d6b04927b6424f8cd",
+    "rendered_items_v2_pilot80.jsonl": "0dbcb9802924d3c2063fce87e24250d1a3430fd24856ea83b132e606843f6638"
+  },
+  "pilot_layer_selection": {
+    "selection_rule": "argmax decorrelated stated held-fold AUC on the spent v2 80-block pilot, computed before any confirmation-bank generation or extraction",
+    "pilot_sweep_seed": 0,
+    "models": {
+      "meta-llama/Llama-3.1-8B-Instruct": {
+        "selected_layer": 12,
+        "pilot_sweep_artifact": "results/pilot80_layer_sweep_8b.json",
+        "pilot_sweep_sha256": "23879c25ed31d0dfcb82c1f9e65d734b08b0411a310db401b742a7b315c787a5",
+        "pilot_result_artifact": "results/pilot80_analysis_8b_layer12.json",
+        "pilot_result_sha256": "95f704cba42020c445e07eb3a04f396e4c42afd18ae6289e9f7fed0daf9c69e8",
+        "model_revision": "0e9e39f249a16976918f6564b8830bc894c89659",
+        "revision_provenance_status": "recorded_in_existing_extraction_provenance; pilot80 activation provenance is external to this checkout"
+      },
+      "meta-llama/Llama-3.1-70B-Instruct": {
+        "selected_layer": 31,
+        "pilot_sweep_artifact": "results/pilot80_layer_sweep_31_70b.json",
+        "pilot_sweep_sha256": "8c6bf92c8bb926fa2d45fe4dda85a5f10a208ca4b7b2f537b5f981b3260ab104",
+        "pilot_result_artifact": "results/pilot80_analysis_31_70b_layer31.json",
+        "pilot_result_sha256": "44681917a3e1b0dd0697309a52c485e594f9b371ac989abc9f041cbf75639b55",
+        "model_revision": "1605565b47bb9346c5515c34102e054115b4f98b",
+        "revision_provenance_status": "verified_in_approved_cluster_provenance; canonical 288-item development archive, not pilot80 activation provenance"
+      },
+      "meta-llama/Llama-3.3-70B-Instruct": {
+        "selected_layer": 17,
+        "pilot_sweep_artifact": "results/pilot80_layer_sweep_33_70b.json",
+        "pilot_sweep_sha256": "1cf81b57f7345984ff2ea3c5b73d5ac625be89f718763c24dbdfd41a13213126",
+        "pilot_result_artifact": "results/pilot80_analysis_33_70b_layer17.json",
+        "pilot_result_sha256": "cd4b475606f947627650bd25913943e9c81271b13e944f24009d1d66a9f5d3e6",
+        "model_revision": "6f6073b423013f6a7d4d9f39144961bfbfbc386b",
+        "revision_provenance_status": "recorded_in_existing_extraction_provenance; pilot80 activation provenance is external to this checkout"
+      }
+    }
+  },
+  "audit_status": {
+    "audited_at": "2026-08-16T22:02:14-05:00",
+    "confirmation_bank_present": false,
+    "confirmation_extraction_allowed": false,
+    "analysis_hash_status": "repository_blob_matches_original_freeze; Windows working-tree bytes differ only by CRLF normalization and are recorded explicitly",
+    "blocking_reasons": [
+      "no sealed confirmation bank exists; the reconstructed procedural candidate lacks independent generator provenance and semantic-validator outputs and fails the pre-extraction character n-gram held-fold gate",
+      "provider credentials were exposed by an agent's broad search and must be rotated before any remote or paid generation"
+    ]
   },
   "addenda": [
     {
@@ -19,6 +69,132 @@
         "payloads.grok43-medium_gpt54.full80.jsonl": "c5ca655333904b87a8e524fb3ea9ae8ad11cfa9b2613974d6b04927b6424f8cd",
         "rendered_items_v2_pilot80.jsonl": "0dbcb9802924d3c2063fce87e24250d1a3430fd24856ea83b132e606843f6638"
       }
+    },
+    {
+      "date": "2026-08-16",
+      "kind": "pre_confirmation_layer_lock_and_audit",
+      "reason": "Recorded the pilot-only argmax layer selections and artifact hashes before any confirmation-bank extraction. At audit time the exact 3.1-70B pilot revision was absent from this checkout; it was subsequently verified from approved cluster provenance and is recorded in the dated revision addendum below. No confirmation extraction may proceed until the bank and all pilot/confirmation provenance are complete. Recorded canonical Git-blob hashes and Windows working-tree hashes for the frozen plan and executable to prevent line-ending ambiguity. Audit also records that confirmation generation tooling and approved provider credentials are unavailable for this checkout.",
+      "selected_layers": {
+        "meta-llama/Llama-3.1-8B-Instruct": 12,
+        "meta-llama/Llama-3.1-70B-Instruct": 31,
+        "meta-llama/Llama-3.3-70B-Instruct": 17
+      }
+    },
+    {
+      "date": "2026-08-16",
+      "kind": "verified_model_revision",
+      "reason": "Verified the exact Llama-3.1-70B-Instruct revision from approved cluster provenance at /scratch/jppatton/langea/runs/tae_2026/llama31_70b_canonical/llama31_70b_20260816_rev1605565b/config.json. This is a canonical 288-item development archive, not the external v2 pilot80 activation archive; it resolves the revision-recording defect only and does not authorize confirmation extraction.",
+      "model": "meta-llama/Llama-3.1-70B-Instruct",
+      "model_revision": "1605565b47bb9346c5515c34102e054115b4f98b",
+      "source_items_sha256": "ebac61dbe7b6bcf89bb8195d92447619ca4821adc2b4de6b1d4bc98058f44022",
+      "source_archive_sha256": "d517caf9f683e07620dc5597e1ee5df7c275f78915a09a12f95eeb65b41b0848",
+      "layer_semantics": "zero_based_transformer_block_output_before_final_model_norm",
+      "token_position": "last_prompt_token_after_chat_template_before_generation"
+    },
+    {
+      "date": "2026-08-16",
+      "kind": "reconstruction_attempt_rejected_pre_extraction",
+      "reason": "A procedural candidate builder was reconstructed to test the frozen bank shape, but it is not confirmation-grade: it has no independent model/provider generation provenance or semantic-validator outputs, and its natural-language candidate fails the pre-extraction character n-gram held-fold gate. The candidate was not sealed, committed as data, or used for activation extraction.",
+      "artifacts": {
+        "builder": "scripts/build_confirmation_bank.py",
+        "builder_sha256": "dd007600edf5a24b4ad0f821fb1bf77bf1813cdaee3c537efa522fa361c0b815",
+        "lexical_gate": "scripts/lexical_gates.py",
+        "lexical_gate_sha256": "9a1c57cc0fe476ff242e64c9bf8b5f12088aafad7701c1488e5792656d012003",
+        "candidate_sha256": "ecdc9f715f86bab0a58ad4e472e1bfe43731ca2b355bbed2fc9babc4f01da096"
+      },
+      "status": "blocked"
+    },
+    {
+      "date": "2026-08-16",
+      "kind": "confirmation_wrapper_hardening_and_canonical_analysis",
+      "reason": "Added strict synthetic-tested seal enforcement: required artifact set and hashes, manifest-root path containment, frozen model/revision/layer binding, canonical analysis SHA binding, wrapper SHA binding, activation shape/finiteness/item-ID validation, immutable output/sentinel behavior, timeout, and endpoint contract. Created an LF-canonical copy of the frozen analysis executable; its bytes match the recorded Git-blob SHA.",
+      "artifacts": {
+        "canonical_analysis": "scripts/confirmation_analysis.canonical.py",
+        "canonical_analysis_sha256": "561560a697bb466e710d969c2bbae11ac050dfe92bcb90ee29b58090a73dd804",
+        "sealed_wrapper": "scripts/run_sealed_confirmation.py",
+        "sealed_wrapper_sha256": "498ab6f308bcba031018a3a560541b2ba4814554e2a74626fa3f0b54eec4da3a",
+        "synthetic_tests": "tests/test_run_sealed_confirmation.py"
+      },
+      "status": "development_verified"
+    },
+    {
+      "date": "2026-08-16",
+      "kind": "confirmation_candidate_generation_and_gate_protocol",
+      "reason": "Before any confirmation extraction, froze the fresh-candidate procedure: Stockmark-2-100B local generation with ten payload batches and five frame batches; independent Swallow-70B semantic validation; automatic canonicalization into 80 payload blocks and 50 balanced frame pairs; lexical, subword-ownership, morphology/syntax balance, and independent red-team audits. Candidate artifacts remain development-only until all required gates pass and the exclusive seal manifest is created.",
+      "artifacts": {
+        "generator": "scripts/generate_confirmation_candidates.py",
+        "generator_sha256": "6429d3cba31d77945fcba100a915a47f1a051f219bb529628f7acba6cce728bf",
+        "assembler": "scripts/assemble_confirmation_bank.py",
+        "assembler_sha256": "bcd7fed2c9ee9f2eb019b9bc08c9eff4803438b838c23fdc3e2d8b3ca46db60f",
+        "validator": "scripts/validate_confirmation_candidates.py",
+        "validator_sha256": "54538014a73ba9a74a8491f349e97265e44e9864dad0878a35b7c00023663623",
+        "lexical_gate": "scripts/lexical_gates_v2.py",
+        "lexical_gate_sha256": "1efcfab4f98f30763aeaa8d1676e0d53065119b45ade0fec5fc0ffc25220f2c4",
+        "subword_gate": "scripts/subword_gates.py",
+        "subword_gate_sha256": "06b3a148269b37773453630dbdf59c60ff25e9eec92f4e06567d5fc65ef651fc",
+        "surface_balance": "scripts/surface_balance.py",
+        "surface_balance_sha256": "e874132106c73a694c5eafbab3c23834a31d6856ed14325f2b41fcd55cd23f49",
+        "red_team": "scripts/red_team_lexical_audit.py",
+        "red_team_sha256": "9b8fd29caccab3348b9e9c041945fa8bf91e2284ed94e6bf9f185577c4afd951",
+        "sealer": "scripts/seal_confirmation_bank.py",
+        "sealer_sha256": "3b6a971834209f0765c4fe0a3d4e008d4a0a0996986653bea1f52738e2b9d9ad"
+      },
+      "status": "frozen_before_extraction"
+    },
+    {
+      "date": "2026-08-16",
+      "kind": "jlens_reference_pin",
+      "reason": "Pinned the official Anthropic Jacobian-lens reference implementation before any fitting. No lens was fit on confirmation labels; fitting remains independent development work.",
+      "artifacts": {
+        "provenance": "artifacts/jlens_provenance.json",
+        "repository": "https://github.com/anthropics/jacobian-lens",
+        "commit": "581d398613e5602a5af361e1c34d3a92ea82ba8e"
+      },
+      "status": "pinned_not_fitted"
+    },
+    {
+      "date": "2026-08-17",
+      "kind": "pre_generation_confirmation_bank_structural_and_provenance_amendment",
+      "reason": "The pre-outcome audit found that the first confirmation-generation queue had not started and that the candidate assembler/import interfaces contained defects. Before any candidate generation, cancel the stale queue and require structural variation across frame batches, explicit exclusion of purpose/format label stems, exact topic schedule validation, model/model-revision provenance arguments, and immutable fresh-run output directories. This amendment changes construction gates only; it does not change the frozen E1-E8 estimands, frozen layers, probe recipe, or success criterion.",
+      "requirements": [
+        "Frame candidates must vary clause order, tense, voice, sentence count, subject type, punctuation, and cue position across batches; fixed repeated scaffolds are rejected.",
+        "Candidate prompts must prohibit explicit evaluation/deployment/benchmark/test/assessment label stems and the independent semantic validator must record model and revision.",
+        "Payload candidates must use the exact 16-topic schedule, five blocks per topic, with no first-appearance topic remapping.",
+        "Generation, validation, assembly, and sealing must use fresh immutable run directories; no queued job may delete or overwrite a prior run.",
+        "The exact generator and validator model revisions, prompts, raw outputs, decisions, input hashes, and script hashes are required before sealing."
+      ],
+      "artifacts": {
+        "scripts/generate_confirmation_candidates.py": "8fc54018ac9aa845e9f8bf97e4adb27ecd773e41789613116400d7c1c7c1c16f",
+        "scripts/validate_confirmation_candidates.py": "8ed4dd64d45e3719619a71c0d5fbd243e0c19a3003a6ab0ac673e3e1a98d0697",
+        "scripts/assemble_confirmation_bank.py": "3f65ad0073d5d5973bcfa7f3a56cb43048d4d67fc84d64e7074d74fdc24a860e",
+        "scripts/structural_variation_gate.py": "a895dc3c95a773ea5724402c8a76a84883787cca73621b99049f7da49d0ac816",
+        "scripts/seal_confirmation_bank.py": "3737fd44394ff16b506c58e805858a64502190e7499e57c693b220fa9c1624de"
+      },
+      "git_commit": "f2e7748"
+    },
+    {
+      "date": "2026-08-17",
+      "kind": "pilot_geometry_causal_selection_preregistration",
+      "reason": "The exact private pilot activation archive was independently imported and the 8B all-layer factorial geometry was computed before any causal intervention. Causal-development layers will be selected only from development geometry, not causal outcomes.",
+      "selection_rule": "Among layers with held-out stated-purpose AUC >= 0.80, select the minimum and maximum norm(C)/norm(A) layers; fit A, B, and C on training purpose families and evaluate on held-out families. The pilot 8B artifact yields low-interaction L5 and high-interaction L29 under this rule. L4/L9/L15 remain an externally motivated candidate set only if an independent source justification is recorded before intervention.",
+      "artifacts": {
+        "geometry": "results/pilot80_geometry_8b.json",
+        "geometry_sha256": "fbe611484097c35eead92857ba2f4bd540f37cc3245bf1f87e66a2411540e39b",
+        "geometry_script_sha256": "9c34c399b7b2c7aa72a5bb06441a2f2a72d3f67cd8575f7f5e93708cca8a7da3",
+        "pilot_item_sha256": "0dbcb9802924d3c2063fce87e24250d1a3430fd24856ea83b132e606843f6638"
+      },
+      "status": "frozen_before_causal_outcomes"
+    },
+    {
+      "date": "2026-08-17",
+      "kind": "pilot_geometry_selected_layer_cli_amendment",
+      "reason": "The development geometry runner was extended with an optional --layers argument to avoid recomputing all 32 layers for the already frozen 70B pilot-selected layers. The estimator, preprocessing, held-family splits, probe settings, and geometry metrics are unchanged; this only restricts the development output rows to pre-registered layers 31 and 17.",
+      "artifacts": {
+        "scripts/pilot_geometry.py": "f332dadeeed73ab3b1a7d385743d5eca166a07d5d60c188148731e850dea9597",
+        "results/pilot80_geometry_31_70b_selected.json": "a5adcc3310ae145359ae85792546b7b7d6dc5485403c61aeb4154ad221878b6d",
+        "results/pilot80_geometry_33_70b_selected.json": "c31bdf0d43e14dba4b7b1a64e793c4a9aa096fb3e37126180871a623b4d03990"
+      },
+      "status": "development_only_before_causal_outcomes"
     }
   ]
 }

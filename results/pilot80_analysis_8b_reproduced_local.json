@@ -1,0 +1,279 @@
+{
+ "endpoints": {
+  "E1_stated_auc": {
+   "point": 0.9430772569444443,
+   "ci95": [
+    0.9283493923611111,
+    0.9559091796875
+   ],
+   "n_boot": 1000,
+   "degenerate_resamples": 0,
+   "n_items": 960,
+   "n_blocks": 80
+  },
+  "E1_ngram_auc": {
+   "point": 0.5,
+   "ci95": [
+    0.49999999999999994,
+    0.5000000000000001
+   ],
+   "n_boot": 1000,
+   "degenerate_resamples": 0,
+   "n_items": 960,
+   "n_blocks": 80
+  },
+  "E1_auc_minus_ngram": {
+   "point": 0.44307725694444433,
+   "ci95": [
+    0.4283493923611111,
+    0.45590917968749994
+   ],
+   "n_boot": 1000,
+   "degenerate_resamples": 0
+  },
+  "E2_locus": {
+   "noun_only": {
+    "point": 0.8509765625,
+    "ci95": [
+     0.8104511718749999,
+     0.8875029296875
+    ],
+    "n_boot": 1000,
+    "degenerate_resamples": 0,
+    "n_items": 320,
+    "n_blocks": 80
+   },
+   "verb_only": {
+    "point": 0.9705468749999999,
+    "ci95": [
+     0.9530800781250001,
+     0.9856250000000001
+    ],
+    "n_boot": 1000,
+    "degenerate_resamples": 0,
+    "n_items": 320,
+    "n_blocks": 80
+   },
+   "both": {
+    "point": 0.9908984375000001,
+    "ci95": [
+     0.9828896484375,
+     0.9973837890625
+    ],
+    "n_boot": 1000,
+    "degenerate_resamples": 0,
+    "n_items": 320,
+    "n_blocks": 80
+   }
+  },
+  "E3_b2c": {
+   "point": 0.6279513888888889,
+   "ci95": [
+    0.6073780381944444,
+    0.6553841145833333
+   ],
+   "n_boot": 1000,
+   "degenerate_resamples": 0,
+   "n_items": 480,
+   "n_blocks": 80
+  },
+  "E3_c2b": {
+   "point": 0.6615451388888889,
+   "ci95": [
+    0.64418359375,
+    0.6835099826388888
+   ],
+   "n_boot": 1000,
+   "degenerate_resamples": 0,
+   "n_items": 480,
+   "n_blocks": 80
+  },
+  "E4_indirect_transfer": {
+   "point": 0.7945703125,
+   "ci95": [
+    0.7521416015625001,
+    0.837205078125
+   ],
+   "n_boot": 1000,
+   "degenerate_resamples": 0,
+   "n_items": 320,
+   "n_blocks": 80
+  },
+  "E4_indirect_own_cv": {
+   "point": 0.7403515625,
+   "ci95": [
+    0.7041552734375002,
+    0.7784013671875001
+   ],
+   "n_boot": 1000,
+   "degenerate_resamples": 0,
+   "n_items": 320,
+   "n_blocks": 80
+  },
+  "E5_second_transfer": {
+   "point": 0.91984375,
+   "ci95": [
+    0.8906611328124999,
+    0.9461396484375
+   ],
+   "n_boot": 1000,
+   "degenerate_resamples": 0,
+   "n_items": 320,
+   "n_blocks": 80
+  },
+  "E5_second_transfer_by_locus": {
+   "noun_only": {
+    "point": 0.9523374726077429,
+    "ci95": [
+     0.9238403944485026,
+     0.9777255295836377
+    ],
+    "n_boot": 1000,
+    "degenerate_resamples": 0,
+    "n_items": 148,
+    "n_blocks": 37
+   },
+   "context": {
+    "point": 0.956598161168199,
+    "ci95": [
+     0.9161607625743646,
+     0.9833761492698756
+    ],
+    "n_boot": 1000,
+    "degenerate_resamples": 0,
+    "n_items": 172,
+    "n_blocks": 43
+   }
+  },
+  "E5_second_own_cv": {
+   "point": 0.9045703125000001,
+   "ci95": [
+    0.8738662109375,
+    0.9355263671875
+   ],
+   "n_boot": 1000,
+   "degenerate_resamples": 0,
+   "n_items": 320,
+   "n_blocks": 80
+  },
+  "E6_nocue_format_shift_sd": {
+   "point": -0.34819022281301076,
+   "ci95": [
+    -0.6031778472057646,
+    -0.1121483189552815
+   ],
+   "n_boot": 1000,
+   "degenerate_resamples": 0
+  },
+  "E6_nocue_format_auc": {
+   "point": 0.410625,
+   "ci95": [
+    0.33046093750000005,
+    0.48515624999999996
+   ],
+   "n_boot": 1000,
+   "degenerate_resamples": 0
+  },
+  "E7_payload_holdout": {
+   "point": 0.8289019097222221,
+   "ci95": [
+    0.7986148003472222,
+    0.8613815104166667
+   ],
+   "n_boot": 1000,
+   "degenerate_resamples": 0,
+   "n_items": 960,
+   "n_blocks": 80
+  },
+  "E8_double_holdout": {
+   "point": 0.7926432291666667,
+   "ci95": [
+    0.7652612847222223,
+    0.8238371310763888
+   ],
+   "n_boot": 1000,
+   "degenerate_resamples": 0,
+   "n_items": 960,
+   "n_blocks": 80
+  },
+  "per_fold_stated": {
+   "fg1": {
+    "point": 0.8846571180555556,
+    "ci95": [
+     0.8420111762152778,
+     0.9274169921875001
+    ],
+    "n_boot": 1000,
+    "degenerate_resamples": 0,
+    "n_items": 192,
+    "n_blocks": 48
+   },
+   "fg2": {
+    "point": 0.9671223958333334,
+    "ci95": [
+     0.9400960286458334,
+     0.9881781684027777
+    ],
+    "n_boot": 1000,
+    "degenerate_resamples": 0,
+    "n_items": 192,
+    "n_blocks": 48
+   },
+   "fg3": {
+    "point": 0.9449869791666667,
+    "ci95": [
+     0.9154541015625001,
+     0.970703125
+    ],
+    "n_boot": 1000,
+    "degenerate_resamples": 0,
+    "n_items": 192,
+    "n_blocks": 48
+   },
+   "fg4": {
+    "point": 0.955078125,
+    "ci95": [
+     0.9254530164930556,
+     0.9794949001736111
+    ],
+    "n_boot": 1000,
+    "degenerate_resamples": 0,
+    "n_items": 192,
+    "n_blocks": 48
+   },
+   "fg5": {
+    "point": 0.9696180555555555,
+    "ci95": [
+     0.942043728298611,
+     0.9923014322916667
+    ],
+    "n_boot": 1000,
+    "degenerate_resamples": 0,
+    "n_items": 192,
+    "n_blocks": 48
+   }
+  }
+ },
+ "config": {
+  "mode": "exploratory",
+  "items": {
+   "path": "activations_dataset\\activations\\llama31_8b_pilot80\\meta.jsonl",
+   "sha256": "0dbcb9802924d3c2063fce87e24250d1a3430fd24856ea83b132e606843f6638"
+  },
+  "activations": {
+   "path": "activations_dataset\\activations\\llama31_8b_pilot80\\activations.npz",
+   "sha256": "d57a1a10cfb633d1fd8722d0621e97d5ccb999b097ed8a95cf58aa985b6c98d4"
+  },
+  "layer": 12,
+  "bootstrap": 1000,
+  "seed": 0,
+  "probe": {
+   "C": 0.1,
+   "max_iter": 3000,
+   "random_state": 0
+  },
+  "script_sha256": "d8f954b36755c496064fe0a60aa1dc818832e5df106c3372c09a0f736b48ab24",
+  "n_items": 1760,
+  "n_blocks": 80
+ }
+}
