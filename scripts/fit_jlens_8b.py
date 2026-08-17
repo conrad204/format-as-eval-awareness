@@ -30,7 +30,7 @@ def main() -> None:
     from jlens.hf import from_hf
     torch.manual_seed(args.seed)
     tokenizer = AutoTokenizer.from_pretrained(args.model, revision=args.revision,
-                                               local_files_only=True, use_fast=True)
+                                               local_files_only=True, use_fast=False)
     model = AutoModelForCausalLM.from_pretrained(
         args.model, revision=args.revision, local_files_only=True,
         torch_dtype=torch.bfloat16, device_map="auto", low_cpu_mem_usage=True,

@@ -18,7 +18,7 @@ def main() -> None:
     args = ap.parse_args()
     from transformers import AutoTokenizer
     tok = AutoTokenizer.from_pretrained(args.model, revision=args.revision, local_files_only=True,
-                                        use_fast=True, add_special_tokens=False)
+                                        use_fast=False, add_special_tokens=False)
     records = [json.loads(x) for x in args.raw.read_text(encoding="utf-8").splitlines() if x.strip()]
     out_records = []
     for r in records:
