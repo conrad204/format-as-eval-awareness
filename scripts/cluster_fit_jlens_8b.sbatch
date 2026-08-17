@@ -20,10 +20,15 @@ JLENS_DIR=${JLENS_DIR:-/scratch/jppatton/langea/confirmation_work/jlens-581d3986
 MODEL=${MODEL:-/scratch/jppatton/langea/huggingface/hub/models--meta-llama--Llama-3.1-8B-Instruct/snapshots/0e9e39f249a16976918f6564b8830bc894c89659}
 MODEL_REVISION=${MODEL_REVISION:-0e9e39f249a16976918f6564b8830bc894c89659}
 mkdir -p "$RUN_DIR"
+RAW_CORPUS=${RAW_CORPUS:-/scratch/jppatton/langea/confirmation_work/jlens_fineweb_1000_seed20260817/raw.jsonl}
+# Validate the exact corpus with the cached tokenizer before fitting.
+/bighome/jppatton/langea/runtime/vllm/bin/python "$SOURCE_DIR/tokenize_jlens_corpus.py" \
+  --raw "$RAW_CORPUS" --out "$RUN_DIR/tokenized.jsonl" \
+  --model "$MODEL" --revision "$MODEL_REVISION" --max-seq-len 128
 # The official fit module is imported from the pinned checkout. The driver must
 # load the model through the local cache and fit only the predeclared layers.
 /bighome/jppatton/langea/runtime/vllm/bin/python "$SOURCE_DIR/fit_jlens_8b.py" \
   --jlens-dir "$JLENS_DIR" --model "$MODEL" --revision "$MODEL_REVISION" \
   --source-layers 4 9 12 15 20 24 --target-layer 31 \
   --dim-batch 8 --max-seq-len 128 --skip-first 16 \
-  --input "$RUN_DIR/tokenized.jsonl" --out-dir "$RUN_DIR" --seed 20260817
+  --input "$RAW_CORPUS" --out-dir "$RUN_DIR" --seed 20260817
