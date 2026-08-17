@@ -5,6 +5,21 @@ Reverse-chronological log of the v2 redesign implementation. Since the
 pipeline code, catalogs, schemas, tests, payload inputs, and frozen artifacts
 live here. `~/Projects/personal/probes` is retired as a stale copy.
 
+## 2026-08-17 — v1 freeze migrated to HF (format-EA/v1-8-14-2026)
+
+Pre-migration validation: `verify-manifest` (all sha256s) and
+`validate-rendered` (render-vs-payload) both passed; rendered sha
+`ebac61db…` matches the README identity and both extraction configs'
+recorded input hash; 288 items = 72 audited blocks × 2×2; audited (72) ⊂
+pre-audit (79). Pushed to private, manual-gated
+`hf.co/datasets/format-EA/v1-8-14-2026`: rendered jsonl, audited + pre-audit
+payloads, `render_manifest.json`, `extraction_config_{8b,70b}.json`, README
+with the sha256 chain. Every file round-trip re-downloaded and
+sha256-verified against local before `git rm`. Known irrecoverable (and
+unchanged by this move): v1 activation npz never archived — only the
+checked-in `results/layer_sweep_*.json` survive. README/CLAUDE.md now point
+v1 reruns at the HF pull.
+
 ## 2026-08-17 — per-freeze folders: full320-v3 grouped
 
 Adopted one-folder-per-freeze locally, mirroring the HF repo-per-freeze

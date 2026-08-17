@@ -3,7 +3,8 @@
 Minimal, self-contained chain that produces the eight plots in `plots/`:
 
 ```
-data/rendered_items_v1_8-14-2026.jsonl          288 frozen prompts (the 2x2 purpose x format dataset)
+rendered_items_v1_8-14-2026.jsonl               288 frozen prompts (the 2x2 purpose x format dataset;
+                                                archived at hf.co/datasets/format-EA/v1-8-14-2026)
         |  scripts/extract_activations.py        [GPU, RunPod]
         v
 activations/<freeze>/<model>/activations_all_layers.npz   (not checked in; regenerable — pilot80-v2 mirrored at hf.co/datasets/format-EA/pilot80-v2)
@@ -32,14 +33,18 @@ python scripts/make_plot_06a.py    # 06a
 
 Models are gated on Hugging Face (`huggingface-cli login` with an approved
 token). Exact revisions used for the checked-in results are pinned below and in
-`provenance/`.
+the v1 HF repo's `extraction_config_{8b,70b}.json`.
 
 ```bash
 pip install -e ".[extract,analysis]"
 
+# v1 freeze is archived on HF (private) — pull it first
+huggingface-cli download format-EA/v1-8-14-2026 --repo-type dataset \
+  --local-dir data/v1-8-14-2026
+
 # Llama-3.1-8B-Instruct — fits on one 40GB GPU
 python scripts/extract_activations.py \
-  --items data/rendered_items_v1_8-14-2026.jsonl \
+  --items data/v1-8-14-2026/rendered_items_v1_8-14-2026.jsonl \
   --out-dir activations/llama31_8b \
   --model meta-llama/Llama-3.1-8B-Instruct \
   --revision 0e9e39f249a16976918f6564b8830bc894c89659 \
@@ -47,7 +52,7 @@ python scripts/extract_activations.py \
 
 # Llama-3.3-70B-Instruct — bf16 needs ~140GB+, e.g. 2x A100-80GB / 2x H100
 python scripts/extract_activations.py \
-  --items data/rendered_items_v1_8-14-2026.jsonl \
+  --items data/v1-8-14-2026/rendered_items_v1_8-14-2026.jsonl \
   --out-dir activations/llama33_70b \
   --model meta-llama/Llama-3.3-70B-Instruct \
   --revision 6f6073b423013f6a7d4d9f39144961bfbfbc386b \
@@ -55,9 +60,9 @@ python scripts/extract_activations.py \
 
 # Layer sweep (run on the pod; the 70B npz is ~750MB, the JSON is ~100KB —
 # download only the JSON)
-python scripts/sweep_full.py data/rendered_items_v1_8-14-2026.jsonl \
+python scripts/sweep_full.py data/v1-8-14-2026/rendered_items_v1_8-14-2026.jsonl \
   activations/llama31_8b/activations_all_layers.npz results/layer_sweep_llama31_8b.json
-python scripts/sweep_full.py data/rendered_items_v1_8-14-2026.jsonl \
+python scripts/sweep_full.py data/v1-8-14-2026/rendered_items_v1_8-14-2026.jsonl \
   activations/llama33_70b/activations_all_layers.npz results/layer_sweep_llama33_70b.json
 ```
 
@@ -69,8 +74,9 @@ The sweep is deterministic (leave-one-family-out folds, fixed
 `random_state=0`). Extraction is bf16 on GPU, so re-extracted activations can
 differ in the last bits and nudge AUCs in the third decimal; plots are visually
 identical. The checked-in JSONs are the frozen reference; input identity is
-`sha256(data/rendered_items_v1_8-14-2026.jsonl) = ebac61db…` (recorded per run in
-`provenance/`).
+`sha256(rendered_items_v1_8-14-2026.jsonl) = ebac61db…` (recorded in the
+extraction configs archived with the freeze at
+hf.co/datasets/format-EA/v1-8-14-2026).
 
 ## Dataset pipeline (self-contained since 2026-08-17)
 
@@ -84,7 +90,6 @@ pip install -e ".[analysis,dev]"
 python -m pytest                    # 62 tests, no network/GPU needed
 
 # verify the frozen chain end to end (recomputes every recorded sha256)
-eval-format-mvp verify-manifest     --manifest provenance/render_manifest.json
 eval-format-mvp verify-manifest-v2  --manifest provenance/render_manifest_v2_pilot80.json
 eval-format-mvp verify-manifest-v3  --manifest provenance/full320-v3/render_manifest_v3_full320.json
 ```
