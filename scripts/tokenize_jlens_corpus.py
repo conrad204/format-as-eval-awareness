@@ -13,16 +13,18 @@ def main() -> None:
     ap.add_argument("--raw", type=Path, required=True)
     ap.add_argument("--out", type=Path, required=True)
     ap.add_argument("--model", required=True)
+    ap.add_argument("--tokenizer", default=None)
     ap.add_argument("--revision", required=True)
     ap.add_argument("--max-seq-len", type=int, default=128)
     args = ap.parse_args()
     from transformers import AutoTokenizer
-    tok = AutoTokenizer.from_pretrained(args.model, revision=args.revision, local_files_only=True,
-                                        use_fast=False, add_special_tokens=False)
+    tok_path = args.tokenizer or args.model
+    tok = AutoTokenizer.from_pretrained(tok_path, revision=args.revision if args.tokenizer is None else None,
+                                        local_files_only=True, use_fast=True)
     records = [json.loads(x) for x in args.raw.read_text(encoding="utf-8").splitlines() if x.strip()]
     out_records = []
     for r in records:
-        ids = tok.encode(r["text"], add_special_tokens=False, truncation=True, max_length=args.max_seq_len)
+        ids = tok.encode(r["text"], truncation=True, max_length=args.max_seq_len)
         if len(ids) <= 17:
             raise ValueError(f"tokenized sequence too short after skip_first: {r['id']}")
         out_records.append({"dataset_row_idx": r["dataset_row_idx"], "id": r["id"], "input_ids": ids,
