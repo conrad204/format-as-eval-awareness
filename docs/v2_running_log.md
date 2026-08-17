@@ -5,6 +5,31 @@ Reverse-chronological log of the v2 redesign implementation. Since the
 pipeline code, catalogs, schemas, tests, payload inputs, and frozen artifacts
 live here. `~/Projects/personal/probes` is retired as a stale copy.
 
+## 2026-08-17 — full320 generated, rendered, frozen (10 Grok + 10 Gemini per topic)
+
+Extended the kept 160 payload blocks to 320: every topic now has exactly 10
+`x-ai/grok-4.3` and 10 `google/gemini-3.1-pro-preview` blocks. New requests
+were stratified per topic (+37 Grok, +123 Gemini incl. all 10 for t007) and
+run as single-generator runs — the multi-profile hash split cannot target
+deficits — Gemini first, then Grok, both validated by `openai/gpt-5.4`,
+appending to a shared out-file seeded with the existing 160 so near-dup
+checks (0.42) always saw every accepted payload. Runs:
+`provenance/generation_runs/full320_20260817_{gemini,grok}` plus three 1-block
+top-up runs for attempt-budget exhaustions (t004 Grok; t035 Gemini twice —
+the topic's 5-block legacy triad cluster crowds its space; landed on attempt
+budget 12). Acceptance: Gemini 123/181 attempts (46 near-dup, 9 semantic, 2
+transient validator API errors, resumed), Grok 37/58 (13 near-dup, 9
+semantic). `validate-payloads` on the 320: all schema-valid; the only
+near-dup pairs at 0.42 are legacy full80 Grok pairs already flagged in
+full160 (t035 triad cluster ×5, t006 ×3, t031 ×2, t032 ×2) — nothing new.
+
+Rendered in ONE pass (`render-v3 --schedule full`) →
+`data/rendered_items_v3_full320_8-17-2026.jsonl`, 11,520 items;
+`render_manifest_v3_full320.json` verified; `validate-rendered-v3` passed.
+Surface battery: hard gates passed — purpose n-gram probes AUC 0.500 (the
+pilot's no-leakage result holds at full scale); template 0.91 / contract 0.98
+decodable as designed. Next: extraction (3 Llama models) over full320.
+
 ## 2026-08-17 — v3 full renders retired ahead of full320 re-freeze
 
 Removed `data/rendered_items_v3_{dev,full_a80,full_b80,full160}_8-17-2026.jsonl`
