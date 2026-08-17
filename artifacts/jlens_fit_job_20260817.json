@@ -7,9 +7,9 @@
     {"job": 52284403, "reason": "use_fast tokenizer conversion failed on cached Llama tokenizer"}
   ],
   "retry_job": 52285005,
-  "retry_status": "pending_priority",
+  "retry_status": "failed_before_model_loading",
   "tokenizer_change": "use_fast=False; no scientific fit parameters changed",
-  "run_dir": "/scratch/jppatton/langea/confirmation_work/jlens_fit_8b_20260817_03",
+  "cache_blocker": "approved snapshot lacks tokenizer.model and tokenizer.json",
   "model": "meta-llama/Llama-3.1-8B-Instruct",
   "model_revision": "0e9e39f249a16976918f6564b8830bc894c89659",
   "source_layers": [4, 9, 12, 15, 20, 24],
