@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "dataset": "format-EA/format_EA_activations_pilot_run",
+  "dataset_revision": "dff7791d39b2851f53fb517c816732979d2f6cc8",
+  "source": "user-provided local activations_dataset/ exact dataset revision",
+  "items_sha256": "0dbcb9802924d3c2063fce87e24250d1a3430fd24856ea83b132e606843f6638",
+  "activation_contract": {
+    "n_items": 1760,
+    "layer_semantics": "zero_based_transformer_block_output_before_final_model_norm",
+    "position": "last_prompt_token_after_chat_template_before_generation",
+    "inference_dtype": "bfloat16",
+    "stored_dtype": "float32"
+  },
+  "models": {
+    "meta-llama/Llama-3.1-8B-Instruct": {
+      "revision": "0e9e39f249a16976918f6564b8830bc894c89659",
+      "selected_layer": 12,
+      "activation_dir": "activations_dataset/activations/llama31_8b_pilot80",
+      "files": {
+        "activations.npz": {"sha256": "d57a1a10cfb633d1fd8722d0621e97d5ccb999b097ed8a95cf58aa985b6c98d4"},
+        "activations_all_layers.npz": {"sha256": "983fca52b5d96a3c697a3533fca9ff13625c4789f17277d5f8edcdfa3b66eba7"},
+        "config.json": {"sha256": "417173857cd0a88f29dcf588baccb5d03d875b87181e877558119b55f2ae9f68"},
+        "meta.jsonl": {"sha256": "0dbcb9802924d3c2063fce87e24250d1a3430fd24856ea83b132e606843f6638"}
+      }
+    },
+    "meta-llama/Llama-3.1-70B-Instruct": {
+      "revision": "1605565b47bb9346c5515c34102e054115b4f98b",
+      "selected_layer": 31,
+      "activation_dir": "activations_dataset/activations/llama31_70b_pilot80",
+      "files": {
+        "activations.npz": {"sha256": "ed5d3707f277753f747162311342346cf8801bf8c1893a909f17f6325e5cf159"},
+        "activations_all_layers.npz": {"sha256": "5d09f6806ac83308a93b37ebf144ed6ed90bd49f67be9267d378f4797aa0b038"},
+        "config.json": {"sha256": "2b0033659763eafa158453b495f51b987014f93c92e6809981b20fed12ab728a"},
+        "meta.jsonl": {"sha256": "0dbcb9802924d3c2063fce87e24250d1a3430fd24856ea83b132e606843f6638"}
+      }
+    },
+    "meta-llama/Llama-3.3-70B-Instruct": {
+      "revision": "6f6073b423013f6a7d4d9f39144961bfbfbc386b",
+      "selected_layer": 17,
+      "activation_dir": "activations_dataset/activations/llama33_70b_pilot80",
+      "files": {
+        "activations.npz": {"sha256": "28cfd7a263fe64886d39c08f9aace79cd3600c447a76513d619dddc57d9ae3fb"},
+        "activations_all_layers.npz": {"sha256": "2d0733a24bf56746e9f1b78ae71526df2e0516a4478e235060bf45e3d25e9650"},
+        "config.json": {"sha256": "0bcbf36e75822a3dde747bde52b3b45d92f5c53b1186957cce38ce5f2e949581"},
+        "meta.jsonl": {"sha256": "0dbcb9802924d3c2063fce87e24250d1a3430fd24856ea83b132e606843f6638"}
+      }
+    }
+  },
+  "revision_note": "Exact model revisions and selected layers are bound to the frozen pilot sweep record; per-archive config.json reports default_resolved_by_hub rather than the exact revision.",
+  "imported_at": "2026-08-17"
+}

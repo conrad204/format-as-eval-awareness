@@ -35,38 +35,32 @@ def stream_file(url: str, token: str, host: str, remote_path: str) -> dict:
     head = urllib.request.Request(url, headers={"Authorization": f"Bearer {token}"}, method="HEAD")
     with urllib.request.urlopen(head, timeout=120) as response:
         expected = int(response.headers["Content-Length"])
-    digest = hashlib.sha256()
-    byte_count = 0
-    part_path = remote_path + ".part"
-    for offset in range(0, expected, 64 * 1024 * 1024):
-        end = min(expected, offset + 64 * 1024 * 1024) - 1
-        request = urllib.request.Request(
-            url,
-            headers={
-                "Authorization": f"Bearer {token}",
-                "Range": f"bytes={offset}-{end}",
-            },
-        )
-        with urllib.request.urlopen(request, timeout=180) as response:
-            chunk = response.read()
-            if len(chunk) != end - offset + 1:
-                raise RuntimeError(f"short HTTP range for {remote_path}: expected {end - offset + 1}, got {len(chunk)}")
-            if offset and response.status != 206:
-                raise RuntimeError(f"server ignored nonzero HTTP range for {remote_path}")
-        digest.update(chunk)
-        byte_count += len(chunk)
-        mode = ">" if offset == 0 else ">>"
-        command = f"mkdir -p $(dirname '{remote_path}') && cat {mode} '{part_path}'"
-        process = subprocess.run(["ssh", host, command], input=chunk, check=False)
-        if process.returncode != 0:
-            raise RuntimeError(f"remote write failed for {remote_path}: ssh exit {process.returncode}")
+    request = urllib.request.Request(url, headers={"Authorization": f"Bearer {token}"})
+    with urllib.request.urlopen(request, timeout=180) as response:
+        digest = hashlib.sha256()
+        byte_count = 0
+        command = f"mkdir -p $(dirname '{remote_path}') && cat > '{remote_path}'"
+        process = subprocess.Popen(["ssh", host, command], stdin=subprocess.PIPE)
+        assert process.stdin is not None
+        try:
+            while True:
+                chunk = response.read(8 * 1024 * 1024)
+                if not chunk:
+                    break
+                digest.update(chunk)
+                byte_count += len(chunk)
+                process.stdin.write(chunk)
+            process.stdin.close()
+            return_code = process.wait()
+        except Exception:
+            process.kill()
+            process.wait()
+            raise
+        if return_code != 0:
+            raise RuntimeError(f"remote write failed for {remote_path}: ssh exit {return_code}")
     if byte_count != expected:
         raise RuntimeError(f"download length mismatch for {remote_path}: expected {expected}, got {byte_count}")
-    finalize = f"mv '{part_path}' '{remote_path}'"
-    if subprocess.run(["ssh", host, finalize], check=False).returncode != 0:
-        raise RuntimeError(f"remote finalize failed for {remote_path}")
     return {"bytes": byte_count, "sha256": digest.hexdigest(), "content_length": expected}
-
 
 def main() -> None:
     parser = argparse.ArgumentParser()
