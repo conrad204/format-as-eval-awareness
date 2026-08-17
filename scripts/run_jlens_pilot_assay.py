@@ -90,7 +90,9 @@ def main() -> None:
             layer_result = {}
             for contrast, (left, right) in {
                 "purpose": ("evaluation", "deployment"),
-                "format_proxy": ("benchmark", "casual"),
+                # The frozen spec defines format as a projection along the
+                # purpose contrast, not as a benchmark/casual token lexicon.
+                "format_proxy": ("evaluation", "deployment"),
             }.items():
                 left_ids = [token for token in encoded.get(left, {}).values() if token not in input_set]
                 right_ids = [token for token in encoded.get(right, {}).values() if token not in input_set]
@@ -130,6 +132,7 @@ def main() -> None:
             }
     result = {
         "schema_version": 1, "status": "development_only", "implementation": "anthropics/jacobian-lens",
+        "format_score_interpretation": "benchmark/casual AUC uses the predeclared evaluation-minus-deployment J-space projection; it is not a format-token lexicon score.",
         "model": args.model, "revision": args.revision, "lens": str(args.lens),
         "lens_sha256": sha256(args.lens), "items": str(args.items), "items_sha256": sha256(args.items),
         "assay_spec": str(args.assay_spec), "assay_spec_sha256": sha256(args.assay_spec),
