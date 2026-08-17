@@ -52,7 +52,7 @@ def test_topical_words_are_not_rejected_by_structural_validation() -> None:
 
 def test_example_payloads_render_complete_deterministic_blocks() -> None:
     catalogs = load_catalogs(ROOT)
-    payloads = load_jsonl(ROOT / "data" / "example_payloads.jsonl")
+    payloads = load_jsonl(ROOT / "tests" / "data" / "example_payloads.jsonl")
     validate_payloads(payloads, catalogs)
     first = render_dataset(payloads, catalogs)
     second = render_dataset(payloads, catalogs)
@@ -82,7 +82,7 @@ def test_example_payloads_render_complete_deterministic_blocks() -> None:
 
 def test_tampered_rendered_text_is_rejected() -> None:
     catalogs = load_catalogs(ROOT)
-    payloads = load_jsonl(ROOT / "data" / "example_payloads.jsonl")
+    payloads = load_jsonl(ROOT / "tests" / "data" / "example_payloads.jsonl")
     rows = render_dataset(payloads, catalogs)
     tampered = copy.deepcopy(rows)
     tampered[0]["text"] += " changed"
@@ -92,7 +92,7 @@ def test_tampered_rendered_text_is_rejected() -> None:
 
 def test_incomplete_block_is_rejected() -> None:
     catalogs = load_catalogs(ROOT)
-    payloads = load_jsonl(ROOT / "data" / "example_payloads.jsonl")
+    payloads = load_jsonl(ROOT / "tests" / "data" / "example_payloads.jsonl")
     rows = render_dataset(payloads, catalogs)
     with pytest.raises(MVPError, match="complete purpose x format 2x2"):
         validate_rendered_dataset(rows[1:], payloads, catalogs)

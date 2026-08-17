@@ -31,9 +31,9 @@ from test_generation import GENERATOR, VALIDATOR, _judgment, _payload, _result
 
 
 ROOT = Path(__file__).resolve().parents[1]
-AUDITED = ROOT / "data" / "payloads.grok43-medium_gpt54.full.audited.jsonl"
-PRE_AUDIT = ROOT / "data" / "payloads.grok43-medium_gpt54.full.jsonl"
-FROZEN_ITEMS = ROOT / "data" / "rendered_items_v1_8-14-2026.jsonl"
+AUDITED = ROOT / "tests" / "data" / "payloads.grok43-medium_gpt54.full.audited.jsonl"
+PRE_AUDIT = ROOT / "tests" / "data" / "payloads.grok43-medium_gpt54.full.jsonl"
+FROZEN_ITEMS = ROOT / "tests" / "data" / "rendered_items_v1_8-14-2026.jsonl"
 
 
 def _pair_by_payload(rows: list[dict]) -> dict[str, str]:
@@ -42,7 +42,7 @@ def _pair_by_payload(rows: list[dict]) -> dict[str, str]:
 
 def test_stable_hash_assignment_survives_insertion_and_deletion() -> None:
     catalogs = load_catalogs(ROOT)
-    payloads = load_jsonl(ROOT / "data" / "example_payloads.jsonl")
+    payloads = load_jsonl(ROOT / "tests" / "data" / "example_payloads.jsonl")
     full = _pair_by_payload(render_dataset(payloads, catalogs))
     without_first = _pair_by_payload(render_dataset(payloads[1:], catalogs))
     removed = payloads[0]["payload_block_id"]
@@ -78,7 +78,7 @@ def test_legacy_scheme_reproduces_frozen_rendered_items() -> None:
 
 def test_cue_span_annotations_locate_the_cue() -> None:
     catalogs = load_catalogs(ROOT)
-    payloads = load_jsonl(ROOT / "data" / "example_payloads.jsonl")
+    payloads = load_jsonl(ROOT / "tests" / "data" / "example_payloads.jsonl")
     pairs = {row["pair_id"]: row for row in catalogs.purpose_pairs}
     rows = render_dataset(payloads, catalogs)
     assert rows
@@ -96,7 +96,7 @@ def test_cue_span_annotations_locate_the_cue() -> None:
 
 def test_enforced_manifest_hash_mismatch_aborts(tmp_path: Path) -> None:
     catalogs = load_catalogs(ROOT)
-    payload_path = ROOT / "data" / "example_payloads.jsonl"
+    payload_path = ROOT / "tests" / "data" / "example_payloads.jsonl"
     payloads = load_jsonl(payload_path)
     out = tmp_path / "rendered.jsonl"
     manifest_path = tmp_path / "manifest.json"

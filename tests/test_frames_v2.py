@@ -30,7 +30,7 @@ from eval_format_mvp.render_v2 import (
 )
 
 ROOT = Path(__file__).resolve().parents[1]
-AUDITED = ROOT / "data" / "payloads.grok43-medium_gpt54.full.audited.jsonl"
+AUDITED = ROOT / "tests" / "data" / "payloads.grok43-medium_gpt54.full.audited.jsonl"
 
 
 @pytest.fixture(scope="module")

@@ -35,8 +35,8 @@ from eval_format_mvp.render_v3 import (
 from eval_format_mvp.surface_v3 import cue_excised_text, surface_probe_battery
 
 ROOT = Path(__file__).resolve().parents[1]
-FULL80 = ROOT / "data" / "payloads.grok43-medium_gpt54.full80.jsonl"
-PILOT80_FROZEN = ROOT / "data" / "rendered_items_v2_pilot80_8-16-2026.jsonl"
+FULL80 = ROOT / "tests" / "data" / "payloads.grok43-medium_gpt54.full80.jsonl"
+PILOT80_FROZEN = ROOT / "tests" / "data" / "rendered_items_v2_pilot80_8-16-2026.jsonl"
 
 
 @pytest.fixture(scope="module")
@@ -251,7 +251,7 @@ def test_surface_battery_gates_pass(rendered) -> None:
 @pytest.mark.skipif(not PILOT80_FROZEN.exists(), reason="frozen pilot80 not present")
 def test_pilot80_still_validates_under_v2_code(frames) -> None:
     catalogs = load_catalogs(ROOT)
-    payload_rows = load_jsonl(ROOT / "data" / "payloads.grok43-medium_gpt54.full80.jsonl")
+    payload_rows = load_jsonl(ROOT / "tests" / "data" / "payloads.grok43-medium_gpt54.full80.jsonl")
     frozen_rows = load_jsonl(PILOT80_FROZEN)
     report = validate_rendered_v2(frozen_rows, payload_rows, frames, catalogs)
     assert report["status"] == "passed"

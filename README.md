@@ -122,7 +122,9 @@ nothing else in the repo does.
 - `catalogs/`, `schemas/`, `prompts/`, `configs/` — design catalogs, JSON
   schemas, generation prompt templates, model profiles.
 - `tests/` — the full suite (rendering, validators, generation machinery,
-  frozen-chain regressions).
+  frozen-chain regressions). `tests/data/` holds byte-pinned fixture copies
+  of frozen artifacts (v1 payloads/render, pilot80 payloads/render) so the
+  regression tests run offline regardless of which freezes remain in `data/`.
 - `data/` — frozen payload inputs and rendered datasets, one subfolder per
   freeze (currently `full320-v3/`; older freezes migrate to HF).
 - `provenance/` — extraction configs, render manifests (every input/output

@@ -15,7 +15,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def test_synthetic_format_shortcut_and_decorrelated_recovery(tmp_path: Path) -> None:
     catalogs = load_catalogs(ROOT)
-    payloads = load_jsonl(ROOT / "data" / "example_payloads.jsonl")
+    payloads = load_jsonl(ROOT / "tests" / "data" / "example_payloads.jsonl")
     rows = render_dataset(payloads, catalogs)
     items_path = tmp_path / "items.jsonl"
     write_jsonl(items_path, rows)
