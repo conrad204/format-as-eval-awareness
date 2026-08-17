@@ -31,7 +31,7 @@ python scripts/make_plot_06a.py    # 06a
 
 ## Full rerun on RunPod
 
-Models are gated on Hugging Face (`huggingface-cli login` with an approved
+Models are gated on Hugging Face (`hf auth login` with an approved
 token). Exact revisions used for the checked-in results are pinned below and in
 the v1 HF repo's `extraction_config_{8b,70b}.json`.
 
@@ -39,7 +39,7 @@ the v1 HF repo's `extraction_config_{8b,70b}.json`.
 pip install -e ".[extract,analysis]"
 
 # v1 freeze is archived on HF (private) — pull it first
-huggingface-cli download format-EA/v1-8-14-2026 --repo-type dataset \
+hf download format-EA/v1-8-14-2026 --repo-type dataset \
   --revision "$(jq -r .revision provenance/v1-8-14-2026/hf_snapshot.json)" \
   --local-dir data/v1-8-14-2026
 
@@ -104,10 +104,21 @@ configs) and `hf_snapshot.json`, which pins the exact HF revision and
 per-file sha256s. To materialize a freeze locally:
 
 ```bash
-huggingface-cli download format-EA/full320-v3 --repo-type dataset \
+hf download format-EA/full320-v3 --repo-type dataset \
   --revision "$(jq -r .revision provenance/full320-v3/hf_snapshot.json)" \
   --local-dir data/full320-v3
 eval-format-mvp verify-manifest-v3 --manifest provenance/full320-v3/render_manifest_v3_full320.json
+```
+
+Activation npz sets live in the same freeze repos under `activations/<model>/`;
+`hf download` preserves repo paths under `--local-dir`, so pulling them to the
+local `activations/<freeze>/<model>/` convention needs one move:
+
+```bash
+hf download format-EA/pilot80-v2 --repo-type dataset --include 'activations/*' \
+  --local-dir activations/pilot80-v2
+mv activations/pilot80-v2/activations/* activations/pilot80-v2/ \
+  && rmdir activations/pilot80-v2/activations
 ```
 
 Never trust unpinned HF state: always fetch at the revision recorded in the
