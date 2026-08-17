@@ -5,6 +5,24 @@ Reverse-chronological log of the v2 redesign implementation. Since the
 pipeline code, catalogs, schemas, tests, payload inputs, and frozen artifacts
 live here. `~/Projects/personal/probes` is retired as a stale copy.
 
+## 2026-08-17 — v3 full renders retired ahead of full320 re-freeze
+
+Removed `data/rendered_items_v3_{dev,full_a80,full_b80,full160}_8-17-2026.jsonl`
+and `provenance/render_manifest_v3_{dev,full_a80,full_b80}.json`. Rationale:
+the 160-block payload set is 123 Grok / 37 Gemini (a80 half 100% Grok, topic
+t007 zero Gemini), and we decided to extend it to 320 blocks — 10 Grok + 10
+Gemini per topic — rather than analyze the imbalanced set. Because
+`render-v3` plans are index-dependent within topic (fold BIBD, contract and
+anchor rotations shift when blocks are inserted), the combined 320-block set
+will be rendered as ONE dataset and frozen fresh, superseding the batch
+renders. Nothing downstream is invalidated: no extraction had run on v3
+renders, and renders remain byte-reproducible from the payload files at the
+prior commit. Kept: all payload files (incl.
+`payloads.grok43gemini31_gpt54.full160_8-17-2026.jsonl`, whose 160 blocks
+carry over) and all `provenance/generation_runs/`. New generation must seed
+near-duplicate memory with the kept 160 payloads and stratify requests per
+topic (+37 Grok, +123 Gemini).
+
 ## 2026-08-17 — Full self-containment: pipeline code moved into this repo
 
 Everything the chain depends on was moved from `~/Projects/personal/probes`

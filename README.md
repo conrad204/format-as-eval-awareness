@@ -86,14 +86,16 @@ python -m pytest                    # 62 tests, no network/GPU needed
 # verify the frozen chain end to end (recomputes every recorded sha256)
 eval-format-mvp verify-manifest     --manifest provenance/render_manifest.json
 eval-format-mvp verify-manifest-v2  --manifest provenance/render_manifest_v2_pilot80.json
-eval-format-mvp verify-manifest-v3  --manifest provenance/render_manifest_v3_full_a80.json
-eval-format-mvp verify-manifest-v3  --manifest provenance/render_manifest_v3_full_b80.json
 ```
 
-Renders are deterministic: `render-v3 --schedule full` on the checked-in
-payload files reproduces `data/rendered_items_v3_full_{a80,b80}_8-17-2026.jsonl`
-byte-for-byte, and their concatenation is byte-identical to
-`data/rendered_items_v3_full160_8-17-2026.jsonl`. Generating *new* payloads
+Renders are deterministic: `render-v3 --schedule full` is a pure function of
+the payload file, so rendered files are always reproducible from their
+payloads at the corresponding commit. The 2026-08-17 v3 full renders
+(dev/a80/b80/full160) were retired before any extraction ran: the 160 payload
+blocks in `data/payloads.grok43gemini31_gpt54.full160_8-17-2026.jsonl` are
+kept and will be extended to 320 (10 Grok + 10 Gemini per topic, balanced)
+and re-rendered as a single full320 freeze with its own
+`verify-manifest-v3` manifest. Generating *new* payloads
 (`generate`) needs API keys (`OPENROUTER_API_KEY`, or gcloud auth for Vertex) —
 nothing else in the repo does.
 
