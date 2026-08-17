@@ -76,3 +76,11 @@ No secrets are intentionally included. Prior exposed provider credentials were t
 ## After merge
 
 Treat `conrad204/format-as-eval-awareness` as the single canonical repository. The `catears124` repo can remain as historical provenance / backup, but active development should continue in the parent repository to avoid future divergence.
+
+## Post-audit development additions
+
+- The selected-layer 8B reproduction was corrected to use `activations_all_layers.npz`; the legacy `activations.npz` archive has materially different L12 values and is not used for evidence.
+- Development-only cross-fitted format-erasure diagnostics now cover all three models. The 70B result JSONs retain their pre-correction synthetic-check field; the corrected harness passes independently (`raw purpose AUC=1.0`, removed-format AUC=0.5283).
+- An independent FineWeb J-lens corpus is frozen with dataset revision, row IDs, selection seed, hashes, and a pinned official Jacobian-lens fit driver. Fitting is not yet complete.
+- Confirmation generation job 52049785 failed before candidate generation on offline cache resolution. Infrastructure-only retry job 52276496 uses unchanged scientific parameters and remains pending GPU resources; no confirmation bank or confirmation activations exist.
+- This PR therefore reports development evidence and infrastructure state only. It makes no confirmation-grade or causal claim.
