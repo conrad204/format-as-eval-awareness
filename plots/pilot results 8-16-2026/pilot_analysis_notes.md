@@ -207,10 +207,139 @@ heights, which drags down the pooled score. The current gap number therefore
 understates how well the direction transfers — measure the angle between
 directions instead.
 
+## Plot guide: what each figure in this folder shows
+
+Two scripts write into this folder, and their numbering overlaps (a known fix
+item). **Set A** = `scripts/pilot_plots_v2.py`, five endpoint-centric figures
+built from the stated-only layer sweeps (`pilot80_layer_sweep_*.json`) and the
+endpoint reports. **Set B** = `scripts/pilot80_plots.py`, eleven figures: v1
+counterparts 01–07/06a built from the full-regime sweeps
+(`pilot80_sweep_full_*.json`, all computed on held **vocabulary** folds within
+the stated stratum), plus new endpoint figures 08–10. Set B deliberately keeps
+the v1 colors (8B blue, 3.3-70B orange; new 3.1-70B violet) for side-by-side
+comparability with the frozen v1 plots; Set A colors 3.1-70B green — one of
+the inconsistencies queued for fixing.
+
+### Set A (`pilot_plots_v2.py`)
+
+- **01_stated_signal_by_depth** — *Technical:* the E1 quantity (stated
+  third-person held-vocabulary-fold AUC) at every layer, one curve per model;
+  dots mark each model's argmax layer (12/31/17), which is what the plan pins
+  for confirmation. This is the layer-selection instrument. *Plain:* how well
+  the "purpose" reading works at each depth of the network, with the best
+  depth per model dotted — the depth we commit to using from now on.
+- **02_endpoint_forest** — *Technical:* point + 95% block-cluster CI for E1,
+  its n-gram control, E3 both directions, E7, and E8, three models per row.
+  Caveat: the title "Every generalization split clears chance" is contradicted
+  by its own n-gram row at exactly 0.500 (a control, not a generalization
+  split — but the title doesn't say so); retitle pending. *Plain:* one picture
+  of all the main pass/fail numbers with their error bars — every real test
+  sits far above coin-flip, while the word-counting baseline sits exactly at
+  coin-flip.
+- **03_strata** — *Technical:* forest of the harder strata: E2 by cue locus
+  (noun/verb/both), E4 indirect (stated-trained transfer vs indirect-only own
+  CV), E5 second-person (transfer vs own CV). Transfer rows score cue styles
+  the probe never trained on. *Plain:* how the probe does on the harder cases —
+  cues living in a single word, cues only implied by context, and cues
+  addressed to the model itself — including whether a probe trained on plain
+  statements can read them anyway.
+- **04_nocue_format_shift** — *Technical:* E6 forest — the benchmark−casual
+  shift of no-cue items along each model's purpose direction, in the
+  (nonstandard, pooled-SD) units discussed above. Same content as Set B's 09.
+  *Plain:* when a prompt says nothing about its purpose, does merely looking
+  like a quiz move the model's internal reading? The three models disagree,
+  which is the finding.
+- **05_per_fold** — *Technical:* E1 broken out per held vocabulary fold
+  (fg1–fg5, labeled with their lexicons), with clustered CIs — the item-12
+  robustness view. *Plain:* the headline number re-computed five times, each
+  time hiding a different vocabulary from training — showing no single
+  wording family carries the result.
+
+### Set B (`pilot80_plots.py`) — v1-counterpart figures
+
+- **01_purpose_signal_by_depth** — *Technical:* per-layer purpose AUC under
+  two training regimes: decorrelated (solid; purpose balanced against format,
+  tested on the held vocabulary fold) and confounded (dashed; trained only on
+  the eval-benchmark + deploy-casual cells, where purpose and format move
+  together). Peak layers annotated. Counterpart of v1 plot 01, now with the
+  stronger vocabulary-disjoint holdout. *Plain:* solid = what the model
+  actually knows about purpose; dashed = what a sloppy probe learns when
+  "test-looking" and "evaluation" always co-occur in training.
+- **02_confound_signature** — *Technical:* at each model's peak layer, the
+  percent of prompts in each of the four purpose×format cells that the probe
+  calls "evaluation," for confounded vs decorrelated training. The confounded
+  probe's calls track the format axis; the decorrelated probe's track the
+  purpose axis. *Plain:* the smoking-gun bar chart — the naive probe says
+  "evaluation" whenever the prompt looks like a quiz regardless of what the
+  prompt says its purpose is; the properly trained probe follows the actual
+  purpose sentence.
+- **03_transfer_by_depth** — *Technical:* E3 by depth — probes trained on one
+  format only, tested on the other (b2c left, c2b right), still on held
+  vocabulary folds. *Plain:* does the purpose reading learned from quiz-shaped
+  prompts still work on chat-shaped prompts, and vice versa, at every depth.
+- **04_ranking_vs_threshold** — *Technical:* at the peak layer, AUC (solid)
+  vs balanced accuracy at the fixed threshold 0 (pale) for decorrelated, b2c,
+  c2b. AUC is threshold-free; balanced accuracy is not, so the gap between the
+  bars isolates calibration shift under format change. *Plain:* after a format
+  switch the probe still ranks evaluation above deployment nearly as well, but
+  its yes/no cutoff drifts — scores shift wholesale without scrambling their
+  order. (Same phenomenon as the E5 calibration caveat above.)
+- **05_paired_consistency_by_depth** — *Technical:* per layer, the fraction
+  of the 480 stated minimal pairs (same block, same pair, same format) where
+  the eval twin outscores the deploy twin, under held-fold probes; annotation
+  marks the best layer's 480/480. *Plain:* the headline paired result as a
+  curve — change one sentence, hold everything else fixed, and count how often
+  the score moves the right way.
+- **06_signal_split_by_depth** — *Technical:* per model, decorrelated AUC
+  (solid) vs the mean of the two E3 transfer AUCs (dashed), with the
+  difference shaded. Caveat (review-confirmed): the shading implies an
+  additive decomposition of "signal," but AUCs from different fitted probes
+  don't decompose — read the shaded band as "cross-format AUC drop," nothing
+  more; reframe pending. *Plain:* solid = purpose signal when training saw
+  both formats; dashed = what survives training on only one; the gap is how
+  much the reading depends on familiar formatting — but it's a comparison of
+  two separate probes, not a pie chart of one probe's signal.
+- **06a_signal_split_explainer** — *Technical:* single-panel annotated
+  version of 06 for 3.3-70B only (matching the v1 explainer's model), with
+  arrows marking the widest gap and the near-zero-gap layer. Same
+  decomposition caveat as 06. *Plain:* a slowed-down, one-model walkthrough of
+  figure 06 for readers seeing the solid/dashed comparison for the first time.
+- **07_format_bound_gap** — *Technical:* the 06 difference curve plotted
+  directly (decorrelated − mean transfer AUC) by depth, all models on one
+  axis; zero line = fully format-invariant reading. Same caveat: it's an AUC
+  difference between differently trained probes. *Plain:* one line per model
+  tracking how format-dependent the purpose reading is at each depth — near
+  zero means a format-blind reading at that depth.
+
+### Set B — new v2-only figures
+
+- **08_generalization_ladder** — *Technical:* bar chart with cluster-CIs at
+  each model's pinned layer for: n-gram control, E1, E7, E8, E4 transfer, E5
+  transfer — the holdouts ordered roughly by strictness. Caveat: the caption
+  says "pre-registered endpoints"; per the timing note above these are
+  confirmation-plan endpoints applied exploratorily — caption fix pending.
+  *Plain:* the whole generalization story on one ladder — from "held-out
+  wordings" through "held-out wordings and topics at once" to "cue styles never
+  trained on" — with the word-counting baseline at coin-flip for scale.
+- **09_nocue_format_shift** — *Technical:* E6 forest with directional axis
+  annotations ("reads as deployment" / "reads as evaluation"); duplicate
+  content of Set A's 04 (one of the two should go). Same nonstandard-units
+  caveat. *Plain:* identical story to Set A figure 04: formatting alone moves
+  neutral prompts, but not in a consistent direction across models.
+- **10_cue_locus** — *Technical:* E2 bars with cluster-CIs — stated held-fold
+  AUC when the cue differs only in the noun, only in the verb, or both, 80
+  blocks per stratum (v1's noun-only rode on 3 pairs in one family and was
+  unestimable). *Plain:* how small the cue can get before the probe loses it —
+  even a single swapped noun ("reviewer"→"customer") is enough, though it's
+  the weakest of the three.
+
 ## Presentation/plot fixes (all verified in code)
 
 - `pilot_plots_v2.py` figure 02 title "Every generalization split clears
   chance" is contradicted by its own n-gram row at exactly 0.500 — retitle.
+- `pilot80_plots.py` figure 08's caption says "Pre-registered endpoints" —
+  same overstatement as the notes' original preregistration language; reword
+  to exploratory application of the confirmation-plan endpoints.
 - `pilot80_plots.py` figure 06 shades (decorrelated − mean cross-format) AUC as
   a "format-bound" *component*; AUCs from different fitted probes are not
   additive signal quantities — rename to "cross-format AUC drop," drop the

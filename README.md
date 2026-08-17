@@ -3,7 +3,7 @@
 Minimal, self-contained chain that produces the eight plots in `plots/`:
 
 ```
-data/rendered_items.jsonl          288 frozen prompts (the 2x2 purpose x format dataset)
+data/rendered_items_v1_8-14-2026.jsonl          288 frozen prompts (the 2x2 purpose x format dataset)
         |  scripts/extract_activations.py        [GPU, RunPod]
         v
 activations/<model>/activations_all_layers.npz   (not checked in; regenerable)
@@ -39,7 +39,7 @@ pip install -e ".[extract,analysis]"
 
 # Llama-3.1-8B-Instruct — fits on one 40GB GPU
 python scripts/extract_activations.py \
-  --items data/rendered_items.jsonl \
+  --items data/rendered_items_v1_8-14-2026.jsonl \
   --out-dir activations/llama31_8b \
   --model meta-llama/Llama-3.1-8B-Instruct \
   --revision 0e9e39f249a16976918f6564b8830bc894c89659 \
@@ -47,7 +47,7 @@ python scripts/extract_activations.py \
 
 # Llama-3.3-70B-Instruct — bf16 needs ~140GB+, e.g. 2x A100-80GB / 2x H100
 python scripts/extract_activations.py \
-  --items data/rendered_items.jsonl \
+  --items data/rendered_items_v1_8-14-2026.jsonl \
   --out-dir activations/llama33_70b \
   --model meta-llama/Llama-3.3-70B-Instruct \
   --revision 6f6073b423013f6a7d4d9f39144961bfbfbc386b \
@@ -55,9 +55,9 @@ python scripts/extract_activations.py \
 
 # Layer sweep (run on the pod; the 70B npz is ~750MB, the JSON is ~100KB —
 # download only the JSON)
-python scripts/sweep_full.py data/rendered_items.jsonl \
+python scripts/sweep_full.py data/rendered_items_v1_8-14-2026.jsonl \
   activations/llama31_8b/activations_all_layers.npz results/layer_sweep_llama31_8b.json
-python scripts/sweep_full.py data/rendered_items.jsonl \
+python scripts/sweep_full.py data/rendered_items_v1_8-14-2026.jsonl \
   activations/llama33_70b/activations_all_layers.npz results/layer_sweep_llama33_70b.json
 ```
 
@@ -69,7 +69,7 @@ The sweep is deterministic (leave-one-family-out folds, fixed
 `random_state=0`). Extraction is bf16 on GPU, so re-extracted activations can
 differ in the last bits and nudge AUCs in the third decimal; plots are visually
 identical. The checked-in JSONs are the frozen reference; input identity is
-`sha256(data/rendered_items.jsonl) = ebac61db…` (recorded per run in
+`sha256(data/rendered_items_v1_8-14-2026.jsonl) = ebac61db…` (recorded per run in
 `provenance/`).
 
 ## Layout
@@ -81,4 +81,4 @@ identical. The checked-in JSONs are the frozen reference; input identity is
 - `scripts/` — the five runnable steps.
 - `provenance/` — extraction configs of the runs behind the checked-in
   results (model revisions, hashes, GPU, library versions) and the render
-  manifest tying `rendered_items.jsonl` back to its payload source.
+  manifest tying `rendered_items_v1_8-14-2026.jsonl` back to its payload source.
