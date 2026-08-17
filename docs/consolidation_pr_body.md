@@ -84,3 +84,4 @@ Treat `conrad204/format-as-eval-awareness` as the single canonical repository. T
 - An independent FineWeb J-lens corpus is frozen with dataset revision, row IDs, selection seed, hashes, and a pinned official Jacobian-lens fit driver. Fitting is not yet complete.
 - Confirmation generation job 52049785 failed before candidate generation on offline cache resolution. Infrastructure-only retry job 52276496 uses unchanged scientific parameters and remains pending GPU resources; no confirmation bank or confirmation activations exist.
 - This PR therefore reports development evidence and infrastructure state only. It makes no confirmation-grade or causal claim.
+- The completed 3.1-70B all-layer development sweep has 80 layers and decorrelated argmax L31 AUC 0.998160; this remains pilot/development evidence.
