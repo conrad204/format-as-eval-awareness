@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "frozen_on": "2026-08-16",
+  "governs": "single confirmatory analysis of the sealed v2 confirmation bank",
+  "artifacts": {
+    "docs/analysis_plan_v2.md": "11f6975b9f78d442276c6c315e72e61ce238409a0955fb9f0affa49a6bf91325",
+    "scripts/confirmation_analysis.py": "561560a697bb466e710d969c2bbae11ac050dfe92bcb90ee29b58090a73dd804"
+  },
+  "development_context_hashes": {
+    "purpose_frames_v2.yaml (dev catalog, NOT the confirmation catalog)": "3e5cd2e459e40fbbbdabbffdd7c4750d6181dae6def0dd4d26c49c52b3b39d7b",
+    "rendered_items_v2_pilot.jsonl": "918e57f3faae079d7645d0eb7ee5a2b26dff29c98f62eb8a1c9df4898c2218b5"
+  },
+  "addenda": [
+    {
+      "date": "2026-08-16",
+      "kind": "development_data_update",
+      "reason": "Pilot payload set refilled to the 80-block quota (8 slots: t001 x2, t002 x2, t004, t018, t032 x2) via refill-requests + generate (grok-4.3 generator, gpt-5.4 validator, near-dup threshold 0.42; run outputs/runs/refill_20260816). The 80-block render supersedes the 72-block pilot as the development dataset for layer selection. No change to the plan, endpoints, probe recipe, or confirmation-bank spec.",
+      "development_context_hashes": {
+        "payloads.grok43-medium_gpt54.full80.jsonl": "c5ca655333904b87a8e524fb3ea9ae8ad11cfa9b2613974d6b04927b6424f8cd",
+        "rendered_items_v2_pilot80.jsonl": "0dbcb9802924d3c2063fce87e24250d1a3430fd24856ea83b132e606843f6638"
+      }
+    }
+  ]
+}
