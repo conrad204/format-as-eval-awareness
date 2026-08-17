@@ -54,6 +54,13 @@ python scripts/extract_activations.py \
   --revision "$REVISION" \
   --all-layers --batch-size 8 "${EXTRA[@]}"
 
+# Record the hardware alongside the extraction config: bf16 forward passes
+# are not bit-identical across GPU architectures, so each model's full item
+# set must come from a single run on one machine (this script guarantees
+# that); which architecture it was is provenance worth keeping.
+nvidia-smi --query-gpu=name,memory.total,driver_version --format=csv > "$OUT/gpu_info.txt" || true
+python3 -c "import torch; print('torch', torch.__version__, 'cuda', torch.version.cuda)" >> "$OUT/gpu_info.txt" || true
+
 echo "== extraction config =="
 cat "$OUT/config.json"
 echo
