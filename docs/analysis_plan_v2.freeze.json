@@ -171,6 +171,19 @@
         "scripts/seal_confirmation_bank.py": "3737fd44394ff16b506c58e805858a64502190e7499e57c693b220fa9c1624de"
       },
       "git_commit": "f2e7748"
+    },
+    {
+      "date": "2026-08-17",
+      "kind": "pilot_geometry_causal_selection_preregistration",
+      "reason": "The exact private pilot activation archive was independently imported and the 8B all-layer factorial geometry was computed before any causal intervention. Causal-development layers will be selected only from development geometry, not causal outcomes.",
+      "selection_rule": "Among layers with held-out stated-purpose AUC >= 0.80, select the minimum and maximum norm(C)/norm(A) layers; fit A, B, and C on training purpose families and evaluate on held-out families. The pilot 8B artifact yields low-interaction L5 and high-interaction L29 under this rule. L4/L9/L15 remain an externally motivated candidate set only if an independent source justification is recorded before intervention.",
+      "artifacts": {
+        "geometry": "results/pilot80_geometry_8b.json",
+        "geometry_sha256": "fbe611484097c35eead92857ba2f4bd540f37cc3245bf1f87e66a2411540e39b",
+        "geometry_script_sha256": "9c34c399b7b2c7aa72a5bb06441a2f2a72d3f67cd8575f7f5e93708cca8a7da3",
+        "pilot_item_sha256": "0dbcb9802924d3c2063fce87e24250d1a3430fd24856ea83b132e606843f6638"
+      },
+      "status": "frozen_before_causal_outcomes"
     }
   ]
 }
