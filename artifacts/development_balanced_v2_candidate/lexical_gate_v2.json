@@ -1,0 +1,8113 @@
+{
+  "schema_version": 2,
+  "items_sha256": "d1b1826deea8f4ce89606d71a0a7cfc65b31aade570810709ea26baf2ba0ed0a",
+  "rows": 1760,
+  "labeled_rows": 1600,
+  "folds": [
+    "fg1",
+    "fg2",
+    "fg3",
+    "fg4",
+    "fg5"
+  ],
+  "threshold": {
+    "mean_auc_max": 0.6,
+    "max_fold_auc_max": 0.7
+  },
+  "scopes": [
+    "full_text",
+    "cue_sentence",
+    "cue_span",
+    "scaffold_without_cue",
+    "first_sentence",
+    "second_sentence"
+  ],
+  "strata": {
+    "stated": 960,
+    "indirect": 320,
+    "second_person": 320,
+    "stated_noun_only": 320,
+    "stated_verb_only": 320,
+    "stated_both": 320
+  },
+  "results": {
+    "stated": {
+      "full_text": {
+        "word_1": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 208,
+              "positive": 104,
+              "negative": 104,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 160,
+              "positive": 80,
+              "negative": 80,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 232,
+              "positive": 116,
+              "negative": 116,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "word_2": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 208,
+              "positive": 104,
+              "negative": 104,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 160,
+              "positive": 80,
+              "negative": 80,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 232,
+              "positive": 116,
+              "negative": 116,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "word_3": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 208,
+              "positive": 104,
+              "negative": 104,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 160,
+              "positive": 80,
+              "negative": 80,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 232,
+              "positive": 116,
+              "negative": 116,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "char_5": {
+          "mean_auc": 0.8547700311745139,
+          "max_auc": 0.9993311533888228,
+          "per_fold": {
+            "fg1": {
+              "n": 208,
+              "positive": 104,
+              "negative": 104,
+              "auc": 0.8767566568047338
+            },
+            "fg2": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.8439506172839507
+            },
+            "fg3": {
+              "n": 160,
+              "positive": 80,
+              "negative": 80,
+              "auc": 0.8287500000000001
+            },
+            "fg4": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.7250617283950618
+            },
+            "fg5": {
+              "n": 232,
+              "positive": 116,
+              "negative": 116,
+              "auc": 0.9993311533888228
+            }
+          },
+          "pass": false
+        },
+        "char_6": {
+          "mean_auc": 0.8520992837595849,
+          "max_auc": 0.9987366230677764,
+          "per_fold": {
+            "fg1": {
+              "n": 208,
+              "positive": 104,
+              "negative": 104,
+              "auc": 0.888960798816568
+            },
+            "fg2": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.8145679012345679
+            },
+            "fg3": {
+              "n": 160,
+              "positive": 80,
+              "negative": 80,
+              "auc": 0.83921875
+            },
+            "fg4": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.7190123456790123
+            },
+            "fg5": {
+              "n": 232,
+              "positive": 116,
+              "negative": 116,
+              "auc": 0.9987366230677764
+            }
+          },
+          "pass": false
+        },
+        "length_punctuation": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 208,
+              "positive": 104,
+              "negative": 104,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 160,
+              "positive": 80,
+              "negative": 80,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 232,
+              "positive": 116,
+              "negative": 116,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        }
+      },
+      "cue_sentence": {
+        "word_1": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 208,
+              "positive": 104,
+              "negative": 104,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 160,
+              "positive": 80,
+              "negative": 80,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 232,
+              "positive": 116,
+              "negative": 116,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "word_2": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 208,
+              "positive": 104,
+              "negative": 104,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 160,
+              "positive": 80,
+              "negative": 80,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 232,
+              "positive": 116,
+              "negative": 116,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "word_3": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 208,
+              "positive": 104,
+              "negative": 104,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.49999999999999994
+            },
+            "fg3": {
+              "n": 160,
+              "positive": 80,
+              "negative": 80,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 232,
+              "positive": 116,
+              "negative": 116,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "char_5": {
+          "mean_auc": 0.8321043173350866,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 208,
+              "positive": 104,
+              "negative": 104,
+              "auc": 0.8979289940828402
+            },
+            "fg2": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.8637037037037036
+            },
+            "fg3": {
+              "n": 160,
+              "positive": 80,
+              "negative": 80,
+              "auc": 0.55
+            },
+            "fg4": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.8488888888888889
+            },
+            "fg5": {
+              "n": 232,
+              "positive": 116,
+              "negative": 116,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "char_6": {
+          "mean_auc": 0.8093882679523705,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 208,
+              "positive": 104,
+              "negative": 104,
+              "auc": 0.8979289940828402
+            },
+            "fg2": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.7501234567901234
+            },
+            "fg3": {
+              "n": 160,
+              "positive": 80,
+              "negative": 80,
+              "auc": 0.55
+            },
+            "fg4": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.8488888888888889
+            },
+            "fg5": {
+              "n": 232,
+              "positive": 116,
+              "negative": 116,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "length_punctuation": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 208,
+              "positive": 104,
+              "negative": 104,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 160,
+              "positive": 80,
+              "negative": 80,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 232,
+              "positive": 116,
+              "negative": 116,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        }
+      },
+      "cue_span": {
+        "word_1": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 208,
+              "positive": 104,
+              "negative": 104,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 160,
+              "positive": 80,
+              "negative": 80,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 232,
+              "positive": 116,
+              "negative": 116,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "word_2": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 208,
+              "positive": 104,
+              "negative": 104,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 160,
+              "positive": 80,
+              "negative": 80,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 232,
+              "positive": 116,
+              "negative": 116,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "word_3": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 208,
+              "positive": 104,
+              "negative": 104,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.49999999999999994
+            },
+            "fg3": {
+              "n": 160,
+              "positive": 80,
+              "negative": 80,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 232,
+              "positive": 116,
+              "negative": 116,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "char_5": {
+          "mean_auc": 0.8321043173350866,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 208,
+              "positive": 104,
+              "negative": 104,
+              "auc": 0.8979289940828402
+            },
+            "fg2": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.8637037037037036
+            },
+            "fg3": {
+              "n": 160,
+              "positive": 80,
+              "negative": 80,
+              "auc": 0.55
+            },
+            "fg4": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.8488888888888889
+            },
+            "fg5": {
+              "n": 232,
+              "positive": 116,
+              "negative": 116,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "char_6": {
+          "mean_auc": 0.8093882679523705,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 208,
+              "positive": 104,
+              "negative": 104,
+              "auc": 0.8979289940828402
+            },
+            "fg2": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.7501234567901234
+            },
+            "fg3": {
+              "n": 160,
+              "positive": 80,
+              "negative": 80,
+              "auc": 0.55
+            },
+            "fg4": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.8488888888888889
+            },
+            "fg5": {
+              "n": 232,
+              "positive": 116,
+              "negative": 116,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "length_punctuation": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 208,
+              "positive": 104,
+              "negative": 104,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 160,
+              "positive": 80,
+              "negative": 80,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 232,
+              "positive": 116,
+              "negative": 116,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        }
+      },
+      "scaffold_without_cue": {
+        "word_1": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 208,
+              "positive": 104,
+              "negative": 104,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 160,
+              "positive": 80,
+              "negative": 80,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 232,
+              "positive": 116,
+              "negative": 116,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "word_2": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 208,
+              "positive": 104,
+              "negative": 104,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 160,
+              "positive": 80,
+              "negative": 80,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 232,
+              "positive": 116,
+              "negative": 116,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "word_3": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 208,
+              "positive": 104,
+              "negative": 104,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 160,
+              "positive": 80,
+              "negative": 80,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 232,
+              "positive": 116,
+              "negative": 116,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "char_5": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 208,
+              "positive": 104,
+              "negative": 104,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 160,
+              "positive": 80,
+              "negative": 80,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 232,
+              "positive": 116,
+              "negative": 116,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "char_6": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 208,
+              "positive": 104,
+              "negative": 104,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 160,
+              "positive": 80,
+              "negative": 80,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 232,
+              "positive": 116,
+              "negative": 116,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "length_punctuation": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 208,
+              "positive": 104,
+              "negative": 104,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 160,
+              "positive": 80,
+              "negative": 80,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 232,
+              "positive": 116,
+              "negative": 116,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        }
+      },
+      "first_sentence": {
+        "word_1": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 208,
+              "positive": 104,
+              "negative": 104,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 160,
+              "positive": 80,
+              "negative": 80,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 232,
+              "positive": 116,
+              "negative": 116,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "word_2": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 208,
+              "positive": 104,
+              "negative": 104,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 160,
+              "positive": 80,
+              "negative": 80,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 232,
+              "positive": 116,
+              "negative": 116,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "word_3": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 208,
+              "positive": 104,
+              "negative": 104,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.49999999999999994
+            },
+            "fg3": {
+              "n": 160,
+              "positive": 80,
+              "negative": 80,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 232,
+              "positive": 116,
+              "negative": 116,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "char_5": {
+          "mean_auc": 0.8321043173350866,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 208,
+              "positive": 104,
+              "negative": 104,
+              "auc": 0.8979289940828402
+            },
+            "fg2": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.8637037037037036
+            },
+            "fg3": {
+              "n": 160,
+              "positive": 80,
+              "negative": 80,
+              "auc": 0.55
+            },
+            "fg4": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.8488888888888889
+            },
+            "fg5": {
+              "n": 232,
+              "positive": 116,
+              "negative": 116,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "char_6": {
+          "mean_auc": 0.8093882679523705,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 208,
+              "positive": 104,
+              "negative": 104,
+              "auc": 0.8979289940828402
+            },
+            "fg2": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.7501234567901234
+            },
+            "fg3": {
+              "n": 160,
+              "positive": 80,
+              "negative": 80,
+              "auc": 0.55
+            },
+            "fg4": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.8488888888888889
+            },
+            "fg5": {
+              "n": 232,
+              "positive": 116,
+              "negative": 116,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "length_punctuation": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 208,
+              "positive": 104,
+              "negative": 104,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 160,
+              "positive": 80,
+              "negative": 80,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 232,
+              "positive": 116,
+              "negative": 116,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        }
+      },
+      "second_sentence": {
+        "word_1": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 208,
+              "positive": 104,
+              "negative": 104,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 160,
+              "positive": 80,
+              "negative": 80,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 232,
+              "positive": 116,
+              "negative": 116,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "word_2": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 208,
+              "positive": 104,
+              "negative": 104,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 160,
+              "positive": 80,
+              "negative": 80,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 232,
+              "positive": 116,
+              "negative": 116,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "word_3": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 208,
+              "positive": 104,
+              "negative": 104,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 160,
+              "positive": 80,
+              "negative": 80,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 232,
+              "positive": 116,
+              "negative": 116,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "char_5": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 208,
+              "positive": 104,
+              "negative": 104,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 160,
+              "positive": 80,
+              "negative": 80,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 232,
+              "positive": 116,
+              "negative": 116,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "char_6": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 208,
+              "positive": 104,
+              "negative": 104,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 160,
+              "positive": 80,
+              "negative": 80,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 232,
+              "positive": 116,
+              "negative": 116,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "length_punctuation": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 208,
+              "positive": 104,
+              "negative": 104,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 160,
+              "positive": 80,
+              "negative": 80,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 180,
+              "positive": 90,
+              "negative": 90,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 232,
+              "positive": 116,
+              "negative": 116,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        }
+      }
+    },
+    "indirect": {
+      "full_text": {
+        "word_1": {
+          "mean_auc": 1.0,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "word_2": {
+          "mean_auc": 1.0,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "word_3": {
+          "mean_auc": 1.0,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "char_5": {
+          "mean_auc": 1.0,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "char_6": {
+          "mean_auc": 1.0,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "length_punctuation": {
+          "mean_auc": 1.0,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        }
+      },
+      "cue_sentence": {
+        "word_1": {
+          "mean_auc": 1.0,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "word_2": {
+          "mean_auc": 1.0,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "word_3": {
+          "mean_auc": 1.0,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "char_5": {
+          "mean_auc": 1.0,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "char_6": {
+          "mean_auc": 1.0,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "length_punctuation": {
+          "mean_auc": 1.0,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        }
+      },
+      "cue_span": {
+        "word_1": {
+          "mean_auc": 1.0,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "word_2": {
+          "mean_auc": 1.0,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "word_3": {
+          "mean_auc": 1.0,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "char_5": {
+          "mean_auc": 1.0,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "char_6": {
+          "mean_auc": 1.0,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "length_punctuation": {
+          "mean_auc": 1.0,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        }
+      },
+      "scaffold_without_cue": {
+        "word_1": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "word_2": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "word_3": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "char_5": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "char_6": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "length_punctuation": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        }
+      },
+      "first_sentence": {
+        "word_1": {
+          "mean_auc": 1.0,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "word_2": {
+          "mean_auc": 1.0,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "word_3": {
+          "mean_auc": 1.0,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "char_5": {
+          "mean_auc": 1.0,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "char_6": {
+          "mean_auc": 1.0,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "length_punctuation": {
+          "mean_auc": 1.0,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        }
+      },
+      "second_sentence": {
+        "word_1": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "word_2": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "word_3": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "char_5": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "char_6": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "length_punctuation": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        }
+      }
+    },
+    "second_person": {
+      "full_text": {
+        "word_1": {
+          "mean_auc": 1.0,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 1.0
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "word_2": {
+          "mean_auc": 1.0,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 1.0
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "word_3": {
+          "mean_auc": 1.0,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 1.0
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "char_5": {
+          "mean_auc": 1.0,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 1.0
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "char_6": {
+          "mean_auc": 1.0,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 1.0
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "length_punctuation": {
+          "mean_auc": 0.6415832888583318,
+          "max_auc": 0.6631944444444444,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.6297258979206048
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.6631944444444444
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.6375000000000001
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.6408179012345679
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.6366782006920415
+            }
+          },
+          "pass": false
+        }
+      },
+      "cue_sentence": {
+        "word_1": {
+          "mean_auc": 1.0,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 1.0
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "word_2": {
+          "mean_auc": 1.0,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 1.0
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "word_3": {
+          "mean_auc": 1.0,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 1.0
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "char_5": {
+          "mean_auc": 1.0,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 1.0
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "char_6": {
+          "mean_auc": 1.0,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 1.0
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "length_punctuation": {
+          "mean_auc": 1.0,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 1.0
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        }
+      },
+      "cue_span": {
+        "word_1": {
+          "mean_auc": 1.0,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 1.0
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "word_2": {
+          "mean_auc": 1.0,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 1.0
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "word_3": {
+          "mean_auc": 1.0,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 1.0
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "char_5": {
+          "mean_auc": 1.0,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 1.0
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "char_6": {
+          "mean_auc": 1.0,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 1.0
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "length_punctuation": {
+          "mean_auc": 1.0,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 1.0
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        }
+      },
+      "scaffold_without_cue": {
+        "word_1": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "word_2": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "word_3": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "char_5": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "char_6": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "length_punctuation": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        }
+      },
+      "first_sentence": {
+        "word_1": {
+          "mean_auc": 1.0,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 1.0
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "word_2": {
+          "mean_auc": 1.0,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 1.0
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "word_3": {
+          "mean_auc": 1.0,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 1.0
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "char_5": {
+          "mean_auc": 1.0,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 1.0
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "char_6": {
+          "mean_auc": 1.0,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 1.0
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "length_punctuation": {
+          "mean_auc": 1.0,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 1.0
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        }
+      },
+      "second_sentence": {
+        "word_1": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "word_2": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "word_3": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "char_5": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "char_6": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "length_punctuation": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        }
+      }
+    },
+    "stated_noun_only": {
+      "full_text": {
+        "word_1": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5000000000000001,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.49999999999999994
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.49999999999999994
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.49999999999999994
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5000000000000001
+            }
+          },
+          "pass": true
+        },
+        "word_2": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5000000000000001,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.49999999999999994
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.49999999999999994
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.49999999999999994
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5000000000000001
+            }
+          },
+          "pass": true
+        },
+        "word_3": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5000000000000001,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.49999999999999994
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.49999999999999994
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.49999999999999994
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5000000000000001
+            }
+          },
+          "pass": true
+        },
+        "char_5": {
+          "mean_auc": 0.6021286050087694,
+          "max_auc": 0.8025000000000001,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.7256944444444444
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.8025000000000001
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.48996913580246915
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.4740484429065744
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5184310018903591
+            }
+          },
+          "pass": false
+        },
+        "char_6": {
+          "mean_auc": 0.6194589857410279,
+          "max_auc": 0.86,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.7725694444444444
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.86
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.47453703703703703
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.4783737024221453
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5118147448015122
+            }
+          },
+          "pass": false
+        },
+        "length_punctuation": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        }
+      },
+      "cue_sentence": {
+        "word_1": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "word_2": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "word_3": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "char_5": {
+          "mean_auc": 0.5,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.0
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.0
+            }
+          },
+          "pass": false
+        },
+        "char_6": {
+          "mean_auc": 0.5,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.0
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.0
+            }
+          },
+          "pass": false
+        },
+        "length_punctuation": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        }
+      },
+      "cue_span": {
+        "word_1": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "word_2": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "word_3": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "char_5": {
+          "mean_auc": 0.5,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.0
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.0
+            }
+          },
+          "pass": false
+        },
+        "char_6": {
+          "mean_auc": 0.5,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.0
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.0
+            }
+          },
+          "pass": false
+        },
+        "length_punctuation": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        }
+      },
+      "scaffold_without_cue": {
+        "word_1": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "word_2": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "word_3": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "char_5": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "char_6": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "length_punctuation": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        }
+      },
+      "first_sentence": {
+        "word_1": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "word_2": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "word_3": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "char_5": {
+          "mean_auc": 0.5,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.0
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.0
+            }
+          },
+          "pass": false
+        },
+        "char_6": {
+          "mean_auc": 0.5,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.0
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.0
+            }
+          },
+          "pass": false
+        },
+        "length_punctuation": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        }
+      },
+      "second_sentence": {
+        "word_1": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "word_2": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "word_3": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "char_5": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "char_6": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "length_punctuation": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        }
+      }
+    },
+    "stated_verb_only": {
+      "full_text": {
+        "word_1": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5000000000000001,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5000000000000001
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.49999999999999994
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.49999999999999994
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.49999999999999994
+            }
+          },
+          "pass": true
+        },
+        "word_2": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5000000000000001,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5000000000000001
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.49999999999999994
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.49999999999999994
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.49999999999999994
+            }
+          },
+          "pass": true
+        },
+        "word_3": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5000000000000001,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5000000000000001
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.49999999999999994
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.49999999999999994
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.49999999999999994
+            }
+          },
+          "pass": true
+        },
+        "char_5": {
+          "mean_auc": 0.6014177693761814,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.007088846880907372
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.0
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "char_6": {
+          "mean_auc": 0.6001890359168242,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.0009451795841209824
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.0
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "length_punctuation": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        }
+      },
+      "cue_sentence": {
+        "word_1": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "word_2": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "word_3": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "char_5": {
+          "mean_auc": 0.6,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.0
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.0
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "char_6": {
+          "mean_auc": 0.6,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.0
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.0
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "length_punctuation": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        }
+      },
+      "cue_span": {
+        "word_1": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "word_2": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "word_3": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "char_5": {
+          "mean_auc": 0.6,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.0
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.0
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "char_6": {
+          "mean_auc": 0.6,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.0
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.0
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "length_punctuation": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        }
+      },
+      "scaffold_without_cue": {
+        "word_1": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "word_2": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "word_3": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "char_5": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "char_6": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "length_punctuation": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        }
+      },
+      "first_sentence": {
+        "word_1": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "word_2": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "word_3": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "char_5": {
+          "mean_auc": 0.6,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.0
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.0
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "char_6": {
+          "mean_auc": 0.6,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.0
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.0
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "length_punctuation": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        }
+      },
+      "second_sentence": {
+        "word_1": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "word_2": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "word_3": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "char_5": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "char_6": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "length_punctuation": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        }
+      }
+    },
+    "stated_both": {
+      "full_text": {
+        "word_1": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5000000000000001,
+          "per_fold": {
+            "fg1": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.49999999999999994
+            },
+            "fg2": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5000000000000001
+            },
+            "fg3": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.49999999999999994
+            },
+            "fg5": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.49999999999999994
+            }
+          },
+          "pass": true
+        },
+        "word_2": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5000000000000001,
+          "per_fold": {
+            "fg1": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.49999999999999994
+            },
+            "fg2": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5000000000000001
+            },
+            "fg3": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.49999999999999994
+            },
+            "fg5": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.49999999999999994
+            }
+          },
+          "pass": true
+        },
+        "word_3": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5000000000000001,
+          "per_fold": {
+            "fg1": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.49999999999999994
+            },
+            "fg2": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5000000000000001
+            },
+            "fg3": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.49999999999999994
+            },
+            "fg5": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.49999999999999994
+            }
+          },
+          "pass": true
+        },
+        "char_5": {
+          "mean_auc": 0.9984429065743944,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.9922145328719723
+            },
+            "fg2": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "char_6": {
+          "mean_auc": 0.9980968858131488,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.990484429065744
+            },
+            "fg2": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "length_punctuation": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        }
+      },
+      "cue_sentence": {
+        "word_1": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "word_2": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "word_3": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "char_5": {
+          "mean_auc": 1.0,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            },
+            "fg2": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "char_6": {
+          "mean_auc": 1.0,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            },
+            "fg2": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "length_punctuation": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        }
+      },
+      "cue_span": {
+        "word_1": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "word_2": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "word_3": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "char_5": {
+          "mean_auc": 1.0,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            },
+            "fg2": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "char_6": {
+          "mean_auc": 1.0,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            },
+            "fg2": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "length_punctuation": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        }
+      },
+      "scaffold_without_cue": {
+        "word_1": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "word_2": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "word_3": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "char_5": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "char_6": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "length_punctuation": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        }
+      },
+      "first_sentence": {
+        "word_1": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "word_2": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "word_3": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "char_5": {
+          "mean_auc": 1.0,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            },
+            "fg2": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "char_6": {
+          "mean_auc": 1.0,
+          "max_auc": 1.0,
+          "per_fold": {
+            "fg1": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 1.0
+            },
+            "fg2": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 1.0
+            },
+            "fg3": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 1.0
+            },
+            "fg4": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 1.0
+            },
+            "fg5": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 1.0
+            }
+          },
+          "pass": false
+        },
+        "length_punctuation": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        }
+      },
+      "second_sentence": {
+        "word_1": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "word_2": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "word_3": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "char_5": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "char_6": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        },
+        "length_punctuation": {
+          "mean_auc": 0.5,
+          "max_auc": 0.5,
+          "per_fold": {
+            "fg1": {
+              "n": 68,
+              "positive": 34,
+              "negative": 34,
+              "auc": 0.5
+            },
+            "fg2": {
+              "n": 92,
+              "positive": 46,
+              "negative": 46,
+              "auc": 0.5
+            },
+            "fg3": {
+              "n": 48,
+              "positive": 24,
+              "negative": 24,
+              "auc": 0.5
+            },
+            "fg4": {
+              "n": 40,
+              "positive": 20,
+              "negative": 20,
+              "auc": 0.5
+            },
+            "fg5": {
+              "n": 72,
+              "positive": 36,
+              "negative": 36,
+              "auc": 0.5
+            }
+          },
+          "pass": true
+        }
+      }
+    }
+  },
+  "pass": false,
+  "diagnostic_note": "Cue scopes are reported separately because the frozen pilot controls use the first rendered line; full-text results are retained as a red-team view."
+}
