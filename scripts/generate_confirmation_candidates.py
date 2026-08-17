@@ -65,6 +65,7 @@ def main() -> None:
     parser.add_argument("--model-revision", default=None)
     parser.add_argument("--kind", choices=sorted(SCHEMA), required=True)
     parser.add_argument("--batches", type=int, required=True)
+    parser.add_argument("--start-batch", type=int, default=0)
     parser.add_argument("--seed", type=int, default=0)
     parser.add_argument("--temperature", type=float, default=0.2)
     parser.add_argument("--max-tokens", type=int, default=4096)
@@ -73,7 +74,7 @@ def main() -> None:
     args.out_dir.mkdir(parents=True, exist_ok=True)
     records = []
     accepted = []
-    for batch in range(args.batches):
+    for batch in range(args.start_batch, args.start_batch + args.batches):
         seed = args.seed + batch
         prompt = SCHEMA[args.kind]["prompt"] + f"\nThis is batch {batch}; use fresh content."
         if args.kind == "payloads":

@@ -35,9 +35,17 @@ for attempt in $(seq 1 180); do
   sleep 10
 done
 if [ "$ready" -ne 1 ]; then echo 'generation server did not become healthy' >&2; exit 3; fi
-/bighome/jppatton/langea/runtime/vllm/bin/python "$SOURCE_DIR/generate_confirmation_candidates.py" \
-  --url http://127.0.0.1:8123/v1/chat/completions --model "$MODEL" --model-revision "$MODEL_REVISION" \
-  --kind payloads --batches 10 --seed 20260817 --temperature 0.2 --max-tokens 4096 --out-dir "$RUN_DIR"
-/bighome/jppatton/langea/runtime/vllm/bin/python "$SOURCE_DIR/generate_confirmation_candidates.py" \
-  --url http://127.0.0.1:8123/v1/chat/completions --model "$MODEL" --model-revision "$MODEL_REVISION" \
-  --kind frames --batches 5 --seed 20260827 --temperature 0.2 --max-tokens 4096 --out-dir "$RUN_DIR"
+KIND=${KIND:-both}
+START_BATCH=${START_BATCH:-0}
+BATCHES=${BATCHES:-}
+MAX_TOKENS=${MAX_TOKENS:-4096}
+if [ "$KIND" = "payloads" ] || [ "$KIND" = "both" ]; then
+  /bighome/jppatton/langea/runtime/vllm/bin/python "$SOURCE_DIR/generate_confirmation_candidates.py" \
+    --url http://127.0.0.1:8123/v1/chat/completions --model "$MODEL" --model-revision "$MODEL_REVISION" \
+    --kind payloads --batches "${BATCHES:-10}" --start-batch "$START_BATCH" --seed 20260817 --temperature 0.2 --max-tokens "$MAX_TOKENS" --out-dir "$RUN_DIR"
+fi
+if [ "$KIND" = "frames" ] || [ "$KIND" = "both" ]; then
+  /bighome/jppatton/langea/runtime/vllm/bin/python "$SOURCE_DIR/generate_confirmation_candidates.py" \
+    --url http://127.0.0.1:8123/v1/chat/completions --model "$MODEL" --model-revision "$MODEL_REVISION" \
+    --kind frames --batches "${BATCHES:-5}" --start-batch "$START_BATCH" --seed 20260827 --temperature 0.2 --max-tokens "$MAX_TOKENS" --out-dir "$RUN_DIR"
+fi
