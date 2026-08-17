@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "status": "pending_gpu_resources",
+  "failed_job": 52049785,
+  "retry_job": 52276496,
+  "failure_stage": "deployment_before_candidate_generation",
+  "failure_reason": "offline HuggingFace loader did not resolve the cached Stockmark snapshot",
+  "change_scope": "infrastructure_only",
+  "scientific_parameters_unchanged": true,
+  "remote_deployment": "/scratch/jppatton/langea/deploy/scripts/serve_stage3_introspection.py",
+  "backup_sha256": "862c47591b65dc3316c0d54a45db49b0e4b112550e228211fd11edd171c8565e",
+  "patched_sha256": "3ffbec80955b8d201c2585c38ddfba0a51cd2fe862bacc8243f9e695de58227e",
+  "patch": "Pass local_files_only=True to AutoTokenizer.from_pretrained and AutoModelForCausalLM.from_pretrained.",
+  "run_dir": "/scratch/jppatton/langea/confirmation_work/generation_20260817_02",
+  "model": "stockmark/Stockmark-2-100B-Instruct",
+  "model_revision": "98e959a472d0fcaf0c8b6576af19fe3cba7ca4ab",
+  "payload_seed": 20260817,
+  "frame_seed": 20260827,
+  "payload_temperature": 0.2,
+  "frame_temperature": 0.2,
+  "recorded_at": "2026-08-17"
+}
