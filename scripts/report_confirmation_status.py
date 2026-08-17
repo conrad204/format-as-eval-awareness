@@ -6,9 +6,11 @@ import json
 from pathlib import Path
 
 ENDPOINTS = (
-    "E1_stated_auc", "E1_ngram_auc", "E1_auc_minus_ngram", "E2_stated_locus",
-    "E3_transfer_by_format", "E4_indirect_transfer", "E5_second_transfer",
-    "E6_nocue_format_shift_sd", "E7_payload_holdout", "E8_double_holdout", "per_fold_stated",
+    "E1_stated_auc", "E1_ngram_auc", "E1_auc_minus_ngram", "E2_locus",
+    "E3_b2c", "E3_c2b", "E4_indirect_transfer", "E4_indirect_own_cv",
+    "E5_second_transfer", "E5_second_transfer_by_locus", "E5_second_own_cv",
+    "E6_nocue_format_shift_sd", "E6_nocue_format_auc", "E7_payload_holdout",
+    "E8_double_holdout", "per_fold_stated",
 )
 
 
