@@ -1,0 +1,32 @@
+name: One-shot upstream sync
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/sync-upstream-once.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    if: github.repository == 'catears124/format-as-eval-awareness'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out fork
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Merge upstream main into fork main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git remote add upstream https://github.com/conrad204/format-as-eval-awareness.git
+          git fetch upstream main
+          git merge upstream/main --no-edit -X ours
+          git push origin HEAD:main
