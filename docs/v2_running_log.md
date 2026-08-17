@@ -196,7 +196,7 @@ near-dup gate against the full 160 pool (working cross-generator: run b's
 first Grok candidate was rejected as a near-dup of an accepted payload and
 retried successfully; b accepted 31 Grok / 24 Gemini).
 Est. cost ~$2–4 incl. Gemini reasoning tokens. Note: plot-pipeline `.env`
-line 2 (`HF_TOKEN =`) has a space before `=` and is not shell-sourceable —
+line 2 (`HF_TOKEN=…`) holds the HF org token (formatting since normalized to plain NAME=value) —
 the OpenRouter key is extracted by grep.
 
 **Render decision for 160 blocks (pre-declared):** render the frozen

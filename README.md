@@ -20,6 +20,47 @@ Because the two layer-sweep JSONs are checked in, **the plots regenerate on any
 machine with no GPU** — the extraction + sweep steps only need to be rerun to
 change the dataset or the models.
 
+## Getting the data — READ THIS FIRST
+
+`data/` is gitignored: a fresh clone has **no datasets**. All frozen datasets
+live in private HF repos under [hf.co/format-EA](https://huggingface.co/format-EA),
+one repo per freeze (`full320-v3` = current; `pilot80-v2`, `v1-8-14-2026` =
+archived). Git tracks the verification anchors in `provenance/<freeze>/`:
+the render manifest (every input/output sha256) and `hf_snapshot.json`
+(the pinned HF revision + per-file sha256s).
+
+```bash
+# 0. Auth: an HF token with access to the format-EA org — set HF_TOKEN in
+#    the repo-root .env (NAME=value) or run `hf auth login`. Repos are
+#    private and gated; request access from the org admin first.
+
+# 1. Pull a freeze AT ITS PINNED REVISION into data/<freeze>/:
+hf download format-EA/full320-v3 --repo-type dataset \
+  --revision "$(jq -r .revision provenance/full320-v3/hf_snapshot.json)" \
+  --local-dir data/full320-v3
+
+# 2. Verify the bytes against the git-tracked manifest:
+eval-format-mvp verify-manifest-v3 \
+  --manifest provenance/full320-v3/render_manifest_v3_full320.json
+```
+
+The same pattern works for every freeze (swap the folder name; older freezes
+use `verify-manifest` / `verify-manifest-v2`). Never pull without
+`--revision` — git is the source of truth for *which bytes*; HF only stores
+them.
+
+Activation npz sets live in the same freeze repos under
+`activations/<model>/`. `hf download` preserves repo paths under
+`--local-dir`, so pulling them into the local `activations/<freeze>/<model>/`
+convention needs one move:
+
+```bash
+hf download format-EA/pilot80-v2 --repo-type dataset \
+  --include 'activations/*' --local-dir activations/pilot80-v2
+mv activations/pilot80-v2/activations/* activations/pilot80-v2/ \
+  && rmdir activations/pilot80-v2/activations
+```
+
 ## Plots-only (no GPU)
 
 ```bash
@@ -94,35 +135,8 @@ python -m pytest                    # 62 tests, no network/GPU needed
 eval-format-mvp verify-manifest-v3  --manifest provenance/full320-v3/render_manifest_v3_full320.json
 ```
 
-### Data: git anchors, HF bytes
-
-`data/` is gitignored. Frozen datasets live in private HF repos —
-`format-EA/<freeze>`, one repo per freeze (`full320-v3` current;
-`pilot80-v2`, `v1-8-14-2026` archived) — while git tracks the anchors:
-`provenance/<freeze>/` holds each freeze's render manifest (+ extraction
-configs) and `hf_snapshot.json`, which pins the exact HF revision and
-per-file sha256s. To materialize a freeze locally:
-
-```bash
-hf download format-EA/full320-v3 --repo-type dataset \
-  --revision "$(jq -r .revision provenance/full320-v3/hf_snapshot.json)" \
-  --local-dir data/full320-v3
-eval-format-mvp verify-manifest-v3 --manifest provenance/full320-v3/render_manifest_v3_full320.json
-```
-
-Activation npz sets live in the same freeze repos under `activations/<model>/`;
-`hf download` preserves repo paths under `--local-dir`, so pulling them to the
-local `activations/<freeze>/<model>/` convention needs one move:
-
-```bash
-hf download format-EA/pilot80-v2 --repo-type dataset --include 'activations/*' \
-  --local-dir activations/pilot80-v2
-mv activations/pilot80-v2/activations/* activations/pilot80-v2/ \
-  && rmdir activations/pilot80-v2/activations
-```
-
-Never trust unpinned HF state: always fetch at the revision recorded in the
-tracked snapshot and re-verify against the tracked manifest.
+Data lives on HF, anchored by tracked manifests + revision pins — see
+**"Getting the data — READ THIS FIRST"** at the top of this file.
 
 Renders are deterministic: `render-v3 --schedule full` is a pure function of
 the payload file, so rendered files are always reproducible from their
