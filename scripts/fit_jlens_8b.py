@@ -34,7 +34,9 @@ def main() -> None:
     ap.add_argument("--out-dir", type=Path, required=True)
     ap.add_argument("--seed", type=int, required=True)
     ap.add_argument("--max-prompts", type=int, default=None)
-    ap.add_argument("--heldout-text", default="A harmless held-out paragraph about a garden path and a blue cup.")
+    ap.add_argument("--heldout-text", default=("A harmless held-out paragraph about a garden path and a blue cup. "
+                                                "It contains enough ordinary text to exercise the fitted lens on "
+                                                "a valid sequence beyond the skipped prefix."))
     args = ap.parse_args()
     sys.path.insert(0, str(args.jlens_dir))
     import torch
