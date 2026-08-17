@@ -1,0 +1,151 @@
+{
+  "schema_version": 1,
+  "items_sha256": "ecdc9f715f86bab0a58ad4e472e1bfe43731ca2b355bbed2fc9babc4f01da096",
+  "rows": 1760,
+  "stated_rows": 960,
+  "folds": [
+    "fg1",
+    "fg2",
+    "fg3",
+    "fg4",
+    "fg5"
+  ],
+  "threshold": {
+    "mean_auc_max": 0.6,
+    "max_fold_auc_max": 0.7
+  },
+  "features": {
+    "word": {
+      "lowercase": true,
+      "token_pattern": "(?u)\\b\\w+\\b",
+      "ranges": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ]
+      ]
+    },
+    "char": {
+      "lowercase": true,
+      "ranges": [
+        [
+          3,
+          5
+        ],
+        [
+          3,
+          6
+        ]
+      ]
+    },
+    "numeric": "length, word count, punctuation, digits, whitespace, newlines, half lengths and punctuation density",
+    "halves": "word-unigram TF-IDF independently on first and second text halves"
+  },
+  "results": {
+    "word_1gram": {
+      "mean_auc": 0.5000000000000001,
+      "max_auc": 0.5000000000000001,
+      "per_fold_auc": {
+        "fg1": 0.5000000000000001,
+        "fg2": 0.5000000000000001,
+        "fg3": 0.5000000000000001,
+        "fg4": 0.5000000000000001,
+        "fg5": 0.5000000000000001
+      },
+      "pass": true
+    },
+    "word_1_2gram": {
+      "mean_auc": 0.5000000000000001,
+      "max_auc": 0.5000000000000001,
+      "per_fold_auc": {
+        "fg1": 0.5000000000000001,
+        "fg2": 0.5000000000000001,
+        "fg3": 0.5000000000000001,
+        "fg4": 0.5000000000000001,
+        "fg5": 0.5000000000000001
+      },
+      "pass": true
+    },
+    "word_1_3gram": {
+      "mean_auc": 0.5000000000000001,
+      "max_auc": 0.5000000000000001,
+      "per_fold_auc": {
+        "fg1": 0.5000000000000001,
+        "fg2": 0.5000000000000001,
+        "fg3": 0.5000000000000001,
+        "fg4": 0.5000000000000001,
+        "fg5": 0.5000000000000001
+      },
+      "pass": true
+    },
+    "char_3_5gram": {
+      "mean_auc": 0.8858506944444444,
+      "max_auc": 0.998046875,
+      "per_fold_auc": {
+        "fg1": 0.8719618055555555,
+        "fg2": 0.859375,
+        "fg3": 0.9141710069444444,
+        "fg4": 0.7856987847222221,
+        "fg5": 0.998046875
+      },
+      "pass": false
+    },
+    "char_3_6gram": {
+      "mean_auc": 0.878146701388889,
+      "max_auc": 0.9962022569444444,
+      "per_fold_auc": {
+        "fg1": 0.8791232638888888,
+        "fg2": 0.8156467013888888,
+        "fg3": 0.9262152777777779,
+        "fg4": 0.7735460069444445,
+        "fg5": 0.9962022569444444
+      },
+      "pass": false
+    },
+    "length_punctuation": {
+      "mean_auc": 0.5,
+      "max_auc": 0.5,
+      "per_fold_auc": {
+        "fg1": 0.5,
+        "fg2": 0.5,
+        "fg3": 0.5,
+        "fg4": 0.5,
+        "fg5": 0.5
+      },
+      "pass": true
+    },
+    "first_half": {
+      "mean_auc": 0.5,
+      "max_auc": 0.5,
+      "per_fold_auc": {
+        "fg1": 0.5,
+        "fg2": 0.5,
+        "fg3": 0.5,
+        "fg4": 0.5,
+        "fg5": 0.5
+      },
+      "pass": true
+    },
+    "second_half": {
+      "mean_auc": 0.5,
+      "max_auc": 0.5,
+      "per_fold_auc": {
+        "fg1": 0.5,
+        "fg2": 0.5,
+        "fg3": 0.5,
+        "fg4": 0.5,
+        "fg5": 0.5
+      },
+      "pass": true
+    }
+  },
+  "pass": false
+}

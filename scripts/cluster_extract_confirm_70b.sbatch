@@ -1,0 +1,26 @@
+#!/bin/bash
+#SBATCH --job-name=tae_confirm_70b
+#SBATCH --partition=gpu
+#SBATCH --qos=gpu
+#SBATCH --account=sdibbo_grp
+#SBATCH --gres=gpu:h100-80:2
+#SBATCH --time=3-00:00:00
+#SBATCH --output=/scratch/jppatton/langea/logs/tae_confirm_70b-%j.out
+#SBATCH --error=/scratch/jppatton/langea/logs/tae_confirm_70b-%j.err
+set -euo pipefail
+export XDG_CACHE_HOME=/scratch/jppatton/langea/cache
+export HF_HOME=/scratch/jppatton/langea/huggingface
+export HF_HUB_CACHE=/scratch/jppatton/langea/huggingface/hub
+export TRANSFORMERS_CACHE=/scratch/jppatton/langea/huggingface/transformers
+export TMPDIR=/scratch/jppatton/langea/tmp
+export HF_HUB_OFFLINE=1
+export TRANSFORMERS_OFFLINE=1
+export PYTHONPATH=/scratch/jppatton/langea/confirmation_work/tae_2026
+work=/scratch/jppatton/langea/confirmation_work
+bank=$work/confirmation_candidate_20260816
+if [ ! -f "$bank/sealed_manifest.json" ]; then echo 'sealed manifest missing' >&2; exit 2; fi
+model_key="${MODEL_KEY:?MODEL_KEY must be set}"
+out="${OUTPUT_DIR:?OUTPUT_DIR must be set}"
+/bighome/jppatton/langea/runtime/vllm/bin/python /scratch/jppatton/langea/confirmation_work/tae_2026/extract_confirmatory.py \
+  --model-key "$model_key" --items "$bank/rendered_items.jsonl" --output "$work/$out" \
+  --batch-size 1 --max-length 2048 --device-map auto
