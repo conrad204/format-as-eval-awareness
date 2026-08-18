@@ -19,14 +19,17 @@ case "${1:-}" in
   llama31_8b)
     MODEL=meta-llama/Llama-3.1-8B-Instruct
     REVISION=0e9e39f249a16976918f6564b8830bc894c89659
+    BATCH=8
     EXTRA=() ;;
   llama31_70b)
     MODEL=meta-llama/Llama-3.1-70B-Instruct
     REVISION=1605565b47bb9346c5515c34102e054115b4f98b
+    BATCH=32
     EXTRA=(--device-map auto) ;;
   llama33_70b)
     MODEL=meta-llama/Llama-3.3-70B-Instruct
     REVISION=6f6073b423013f6a7d4d9f39144961bfbfbc386b
+    BATCH=32
     EXTRA=(--device-map auto) ;;
   *)
     echo "usage: $0 {llama31_8b|llama31_70b|llama33_70b}" >&2; exit 2 ;;
@@ -52,7 +55,7 @@ python scripts/extract_activations.py \
   --out-dir "$OUT" \
   --model "$MODEL" \
   --revision "$REVISION" \
-  --all-layers --batch-size 8 "${EXTRA[@]}"
+  --all-layers --batch-size "$BATCH" "${EXTRA[@]}"
 
 # Record the hardware alongside the extraction config: bf16 forward passes
 # are not bit-identical across GPU architectures, so each model's full item

@@ -8,6 +8,24 @@ from typing import Any
 from .io import MVPError, load_jsonl, sha256_file, write_json, write_jsonl
 
 
+def _write_npz_deflate1(path: Path, arrays: dict[str, Any]) -> None:
+    """np.load-compatible npz at deflate level 1: numpy's savez_compressed is
+    pinned to single-threaded zlib level 6, which takes ~an hour on the 70B
+    all-layers array while the pod's GPUs sit idle. Level 1 is ~10x faster for
+    a few percent more bytes; the stored values are identical either way."""
+    import zipfile
+
+    import numpy as np
+    from numpy.lib import format as npformat
+
+    with zipfile.ZipFile(
+        path, "w", zipfile.ZIP_DEFLATED, allowZip64=True, compresslevel=1
+    ) as zf:
+        for name, arr in arrays.items():
+            with zf.open(name + ".npy", "w", force_zip64=True) as handle:
+                npformat.write_array(handle, np.asanyarray(arr), allow_pickle=False)
+
+
 def extract_activations(
     *,
     items_path: Path,
@@ -125,6 +143,13 @@ def extract_activations(
         for handle in handles:
             handle.remove()
 
+    # Everything below is CPU-side; release the weights first so the GPUs are
+    # not held (billed but idle) through the numpy assemble/compress phase.
+    del captured
+    del model
+    if device.type == "cuda":
+        torch.cuda.empty_cache()
+
     per_layer = {
         index: np.concatenate(values, axis=0) for index, values in batches.items()
     }
@@ -133,15 +158,17 @@ def extract_activations(
     token_lengths = np.asarray([len(ids) for ids in unpadded], dtype=np.int32)
     output_dir.mkdir(parents=True, exist_ok=True)
     activation_path = output_dir / "activations.npz"
-    np.savez_compressed(activation_path, X=matrix, item_ids=item_ids)
+    _write_npz_deflate1(activation_path, {"X": matrix, "item_ids": item_ids})
     all_layers_path = output_dir / "activations_all_layers.npz"
     if all_layers:
-        np.savez_compressed(
+        _write_npz_deflate1(
             all_layers_path,
-            X=np.stack([per_layer[index] for index in target_layers], axis=1),
-            item_ids=item_ids,
-            layers=np.asarray(target_layers, dtype=np.int16),
-            token_lengths=token_lengths,
+            {
+                "X": np.stack([per_layer[index] for index in target_layers], axis=1),
+                "item_ids": item_ids,
+                "layers": np.asarray(target_layers, dtype=np.int16),
+                "token_lengths": token_lengths,
+            },
         )
     write_jsonl(output_dir / "meta.jsonl", rows)
     config = {
@@ -157,6 +184,7 @@ def extract_activations(
         "position": "last_prompt_token_after_chat_template_before_generation",
         "chat_template": "tokenizer.apply_chat_template(user_message, add_generation_prompt=True)",
         "add_special_tokens": False,
+        "npz_compression": "zip_deflate_level1",
         "max_length": max_length,
         "max_prompt_tokens": longest,
         "dtype_stored": "float32",
