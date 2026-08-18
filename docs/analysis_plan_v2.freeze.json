@@ -220,6 +220,17 @@
       "replacement_fit_job": "52347260",
       "replacement_assay_job": "52347262",
       "tokenizer": "/scratch/jppatton/langea/confirmation_work/llama31_8b_tokenizer_0e9e39f2",
+      "status": "pre_outcome_replacement_failed_missing_weights"
+    },
+    {
+      "date": "2026-08-17",
+      "kind": "jlens_model_weight_path_correction",
+      "reason": "The synchronized full-fit wrapper successfully tokenized the frozen corpus but the default HF model snapshot contained configuration/tokenizer files without model weights, so job 52347260 failed before fitting. Use the separately staged, hash-verified model-weight directory together with the staged tokenizer; no lens rows or outcomes were consumed.",
+      "failed_job": "52347260",
+      "replacement_fit_job": "52347764",
+      "replacement_assay_job": "52347767",
+      "model": "/scratch/jppatton/langea/confirmation_work/llama31_8b_model_0e9e39f2",
+      "tokenizer": "/scratch/jppatton/langea/confirmation_work/llama31_8b_tokenizer_0e9e39f2",
       "status": "pre_outcome_replacement_running"
     }
   ]
