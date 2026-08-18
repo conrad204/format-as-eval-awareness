@@ -271,7 +271,7 @@ def validate(payloads: list[dict[str, Any]], frames: list[dict[str, Any]], rows:
         cue_e = set(frame["evaluation_cue_tokens"])
         cue_d = set(frame["deployment_cue_tokens"])
         lexical_cues = (cue_e | cue_d) - NON_PURPOSE_FUNCTION_STEMS
-        if cue_e & cue_d or lexical_cues & forbidden:
+        if ((cue_e & cue_d) - NON_PURPOSE_FUNCTION_STEMS) or lexical_cues & forbidden:
             raise ValueError(f"frame cue disjointness failure: {frame['pair_id']}")
         fold = str(frame["fold_id"])
         for stem in lexical_cues:
