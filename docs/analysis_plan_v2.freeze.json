@@ -231,7 +231,17 @@
       "replacement_assay_job": "52347767",
       "model": "/scratch/jppatton/langea/confirmation_work/llama31_8b_model_0e9e39f2",
       "tokenizer": "/scratch/jppatton/langea/confirmation_work/llama31_8b_tokenizer_0e9e39f2",
-      "status": "pre_outcome_replacement_running"
+      "status": "pre_outcome_replacement_failed_cache_resolution"
+    },
+    {
+      "date": "2026-08-17",
+      "kind": "confirmation_retry_exact_snapshot_correction",
+      "reason": "Retry job 52337294 reached the server wrapper but the repo-ID offline lookup could not resolve the cached Stockmark files. The exact cached snapshot directory was verified to contain config, tokenizer, and all 40 model shards; resubmit the unchanged batch retry using that local snapshot path. No candidate generation occurred in the failed retry.",
+      "failed_job": "52337294",
+      "replacement_retry_job": "52348268",
+      "retry_run": "/scratch/jppatton/langea/confirmation_work/generation_20260817_11_payload_retry",
+      "model_snapshot": "/scratch/jppatton/langea/huggingface/hub/models--stockmark--Stockmark-2-100B-Instruct/snapshots/98e959a472d0fcaf0c8b6576af19fe3cba7ca4ab",
+      "status": "pre_outcome_retry_pending_resources"
     }
   ]
 }
