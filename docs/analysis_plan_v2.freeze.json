@@ -291,6 +291,20 @@
       "seed": 20260819,
       "max_tokens": 2048,
       "status": "pre_outcome_regeneration_running"
+    },
+    {
+      "date": "2026-08-17",
+      "kind": "confirmation_generator_fallback",
+      "reason": "Stockmark batch regeneration remained computationally stalled after 23 minutes with no candidate artifact. Switch to the approved cached meta Llama-3.3-70B snapshot for a pre-outcome regeneration; this lineage is distinct from the Grok development generator, and the independent Swallow-70B semantic validator remains unchanged. No candidate or outcome from the stalled run was inspected.",
+      "stopped_job": "52394597",
+      "replacement_generation_job": "52399608",
+      "replacement_generation_run": "/scratch/jppatton/langea/confirmation_work/generation_20260817_25_llama33_payloads",
+      "generator_model": "meta-llama/Llama-3.3-70B-Instruct",
+      "generator_revision": "6f6073b423013f6a7d4d9f39144961bfbfbc386b",
+      "temperature": 0.2,
+      "seed": 20260819,
+      "max_tokens": 2048,
+      "status": "pre_outcome_regeneration_running"
     }
   ]
 }
