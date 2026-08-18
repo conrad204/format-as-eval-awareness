@@ -450,6 +450,15 @@
       "temperature": 0.0,
       "max_tokens": 2048,
       "status": "pre_outcome_frame_regeneration_pending"
+    },
+    {
+      "date": "2026-08-18",
+      "kind": "confirmation_generator_tokenizer_repair",
+      "reason": "The cached 8B model snapshot lacked tokenizer.json and the generation server failed before accepting any request. Copy the independently frozen tokenizer artifact into the scratch snapshot; no candidate or outcome was produced by the failed job.",
+      "model_snapshot": "/scratch/jppatton/langea/huggingface/hub/models--meta-llama--Llama-3.1-8B-Instruct/snapshots/0e9e39f249a16976918f6564b8830bc894c89659",
+      "tokenizer_source": "/scratch/jppatton/langea/confirmation_work/llama31_8b_tokenizer_0e9e39f2",
+      "tokenizer_sha256": "79e3e522635f3171300913bb421464a87de6222182a0570b9b2ccba2a964b2b4",
+      "status": "pre_outcome_frame_regeneration_pending"
     }
   ]
 }
