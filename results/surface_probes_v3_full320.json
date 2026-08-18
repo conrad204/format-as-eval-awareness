@@ -1,0 +1,56 @@
+{
+  "expectations": {
+    "purpose_held_template_word": {
+      "auc": 0.5,
+      "n_texts": 7680,
+      "n_groups": 13,
+      "near_chance": true,
+      "role": "hard_gate"
+    },
+    "purpose_held_template_x_fold_word": {
+      "auc": 0.5,
+      "n_texts": 7680,
+      "near_chance": true,
+      "role": "hard_gate"
+    },
+    "purpose_held_template_char": {
+      "auc": 0.5,
+      "n_texts": 7680,
+      "n_groups": 13,
+      "near_chance": true,
+      "role": "hard_gate"
+    },
+    "purpose_held_template_x_fold_char": {
+      "auc": 0.5,
+      "n_texts": 7680,
+      "near_chance": true,
+      "role": "hard_gate"
+    },
+    "template_id_held_block_word": {
+      "accuracy": 0.9083333333333333,
+      "n_classes": 13,
+      "chance": 0.07692307692307693,
+      "n_texts": 7680,
+      "role": "report_only_expected_high"
+    },
+    "stratum_held_template_word": {
+      "auc": 0.797614729020979,
+      "n_texts": 7680,
+      "n_groups": 13,
+      "near_chance": false,
+      "role": "report_only_expected_decodable"
+    },
+    "contract_held_block_word": {
+      "accuracy": 0.9832386363636364,
+      "n_classes": 5,
+      "chance": 0.2,
+      "n_texts": 7040,
+      "role": "report_only_expected_decodable"
+    }
+  },
+  "near_chance_band": [
+    0.35,
+    0.65
+  ],
+  "gates_passed": true
+}

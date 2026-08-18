@@ -1,6 +1,6 @@
 """Plots for the v2 80-block pilot (exploratory, per docs/analysis_plan_v2.md).
 
-Reads results/pilot80_layer_sweep_*.json and results/pilot80_analysis_*.json,
+Reads results/v2/pilot80_layer_sweep_*.json and results/v2/pilot80_analysis_*.json,
 writes PNGs into plots/pilot results 8-16-2026/. Style matches make_plots.py.
 """
 
@@ -37,8 +37,8 @@ MODELS=[  # (label, color, sweep file, analysis file, pinned layer)
     ("Llama-3.1-70B", S3, "pilot80_layer_sweep_31_70b.json", "pilot80_analysis_31_70b_layer31.json", 31),
     ("Llama-3.3-70B", S70, "pilot80_layer_sweep_33_70b.json", "pilot80_analysis_33_70b_layer17.json", 17),
 ]
-SW={n: json.load(open(R/s)) for n,_,s,_,_ in MODELS}
-AN={n: json.load(open(R/a))["endpoints"] for n,_,_,a,_ in MODELS}
+SW={n: json.load(open(R/"v2"/s)) for n,_,s,_,_ in MODELS}
+AN={n: json.load(open(R/"v2"/a))["endpoints"] for n,_,_,a,_ in MODELS}
 HANDLES=[Line2D([],[],color=c,lw=2,label=n) for n,c,_,_,_ in MODELS]
 
 def ci_dot(ax,y,e,color,ms=7):

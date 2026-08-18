@@ -2,7 +2,7 @@
 
 Notes on the v2 pilot run (80 payload blocks, 1,760 items, three Llama models
 extracted and analyzed). Endpoint definitions first, then the assessment of the
-results in `results/pilot80_analysis_*.json`.
+results in `results/v2/pilot80_analysis_*.json`.
 
 **Rev 2 (same day):** incorporates an external AI review whose checkable claims
 were independently re-verified against this repo (see "Review verification"

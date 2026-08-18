@@ -14,7 +14,7 @@ plt.rcParams.update({"font.family":"sans-serif",
     "text.color":INK,"axes.labelcolor":INK2,"xtick.color":MUTED,"ytick.color":MUTED,
     "axes.edgecolor":BASE,"font.size":10})
 
-d8=json.load(open(f"{R}/layer_sweep_llama31_8b.json")); d70=json.load(open(f"{R}/layer_sweep_llama33_70b.json"))
+d8=json.load(open(f"{R}/v1/layer_sweep_llama31_8b.json")); d70=json.load(open(f"{R}/v1/layer_sweep_llama33_70b.json"))
 def depth(d): n=len(d); return np.array([r["layer"]/(n-1)*100 for r in d])
 def series(d,reg,key): return np.array([r[reg][key] for r in d])
 x8,x70=depth(d8),depth(d70)

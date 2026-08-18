@@ -15,7 +15,7 @@ plt.rcParams.update({"font.family": "sans-serif",
     "text.color": INK, "axes.labelcolor": INK2, "xtick.color": MUTED,
     "ytick.color": MUTED, "axes.edgecolor": BASE, "font.size": 10})
 
-d70 = json.load(open(f"{R}/layer_sweep_llama33_70b.json"))
+d70 = json.load(open(f"{R}/v1/layer_sweep_llama33_70b.json"))
 x = np.array([r["layer"] / (len(d70) - 1) * 100 for r in d70])
 dec = np.array([r["decorrelated"]["auc"] for r in d70])
 xf = np.array([(r["b2c"]["auc"] + r["c2b"]["auc"]) / 2 for r in d70])

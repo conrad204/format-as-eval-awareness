@@ -11,7 +11,7 @@ S8B="#2a78d6"; S70="#eb6834"
 plt.rcParams.update({"font.family":"sans-serif","font.sans-serif":["DejaVu Sans","Segoe UI","Arial"],
     "figure.facecolor":SURF,"axes.facecolor":SURF,"savefig.facecolor":SURF,"text.color":INK,
     "axes.labelcolor":INK2,"xtick.color":MUTED,"ytick.color":MUTED,"axes.edgecolor":BASE,"font.size":10})
-d8=json.load(open(f"{R}/layer_sweep_llama31_8b.json")); d70=json.load(open(f"{R}/layer_sweep_llama33_70b.json"))
+d8=json.load(open(f"{R}/v1/layer_sweep_llama31_8b.json")); d70=json.load(open(f"{R}/v1/layer_sweep_llama33_70b.json"))
 def curves(d):
     x=np.array([r["layer"]/(len(d)-1)*100 for r in d])
     dec=np.array([r["decorrelated"]["auc"] for r in d])

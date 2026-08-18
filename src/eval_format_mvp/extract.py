@@ -52,6 +52,9 @@ def extract_activations(
         raise MVPError("Rendered item file is empty")
     if batch_size < 1 or max_length < 1:
         raise MVPError("batch_size and max_length must be positive")
+    # Fail on an unwritable/occupied output path now, not after the GPU hours:
+    # a stale file or dangling symlink at output_dir raises FileExistsError here.
+    output_dir.mkdir(parents=True, exist_ok=True)
 
     tokenizer = AutoTokenizer.from_pretrained(model_name, revision=model_revision)
     tokenizer.padding_side = "left"
@@ -156,7 +159,6 @@ def extract_activations(
     matrix = per_layer[layer]
     item_ids = np.asarray([str(row["item_id"]) for row in rows], dtype=str)
     token_lengths = np.asarray([len(ids) for ids in unpadded], dtype=np.int32)
-    output_dir.mkdir(parents=True, exist_ok=True)
     activation_path = output_dir / "activations.npz"
     _write_npz_deflate1(activation_path, {"X": matrix, "item_ids": item_ids})
     all_layers_path = output_dir / "activations_all_layers.npz"

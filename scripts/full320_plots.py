@@ -1,17 +1,21 @@
-"""Plots for the v2 pilot (80 blocks, 1760 items, three models).
+"""Plots for the v3 full320 freeze (320 blocks, 11,520 items, three models).
 
-Counterparts of the v1 plots 01-07/06a where the design allows, computed from
-the v2 full-regime sweeps (results/v2/pilot80_sweep_full_*.json — held-out
-VOCABULARY folds, so "out-of-fold" is strictly stronger than v1), plus new
-plots 08-10 for the v2-only endpoints (results/v2/pilot80_analysis_*.json).
+Counterparts of the v1/v2 plots 01-07/06a, computed from the v3 full-regime
+sweeps (results/layer_sweep_full320-v3_*.json — same regimes and held-out
+cue-vocabulary folds as v2, run by pilot80_sweep_full.py on the full320
+stated stratum: 7,680 rows, 3,524 complete minimal pairs), plus a new plot
+08 for the v3 surface-probe battery (results/surface_probes_v3_full320.json).
 
-v1 -> v2 reading notes:
-  - "decorrelated" now also means vocabulary-disjoint: the tested fold's cue
-    words were never in training. The permanent lexical control (E1 n-gram)
-    sits at 0.500.
-  - Three models: the two v1 models' colors are kept (8B blue, 3.3-70B
-    orange) so old and new plots are directly comparable; 3.1-70B (new, same
-    lineage as the 8B) gets violet.
+v2 -> v3 reading notes:
+  - 4x the payload blocks (80 -> 320; every topic now 10 Grok + 10 Gemini),
+    and the wrapper is no longer one template per format: 13 templates
+    (7 benchmark, 6 casual), so "format" spans a template family.
+  - Same three models and colors as v2 (8B blue, 3.1-70B violet,
+    3.3-70B orange) so the plot sets are directly comparable.
+  - v2's endpoint plots 08-10 (generalization ladder, no-cue shift, cue
+    locus) have no v3 counterpart yet: the v3 confirmation analysis has not
+    been run. v3's stated stratum is all third-person; indirect/second-person
+    strata do not exist in this freeze.
 """
 import json, numpy as np, matplotlib
 matplotlib.use("Agg")
@@ -22,7 +26,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 R = str(ROOT / "results")
-OUT = ROOT / "plots" / "pilot results 8-16-2026"
+OUT = ROOT / "plots" / "full320 results 8-18-2026"
 OUT.mkdir(parents=True, exist_ok=True)
 OUT = str(OUT)
 
@@ -34,15 +38,16 @@ plt.rcParams.update({"font.family":"sans-serif",
     "text.color":INK,"axes.labelcolor":INK2,"xtick.color":MUTED,"ytick.color":MUTED,
     "axes.edgecolor":BASE,"font.size":10})
 
-MODELS = [  # (sweep json, analysis json, short name, color)
-    ("pilot80_sweep_full_llama31_8b.json",  "pilot80_analysis_8b_layer12.json",     "Llama-3.1-8B",  S8B),
-    ("pilot80_sweep_full_llama31_70b.json", "pilot80_analysis_31_70b_layer31.json", "Llama-3.1-70B", S71),
-    ("pilot80_sweep_full_llama33_70b.json", "pilot80_analysis_33_70b_layer17.json", "Llama-3.3-70B", S70),
+MODELS = [  # (sweep json, short name, color)
+    ("layer_sweep_full320-v3_llama31_8b.json",  "Llama-3.1-8B",  S8B),
+    ("layer_sweep_full320-v3_llama31_70b.json", "Llama-3.1-70B", S71),
+    ("layer_sweep_full320-v3_llama33_70b.json", "Llama-3.3-70B", S70),
 ]
-D = [json.load(open(f"{R}/v2/{s}")) for s, _, _, _ in MODELS]
-A = [json.load(open(f"{R}/v2/{a}"))["endpoints"] for _, a, _, _ in MODELS]
-NAMES = [n for _, _, n, _ in MODELS]
-COLS = [c for _, _, _, c in MODELS]
+D = [json.load(open(f"{R}/{s}")) for s, _, _ in MODELS]
+SURFACE = json.load(open(f"{R}/surface_probes_v3_full320.json"))
+NAMES = [n for _, n, _ in MODELS]
+COLS = [c for _, _, c in MODELS]
+N_PAIRS = 3524  # complete (payload_block_id, purpose_pair_id, format) minimal pairs
 
 def depth(d): n=len(d); return np.array([r["layer"]/(n-1)*100 for r in d])
 def series(d,reg,key): return np.array([r[reg][key] for r in d])
@@ -70,7 +75,8 @@ for x,d,c in zip(X,D,COLS):
     ax.plot(x,series(d,"confounded","auc"),color=c,lw=2,ls=(0,(4,3)),alpha=.85,zorder=2)
 ax.axhline(0.5,color=BASE,lw=1.2,ls=":",zorder=1)
 ax.text(1,0.508,"chance",ha="left",va="bottom",color=MUTED,fontsize=9)
-offsets=[(10,-24),(10,14),(-115,14)]
+# all three peaks sit near 23-26% depth / AUC 0.99+, so stagger the labels
+offsets=[(30,-58),(-40,14),(30,-32)]
 for p,name,c,x,(dx,dy) in zip(PEAKS,["8B","3.1-70B","3.3-70B"],COLS,X,offsets):
     xv=p["layer"]/(len(x)-1)*100; yv=p["decorrelated"]["auc"]
     ax.plot([xv],[yv],"o",ms=9,color=c,mec=SURF,mew=2,zorder=4)
@@ -114,7 +120,7 @@ for axp,reg,title in ((axes[0],"b2c","trained on quiz  →  tested on casual"),
     axp.set_title(title,color=INK,loc="left",fontsize=11,fontweight="bold",pad=10)
     axchrome(axp,"relative depth (%)",""); axp.set_ylim(0.42,1.0)
 axes[0].set_ylabel("purpose AUC on the unseen format")
-header(fig,"Transfer to an unseen prompt format (still on unseen vocabulary)","",model_handles(),3)
+header(fig,"Transfer to an unseen format family (still on unseen vocabulary)","",model_handles(),3)
 fig.tight_layout(rect=[0,0,1,0.86]); fig.savefig(f"{OUT}/03_transfer_by_depth.png",dpi=200); plt.close(fig)
 
 # --- 04: ranking vs threshold at the peak layer ---
@@ -133,7 +139,7 @@ ax.axhline(0.5,color=BASE,lw=1.2,ls=":",zorder=1)
 ax.set_xticks(i); ax.set_xticklabels(groups,color=INK,fontsize=11,fontweight="bold")
 ax.tick_params(axis="x",pad=24,length=0); ax.set_ylim(0,1.06)
 axchrome(ax,"","score"); ax.grid(axis="x",visible=False)
-header(fig,"Ranking survives a format change; the decision threshold suffers more",
+header(fig,"At full scale, ranking and threshold both survive the format change",
        "Solid bar: AUC (ranking quality).   Pale bar: balanced accuracy (fixed threshold at 0).   Each model at its own peak layer.",
        [Line2D([],[],color=MUTED,lw=9,label="AUC"),
         Line2D([],[],color=MUTED,lw=9,alpha=0.40,label="balanced accuracy")],2)
@@ -146,13 +152,12 @@ for x,d,c in zip(X,D,COLS):
     ax.plot(x,series(d,"decorrelated","paired_pos"),color=c,lw=2,zorder=3)
 ax.axhline(0.5,color=BASE,lw=1.2,ls=":",zorder=1)
 ax.text(1,0.508,"chance",ha="left",va="bottom",color=MUTED,fontsize=9)
-n_pairs=480  # 960 stated rows = 480 (block, pair, format) minimal pairs
 best_pp=max(max(series(d,"decorrelated","paired_pos")) for d in D)
-ax.text(50,1.012,f"{int(round(best_pp*n_pairs))} / {n_pairs} matched pairs",ha="center",va="bottom",color=S3,fontsize=9.5,fontweight="bold")
+ax.text(50,1.012,f"{int(round(best_pp*N_PAIRS)):,} / {N_PAIRS:,} matched pairs",ha="center",va="bottom",color=S3,fontsize=9.5,fontweight="bold")
 axchrome(ax,"relative depth through the network (%)","fraction of pairs scored eval > deploy")
 ax.set_ylim(0.45,1.05)
 header(fig,"Minimal pairs: almost always ranked correctly",
-       "Same payload, same wrapper, one sentence changed — scored by a probe that never saw the pair's vocabulary fold.",
+       "Same payload, same wrapper, one sentence changed — scored by a probe that never saw the pair's vocabulary fold.  320 payload blocks.",
        model_handles(),3)
 fig.tight_layout(rect=[0,0,1,0.87]); fig.savefig(f"{OUT}/05_paired_consistency_by_depth.png",dpi=200); plt.close(fig)
 
@@ -187,7 +192,7 @@ fig.legend(handles=[Line2D([],[],color=MUTED,lw=2,label="all signal"),
            labelcolor=INK2,handlelength=1.8,columnspacing=1.2)
 fig.tight_layout(rect=[0,0,1,0.87]); fig.savefig(f"{OUT}/06_signal_split_by_depth.png",dpi=200); plt.close(fig)
 
-# --- 06a: single-panel explainer (3.3-70B, matching the v1 explainer model) ---
+# --- 06a: single-panel explainer (3.3-70B, matching the v1/v2 explainer model) ---
 d70=D[2]; x,dec,xf=curves(d70)
 fig,ax=plt.subplots(figsize=(9.6,5.6))
 ax.plot(x,dec,color=S70,lw=2,zorder=3)
@@ -202,11 +207,13 @@ ax.text(x[ia]+1.6,(dec[ia]+xf[ia])/2,"gap between the two\ntraining conditions",
 ic=int(np.argmin(np.where(np.arange(len(x))>=8,dec-xf,np.inf)))
 ax.plot([x[ic]],[dec[ic]],"o",ms=8,color=S70,mec=SURF,mew=2,zorder=4)
 ax.plot([x[ic]],[xf[ic]],"o",ms=8,color=S70,mec=SURF,mew=2,zorder=4)
-ax.text(x[ic]+2,0.93,f"layer {ic} · gap {dec[ic]-xf[ic]:.2f}\nnearly everything transfers",
-        color=S70,fontsize=9.5,fontweight="bold",ha="left",va="center")
+ax.annotate(f"layer {ic} · gap {dec[ic]-xf[ic]:.2f}\nnearly everything transfers",
+            xy=(x[ic],xf[ic]-0.008),xytext=(32,0.82),
+            arrowprops=dict(arrowstyle="-",color=INK2,lw=1.0),
+            color=S70,fontsize=9.5,fontweight="bold",ha="left",va="center",zorder=5)
 ax.text(40,dec[int(len(x)*0.45)]+0.015,"trained on both formats",color=S70,
         fontsize=9.5,fontweight="bold",ha="left",va="bottom")
-ax.text(40,xf[int(len(x)*0.45)]-0.02,"trained on one format, tested on the other",
+ax.text(52,0.862,"trained on one format, tested on the other",
         color=S70,fontsize=9.5,fontweight="bold",ha="left",va="top")
 axchrome(ax,"relative depth through the network (%)","purpose AUC (held-out vocabulary fold)")
 ax.set_ylim(0.45,1.02)
@@ -233,71 +240,46 @@ fig.legend(handles=model_handles(),loc="upper right",bbox_to_anchor=(0.995,0.995
            ncol=1,frameon=False,fontsize=9.5,labelcolor=INK2,handlelength=1.8)
 fig.tight_layout(rect=[0,0,1,0.94]); fig.savefig(f"{OUT}/07_format_bound_gap.png",dpi=200); plt.close(fig)
 
-# --- 08 (new): held-out generalization ladder at the pinned layer ---
-ENDPOINTS=[("E1_ngram_auc","n-gram control\n(cue words)"),
-           ("E1_stated_auc","stated\n(held vocab)"),
-           ("E7_payload_holdout","held payloads\n(seen vocab)"),
-           ("E8_double_holdout","held vocab\n+ payloads"),
-           ("E4_indirect_transfer","indirect cues\n(transfer)"),
-           ("E5_second_transfer","second person\n(transfer)")]
-fig,ax=plt.subplots(figsize=(10.8,5.8))
-i=np.arange(len(ENDPOINTS)); w=0.24
-for k,(a,name,col) in enumerate(zip(A,NAMES,COLS)):
-    off=(k-1)*w
-    pts=[a[e]["point"] for e,_ in ENDPOINTS]
-    lo=[a[e]["point"]-a[e]["ci95"][0] for e,_ in ENDPOINTS]
-    hi=[a[e]["ci95"][1]-a[e]["point"] for e,_ in ENDPOINTS]
-    ax.bar(i+off,pts,w*0.86,color=col,zorder=3)
-    ax.errorbar(i+off,pts,yerr=[lo,hi],fmt="none",ecolor=INK2,elinewidth=1.1,capsize=2.4,zorder=4)
-ax.axhline(0.5,color=BASE,lw=1.2,ls=":",zorder=1)
-ax.text(-0.42,0.508,"chance",ha="left",va="bottom",color=MUTED,fontsize=9)
-ax.set_xticks(i); ax.set_xticklabels([l for _,l in ENDPOINTS],color=INK2,fontsize=9)
-ax.set_ylim(0.4,1.04)
-axchrome(ax,"","purpose AUC"); ax.grid(axis="x",visible=False)
-header(fig,"The purpose read survives every holdout",
-       "Pre-registered endpoints at each model's pilot argmax layer.  Whiskers: 95% cluster-bootstrap CIs over 80 payload blocks.",
-       model_handles(9),3)
-fig.tight_layout(rect=[0,0,1,0.87]); fig.savefig(f"{OUT}/08_generalization_ladder.png",dpi=200); plt.close(fig)
-
-# --- 09 (new): E6 no-cue format shift — the sign flip ---
-fig,ax=plt.subplots(figsize=(9.6,4.6))
-y=np.arange(len(MODELS))[::-1]
-for k,(a,name,col) in enumerate(zip(A,NAMES,COLS)):
-    e=a["E6_nocue_format_shift_sd"]; p=e["point"]; lo,hi=e["ci95"]
-    ax.plot([lo,hi],[y[k],y[k]],color=col,lw=3,solid_capstyle="round",zorder=3)
-    ax.plot([p],[y[k]],"o",ms=10,color=col,mec=SURF,mew=2,zorder=4)
-    ax.text(p,y[k]+0.18,f"{p:+.2f} SD",ha="center",color=col,fontsize=10,fontweight="bold")
-ax.axvline(0,color=BASE,lw=1.4,ls=":",zorder=1)
-ax.set_yticks(y); ax.set_yticklabels(NAMES,color=INK,fontsize=10.5,fontweight="bold")
-ax.text(-1.62,-0.62,"◀ benchmark format reads as “deployment”",color=INK2,fontsize=9.5,ha="left")
-ax.text(0.42,-0.62,"reads as “evaluation” ▶",color=INK2,fontsize=9.5,ha="left")
-axchrome(ax,"shift of purpose-neutral prompts along the purpose direction (SD units)","")
-ax.set_xlim(-1.8,0.7); ax.set_ylim(-0.9,2.6); ax.grid(axis="y",visible=False)
-header(fig,"Format alone moves purpose-neutral prompts — in a model-dependent direction",
-       "No-cue items (no purpose sentence), benchmark − casual, projected on each model's purpose direction.  95% cluster-bootstrap CIs.",
+# --- 08 (new): surface-probe battery — the lexical control, upgraded ---
+# TF-IDF n-gram probes on CUE-EXCISED prompt text (the recorded cue span is
+# removed first). Purpose gates ~0.500 certify wrapper symmetry: after
+# excision the eval/deploy twins are byte-identical, so nothing outside the
+# cue sentence can carry purpose. Structure probes are expected decodable.
+E = SURFACE["expectations"]
+band = SURFACE["near_chance_band"]
+fig,(axL,axR)=plt.subplots(1,2,figsize=(12.6,5.4),width_ratios=[3,2])
+gates=[("purpose_held_template_word","purpose\nword 1–2 grams"),
+       ("purpose_held_template_char","purpose\nchar 2–5 grams"),
+       ("purpose_held_template_x_fold_word","purpose\nword · template×fold"),
+       ("purpose_held_template_x_fold_char","purpose\nchar · template×fold"),
+       ("stratum_held_template_word","format\n(quiz vs casual)")]
+i=np.arange(len(gates))
+vals=[E[k]["auc"] for k,_ in gates]
+cols=[S3]*4+[MUTED]
+axL.axhspan(band[0],band[1],color=S3,alpha=0.07,zorder=0)
+axL.bar(i,vals,0.56,color=cols,zorder=3)
+for xi,v in zip(i,vals): axL.text(xi,v+.02,f"{v:.3f}",ha="center",fontsize=9,color=INK,fontweight="bold")
+axL.axhline(0.5,color=BASE,lw=1.2,ls=":",zorder=1)
+axL.text(-0.45,band[1]-0.035,"near-chance band (hard gate)",ha="left",va="top",color=S3,fontsize=8.5)
+axL.set_xticks(i); axL.set_xticklabels([l for _,l in gates],color=INK2,fontsize=8.5)
+axL.set_ylim(0,1.06); axchrome(axL,"","AUC on cue-excised text"); axL.grid(axis="x",visible=False)
+axL.set_title("purpose is NOT in the wrapper",color=INK,loc="left",fontsize=11,fontweight="bold",pad=10)
+rep=[("template_id_held_block_word","template id\n(13 classes)"),
+     ("contract_held_block_word","contract\n(5 classes)")]
+j=np.arange(len(rep))
+acc=[E[k]["accuracy"] for k,_ in rep]; ch=[E[k]["chance"] for k,_ in rep]
+axR.bar(j,acc,0.44,color=MUTED,zorder=3)
+for xi,v in zip(j,acc): axR.text(xi,v+.02,f"{v:.2f}",ha="center",fontsize=9,color=INK,fontweight="bold")
+for xi,c in zip(j,ch):
+    axR.plot([xi-0.31,xi+0.31],[c,c],color=INK2,lw=1.6,ls=(0,(3,2)),zorder=4)
+    axR.text(xi,c+0.025,"chance",ha="center",va="bottom",color=INK2,fontsize=8)
+axR.set_xticks(j); axR.set_xticklabels([l for _,l in rep],color=INK2,fontsize=8.5)
+axR.set_xlim(-0.7,1.7)
+axR.set_ylim(0,1.06); axchrome(axR,"","accuracy (held-out blocks)"); axR.grid(axis="x",visible=False)
+axR.set_title("structure IS legible (as designed)",color=INK,loc="left",fontsize=11,fontweight="bold",pad=10)
+header(fig,"Surface battery: nothing outside the cue sentence predicts purpose",
+       "TF-IDF n-gram probes on cue-excised text, grouped splits.  Eval/deploy twins are byte-identical after excision — ≈0.500 certifies wrapper symmetry.",
        None,1)
-fig.tight_layout(rect=[0,0,1,0.86]); fig.savefig(f"{OUT}/09_nocue_format_shift.png",dpi=200); plt.close(fig)
+fig.tight_layout(rect=[0,0,1,0.86]); fig.savefig(f"{OUT}/08_surface_battery.png",dpi=200); plt.close(fig)
 
-# --- 10 (new): cue-locus strata (E2) ---
-LOCI=[("noun_only","noun only"),("verb_only","verb only"),("both","noun + verb")]
-fig,ax=plt.subplots(figsize=(9.8,5.4))
-i=np.arange(len(LOCI)); w=0.24
-for k,(a,name,col) in enumerate(zip(A,NAMES,COLS)):
-    off=(k-1)*w
-    pts=[a["E2_locus"][l]["point"] for l,_ in LOCI]
-    lo=[a["E2_locus"][l]["point"]-a["E2_locus"][l]["ci95"][0] for l,_ in LOCI]
-    hi=[a["E2_locus"][l]["ci95"][1]-a["E2_locus"][l]["point"] for l,_ in LOCI]
-    ax.bar(i+off,pts,w*0.86,color=col,zorder=3)
-    ax.errorbar(i+off,pts,yerr=[lo,hi],fmt="none",ecolor=INK2,elinewidth=1.1,capsize=2.4,zorder=4)
-    for xi,v in zip(i+off,pts): ax.text(xi,v+.02,f"{v:.2f}",ha="center",fontsize=8.5,color=INK)
-ax.axhline(0.5,color=BASE,lw=1.2,ls=":",zorder=1)
-ax.text(-0.42,0.508,"chance",ha="left",va="bottom",color=MUTED,fontsize=9)
-ax.set_xticks(i); ax.set_xticklabels([l for _,l in LOCI],color=INK,fontsize=11,fontweight="bold")
-ax.set_ylim(0.4,1.09)
-axchrome(ax,"where the cue lives in the sentence","purpose AUC (held vocab)"); ax.grid(axis="x",visible=False)
-header(fig,"A single swapped noun is enough",
-       "Stated stratum by cue locus, 80 blocks each (v1 could not estimate noun-only: 3 pairs, one family).  95% cluster CIs.",
-       model_handles(9),3)
-fig.tight_layout(rect=[0,0,1,0.87]); fig.savefig(f"{OUT}/10_cue_locus.png",dpi=200); plt.close(fig)
-
-print("wrote 11 plots to", OUT)
+print("wrote 9 plots to", OUT)

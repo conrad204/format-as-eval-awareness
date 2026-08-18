@@ -10,7 +10,7 @@ rendered_items_v1_8-14-2026.jsonl               288 frozen prompts (the 2x2 purp
 activations/<freeze>/<model>/activations_all_layers.npz   (not checked in; regenerable — pilot80-v2 mirrored at hf.co/datasets/format-EA/pilot80-v2)
         |  scripts/sweep_full.py                 [CPU, sklearn]
         v
-results/layer_sweep_llama31_8b.json / layer_sweep_llama33_70b.json   (checked in)
+results/v1/layer_sweep_llama31_8b.json / layer_sweep_llama33_70b.json   (checked in)
         |  scripts/make_plots.py, gap_plots.py, make_plot_06a.py     [CPU, matplotlib]
         v
 plots/*.png
@@ -109,9 +109,9 @@ python scripts/extract_activations.py \
 # Layer sweep (run on the pod; the 70B npz is ~750MB, the JSON is ~100KB —
 # download only the JSON)
 python scripts/sweep_full.py data/v1-8-14-2026/rendered_items_v1_8-14-2026.jsonl \
-  activations/llama31_8b/activations_all_layers.npz results/layer_sweep_llama31_8b.json
+  activations/llama31_8b/activations_all_layers.npz results/v1/layer_sweep_llama31_8b.json
 python scripts/sweep_full.py data/v1-8-14-2026/rendered_items_v1_8-14-2026.jsonl \
-  activations/llama33_70b/activations_all_layers.npz results/layer_sweep_llama33_70b.json
+  activations/llama33_70b/activations_all_layers.npz results/v1/layer_sweep_llama33_70b.json
 ```
 
 Then rerun the three plot scripts.

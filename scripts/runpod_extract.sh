@@ -24,12 +24,14 @@ case "${1:-}" in
   llama31_70b)
     MODEL=meta-llama/Llama-3.1-70B-Instruct
     REVISION=1605565b47bb9346c5515c34102e054115b4f98b
-    BATCH=32
+    BATCH=16
     EXTRA=(--device-map auto) ;;
   llama33_70b)
     MODEL=meta-llama/Llama-3.3-70B-Instruct
     REVISION=6f6073b423013f6a7d4d9f39144961bfbfbc386b
-    BATCH=32
+    # 8 (not 16): a single H200 leaves only ~8GiB after weights, and batch
+    # scales the KV/activation transient; batch never changes values.
+    BATCH=8
     EXTRA=(--device-map auto) ;;
   *)
     echo "usage: $0 {llama31_8b|llama31_70b|llama33_70b}" >&2; exit 2 ;;
@@ -49,6 +51,11 @@ if [ ! -f "$ITEMS" ]; then
     --local-dir data/$FREEZE
 fi
 eval-format-mvp verify-manifest-v3 --manifest "$MANIFEST"
+
+# Batch 32 OOMed on 2x H100 (weights leave ~4-8GB headroom per GPU and the
+# default allocator fragments it); expandable_segments only changes allocator
+# behavior, never values.
+export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 
 python scripts/extract_activations.py \
   --items "$ITEMS" \
