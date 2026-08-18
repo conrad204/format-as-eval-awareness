@@ -123,7 +123,9 @@ def main() -> None:
                 k = thresholds[str(threshold)]["rank"]
                 top = projection(direction, V, k)
                 low = direction - top
-                fold_out["thresholds"][str(threshold)] = {"rank": k, "top_norm_fraction": float(np.linalg.norm(top) / norm), "low_norm_fraction": float(np.linalg.norm(low) / norm), "top_auc": auc(X[test], purpose_y[test], top, scaler), "low_auc": auc(X[test], purpose_y[test], low, scaler), "top_gain": float(np.linalg.norm(J[layer] @ top) / norm), "low_gain": float(np.linalg.norm(J[layer] @ low) / norm)}
+                bottom_basis = V[:, -k:]
+                bottom = bottom_basis @ (bottom_basis.T @ direction)
+                fold_out["thresholds"][str(threshold)] = {"rank": k, "top_norm_fraction": float(np.linalg.norm(top) / norm), "low_norm_fraction": float(np.linalg.norm(low) / norm), "top_auc": auc(X[test], purpose_y[test], top, scaler), "low_auc": auc(X[test], purpose_y[test], low, scaler), "top_gain": float(np.linalg.norm(J[layer] @ top) / norm), "low_gain": float(np.linalg.norm(J[layer] @ low) / norm), "bottom_norm_fraction": float(np.linalg.norm(bottom) / norm), "bottom_auc": auc(X[test], purpose_y[test], bottom, scaler), "bottom_gain": float(np.linalg.norm(J[layer] @ bottom) / norm)}
             for threshold in RANDOM_THRESHOLDS:
                 k = thresholds[str(threshold)]["rank"]
                 values = []
