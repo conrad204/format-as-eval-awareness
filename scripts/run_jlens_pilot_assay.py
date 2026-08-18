@@ -78,7 +78,9 @@ def main() -> None:
             max_seq_len=128, use_jacobian=True,
         )
         input_set = set(input_ids[0].tolist())
-        row_scores = {"index": index, "item_id": row.get("item_id"), "purpose": row.get("intended_purpose"),
+        row_scores = {"index": index, "item_id": row.get("item_id"), "payload_block_id": row.get("payload_block_id"),
+                      "topic_id": row.get("topic_id"), "purpose_family_id": row.get("purpose_family_id"),
+                      "format_family_id": row.get("format_family_id"), "purpose": row.get("intended_purpose"),
                       "format": row.get("format"), "cue_style": row.get("cue_style"),
                       "cue_perspective": row.get("cue_perspective"), "layers": {}}
         for layer in source_layers:
