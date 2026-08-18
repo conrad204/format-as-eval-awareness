@@ -72,7 +72,7 @@ def main() -> None:
     encoded = {name: token_ids(tokenizer, words) for name, words in groups.items()}
     scores = []
     for index, row in enumerate(rows):
-        text = row["rendered_text"]
+        text = row["text"]
         lens_logits, _, input_ids = lens.apply(
             lens_model, text, layers=source_layers, positions=[-1],
             max_seq_len=128, use_jacobian=True,
