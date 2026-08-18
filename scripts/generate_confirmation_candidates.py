@@ -30,6 +30,14 @@ TOPIC_IDS = (
     "signal_beacons", "rainfall_bins", "mosaic_tiles", "seed_batches",
 )
 PAYLOAD_TOPIC_SCHEDULE = tuple(topic for topic in TOPIC_IDS for _ in range(5))
+FRAME_VOCABULARY = (
+    {"evaluation": ("screening", "weigh", "prospect", "admissible"), "deployment": ("routine", "serve", "steady", "current")},
+    {"evaluation": ("probe", "measure", "candidate", "preflight"), "deployment": ("operate", "ongoing", "established", "request")},
+    {"evaluation": ("inquiry", "scrutiny", "forecast", "readiness"), "deployment": ("traffic", "regular", "running", "stream")},
+    {"evaluation": ("trial", "sample", "compare", "provisional"), "deployment": ("active", "settled", "daily", "serving")},
+    {"evaluation": ("preview", "qualify", "prospective", "envision"), "deployment": ("stable", "fulfill", "present", "available")},
+)
+
 
 
 def request_json(url: str, prompt: str, model: str, max_tokens: int, temperature: float, seed: int) -> tuple[str, dict]:
@@ -81,6 +89,10 @@ def main() -> None:
             topics = PAYLOAD_TOPIC_SCHEDULE[batch * 8 : (batch + 1) * 8]
             prompt += "\nUse these topic_id values in this exact order, matching the content topics; do not invent other topic_id values: " + json.dumps(topics)
             prompt += "\nHard positional constraint: emit exactly 8 objects; object positions 1-8 must use the listed topic_id values in order, including repeated values. Do not reorder, omit, or substitute any position."
+        else:
+            vocab = FRAME_VOCABULARY[batch % len(FRAME_VOCABULARY)]
+            prompt += "\nThis fold has a predeclared disjoint lexical bank. Use the evaluation-side content stems only in evaluation members and deployment-side content stems only in deployment members. Use these stems repeatedly where natural and do not introduce any other purpose-asymmetric content stems: " + json.dumps(vocab, sort_keys=True)
+            prompt += "\nThe bank is machine-checked for cross-fold lexical disjointness; do not use synonyms or morphological variants from another fold."
         started = time.time()
         try:
             text, response = request_json(args.url, prompt, args.model, args.max_tokens, args.temperature, seed)
