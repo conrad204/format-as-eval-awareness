@@ -325,6 +325,19 @@
       "temperature": 0.2,
       "max_tokens": 4096,
       "status": "pre_outcome_frame_regeneration_pending"
+    },
+    {
+      "date": "2026-08-17",
+      "kind": "confirmation_frame_metadata_compatibility",
+      "reason": "The regenerated frames used cue_perspective=third for indirect pairs, which passed candidate semantics but could not map unambiguously to the frozen assembler's indirect output slot. Update the pre-outcome generation schema to use the frozen raw metadata values third, indirect, and second; regenerate and revalidate all 50 frames. No confirmation bank or activation was accepted.",
+      "prior_frame_run": "/scratch/jppatton/langea/confirmation_work/generation_20260817_26_llama33_frames_strict",
+      "generator_script": "scripts/generate_confirmation_candidates.py",
+      "generator_model": "meta-llama/Llama-3.3-70B-Instruct",
+      "generator_revision": "6f6073b423013f6a7d4d9f39144961bfbfbc386b",
+      "seed": 20260821,
+      "temperature": 0.2,
+      "max_tokens": 4096,
+      "status": "pre_outcome_frame_regeneration_pending"
     }
   ]
 }
