@@ -17,6 +17,13 @@ FRAME_BANNED_STEMS = frozenset({
     "rubric", "score", "service", "shopping", "spot", "standard", "support",
     "table", "tenant", "ticket", "test", "user", "verdict", "vet", "wait", "work",
 })
+FRAME_FUNCTION_STEMS = frozenset({
+    "a", "an", "and", "are", "as", "at", "be", "been", "being", "before", "by",
+    "during", "for", "from", "he", "her", "him", "his", "i", "in", "into", "is",
+    "it", "its", "me", "my", "now", "of", "on", "or", "our", "she", "that",
+    "the", "their", "them", "they", "this", "those", "through", "to",
+    "was", "we", "were", "with", "you", "your", "after", "already",
+})
 
 import hashlib
 import json
@@ -125,7 +132,7 @@ def main() -> None:
                     if text_tokens & FRAME_BANNED_STEMS:
                         raise ValueError(f"frame contains forbidden stems: {sorted(text_tokens & FRAME_BANNED_STEMS)}")
                     vocab = FRAME_VOCABULARY[batch % len(FRAME_VOCABULARY)]
-                    allowed_asymmetric = set(vocab["evaluation"]) | set(vocab["deployment"]) | {"before", "after"}
+                    allowed_asymmetric = set(vocab["evaluation"]) | set(vocab["deployment"]) | FRAME_FUNCTION_STEMS
                     evaluation_tokens = set(re.findall(r"[a-z]+", str(candidate.get("evaluation", "")).lower()))
                     deployment_tokens = set(re.findall(r"[a-z]+", str(candidate.get("deployment", "")).lower()))
                     asymmetric = (evaluation_tokens - deployment_tokens) | (deployment_tokens - evaluation_tokens)

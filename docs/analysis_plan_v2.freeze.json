@@ -427,6 +427,18 @@
       "temperature": 0.0,
       "max_tokens": 2048,
       "status": "pre_outcome_frame_regeneration_pending"
+    },
+    {
+      "date": "2026-08-17",
+      "kind": "confirmation_frame_generator_function_allowlist",
+      "reason": "The asymmetry gate correctly rejected the next pool only because function words a, an, and during appeared asymmetrically from natural syntax. Add the same documented non-purpose function-word set to the generator-side allowlist; retain the strict content-stem gate and regenerate with a new seed.",
+      "script": "scripts/generate_confirmation_candidates.py",
+      "generator_model": "meta-llama/Llama-3.3-70B-Instruct",
+      "generator_revision": "6f6073b423013f6a7d4d9f39144961bfbfbc386b",
+      "seed": 20260828,
+      "temperature": 0.0,
+      "max_tokens": 2048,
+      "status": "pre_outcome_frame_regeneration_pending"
     }
   ]
 }
