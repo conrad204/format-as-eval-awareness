@@ -1,0 +1,379 @@
+{
+  "schema_version": 2,
+  "status": "complete",
+  "implementation": "anthropics/jacobian-lens",
+  "jlens_dir": "/scratch/jppatton/langea/confirmation_work/jlens-581d3986",
+  "model": "/scratch/jppatton/langea/confirmation_work/llama31_8b_model_0e9e39f2",
+  "tokenizer": "/scratch/jppatton/langea/confirmation_work/llama31_8b_tokenizer_0e9e39f2",
+  "revision": "0e9e39f249a16976918f6564b8830bc894c89659",
+  "source_layers": [
+    4,
+    9,
+    12,
+    15,
+    20,
+    24
+  ],
+  "target_layer": 31,
+  "dim_batch": 1,
+  "max_seq_len": 128,
+  "skip_first": 16,
+  "seed": 20260817,
+  "n_input_records": 100,
+  "n_prompts_fitted": 100,
+  "input_sha256": "b0dc8a013b501f2e7080067eee8f81bdaa10fc0534100c3453ae4eeda900f6bd",
+  "record_ids": [
+    "<urn:uuid:80890a53-49de-4f18-a90b-76b2526cbb96>",
+    "<urn:uuid:3c2dcbae-dfdf-4160-9356-4671a94a9505>",
+    "<urn:uuid:53c7ed40-def2-4442-ac2e-9e24883fb062>",
+    "<urn:uuid:03e35135-be9a-4222-ae10-71b04f93563e>",
+    "<urn:uuid:80df3d06-ad27-455b-9424-cd5bb153a8c8>",
+    "<urn:uuid:600cbf70-b675-4d55-93f7-40a99f46bf36>",
+    "<urn:uuid:96c40214-a28c-421e-84fa-c26ca7a3b691>",
+    "<urn:uuid:bd6b9811-0b44-46c2-a2ae-4fc309a1b89a>",
+    "<urn:uuid:dcd116ea-beb9-452f-abd5-a83062dda4cc>",
+    "<urn:uuid:31951d69-e070-4ef2-a4a7-bab647c75097>",
+    "<urn:uuid:b158c068-24d7-47f7-82aa-56f707d3a2b8>",
+    "<urn:uuid:c1d01c0d-2c9a-487c-8eef-004ff88b99a2>",
+    "<urn:uuid:f8c73d1f-557a-4285-88be-e7c237890ca8>",
+    "<urn:uuid:1c6b310e-a8b7-44a3-a0f1-63fdf4b1229f>",
+    "<urn:uuid:d0999af8-b9f0-4e60-855d-f801c046179a>",
+    "<urn:uuid:08dc9f0e-e2db-4112-8a83-3cceb718d140>",
+    "<urn:uuid:cd8eccd9-1117-4a8b-943c-10f6bbe94695>",
+    "<urn:uuid:a55537b2-153f-4aad-8e96-79fd38a4b231>",
+    "<urn:uuid:23ee8a72-29fa-4896-b031-7487092eaa18>",
+    "<urn:uuid:55d28889-37ed-470c-a04f-ca317268d505>",
+    "<urn:uuid:00c46a95-1397-47f6-a02c-20831d259d3e>",
+    "<urn:uuid:fb2aa182-781f-4a5d-b03f-98ee02350f72>",
+    "<urn:uuid:1c8dd463-459c-42e8-95c1-9aeafd622430>",
+    "<urn:uuid:9316df3b-27e0-4b05-bf37-8d3b6f85ebe1>",
+    "<urn:uuid:0cdcb740-e5c6-4c51-8fc1-5267e89253ed>",
+    "<urn:uuid:218c53f8-59ba-43de-a208-88959a283a56>",
+    "<urn:uuid:55bcb190-ed86-4a17-b6bf-4f86b328f729>",
+    "<urn:uuid:73d391d6-4c2b-40a8-8ce1-d6330d20e954>",
+    "<urn:uuid:de43083b-4428-418e-a020-64e77a2a2c2d>",
+    "<urn:uuid:d0c587de-ea0c-477a-b91e-aa25f1c89e56>",
+    "<urn:uuid:c66ab833-3c8c-43cb-b629-4d7902d6f88f>",
+    "<urn:uuid:8af3f71e-5bd5-49cb-978d-bc96c6a1a6b6>",
+    "<urn:uuid:d6936fe6-bcd8-4fff-9ed9-51c766b5de17>",
+    "<urn:uuid:189c6d9c-9b15-4db3-a608-4c2d3ee8eb35>",
+    "<urn:uuid:098faed7-5069-4536-a86e-c5dd7720b162>",
+    "<urn:uuid:66d97dcd-8807-4746-9702-ce7a20265d8b>",
+    "<urn:uuid:c6079858-1cb0-4eca-a1db-93dd18618344>",
+    "<urn:uuid:76f47b9c-3d23-4b36-8ce6-9a380cfd346d>",
+    "<urn:uuid:14cedc28-f376-4c38-b3c7-f32f97443fad>",
+    "<urn:uuid:0fcf6708-cba1-4a1d-b59f-ee94270ba92d>",
+    "<urn:uuid:bc634987-d3ff-4055-abde-eb410529b757>",
+    "<urn:uuid:dcf13b86-011c-4fc7-859b-6b54c91d49d7>",
+    "<urn:uuid:e69eb7ab-05a2-4819-b575-8a4be09e6c7e>",
+    "<urn:uuid:c10898a4-b69b-4afa-a51f-62cf563332dc>",
+    "<urn:uuid:cc3a0c07-476c-40b7-bf4b-4d9b7c69f95a>",
+    "<urn:uuid:575bb202-b0b9-4294-a6ed-d3c6ecead36a>",
+    "<urn:uuid:259ea52c-caef-42c4-950e-d5f805765af0>",
+    "<urn:uuid:8f531888-6899-4be0-a2e8-c38e85e2b29f>",
+    "<urn:uuid:93b8cdb1-249a-4603-80c2-f90a9e79c5a3>",
+    "<urn:uuid:0db27d72-fa47-4546-b6b3-4df5bbcdcb71>",
+    "<urn:uuid:adb07bd6-45d2-46b9-8d1e-d48787eaaf92>",
+    "<urn:uuid:6ac9aec7-a098-44a2-ab24-e06113b2139b>",
+    "<urn:uuid:339bfa7f-15bb-4200-8dc0-ce2e34dea72e>",
+    "<urn:uuid:3bc6fc2a-f535-44e4-9ea6-67f1a70c5dc6>",
+    "<urn:uuid:66984c1d-cc31-408a-9617-647d679d8e87>",
+    "<urn:uuid:32e50f65-b1c4-4383-b34b-d32401d22028>",
+    "<urn:uuid:a7e60ec2-c6d7-448e-8344-b1af84725c23>",
+    "<urn:uuid:7e22d651-4a60-4e0e-b1ad-6369bb186cfa>",
+    "<urn:uuid:5ab655f3-f950-433c-b46e-09a7367cc46b>",
+    "<urn:uuid:5e17aa62-aba8-4d1d-811d-4a6d68260f2c>",
+    "<urn:uuid:dc15093a-3fb2-405b-9ca3-5c4017aebf2d>",
+    "<urn:uuid:ca4fe079-f2c1-40e4-8373-bed97bd2aa4c>",
+    "<urn:uuid:31e28d16-6525-4105-ac64-d727e8d0c219>",
+    "<urn:uuid:17562c2d-6331-4ff6-8d87-0175eaa086c1>",
+    "<urn:uuid:7851d197-4c4f-4f57-ba9a-e3aa8dc27b57>",
+    "<urn:uuid:c04d06b5-31f7-43ee-8fc8-66b4bbde7887>",
+    "<urn:uuid:9950c849-bcf6-4983-a0ae-3c39acd05e1b>",
+    "<urn:uuid:61bbc575-b668-4b66-a4b3-ea891a4d68e5>",
+    "<urn:uuid:976ea676-7a23-44d3-9409-e4dc632f0179>",
+    "<urn:uuid:2bd77a68-cb07-438a-b478-d081a1ab7332>",
+    "<urn:uuid:c207519e-0cd7-4ce2-87ab-44d0de376649>",
+    "<urn:uuid:d5bae6f9-c22f-4831-90f2-6f072d7f0fa5>",
+    "<urn:uuid:0952110b-e64d-4b79-93f3-5d319f487e95>",
+    "<urn:uuid:0045e4cd-9818-47e5-95c1-6c41a1537118>",
+    "<urn:uuid:2221b1e6-ab70-4f5c-838d-dc3c8351a3b5>",
+    "<urn:uuid:eb55fe70-13e1-4445-90eb-59727013c3aa>",
+    "<urn:uuid:795b7f6a-62ce-462e-ad78-6b9e010adb5b>",
+    "<urn:uuid:f7d4312a-b998-45a1-ac7b-530455421a95>",
+    "<urn:uuid:bec2a734-b5dd-4576-bee3-7461112e6580>",
+    "<urn:uuid:eca399b2-5a4f-4663-afab-e5d8373e30d6>",
+    "<urn:uuid:9a079d97-30a7-4ca4-ac3b-91ddd221fea9>",
+    "<urn:uuid:aa6879a8-f406-44a0-8728-be4c7204b54e>",
+    "<urn:uuid:0a96ca9f-47a2-4264-91b9-a2fea95950b5>",
+    "<urn:uuid:4f454773-33fe-4c3b-94bc-d9164cc7ed84>",
+    "<urn:uuid:d1ec59ba-3584-41be-aa29-8c38a02f5a51>",
+    "<urn:uuid:28aa4c5f-4128-4424-8d97-26999494fda3>",
+    "<urn:uuid:252831fc-eaaa-4002-abbf-7c98cdeb9eab>",
+    "<urn:uuid:a0a2b833-ac07-49dc-b24d-84742b48c086>",
+    "<urn:uuid:7f0dad72-6e54-4d52-b8ca-51505f2b6503>",
+    "<urn:uuid:8c28b549-6e2a-4557-a074-1453fda8feb3>",
+    "<urn:uuid:17a33de9-fa6f-4f00-b522-7397d63ab1bf>",
+    "<urn:uuid:0e9a7dc2-eff1-4fd1-bf66-2d53b9d63cd5>",
+    "<urn:uuid:f9f1c63c-7e10-4507-a2c0-b14b6d724ed7>",
+    "<urn:uuid:553cd5ae-a502-4f22-93df-fd7ca166b2a1>",
+    "<urn:uuid:395df9f2-215a-428d-85a7-34f3667eb688>",
+    "<urn:uuid:0ae3005b-d06a-48dc-ac2d-fba45908e21b>",
+    "<urn:uuid:c71d1b25-bb76-4edc-824e-6289eca405bb>",
+    "<urn:uuid:ebcb1b10-bdbd-460b-9cd7-6b8b4d8adeab>",
+    "<urn:uuid:4a5e3c2d-ac32-499d-a957-3ec22bbb3c1c>",
+    "<urn:uuid:f3fa66ea-2164-419e-96ef-fade87b8e134>"
+  ],
+  "lens_sha256": "7649602a423ac7c40704116d30daad1e88d8821651ce509948d0df97f95f4fd8",
+  "checkpoint_sha256": "2341f942dbd15312b8858709711be0415a8e2a0cee8bf0227d6b36a281c920c7",
+  "pre_save_stats": {
+    "4": {
+      "shape": [
+        4096,
+        4096
+      ],
+      "dtype": "torch.float32",
+      "finite": true,
+      "min": -1.086240291595459,
+      "max": 1.8935240507125854,
+      "max_abs": 1.8935240507125854,
+      "frobenius": 39.41758346557617,
+      "nonfinite": 0
+    },
+    "9": {
+      "shape": [
+        4096,
+        4096
+      ],
+      "dtype": "torch.float32",
+      "finite": true,
+      "min": -1.176893949508667,
+      "max": 1.3887665271759033,
+      "max_abs": 1.3887665271759033,
+      "frobenius": 41.42906951904297,
+      "nonfinite": 0
+    },
+    "12": {
+      "shape": [
+        4096,
+        4096
+      ],
+      "dtype": "torch.float32",
+      "finite": true,
+      "min": -1.3250993490219116,
+      "max": 1.7568387985229492,
+      "max_abs": 1.7568387985229492,
+      "frobenius": 52.14263153076172,
+      "nonfinite": 0
+    },
+    "15": {
+      "shape": [
+        4096,
+        4096
+      ],
+      "dtype": "torch.float32",
+      "finite": true,
+      "min": -1.4465402364730835,
+      "max": 2.096803665161133,
+      "max_abs": 2.096803665161133,
+      "frobenius": 67.34149169921875,
+      "nonfinite": 0
+    },
+    "20": {
+      "shape": [
+        4096,
+        4096
+      ],
+      "dtype": "torch.float32",
+      "finite": true,
+      "min": -1.1261324882507324,
+      "max": 1.8893388509750366,
+      "max_abs": 1.8893388509750366,
+      "frobenius": 97.43040466308594,
+      "nonfinite": 0
+    },
+    "24": {
+      "shape": [
+        4096,
+        4096
+      ],
+      "dtype": "torch.float32",
+      "finite": true,
+      "min": -1.0145777463912964,
+      "max": 1.772536039352417,
+      "max_abs": 1.772536039352417,
+      "frobenius": 103.08168029785156,
+      "nonfinite": 0
+    }
+  },
+  "saved_raw_stats": {
+    "4": {
+      "shape": [
+        4096,
+        4096
+      ],
+      "dtype": "torch.float32",
+      "finite": true,
+      "min": -1.086240291595459,
+      "max": 1.8935240507125854,
+      "max_abs": 1.8935240507125854,
+      "frobenius": 39.41758346557617,
+      "nonfinite": 0
+    },
+    "9": {
+      "shape": [
+        4096,
+        4096
+      ],
+      "dtype": "torch.float32",
+      "finite": true,
+      "min": -1.176893949508667,
+      "max": 1.3887665271759033,
+      "max_abs": 1.3887665271759033,
+      "frobenius": 41.42906951904297,
+      "nonfinite": 0
+    },
+    "12": {
+      "shape": [
+        4096,
+        4096
+      ],
+      "dtype": "torch.float32",
+      "finite": true,
+      "min": -1.3250993490219116,
+      "max": 1.7568387985229492,
+      "max_abs": 1.7568387985229492,
+      "frobenius": 52.14263153076172,
+      "nonfinite": 0
+    },
+    "15": {
+      "shape": [
+        4096,
+        4096
+      ],
+      "dtype": "torch.float32",
+      "finite": true,
+      "min": -1.4465402364730835,
+      "max": 2.096803665161133,
+      "max_abs": 2.096803665161133,
+      "frobenius": 67.34149169921875,
+      "nonfinite": 0
+    },
+    "20": {
+      "shape": [
+        4096,
+        4096
+      ],
+      "dtype": "torch.float32",
+      "finite": true,
+      "min": -1.1261324882507324,
+      "max": 1.8893388509750366,
+      "max_abs": 1.8893388509750366,
+      "frobenius": 97.43040466308594,
+      "nonfinite": 0
+    },
+    "24": {
+      "shape": [
+        4096,
+        4096
+      ],
+      "dtype": "torch.float32",
+      "finite": true,
+      "min": -1.0145777463912964,
+      "max": 1.772536039352417,
+      "max_abs": 1.772536039352417,
+      "frobenius": 103.08168029785156,
+      "nonfinite": 0
+    }
+  },
+  "reload_stats": {
+    "4": {
+      "shape": [
+        4096,
+        4096
+      ],
+      "dtype": "torch.float32",
+      "finite": true,
+      "min": -1.086240291595459,
+      "max": 1.8935240507125854,
+      "max_abs": 1.8935240507125854,
+      "frobenius": 39.41758346557617,
+      "nonfinite": 0
+    },
+    "9": {
+      "shape": [
+        4096,
+        4096
+      ],
+      "dtype": "torch.float32",
+      "finite": true,
+      "min": -1.176893949508667,
+      "max": 1.3887665271759033,
+      "max_abs": 1.3887665271759033,
+      "frobenius": 41.42906951904297,
+      "nonfinite": 0
+    },
+    "12": {
+      "shape": [
+        4096,
+        4096
+      ],
+      "dtype": "torch.float32",
+      "finite": true,
+      "min": -1.3250993490219116,
+      "max": 1.7568387985229492,
+      "max_abs": 1.7568387985229492,
+      "frobenius": 52.14263153076172,
+      "nonfinite": 0
+    },
+    "15": {
+      "shape": [
+        4096,
+        4096
+      ],
+      "dtype": "torch.float32",
+      "finite": true,
+      "min": -1.4465402364730835,
+      "max": 2.096803665161133,
+      "max_abs": 2.096803665161133,
+      "frobenius": 67.34149169921875,
+      "nonfinite": 0
+    },
+    "20": {
+      "shape": [
+        4096,
+        4096
+      ],
+      "dtype": "torch.float32",
+      "finite": true,
+      "min": -1.1261324882507324,
+      "max": 1.8893388509750366,
+      "max_abs": 1.8893388509750366,
+      "frobenius": 97.43040466308594,
+      "nonfinite": 0
+    },
+    "24": {
+      "shape": [
+        4096,
+        4096
+      ],
+      "dtype": "torch.float32",
+      "finite": true,
+      "min": -1.0145777463912964,
+      "max": 1.772536039352417,
+      "max_abs": 1.772536039352417,
+      "frobenius": 103.08168029785156,
+      "nonfinite": 0
+    }
+  },
+  "reload_exact": true,
+  "apply_finite": true,
+  "environment": {
+    "python": "3.11.3 (main, Feb  5 2026, 20:59:04) [GCC 12.3.0]",
+    "platform": "Linux-4.18.0-553.150.1.el8_10.x86_64-x86_64-with-glibc2.28",
+    "torch": "2.6.0+cu124",
+    "cuda": "12.4",
+    "gpu": "NVIDIA H100 80GB HBM3"
+  },
+  "git_commit": "unknown"
+}
