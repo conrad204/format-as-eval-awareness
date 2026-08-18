@@ -439,6 +439,17 @@
       "temperature": 0.0,
       "max_tokens": 2048,
       "status": "pre_outcome_frame_regeneration_pending"
+    },
+    {
+      "date": "2026-08-18",
+      "kind": "confirmation_generator_compute_fallback",
+      "reason": "The pinned 70B frame repair jobs are resource-pending, while the 8B fallback generator is cached and available on a one-GPU allocation. Use meta Llama-3.1-8B-Instruct, a lineage distinct from the Grok development generator, only for fresh frame generation; retain the independent Swallow-70B semantic validator and all fail-closed lexical gates. No confirmation outcome has been inspected.",
+      "generator_model": "meta-llama/Llama-3.1-8B-Instruct",
+      "generator_revision": "0e9e39f249a16976918f6564b8830bc894c89659",
+      "seed": 20260830,
+      "temperature": 0.0,
+      "max_tokens": 2048,
+      "status": "pre_outcome_frame_regeneration_pending"
     }
   ]
 }
