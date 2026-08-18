@@ -459,6 +459,17 @@
       "tokenizer_source": "/scratch/jppatton/langea/confirmation_work/llama31_8b_tokenizer_0e9e39f2",
       "tokenizer_sha256": "79e3e522635f3171300913bb421464a87de6222182a0570b9b2ccba2a964b2b4",
       "status": "pre_outcome_frame_regeneration_pending"
+    },
+    {
+      "date": "2026-08-18",
+      "kind": "confirmation_frame_strict_70b_retry",
+      "reason": "The 8B fallback lacked a complete cached model snapshot and its repaired complete copy failed the strict asymmetric gate on all batches. Queue one final pinned 70B retry using the already patched symmetric skeleton, function-aware gate, and unbanked-asymmetry gate; no candidate or outcome has been accepted.",
+      "generator_model": "meta-llama/Llama-3.3-70B-Instruct",
+      "generator_revision": "6f6073b423013f6a7d4d9f39144961bfbfbc386b",
+      "seed": 20260831,
+      "temperature": 0.0,
+      "max_tokens": 2048,
+      "status": "pre_outcome_frame_regeneration_pending"
     }
   ]
 }
