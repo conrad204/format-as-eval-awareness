@@ -345,6 +345,19 @@
       "reason": "The frozen development forbidden-stem artifact contains function words and pronouns such as an, on, into, through, and they. Treating those as purpose-asymmetric lexical cues falsely rejected otherwise valid pairs and could reject every natural frame. Exclude only the documented non-purpose function-word set from cross-catalog and cross-fold cue checks; retain all content stems and keep the gate fail-closed.",
       "script": "scripts/build_confirmation_bank.py",
       "status": "pre_outcome_assembly_pending"
+    },
+    {
+      "date": "2026-08-17",
+      "kind": "confirmation_frame_forbidden_stem_regeneration",
+      "reason": "The structurally valid regenerated frame pool still used the development-purpose stem user in an asymmetric cue, so the fail-closed cross-catalog gate correctly rejected it. Add the machine-listed content stems to the generator exclusion prompt and regenerate all 50 frames with a new predeclared seed; no bank or activation was accepted.",
+      "prior_frame_run": "/scratch/jppatton/langea/confirmation_work/generation_20260817_29_llama33_frames_compat",
+      "generator_script": "scripts/generate_confirmation_candidates.py",
+      "generator_model": "meta-llama/Llama-3.3-70B-Instruct",
+      "generator_revision": "6f6073b423013f6a7d4d9f39144961bfbfbc386b",
+      "seed": 20260822,
+      "temperature": 0.2,
+      "max_tokens": 4096,
+      "status": "pre_outcome_frame_regeneration_pending"
     }
   ]
 }
