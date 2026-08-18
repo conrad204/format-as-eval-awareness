@@ -241,6 +241,21 @@
       "replacement_retry_job": "52348268",
       "retry_run": "/scratch/jppatton/langea/confirmation_work/generation_20260817_11_payload_retry",
       "model_snapshot": "/scratch/jppatton/langea/huggingface/hub/models--stockmark--Stockmark-2-100B-Instruct/snapshots/98e959a472d0fcaf0c8b6576af19fe3cba7ca4ab",
+      "status": "pre_outcome_retry_failed_wrong_candidate_count"
+    },
+    {
+      "date": "2026-08-17",
+      "kind": "confirmation_retry_output_limit_correction",
+      "reason": "Exact-snapshot retry job 52348268 completed model loading but returned the wrong candidate count for batch 7, so it produced no accepted candidates. Preserve the raw retry log and rerun the identical pre-outcome batch with max_tokens increased from 8192 to 16384 solely to avoid output truncation/count failure; no activation or semantic outcome was inspected.",
+      "failed_job": "52348268",
+      "replacement_retry_job": "52351168",
+      "retry_run": "/scratch/jppatton/langea/confirmation_work/generation_20260817_13_payload_retry",
+      "retry_batch": 7,
+      "generator_model": "stockmark/Stockmark-2-100B-Instruct",
+      "generator_revision": "98e959a472d0fcaf0c8b6576af19fe3cba7ca4ab",
+      "temperature": 0.2,
+      "seed": 20260817,
+      "max_tokens": 16384,
       "status": "pre_outcome_retry_running"
     }
   ]
