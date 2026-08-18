@@ -37,7 +37,7 @@ def load(path: Path):
     return value
 
 
-def normalize_frames(candidates: list[dict]) -> list[dict]:
+def normalize_frames(candidates: list[dict], generator_lineage: str) -> list[dict]:
     if len(candidates) != 50:
         raise ValueError(f"expected exactly 50 generated frame pairs, got {len(candidates)}")
     frames = []
@@ -89,7 +89,7 @@ def normalize_frames(candidates: list[dict]) -> list[dict]:
                 "evaluation_cue_tokens": eval_only,
                 "deployment_cue_tokens": deploy_only,
                 "semantic_rationale": str(candidate.get("semantic_rationale", "")),
-                "lineage": "stockmark-2-100b-local-generation-candidate",
+                "lineage": generator_lineage,
             })
     return frames
 
@@ -130,11 +130,12 @@ def main() -> None:
     parser.add_argument("--frames", type=Path, required=True)
     parser.add_argument("--forbidden", type=Path, required=True)
     parser.add_argument("--out-dir", type=Path, required=True)
+    parser.add_argument("--generator-lineage", default="stockmark/Stockmark-2-100B-Instruct")
     args = parser.parse_args()
     if args.out_dir.exists():
         raise SystemExit(f"refusing to overwrite {args.out_dir}")
     payloads = normalize_payloads(load(args.payloads))
-    frames = normalize_frames(load(args.frames))
+    frames = normalize_frames(load(args.frames), args.generator_lineage)
     rows = shape.render_bank(payloads, frames)
     forbidden_data = json.loads(args.forbidden.read_text(encoding="utf-8"))
     forbidden = {str(row["stem"]) for row in forbidden_data["records"]}
@@ -146,7 +147,7 @@ def main() -> None:
     manifest = {
         "schema_version": 1,
         "status": "development_model_generated_candidate",
-        "generator_lineage": "stockmark/Stockmark-2-100B-Instruct; local BF16; revision pinned by generation log",
+        "generator_lineage": args.generator_lineage,
         "validator_status": "pending",
         "counts": counts,
         "artifacts": {},

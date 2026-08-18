@@ -305,6 +305,13 @@
       "seed": 20260819,
       "max_tokens": 2048,
       "status": "pre_outcome_regeneration_running"
+    },
+    {
+      "date": "2026-08-17",
+      "kind": "assembly_provenance_parameterization",
+      "reason": "The fallback generator is meta Llama-3.3 rather than Stockmark. Parameterize the candidate assembly script's generator-lineage field so sealed artifacts cannot mislabel the generator; default behavior remains the prior Stockmark value for historical runs.",
+      "script": "scripts/assemble_confirmation_bank.py",
+      "status": "pre_outcome_regeneration_running"
     }
   ]
 }
