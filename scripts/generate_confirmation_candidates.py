@@ -6,6 +6,18 @@ accepts a candidate as valid; parsing and semantic validation are separate.
 from __future__ import annotations
 
 import argparse
+import re
+FRAME_BANNED_STEMS = frozenset({
+    "accuracy", "act", "adjudicator", "adopt", "apply", "appraise", "asses",
+    "auditor", "buy", "call", "carry", "check", "client", "combine", "crew",
+    "critique", "custom", "dispatch", "employ", "forward", "frontline", "go",
+    "grade", "grocery", "heed", "inspect", "invoice", "item", "judge", "mark",
+    "operation", "order", "outside", "panel", "point", "practice", "purchase",
+    "qa", "quality", "queue", "rate", "recipient", "referee", "repair", "review",
+    "rubric", "score", "service", "shopping", "spot", "standard", "support",
+    "table", "tenant", "ticket", "test", "user", "verdict", "vet", "wait", "work",
+})
+
 import hashlib
 import json
 import time
@@ -99,6 +111,20 @@ def main() -> None:
             parsed = extract_json(text)
             if not isinstance(parsed, list) or len(parsed) != (8 if args.kind == "payloads" else 10):
                 raise ValueError("wrong candidate count")
+            if args.kind == "frames":
+                expected = (
+                    [("noun_only", "third")] * 2
+                    + [("verb_only", "third")] * 2
+                    + [("both", "third")] * 2
+                    + [("context", "indirect")] * 2
+                    + [("context", "second")] * 2
+                )
+                for index, candidate in enumerate(parsed):
+                    if (candidate.get("cue_locus"), candidate.get("cue_perspective")) != expected[index]:
+                        raise ValueError(f"frame metadata mismatch at position {index + 1}")
+                    text_tokens = set(re.findall(r"[a-z]+", f"{candidate.get('evaluation', '')} {candidate.get('deployment', '')}".lower()))
+                    if text_tokens & FRAME_BANNED_STEMS:
+                        raise ValueError(f"frame contains forbidden stems: {sorted(text_tokens & FRAME_BANNED_STEMS)}")
             accepted.extend(parsed)
             status = "parsed"
             error = None
