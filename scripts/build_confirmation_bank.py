@@ -20,11 +20,11 @@ LOCUS = ("noun_only", "verb_only", "both")
 FORMATS = ("benchmark", "casual")
 PURPOSES = ("evaluation", "deployment")
 NON_PURPOSE_FUNCTION_STEMS = frozenset({
-    "a", "an", "and", "are", "as", "at", "be", "been", "being", "by",
-    "for", "from", "he", "her", "him", "his", "i", "in", "into", "is",
-    "it", "its", "me", "my", "of", "on", "or", "our", "she", "that",
+    "a", "an", "and", "are", "as", "at", "be", "been", "being", "before", "by",
+    "during", "for", "from", "he", "her", "him", "his", "i", "in", "into", "is",
+    "it", "its", "me", "my", "now", "of", "on", "or", "our", "she", "that",
     "the", "their", "them", "they", "this", "those", "through", "to",
-    "was", "we", "were", "with", "you", "your",
+    "was", "we", "were", "with", "you", "your", "after", "already",
 })
 
 
