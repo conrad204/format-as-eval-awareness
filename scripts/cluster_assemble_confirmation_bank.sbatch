@@ -16,11 +16,10 @@ SOURCE_DIR=${SOURCE_DIR:-/scratch/jppatton/langea/confirmation_work/tae_2026}
 FORBIDDEN=${FORBIDDEN:?approved forbidden-lexicon artifact is required}
 if [ -e "$CANDIDATE_DIR/.assembly_started" ]; then echo "immutable candidate run already started: $CANDIDATE_DIR" >&2; exit 2; fi
 if [ ! -s "$RUN_DIR/payloads_candidates.json" ] || [ ! -s "$RUN_DIR/frames_candidates.json" ]; then echo 'candidate inputs missing' >&2; exit 2; fi
-mkdir -p "$CANDIDATE_DIR"
-touch "$CANDIDATE_DIR/.assembly_started"
 /bighome/jppatton/langea/runtime/vllm/bin/python "$SOURCE_DIR/assemble_confirmation_bank.py" \
   --payloads "$RUN_DIR/payloads_candidates.json" --frames "$RUN_DIR/frames_candidates.json" \
   --forbidden "$FORBIDDEN" --out-dir "$CANDIDATE_DIR"
+touch "$CANDIDATE_DIR/.assembly_started"
 cp "$RUN_DIR"/*_generation_log.jsonl "$CANDIDATE_DIR"/
 cp "$RUN_DIR"/*_semantic_validation.jsonl "$CANDIDATE_DIR"/
 /bighome/jppatton/langea/runtime/vllm/bin/python "$SOURCE_DIR/lexical_gates_v2.py" \
