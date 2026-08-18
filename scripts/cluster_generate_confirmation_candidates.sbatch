@@ -39,15 +39,16 @@ KIND=${KIND:-both}
 START_BATCH=${START_BATCH:-0}
 BATCHES=${BATCHES:-}
 MAX_TOKENS=${MAX_TOKENS:-4096}
+TEMPERATURE=${TEMPERATURE:-0.2}
 SEED=${SEED:-20260817}
 FRAME_SEED=${FRAME_SEED:-20260827}
 if [ "$KIND" = "payloads" ] || [ "$KIND" = "both" ]; then
   /bighome/jppatton/langea/runtime/vllm/bin/python "$SOURCE_DIR/generate_confirmation_candidates.py" \
     --url http://127.0.0.1:8123/v1/chat/completions --model "$MODEL" --model-revision "$MODEL_REVISION" \
-    --kind payloads --batches "${BATCHES:-10}" --start-batch "$START_BATCH" --seed "$SEED" --temperature 0.2 --max-tokens "$MAX_TOKENS" --out-dir "$RUN_DIR"
+    --kind payloads --batches "${BATCHES:-10}" --start-batch "$START_BATCH" --seed "$SEED" --temperature "$TEMPERATURE" --max-tokens "$MAX_TOKENS" --out-dir "$RUN_DIR"
 fi
 if [ "$KIND" = "frames" ] || [ "$KIND" = "both" ]; then
   /bighome/jppatton/langea/runtime/vllm/bin/python "$SOURCE_DIR/generate_confirmation_candidates.py" \
     --url http://127.0.0.1:8123/v1/chat/completions --model "$MODEL" --model-revision "$MODEL_REVISION" \
-    --kind frames --batches "${BATCHES:-5}" --start-batch "$START_BATCH" --seed "$FRAME_SEED" --temperature 0.2 --max-tokens "$MAX_TOKENS" --out-dir "$RUN_DIR"
+    --kind frames --batches "${BATCHES:-5}" --start-batch "$START_BATCH" --seed "$FRAME_SEED" --temperature "$TEMPERATURE" --max-tokens "$MAX_TOKENS" --out-dir "$RUN_DIR"
 fi

@@ -105,6 +105,7 @@ def main() -> None:
             vocab = FRAME_VOCABULARY[batch % len(FRAME_VOCABULARY)]
             prompt += "\nThis fold has a predeclared disjoint lexical bank. Use the evaluation-side content stems only in evaluation members and deployment-side content stems only in deployment members. Use these stems repeatedly where natural and do not introduce any other purpose-asymmetric content stems: " + json.dumps(vocab, sort_keys=True)
             prompt += "\nThe bank is machine-checked for cross-fold lexical disjointness; do not use synonyms or morphological variants from another fold."
+            prompt += "\nUse only the bank stems plus these neutral words: system, response, record, signal, stage, release, decision, request, workflow, phase, context, result, state, before, after, during, already, now, and, the, a, an, is, was, are, will, can, to, from, for, in, on, with. Do not add any other content word. Use one of these exact sentence skeletons for each pair, changing only the bank stem and neutral words: 'Before a release decision, the system produces a BANK response.' versus 'After release, the system serves a BANK response for a request.'; 'The workflow gathers a BANK record before release.' versus 'The workflow sends a BANK record for a request.'; 'At the pre-release stage, a BANK signal informs the decision.' versus 'At the later stage, a BANK signal serves the request.'"
         started = time.time()
         try:
             text, response = request_json(args.url, prompt, args.model, args.max_tokens, args.temperature, seed)
