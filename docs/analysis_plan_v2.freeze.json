@@ -470,6 +470,17 @@
       "temperature": 0.0,
       "max_tokens": 2048,
       "status": "pre_outcome_frame_regeneration_pending"
+    },
+    {
+      "date": "2026-08-18",
+      "kind": "confirmation_generator_fp8_compute_fallback",
+      "reason": "The pinned meta Llama-3.3 70B BF16 retry remains resource-pending. Use the cached JPishikawa Llama-3.3 Swallow-70B FP8 snapshot on one available A100, with the same strict frame prompt and client gates. This remains a pre-outcome generator-lineage fallback distinct from Grok; semantic validation remains a separate cached Swallow revision.",
+      "generator_model": "JPishikawa/Llama-3.3-Swallow-70B-Instruct-v0.4-FP8-Dynamic",
+      "generator_revision": "79a50c65b399e152727427167e9f7d85af0163c5",
+      "seed": 20260832,
+      "temperature": 0.0,
+      "max_tokens": 2048,
+      "status": "pre_outcome_frame_regeneration_pending"
     }
   ]
 }
