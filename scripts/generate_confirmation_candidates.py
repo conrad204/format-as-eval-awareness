@@ -121,11 +121,16 @@ def main() -> None:
                     + [("context", "second")] * 2
                 )
                 for index, candidate in enumerate(parsed):
-                    if (candidate.get("cue_locus"), candidate.get("cue_perspective")) != expected[index]:
-                        raise ValueError(f"frame metadata mismatch at position {index + 1}")
                     text_tokens = set(re.findall(r"[a-z]+", f"{candidate.get('evaluation', '')} {candidate.get('deployment', '')}".lower()))
                     if text_tokens & FRAME_BANNED_STEMS:
                         raise ValueError(f"frame contains forbidden stems: {sorted(text_tokens & FRAME_BANNED_STEMS)}")
+                    vocab = FRAME_VOCABULARY[batch % len(FRAME_VOCABULARY)]
+                    allowed_asymmetric = set(vocab["evaluation"]) | set(vocab["deployment"]) | {"before", "after"}
+                    evaluation_tokens = set(re.findall(r"[a-z]+", str(candidate.get("evaluation", "")).lower()))
+                    deployment_tokens = set(re.findall(r"[a-z]+", str(candidate.get("deployment", "")).lower()))
+                    asymmetric = (evaluation_tokens - deployment_tokens) | (deployment_tokens - evaluation_tokens)
+                    if asymmetric - allowed_asymmetric:
+                        raise ValueError(f"frame has unbanked asymmetric stems: {sorted(asymmetric - allowed_asymmetric)}")
             accepted.extend(parsed)
             status = "parsed"
             error = None

@@ -415,6 +415,18 @@
       "reason": "The symmetric skeleton left before as a cross-fold lexical cue because the documented function-word filter omitted temporal connectives. Add before, after, during, already, and now to the non-purpose function set; these words are shared temporal scaffolding, not purpose-asymmetric vocabulary.",
       "script": "scripts/build_confirmation_bank.py",
       "status": "pre_outcome_assembly_pending"
+    },
+    {
+      "date": "2026-08-17",
+      "kind": "confirmation_frame_unbanked_asymmetry_gate",
+      "reason": "The symmetric candidate pool still introduced serve, request, and current asymmetrically despite the prompt. Add a pre-acceptance gate requiring every within-pair asymmetric content stem to belong to that batch's predeclared fold bank or before/after context; reject otherwise and regenerate. This enforces the frozen lexical generalization design before any semantic outcome.",
+      "script": "scripts/generate_confirmation_candidates.py",
+      "generator_model": "meta-llama/Llama-3.3-70B-Instruct",
+      "generator_revision": "6f6073b423013f6a7d4d9f39144961bfbfbc386b",
+      "seed": 20260827,
+      "temperature": 0.0,
+      "max_tokens": 2048,
+      "status": "pre_outcome_frame_regeneration_pending"
     }
   ]
 }
