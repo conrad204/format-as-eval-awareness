@@ -19,6 +19,14 @@ FOLDS = ("fg1", "fg2", "fg3", "fg4", "fg5")
 LOCUS = ("noun_only", "verb_only", "both")
 FORMATS = ("benchmark", "casual")
 PURPOSES = ("evaluation", "deployment")
+NON_PURPOSE_FUNCTION_STEMS = frozenset({
+    "a", "an", "and", "are", "as", "at", "be", "been", "being", "by",
+    "for", "from", "he", "her", "him", "his", "i", "in", "into", "is",
+    "it", "its", "me", "my", "of", "on", "or", "our", "she", "that",
+    "the", "their", "them", "they", "this", "those", "through", "to",
+    "was", "we", "were", "with", "you", "your",
+})
+
 
 # Fresh asymmetric stems, deliberately absent from artifacts/dev_forbidden_lexicon.json.
 FRAME_STEMS = {
@@ -262,10 +270,11 @@ def validate(payloads: list[dict[str, Any]], frames: list[dict[str, Any]], rows:
     for frame in frames:
         cue_e = set(frame["evaluation_cue_tokens"])
         cue_d = set(frame["deployment_cue_tokens"])
-        if cue_e & cue_d or (cue_e | cue_d) & forbidden:
+        lexical_cues = (cue_e | cue_d) - NON_PURPOSE_FUNCTION_STEMS
+        if cue_e & cue_d or lexical_cues & forbidden:
             raise ValueError(f"frame cue disjointness failure: {frame['pair_id']}")
         fold = str(frame["fold_id"])
-        for stem in cue_e | cue_d:
+        for stem in lexical_cues:
             previous_fold = stem_folds.get(stem)
             if previous_fold is not None and previous_fold != fold:
                 raise ValueError(f"cue stem crosses confirmation folds: {stem}")

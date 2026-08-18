@@ -338,6 +338,13 @@
       "temperature": 0.2,
       "max_tokens": 4096,
       "status": "pre_outcome_frame_regeneration_pending"
+    },
+    {
+      "date": "2026-08-17",
+      "kind": "forbidden_lexicon_function_word_correction",
+      "reason": "The frozen development forbidden-stem artifact contains function words and pronouns such as an, on, into, through, and they. Treating those as purpose-asymmetric lexical cues falsely rejected otherwise valid pairs and could reject every natural frame. Exclude only the documented non-purpose function-word set from cross-catalog and cross-fold cue checks; retain all content stems and keep the gate fail-closed.",
+      "script": "scripts/build_confirmation_bank.py",
+      "status": "pre_outcome_assembly_pending"
     }
   ]
 }
