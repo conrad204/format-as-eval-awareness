@@ -211,6 +211,16 @@
       "seed": 20260817,
       "max_tokens": 8192,
       "status": "pre_outcome_retry_in_progress"
+    },
+    {
+      "date": "2026-08-17",
+      "kind": "jlens_wrapper_source_synchronization",
+      "reason": "The first full-fit submissions used a stale remote wrapper/source checkout that omitted the explicit staged tokenizer argument and then a stale tokenizer helper that lacked --tokenizer. Both failed before fitting. Synchronize the approved fit wrapper, tokenizer helper, and fit driver from the tested worktree before the replacement full fit; no lens data or outcomes were consumed.",
+      "failed_jobs": ["52333869", "52346354", "52346857"],
+      "replacement_fit_job": "52347260",
+      "replacement_assay_job": "52347262",
+      "tokenizer": "/scratch/jppatton/langea/confirmation_work/llama31_8b_tokenizer_0e9e39f2",
+      "status": "pre_outcome_replacement_running"
     }
   ]
 }
