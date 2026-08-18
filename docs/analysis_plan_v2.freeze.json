@@ -257,6 +257,26 @@
       "seed": 20260817,
       "max_tokens": 16384,
       "status": "pre_outcome_retry_running"
+    },
+    {
+      "date": "2026-08-17",
+      "kind": "confirmation_payload_schedule_repair",
+      "reason": "The original ten-batch payload generation accepted 72/80 candidates, and the batch-7 replacement returned eight candidates but violated the frozen topic order. A second exact-snapshot retry also returned the wrong count. The immutable assembly wrapper was corrected so its marker is created only after successful assembly; no candidate bank, activation, or outcome was accepted. A strict positional prompt was added before launching a fresh ten-batch regeneration with a new predeclared retry seed and max_tokens 8192.",
+      "failed_runs": [
+        "/scratch/jppatton/langea/confirmation_work/generation_20260817_14_combined",
+        "/scratch/jppatton/langea/confirmation_work/generation_20260817_18_payload_batch7",
+        "/scratch/jppatton/langea/confirmation_work/generation_20260817_19_payload_batch7"
+      ],
+      "assembly_wrapper_fix": "scripts/cluster_assemble_confirmation_bank.sbatch",
+      "strict_prompt_generator": "scripts/generate_confirmation_candidates.py",
+      "replacement_full_generation_job": "52387926",
+      "replacement_generation_run": "/scratch/jppatton/langea/confirmation_work/generation_20260817_22_payloads_strict",
+      "generator_model": "stockmark/Stockmark-2-100B-Instruct",
+      "generator_revision": "98e959a472d0fcaf0c8b6576af19fe3cba7ca4ab",
+      "temperature": 0.2,
+      "seed": 20260819,
+      "max_tokens": 8192,
+      "status": "pre_outcome_regeneration_running"
     }
   ]
 }
