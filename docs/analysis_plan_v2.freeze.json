@@ -370,6 +370,18 @@
       "temperature": 0.2,
       "max_tokens": 4096,
       "status": "pre_outcome_frame_regeneration_pending"
+    },
+    {
+      "date": "2026-08-17",
+      "kind": "confirmation_frame_generator_fail_closed_filter",
+      "reason": "The fold-vocabulary prompt still produced forbidden stems in parsed candidates. Add a pre-acceptance machine gate to the generator client: exact positional metadata and banned content stems reject the entire batch before any candidate is accepted. Regenerate with a new seed; rejected raw outputs remain provenance only and are not assembled or inspected for outcomes.",
+      "generator_script": "scripts/generate_confirmation_candidates.py",
+      "generator_model": "meta-llama/Llama-3.3-70B-Instruct",
+      "generator_revision": "6f6073b423013f6a7d4d9f39144961bfbfbc386b",
+      "seed": 20260824,
+      "temperature": 0.2,
+      "max_tokens": 4096,
+      "status": "pre_outcome_frame_regeneration_pending"
     }
   ]
 }
