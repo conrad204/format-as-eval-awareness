@@ -382,6 +382,19 @@
       "temperature": 0.2,
       "max_tokens": 4096,
       "status": "pre_outcome_frame_regeneration_pending"
+    },
+    {
+      "date": "2026-08-17",
+      "kind": "confirmation_frame_rigid_lexical_prompt",
+      "reason": "The fail-closed gate rejected all five batches because the model still introduced forbidden stems. Constrain frame completions to predeclared fold banks plus a fixed neutral vocabulary and sentence skeletons, and run at temperature 0.0 before any candidate can pass the client gate. This is a pre-outcome quality repair, not outcome-driven selection.",
+      "generator_script": "scripts/generate_confirmation_candidates.py",
+      "wrapper_script": "scripts/cluster_generate_confirmation_candidates.sbatch",
+      "generator_model": "meta-llama/Llama-3.3-70B-Instruct",
+      "generator_revision": "6f6073b423013f6a7d4d9f39144961bfbfbc386b",
+      "seed": 20260825,
+      "temperature": 0.0,
+      "max_tokens": 2048,
+      "status": "pre_outcome_frame_regeneration_pending"
     }
   ]
 }
