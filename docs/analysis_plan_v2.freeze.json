@@ -277,6 +277,20 @@
       "seed": 20260819,
       "max_tokens": 8192,
       "status": "pre_outcome_regeneration_running"
+    },
+    {
+      "date": "2026-08-17",
+      "kind": "confirmation_payload_generation_budget_retry",
+      "reason": "The strict ten-batch retry at max_tokens 8192 was stopped before any candidate artifact was written because its first request remained computationally slow. A bounded max_tokens 2048 retry uses the same strict positional prompt, model revision, temperature, and seed; no output or outcome was inspected.",
+      "stopped_job": "52391843",
+      "replacement_generation_job": "52394597",
+      "replacement_generation_run": "/scratch/jppatton/langea/confirmation_work/generation_20260817_24_payloads_strict_2048",
+      "generator_model": "stockmark/Stockmark-2-100B-Instruct",
+      "generator_revision": "98e959a472d0fcaf0c8b6576af19fe3cba7ca4ab",
+      "temperature": 0.2,
+      "seed": 20260819,
+      "max_tokens": 2048,
+      "status": "pre_outcome_regeneration_running"
     }
   ]
 }
