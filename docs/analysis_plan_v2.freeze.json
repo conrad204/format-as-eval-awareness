@@ -395,6 +395,19 @@
       "temperature": 0.0,
       "max_tokens": 2048,
       "status": "pre_outcome_frame_regeneration_pending"
+    },
+    {
+      "date": "2026-08-17",
+      "kind": "confirmation_frame_symmetric_neutral_skeleton",
+      "reason": "The rigid candidate pool passed the generator-side gate but the assembler found a cross-fold cue stem, produces, introduced asymmetrically by the neutral sentence skeleton. Make all neutral content words symmetric within each pair and leave only the predeclared fold bank plus before/after context as purpose-asymmetric; regenerate before semantic validation or assembly acceptance.",
+      "prior_frame_run": "/scratch/jppatton/langea/confirmation_work/generation_20260817_39_llama33_frames_rigid",
+      "generator_script": "scripts/generate_confirmation_candidates.py",
+      "generator_model": "meta-llama/Llama-3.3-70B-Instruct",
+      "generator_revision": "6f6073b423013f6a7d4d9f39144961bfbfbc386b",
+      "seed": 20260826,
+      "temperature": 0.0,
+      "max_tokens": 2048,
+      "status": "pre_outcome_frame_regeneration_pending"
     }
   ]
 }
