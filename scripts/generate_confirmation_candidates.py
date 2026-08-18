@@ -80,6 +80,7 @@ def main() -> None:
         if args.kind == "payloads":
             topics = PAYLOAD_TOPIC_SCHEDULE[batch * 8 : (batch + 1) * 8]
             prompt += "\nUse these topic_id values in this exact order, matching the content topics; do not invent other topic_id values: " + json.dumps(topics)
+            prompt += "\nHard positional constraint: emit exactly 8 objects; object positions 1-8 must use the listed topic_id values in order, including repeated values. Do not reorder, omit, or substitute any position."
         started = time.time()
         try:
             text, response = request_json(args.url, prompt, args.model, args.max_tokens, args.temperature, seed)
