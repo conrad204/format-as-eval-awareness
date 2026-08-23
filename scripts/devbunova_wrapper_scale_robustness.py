@@ -12,18 +12,32 @@ from typing import Any, Sequence
 
 import numpy as np
 
-from scripts.devbunova_wrapper_scale import (
-    _cross_validated_scores,
-    _load_selected_layers,
-    _task_rows,
-    _verify_and_index,
-    bf16_u16_to_float32,
-    canonical_json_sha256,
-    fixed_depth_layers,
-    roc_auc,
-    sha256_file,
-    stratified_cell_folds,
-)
+try:
+    from scripts.devbunova_wrapper_scale import (
+        _cross_validated_scores,
+        _load_selected_layers,
+        _task_rows,
+        _verify_and_index,
+        bf16_u16_to_float32,
+        canonical_json_sha256,
+        fixed_depth_layers,
+        roc_auc,
+        sha256_file,
+        stratified_cell_folds,
+    )
+except ImportError:
+    from devbunova_wrapper_scale import (
+        _cross_validated_scores,
+        _load_selected_layers,
+        _task_rows,
+        _verify_and_index,
+        bf16_u16_to_float32,
+        canonical_json_sha256,
+        fixed_depth_layers,
+        roc_auc,
+        sha256_file,
+        stratified_cell_folds,
+    )
 
 
 def row_l2_normalize(features: np.ndarray) -> np.ndarray:
