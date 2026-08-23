@@ -48,6 +48,11 @@ def canonical_json_sha256(value: Any) -> str:
     return hashlib.sha256(payload).hexdigest()
 
 
+def strict_json_text(value: Any) -> str:
+    """Serialize strict JSON and reject NaN or infinity anywhere in the output."""
+    return json.dumps(value, indent=2, sort_keys=True, allow_nan=False) + "\n"
+
+
 def bf16_u16_to_float32(values: np.ndarray) -> np.ndarray:
     """Decode uint16 BF16 bit patterns into a new float32 array."""
     bits = np.asarray(values, dtype=np.uint16).astype(np.uint32)
@@ -80,9 +85,12 @@ def select_balanced_core(
     item_ids: Sequence[str], n_per_cell: int = 204, seed: int = 20260822
 ) -> tuple[np.ndarray, np.ndarray]:
     """Select exactly ``n_per_cell`` asis IDs per core cell by stable hash rank."""
+    normalized_ids = [str(item_id) for item_id in item_ids]
+    if len(set(normalized_ids)) != len(normalized_ids):
+        raise ValueError("duplicate full item IDs are forbidden")
     grouped: dict[str, list[tuple[bytes, int]]] = {cell: [] for cell in ("EB", "DB", "EC", "DC")}
-    for row_index, item_id in enumerate(item_ids):
-        parsed = parse_item_id(str(item_id))
+    for row_index, item_id in enumerate(normalized_ids):
+        parsed = parse_item_id(item_id)
         cell = CORE_CONDITION_TO_CELL.get(parsed["condition"])
         if cell is not None and parsed["variant"] == "asis":
             grouped[cell].append((_stable_rank(seed, str(item_id)), row_index))
@@ -271,6 +279,7 @@ def _read_chunk_metadata(paths: Sequence[Path]) -> dict[str, Any]:
     lengths: list[int] = []
     top1: list[int] = []
     chunk_rows: list[int] = []
+    row_starts: list[int] = []
     layer_values: np.ndarray | None = None
     model_id: str | None = None
     regime: str | None = None
@@ -289,29 +298,57 @@ def _read_chunk_metadata(paths: Sequence[Path]) -> dict[str, Any]:
             missing = required - set(chunk.files)
             if missing:
                 raise ValueError(f"{path} missing arrays {sorted(missing)}")
-            chunk_ids = chunk["item_ids"].astype(str)
-            rows = len(chunk_ids)
-            if chunk["token_lengths"].shape != (rows,) or chunk["top1_token_ids"].shape != (rows,):
-                raise ValueError(f"metadata shape mismatch in {path}")
+            raw_ids = chunk["item_ids"]
+            raw_lengths = chunk["token_lengths"]
+            raw_top1 = chunk["top1_token_ids"]
+            raw_layers = chunk["layers"]
+            raw_row_start = chunk["row_start"]
+            raw_model = chunk["model_id"]
+            raw_regime = chunk["regime"]
+            if raw_ids.ndim != 1 or raw_ids.dtype.kind not in {"U", "S"}:
+                raise ValueError(f"item_ids contract mismatch in {path}")
+            rows = len(raw_ids)
+            if (
+                raw_lengths.shape != (rows,)
+                or raw_top1.shape != (rows,)
+                or raw_lengths.dtype.kind not in {"i", "u"}
+                or raw_top1.dtype.kind not in {"i", "u"}
+            ):
+                raise ValueError(f"token metadata contract mismatch in {path}")
+            if raw_layers.ndim != 1 or raw_layers.dtype.kind not in {"i", "u"}:
+                raise ValueError(f"layer metadata contract mismatch in {path}")
+            if raw_row_start.shape != () or raw_row_start.dtype.kind not in {"i", "u"}:
+                raise ValueError(f"row_start contract mismatch in {path}")
+            if raw_model.shape != () or raw_regime.shape != ():
+                raise ValueError(f"scalar model/regime contract mismatch in {path}")
+            chunk_ids = raw_ids.astype(str)
             ids.extend(chunk_ids.tolist())
-            lengths.extend(chunk["token_lengths"].astype(np.int64).tolist())
-            top1.extend(chunk["top1_token_ids"].astype(np.int64).tolist())
+            lengths.extend(raw_lengths.astype(np.int64).tolist())
+            top1.extend(raw_top1.astype(np.int64).tolist())
             chunk_rows.append(rows)
-            current_layers = chunk["layers"].astype(np.int64)
-            current_model = str(chunk["model_id"].item())
-            current_regime = str(chunk["regime"].item())
+            row_starts.append(int(raw_row_start.item()))
+            current_layers = raw_layers.astype(np.int64)
+            current_model = str(raw_model.item())
+            current_regime = str(raw_regime.item())
             if layer_values is None:
                 layer_values = current_layers
                 model_id = current_model
                 regime = current_regime
-            elif not np.array_equal(layer_values, current_layers) or model_id != current_model or regime != current_regime:
+            elif (
+                not np.array_equal(layer_values, current_layers)
+                or model_id != current_model
+                or regime != current_regime
+            ):
                 raise ValueError(f"inconsistent metadata in {path}")
     assert layer_values is not None and model_id is not None and regime is not None
+    if any(right <= left for left, right in zip(row_starts, row_starts[1:])):
+        raise ValueError("row_start values must increase strictly in chunk filename order")
     return {
         "item_ids": np.asarray(ids, dtype=str),
         "token_lengths": np.asarray(lengths, dtype=np.int64),
         "top1_token_ids": np.asarray(top1, dtype=np.int64),
         "chunk_rows": chunk_rows,
+        "row_starts": row_starts,
         "layers": layer_values,
         "model_id": model_id,
         "regime": regime,
@@ -333,6 +370,8 @@ def _verify_and_index(config: dict[str, Any], data_root: Path) -> tuple[dict[str
     indices = config["dataset"]["selected_chunk_indices"]
     metadata: dict[str, Any] = {}
     reference_ids: np.ndarray | None = None
+    reference_chunk_rows: list[int] | None = None
+    reference_row_starts: list[int] | None = None
     for model, spec in config["dataset"]["expected_models"].items():
         metadata[model] = {}
         for regime in config["dataset"]["regimes"]:
@@ -348,8 +387,17 @@ def _verify_and_index(config: dict[str, Any], data_root: Path) -> tuple[dict[str
                 raise ValueError(f"item count mismatch for {model}/{regime}")
             if reference_ids is None:
                 reference_ids = current["item_ids"]
+                reference_chunk_rows = current["chunk_rows"]
+                reference_row_starts = current["row_starts"]
+                if len(set(reference_ids.tolist())) != len(reference_ids):
+                    raise ValueError("duplicate full item IDs are forbidden")
             elif not np.array_equal(reference_ids, current["item_ids"]):
                 raise ValueError(f"ordered item IDs differ for {model}/{regime}")
+            elif (
+                current["chunk_rows"] != reference_chunk_rows
+                or current["row_starts"] != reference_row_starts
+            ):
+                raise ValueError(f"chunk row metadata differs for {model}/{regime}")
             metadata[model][regime] = current
     assert reference_ids is not None
     selected_indices, cells = select_balanced_core(
@@ -357,6 +405,8 @@ def _verify_and_index(config: dict[str, Any], data_root: Path) -> tuple[dict[str
         n_per_cell=config["selection"]["n_per_cell"],
         seed=config["selection"]["seed"],
     )
+    if len(np.unique(selected_indices)) != len(selected_indices):
+        raise ValueError("selected row indices must be unique")
     return metadata, selected_indices, cells
 
 
@@ -419,6 +469,30 @@ def _cross_validated_scores(
     return scores, direction_cosines
 
 
+def _bootstrap_symmetric_penalty(
+    labels: np.ndarray,
+    scores: dict[str, np.ndarray],
+    seed: int,
+    n_resamples: int,
+) -> np.ndarray:
+    """Bootstrap the four-score penalty with one shared paired item draw."""
+    y = np.asarray(labels, dtype=np.int8)
+    rng = np.random.default_rng(seed)
+    class_indices = [np.flatnonzero(y == value) for value in (0, 1)]
+    draws = np.empty(n_resamples, dtype=np.float64)
+    for sample in range(n_resamples):
+        chosen = np.concatenate(
+            [rng.choice(indices, size=len(indices), replace=True) for indices in class_indices]
+        )
+        draws[sample] = 0.5 * (
+            roc_auc(y[chosen], scores["RR"][chosen])
+            - roc_auc(y[chosen], scores["RT"][chosen])
+            + roc_auc(y[chosen], scores["TT"][chosen])
+            - roc_auc(y[chosen], scores["TR"][chosen])
+        )
+    return draws
+
+
 def _record_metrics(
     model: str,
     layer: int,
@@ -442,13 +516,9 @@ def _record_metrics(
     for code in TRANSFER_CODES:
         result[f"{code}_auc"] = roc_auc(labels, scores[code])
         result[f"{code}_balanced_accuracy"] = balanced_accuracy(labels, scores[code])
-    rr_rt = paired_bootstrap_summary(
-        labels, scores["RR"], scores["RT"], bootstrap_seed, bootstrap_resamples, "auc"
+    penalty_draws = _bootstrap_symmetric_penalty(
+        labels, scores, bootstrap_seed, bootstrap_resamples
     )
-    tt_tr = paired_bootstrap_summary(
-        labels, scores["TT"], scores["TR"], bootstrap_seed + 1, bootstrap_resamples, "auc"
-    )
-    penalty_draws = 0.5 * (rr_rt["bootstrap_draws"] + tt_tr["bootstrap_draws"])
     result.update(
         {
             "symmetric_penalty_auc": 0.5
@@ -693,10 +763,52 @@ def _repo_commit() -> str:
         return "unknown"
 
 
+def _repo_relative(path: Path) -> str:
+    resolved = path.resolve()
+    try:
+        return resolved.relative_to(Path.cwd().resolve()).as_posix()
+    except ValueError:
+        raise ValueError(f"manifest path must be repository-relative: {resolved}") from None
+
+
+def _validate_config_contract(config: dict[str, Any]) -> None:
+    expected_tasks = {
+        "purpose_benchmark": {"positive_cells": ["EB"], "negative_cells": ["DB"]},
+        "purpose_casual": {"positive_cells": ["EC"], "negative_cells": ["DC"]},
+        "format_evaluation": {"positive_cells": ["EB"], "negative_cells": ["EC"]},
+        "format_deployment": {"positive_cells": ["DB"], "negative_cells": ["DC"]},
+    }
+    configured_tasks = {
+        **config["tasks"]["primary"],
+        **config["tasks"]["secondary_controls"],
+    }
+    if configured_tasks != expected_tasks:
+        raise ValueError("configured task definitions differ from implemented task contract")
+    if config["selection"]["variant"] != "asis":
+        raise ValueError("implemented selector requires variant=asis")
+    if config["selection"]["expected_selected_rows"] != 4 * config["selection"]["n_per_cell"]:
+        raise ValueError("expected selected-row count conflicts with four-cell selection")
+    if list(config["dataset"]["expected_models"]) != ["8b", "70b", "405b"]:
+        raise ValueError("implemented plotting/scale contract requires 8b,70b,405b order")
+    if config["dataset"]["regimes"] != ["raw", "template"]:
+        raise ValueError("implemented transfer contract requires raw,template order")
+    output_names = [
+        config["outputs"]["result_json"],
+        config["outputs"]["table_tsv"],
+        config["outputs"]["manifest_json"],
+        *config["outputs"]["figures"],
+    ]
+    if len(output_names) != len(set(output_names)) or any(
+        Path(name).name != name for name in output_names
+    ):
+        raise ValueError("output names must be unique basenames")
+
+
 def run(config_path: Path, data_root: Path, out_dir: Path, run_id: str) -> dict[str, Any]:
     config = json.loads(config_path.read_text(encoding="utf-8"))
     if config.get("protocol_id") != "devbunova_wrapper_scale_v1":
         raise ValueError("unexpected protocol")
+    _validate_config_contract(config)
     incomplete = out_dir.with_name(out_dir.name + ".incomplete")
     if out_dir.exists() or incomplete.exists():
         raise FileExistsError(f"immutable output path already exists: {out_dir} or {incomplete}")
@@ -708,6 +820,8 @@ def run(config_path: Path, data_root: Path, out_dir: Path, run_id: str) -> dict[
     selected_counts = {cell: int(np.sum(cells == cell)) for cell in ("EB", "DB", "EC", "DC")}
     if any(count != expected_cell_count for count in selected_counts.values()):
         raise ValueError(f"selected cell imbalance: {selected_counts}")
+    if len(selected_ids) != config["selection"]["expected_selected_rows"]:
+        raise ValueError("selected-row count differs from config")
     folds_all = stratified_cell_folds(
         selected_ids, cells, config["probe"]["folds"], config["probe"]["fold_seed"]
     )
@@ -839,12 +953,62 @@ def run(config_path: Path, data_root: Path, out_dir: Path, run_id: str) -> dict[
                                 }
                             )
 
+        primary_task_model_means = {
+            (model, task): float(
+                np.mean(
+                    [
+                        record["symmetric_penalty_auc"]
+                        for record in metrics
+                        if record["model"] == model
+                        and record["task"] == task
+                        and record["normalized_depth"] in primary_depths
+                    ]
+                )
+            )
+            for model in models
+            for task in primary_tasks
+        }
+        observed_q75 = float(
+            np.mean(
+                [
+                    record["symmetric_penalty_auc"]
+                    for record in metrics
+                    if record["task"] in primary_tasks
+                    and record["normalized_depth"] == permutation_depth
+                ]
+            )
+        )
+        label_null_values = np.mean(
+            [
+                nulls[model][task]["values"]
+                for model in models
+                for task in primary_tasks
+            ],
+            axis=0,
+        )
+        label_null_summary = {
+            "observed_q75": observed_q75,
+            "null_mean": float(np.mean(label_null_values)),
+            "null_q_2.5": float(np.quantile(label_null_values, 0.025)),
+            "null_q_97.5": float(np.quantile(label_null_values, 0.975)),
+            "observed_exceeds_null_q97.5": bool(
+                observed_q75 > np.quantile(label_null_values, 0.975)
+            ),
+        }
+        all_task_model_positive = all(
+            value > 0 for value in primary_task_model_means.values()
+        )
         decision = "reversed_or_mixed"
-        if primary["ci_2.5"] > 0 and all(
-            scale_summary[model]["primary_penalty"] > 0 for model in models
+        if (
+            primary["ci_2.5"] > 0
+            and all_task_model_positive
+            and all(scale_summary[model]["primary_penalty"] > 0 for model in models)
         ):
             decision = "regime_specific"
-        elif primary["ci_2.5"] <= 0 <= primary["ci_97.5"]:
+        elif (
+            primary["ci_2.5"] <= 0 <= primary["ci_97.5"]
+            and not label_null_summary["observed_exceeds_null_q97.5"]
+        ):
             decision = "regime_invariant"
 
         result: dict[str, Any] = {
@@ -865,6 +1029,11 @@ def run(config_path: Path, data_root: Path, out_dir: Path, run_id: str) -> dict[
             "scale_fit": scale_fit,
             "token_diagnostics": token_diagnostics,
             "permutation_nulls": nulls,
+            "label_permutation_aggregate": label_null_summary,
+            "primary_task_model_means": {
+                f"{model}:{task}": value
+                for (model, task), value in primary_task_model_means.items()
+            },
             "metrics": metrics,
             "cross_model_score_correlations": cross_model_correlations,
             "limitations": [
@@ -878,7 +1047,7 @@ def run(config_path: Path, data_root: Path, out_dir: Path, run_id: str) -> dict[
         }
 
         result_path = incomplete / config["outputs"]["result_json"]
-        result_path.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        result_path.write_text(strict_json_text(result), encoding="utf-8")
         table_path = incomplete / config["outputs"]["table_tsv"]
         _write_metrics_tsv(metrics, table_path)
         figure_paths = _make_figures(result, incomplete)
@@ -899,9 +1068,9 @@ def run(config_path: Path, data_root: Path, out_dir: Path, run_id: str) -> dict[
             "status": "completed_development_observational",
             "analysis": "devbunova_wrapper_scale_v1",
             "repo_commit": _repo_commit(),
-            "protocol_path": config_path.as_posix(),
+            "protocol_path": _repo_relative(config_path),
             "protocol_sha256": sha256_file(config_path),
-            "code_path": Path(__file__).as_posix(),
+            "code_path": _repo_relative(Path(__file__)),
             "code_sha256": sha256_file(Path(__file__)),
             "dataset_repo_id": config["dataset"]["repo_id"],
             "dataset_revision": config["dataset"]["revision"],
@@ -910,7 +1079,9 @@ def run(config_path: Path, data_root: Path, out_dir: Path, run_id: str) -> dict[
             "ordered_selected_item_ids_sha256": canonical_json_sha256(selected_ids.tolist()),
             "models": config["dataset"]["expected_models"],
             "stored_dtype": config["dataset"]["stored_dtype"],
+            "ordered_item_ids_sha256": canonical_json_sha256(reference_ids.tolist()),
             "layer_semantics": config["evidence_boundary"]["layer_warning"],
+            "token_position": "undocumented",
             "split_definition": config["probe"]["fold_assignment"],
             "regularization": config["probe"]["ridge"],
             "seeds": {
@@ -932,9 +1103,7 @@ def run(config_path: Path, data_root: Path, out_dir: Path, run_id: str) -> dict[
             "limitations": result["limitations"],
         }
         manifest_path = incomplete / config["outputs"]["manifest_json"]
-        manifest_path.write_text(
-            json.dumps(manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8"
-        )
+        manifest_path.write_text(strict_json_text(manifest), encoding="utf-8")
         incomplete.replace(out_dir)
         return result
     except BaseException:

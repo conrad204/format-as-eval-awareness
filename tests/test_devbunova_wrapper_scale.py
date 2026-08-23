@@ -8,6 +8,7 @@ import numpy as np
 import pytest
 
 from scripts.devbunova_wrapper_scale import (
+    _bootstrap_symmetric_penalty,
     balanced_accuracy,
     bf16_u16_to_float32,
     fit_diag_lda,
@@ -19,6 +20,7 @@ from scripts.devbunova_wrapper_scale import (
     score_diag_lda,
     select_balanced_core,
     stratified_cell_folds,
+    strict_json_text,
 )
 from scripts.devbunova_wrapper_scale_robustness import (
     paired_regime_swap,
@@ -329,3 +331,43 @@ def test_symmetric_penalty_matches_registered_formula():
         - roc_auc(labels, scores["TR"])
     )
     assert symmetric_penalty(labels, scores) == pytest.approx(expected)
+
+
+def test_balanced_selector_rejects_duplicate_full_item_ids():
+    duplicate = ["dev2x2::bench_eval::asis::0000"] * 2
+    with pytest.raises(ValueError, match="duplicate"):
+        select_balanced_core(duplicate, n_per_cell=1)
+
+
+def test_symmetric_bootstrap_uses_one_shared_draw_for_all_four_scores():
+    labels = np.repeat([0, 1], 8)
+    scores = {
+        "RR": np.linspace(-1.0, 1.0, 16),
+        "RT": np.asarray([0.2, -0.5, 0.4, -0.8, 0.1, -0.3, 0.7, -0.6] * 2),
+        "TT": np.linspace(-0.8, 1.2, 16),
+        "TR": np.asarray([-0.7, 0.6, -0.4, 0.8, -0.2, 0.3, -0.1, 0.5] * 2),
+    }
+    actual = _bootstrap_symmetric_penalty(labels, scores, seed=31, n_resamples=5)
+    rng = np.random.default_rng(31)
+    class_indices = [np.flatnonzero(labels == value) for value in (0, 1)]
+    expected = []
+    for _ in range(5):
+        chosen = np.concatenate(
+            [rng.choice(indices, size=len(indices), replace=True) for indices in class_indices]
+        )
+        expected.append(
+            0.5
+            * (
+                roc_auc(labels[chosen], scores["RR"][chosen])
+                - roc_auc(labels[chosen], scores["RT"][chosen])
+                + roc_auc(labels[chosen], scores["TT"][chosen])
+                - roc_auc(labels[chosen], scores["TR"][chosen])
+            )
+        )
+    np.testing.assert_allclose(actual, expected)
+
+
+def test_strict_json_rejects_nonfinite_output_values():
+    assert json.loads(strict_json_text({"value": 1.0})) == {"value": 1.0}
+    with pytest.raises(ValueError):
+        strict_json_text({"value": math.nan})
