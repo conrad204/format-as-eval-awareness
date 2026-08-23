@@ -14,27 +14,50 @@ from typing import Any, Sequence
 
 import numpy as np
 
-from scripts.full320_strict_equal_rows import (
-    ENVIRONMENTS,
-    PRIMARY_VARIANT,
-    REGIME_CONTROLS,
-    bootstrap_counts,
-    bootstrap_primary,
-    canonical_json_sha256,
-    extract_x_memmap,
-    fit_oof_scores,
-    metric_bundle,
-    npz_small_array,
-    output_hash,
-    parse_rows,
-    plot_results,
-    repo_commit,
-    rounded_layer,
-    sha256_file,
-    stable_digest,
-    strict_json_text,
-    summarize_point_records,
-)
+try:
+    from scripts.full320_strict_equal_rows import (
+        ENVIRONMENTS,
+        PRIMARY_VARIANT,
+        REGIME_CONTROLS,
+        bootstrap_counts,
+        bootstrap_primary,
+        canonical_json_sha256,
+        extract_x_memmap,
+        fit_oof_scores,
+        metric_bundle,
+        npz_small_array,
+        output_hash,
+        parse_rows,
+        plot_results,
+        repo_commit,
+        rounded_layer,
+        sha256_file,
+        stable_digest,
+        strict_json_text,
+        summarize_point_records,
+    )
+except ImportError:
+    from full320_strict_equal_rows import (
+        ENVIRONMENTS,
+        PRIMARY_VARIANT,
+        REGIME_CONTROLS,
+        bootstrap_counts,
+        bootstrap_primary,
+        canonical_json_sha256,
+        extract_x_memmap,
+        fit_oof_scores,
+        metric_bundle,
+        npz_small_array,
+        output_hash,
+        parse_rows,
+        plot_results,
+        repo_commit,
+        rounded_layer,
+        sha256_file,
+        stable_digest,
+        strict_json_text,
+        summarize_point_records,
+    )
 
 
 def matched_units(rows: Sequence[dict[str, Any]]) -> dict[tuple[str, str], dict[str, Any]]:
