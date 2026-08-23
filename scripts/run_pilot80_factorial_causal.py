@@ -13,6 +13,11 @@ from typing import Any, Iterable, Sequence
 
 import numpy as np
 
+# Must be set before any CUDA context is created (first torch.cuda.* call
+# anywhere in the process); required for torch.use_deterministic_algorithms
+# to make cuBLAS reduction order reproducible across runs.
+os.environ.setdefault("CUBLAS_WORKSPACE_CONFIG", ":4096:8")
+
 SUPPORTED_PROTOCOL_IDS = {
     "pilot80_factorial_causal_mediation_v1",
     "pilot80_factorial_causal_mediation_v2_reextracted",
@@ -447,6 +452,14 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     import torch
     from transformers import AutoModelForCausalLM, AutoTokenizer
 
+    # Pin deterministic GPU execution before any CUDA op runs below:
+    # otherwise non-deterministic cuBLAS/cuDNN reduction order under BF16
+    # accumulates into late-layer activation drift across runs, which is
+    # exactly what the source_activation_reproduction gate detects.
+    torch.backends.cuda.matmul.allow_tf32 = False
+    torch.backends.cudnn.allow_tf32 = False
+    torch.use_deterministic_algorithms(True, warn_only=True)
+
     config_path = args.config.resolve()
     plan_json_path = args.plan_json.resolve()
     plan_npz_path = args.plan_npz.resolve()
@@ -540,6 +553,10 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     model = AutoModelForCausalLM.from_pretrained(
         checkpoint, revision=model_config["revision"], local_files_only=True,
         torch_dtype=torch.bfloat16, device_map="auto", low_cpu_mem_usage=True,
+        # Pinned rather than left on transformers' auto-select, which can
+        # choose SDPA or flash-attention kernels with different, run-to-run
+        # non-deterministic reduction order.
+        attn_implementation="eager",
     )
     model.eval()
     layers = resolve_layers(model)

@@ -29,6 +29,10 @@ export TMPDIR=/scratch/jppatton/langea/tmp
 export HF_HUB_OFFLINE=1
 export TRANSFORMERS_OFFLINE=1
 export TOKENIZERS_PARALLELISM=false
+# Deterministic cuBLAS reduction order (paired with torch.use_deterministic_algorithms
+# in run_pilot80_factorial_causal.py); set at the process level so it predates
+# CUDA context init regardless of Python import order.
+export CUBLAS_WORKSPACE_CONFIG=:4096:8
 mkdir -p "${OUT_DIR}/plan" "${OUT_DIR}/raw"
 PYTHON=/bighome/jppatton/langea/runtime/vllm/bin/python
 CONFIG="${CONFIG_PATH:-${SOURCE_ROOT}/configs/pilot80_factorial_causal_mediation_v1.json}"

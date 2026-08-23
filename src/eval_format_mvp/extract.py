@@ -2,10 +2,17 @@
 
 from __future__ import annotations
 
+import os
 from pathlib import Path
 from typing import Any
 
 from .io import MVPError, load_jsonl, sha256_file, write_json, write_jsonl
+
+# Must be set before any CUDA context is created (first torch.cuda.* call
+# anywhere in the process), so this runs at import time rather than inside
+# extract_activations. Required for torch.use_deterministic_algorithms to
+# make cuBLAS reduction order reproducible across runs.
+os.environ.setdefault("CUBLAS_WORKSPACE_CONFIG", ":4096:8")
 
 
 def _write_npz_deflate1(path: Path, arrays: dict[str, Any]) -> None:
@@ -47,6 +54,13 @@ def extract_activations(
             "Activation extraction requires the 'extract' optional dependencies"
         ) from exc
 
+    # Pin deterministic GPU execution before any CUDA op runs (device queries
+    # below count): otherwise non-deterministic cuBLAS/cuDNN reduction order
+    # under BF16 accumulates into late-layer activation drift across runs.
+    torch.backends.cuda.matmul.allow_tf32 = False
+    torch.backends.cudnn.allow_tf32 = False
+    torch.use_deterministic_algorithms(True, warn_only=True)
+
     rows = load_jsonl(items_path)
     if not rows:
         raise MVPError("Rendered item file is empty")
@@ -67,6 +81,10 @@ def extract_activations(
         "revision": model_revision,
         "torch_dtype": dtype,
         "low_cpu_mem_usage": True,
+        # Pinned rather than left on transformers' auto-select, which can
+        # choose SDPA or flash-attention kernels with different, run-to-run
+        # non-deterministic reduction order.
+        "attn_implementation": "eager",
     }
     # Weights larger than one accelerator are sharded by accelerate. Per-block
     # forward hooks still fire on whichever device owns that block.

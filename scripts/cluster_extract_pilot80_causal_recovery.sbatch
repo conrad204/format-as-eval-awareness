@@ -32,6 +32,10 @@ export TRANSFORMERS_CACHE=/scratch/jppatton/langea/huggingface/transformers
 export TMPDIR=/scratch/jppatton/langea/tmp
 export HF_HUB_OFFLINE=1
 export TRANSFORMERS_OFFLINE=1
+# Deterministic cuBLAS reduction order (paired with torch.use_deterministic_algorithms
+# in extract.py); set at the process level so it predates CUDA context init
+# regardless of Python import order.
+export CUBLAS_WORKSPACE_CONFIG=:4096:8
 export PYTHONPATH="$SOURCE_ROOT/src"
 PYTHON=/bighome/jppatton/langea/runtime/vllm/bin/python
 nvidia-smi --query-gpu=name,uuid,driver_version --format=csv,noheader
