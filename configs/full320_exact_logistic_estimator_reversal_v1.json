@@ -10,6 +10,11 @@
     "first_run_status": "invalid_code_defect_not_evidence",
     "first_run_observed": "All positive rules passed before the mismatch was found during mandatory audit."
   },
+  "implementation_audit_amendment": {
+    "amended_utc": "2026-08-23T10:51:37Z",
+    "status": "before_any_valid_corrected_run_outcome",
+    "changes": "Pin and validate source LDA result/archive hashes and metadata; assert canonical row identity and complete finite score cells; verify activation item ordering; fail on logistic nonconvergence; persist OOF scores and convergence audits; bind analysis/helper hashes in the manifest; and plot bootstrap intervals. Estimands, estimator settings, assignment seeds, endpoints, thresholds, and decision rules are unchanged."
+  },
   "scientific_question": "Does a standard L2 logistic probe recover a mixed-environment coverage benefit under exact row/block balance where diagonal LDA yields a cost, making the substantive conclusion estimator-dependent?",
   "known_prior": {
     "loose_8b_logistic": {
@@ -40,7 +45,13 @@
       "activation_sha256": "e6a71be599e27fd846211e8e6ef215e4fb695a76c3415dc157c1450a134cd1b4",
       "n_layers": 32,
       "hidden_size": 4096,
-      "lda_result_path": "artifacts/exploratory/full320_strict_equal_rows_8b_scale_v1_20260823/strict_equal_rows_results.json"
+      "lda_result_path": "artifacts/exploratory/full320_strict_equal_rows_8b_scale_v1_20260823/strict_equal_rows_results.json",
+      "expected_layer": 12,
+      "lda_source_run_id": "full320_strict_equal_rows_8b_scale_v1_20260823",
+      "lda_source_analysis": "full320_strict_equal_rows_8b_scale_v1",
+      "lda_result_sha256": "8479f1be2ead7665ffd58610402e87d7a09fcca6c13a2893c3c2375938401c55",
+      "lda_score_filename": "primary_scores.npz",
+      "lda_score_sha256": "ffed83e84e3ae89670872d78ffe3deb50c9f3b92adba172efdae1e7be248a386"
     },
     {
       "model_id": "meta-llama/Llama-3.1-70B-Instruct",
@@ -49,7 +60,13 @@
       "activation_sha256": "02018659ad8f68101d8ec35467321e791831e05b4d8d628f21e8fe222f6da8e2",
       "n_layers": 80,
       "hidden_size": 8192,
-      "lda_result_path": "artifacts/exploratory/full320_strict_equal_rows_v1_20260823_r2/strict_equal_rows_results.json"
+      "lda_result_path": "artifacts/exploratory/full320_strict_equal_rows_v1_20260823_r2/strict_equal_rows_results.json",
+      "expected_layer": 30,
+      "lda_source_run_id": "full320_strict_equal_rows_v1_20260823_r2",
+      "lda_source_analysis": "full320_strict_equal_rows_v1",
+      "lda_result_sha256": "43179ec13567287ed7a4ea637c81d773a47055c5ed7a384dcb63668e4412e3f7",
+      "lda_score_filename": "primary_scores.npz",
+      "lda_score_sha256": "130584338ab972dee37ccaab6c211fa418ce3a7d5dd2caba6734c22cce26c2e6"
     },
     {
       "model_id": "meta-llama/Llama-3.3-70B-Instruct",
@@ -58,7 +75,13 @@
       "activation_sha256": "d455140f2dce01e1bd4e1a8333454a494b1e5de0df0428779a2faa43bc80c031",
       "n_layers": 80,
       "hidden_size": 8192,
-      "lda_result_path": "artifacts/exploratory/full320_strict_equal_rows_v1_20260823_r2/strict_equal_rows_results.json"
+      "lda_result_path": "artifacts/exploratory/full320_strict_equal_rows_v1_20260823_r2/strict_equal_rows_results.json",
+      "expected_layer": 30,
+      "lda_source_run_id": "full320_strict_equal_rows_v1_20260823_r2",
+      "lda_source_analysis": "full320_strict_equal_rows_v1",
+      "lda_result_sha256": "43179ec13567287ed7a4ea637c81d773a47055c5ed7a384dcb63668e4412e3f7",
+      "lda_score_filename": "primary_scores.npz",
+      "lda_score_sha256": "130584338ab972dee37ccaab6c211fa418ce3a7d5dd2caba6734c22cce26c2e6"
     }
   ],
   "depth": {
@@ -103,13 +126,14 @@
     "negative": "either aggregate point is nonpositive."
   },
   "claim_scope": {
-    "allowed_if_positive": "Under identical exact-row data, the inferred benefit of mixed format/template coverage reverses between two standard linear probe estimators, so the substantive conclusion is estimator-dependent.",
+    "allowed_if_positive": "On the fixed exact-row data and q=0.375 held-family endpoint, the mixed-minus-best-specialist observational decoding contrast changes sign between the prespecified L2-logistic and diagonal-LDA probe pipelines; the substantive contrast is pipeline-dependent.",
     "prohibited": ["one estimator is universally correct", "evaluation awareness", "behavioral or causal model effect", "pure format effect", "universal model claim"]
   },
   "outputs": {
     "result_json": "estimator_reversal_results.json",
     "table_tsv": "estimator_reversal_metrics.tsv",
     "figure": "estimator_reversal_matrix.png",
-    "manifest_json": "run_manifest.json"
+    "manifest_json": "run_manifest.json",
+    "score_npz": "estimator_oof_scores.npz"
   }
 }

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 from pathlib import Path
 
 import numpy as np
@@ -18,6 +19,7 @@ def test_fit_logistic_oof_separates_synthetic_pairs() -> None:
     pair_a = (("b1", "p1", "benchmark", "t1"), 0, 1)
     pair_b = (("b2", "p2", "benchmark", "t2"), 2, 3)
     split = {
+        "held_family": "fg-test",
         "test_indices": np.asarray([4, 5], dtype=np.int32),
         "regime_pairs": {
             "benchmark_only": [pair_a, pair_b],
@@ -26,9 +28,11 @@ def test_fit_logistic_oof_separates_synthetic_pairs() -> None:
         },
     }
     probe = {"C": 0.1, "penalty": "l2", "solver": "lbfgs", "max_iter": 3000, "tol": 1e-4, "random_state": 0}
-    outputs = fit_logistic_oof(data, [split], [7], probe)
+    outputs, diagnostics = fit_logistic_oof(data, [split], [7], probe)
     assert outputs["mixed_seed_7"][5] > outputs["mixed_seed_7"][4]
     assert np.isfinite(outputs["mixed_seed_7"][4:]).all()
+    assert len(diagnostics) == 3
+    assert all(row["converged"] for row in diagnostics)
 
 
 def test_point_summary_computes_logistic_minus_lda_interaction() -> None:
@@ -44,10 +48,32 @@ def test_point_summary_computes_logistic_minus_lda_interaction() -> None:
 
 
 def test_load_lda_scores_filters_model_and_depth() -> None:
-    path = Path("artifacts/exploratory/full320_strict_equal_rows_v1_20260823_r2/strict_equal_rows_results.json")
-    outputs, source = load_lda_scores(path, "meta-llama/Llama-3.1-70B-Instruct", 0.375, 11520)
+    config = json.loads(Path("configs/full320_exact_logistic_estimator_reversal_v1.json").read_text())
+    model_config = config["models"][1]
+    path = Path(model_config["lda_result_path"])
+    source_result = json.loads(path.read_text())
+    canonical = np.asarray(source_result["scores"]["canonical_row_indices"], dtype=np.int32)
+    seeds = config["probe"]["assignment_seeds"]
+    outputs, source = load_lda_scores(path, model_config, 0.375, 11520, canonical, seeds)
     assert len(outputs) == 10
     assert source["source_run_id"] == "full320_strict_equal_rows_v1_20260823_r2"
     assert all(int(np.isfinite(scores).sum()) == 7040 for scores in outputs.values())
     assert source["source_analysis"] == "full320_strict_equal_rows_v1"
     assert source["source_split_audit_sha256"]
+
+
+def test_load_lda_scores_rejects_canonical_permutation() -> None:
+    config = json.loads(Path("configs/full320_exact_logistic_estimator_reversal_v1.json").read_text())
+    model_config = config["models"][1]
+    path = Path(model_config["lda_result_path"])
+    source_result = json.loads(path.read_text())
+    canonical = np.asarray(source_result["scores"]["canonical_row_indices"], dtype=np.int32)
+    with pytest.raises(ValueError, match="canonical row mismatch"):
+        load_lda_scores(
+            path,
+            model_config,
+            0.375,
+            11520,
+            canonical[::-1],
+            config["probe"]["assignment_seeds"],
+        )
