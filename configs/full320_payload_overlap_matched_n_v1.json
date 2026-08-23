@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "protocol_id": "full320_payload_overlap_matched_n_v1",
+  "frozen_utc": "2026-08-23T08:38:45Z",
+  "status": "post_pilot_discovery_preregistered_before_full320_equal_row_outcomes",
+  "pre_outcome_amendment": {
+    "amended_utc": "2026-08-23T08:41:03Z",
+    "status": "before_any_full320_equal_row_or_payload_overlap_outcome_inspection",
+    "reason": "The originally written whole-score-vector condition exchange would require hundreds of thousands of repeated AUC sorts. The randomization unit is retained but the statistic is made computationally explicit as the mean complete-payload-block exposure effect; no outcome was inspected."
+  },
+  "scientific_question": "Does exposure to the same payload blocks during probe fitting explain the apparent mixed-environment ranking advantage under held-out purpose-family evaluation?",
+  "prior_observation": {
+    "path": "artifacts/exploratory/pilot80_matched_equal_rows_v1_20260823/matched_equal_rows_results.json",
+    "sha256": "c7ca9f1c87389d58ddc915c2f2c787af3dfbebc0f46eeb5ed5ac1b3fa4be38ba",
+    "scope": "post_outcome_discovery_only",
+    "observed": "On the exactly matched pilot80 bank, the standard held-out-family mixed-minus-best-single macro-format ROC AUC was +0.0137911, while the double-held-out payload result was -0.0113589. This motivates, but does not test, the content-overlap hypothesis.",
+    "excluded_from_confirmation_inference": true
+  },
+  "confirmation_scope": "The frozen full320-v3 bank and two Llama 70B checkpoints. The full320 equal-row run was still executing and no full320 equal-row outcome had been inspected when this protocol was frozen.",
+  "dataset": {
+    "items_path": "v3-activations/rendered_items_v3_full320_8-17-2026.jsonl",
+    "items_sha256": "5528819d74e696d1a595062047a829836dfde1d2a45287b06a5ac1ba5d1b6c67",
+    "n_rows": 11520,
+    "n_payload_blocks": 320,
+    "purpose_families": ["fg1", "fg2", "fg3", "fg4", "fg5"],
+    "test_rows": "nonlegacy stated rows in one held-out purpose family and one held-out payload fold",
+    "pair_unit": "payload_block_id plus purpose_pair_id plus format plus template_id, containing one deployment and one evaluation row"
+  },
+  "models": [
+    {
+      "model_id": "meta-llama/Llama-3.1-70B-Instruct",
+      "revision": "1605565b47bb9346c5515c34102e054115b4f98b",
+      "activation_path": "v3-activations/activations/llama31_70b/activations_all_layers.npz",
+      "activation_sha256": "02018659ad8f68101d8ec35467321e791831e05b4d8d628f21e8fe222f6da8e2",
+      "n_layers": 80,
+      "hidden_size": 8192
+    },
+    {
+      "model_id": "meta-llama/Llama-3.3-70B-Instruct",
+      "revision": "6f6073b423013f6a7d4d9f39144961bfbfbc386b",
+      "activation_path": "v3-activations/activations/llama33_70b/activations_all_layers.npz",
+      "activation_sha256": "d455140f2dce01e1bd4e1a8333454a494b1e5de0df0428779a2faa43bc80c031",
+      "n_layers": 80,
+      "hidden_size": 8192
+    }
+  ],
+  "activation_contract": {
+    "dtype": "float32",
+    "layer_semantics": "zero_based_transformer_block_output_before_final_model_norm",
+    "token_position": "last_prompt_token_after_chat_template_before_generation",
+    "chat_template": "tokenizer.apply_chat_template(user_message, add_generation_prompt=True)",
+    "add_special_tokens": false
+  },
+  "paired_conditions": {
+    "payload_heldout": "Training omits the payload fold used for test.",
+    "payload_exposed": "Training includes the test payload fold but omits the next cyclic payload fold.",
+    "folds": "Five topic-stratified stable-SHA256 payload folds. For test fold j, the exposed condition omits fold (j+1) mod 5.",
+    "exact_matching": "Within topic, blocks in the test and cyclic placebo folds are paired by stable SHA256 rank. Common training blocks are identical. Each swapped block pair uses the minimum available benchmark/casual pair count across both blocks and environments. Thus paired conditions use exactly the same number of blocks, pair units, labels, rows, topics, and format assignments.",
+    "mixed_assignment": "Assign benchmark/casual to condition-independent paired block slots, exactly balanced within topic, so common blocks and swapped block pairs share assignments across conditions."
+  },
+  "depths": {
+    "normalized": [0.25, 0.375, 0.5, 0.625, 0.75],
+    "mapping": "floor(q * (n_layers - 1) + 0.5)"
+  },
+  "probe": {
+    "primary": "diagonal_lda",
+    "standardization": "training-row StandardScaler per split and regime",
+    "ridge_fraction": 0.1,
+    "score": "class-1 minus class-0 diagonal Gaussian discriminant with equal class priors",
+    "assignment_seeds": [20260823, 20260824, 20260825, 20260826, 20260827, 20260828, 20260829, 20260830]
+  },
+  "primary_estimand": {
+    "endpoint": "macro_format_roc_auc",
+    "within_condition_gain": "mixed minus max(benchmark-only, casual-only), with max recomputed inside each resample",
+    "exposure_effect": "payload_exposed gain minus payload_heldout gain, paired on every model, depth, assignment seed, held-out family, payload fold, and test row",
+    "rationale": "ROC AUC is frozen as the sole confirmation endpoint because the pilot discovery showed a ranking/zero-threshold dissociation; balanced accuracy remains a required descriptive secondary endpoint. Confirmation uses a distinct item bank."
+  },
+  "uncertainty": {
+    "unit": "complete payload_block_id",
+    "bootstrap_resamples": 2000,
+    "bootstrap_seed": 20261031,
+    "same_resamples_across": "both conditions, models, depths, families, regimes, and assignment seeds",
+    "interval": "percentile 95 percent"
+  },
+  "falsification": {
+    "paired_sign_flip_draws": 4096,
+    "paired_sign_flip_seed": 20261101,
+    "operation": "Compute the full mixed-minus-best-single macro-format ROC AUC exposure effect separately within each complete payload block, average block effects for the observed statistic, independently sign-flip the 320 paired block effects per draw, and compare the observed mean with the finite randomization distribution.",
+    "finite_null_p": "(1 + count(null exposure effect >= observed exposure effect)) / 4097"
+  },
+  "decision_rules": {
+    "positive": "aggregate exposure-effect ROC AUC bootstrap CI lower bound > 0; sign-flip p <= 0.05; both checkpoint point estimates > 0; at least three of five depth point estimates > 0",
+    "mixed": "aggregate point estimate > 0 but any positive rule fails",
+    "negative": "aggregate point estimate <= 0",
+    "report_regardless": ["full condition-specific gains", "balanced-accuracy exposure effect", "model and depth trajectories", "all audit hashes"]
+  },
+  "claim_scope": {
+    "allowed_if_positive": "Same-payload exposure inflates the measured cross-format purpose-ranking benefit under this frozen probe protocol and bank.",
+    "prohibited": ["evaluation awareness", "behavioral steering", "training-time model causality", "content-independent format invariance", "all model populations"]
+  },
+  "outputs": {
+    "result_json": "payload_overlap_results.json",
+    "table_tsv": "payload_overlap_metrics.tsv",
+    "figure": "payload_overlap_matrix.png",
+    "manifest_json": "run_manifest.json"
+  }
+}
