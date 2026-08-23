@@ -39,7 +39,11 @@ export CUBLAS_WORKSPACE_CONFIG=:4096:8
 export PYTHONPATH="$SOURCE_ROOT/src"
 PYTHON=/bighome/jppatton/langea/runtime/vllm/bin/python
 nvidia-smi --query-gpu=name,uuid,driver_version --format=csv,noheader
-"$PYTHON" -m eval_format_mvp extract \
+# The full `eval_format_mvp` module CLI unconditionally loads
+# catalogs/topics.yaml (needed for payload/frame generation, not extraction);
+# this scoped source snapshot intentionally omits catalogs/, so invoke the
+# catalog-free extraction entry point directly instead.
+"$PYTHON" "$SOURCE_ROOT/scripts/extract_activations.py" \
   --items "$ITEMS_PATH" \
   --out-dir "$OUT_DIR" \
   --model "$MODEL_PATH" \
