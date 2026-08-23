@@ -659,7 +659,10 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     started = time.time()
     config_path = args.config.resolve()
     config = json.loads(config_path.read_text(encoding="utf-8"))
-    if config.get("protocol_id") != "full320_strict_equal_rows_v1" or config.get("schema_version") != 2:
+    if config.get("protocol_id") not in {
+        "full320_strict_equal_rows_v1",
+        "full320_strict_equal_rows_8b_scale_v1",
+    } or config.get("schema_version") != 2:
         raise ValueError("unexpected protocol")
     data_root = args.data_root.resolve()
     items_path = data_root / config["dataset"]["items_path"]

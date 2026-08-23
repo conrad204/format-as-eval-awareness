@@ -1,0 +1,130 @@
+{
+  "schema_version": 2,
+  "protocol_id": "full320_strict_equal_rows_8b_scale_v1",
+  "frozen_utc": "2026-08-23T09:54:41Z",
+  "status": "preregistered_8b_replication_and_scale_interaction_before_strict_8b_outcomes",
+  "scientific_question": "Does exact-row mixed format/template probe training benefit Llama-3.1-8B while harming matched-protocol Llama-3.1-70B, yielding a within-family size-associated reversal?",
+  "known_prior": {
+    "full320_8b_development": {
+      "path": "artifacts/full320_equal_n_llama31_8b_l12.json",
+      "known_result": "At layer 12 under earlier block-balanced but not exact-row-balanced code, four mixed-format AUC and balanced-accuracy point estimates exceeded both controls.",
+      "excluded_from_confirmation_inference": true
+    },
+    "pilot80_exact_matched": {
+      "path": "artifacts/exploratory/pilot80_matched_equal_rows_v1_20260823/matched_equal_rows_results.json",
+      "known_result": "8B aggregate mixed-minus-best AUC was +0.0028713 and balanced accuracy +0.0569531; Llama-3.1-70B was +0.0217292 AUC and -0.011875 balanced accuracy.",
+      "excluded_from_full320_confirmation_inference": true
+    },
+    "full320_70b_strict": {
+      "path": "artifacts/exploratory/full320_strict_equal_rows_v1_20260823_r2/strict_equal_rows_results.json",
+      "known_result": "Llama-3.1-70B mixed-minus-best aggregate AUC was -0.00263184 and balanced accuracy -0.00384961 across five fixed depths.",
+      "role": "frozen comparator"
+    }
+  },
+  "dataset": {
+    "items_path": "v3-activations/rendered_items_v3_full320_8-17-2026.jsonl",
+    "items_sha256": "5528819d74e696d1a595062047a829836dfde1d2a45287b06a5ac1ba5d1b6c67",
+    "n_rows": 11520,
+    "n_payload_blocks": 320,
+    "purpose_families": ["fg1", "fg2", "fg3", "fg4", "fg5"],
+    "training_rows": "render_slot == stated and legacy == false and purpose_family_id != held_out_family",
+    "test_rows": "render_slot == stated and legacy == false and purpose_family_id == held_out_family",
+    "pair_unit": "payload_block_id plus purpose_pair_id plus format plus template_id; one evaluation and one deployment row",
+    "exact_row_balance": "For every held family and block, stable-hash select the same minimum pair count in both stored environments; every regime has identical blocks, pair counts, class counts, and rows.",
+    "mixed_assignment": "Exactly balance benchmark/casual block assignments within topic using the eight fixed seeds.",
+    "leakage_guard": "Held-out purpose-family rows are excluded from all probe fitting and preprocessing."
+  },
+  "models": [
+    {
+      "model_id": "meta-llama/Llama-3.1-8B-Instruct",
+      "revision": "0e9e39f249a16976918f6564b8830bc894c89659",
+      "activation_path": "v3-activations/activations/llama31_8b/activations_all_layers.npz",
+      "activation_sha256": "e6a71be599e27fd846211e8e6ef215e4fb695a76c3415dc157c1450a134cd1b4",
+      "n_layers": 32,
+      "hidden_size": 4096
+    }
+  ],
+  "activation_contract": {
+    "dtype": "float32",
+    "layer_semantics": "zero_based_transformer_block_output_before_final_model_norm",
+    "token_position": "last_prompt_token_after_chat_template_before_generation",
+    "chat_template": "tokenizer.apply_chat_template(user_message, add_generation_prompt=True)",
+    "add_special_tokens": false
+  },
+  "depths": {
+    "normalized": [0.25, 0.375, 0.5, 0.625, 0.75],
+    "mapping": "floor(q * (n_layers - 1) + 0.5)",
+    "summary": "unweighted mean over all five fixed depths"
+  },
+  "probe": {
+    "primary": "diagonal_lda",
+    "standardization": "training-row StandardScaler per fold and regime",
+    "ridge_fraction": 0.1,
+    "ridge_definition": "ridge fraction times median finite positive pooled within-class variance",
+    "score": "class-1 minus class-0 diagonal Gaussian discriminant",
+    "threshold": 0.0,
+    "assignment_seeds": [20260823, 20260824, 20260825, 20260826, 20260827, 20260828, 20260829, 20260830]
+  },
+  "metrics": {
+    "per_format": ["roc_auc", "balanced_accuracy"],
+    "macro_format": "unweighted mean of benchmark and casual metrics",
+    "worst_format": "minimum of benchmark and casual metrics",
+    "primary_contrast": "mixed minus max(benchmark-only, casual-only), with max recomputed inside every resample",
+    "co_primary_endpoints": ["macro_format_roc_auc", "macro_format_balanced_accuracy"]
+  },
+  "uncertainty": {
+    "unit": "complete payload_block_id",
+    "bootstrap_resamples": 2000,
+    "bootstrap_seed": 20260831,
+    "same_resamples_across": "8B and the frozen 70B comparator, depths, families, regimes, formats, metrics, and seeds",
+    "interval": "percentile 95 percent"
+  },
+  "falsification": {
+    "training_pair_label_swap_draws": 32,
+    "training_pair_label_swap_seeds": [20260901, 20260902, 20260903, 20260904, 20260905, 20260906, 20260907, 20260908, 20260909, 20260910, 20260911, 20260912, 20260913, 20260914, 20260915, 20260916, 20260917, 20260918, 20260919, 20260920, 20260921, 20260922, 20260923, 20260924, 20260925, 20260926, 20260927, 20260928, 20260929, 20260930, 20260931, 20260932],
+    "label_swap": "Independently swap labels within each training pair; evaluate against true held-out labels.",
+    "finite_null_p": "(1 + count(null aggregate contrast >= observed)) / 33",
+    "method_robustness": [
+      {"row_l2_normalize": false, "ridge_fraction": 0.01},
+      {"row_l2_normalize": false, "ridge_fraction": 1.0},
+      {"row_l2_normalize": true, "ridge_fraction": 0.1}
+    ],
+    "family_influence": "report each held-out family",
+    "format_influence": "report both formats and worst format",
+    "double_heldout_payload_robustness": {
+      "depth": 0.375,
+      "block_folds": 5,
+      "block_fold_rule": "topic-stratified stable SHA256 rank modulo 5",
+      "train": "exclude held family and held payload fold",
+      "test": "held family intersect held payload fold",
+      "metric": "same contrasts",
+      "success": "both point estimates greater than 0"
+    }
+  },
+  "success_criteria": {
+    "8b_replication": "8B aggregate AUC and balanced-accuracy bootstrap CI lower bounds > 0, all seed AUC points > 0, label-null p <= 0.05, all robustness AUC points > 0, and double-heldout point estimates > 0.",
+    "scale_interaction_primary": "8B minus Llama-3.1-70B aggregate mixed-minus-best contrast has common-block bootstrap CI lower bound > 0 for both AUC and balanced accuracy.",
+    "scale_interaction_replication": "interaction point estimate > 0 at at least four of five depths for both endpoints; full trajectories reported.",
+    "decision_positive": "8B replication, both scale-interaction primary endpoints, and interaction depth replication all pass.",
+    "decision_mixed": "aggregate scale interaction is positive for both endpoints but any positive criterion fails.",
+    "decision_negative": "either aggregate scale interaction endpoint is nonpositive."
+  },
+  "required_outputs": {
+    "result_json": "strict_equal_rows_results.json",
+    "metrics_tsv": "strict_equal_rows_metrics.tsv",
+    "figure": "strict_equal_rows_matrix.png",
+    "manifest_json": "run_manifest.json"
+  },
+  "scale_interaction_outputs": {
+    "result_json": "scale_interaction_results.json",
+    "table_tsv": "scale_interaction_metrics.tsv",
+    "figure": "scale_interaction_matrix.png",
+    "manifest_json": "scale_interaction_manifest.json"
+  },
+  "evidence_boundary": {
+    "grade": "preregistered_within_family_size_associated_replication",
+    "allowed_claim": "Under the same frozen full320 bank and exact probe protocol, mixed-environment coverage has different held-out purpose-decoding effects in Llama-3.1 8B and 70B.",
+    "prohibited_claims": ["evaluation awareness", "behavioral steering", "model causal mechanism", "pure format effect", "training-time model causality", "universal scaling law"],
+    "limitations": ["The 8B prior layer-12 development result was known before freeze.", "The 70B comparator result was known before freeze.", "The interaction is a confirmation of a directional size-associated hypothesis, not a blinded discovery.", "Model size remains confounded with checkpoint-specific training dynamics even within Llama-3.1.", "The item bank is fixed and stored environments confound format with template populations.", "The endpoint is observational probe decoding, not behavior."]
+  }
+}
