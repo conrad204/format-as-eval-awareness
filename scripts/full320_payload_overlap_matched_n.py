@@ -58,6 +58,10 @@ except ImportError:
 CONDITIONS = ("payload_heldout", "payload_exposed")
 ENDPOINTS = ("macro_format_roc_auc", "macro_format_balanced_accuracy")
 PRIMARY_VARIANT = "raw_ridge_0.1"
+def normalized_layer_map(n_layers: int, depths: Sequence[float]) -> dict[float, int]:
+    return {float(depth): rounded_layer(float(depth), n_layers) for depth in depths}
+
+
 
 
 def _topic_slots(
@@ -447,7 +451,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         expected_shape = [len(rows), int(model_config["n_layers"]), int(model_config["hidden_size"])]
         x_path = extract_x_memmap(npz_path, args.memmap_root.resolve(), expected_shape)
         X = np.load(x_path, mmap_mode="r", allow_pickle=False)
-        layer_map = {depth: rounded_layer(int(model_config["n_layers"]), depth) for depth in depths}
+        layer_map = normalized_layer_map(int(model_config["n_layers"]), depths)
         model_audits.append({"model": model, "activation_sha256": sha256_file(npz_path), "layer_map": layer_map})
         for depth, layer in layer_map.items():
             layer_data = X[:, layer, :]

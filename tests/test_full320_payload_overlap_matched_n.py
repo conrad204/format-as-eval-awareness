@@ -10,8 +10,20 @@ from scripts.full320_payload_overlap_matched_n import (
     ENDPOINTS,
     _point_summary,
     build_paired_splits,
+    normalized_layer_map,
 )
 from scripts.full320_strict_equal_rows import REGIME_CONTROLS, parse_rows
+
+
+def test_normalized_layer_map_uses_depth_before_layer_count() -> None:
+    assert normalized_layer_map(80, [0.25, 0.375, 0.5, 0.625, 0.75]) == {
+        0.25: 20,
+        0.375: 30,
+        0.5: 40,
+        0.625: 49,
+        0.75: 59,
+    }
+
 
 
 def test_real_splits_exactly_match_rows_and_payload_exposure() -> None:
