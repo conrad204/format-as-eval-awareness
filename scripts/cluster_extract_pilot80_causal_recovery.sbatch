@@ -15,10 +15,12 @@ set -euo pipefail
 : "${ITEMS_PATH:?set frozen pilot80 meta.jsonl}"
 : "${OUT_DIR:?set fresh output directory}"
 : "${PRIMARY_LAYER:?set an in-range primary layer}"
-case "$SOURCE_ROOT:$MODEL_PATH:$ITEMS_PATH:$OUT_DIR" in
-  *:/scratch/jppatton/langea/*:/scratch/jppatton/langea/*:/scratch/jppatton/langea/*:/scratch/jppatton/langea/*) ;;
-  *) echo "all project paths must stay under /scratch/jppatton/langea" >&2; exit 2 ;;
-esac
+for path in "$SOURCE_ROOT" "$MODEL_PATH" "$ITEMS_PATH" "$OUT_DIR"; do
+  case "$path" in
+    /scratch/jppatton/langea/*) ;;
+    *) echo "project path outside /scratch/jppatton/langea: $path" >&2; exit 2 ;;
+  esac
+done
 if [[ -e "$OUT_DIR" ]]; then
   echo "refusing occupied immutable output: $OUT_DIR" >&2
   exit 2
