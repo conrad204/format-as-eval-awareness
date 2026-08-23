@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "protocol_id": "pilot80_factorial_causal_reextraction_v1",
+  "frozen_utc": "2026-08-23T12:23:10Z",
+  "status": "preregistered_before_reextraction_and_before_any_causal_intervention_outcome",
+  "known_prior": {
+    "observational_results": "All original pilot80 geometry and probe results are known and remain development evidence.",
+    "failed_preflight": "The v1 causal protocol produced no causal raw records. Exact archived activations did not reproduce at the frozen target-layer gate on available H100 or A100 hardware; the first 70B attempt also exposed a corrupted imported NPZ copy that was replaced by exact frozen bytes before the definitive gate attempt.",
+    "failed_job_ids": [53274655, 53274656, 53274658, 53274659, 53274660],
+    "prohibited_use": "The failed gates may motivate environment-matched re-extraction but may not change estimands, controls, acceptance thresholds, layer selection rules, or interpretation."
+  },
+  "scientific_role": "Fresh environment-matched numerical replication of the frozen pilot80 activation bank solely to make the preregistered causal intervention executable on the same checkpoint, hardware family, software environment, prompts, and batch shape used for baseline capture.",
+  "dataset": {
+    "items_path": "activations_dataset/activations/llama31_8b_pilot80/meta.jsonl",
+    "items_path_cluster": "/scratch/jppatton/langea/runs/tae_2026/pilot_activation_import_dff7791d/activations/llama31_8b_pilot80/meta.jsonl",
+    "items_sha256": "0dbcb9802924d3c2063fce87e24250d1a3430fd24856ea83b132e606843f6638",
+    "n_items": 1760,
+    "canonical_item_order_required": true
+  },
+  "extraction_contract": {
+    "dtype_compute": "bfloat16",
+    "dtype_stored": "float32",
+    "position": "last_prompt_token_after_chat_template_before_generation",
+    "layer_semantics": "zero_based_transformer_block_output_before_final_model_norm",
+    "chat_template": "tokenizer.apply_chat_template([{role:user,content:text}], tokenize=False, add_generation_prompt=True)",
+    "add_special_tokens": false,
+    "padding_side": "left",
+    "batch_size": 1,
+    "max_length": 2048,
+    "device_map": "auto",
+    "all_transformer_layers": true,
+    "hardware": "NVIDIA H100 80GB; causal baseline and interventions must use the same GPU family and count per model",
+    "source_files": {
+      "scripts/cluster_extract_pilot80_causal_recovery.sbatch": "d1f18fb3b8e2a3915d1d5de48c42e17091ef98cd449d1ca47707c9bbd3ebb077",
+      "src/eval_format_mvp/extract.py": "cc2c73c0d24b02dfc47cdaecb2423bd875008edf865987b7a3525c63507bb40e",
+      "src/eval_format_mvp/cli.py": "a12d674dd0dab265c3fddd8c064726e76e6d637aad896f5bb68a533b9847f4bc",
+      "src/eval_format_mvp/io.py": "b32d10a8d299ea02f195d68915ad94385151f583f874c5125b4cc16d4796fb7a"
+    }
+  },
+  "models": [
+    {
+      "model_id": "meta-llama/Llama-3.1-8B-Instruct",
+      "revision": "0e9e39f249a16976918f6564b8830bc894c89659",
+      "checkpoint_path_cluster": "/scratch/jppatton/langea/confirmation_work/llama31_8b_model_0e9e39f2",
+      "gpu_count": 1,
+      "n_layers": 32,
+      "hidden_size": 4096,
+      "primary_layer_for_compatibility_archive": 12,
+      "output_dir_cluster": "/scratch/jppatton/langea/runs/tae_2026/pilot80_causal_reextract_8b_h100_batch1_v1"
+    },
+    {
+      "model_id": "meta-llama/Llama-3.3-70B-Instruct",
+      "revision": "6f6073b423013f6a7d4d9f39144961bfbfbc386b",
+      "checkpoint_path_cluster": "/scratch/jppatton/langea/huggingface/hub/models--meta-llama--Llama-3.3-70B-Instruct/snapshots/6f6073b423013f6a7d4d9f39144961bfbfbc386b",
+      "gpu_count": 4,
+      "n_layers": 80,
+      "hidden_size": 8192,
+      "primary_layer_for_compatibility_archive": 24,
+      "output_dir_cluster": "/scratch/jppatton/langea/runs/tae_2026/pilot80_causal_reextract_33_70b_h100x4_batch1_v1"
+    }
+  ],
+  "post_extraction_binding": {
+    "allowed_before_causal_execution": [
+      "Bind exact output file hashes and immutable paths.",
+      "Verify item bytes, item order, tensor shape, layer indices, token lengths, finite float32 values, checkpoint revision, tokenizer bytes, GPU inventory, and extraction source hashes.",
+      "Run the already-frozen pilot80 factorial geometry analysis and apply the existing selection rule: among layers with held stated-purpose AUC at least 0.80, choose minimum and maximum normalized C-over-A interaction ratio.",
+      "Create a v2 causal mediation config by copying every estimand, fold, seed, intervention, control, gate, and decision rule from pilot80_factorial_causal_mediation_v1; change only activation paths/hashes, selected layers if the frozen selection rule requires it, and hardware GPU counts."
+    ],
+    "forbidden": [
+      "Inspect any nonzero intervention output before the v2 causal config and plans are hash-frozen.",
+      "Change acceptance thresholds after observing reproduction or causal results.",
+      "Mix archived directions with re-extracted baselines.",
+      "Call numerical re-extraction an independent dataset replication."
+    ]
+  },
+  "stopping_rule": "If either re-extraction fails its immutable contract or same-environment batch-one baseline reproduction still fails the unchanged gate, preserve the failure and classify the causal program as technically blocked. Otherwise execute the complete frozen factorial causal protocol without selective model or endpoint omission."
+}

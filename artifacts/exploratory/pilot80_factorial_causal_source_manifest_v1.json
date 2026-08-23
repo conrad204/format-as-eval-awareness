@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "status": "pre_outcome_implementation_frozen",
+  "frozen_utc": "2026-08-23T12:05:48Z",
+  "protocol_commit": "804a667",
+  "protocol_sha256": "5e1b8a3bab8fc48e28ba11d44ddc7e940aebe79e1e96c986d8dc0fbfd6c03fbf",
+  "files": {
+    "configs/pilot80_factorial_causal_mediation_v1.json": "5e1b8a3bab8fc48e28ba11d44ddc7e940aebe79e1e96c986d8dc0fbfd6c03fbf",
+    "scripts/build_pilot80_factorial_causal_plan.py": "0c6f61236ae04c35fbefa434a23518b255bc7169140bfc6865a484c3cfdc5cb8",
+    "scripts/run_pilot80_factorial_causal.py": "9dfed609044c6faeb08084fcc92ba9895082bb6795cc7b54bdab6721959b8135",
+    "scripts/analyze_pilot80_factorial_causal.py": "0c4a271607e4d620a80e8b828916ead5c4b263d6e498f00de25259895165f147",
+    "scripts/cluster_run_pilot80_factorial_causal.sbatch": "4e91944a57a631741bda32f2387cc82c0bf31acbdd31f494a4a42dbc75529f7d",
+    "tests/test_pilot80_factorial_causal.py": "7f9f448db2fee37cd0649ea6aa6ee3649462d05519c19c24d72218bea7648fb5",
+    "tests/test_analyze_pilot80_factorial_causal.py": "b830aa332d129d0bdf3da3fc46a8ad16e30ceaed979743e30659eb946f72380e"
+  },
+  "verification": {
+    "command": "python -m pytest -q tests/test_pilot80_factorial_causal.py tests/test_analyze_pilot80_factorial_causal.py --basetemp .pytest-tmp/factorial-all",
+    "result": "10 passed"
+  },
+  "causal_outcomes_inspected_before_freeze": false
+}
