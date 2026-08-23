@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "run_id": "devbunova_wrapper_scale_conclusion_20260822",
+  "status": "completed_development_negative_result_clean",
+  "analysis": "scientific_integration_of_wrapper_scale_v1_and_robustness_v3",
+  "repo_commit": "ef60217",
+  "dataset_repo_id": "Conradf/devbunova-2x2-activations",
+  "dataset_revision": "2cf59061d14ca98eff3d91f989f2ebaa86a03c05",
+  "models": {
+    "8b": {"model_id": "meta-llama/Llama-3.1-8B-Instruct", "model_revision": "unknown"},
+    "70b": {"model_id": "meta-llama/Llama-3.1-70B-Instruct", "model_revision": "unknown"},
+    "405b": {"model_id": "meta-llama/Llama-3.1-405B-Instruct", "model_revision": "unknown"}
+  },
+  "stored_dtype": "BF16 bit patterns in uint16",
+  "layer_semantics": "stored zero-based index only; extraction hook semantics undocumented",
+  "token_position": "undocumented and raw/template top1 tokens differ on more than 99 percent of selected items",
+  "split_definition": "Five deterministic cell-stratified folds over 816 exact full item IDs; exact item IDs paired across model and regime only.",
+  "regularization": "Diagonal LDA with ridge 0.1 times median positive pooled training-fold variance; robustness grid 0.01, 0.1, 1.0 and none/L2 row normalization.",
+  "seeds": {
+    "selection": 20260822,
+    "fold": 20260822,
+    "bootstrap": 20260823,
+    "label_permutation": 20260824,
+    "regime_swap": 20260901
+  },
+  "input_hashes": {
+    "primary_result": "bcc00bc563af19be05cba7e383ed586e63a0714d32382432cab77226d1347c17",
+    "primary_manifest": "7fa6e9eaf292919b4eb90b64b1b7a79ae31c73392600bb789dbb87829bfddbd2",
+    "robustness_result": "0cf35f3e48383eda22a9b747839257a99884a7c14a6e073631543fe280d0066a",
+    "robustness_manifest": "456dc898d95cfc1356b91133d0c141bdbcf2b9dc0be6c80e281dd38faad979e5"
+  },
+  "output_hashes": {
+    "conclusion.json": {
+      "sha256": "dbbf244eed7d4cbe406af6b04cb7d7f949cfa77b60cb81886a43feab73d0da4f",
+      "bytes": 6338
+    }
+  },
+  "evidence_grade": "development_negative_result_clean",
+  "limitations": [
+    "Core purpose cells are independent prompt distributions, not matched factorial payload blocks.",
+    "Raw/template operational semantics, exact model revisions, extraction hook semantics, and token position are undocumented.",
+    "The common-item swap null does not reject at the fixed 256-draw precision; p=0.0739299611.",
+    "No behavioral or interventional endpoint is evaluated.",
+    "This supporting assay does not satisfy a RULES.md section 15 sprint stop condition by itself."
+  ]
+}
