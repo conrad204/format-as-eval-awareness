@@ -28,6 +28,15 @@ def sha256_file(path: Path) -> str:
 
 def strict_json(value: Any) -> str:
     return json.dumps(value, sort_keys=True, allow_nan=False, separators=(",", ":"))
+def atomic_json(path: Path, value: Any) -> None:
+    tmp = path.with_name(path.name + ".tmp")
+    with tmp.open("w", encoding="utf-8", newline="\n") as handle:
+        handle.write(json.dumps(value, indent=2, sort_keys=True, allow_nan=False) + "\n")
+        handle.flush()
+        os.fsync(handle.fileno())
+    os.replace(tmp, path)
+
+
 
 
 def load_rows(path: Path) -> list[dict[str, Any]]:
@@ -340,6 +349,8 @@ def validate_resumed_raw(
             "intended_purpose": row["intended_purpose"], "format": row["format"],
             "source_layer": layer, "source_depth_label": source_meta["depth_label"],
             "target_layer": plan["model"]["target_layer"],
+            "token_position": -1, "inference_dtype": "bfloat16",
+            "common_residual_scale": float(source_meta["common_scale"]),
             "config_sha256": config_sha256, "plan_json_sha256": plan_json_sha256,
             "plan_npz_sha256": plan_npz_sha256, "script_sha256": script_sha256,
         }
@@ -352,19 +363,46 @@ def validate_resumed_raw(
                 raise ValueError(f"resumed condition metadata mismatch line {line_number}: {field}")
         if record.get("source_hook_count") != 1 or record.get("target_hook_count") != 1 or record.get("hook_count") != 1:
             raise ValueError(f"resumed hook count mismatch line {line_number}")
-        if not record.get("source_finite") or not record.get("target_finite"):
+        if record.get("source_finite") is not True or record.get("target_finite") is not True:
             raise ValueError(f"resumed finite gate mismatch line {line_number}")
         scores = record.get("readout_scores", {})
-        if set(scores) != {"purpose_benchmark", "purpose_casual", "format"} or not all(isinstance(v, (int, float)) and math.isfinite(v) for v in scores.values()):
+        if set(scores) != {"purpose_benchmark", "purpose_casual", "format"} or not all(
+            isinstance(value, (int, float)) and not isinstance(value, bool) and math.isfinite(value)
+            for value in scores.values()
+        ):
             raise ValueError(f"resumed readout schema mismatch line {line_number}")
+        if (
+            not isinstance(record.get("token_length"), int)
+            or isinstance(record.get("token_length"), bool)
+            or record["token_length"] < 1
+            or not isinstance(record.get("last_prompt_token_id"), int)
+            or isinstance(record.get("last_prompt_token_id"), bool)
+            or not isinstance(record.get("intervention_norm"), (int, float))
+            or isinstance(record.get("intervention_norm"), bool)
+            or not math.isfinite(record["intervention_norm"])
+            or record["intervention_norm"] < 0
+        ):
+            raise ValueError(f"resumed token or intervention metadata mismatch line {line_number}")
+        metric_names = (
+            "source_baseline_max_abs", "source_baseline_cosine",
+            "target_baseline_max_abs", "target_baseline_cosine",
+        )
+        metric_values = {name: record.get(name) for name in metric_names}
+        if not all(
+            isinstance(value, (int, float)) and not isinstance(value, bool) and math.isfinite(value)
+            for value in metric_values.values()
+        ):
+            raise ValueError(f"resumed baseline metric mismatch line {line_number}")
         if condition_id == "zero":
+            if (
+                metric_values["source_baseline_max_abs"] > 0.125
+                or metric_values["source_baseline_cosine"] < 0.999
+                or metric_values["target_baseline_max_abs"] > 0.125
+                or metric_values["target_baseline_cosine"] < 0.999
+            ):
+                raise ValueError(f"resumed baseline reproduction gate failure line {line_number}")
             baseline_key = (fold_id, layer, row_index)
-            baselines[baseline_key] = {
-                name: float(record[name]) for name in (
-                    "source_baseline_max_abs", "source_baseline_cosine",
-                    "target_baseline_max_abs", "target_baseline_cosine",
-                )
-            }
+            baselines[baseline_key] = {name: float(metric_values[name]) for name in metric_names}
     if any(key[-1] != "zero" and (key[2], key[1], key[3]) not in baselines for key in keys):
         raise ValueError("resumed interventions exist without their zero baseline")
     return keys, baselines
@@ -448,8 +486,11 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     args.out_dir.mkdir(parents=True, exist_ok=True)
     raw_path = args.out_dir / "causal_raw.jsonl"
     complete_path = args.out_dir / "runner_manifest.json"
+    invalid_path = args.out_dir / "INVALID.json"
     if complete_path.exists():
         raise FileExistsError(f"completed runner manifest already exists: {complete_path}")
+    if invalid_path.exists():
+        raise FileExistsError(f"invalid run marker already exists; refusing resume: {invalid_path}")
     if raw_path.exists() and not args.resume:
         raise FileExistsError(f"raw output exists without --resume: {raw_path}")
     config_sha256 = sha256_file(config_path)
@@ -630,6 +671,29 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                         done_keys.add(record_key(record))
                     append_records(raw_path, output_records)
                     records_written += len(output_records)
+    except Exception as exc:
+        invalid = {
+            "schema_version": 1,
+            "status": "invalid_incomplete_causal_run",
+            "use_for_inference": False,
+            "protocol_id": protocol["protocol_id"],
+            "model_id": args.model_id,
+            "config_sha256": config_sha256,
+            "plan_json_sha256": plan_json_sha256,
+            "plan_npz_sha256": plan_npz_sha256,
+            "script_sha256": script_sha256,
+            "error_type": type(exc).__name__,
+            "error": str(exc),
+            "raw_path": raw_path.name,
+            "raw_exists": raw_path.is_file(),
+            "raw_sha256": sha256_file(raw_path) if raw_path.is_file() else None,
+            "partial_record_count": (
+                sum(1 for line in raw_path.read_text(encoding="utf-8").splitlines() if line.strip())
+                if raw_path.is_file() else 0
+            ),
+        }
+        atomic_json(invalid_path, invalid)
+        raise
     finally:
         plan_archive.close()
         del model
@@ -654,8 +718,10 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         "protocol_id": protocol["protocol_id"], "model_id": args.model_id,
         "revision": model_config["revision"], "config_sha256": config_sha256,
         "plan_json_sha256": plan_json_sha256, "plan_npz_sha256": plan_npz_sha256,
-        "script_sha256": script_sha256, "raw_path": raw_path.name,
-        "raw_sha256": sha256_file(raw_path), "records": len(final_keys),
+        "script_sha256": script_sha256,
+        "activation_sha256": model_config["activation_sha256"],
+        "items_sha256": plan["items_sha256"],
+        "raw_path": raw_path.name, "raw_sha256": sha256_file(raw_path), "records": len(final_keys),
         "expected_records": len(expected_keys), "records_written_this_invocation": records_written,
         "model_file_hashes": model_file_hashes,
         "elapsed_seconds": time.time() - started,
@@ -683,7 +749,29 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
 
 
 def main(argv: Sequence[str] | None = None) -> int:
-    manifest = run(parse_args(argv))
+    args = parse_args(argv)
+    try:
+        manifest = run(args)
+    except Exception as exc:
+        args.out_dir.mkdir(parents=True, exist_ok=True)
+        invalid_path = args.out_dir / "INVALID.json"
+        if not invalid_path.exists():
+            raw_path = args.out_dir / "causal_raw.jsonl"
+            atomic_json(invalid_path, {
+                "schema_version": 1,
+                "status": "invalid_incomplete_causal_run",
+                "use_for_inference": False,
+                "error_type": type(exc).__name__,
+                "error": str(exc),
+                "raw_path": raw_path.name,
+                "raw_exists": raw_path.is_file(),
+                "raw_sha256": sha256_file(raw_path) if raw_path.is_file() else None,
+                "partial_record_count": (
+                    sum(1 for line in raw_path.read_text(encoding="utf-8").splitlines() if line.strip())
+                    if raw_path.is_file() else 0
+                ),
+            })
+        raise
     print(json.dumps(manifest, sort_keys=True, allow_nan=False))
     return 0
 

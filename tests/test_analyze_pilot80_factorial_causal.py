@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 
 import numpy as np
+import pytest
 
 from scripts.analyze_pilot80_factorial_causal import analyze, parse_args
 from scripts.run_pilot80_factorial_causal import condition_specs, sha256_file
@@ -154,14 +155,16 @@ def make_fixture(tmp_path: Path) -> tuple[Path, list[Path], list[Path], list[Pat
                         }
                         handle.write(json.dumps(record, sort_keys=True, allow_nan=False) + "\n")
         raw_sha = sha256_file(raw_path)
-        expected = 25 * 2 * 85
+        expected = len(folds) * len(model["source_layers"]) * len(specs)
         dump(bundle / "runner_manifest.json", {
             "schema_version": 1, "status": "completed_uninspected_factorial_causal_raw",
             "protocol_id": protocol["protocol_id"], "model_id": model["model_id"], "revision": model["revision"],
-            "config_sha256": config_sha, "plan_json_sha256": plan_json_sha,
-            "plan_npz_sha256": plan["plan_npz_sha256"], "script_sha256": runner_sha,
-            "raw_path": raw_path.name, "raw_sha256": raw_sha, "records": expected,
+            "config_sha256": config_sha, "plan_json_sha256": plan_json_sha, "plan_npz_sha256": plan["plan_npz_sha256"],
+            "script_sha256": sha256_file(Path("scripts/run_pilot80_factorial_causal.py")),
+            "activation_sha256": model["activation_sha256"], "items_sha256": items_sha,
+            "raw_path": raw_path.name, "raw_sha256": sha256_file(raw_path), "records": expected,
             "expected_records": expected, "records_written_this_invocation": expected,
+            "model_file_hashes": {"checkpoint/config.json": "0" * 64},
         })
         plan_json_paths.append(plan_json_path)
         plan_npz_paths.append(plan_npz_path)
@@ -181,3 +184,28 @@ def test_analyzer_accepts_complete_positive_response_surface(tmp_path: Path) -> 
     assert all(result["criteria"].values())
     assert all(value["additive_r2"] == 1.0 for value in result["factorial_cube"].values())
     assert (out_dir / "run_manifest.json").is_file()
+
+
+def test_analyzer_rejects_invalid_run_marker(tmp_path: Path) -> None:
+    config, plans, archives, raws = make_fixture(tmp_path)
+    dump(raws[0].with_name("INVALID.json"), {"status": "invalid", "use_for_inference": False})
+    argv = ["--config", str(config), "--out-dir", str(tmp_path / "analysis")]
+    for flag, paths in (("--plan-json", plans), ("--plan-npz", archives), ("--raw", raws)):
+        for path in paths:
+            argv.extend((flag, str(path)))
+    with pytest.raises(ValueError, match="invalid run marker present"):
+        analyze(parse_args(argv))
+
+
+def test_analyzer_rejects_runner_manifest_raw_path_mismatch(tmp_path: Path) -> None:
+    config, plans, archives, raws = make_fixture(tmp_path)
+    manifest_path = raws[0].with_name("runner_manifest.json")
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    manifest["raw_path"] = "different.jsonl"
+    dump(manifest_path, manifest)
+    argv = ["--config", str(config), "--out-dir", str(tmp_path / "analysis")]
+    for flag, paths in (("--plan-json", plans), ("--plan-npz", archives), ("--raw", raws)):
+        for path in paths:
+            argv.extend((flag, str(path)))
+    with pytest.raises(ValueError, match="runner manifest mismatch .*: raw_path"):
+        analyze(parse_args(argv))

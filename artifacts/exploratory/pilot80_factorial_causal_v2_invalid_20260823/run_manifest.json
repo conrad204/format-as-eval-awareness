@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "status": "invalid_incomplete_baseline_reproduction_gate_failure",
+  "decision": "TAE_TECHNICALLY_BLOCKED",
+  "use_for_inference": false,
+  "recorded_utc": "2026-08-23T13:11:31Z",
+  "protocol": {
+    "path": "configs/pilot80_factorial_causal_mediation_v2_reextracted.json",
+    "sha256": "e9c0e05129ebdf457103e567ca1f8ffce4f18f76829f28542c240b5c674dd664",
+    "frozen_gate": "For every causal test row, unsteered captured source and target vectors must agree with stored activations within max_abs<=0.125 and cosine>=0.999; otherwise the model is ineligible."
+  },
+  "reextraction": {
+    "protocol_path": "configs/pilot80_factorial_causal_reextraction_v1.json",
+    "extraction_jobs": [53274668, 53274669],
+    "status": "completed on H100 with batch_size=1 before v2 causal execution"
+  },
+  "failed_runs": [
+    {
+      "model_id": "meta-llama/Llama-3.1-8B-Instruct",
+      "job_id": 53274675,
+      "node": "uahpc-gpu008",
+      "state": "FAILED",
+      "exit_code": "1:0",
+      "failed_gate": "source_activation_reproduction",
+      "fold_id": "fg1_pf0",
+      "source_layer": 29,
+      "row_index": 419,
+      "observed_max_abs": 0.25,
+      "observed_cosine": 0.9994099140167236,
+      "partial_record_count": 28,
+      "partial_raw_sha256": "286e140cc49c1e01a259655fdb2f274a9743a10188b55dccd5f036e0aed55af5",
+      "stderr_sha256": "3de0be30fb612d0aa7f60522c898549ca32a81db993b09ff2b783a4aff773ba2"
+    },
+    {
+      "model_id": "meta-llama/Llama-3.3-70B-Instruct",
+      "job_id": 53274676,
+      "node": "uahpc-gpu010",
+      "state": "FAILED",
+      "exit_code": "1:0",
+      "failed_gate": "source_activation_reproduction",
+      "fold_id": "fg1_pf0",
+      "source_layer": 74,
+      "row_index": 312,
+      "observed_max_abs": 0.15625,
+      "observed_cosine": 0.9994453191757202,
+      "partial_record_count": 2408,
+      "partial_raw_sha256": "61e85444f9e2defcffd719ef5e6bc8d5de8ecc62953d79720f42c6b58ed4a6bf",
+      "stderr_sha256": "2880840ab70876f8615c88db4bb1e7d88f9dc0b6aaf5b6ef3a1dc34176d4b555"
+    }
+  ],
+  "partial_output_policy": {
+    "status": "excluded_wholesale",
+    "reason": "Both models became ineligible under the preregistered per-row gate before the complete expected key set existed. The analyzer requires exact completeness and therefore cannot produce an inferential result.",
+    "outcomes_inspected": false,
+    "inspection_boundary": "Only file existence, record counts, hashes, scheduler metadata, and thrown gate metrics were inspected. No readout score or intervention effect from either partial raw file was analyzed."
+  },
+  "recovery_attempts": [
+    "Verified exact archived activation and item hashes.",
+    "Pinned exact checkpoint revisions and tokenizer paths.",
+    "Retried archived activations on H100 and A100 with baseline batch size one; target-layer gates failed.",
+    "Re-extracted all layers from the same frozen prompts on H100 using batch size one and exact checkpoints.",
+    "Rebuilt frozen geometry and cross-fitted causal plans before any v2 causal output.",
+    "Executed causal baselines on the same H100 hardware family and GPU counts used for re-extraction; later high-layer source gates still failed in both models."
+  ],
+  "classification_rationale": "No complete causal response surface exists, so this is neither a positive causal result nor a clean negative causal result. Further tolerance changes would be post-failure gate relaxation and are prohibited. The exact frozen intervention program is technically blocked by irreproducible high-layer BF16 residuals under its preregistered gate.",
+  "files": {
+    "8b_partial_causal_raw.jsonl": "286e140cc49c1e01a259655fdb2f274a9743a10188b55dccd5f036e0aed55af5",
+    "70b_partial_causal_raw.jsonl": "61e85444f9e2defcffd719ef5e6bc8d5de8ecc62953d79720f42c6b58ed4a6bf",
+    "8b_job_53274675.err": "3de0be30fb612d0aa7f60522c898549ca32a81db993b09ff2b783a4aff773ba2",
+    "70b_job_53274676.err": "2880840ab70876f8615c88db4bb1e7d88f9dc0b6aaf5b6ef3a1dc34176d4b555"
+  }
+}

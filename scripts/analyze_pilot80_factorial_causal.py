@@ -139,6 +139,9 @@ def analyze(args: argparse.Namespace) -> dict[str, Any]:
         validate_plan_contract(protocol, plan, canonical_rows)
         with np.load(plan_npz_path, allow_pickle=False) as plan_archive:
             validate_plan_arrays(plan, plan_archive)
+        invalid_path = raw_path.with_name("INVALID.json")
+        if invalid_path.exists():
+            raise ValueError(f"invalid run marker present {model_id}: {invalid_path}")
         runner_manifest_path = raw_path.with_name("runner_manifest.json")
         if not runner_manifest_path.exists():
             raise ValueError(f"missing runner manifest {model_id}")
@@ -148,16 +151,38 @@ def analyze(args: argparse.Namespace) -> dict[str, Any]:
         raw_sha256 = sha256_file(raw_path)
         expected_keys = expected_record_keys(plan, model_id, expected_specs)
         required_manifest = {
-            "schema_version": 1, "status": "completed_uninspected_factorial_causal_raw",
-            "protocol_id": protocol["protocol_id"], "model_id": model_id,
-            "revision": configured["revision"], "config_sha256": config_sha256,
-            "plan_json_sha256": plan_json_sha256, "plan_npz_sha256": plan_npz_sha256,
-            "script_sha256": runner_script_sha256, "raw_sha256": raw_sha256,
-            "records": len(expected_keys), "expected_records": len(expected_keys),
+            "schema_version": 1,
+            "status": "completed_uninspected_factorial_causal_raw",
+            "protocol_id": protocol["protocol_id"],
+            "model_id": model_id,
+            "revision": configured["revision"],
+            "config_sha256": config_sha256,
+            "plan_json_sha256": plan_json_sha256,
+            "plan_npz_sha256": plan_npz_sha256,
+            "script_sha256": runner_script_sha256,
+            "activation_sha256": configured["activation_sha256"],
+            "items_sha256": plan["items_sha256"],
+            "raw_path": raw_path.name,
+            "raw_sha256": raw_sha256,
+            "records": len(expected_keys),
+            "expected_records": len(expected_keys),
         }
         for field, value in required_manifest.items():
             if runner_manifest.get(field) != value:
                 raise ValueError(f"runner manifest mismatch {model_id}: {field}")
+        model_file_hashes = runner_manifest.get("model_file_hashes")
+        if (
+            not isinstance(model_file_hashes, dict)
+            or not model_file_hashes
+            or not all(
+                isinstance(name, str)
+                and isinstance(value, str)
+                and len(value) == 64
+                and all(character in "0123456789abcdef" for character in value)
+                for name, value in model_file_hashes.items()
+            )
+        ):
+            raise ValueError(f"runner model file hashes invalid {model_id}")
         strict_keys, _ = validate_resumed_raw(
             raw_path, protocol, plan, canonical_rows, expected_specs, config_sha256,
             plan_json_sha256, plan_npz_sha256, runner_script_sha256,
