@@ -3,6 +3,20 @@
   "protocol_id": "pilot80_factorial_causal_mediation_v1",
   "frozen_utc": "2026-08-23T11:32:39Z",
   "status": "preregistered_before_any_factorial_abc_causal_mediation_outcome",
+  "pre_outcome_amendments": [
+    {
+      "amended_utc": "2026-08-23T11:40:57Z",
+      "status": "before_any_factorial_abc_causal_mediation_outcome",
+      "reason": "Correct the metadata field name from the conceptual rendered_text label to the frozen meta.jsonl field text; prompt bytes and tokenization semantics are unchanged.",
+      "change": "activation_contract.chat_template content field is text"
+    },
+    {
+      "amended_utc": "2026-08-23T11:32:39Z",
+      "status": "before_any_factorial_abc_causal_mediation_outcome",
+      "reason": "Add the eight-corner intervention cube before implementation so single-component effects are not misinterpreted as unique natural indirect effects.",
+      "change": "factorial cube, additive response R2, and explicit intervention-side interactions"
+    }
+  ],
   "scientific_question": "Do the effect-coded shared-purpose A, format-offset B, and purpose-by-format interaction C components have distinct, sign-symmetric downstream causal response signatures on held-out purpose families and payload blocks?",
   "central_hypothesis": "For h_(p,f)=mu+pA+fB+pfC, an A intervention produces a format-shared purpose-readout shift, C produces a benchmark-minus-casual purpose-readout interaction, and B produces a format-readout shift; the C interaction is larger at the geometry-selected high-C/A layer than at the low-C/A layer.",
   "known_prior_boundary": {
@@ -80,7 +94,7 @@
     "stored_dtype": "float32",
     "layer_semantics": "zero_based_transformer_block_output_before_final_model_norm",
     "token_position": "last_prompt_token_after_tokenizer_chat_template_before_generation",
-    "chat_template": "tokenizer.apply_chat_template([{role:user,content:rendered_text}], add_generation_prompt=True)",
+    "chat_template": "tokenizer.apply_chat_template([{role:user,content:text}], add_generation_prompt=True)",
     "add_special_tokens": false,
     "baseline_reproduction_gate": "For every causal test row, unsteered captured source and target vectors must agree with stored activations within max_abs<=0.125 and cosine>=0.999; otherwise the model is ineligible."
   },
