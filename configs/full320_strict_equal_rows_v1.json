@@ -1,16 +1,21 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "protocol_id": "full320_strict_equal_rows_v1",
   "frozen_utc": "2026-08-23T07:12:03Z",
   "status": "preregistered_replication_extension_before_70b_equal_row_outcomes",
-  "scientific_question": "Does mixed-format probe training improve held-out-family purpose decoding when every regime uses exactly the same payload blocks, purpose-pair units, and training-row count?",
+  "pre_outcome_amendment": {
+    "amended_utc": "2026-08-23T07:15:05Z",
+    "status": "before_any_70b_equal_row_analysis",
+    "reason": "Schema inspection showed that a purpose_pair_id can occur under multiple templates and that family folds share payload blocks. The pair key is corrected to include template_id, stored environments are named format/template environments, and a double-held-out payload-block robustness check is added. No 70B equal-row outcome was inspected."
+  },
+  "scientific_question": "Does mixed format/template-environment probe training improve held-out-family stated-purpose decoding when every regime uses exactly the same payload blocks, paired label units, and training-row count?",
   "prior_observation": {
     "path": "artifacts/full320_equal_n_llama31_8b_l12.json",
     "scope": "development_only_8b_layer12_block_balanced_but_not_exact_row_balanced",
     "known_result": "mixed-format point estimates exceeded both single-format controls across four assignment seeds",
     "excluded_from_primary_inference": true
   },
-  "primary_claim_scope": "two previously untested equal-row 70B checkpoints on the frozen full320-v3 item bank; checkpoints and item bank are fixed, not sampled populations",
+  "primary_claim_scope": "two previously untested equal-row 70B checkpoints on the frozen full320-v3 item bank; stored benchmark/casual labels denote confounded format/template environments, and checkpoints and item bank are fixed rather than sampled populations",
   "dataset": {
     "items_path": "v3-activations/rendered_items_v3_full320_8-17-2026.jsonl",
     "items_sha256": "5528819d74e696d1a595062047a829836dfde1d2a45287b06a5ac1ba5d1b6c67",
@@ -19,9 +24,9 @@
     "purpose_families": ["fg1", "fg2", "fg3", "fg4", "fg5"],
     "training_rows": "render_slot == stated and legacy == false and purpose_family_id != held_out_family",
     "test_rows": "render_slot == stated and legacy == false and purpose_family_id == held_out_family",
-    "pair_unit": "payload_block_id plus purpose_pair_id plus format; each retained pair must contain exactly one evaluation and one deployment row",
-    "exact_row_balance": "For each held-out family and payload block, let k be the minimum available training pair count across benchmark and casual. Stable-hash select exactly k pairs from each format. Benchmark-only uses the k benchmark pairs, casual-only uses the k casual pairs, and mixed uses the k pairs from one assigned format. Thus every regime uses identical blocks, pair counts, class counts, and rows per block.",
-    "mixed_assignment": "Within each held-out family, assignment is balanced benchmark/casual within each topic using stable SHA256 ranks; one assigned format per payload block.",
+    "pair_unit": "payload_block_id plus purpose_pair_id plus format plus template_id; each retained pair must contain exactly one evaluation and one deployment row",
+    "exact_row_balance": "For each held-out family and payload block, let k be the minimum available canonical training pair-unit count across benchmark and casual. Stable-hash select exactly k pair units from each environment. Benchmark-only uses the k benchmark units, casual-only uses the k casual units, and mixed uses the k units from one assigned environment. Thus every regime uses identical blocks, pair counts, class counts, and rows per block.",
+    "mixed_assignment": "Within each held-out family, assignment is balanced benchmark/casual within each topic using stable SHA256 ranks; one assigned format/template environment per payload block.",
     "leakage_guard": "No purpose family appearing in test is used for scaler, variance, means, threshold, pair selection, or label fitting."
   },
   "models": [
@@ -97,7 +102,16 @@
       {"row_l2_normalize": true, "ridge_fraction": 0.1}
     ],
     "family_influence": "report each held-out purpose family separately",
-    "format_influence": "report both formats separately and the worst-format endpoint"
+    "format_influence": "report both formats separately and the worst-format endpoint",
+    "double_heldout_payload_robustness": {
+      "depth": 0.375,
+      "block_folds": 5,
+      "block_fold_rule": "Within each topic, stable SHA256 rank payload blocks and assign rank modulo 5.",
+      "train": "Exclude both the held-out purpose family and held-out payload-block fold.",
+      "test": "Intersection of the held-out purpose family and held-out payload-block fold.",
+      "metric": "same macro-format AUC and balanced-accuracy contrast as primary",
+      "success": "aggregate point estimate greater than 0 for both endpoints"
+    }
   },
   "success_criteria": {
     "primary_auc": "aggregate 95 percent common-block bootstrap CI lower bound is greater than 0",
@@ -105,8 +119,8 @@
     "checkpoint_replication": "each 70B checkpoint aggregate point estimate is greater than 0 for both co-primary endpoints",
     "assignment_stability": "each of eight assignment-seed aggregate point estimates is greater than 0 for macro-format ROC AUC",
     "label_null": "finite-null p is at most 0.05 for macro-format ROC AUC",
-    "robustness": "all three predeclared method-robustness aggregate AUC point estimates are greater than 0",
-    "decision_positive": "all five preceding criteria pass",
+    "robustness": "all three predeclared method-robustness aggregate AUC point estimates and both double-held-out payload-robustness endpoint estimates are greater than 0",
+    "decision_positive": "all six preceding criteria pass",
     "decision_mixed": "any criterion fails; report full matrix and do not use a positive central headline"
   },
   "required_outputs": {
@@ -117,8 +131,8 @@
   },
   "evidence_boundary": {
     "grade": "preregistered_replication_extension_development_item_bank",
-    "allowed_claim": "Changing the probe-training format coverage improves or does not improve held-out stated-purpose decoding on these frozen activations and checkpoints under exact row/block balance.",
-    "prohibited_claims": ["evaluation awareness", "behavioral steering", "model causal mechanism", "factorial A/B/C geometry", "training-time model causality", "universal model scaling"],
-    "limitations": ["The same full320-v3 item bank was used in prior development analyses.", "The two 70B equal-row outcomes were not inspected before this protocol freeze.", "The checkpoints are fixed case studies, not a random model sample.", "The endpoint is held-out stated-purpose probe performance, not behavior."]
+    "allowed_claim": "Changing probe-training coverage across the stored format/template environments improves or does not improve held-out stated-purpose decoding on these frozen activations and checkpoints under exact row/block balance.",
+    "prohibited_claims": ["evaluation awareness", "behavioral steering", "model causal mechanism", "pure format effect independent of template/content", "factorial A/B/C geometry", "training-time model causality", "universal model scaling"],
+    "limitations": ["The same full320-v3 item bank was used in prior development analyses.", "The two 70B equal-row outcomes were not inspected before this protocol freeze or pre-outcome amendment.", "Benchmark and casual are confounded format/template environments with disjoint purpose-pair/template populations.", "The checkpoints are fixed case studies, not a random model sample.", "The primary family folds share payload blocks across train and test; a predeclared double-held-out payload robustness check addresses this without replacing the primary endpoint.", "The endpoint is held-out stated-purpose probe performance, not behavior."]
   }
 }
