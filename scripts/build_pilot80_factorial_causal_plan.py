@@ -18,6 +18,7 @@ from sklearn.preprocessing import StandardScaler
 SUPPORTED_PROTOCOL_IDS = {
     "pilot80_factorial_causal_mediation_v1",
     "pilot80_factorial_causal_mediation_v2_reextracted",
+    "pilot80_factorial_causal_mediation_v3_determinism_patched",
 }
 
 def sha256_file(path: Path) -> str:

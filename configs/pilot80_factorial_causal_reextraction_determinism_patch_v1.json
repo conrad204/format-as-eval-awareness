@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "protocol_id": "pilot80_factorial_causal_reextraction_determinism_patch_v1",
+  "frozen_utc": "2026-08-23T20:52:00Z",
+  "status": "preregistered_before_reextraction_and_before_any_causal_intervention_outcome",
+  "parent_protocol": {
+    "path": "configs/pilot80_factorial_causal_reextraction_v1.json",
+    "sha256": "515a183ce8d879030d38b812b4750ea3f6c9a6ab17126e3627ef6a04e21ed8a6"
+  },
+  "known_prior": {
+    "prior_reextraction_outcome": "The batch-one, exact-checkpoint, same-hardware re-extraction under configs/pilot80_factorial_causal_reextraction_v1.json still failed the unchanged source_activation_reproduction gate in both models: 8B layer 29 row 419 max_abs=0.25; 70B layer 74 row 312 max_abs=0.15625 (both cosine>=0.999). See artifacts/exploratory/pilot80_factorial_causal_v2_invalid_20260823/run_manifest.json.",
+    "diagnosis": "Neither the extraction path (src/eval_format_mvp/extract.py) nor the causal intervention path (scripts/run_pilot80_factorial_causal.py) pinned deterministic GPU execution: TF32 matmul/cuDNN reduction order was unpinned, torch.use_deterministic_algorithms was never called, CUBLAS_WORKSPACE_CONFIG was unset, and the attention implementation was left on transformers auto-select. This is consistent with the observed late-layer-concentrated BF16 drift.",
+    "shakedown_evidence": {
+      "path": "artifacts/exploratory/determinism_shakedown_20260823/run_manifest.json",
+      "result": "Two independent extraction runs of a 40-row window bracketing both failing rows, under the patched deterministic code, produced byte-identical activations_all_layers.npz archives in both models (max_abs diff exactly 0.0)."
+    },
+    "prohibited_use": "The prior gate failure may motivate a determinism-patched re-extraction but may not change estimands, controls, acceptance thresholds, layer selection, folds, or interpretation."
+  },
+  "scientific_role": "Second environment-matched numerical replication of the frozen pilot80 activation bank, identical in every respect to pilot80_factorial_causal_reextraction_v1 except that the extraction and causal-intervention code paths now pin deterministic GPU execution. Solely to make the preregistered causal intervention executable on the same checkpoint, hardware family, software environment, prompts, and batch shape used for baseline capture.",
+  "dataset": {
+    "items_path": "activations_dataset/activations/llama31_8b_pilot80/meta.jsonl",
+    "items_path_cluster": "/scratch/jppatton/langea/runs/tae_2026/pilot_activation_import_dff7791d/activations/llama31_8b_pilot80/meta.jsonl",
+    "items_sha256": "0dbcb9802924d3c2063fce87e24250d1a3430fd24856ea83b132e606843f6638",
+    "n_items": 1760,
+    "canonical_item_order_required": true
+  },
+  "extraction_contract": {
+    "dtype_compute": "bfloat16",
+    "dtype_stored": "float32",
+    "position": "last_prompt_token_after_chat_template_before_generation",
+    "layer_semantics": "zero_based_transformer_block_output_before_final_model_norm",
+    "chat_template": "tokenizer.apply_chat_template([{role:user,content:text}], tokenize=False, add_generation_prompt=True)",
+    "add_special_tokens": false,
+    "padding_side": "left",
+    "batch_size": 1,
+    "max_length": 2048,
+    "device_map": "auto",
+    "all_transformer_layers": true,
+    "hardware": "NVIDIA H100 80GB; causal baseline and interventions must use the same GPU family and count per model",
+    "determinism_patch": {
+      "torch_backends_cuda_matmul_allow_tf32": false,
+      "torch_backends_cudnn_allow_tf32": false,
+      "torch_use_deterministic_algorithms": "True, warn_only=True",
+      "cublas_workspace_config": ":4096:8",
+      "attn_implementation": "eager"
+    },
+    "source_files": {
+      "scripts/cluster_extract_pilot80_causal_recovery.sbatch": "0b160a4528f1bca771a481931c77d687f6dd0829a8cac42814173bb3db13be21",
+      "scripts/extract_activations.py": "ee764fd1dc62687048e5746a8150adc195ce8891272a59b803211012a9bbf8d2",
+      "src/eval_format_mvp/extract.py": "09c5b7872f3932ef2ab099b59b2f6d54a9e281f4ffbef1eb5df2e3d07d359988",
+      "src/eval_format_mvp/cli.py": "a12d674dd0dab265c3fddd8c064726e76e6d637aad896f5bb68a533b9847f4bc",
+      "src/eval_format_mvp/io.py": "b32d10a8d299ea02f195d68915ad94385151f583f874c5125b4cc16d4796fb7a"
+    }
+  },
+  "models": [
+    {
+      "model_id": "meta-llama/Llama-3.1-8B-Instruct",
+      "revision": "0e9e39f249a16976918f6564b8830bc894c89659",
+      "checkpoint_path_cluster": "/scratch/jppatton/langea/confirmation_work/llama31_8b_model_0e9e39f2",
+      "gpu_count": 1,
+      "n_layers": 32,
+      "hidden_size": 4096,
+      "primary_layer_for_compatibility_archive": 12,
+      "output_dir_cluster": "/scratch/jppatton/langea/runs/tae_2026/pilot80_causal_reextract_8b_detpatch_v1"
+    },
+    {
+      "model_id": "meta-llama/Llama-3.3-70B-Instruct",
+      "revision": "6f6073b423013f6a7d4d9f39144961bfbfbc386b",
+      "checkpoint_path_cluster": "/scratch/jppatton/langea/huggingface/hub/models--meta-llama--Llama-3.3-70B-Instruct/snapshots/6f6073b423013f6a7d4d9f39144961bfbfbc386b",
+      "gpu_count": 4,
+      "n_layers": 80,
+      "hidden_size": 8192,
+      "primary_layer_for_compatibility_archive": 24,
+      "output_dir_cluster": "/scratch/jppatton/langea/runs/tae_2026/pilot80_causal_reextract_33_70b_detpatch_v1"
+    }
+  ],
+  "post_extraction_binding": {
+    "allowed_before_causal_execution": [
+      "Bind exact output file hashes and immutable paths.",
+      "Verify item bytes, item order, tensor shape, layer indices, token lengths, finite float32 values, checkpoint revision, tokenizer bytes, GPU inventory, and extraction source hashes.",
+      "Carry forward the already-frozen v2_reextracted source/target layer selection unchanged (no geometry recomputation): re-running layer selection against re-extracted activations would be post-outcome selection and is prohibited.",
+      "Create a v3 causal mediation config by copying every estimand, fold, seed, intervention, control, gate, and decision rule from pilot80_factorial_causal_mediation_v2_reextracted; change only activation paths/hashes."
+    ],
+    "forbidden": [
+      "Inspect any nonzero intervention output before the v3 causal config and plans are hash-frozen.",
+      "Change acceptance thresholds after observing reproduction or causal results.",
+      "Recompute or change layer selection after observing this re-extraction's activations.",
+      "Mix archived directions with re-extracted baselines.",
+      "Call numerical re-extraction an independent dataset replication."
+    ]
+  },
+  "binding_result": {
+    "bound_utc": "2026-08-23T21:15:00Z",
+    "status": "extractions_verified_before_any_causal_intervention_output",
+    "extraction_jobs": {
+      "meta-llama/Llama-3.1-8B-Instruct": 53283747,
+      "meta-llama/Llama-3.3-70B-Instruct": 53284711
+    },
+    "activations": {
+      "meta-llama/Llama-3.1-8B-Instruct": {
+        "path_cluster": "/scratch/jppatton/langea/runs/tae_2026/pilot80_causal_reextract_8b_detpatch_v1/activations_all_layers.npz",
+        "sha256": "316b54ca2ad8623b046d2b5035527328250f2b9f5cf8fa323572c0c5c095cafa",
+        "source_layers_carried_forward_unchanged": {"low_interaction": 5, "high_interaction": 29}
+      },
+      "meta-llama/Llama-3.3-70B-Instruct": {
+        "path_cluster": "/scratch/jppatton/langea/runs/tae_2026/pilot80_causal_reextract_33_70b_detpatch_v1/activations_all_layers.npz",
+        "sha256": "665834e6253d08e7c8c8f680723055679c3974419dfea25f3df8df2e07a9f293",
+        "source_layers_carried_forward_unchanged": {"low_interaction": 13, "high_interaction": 74}
+      }
+    },
+    "causal_intervention_outputs_inspected": false
+  },
+  "stopping_rule": "If this re-extraction fails its immutable contract or same-environment batch-one baseline reproduction still fails the unchanged gate, preserve the failure and classify the causal program as technically blocked. Otherwise execute the complete frozen factorial causal protocol without selective model or endpoint omission."
+}
