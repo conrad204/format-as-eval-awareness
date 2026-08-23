@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Post-outcome exploratory robustness checks for wrapper-scale analysis v1."""
+"""Post-outcome common-mask robustness checks for wrapper-scale analysis v1."""
 
 from __future__ import annotations
 
@@ -170,8 +170,8 @@ def run(
     run_id: str,
 ) -> dict[str, Any]:
     config = json.loads(config_path.read_text(encoding="utf-8"))
-    if config.get("protocol_id") != "devbunova_wrapper_scale_robustness_v2":
-        raise ValueError("unexpected corrected robustness protocol")
+    if config.get("protocol_id") != "devbunova_wrapper_scale_robustness_v3":
+        raise ValueError("unexpected Monte Carlo precision protocol")
     parent_result = json.loads(parent_result_path.read_text(encoding="utf-8"))
     parent_manifest = json.loads(parent_manifest_path.read_text(encoding="utf-8"))
     if _repo_relative(parent_result_path) != config["parent_result"]:
@@ -405,9 +405,9 @@ def run(
         },
     }
     result = {
-        "schema_version": 2,
+        "schema_version": 3,
         "run_id": run_id,
-        "status": "completed_post_outcome_code_audit_corrected_robustness",
+        "status": "completed_post_outcome_monte_carlo_precision",
         "analysis": config["protocol_id"],
         "parent_run_id": config["parent_run_id"],
         "parent_result_sha256": sha256_file(parent_result_path),
@@ -444,9 +444,9 @@ def run(
     _plot_matrix(records, summary, figure_path)
 
     manifest = {
-        "schema_version": 2,
+        "schema_version": 3,
         "run_id": run_id,
-        "status": "completed_post_outcome_code_audit_corrected_robustness",
+        "status": "completed_post_outcome_monte_carlo_precision",
         "analysis": config["protocol_id"],
         "repo_commit": _repo_commit(),
         "protocol_path": _repo_relative(config_path),
