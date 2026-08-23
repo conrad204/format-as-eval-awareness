@@ -17,6 +17,13 @@
       "job_ids": [53274664, 53274665],
       "reason": "Invoke the package entrypoint eval_format_mvp rather than the non-executing cli module. Both jobs printed GPU inventory, invoked no CLI main function, created no output directory, and failed only when the terminal sha256sum found no outputs.",
       "change": "launcher Python module entrypoint only; extraction contract unchanged"
+    },
+    {
+      "amended_utc": "2026-08-23T12:28:03Z",
+      "status": "after_two_catalog_preflight_failures_before_model_load_or_output_creation",
+      "job_ids": [53274666, 53274667],
+      "reason": "Stage the three catalog YAML files eagerly loaded by the shared CLI before command dispatch. Both jobs printed GPU inventory, failed in load_catalogs before tokenizer or model loading, and created no output directory.",
+      "change": "source-bundle completeness only; extraction contract unchanged"
     }
   ],
   "known_prior": {
@@ -50,7 +57,10 @@
       "scripts/cluster_extract_pilot80_causal_recovery.sbatch": "6c572e15336015b6b9734ef107a21a7417fbca146c1decfba6e8879244e22563",
       "src/eval_format_mvp/extract.py": "cc2c73c0d24b02dfc47cdaecb2423bd875008edf865987b7a3525c63507bb40e",
       "src/eval_format_mvp/cli.py": "a12d674dd0dab265c3fddd8c064726e76e6d637aad896f5bb68a533b9847f4bc",
-      "src/eval_format_mvp/io.py": "b32d10a8d299ea02f195d68915ad94385151f583f874c5125b4cc16d4796fb7a"
+      "src/eval_format_mvp/io.py": "b32d10a8d299ea02f195d68915ad94385151f583f874c5125b4cc16d4796fb7a",
+      "catalogs/topics.yaml": "fbdfdb41ee417331852467951a3146a26433a5fcd9228cf6dcb3bbe7821ce47a",
+      "catalogs/purpose_frames.yaml": "75546afd01058c1be89a265e5d5756be8332f662b4f053d5b7f29bfb0e68b076",
+      "catalogs/formats.yaml": "6d1a4fd1cdd4919397c90948f8fe940cf5b3b05222d64113d9f371512e0db7f8"
     }
   },
   "models": [
