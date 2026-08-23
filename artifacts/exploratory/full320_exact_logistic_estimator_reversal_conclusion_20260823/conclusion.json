@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "conclusion_id": "full320_exact_logistic_estimator_reversal_conclusion_20260823",
+  "status": "targeted_observational_positive",
+  "analysis_repo_commit": "039d7351e0214f30f4b364492c62e93355ea74c9",
+  "source_run": {
+    "run_id": "full320_exact_logistic_estimator_reversal_v1_20260823",
+    "result_path": "artifacts/exploratory/full320_exact_logistic_estimator_reversal_v1_20260823/estimator_reversal_results.json",
+    "result_sha256": "5b5dfff9fda1474dc22738bf2d3b540c8142ca42bf5cdcf03f67870364bce6eb",
+    "manifest_path": "artifacts/exploratory/full320_exact_logistic_estimator_reversal_v1_20260823/run_manifest.json",
+    "manifest_sha256": "6d3b08a77da7b55c56ce2abecd6e6745ad7f58902c94fbbff3cea80104b9a47c",
+    "score_path": "artifacts/exploratory/full320_exact_logistic_estimator_reversal_v1_20260823/estimator_oof_scores.npz",
+    "score_sha256": "07129917679ef60894fed323429a155cfedfda40fd630a197c8ac60a2dbdc4fd"
+  },
+  "strongest_defensible_result": "On the fixed full320 exact-row, held-purpose-family endpoint at normalized depth q=0.375, the mixed-minus-best-specialist observational decoding contrast changes sign between the L2-logistic and diagonal-LDA probe pipelines in all three checkpoints.",
+  "headline_sentence": "Mixed-minus-best-specialist macro-format ROC AUC was +0.00905 (95% common complete-payload-block bootstrap CI [0.00798, 0.01012]) with L2 logistic versus -0.00430 (CI [-0.00528, -0.00334]) with paired diagonal LDA; the logistic-minus-LDA interaction was +0.01335 (CI [0.01192, 0.01470]).",
+  "methodological_contribution": "Exact row, class, pair-unit, payload-block, held-family, assignment-seed, and bootstrap matching does not make a probe-training coverage conclusion estimator-independent. In this fixed panel, two standard linear probe pipelines give opposite signs for the same mixed-versus-best-specialist contrast.",
+  "primary_auc": {
+    "diagonal_lda": {
+      "point": -0.004304042448820891,
+      "ci_95": [-0.005278418268274324, -0.003340228486237673]
+    },
+    "l2_logistic": {
+      "point": 0.009049558512369785,
+      "ci_95": [0.007981212938096782, 0.010119569120053847]
+    },
+    "pipeline_interaction": {
+      "point": 0.013353600961190676,
+      "ci_95": [0.011920480476662075, 0.014701372409396622]
+    }
+  },
+  "secondary_balanced_accuracy": {
+    "diagonal_lda": {
+      "point": -0.006129557291666671,
+      "ci_95": [-0.008590549045138993, -0.003632595486111137]
+    },
+    "l2_logistic": {
+      "point": 0.02347222222222221,
+      "ci_95": [0.020427327473958313, 0.026570529513888864]
+    },
+    "pipeline_interaction": {
+      "point": 0.02960177951388888,
+      "ci_95": [0.025640028211805478, 0.03364171006944442]
+    }
+  },
+  "by_model_auc": {
+    "meta-llama/Llama-3.1-8B-Instruct": {
+      "diagonal_lda": -0.0004639560275607746,
+      "l2_logistic": 0.014682156032986087,
+      "pipeline_interaction": 0.015146112060546862
+    },
+    "meta-llama/Llama-3.1-70B-Instruct": {
+      "diagonal_lda": -0.004596217176649348,
+      "l2_logistic": 0.006531568060980944,
+      "pipeline_interaction": 0.011127785237630292
+    },
+    "meta-llama/Llama-3.3-70B-Instruct": {
+      "diagonal_lda": -0.007851954142252549,
+      "l2_logistic": 0.005934951445675067,
+      "pipeline_interaction": 0.013786905587927616
+    }
+  },
+  "robustness": {
+    "all_three_model_logistic_effects_positive": true,
+    "all_three_model_lda_effects_negative": true,
+    "all_three_model_interactions_positive": true,
+    "all_eight_assignment_seed_aggregate_logistic_effects_positive": true,
+    "assignment_seed_auc_range": [0.008123272931134276, 0.009748777488425878],
+    "bootstrap_unit": "complete payload block retaining every canonical row",
+    "bootstrap_resamples": 4000,
+    "same_bootstrap_draws_across_pipelines_models_regimes_seeds_formats": true,
+    "absolute_logistic_macro_auc_minimum": 0.9566386827256945,
+    "interpretation": "The sign reversal is not caused by logistic probe collapse and is descriptive of the fixed three-checkpoint panel; checkpoints and assignment seeds are not independent population replicates."
+  },
+  "design_and_integrity": {
+    "rows_total": 11520,
+    "canonical_rows": 7040,
+    "payload_blocks": 320,
+    "held_purpose_families": 5,
+    "score_arrays": 60,
+    "all_score_arrays_exactly_canonical_and_finite": true,
+    "all_logistic_fits_converged": true,
+    "maximum_logistic_iterations": 273,
+    "configured_maximum_iterations": 3000,
+    "source_split_hash_8b": "7ee702d2c1f665339d6f79adf60b658df8aa0d3b1a2252cb705d36642b279c91",
+    "source_split_hash_70b": "891c65bd3927cdcdb47d2a9fc0cd82a0994c26b32132b107f0c68ca4ab20dd15",
+    "final_parallel_audits": {
+      "statistics": "PASS",
+      "provenance": "PASS",
+      "claim_scope": "PASS for narrow targeted observational methodological claim; HOLD for confirmatory or causal framing"
+    }
+  },
+  "selection_chronology": {
+    "classification": "targeted_post_comparator_analysis",
+    "statement": "The logistic pipeline and q=0.375 target were frozen after inspecting diagonal-LDA outcomes and a loose 8B logistic precursor. This is not independent confirmation and no p-value is interpreted as selection-adjusted confirmation.",
+    "invalid_first_run": {
+      "path": "artifacts/exploratory/full320_exact_logistic_estimator_reversal_v1_20260823_invalid_8b_split",
+      "reason": "The initial implementation used the 70B source protocol ID for the 8B split selection, so the 8B pipeline contrast was not row-paired.",
+      "status": "invalid_code_defect",
+      "use_for_inference": false
+    },
+    "valid_run_repairs_frozen_before_outcome": "The corrected implementation pins each source analysis/result/archive, requires exact source split and canonical-row identity, verifies activation item order, rejects nonconvergence, and persists OOF scores. No valid corrected outcome was inspected before these repairs were committed."
+  },
+  "related_methodology_context": [
+    {
+      "citation": "Hewitt and Liang (2019), Designing and Interpreting Probes with Control Tasks",
+      "url": "https://aclanthology.org/D19-1275/",
+      "relation": "Probe capacity and training choices can change representational conclusions; probe accuracy alone is not a model-mechanism claim."
+    },
+    {
+      "citation": "Belinkov (2022), Probing Classifiers: Promises, Shortcomings, and Advances",
+      "url": "https://aclanthology.org/2022.cl-1.7/",
+      "relation": "Situates the result as a concrete estimator-sensitivity case within established probing-methodology limitations."
+    }
+  ],
+  "publication_position": {
+    "verdict": "PASS_NARROW_WORKSHOP_METHODS_CLAIM",
+    "novelty_boundary": "The generic fact that probe design matters is established. The contribution is the controlled sign reversal of a mixed-format/template coverage conclusion under exact row/block matching in this evaluation-context assay, replicated descriptively across three fixed checkpoints.",
+    "recommended_framing": "A methods caution and exact-balance case study for probing evaluation-context representations, not a discovery of evaluation awareness or a superior universal estimator."
+  },
+  "mandatory_limitations": [
+    "The logistic pipeline was selected after inspecting LDA outcomes and a loose 8B precursor; the analysis is targeted, not independent confirmation.",
+    "Only normalized depth q=0.375 is tested; this is not an all-layer trajectory.",
+    "L2 logistic with per-fold StandardScaler and diagonal LDA with its variance/ridge treatment are probe pipelines with different inductive biases, not a pure one-parameter estimator substitution.",
+    "Benchmark and casual environments confound renderer format with template, content, and purpose-pair populations.",
+    "Primary purpose-family folds share payload blocks; this target does not include a double-heldout payload analysis.",
+    "The three checkpoints form a fixed related panel, and assignment seeds reuse the same test rows.",
+    "The endpoint is observational stated-purpose decoding, not model behavior or a causal mechanism.",
+    "Estimator dependence does not identify which probe is semantically correct."
+  ],
+  "forbidden_interpretations": [
+    "The models are evaluation-aware.",
+    "Mixed-format training causally changes model behavior.",
+    "One probe estimator is universally correct.",
+    "The result isolates a pure format effect.",
+    "The interaction is a universal scaling law.",
+    "The targeted post-comparator result is independent confirmatory evidence."
+  ],
+  "sprint_stop_condition": {
+    "classification": "TAE_STOP_CONDITION_NOT_MET",
+    "reason": "This positive result is an observational probing-methodology finding, not factorial geometry plus a controlled causal intervention. It does not satisfy TAE_MECHANISTIC_RESULT_STRONG or TAE_MECHANISTIC_RESULT_PARTIAL.",
+    "local_evidence_outcome": "TARGETED_OBSERVATIONAL_POSITIVE"
+  }
+}
