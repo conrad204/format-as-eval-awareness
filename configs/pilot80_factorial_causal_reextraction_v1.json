@@ -89,7 +89,7 @@
     "allowed_before_causal_execution": [
       "Bind exact output file hashes and immutable paths.",
       "Verify item bytes, item order, tensor shape, layer indices, token lengths, finite float32 values, checkpoint revision, tokenizer bytes, GPU inventory, and extraction source hashes.",
-      "Run the already-frozen pilot80 factorial geometry analysis and apply the existing selection rule: among layers with held stated-purpose AUC at least 0.80, choose minimum and maximum normalized C-over-A interaction ratio.",
+      "Run the already-frozen pilot80 factorial geometry analysis and apply the parent v1 model-specific selection rules: choose the eligible minimum/maximum C-over-A interaction layers in 8B, then map those two normalized depths to 70B. The independent 70B geometry table is an audit only and cannot select its causal layers.",
       "Create a v2 causal mediation config by copying every estimand, fold, seed, intervention, control, gate, and decision rule from pilot80_factorial_causal_mediation_v1; change only activation paths/hashes, selected layers if the frozen selection rule requires it, and hardware GPU counts."
     ],
     "forbidden": [
@@ -98,6 +98,31 @@
       "Mix archived directions with re-extracted baselines.",
       "Call numerical re-extraction an independent dataset replication."
     ]
+  },
+  "binding_result": {
+    "bound_utc": "2026-08-23T12:59:05Z",
+    "status": "extractions_and_geometry_verified_before_any_causal_intervention_output",
+    "extraction_jobs": {
+      "meta-llama/Llama-3.1-8B-Instruct": 53274668,
+      "meta-llama/Llama-3.3-70B-Instruct": 53274669
+    },
+    "activations": {
+      "meta-llama/Llama-3.1-8B-Instruct": {
+        "path_cluster": "/scratch/jppatton/langea/runs/tae_2026/pilot80_causal_reextract_8b_h100_batch1_v1/activations_all_layers.npz",
+        "sha256": "c53ad05decce56d9b436c250a75a24a1d1840c64c6783a1ac91c673b6b39abf7",
+        "geometry_sha256": "ad201f83c5ee0bd2ffa876b5ce6b4d8e0b01e507b10d07f7ef94799757e36338",
+        "source_layers": {"low_interaction": 5, "high_interaction": 29}
+      },
+      "meta-llama/Llama-3.3-70B-Instruct": {
+        "path_cluster": "/scratch/jppatton/langea/runs/tae_2026/pilot80_causal_reextract_33_70b_h100x4_batch1_v1/activations_all_layers.npz",
+        "sha256": "65a5f1b87efacc847dbc975cd3cf1ac5f25b73a9d32ddc8dbf6a857347a9a1ea",
+        "geometry_sha256": "acffdfa2082e7cd8501b1ad36b281e4c6d1adcb1ecd13dc82249b8828e6e6cbe",
+        "source_layers": {"low_interaction": 13, "high_interaction": 74},
+        "independent_geometry_extrema_not_used": {"low_interaction": 8, "high_interaction": 78}
+      }
+    },
+    "selection_clarification": "The earlier generic sentence about choosing extrema was ambiguous. The pre-existing parent v1 config, frozen before these extractions, unambiguously selects 8B extrema and normalized-depth-mapped 70B layers. That parent rule controls; the observed independent 70B extrema are reported and excluded.",
+    "causal_intervention_outputs_inspected": false
   },
   "stopping_rule": "If either re-extraction fails its immutable contract or same-environment batch-one baseline reproduction still fails the unchanged gate, preserve the failure and classify the causal program as technically blocked. Otherwise execute the complete frozen factorial causal protocol without selective model or endpoint omission."
 }

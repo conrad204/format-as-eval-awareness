@@ -16,7 +16,7 @@ def dump(path: Path, value: object) -> None:
 
 
 def make_fixture(tmp_path: Path) -> tuple[Path, list[Path], list[Path], list[Path]]:
-    source_config = json.loads(Path("configs/pilot80_factorial_causal_mediation_v1.json").read_text(encoding="utf-8"))
+    source_config = json.loads(Path("configs/pilot80_factorial_causal_mediation_v2_reextracted.json").read_text(encoding="utf-8"))
     families = source_config["dataset"]["purpose_families"]
     rows = []
     for family_index, family in enumerate(families):

@@ -28,6 +28,10 @@ except ImportError:
     )
 
 ENDPOINTS = ("shared_purpose", "purpose_interaction", "format")
+SUPPORTED_PROTOCOL_IDS = {
+    "pilot80_factorial_causal_mediation_v1",
+    "pilot80_factorial_causal_mediation_v2_reextracted",
+}
 
 
 def atomic_text(path: Path, text: str) -> None:
@@ -92,7 +96,7 @@ def analyze(args: argparse.Namespace) -> dict[str, Any]:
     started = time.time()
     config_path = args.config.resolve()
     protocol = json.loads(config_path.read_text(encoding="utf-8"))
-    if protocol.get("protocol_id") != "pilot80_factorial_causal_mediation_v1":
+    if protocol.get("protocol_id") not in SUPPORTED_PROTOCOL_IDS:
         raise ValueError("unexpected protocol")
     if not (len(args.plan_json) == len(args.plan_npz) == len(args.raw) == len(protocol["models"])):
         raise ValueError("supply exactly one aligned plan-json/plan-npz/raw bundle per configured model")

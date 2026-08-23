@@ -13,6 +13,10 @@ from typing import Any, Iterable, Sequence
 
 import numpy as np
 
+SUPPORTED_PROTOCOL_IDS = {
+    "pilot80_factorial_causal_mediation_v1",
+    "pilot80_factorial_causal_mediation_v2_reextracted",
+}
 
 def sha256_file(path: Path) -> str:
     h = hashlib.sha256()
@@ -410,7 +414,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     plan_npz_path = args.plan_npz.resolve()
     protocol = json.loads(config_path.read_text(encoding="utf-8"))
     plan = json.loads(plan_json_path.read_text(encoding="utf-8"))
-    if protocol.get("protocol_id") != "pilot80_factorial_causal_mediation_v1" or plan.get("protocol_id") != protocol["protocol_id"]:
+    if protocol.get("protocol_id") not in SUPPORTED_PROTOCOL_IDS or plan.get("protocol_id") != protocol["protocol_id"]:
         raise ValueError("protocol mismatch")
     if plan["config_sha256"] != sha256_file(config_path):
         raise ValueError("config hash mismatch")
