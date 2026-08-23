@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "protocol_id": "full320_exact_logistic_estimator_reversal_v1",
+  "frozen_utc": "2026-08-23T10:20:53Z",
+  "status": "post_lda_outcome_preregistered_before_any_exact_row_logistic_outcome",
+  "scientific_question": "Does a standard L2 logistic probe recover a mixed-environment coverage benefit under exact row/block balance where diagonal LDA yields a cost, making the substantive conclusion estimator-dependent?",
+  "known_prior": {
+    "loose_8b_logistic": {
+      "path": "artifacts/full320_equal_n_llama31_8b_l12.json",
+      "known_result": "At 8B layer 12, old unequal-row L2 logistic probes showed mixed AUC around 0.979-0.980 versus benchmark-only 0.959 and casual-only 0.954.",
+      "limitations": "Legacy rows included; training row counts differed by environment; global rather than macro-format AUC; only 8B tested."
+    },
+    "strict_diagonal_lda": {
+      "8b_path": "artifacts/exploratory/full320_strict_equal_rows_8b_scale_v1_20260823/strict_equal_rows_results.json",
+      "70b_path": "artifacts/exploratory/full320_strict_equal_rows_v1_20260823_r2/strict_equal_rows_results.json",
+      "known_result": "At normalized depth 0.375, strict diagonal-LDA mixed-minus-best AUC was -0.000464 for 8B; the two 70B outcomes and all other depths were inspected before this estimator protocol.",
+      "role": "frozen paired comparator"
+    }
+  },
+  "dataset": {
+    "items_path": "v3-activations/rendered_items_v3_full320_8-17-2026.jsonl",
+    "items_sha256": "5528819d74e696d1a595062047a829836dfde1d2a45287b06a5ac1ba5d1b6c67",
+    "purpose_families": ["fg1", "fg2", "fg3", "fg4", "fg5"],
+    "canonical_rows": "render_slot == stated and legacy == false",
+    "pair_unit": "payload_block_id plus purpose_pair_id plus format plus template_id",
+    "exact_balance": "Reuse full320_strict_equal_rows_v1 build_splits verbatim: identical blocks, pair counts, labels, and rows across regimes."
+  },
+  "models": [
+    {
+      "model_id": "meta-llama/Llama-3.1-8B-Instruct",
+      "revision": "0e9e39f249a16976918f6564b8830bc894c89659",
+      "activation_path": "v3-activations/activations/llama31_8b/activations_all_layers.npz",
+      "activation_sha256": "e6a71be599e27fd846211e8e6ef215e4fb695a76c3415dc157c1450a134cd1b4",
+      "n_layers": 32,
+      "hidden_size": 4096,
+      "lda_result_path": "artifacts/exploratory/full320_strict_equal_rows_8b_scale_v1_20260823/strict_equal_rows_results.json"
+    },
+    {
+      "model_id": "meta-llama/Llama-3.1-70B-Instruct",
+      "revision": "1605565b47bb9346c5515c34102e054115b4f98b",
+      "activation_path": "v3-activations/activations/llama31_70b/activations_all_layers.npz",
+      "activation_sha256": "02018659ad8f68101d8ec35467321e791831e05b4d8d628f21e8fe222f6da8e2",
+      "n_layers": 80,
+      "hidden_size": 8192,
+      "lda_result_path": "artifacts/exploratory/full320_strict_equal_rows_v1_20260823_r2/strict_equal_rows_results.json"
+    },
+    {
+      "model_id": "meta-llama/Llama-3.3-70B-Instruct",
+      "revision": "6f6073b423013f6a7d4d9f39144961bfbfbc386b",
+      "activation_path": "v3-activations/activations/llama33_70b/activations_all_layers.npz",
+      "activation_sha256": "d455140f2dce01e1bd4e1a8333454a494b1e5de0df0428779a2faa43bc80c031",
+      "n_layers": 80,
+      "hidden_size": 8192,
+      "lda_result_path": "artifacts/exploratory/full320_strict_equal_rows_v1_20260823_r2/strict_equal_rows_results.json"
+    }
+  ],
+  "depth": {
+    "normalized": 0.375,
+    "layers": {"32": 12, "80": 30},
+    "reason": "This is the exact normalized counterpart of the known pre-protocol 8B layer-12 logistic result, not a best layer selected from strict outcomes."
+  },
+  "probe": {
+    "estimator": "sklearn.linear_model.LogisticRegression",
+    "standardization": "StandardScaler fit on training rows per held-family split and regime",
+    "C": 0.1,
+    "penalty": "l2",
+    "solver": "lbfgs",
+    "max_iter": 3000,
+    "tol": 0.0001,
+    "random_state": 0,
+    "score": "decision_function",
+    "assignment_seeds": [20260823, 20260824, 20260825, 20260826, 20260827, 20260828, 20260829, 20260830]
+  },
+  "metrics": {
+    "primary": "macro-format ROC AUC",
+    "secondary": ["macro-format balanced accuracy at score > 0", "worst-format ROC AUC"],
+    "coverage_effect": "mean mixed-seed metric minus max(benchmark-only, casual-only), with max recomputed in each resample",
+    "estimator_interaction": "logistic coverage effect minus paired diagonal-LDA coverage effect on the identical OOF rows"
+  },
+  "uncertainty": {
+    "unit": "complete payload_block_id",
+    "bootstrap_resamples": 4000,
+    "bootstrap_seed": 20261301,
+    "same_resamples_across": "models, estimators, regimes, formats, and assignment seeds",
+    "interval": "percentile 95 percent"
+  },
+  "falsification": {
+    "assignment_stability": "all eight logistic mixed-minus-best AUC point estimates reported; at least seven must be positive",
+    "model_replication": "all three model logistic-minus-LDA interaction points must be positive",
+    "secondary_endpoint": "aggregate logistic-minus-LDA balanced-accuracy interaction point and CI reported but not a gate",
+    "absolute_metrics": "report every constituent metric; a contrast cannot hide estimator collapse"
+  },
+  "decision_rules": {
+    "positive": "aggregate logistic coverage-effect AUC bootstrap CI lower bound > 0; aggregate estimator-interaction AUC bootstrap CI lower bound > 0; at least two of three logistic model coverage-effect points > 0; all three model interaction points > 0; and at least seven of eight assignment-seed logistic aggregate effects > 0.",
+    "mixed": "aggregate logistic coverage-effect and estimator-interaction AUC points are positive but any positive rule fails.",
+    "negative": "either aggregate point is nonpositive."
+  },
+  "claim_scope": {
+    "allowed_if_positive": "Under identical exact-row data, the inferred benefit of mixed format/template coverage reverses between two standard linear probe estimators, so the substantive conclusion is estimator-dependent.",
+    "prohibited": ["one estimator is universally correct", "evaluation awareness", "behavioral or causal model effect", "pure format effect", "universal model claim"]
+  },
+  "outputs": {
+    "result_json": "estimator_reversal_results.json",
+    "table_tsv": "estimator_reversal_metrics.tsv",
+    "figure": "estimator_reversal_matrix.png",
+    "manifest_json": "run_manifest.json"
+  }
+}
