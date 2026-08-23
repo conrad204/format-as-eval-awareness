@@ -16,6 +16,7 @@ try:
     from scripts.devbunova_wrapper_scale import (
         _cross_validated_scores,
         _load_selected_layers,
+        _repo_relative,
         _task_rows,
         _verify_and_index,
         bf16_u16_to_float32,
@@ -24,11 +25,13 @@ try:
         roc_auc,
         sha256_file,
         stratified_cell_folds,
+        strict_json_text,
     )
 except ImportError:
     from devbunova_wrapper_scale import (
         _cross_validated_scores,
         _load_selected_layers,
+        _repo_relative,
         _task_rows,
         _verify_and_index,
         bf16_u16_to_float32,
@@ -36,6 +39,7 @@ except ImportError:
         fixed_depth_layers,
         roc_auc,
         sha256_file,
+        strict_json_text,
         stratified_cell_folds,
     )
 
@@ -43,7 +47,8 @@ except ImportError:
 def row_l2_normalize(features: np.ndarray) -> np.ndarray:
     """Return row-normalized float32 features, failing on zero/non-finite norms."""
     values = np.asarray(features, dtype=np.float32)
-    norms = np.sqrt(np.sum(values * values, axis=1, dtype=np.float64))
+    values64 = values.astype(np.float64)
+    norms = np.sqrt(np.sum(values64 * values64, axis=1))
     if not np.all(np.isfinite(norms)) or np.any(norms == 0):
         raise ValueError("row L2 normalization requires finite nonzero norms")
     return np.asarray(values / norms[:, None], dtype=np.float32)
@@ -165,10 +170,18 @@ def run(
     run_id: str,
 ) -> dict[str, Any]:
     config = json.loads(config_path.read_text(encoding="utf-8"))
-    if config.get("protocol_id") != "devbunova_wrapper_scale_robustness_v1":
-        raise ValueError("unexpected robustness protocol")
+    if config.get("protocol_id") != "devbunova_wrapper_scale_robustness_v2":
+        raise ValueError("unexpected corrected robustness protocol")
     parent_result = json.loads(parent_result_path.read_text(encoding="utf-8"))
     parent_manifest = json.loads(parent_manifest_path.read_text(encoding="utf-8"))
+    if _repo_relative(parent_result_path) != config["parent_result"]:
+        raise ValueError("parent result path differs from corrected protocol")
+    if _repo_relative(parent_manifest_path) != config["parent_manifest"]:
+        raise ValueError("parent manifest path differs from corrected protocol")
+    if sha256_file(parent_result_path) != config["parent_result_sha256"]:
+        raise ValueError("parent result hash mismatch")
+    if sha256_file(parent_manifest_path) != config["parent_manifest_sha256"]:
+        raise ValueError("parent manifest hash mismatch")
     if parent_result.get("run_id") != config["parent_run_id"]:
         raise ValueError("parent run mismatch")
     incomplete = out_dir.with_name(out_dir.name + ".incomplete")
@@ -177,6 +190,11 @@ def run(
 
     parent_protocol_path = Path(parent_manifest["protocol_path"])
     parent_protocol = json.loads(parent_protocol_path.read_text(encoding="utf-8"))
+    if sha256_file(parent_protocol_path) != parent_manifest["protocol_sha256"]:
+        raise ValueError("parent protocol hash mismatch")
+    parent_code_path = Path(parent_manifest["code_path"])
+    if sha256_file(parent_code_path) != parent_manifest["code_sha256"]:
+        raise ValueError("parent code hash mismatch")
     if parent_protocol["dataset"]["revision"] != config["data_contract"]["revision"]:
         raise ValueError("dataset revision mismatch")
     metadata, selected_indices, cells = _verify_and_index(parent_protocol, data_root)
@@ -184,6 +202,12 @@ def run(
     selected_hash = canonical_json_sha256(selected_ids.tolist())
     if selected_hash != parent_result["selection"]["ordered_selected_item_ids_sha256"]:
         raise ValueError("parent selected-item hash mismatch")
+    for relative, expected in parent_manifest["selected_file_sha256"].items():
+        path = data_root / relative
+        if not path.is_file() or path.stat().st_size != expected["bytes"]:
+            raise ValueError(f"parent input size/path mismatch: {relative}")
+        if sha256_file(path) != expected["sha256"]:
+            raise ValueError(f"parent input hash mismatch: {relative}")
 
     incomplete.mkdir(parents=True)
     records: list[dict[str, Any]] = []
@@ -192,6 +216,16 @@ def run(
     base_seed = parent_protocol["probe"]["fold_seed"]
     fixed_depth = float(config["fixed_endpoint"]["normalized_depth"])
     swap_count = config["checks"]["paired_regime_swap_permutations"]
+    swap_masks: dict[str, list[np.ndarray]] = {}
+    for task_index, task in enumerate(task_order):
+        task_rows, labels = _task_rows(cells, task)
+        rng = np.random.default_rng(
+            config["checks"]["paired_regime_swap_seed"] + task_index
+        )
+        swap_masks[task] = [
+            rng.integers(0, 2, size=len(labels), dtype=np.int8).astype(bool)
+            for _ in range(swap_count)
+        ]
 
     for model, spec in parent_protocol["dataset"]["expected_models"].items():
         layer = fixed_depth_layers(spec["n_layers"], [fixed_depth])[0]
@@ -267,16 +301,11 @@ def run(
                         }
                     )
 
-            rng = np.random.default_rng(
-                config["checks"]["paired_regime_swap_seed"]
-                + list(parent_protocol["dataset"]["expected_models"]).index(model) * 100
-                + task_order.index(task)
-            )
+            task_masks = swap_masks[task]
             task_raw = raw[task_rows]
             task_template = template[task_rows]
             task_swap_values: list[float] = []
-            for _ in range(swap_count):
-                mask = rng.integers(0, 2, size=len(labels), dtype=np.int8).astype(bool)
+            for mask in task_masks:
                 swapped_raw, swapped_template = paired_regime_swap(
                     task_raw, task_template, mask
                 )
@@ -376,9 +405,9 @@ def run(
         },
     }
     result = {
-        "schema_version": 1,
+        "schema_version": 2,
         "run_id": run_id,
-        "status": "completed_post_outcome_exploratory_robustness",
+        "status": "completed_post_outcome_code_audit_corrected_robustness",
         "analysis": config["protocol_id"],
         "parent_run_id": config["parent_run_id"],
         "parent_result_sha256": sha256_file(parent_result_path),
@@ -389,7 +418,7 @@ def run(
     }
 
     result_path = incomplete / config["outputs"]["result_json"]
-    result_path.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    result_path.write_text(strict_json_text(result), encoding="utf-8")
     table_path = incomplete / config["outputs"]["table_tsv"]
     fields = [
         "analysis",
@@ -415,20 +444,39 @@ def run(
     _plot_matrix(records, summary, figure_path)
 
     manifest = {
-        "schema_version": 1,
+        "schema_version": 2,
         "run_id": run_id,
-        "status": "completed_post_outcome_exploratory_robustness",
+        "status": "completed_post_outcome_code_audit_corrected_robustness",
         "analysis": config["protocol_id"],
         "repo_commit": _repo_commit(),
-        "protocol_path": config_path.as_posix(),
+        "protocol_path": _repo_relative(config_path),
         "protocol_sha256": sha256_file(config_path),
-        "code_path": Path(__file__).as_posix(),
+        "code_path": _repo_relative(Path(__file__)),
         "code_sha256": sha256_file(Path(__file__)),
         "parent_run_id": config["parent_run_id"],
         "parent_result_sha256": sha256_file(parent_result_path),
         "parent_manifest_sha256": sha256_file(parent_manifest_path),
-        "parent_selected_file_sha256": parent_manifest["selected_file_sha256"],
+        "dataset_repo_id": config["data_contract"]["repo_id"],
+        "dataset_revision": config["data_contract"]["revision"],
+        "models": parent_protocol["dataset"]["expected_models"],
+        "stored_dtype": config["data_contract"]["stored_dtype"],
+        "layer_semantics": config["data_contract"]["layer_semantics"],
+        "token_position": config["data_contract"]["token_position"],
+        "split_definition": parent_protocol["probe"]["fold_assignment"],
+        "regularization": parent_protocol["probe"]["ridge"],
+        "seeds": {
+            "folds": config["checks"]["fold_seeds"],
+            "swap": config["checks"]["paired_regime_swap_seed"],
+        },
+        "selected_file_sha256": parent_manifest["selected_file_sha256"],
         "selected_item_ids_sha256": selected_hash,
+        "input_hashes": {
+            "parent_result": sha256_file(parent_result_path),
+            "parent_manifest": sha256_file(parent_manifest_path),
+            "protocol": sha256_file(config_path),
+            "code": sha256_file(Path(__file__)),
+            "selected_item_ids": selected_hash,
+        },
         "output_hashes": {
             path.name: {"sha256": sha256_file(path), "bytes": path.stat().st_size}
             for path in (result_path, table_path, figure_path)
@@ -436,7 +484,7 @@ def run(
         "evidence_boundary": config["evidence_boundary"],
     }
     manifest_path = incomplete / config["outputs"]["manifest_json"]
-    manifest_path.write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    manifest_path.write_text(strict_json_text(manifest), encoding="utf-8")
     incomplete.replace(out_dir)
     return result
 

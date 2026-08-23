@@ -1,0 +1,65 @@
+{
+  "schema_version": 2,
+  "protocol_id": "devbunova_wrapper_scale_robustness_v2",
+  "frozen_utc": "2026-08-22T00:00:00Z",
+  "status": "post_outcome_code_audit_corrected_robustness",
+  "parent_run_id": "devbunova_wrapper_scale_v1_20260822_r2",
+  "parent_result": "artifacts/exploratory/devbunova_wrapper_scale_v1_20260822_r2/results.json",
+  "parent_result_sha256": "bcc00bc563af19be05cba7e383ed586e63a0714d32382432cab77226d1347c17",
+  "parent_manifest": "artifacts/exploratory/devbunova_wrapper_scale_v1_20260822_r2/run_manifest.json",
+  "parent_manifest_sha256": "7fa6e9eaf292919b4eb90b64b1b7a79ae31c73392600bb789dbb87829bfddbd2",
+  "supersedes_protocol_id": "devbunova_wrapper_scale_robustness_v1",
+  "supersedes_run_id": "devbunova_wrapper_scale_robustness_v1_20260822",
+  "reason_added_after_primary": "The preregistered result showed a small positive aggregate cross-regime penalty. These checks remain post-outcome exploratory and do not replace or redefine the primary endpoint.",
+  "reason_for_v2": "Hostile code review found that v1 used model-specific regime-swap masks before averaging across models, which narrowed the aggregate null, and that its manifest incompletely repeated RULES.md provenance. V2 uses the same item-level swap mask for a task and permutation across every model, verifies the corrected parent and every selected input file hash, and emits complete provenance under a new immutable run ID.",
+  "data_contract": {
+    "repo_id": "Conradf/devbunova-2x2-activations",
+    "revision": "2cf59061d14ca98eff3d91f989f2ebaa86a03c05",
+    "models": ["8b", "70b", "405b"],
+    "regimes": ["raw", "template"],
+    "selection": "Reuse the exact 816 ordered item IDs selected by corrected parent protocol devbunova_wrapper_scale_v1.",
+    "paired_unit": "full item_id across model and regime only",
+    "layer_semantics": "stored zero-based index only; extraction hook semantics undocumented",
+    "token_position": "undocumented",
+    "stored_dtype": "BF16 bit patterns in uint16"
+  },
+  "fixed_endpoint": {
+    "normalized_depth": 0.75,
+    "tasks": ["purpose_benchmark", "purpose_casual", "format_evaluation", "format_deployment"],
+    "primary_tasks_for_aggregate": ["purpose_benchmark", "purpose_casual"],
+    "metric": "symmetric cross-regime ROC-AUC penalty",
+    "formula": "0.5 * ((RR - RT) + (TT - TR))",
+    "probe": "same diagonal LDA as parent protocol"
+  },
+  "checks": {
+    "fold_seeds": [20260822, 20260825, 20260826, 20260827, 20260828, 20260829, 20260830, 20260831],
+    "ridge_fractions": [0.01, 0.1, 1.0],
+    "row_normalizations": ["none", "l2"],
+    "paired_regime_swap_permutations": 32,
+    "paired_regime_swap_seed": 20260901,
+    "paired_regime_swap_definition": "For each binary task and permutation, independently swap raw and template representations within each item with probability 0.5, preserving item, label, and marginal regime sizes. Reuse that task-item mask across all three models, then refit and evaluate fixed probes/folds.",
+    "permutation_p_value": "(1 + count(null aggregate penalty >= observed aggregate penalty)) / (1 + n_permutations)"
+  },
+  "robustness_rule": {
+    "robust_positive": "At q=0.75, the aggregate of the two purpose tasks is positive for every model under every ridge and normalization, the median across fold seeds is positive for every model, and the all-model observed aggregate exceeds the 97.5th percentile of the common-mask paired regime-swap null.",
+    "mixed": "Any sign or null criterion fails; report the complete sensitivity matrix and do not use a robust-positive headline.",
+    "invalid": "Parent hashes, selected input hashes, selected item hash, model/regime IDs, selected rows, or fixed layer differs."
+  },
+  "evidence_boundary": {
+    "grade": "post_outcome_code_audit_corrected_robustness",
+    "prohibited_claims": [
+      "confirmation",
+      "causal wrapper intervention",
+      "behavioral steering",
+      "evaluation awareness",
+      "matched factorial A/B/C geometry",
+      "causal model scaling"
+    ]
+  },
+  "outputs": {
+    "result_json": "robustness_results.json",
+    "table_tsv": "robustness_metrics.tsv",
+    "figure": "robustness_matrix.png",
+    "manifest_json": "run_manifest.json"
+  }
+}
