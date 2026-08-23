@@ -10,6 +10,13 @@
       "job_ids": [53274662, 53274663],
       "reason": "Correct the launcher storage-boundary guard from a malformed concatenated shell glob to independent absolute-path checks. Both jobs exited in one second before nvidia-smi, model loading, output-directory creation, or any activation extraction.",
       "change": "launcher path guard only; extraction contract unchanged"
+    },
+    {
+      "amended_utc": "2026-08-23T12:26:28Z",
+      "status": "after_two_entrypoint_preflight_failures_before_model_load_or_output_creation",
+      "job_ids": [53274664, 53274665],
+      "reason": "Invoke the package entrypoint eval_format_mvp rather than the non-executing cli module. Both jobs printed GPU inventory, invoked no CLI main function, created no output directory, and failed only when the terminal sha256sum found no outputs.",
+      "change": "launcher Python module entrypoint only; extraction contract unchanged"
     }
   ],
   "known_prior": {
@@ -40,7 +47,7 @@
     "all_transformer_layers": true,
     "hardware": "NVIDIA H100 80GB; causal baseline and interventions must use the same GPU family and count per model",
     "source_files": {
-      "scripts/cluster_extract_pilot80_causal_recovery.sbatch": "e9d2166e398e3f73a8f25b3c598d4ab60ef8333a67898deef7a0ac91fda7cf83",
+      "scripts/cluster_extract_pilot80_causal_recovery.sbatch": "6c572e15336015b6b9734ef107a21a7417fbca146c1decfba6e8879244e22563",
       "src/eval_format_mvp/extract.py": "cc2c73c0d24b02dfc47cdaecb2423bd875008edf865987b7a3525c63507bb40e",
       "src/eval_format_mvp/cli.py": "a12d674dd0dab265c3fddd8c064726e76e6d637aad896f5bb68a533b9847f4bc",
       "src/eval_format_mvp/io.py": "b32d10a8d299ea02f195d68915ad94385151f583f874c5125b4cc16d4796fb7a"

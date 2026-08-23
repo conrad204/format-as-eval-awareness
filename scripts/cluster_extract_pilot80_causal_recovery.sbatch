@@ -35,7 +35,7 @@ export TRANSFORMERS_OFFLINE=1
 export PYTHONPATH="$SOURCE_ROOT/src"
 PYTHON=/bighome/jppatton/langea/runtime/vllm/bin/python
 nvidia-smi --query-gpu=name,uuid,driver_version --format=csv,noheader
-"$PYTHON" -m eval_format_mvp.cli extract \
+"$PYTHON" -m eval_format_mvp extract \
   --items "$ITEMS_PATH" \
   --out-dir "$OUT_DIR" \
   --model "$MODEL_PATH" \
