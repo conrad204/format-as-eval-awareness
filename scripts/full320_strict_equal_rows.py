@@ -782,7 +782,10 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                         mixed_mean = float(np.mean([null_metrics[("mixed", seed)]["macro_format_roc_auc"] for seed in seeds]))
                         null_sums[null_index] += mixed_mean - max(controls)
                     null_cell_count += 1
+            mmap_handle = X._mmap
+            del layer_data
             del X
+            mmap_handle.close()
             if not args.keep_memmap:
                 x_path.unlink(missing_ok=True)
         point_summary = summarize_point_records(records, seeds)
