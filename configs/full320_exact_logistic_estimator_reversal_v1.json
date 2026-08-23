@@ -3,6 +3,13 @@
   "protocol_id": "full320_exact_logistic_estimator_reversal_v1",
   "frozen_utc": "2026-08-23T10:20:53Z",
   "status": "post_lda_outcome_preregistered_before_any_exact_row_logistic_outcome",
+  "post_outcome_code_audit_correction": {
+    "corrected_utc": "2026-08-23T10:43:52Z",
+    "defect": "The first implementation forced the full320_strict_equal_rows_v1 protocol ID when selecting logistic training pair units for every model. The frozen 8B LDA comparator used full320_strict_equal_rows_8b_scale_v1, and pair selection hashes include protocol_id; therefore the 8B estimator comparison was not row-paired. The two 70B comparisons were correctly paired.",
+    "correction": "Rebuild logistic splits separately for each model with the exact source LDA analysis ID and require equality with the source run's design_audit.main.split_records_sha256 before fitting. No estimator, seed, endpoint, threshold, criterion, or claim rule changes.",
+    "first_run_status": "invalid_code_defect_not_evidence",
+    "first_run_observed": "All positive rules passed before the mismatch was found during mandatory audit."
+  },
   "scientific_question": "Does a standard L2 logistic probe recover a mixed-environment coverage benefit under exact row/block balance where diagonal LDA yields a cost, making the substantive conclusion estimator-dependent?",
   "known_prior": {
     "loose_8b_logistic": {

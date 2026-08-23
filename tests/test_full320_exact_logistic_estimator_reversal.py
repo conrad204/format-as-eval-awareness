@@ -49,3 +49,5 @@ def test_load_lda_scores_filters_model_and_depth() -> None:
     assert len(outputs) == 10
     assert source["source_run_id"] == "full320_strict_equal_rows_v1_20260823_r2"
     assert all(int(np.isfinite(scores).sum()) == 7040 for scores in outputs.values())
+    assert source["source_analysis"] == "full320_strict_equal_rows_v1"
+    assert source["source_split_audit_sha256"]

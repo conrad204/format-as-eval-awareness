@@ -115,6 +115,8 @@ def load_lda_scores(
         "score_path": archive_path.resolve().as_posix(),
         "score_sha256": sha256_file(archive_path),
         "source_run_id": result["run_id"],
+        "source_analysis": result["analysis"],
+        "source_split_audit_sha256": result["design_audit"]["main"]["split_records_sha256"],
     }
 
 
@@ -327,12 +329,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         raise ValueError("unexpected estimator-reversal protocol")
     data_root = args.data_root.resolve()
     rows = parse_rows(data_root / config["dataset"]["items_path"], config["dataset"]["items_sha256"])
-    split_protocol = {
-        "protocol_id": "full320_strict_equal_rows_v1",
-        "dataset": config["dataset"],
-        "probe": config["probe"],
-    }
-    splits, split_audit = build_splits(rows, split_protocol, double_heldout=False)
+    split_audits = {}
     seeds = [int(seed) for seed in config["probe"]["assignment_seeds"]]
     labels = np.asarray([1 if row["intended_purpose"] == "evaluation" else 0 for row in rows], dtype=np.int8)
     formats = np.asarray([str(row["format"]) for row in rows])
@@ -350,6 +347,18 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         x_path = extract_x_memmap(npz_path, args.memmap_root.resolve(), expected_shape)
         X = np.load(x_path, mmap_mode="r", allow_pickle=False)
         layer = int(config["depth"]["layers"][str(model_config["n_layers"])])
+        lda_outputs, source = load_lda_scores(
+            data_root / model_config["lda_result_path"], model_id, float(config["depth"]["normalized"]), len(rows)
+        )
+        split_protocol = {
+            "protocol_id": source["source_analysis"],
+            "dataset": config["dataset"],
+            "probe": config["probe"],
+        }
+        splits, split_audit = build_splits(rows, split_protocol, double_heldout=False)
+        if split_audit["split_records_sha256"] != source["source_split_audit_sha256"]:
+            raise ValueError(f"logistic/LDA split audit mismatch for {model_id}")
+        split_audits[model_id] = split_audit
         logistic_outputs = fit_logistic_oof(X[:, layer, :], splits, seeds, config["probe"])
         logistic_records, logistic_store = records_and_store(
             logistic_outputs,
@@ -361,9 +370,6 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             labels,
             formats,
             canonical,
-        )
-        lda_outputs, source = load_lda_scores(
-            data_root / model_config["lda_result_path"], model_id, float(config["depth"]["normalized"]), len(rows)
         )
         lda_records, lda_store = records_and_store(
             lda_outputs,
@@ -423,8 +429,8 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         "criteria": criteria,
         "point_summary": point,
         "bootstrap": bootstrap,
-        "split_audit": split_audit,
-        "split_audit_sha256": canonical_json_sha256(split_audit),
+        "split_audits": split_audits,
+        "split_audit_sha256": canonical_json_sha256(split_audits),
         "models": model_audits,
         "source_lda_runs": source_runs,
         "records": records,
