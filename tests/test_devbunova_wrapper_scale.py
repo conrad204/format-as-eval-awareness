@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-import math
 import json
+import math
 from pathlib import Path
 
 import numpy as np
@@ -19,6 +19,11 @@ from scripts.devbunova_wrapper_scale import (
     score_diag_lda,
     select_balanced_core,
     stratified_cell_folds,
+)
+from scripts.devbunova_wrapper_scale_robustness import (
+    paired_regime_swap,
+    row_l2_normalize,
+    symmetric_penalty,
 )
 
 
@@ -287,3 +292,40 @@ def test_end_to_end_tiny_run_produces_immutable_evidence(tmp_path: Path):
     assert (output_path / "auc_trajectories.png").is_file()
     with pytest.raises(FileExistsError):
         run(config_path, data_root, output_path, "synthetic_test_repeat")
+
+
+def test_row_l2_normalize_produces_unit_rows_and_rejects_zero_rows():
+    features = np.asarray([[3.0, 4.0], [5.0, 12.0]], dtype=np.float32)
+    normalized = row_l2_normalize(features)
+    np.testing.assert_allclose(np.linalg.norm(normalized, axis=1), np.ones(2))
+    with pytest.raises(ValueError):
+        row_l2_normalize(np.asarray([[0.0, 0.0]], dtype=np.float32))
+
+
+def test_paired_regime_swap_changes_only_selected_aligned_pairs():
+    raw = np.arange(12, dtype=np.float32).reshape(4, 3)
+    template = raw + 100
+    mask = np.asarray([False, True, False, True])
+    swapped_raw, swapped_template = paired_regime_swap(raw, template, mask)
+    np.testing.assert_array_equal(swapped_raw[~mask], raw[~mask])
+    np.testing.assert_array_equal(swapped_template[~mask], template[~mask])
+    np.testing.assert_array_equal(swapped_raw[mask], template[mask])
+    np.testing.assert_array_equal(swapped_template[mask], raw[mask])
+    np.testing.assert_array_equal(raw, np.arange(12, dtype=np.float32).reshape(4, 3))
+
+
+def test_symmetric_penalty_matches_registered_formula():
+    labels = np.asarray([0, 0, 1, 1])
+    scores = {
+        "RR": np.asarray([0.0, 0.1, 0.8, 0.9]),
+        "RT": np.asarray([0.0, 0.8, 0.1, 0.9]),
+        "TT": np.asarray([0.0, 0.1, 0.8, 0.9]),
+        "TR": np.asarray([0.0, 0.8, 0.1, 0.9]),
+    }
+    expected = 0.5 * (
+        roc_auc(labels, scores["RR"])
+        - roc_auc(labels, scores["RT"])
+        + roc_auc(labels, scores["TT"])
+        - roc_auc(labels, scores["TR"])
+    )
+    assert symmetric_penalty(labels, scores) == pytest.approx(expected)
