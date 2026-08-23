@@ -1,0 +1,199 @@
+{
+  "schema_version": 1,
+  "protocol_id": "devbunova_wrapper_scale_v1",
+  "frozen_utc": "2026-08-22T00:00:00Z",
+  "status": "preregistered_development_observational",
+  "hypothesis": "The stored raw and template activation regimes differ in the cross-regime stability of purpose-related linear separability, and that stability changes descriptively with Llama-3.1 model size.",
+  "evidence_boundary": {
+    "grade": "development_observational",
+    "paired_unit": "exact full item_id across model and regime only",
+    "independent_unit_warning": "Rows from different core cells are independent prompt distributions, not matched factorial payload blocks.",
+    "raw_template_warning": "The private repository does not document the operational semantics of the raw and template regime labels; regime contrasts must not be described as a verified chat-template intervention.",
+    "layer_warning": "Stored layer indices are zero-based metadata values. Extraction hook position and pre/post-normalization semantics are undocumented.",
+    "prohibited_claims": [
+      "causal routing",
+      "behavioral steering",
+      "evaluation awareness",
+      "confirmation-grade evidence",
+      "factorial A/B/C decomposition of matched payloads",
+      "model-scale causality",
+      "universal format invariance or erasure"
+    ]
+  },
+  "dataset": {
+    "repo_id": "Conradf/devbunova-2x2-activations",
+    "repo_type": "dataset",
+    "revision": "2cf59061d14ca98eff3d91f989f2ebaa86a03c05",
+    "selected_chunk_indices": [0, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 68, 72, 76, 80, 84, 88, 92, 96, 100, 104, 108, 112, 116, 120, 124, 128, 132],
+    "expected_items_per_model_regime": 2143,
+    "expected_models": {
+      "8b": {
+        "model_id": "meta-llama/Llama-3.1-8B-Instruct",
+        "model_revision": "unknown",
+        "parameter_count": 8000000000,
+        "n_layers": 32,
+        "hidden_size": 4096
+      },
+      "70b": {
+        "model_id": "meta-llama/Llama-3.1-70B-Instruct",
+        "model_revision": "unknown",
+        "parameter_count": 70000000000,
+        "n_layers": 80,
+        "hidden_size": 8192
+      },
+      "405b": {
+        "model_id": "meta-llama/Llama-3.1-405B-Instruct",
+        "model_revision": "unknown",
+        "parameter_count": 405000000000,
+        "n_layers": 126,
+        "hidden_size": 16384
+      }
+    },
+    "regimes": ["raw", "template"],
+    "required_arrays": ["X_bf16_u16", "item_ids", "layers", "token_lengths", "top1_token_ids", "row_start", "model_id", "regime"],
+    "stored_dtype": "BF16 bit patterns in uint16",
+    "item_id_pattern": "dev2x2::<condition>::<variant>::<four-digit-index>"
+  },
+  "selection": {
+    "variant": "asis",
+    "seed": 20260822,
+    "method": "For each core cell, rank full item IDs by SHA256(seed || NUL || item_id), then take the first n_per_cell.",
+    "n_per_cell": 204,
+    "core_cells": {
+      "EB": "bench_eval",
+      "DB": "bench_deploy_rewritten",
+      "EC": "casual_eval_mutual",
+      "DC": "casual_deploy_matched"
+    },
+    "excluded_conditions": ["casual_deploy_formal", "bench_deploy_formal"],
+    "excluded_variant": "stripped",
+    "expected_selected_rows": 816
+  },
+  "tasks": {
+    "primary": {
+      "purpose_benchmark": {"positive_cells": ["EB"], "negative_cells": ["DB"]},
+      "purpose_casual": {"positive_cells": ["EC"], "negative_cells": ["DC"]}
+    },
+    "secondary_controls": {
+      "format_evaluation": {"positive_cells": ["EB"], "negative_cells": ["EC"]},
+      "format_deployment": {"positive_cells": ["DB"], "negative_cells": ["DC"]}
+    }
+  },
+  "depths": {
+    "normalized_grid": [0.0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1.0],
+    "mapping": "round_half_up(q * (n_layers - 1))",
+    "primary_window": [0.5, 1.0],
+    "primary_summary": "unweighted mean across the five fixed grid points in the primary window",
+    "permutation_control_depth": 0.75,
+    "best_layer_selection": false
+  },
+  "probe": {
+    "type": "diagonal_lda",
+    "normalization": "training-fold pooled within-class per-feature variance",
+    "direction": "(mean_positive - mean_negative) / (pooled_variance + ridge)",
+    "intercept": "-0.5 * dot(mean_positive + mean_negative, direction)",
+    "ridge": "0.1 * median strictly-positive finite pooled variance in the training fold",
+    "class_prior": "equal by construction",
+    "folds": 5,
+    "fold_assignment": "deterministic SHA256 ranking within each selected core cell, round-robin across folds",
+    "fold_seed": 20260822,
+    "threshold": 0.0,
+    "metrics": ["roc_auc", "balanced_accuracy"]
+  },
+  "transfer": {
+    "codes": {
+      "RR": "fit raw, test raw",
+      "RT": "fit raw, test template",
+      "TT": "fit template, test template",
+      "TR": "fit template, test raw"
+    },
+    "primary_metric": "roc_auc",
+    "symmetric_cross_regime_penalty": "0.5 * ((RR - RT) + (TT - TR))",
+    "positive_penalty_interpretation": "same-regime directions transfer worse across stored regimes",
+    "within_regime_gain": "TT - RR",
+    "secondary_geometry": ["raw_template_direction_cosine", "raw_template_oof_score_correlation"],
+    "cross_model_comparison": "Pearson correlation of same-item out-of-fold score vectors; never cosine raw directions across unequal hidden dimensions"
+  },
+  "uncertainty": {
+    "bootstrap_resamples": 1000,
+    "bootstrap_seed": 20260823,
+    "bootstrap_unit": "selected item_id, stratified by the two task classes and paired across raw/template and models",
+    "confidence_interval": [0.025, 0.975],
+    "label_permutations": 32,
+    "permutation_seed": 20260824,
+    "permutation_scope": "Within each task, permute binary labels deterministically while preserving class counts; evaluate at q=0.75 only.",
+    "layer_multiplicity": "No layerwise p-values. Report full fixed-depth trajectories and the preregistered primary-window mean."
+  },
+  "diagnostics": {
+    "required": [
+      "per-cell selected and available counts",
+      "exact item-ID sequence equality across all model-regime combinations",
+      "token-length raw-template paired differences by model and cell",
+      "top1-token raw-template agreement by model and cell",
+      "finite activation and score checks",
+      "same-regime and cross-regime AUC and balanced accuracy",
+      "direction cosine",
+      "score correlation",
+      "label-permutation null"
+    ],
+    "hostile_falsifications": {
+      "unequal_cells": "Use exactly 204 asis items per core cell.",
+      "variant_leakage": "Exclude every stripped item.",
+      "wrapper_length": "Report raw-template token-length differences and do not interpret regime effects as semantic purpose without this diagnostic.",
+      "top_token_instability": "Report paired top1-token agreement and treat disagreement as a limitation.",
+      "high_dimension": "Use fixed diagonal-LDA ridge and a fixed label-permutation null; never tune regularization after outcomes.",
+      "layer_selection": "Use all nine predeclared normalized depths and one predeclared window summary.",
+      "model_revision": "All model revisions are unknown; model-size slope is descriptive only.",
+      "content_confound": "Purpose and format tasks compare independent prompt distributions; describe linear separability, not isolated constructs.",
+      "regime_semantics": "Use the repository labels raw/template literally and do not claim a verified wrapper implementation."
+    }
+  },
+  "scale_summary": {
+    "x": "log10(parameter_count)",
+    "y": "primary-window mean symmetric cross-regime AUC penalty, averaged over the two primary tasks",
+    "fit": "ordinary least squares over the three model aggregates",
+    "interpretation": "descriptive trajectory only; n_models=3 and revisions unknown"
+  },
+  "decision_rule": {
+    "regime_specific": "Primary bootstrap 95% CI for the model-averaged primary-window symmetric penalty excludes 0 above zero, and each model point estimate is positive.",
+    "regime_invariant": "Primary CI includes 0 and label-permutation controls show no excess penalty.",
+    "reversed_or_mixed": "Primary CI is below zero or model/task signs disagree; report the fixed matrix without a monotonic headline.",
+    "invalid": "Any fatal validation gate fails."
+  },
+  "fatal_validation_gates": [
+    "dataset revision does not match the recorded revision",
+    "chunk index set differs from the preregistered set",
+    "required NPZ arrays are missing",
+    "full item-ID sequence differs across any model-regime combination",
+    "a core asis cell contains fewer than 204 items",
+    "model ID, layer count, hidden size, or layer index array differs from config",
+    "selected output contains non-finite activations, directions, or scores",
+    "an immutable output directory already exists"
+  ],
+  "outputs": {
+    "result_json": "results.json",
+    "table_tsv": "metrics.tsv",
+    "manifest_json": "run_manifest.json",
+    "figures": ["auc_trajectories.png", "transfer_penalty.png", "scale_summary.png"],
+    "required_manifest_fields": [
+      "run_id",
+      "status",
+      "analysis",
+      "repo_commit",
+      "protocol_sha256",
+      "dataset_repo_id",
+      "dataset_revision",
+      "selected_file_sha256",
+      "ordered_item_ids_sha256",
+      "models",
+      "stored_dtype",
+      "layer_semantics",
+      "split_definition",
+      "regularization",
+      "seeds",
+      "input_hashes",
+      "output_hashes",
+      "limitations"
+    ]
+  }
+}
