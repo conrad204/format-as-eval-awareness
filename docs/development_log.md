@@ -1,37 +1,117 @@
-# Development analysis log
+# Development log — determinism fix and v3 causal run (2026-08-23)
 
-This file records post-hoc/spent-pilot analyses. It is not part of the prospective confirmation protocol.
+## Starting point
 
-## 2026-08-17 — continuation from 4436eac
+`artifacts/exploratory/pilot80_factorial_causal_v2_invalid_20260823/run_manifest.json`
+recorded both models failing the frozen `source_activation_reproduction` gate
+(`max_abs<=0.125`, `cosine>=0.999`): 8B layer 29 row 419 (max_abs=0.25), 70B
+layer 74 row 312 (max_abs=0.15625), both cosine>=0.999. `batch_size=1` and
+exact checkpoint/hardware pinning had already been tried and did not resolve
+it. Task: diagnose and, if confirmed, fix the root cause without relaxing the
+gate, touching partial data, or editing anything prospectively frozen.
 
-- Confirmation remains prospective and unchanged. Exploratory analyses use the three imported pilot archives only.
-- All pilot activations use the recorded contract: zero-based transformer-block output before final model norm, last prompt token after chat templating, BF16 inference with float32 storage.
-- New analyses must preserve the five purpose-family held-out folds and payload-block uncertainty units.
-- The selected-layer cross-model geometry artifacts are development evidence only; no causal or awareness claim follows from them.
-- A spawn-safe initializer was added to the development all-layer sweep runner after Windows multiprocessing workers failed to inherit the global activation state. The estimator and splits were unchanged.
-- Text red-team v3 was run on the shared pilot metadata with held-vocabulary folds. The strongest available baseline is cue-only char 2–5 (stated mean AUC 0.7097, max fold 0.8906); stated verb-only cue char controls reach mean AUC 0.9037. Llama token-piece controls were not substituted because the Llama tokenizer is not cached locally.
-- A cross-fitted selected-layer format-erasure run was completed for Llama-3.1-8B. Matched-mean format removal leaves mean purpose AUC 0.992 and stated→indirect AUC 0.850 while fresh format AUC is 0.500; logistic/INLP removal did not pass the fresh format-adversary sanity check (format AUC remained 1.000). This is a development diagnostic, not a claim that format has been erased generally.
-- FineWeb `sample-10BT` was selected as an independent generic J-lens corpus at dataset revision `9bb295ddab0e05d785b879661af7260fed5140fc`; 1,000 rows were selected by a seeded permutation of 5,067 filter-passing rows (`seed=20260817`). Raw corpus SHA256: `b0dc8a013b501f2e7080067eee8f81bdaa10fc0534100c3453ae4eeda900f6bd`. Tokenization remains to be performed with the cached Llama tokenizer on cluster.
-- Confirmation generation job 52049785 failed before candidate generation because the deployment did not resolve the cached Stockmark snapshot under offline mode. The deployment was patched in the approved remote path to pass `local_files_only=True` to tokenizer/model loading; backup and patched hashes were recorded remotely. Infrastructure-only retry job 52276496 uses the unchanged scientific generation parameters and is currently pending GPU resources.
-- The synthetic format-erasure control was corrected before any new scientific run: it now uses 10,000 rows and checks that purpose remains decodable while removed-format AUC is near chance (`raw purpose AUC=1.0`, `format-after-removal AUC=0.5283`, pass). Prior pilot erasure JSONs retain their original pre-fix control field and are not treated as final evidence.
-- The 8B reproduction initially pointed at the legacy selected-layer `activations.npz` despite the all-layer analysis contract; its archive metadata identifies a different legacy layer configuration and its L12 values differ materially from `activations_all_layers.npz`. It was not used as evidence. Recomputed reproduction now uses the frozen all-layer archive and exactly reproduces E1 AUC 0.991753, ngram AUC 0.500000, E4 0.866172, E5 0.876289, E7 0.981432, and E8 0.948346.
-- Development format-erasure diagnostics completed for Llama-3.1-70B (L31) and Llama-3.3-70B (L17). Their stored synthetic-check fields predate the corrected harness and are false; the reported observational metrics are retained as development diagnostics only. No causal claim follows.
-- The earlier J-lens tokenizer blocker is resolved locally. The exact HF tokenizer assets at revision `0e9e39f249a16976918f6564b8830bc894c89659` have SHA256s `79e3e522635f3171300913bb421464a87de6222182a0570b9b2ccba2a964b2b4`, `177c7b61e616fecb84c17ce0591acb92c6c4d60e9ac5ababfb940ff23bbcd424`, and `6f38c73729248f6c127296386e3cdde96e254636cc58b4169d3fd32328d9a8ec` for `tokenizer.json`, `tokenizer_config.json`, and `special_tokens_map.json`; cluster `AutoTokenizer` fast loading and deterministic encode/decode passed.
-- Real J-lens smoke job `52308432` completed on H100. Two frozen FineWeb prompts produced a finite nonzero FP32 `[4096,4096]` L12 Jacobian; Frobenius norm `68.27595520019531`; raw save, exact reload, and held-out `apply` all passed. The first smoke attempt `52307528` exposed only a too-short held-out validation string and was superseded without changing fit data or scientific parameters.
-- The independent 100-prompt development J-lens fit `52310538` completed successfully with `n_done=100`. Its saved FP32 Jacobians are finite, exact-reloadable, and `apply`-valid at source layers 4/9/12/15/20/24; Frobenius norms are 39.42/41.43/52.14/67.34/97.43/103.08, respectively. The offline pilot assay over 1,760 rows completed as job `52350692` and is recorded in `artifacts/jlens_100/pilot_assay.json` (SHA256 `6fe512d8a1605e8b0f1e19552ce6ba4bf47fce9b989b702e6d550768c62e96d0`). Development-only purpose-projection AUCs are near chance at L12 (stated 0.505, indirect 0.490, second-person 0.487), while no-cue benchmark/casual format projected along the same purpose contrast is high at L12 0.768, L15 0.860, and L24 0.890. This is not confirmation evidence and does not establish awareness; the format result is a projection, not a format-token lexicon score. The merged 1,000-prompt fit `52347764` is independently running at `n_done=30`.
-- A deterministic 25-block/5-topic development stress set (550 rows; SHA256 `b16e810d1a3c329088075b76d63b40ce2c64a9c49044e4a387d31d96de98ba67`) was scored offline with the 100-prompt lens as job `52360914`; output SHA256 `9e06c098fe550dc2eb14b36683f1ea1c541417fa2e7b0844708d35f0ecd6cfcd`. At L12, stated-purpose AUC was `0.5153`, indirect `0.4776`, second-person `0.4792`, and no-cue format AUC `0.7440`; stated max was L20 `0.5594`, second-person max L24 `0.5984`, and no-cue format max L15 `0.9104`. This reproduces the preliminary pattern: weak J-lens purpose readout, strong format projection.
-- Purpose-probe decomposition used the local 8B all-layer pilot activations and the fitted Jacobians, with J-space defined as the right-singular-vector input subspace. Exact numerical Jacobian rank was 4096/4096 at every source layer, so the untruncated row-space orthogonal complement is mathematically zero and is not informative. A fixed 99%-Frobenius-energy truncation gives J/orthogonal purpose norm fractions of L4 `0.423/0.906`, L9 `0.524/0.852`, L12 `0.621/0.784`, L15 `0.787/0.617`, L20 `0.904/0.428`, and L24 `0.917/0.398`; held-fold purpose AUCs for J versus orthogonal components are respectively `0.657/0.901`, `0.897/0.975`, `0.805/0.916`, `0.938/0.898`, `0.862/0.666`, and `0.860/0.640`. Thus early-layer purpose decoding is mostly in the truncated J-orthogonal component; deeper layers shift more purpose signal into dominant J-space. This remains development-only and is not a causal claim.
-- An 8-family no-cue format battery was built from the same 80 pilot payload blocks across 16 topics (640 rows; four benchmark-like and four casual/deploy-like families; SHA256 `02feb40d2909db09334705f1743bc3532f8eb6ce1175e882800d33c27ff3689c`). The fixed 100-prompt J-lens assay (`52372658`, output SHA256 `1322aca39eeda1f30b67862993489cefc98401ce9cfffe09ee23fc39e6c97fd0`) yields aggregate benchmark-minus-casual projection means of L4 `-1.052`, L9 `-0.551`, L12 `+0.064`, L15 `+0.708`, L20 `+0.544`, and L24 `+1.066`; effects are not a single-MCQ artifact, but family variance is substantial and the early-layer sign reverses.
-- A development causal intervention run (`52372860`) used 20 no-cue held-out rows, fixed layers L4/L12/L15/L24, equal residual-norm alpha values `0.25/0.5/1.0`, and full/top-J/low-gain/format/random vectors (vectors SHA256 `d45fbfe0e467041fb09d98915ad2f18c8e74804c89591ac09419f283f446e10f`). At alpha `0.5`, equal-residual mean purpose-margin shifts for full/top-J/low-gain were respectively L4 `-0.146/+0.032/-0.161`, L12 `-0.073/-0.033/-0.044`, L15 `-0.133/-0.084/-0.172`, and L24 `+0.076/+0.079/+0.017`; first-order J-to-target hidden prediction cosines were low at early layers and higher at L24 (`0.388` full, `0.415` top-J, `0.151` low-gain). A gain-matched rerun (`52373961`, output SHA256 `c3c4220e04eed9100a12dcfc1e6faa576e20778a6f6e87d4c571aaf8de4ba027`) required very large low-gain residual deltas and produced nonlinear margin excursions, so it is diagnostic evidence that equal predicted output gain is not a safe equal-residual intervention regime.
-- The 1,000-prompt J-lens fit completed as job `52347764`. The fit manifest records 1,000 prompts, source layers L4/L9/L12/L15/L20/L24, target layer L31, seed `20260817`, lens SHA256 `3246adc7d3e38fe5c90cad24a864bc57cd2eec3ac5ad9571c074d5bcb1351d42`, and checkpoint SHA256 `c0bbff53298a2914b5b4de4b004fded3353f4f7898f428de80db127deea5d5da`. The independent 1,000-prompt assay is now complete; its generic corpus has no purpose/format labels, so endpoint AUCs are not estimable.
-- Full development J-lens geometry controls completed locally with source layers L4/L9/L12/L15/L20/L24, 99% energy ranks 830/1225/1777/2787/3497/3614, 24 structured random-subspace seeds, bottom singular-subspace controls, and Jacobian gain metrics (artifact SHA256 `f2e898d8b6b298b83e38e1aa12718151b8d07d51a496b75efab0d86321e178a7`). At 99% energy, mean top-subspace purpose AUCs were L4/L9/L12/L15/L20/L24 `0.657/0.897/0.805/0.938/0.862/0.860`; bottom-subspace AUCs were `0.751/0.926/0.935/0.943/0.902/0.897`. This remains development-only; exact full Jacobian rank is 4096/4096, so the untruncated orthogonal complement is zero.
-- The completed 3.3-70B all-layer development sweep has 80 layers and decorrelated argmax L17 AUC 0.995569. The output was initially written to the literal `--out` path due the positional CLI contract, then relocated without content changes and verified.
-- Corrected development format-erasure harness (`scripts/format_erasure_v2.py`, SHA256 `023890730d38fcc440b209e25905e0236dfe1d29371e376bd7aab8dee4ba58c9`) completed the 8B L12 run. The synthetic control passes (`raw purpose AUC=1.0`, format-after-removal AUC `0.5283`). The matched-mean result retains mean purpose AUC `0.9923`, stated→indirect AUC `0.8498`, and fresh format AUC `0.5000`; output is development-only and does not establish causal erasure.
-- Corrected development format-erasure harness also completed Llama-3.1-70B L31 and Llama-3.3-70B L17. Both synthetic controls pass (`raw purpose AUC=1.0`, removed-format AUC `0.5283`). Matched-mean summaries are: 3.1-70B purpose `0.9991`, stated→indirect `0.9243`, fresh format `0.5000`; 3.3-70B purpose `0.9950`, stated→indirect `0.8098`, fresh format `0.5000`. These are development diagnostics only.
- 
-## 2026-08-18 — current continuation
+## 1. Determinism audit and fix
 
-- GitHub branch `consolidated/pr/consolidated-science` was fetched and remains at `f39b5e6`; no upstream commits were waiting. The worktree contains user-provided `v3-activations/` inputs and untracked local J-lens artifacts; these were not overwritten.
-- The frozen 1,000-row FineWeb corpus was tokenized locally with the pinned Llama-3.1-8B tokenizer: 1,000 rows, max length 128, minimum length 121, tokenized SHA256 `f280759f4c64a2c71c0e4644f00b4c6f96661ef3b12fed840ec6a541f2a9cb56`.
-- The real 1,000-prompt J-lens assay completed on A100 job `52554319`; output SHA256 `9fb55cd28699e8deb03c670682ce3d55492a69afb161bf9af444f411b8f82c83`. The generic corpus has no purpose/format metadata, so all purpose/format endpoint counts are zero; this is an assay-completion/provenance result, not evidence for a purpose signal.
-- Confirmation remains blocked before activation extraction. Payload candidates and independent Swallow-70B semantic validation passed; frame generation is still failing fail-closed structural/lexical gates. The latest strict 70B retry is queued as job `52554481`; no confirmation bank or outcome has been accepted.
+Neither `src/eval_format_mvp/extract.py` nor `scripts/run_pilot80_factorial_causal.py`
+pinned deterministic GPU execution: TF32 matmul/cuDNN reduction order was
+unpinned, `torch.use_deterministic_algorithms` was never called,
+`CUBLAS_WORKSPACE_CONFIG` was unset, and attention implementation was left on
+transformers' auto-select (can pick SDPA or flash-attention kernels with
+different reduction order run to run). Added all four, plus the matching env
+var export in both cluster sbatch launchers, changing no other scientific
+parameter. Grepped both code paths for other nondeterminism sources (RNG
+seeding, autocast, DataLoader workers, `cudnn.benchmark`); found none beyond
+the four addressed.
+
+Unrelated bug found and fixed in the same pass: `cluster_extract_pilot80_causal_recovery.sbatch`
+invoked `-m eval_format_mvp extract`, which unconditionally loads
+`catalogs/topics.yaml` via `cli.py`'s `main()` regardless of subcommand. The
+scoped, hash-pinned source snapshots this launcher runs from never carry
+`catalogs/`. Reproduced directly against the historical
+`pilot80_reextract_src_6c572e15` snapshot (same `FileNotFoundError`).
+`scripts/extract_activations.py` is the documented catalog-free replacement;
+switched the invocation.
+
+## 2. Shakedown (engineering determinism check only)
+
+Extracted a 40-row window bracketing both failing rows, twice independently,
+under the patched code, both models. Result: byte-identical
+`activations_all_layers.npz` files (matching sha256) in both models, max_abs
+diff exactly 0.0. Recorded as its own artifact,
+`artifacts/exploratory/determinism_shakedown_20260823/`, separate from any
+scientific run, no purpose/format/causal score inspected.
+
+## 3. Full re-extraction and first full causal attempt — new failure mode found
+
+Prospectively declared `pilot80_factorial_causal_mediation_v3_determinism_patched`
+(addendum-only, diffed against v2_reextracted to confirm only activation
+paths/hashes changed; folds/gates/layers/interventions byte-identical).
+Re-extracted both models under the patched code (8B: job 53283747, 70B: job
+53284711, both completed clean, `items_sha256` matching the frozen dataset).
+
+First full causal run (batch_size=8, matching prior convention) still failed
+`source_activation_reproduction`, at a *different* row (8B row 1061, layer
+29, max_abs=0.25 — same value as the original pre-patch failure). Two
+targeted diagnostics on the exact failing row, both giving perfect agreement
+(fresh single-shot forward pass matched the stored activation exactly, and
+replicating the causal script's own hook/clone/warm-process mechanics also
+matched exactly) ruled out both cross-script structural differences and
+cumulative-process-state drift. Cross-checking the actually-written raw
+records showed the failure occurred on the *second* padded intervention
+batch (batch_size=8, mixed sequence lengths) — the *first* batch (uniform
+lengths, by luck) had passed. Root cause: padded multi-row intervention
+batches produce genuine floating-point differences from the unpadded
+`batch_size=1` baseline capture, independent of GPU kernel determinism.
+Re-ran with `--batch-size 1` throughout (a non-scientific execution
+parameter — same interventions, same everything, just unbatched); both
+models then ran to completion with zero gate violations across all 163,200
+records each.
+
+## 4. Deleted checkpoint during the 70B run
+
+After the 70B run completed, `analyze_pilot80_factorial_causal.py` failed
+validating `runner_manifest.json`'s `model_file_hashes` (empty dict). The
+entire 70B checkpoint directory
+(`huggingface/hub/models--meta-llama--Llama-3.3-70B-Instruct/snapshots/6f6073b4...`)
+had been deleted from disk during the ~5-hour run (likely scratch cleanup),
+after the model had already loaded successfully — the actual GPU computation
+was unaffected, only the end-of-run provenance hash computation found the
+files gone. Found a complete, verified copy of the exact same revision
+cached under a different HF cache location
+(`huggingface/transformers/models--meta-llama--Llama-3.3-70B-Instruct`,
+matching `hidden_size=8192`/`num_hidden_layers=80`), restored the missing
+path via symlink, and re-ran `run_pilot80_factorial_causal.py --resume`
+against the *same* output directory. This re-validated all 163,200 existing
+records (already correct), wrote zero new records
+(`records_written_this_invocation: 0`), and correctly populated
+`model_file_hashes` this time. `raw_sha256` before and after the manifest
+regeneration is byte-identical, confirming the causal data itself was never
+touched.
+
+## 5. Frozen analysis, run once
+
+`scripts/analyze_pilot80_factorial_causal.py` run exactly once on both
+complete raw files (after fixing an infrastructure-only issue: the cluster
+snapshot directories aren't git checkouts, so `git rev-parse HEAD` — used
+purely for a provenance metadata field — failed; initialized minimal git
+repos in the relevant directories rather than editing the frozen script).
+Result and full interpretation: see
+`artifacts/exploratory/pilot80_v3_causal_conclusion_20260823/conclusion.json`
+and the resolved sealed prediction in `docs/sealed_prediction_20260823.md`.
+
+## Summary of legitimate infrastructure fixes made along the way
+
+None of these changed any scientific parameter (folds, gates, layers,
+interventions, thresholds, seeds):
+- Determinism pinning (TF32, `use_deterministic_algorithms`,
+  `CUBLAS_WORKSPACE_CONFIG`, pinned eager attention).
+- Catalog-free extraction invocation in the recovery sbatch.
+- `--batch-size 1` for the causal run's intervention forward passes (was
+  always `1` for baseline captures; extending it to interventions removes a
+  real, independently-discovered padding-induced numerical discrepancy).
+- Restored a checkpoint deleted by external scratch cleanup, from a verified
+  identical-revision copy, then regenerated only the provenance manifest
+  field with zero new GPU computation and a byte-identical raw data hash.
+- Initialized minimal git repos in non-git cluster working directories so a
+  provenance-only `git rev-parse HEAD` call in the frozen analysis script
+  could succeed.

@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "status": "completed_targeted_factorial_internal_causal_mediation_negative",
+  "decision": "negative",
+  "supersedes": {
+    "conclusion_id": "pilot80_main_track_conclusion_20260823",
+    "path": "artifacts/exploratory/pilot80_main_track_conclusion_20260823/conclusion.json",
+    "reason": "That conclusion's causal_validation.decision was TAE_TECHNICALLY_BLOCKED because both models failed the source_activation_reproduction gate before a complete response surface existed. The technical blocker is now resolved (root cause: non-deterministic GPU kernel execution, compounded by a padded-batch vs. unpadded-baseline numerical discrepancy in intervention batching, both fixed; see docs/development_log.md and docs/sealed_prediction_20260823.md for the full diagnostic trail). A complete, gate-clean causal run now exists for both models. This conclusion reports its result; it does not edit or retract the prior document, which remains an accurate record of the earlier, genuinely blocked state."
+  },
+  "conclusion": "The determinism-patched, batch-one v3 causal run completed cleanly for both models with zero source_activation_reproduction gate violations across 163,200 records each (max_abs=0.0, min_cosine=0.9999998807907104 in both, versus the frozen max_abs<=0.125/cosine>=0.999 gate). The frozen, single-shot analysis (scripts/analyze_pilot80_factorial_causal.py, run exactly once) returned decision=\"negative\": the purpose-by-format interaction (C) and its dose-response and additivity properties pass cleanly and consistently in both models, but the shared-purpose (A) and format (B) main effects fail the frozen criterion because it additionally requires significance at each model's deliberately low-interaction control layer, where the two models each narrowly miss for different reasons.",
+  "causal_run": {
+    "protocol": "configs/pilot80_factorial_causal_mediation_v3_determinism_patched.json",
+    "analysis_manifest": "/scratch/jppatton/langea/runs/tae_2026/pilot80_factorial_causal_v3_analysis/run_manifest.json",
+    "results_path": "/scratch/jppatton/langea/runs/tae_2026/pilot80_factorial_causal_v3_analysis/causal_results.json",
+    "use_for_inference": true,
+    "reproduction": {
+      "meta-llama/Llama-3.1-8B-Instruct": {
+        "records": 163200,
+        "expected_records": 163200,
+        "raw_sha256": "cf58e143caa5d0ee03434f2cda9400dafedff71d67ef7bdc63ff49ed2908c547",
+        "elapsed_seconds": 6914.219926595688
+      },
+      "meta-llama/Llama-3.3-70B-Instruct": {
+        "records": 163200,
+        "expected_records": 163200,
+        "raw_sha256": "2603beecd7eaa5183f423fb7ba5a34f439d2f86a48233c49109166745378c14e",
+        "elapsed_seconds": 18110.266864061356
+      },
+      "gate": {"max_abs_lte": 0.125, "cosine_gte": 0.999, "observed_max_abs": 0.0, "observed_min_cosine": 0.9999998807907104}
+    },
+    "criteria": {
+      "hook_and_reproduction": true,
+      "endpoint_valid": false,
+      "A_shared": false,
+      "B_format": false,
+      "C_interaction": true,
+      "dose_response": true,
+      "factorial_cube_agreement": true,
+      "geometry_to_causality": true
+    },
+    "criteria_detail": {
+      "endpoint_valid": "One readout (8B purpose_casual) has ROC AUC=0.776, below the required 0.80 baseline_gate threshold; all four other model/endpoint combinations pass (8B format 1.0, 8B purpose_benchmark 0.825, 70B format 1.0, 70B purpose_benchmark 0.830, 70B purpose_casual 0.803).",
+      "A_shared": "At the high-interaction layer, large and clean in both models (8B layer 29: point=1.159, 95% CI [1.142,1.177], random-control p=0.030; 70B layer 74: point=1.026, CI [1.015,1.037], p=0.030). At the low-interaction control layer, tiny and fails the conjunctive requirement in 8B (layer 5: point=0.0125, CI excludes zero but random-control p=0.091, above the 0.05 bar); passes at 70B's control layer (layer 13: point=0.00765, p=0.030).",
+      "B_format": "Large and clean at both high-interaction layers (8B layer 29: point=0.110, p=0.030; 70B layer 74: point=0.109, p=0.030). Fails at both control layers, for different reasons: 8B layer 5 point=0.00069 with p=0.212 (too weak); 70B layer 13 point=-0.00055, wrong sign.",
+      "C_interaction": "Gated only on the high-interaction layer per the frozen criterion; passes cleanly in both models (8B layer 29: point=0.469, CI [0.459,0.478], p=0.030; 70B layer 74: point=0.783, CI [0.772,0.795], p=0.030).",
+      "dose_response": "Alpha=0.5 vs alpha=1.0 for C: near-perfect linear scaling in both models and both signs (ratios 0.498-0.503 against a theoretical 0.5).",
+      "factorial_cube_agreement": "Additive R^2 = 0.9986 (8B) and 0.9976 (70B) against the required >0.50 threshold; the eight-corner cube response is almost perfectly predicted by the sum of the three single-component effects despite the A/C direction vectors not being orthogonal (see geometry note below)."
+    }
+  },
+  "geometry_context": {
+    "note": "Offline, activation-geometry-only analyses (never touching causal readout scores, computed both before and alongside the causal run) found cos(A,C) ~= -0.56 at 8B's high-interaction layer and ~= -0.32 at 70B's, i.e. the fitted purpose (A) and interaction (C) direction vectors are not orthogonal. This geometric overlap does not translate into non-additive causal effects (factorial_cube_agreement passes near-perfectly): additivity of injected perturbations is governed by local linearity of the network's response to the vector sum of interventions, not by orthogonality of the injected directions. A generic-text-fitted Jacobian (zero purpose/format content) predicts the real purpose and format readout directions far above a random-direction null (z up to 39 at 8B layer 24), most strongly in the back half of the network; this generic-channel alignment does not track linear decodability (which is high from very early layers in both models), so the two properties are structurally independent.",
+    "not_used_for_inference": "This geometry work informed a sealed, falsifiable prediction (docs/sealed_prediction_20260823.md) written before the 70B run completed. Two of its highest-confidence predictions (A_shared, B_format both PASS) were wrong; the prediction it was least confident about mechanistically (factorial_cube_agreement FAIL) was also wrong. The resolution is recorded in that file and is not treated as independent confirmation of anything reported here."
+  },
+  "required_claim_boundary": {
+    "allowed": [
+      "A validated, format-decorrelated, cross-model-replicated causal effect of the purpose x format interaction (C) on internal purpose readouts, at the high-interaction layer, in both an 8B and a 70B model",
+      "Near-perfectly linear dose-response of that interaction effect with intervention strength",
+      "Near-perfect additivity of the eight-corner factorial cube despite non-orthogonal injected directions",
+      "A documented, resolved technical root cause (non-deterministic GPU execution plus a padded-batch numerical discrepancy) for the prior gate failure",
+      "A negative result for the full frozen shared-purpose (A) and format (B) main-effect criteria, specifically failing at the deliberately low-interaction control layers"
+    ],
+    "prohibited": [
+      "Evaluation awareness",
+      "A clean positive causal A/B/C mechanism (A_shared and B_format did not pass)",
+      "Behavioral steering (behavioral_secondary endpoint was never run; no generation/task-accuracy data exists for this run)",
+      "Latent evaluation awareness",
+      "A pure format effect",
+      "A universal model mechanism or causal scaling law from two data points",
+      "Independent confirmation (the sealed prediction was informed by informal peeks at partial 8B data during the same session, not an independent replication)",
+      "Best-layer or best-alpha post-hoc selection (both explicitly forbidden by the frozen protocol's own prohibited_claims list)"
+    ]
+  },
+  "sprint_stop_condition": {
+    "classification": "TAE_STOP_CONDITION_MET_NEGATIVE",
+    "reason": "This assay runs the canonical matched factorial geometry plus a controlled intervention to completion under the frozen, prospectively-declared gate and analysis pipeline, with zero post-outcome adaptation. The frozen decision is negative for the primary main-effect criteria (A_shared, B_format), positive for the interaction criterion (C_interaction) and its dose-response and additivity properties. This is a genuine, reportable, mixed result, not a technical block and not a clean uniform negative.",
+    "local_evidence_outcome": "COMPLETED_MIXED_NEGATIVE_WITH_POSITIVE_INTERACTION_CRITERION"
+  }
+}
