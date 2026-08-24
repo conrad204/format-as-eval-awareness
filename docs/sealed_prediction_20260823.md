@@ -62,3 +62,64 @@ isolated-component cleanliness seen in the partial peek did not generalize
 to the full, complete-fold, both-model result. Either outcome is reported
 here as-is once the real run completes; this file is not edited afterward
 except to append a dated "resolution" section with the actual result.
+
+## Resolution — 2026-08-23, both models complete, frozen analysis run once
+
+Actual frozen output (`scripts/analyze_pilot80_factorial_causal.py`, run once,
+committed provenance in `pilot80_factorial_causal_v3_analysis/run_manifest.json`
+and `causal_results.json`):
+
+```
+decision: "negative"
+A_shared: false | B_format: false | C_interaction: true | dose_response: true
+endpoint_valid: false | factorial_cube_agreement: true | geometry_to_causality: true
+hook_and_reproduction: true
+```
+
+**Scored against the sealed predictions:**
+1. A_shared PASS (high confidence) — **WRONG**. Effect is large and clean at
+   both high-interaction layers (8B layer 29 point=1.159, p=0.03; 70B layer 74
+   point=1.026, p=0.03), but at the low-interaction control layers it is tiny
+   and narrowly misses the random-control p<=0.05 bar (8B layer 5: p=0.091).
+   The criterion requires both layers in both models; one narrow miss fails
+   the whole conjunction.
+2. B_format PASS (high confidence) — **WRONG**, same mechanism: strong at both
+   high-interaction layers (8B layer 29 p=0.03; 70B layer 74 p=0.03), but at
+   70B's low-interaction layer the point estimate is the wrong sign
+   (-0.00055) and at 8B's it has p=0.212.
+3. C_interaction PASS (medium confidence) — **CORRECT**. This criterion only
+   requires the high-interaction layer, which is exactly where both models
+   showed a clean, tight, correctly-signed effect (8B: 0.469, p=0.03; 70B:
+   0.783, p=0.03).
+4. factorial_cube_agreement FAIL/borderline — **WRONG**, already caught and
+   corrected via an informal pre-check before this run (additive R^2 =
+   0.9986/0.9976, essentially perfect). The A/C representational overlap does
+   not translate into non-additive causal effects; additivity of injected
+   perturbations is governed by local linearity of the network's response,
+   not by orthogonality of the injected directions. Documented misstep,
+   left uncorrected in the predictions section above per the append-only
+   policy.
+5. dose_response PASS — **CORRECT**.
+6. Overall decision "partial" — **WRONG, and wrong in the pessimistic
+   direction**: actual is "negative", not even "partial", because "partial"
+   itself requires A_shared to be true (which it is not) and additionally
+   requires endpoint_valid (which is also false here, driven by one specific
+   readout marginally missing its AUC>=0.80 bar in 8B).
+7. Cross-model agreement closer for A/B than C — not clearly resolved either
+   way; the specific low-interaction-layer failure differs in mechanism
+   between models (8B: p-value miss; 70B: wrong sign for B), so this
+   prediction is not cleanly confirmed or falsified.
+
+**Net assessment of the prediction exercise itself:** the two predictions I
+held with the *highest* confidence (A_shared, B_format) were the two that
+turned out wrong, and for a specific, identifiable reason — informal
+per-row descriptive statistics at the high-interaction layer looked
+enormous and clean, but the frozen criteria also gate on the low-interaction
+control layer, which is exactly where main effects are expected to be weak
+by construction (that layer was selected for a *low* interaction-to-main-
+effect ratio). The informal peeks earlier in this session never checked
+that control-layer requirement, so they systematically overstated confidence
+in A_shared/B_format. This is a concrete, reportable lesson: single-point,
+naive-statistic peeks at a high-signal layer are not a substitute for the
+full multi-layer conjunctive gate, even when the peeked numbers are
+themselves accurate.
