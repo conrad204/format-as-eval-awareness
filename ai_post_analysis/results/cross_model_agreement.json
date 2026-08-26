@@ -1,0 +1,234 @@
+{
+  "header": {
+    "models": [
+      "llama31_8b",
+      "llama31_70b",
+      "llama33_70b"
+    ],
+    "q_points": [
+      0.25,
+      0.375,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "templates": [
+      "bench_imperative_v2",
+      "bench_mmlu_bare_v2",
+      "bench_preamble_v2",
+      "bench_qa_record_v2",
+      "bench_sectioned_v2",
+      "bench_tagged_v2",
+      "benchmark_mcq_v1",
+      "casual_short_answer_v1",
+      "deploy_bare_v2",
+      "deploy_json_v2",
+      "deploy_lead_in_v2",
+      "deploy_markdown_v2",
+      "deploy_mcq_bullets_v2"
+    ],
+    "note": "13 fixed templates; correlations are descriptive"
+  },
+  "comparisons": [
+    {
+      "q": 0.25,
+      "layer_by_model": {
+        "llama31_8b": 8,
+        "llama31_70b": 20,
+        "llama33_70b": 20
+      },
+      "pairs": [
+        {
+          "models": [
+            "llama31_8b",
+            "llama31_70b"
+          ],
+          "pi_pearson": 0.5041707358374058,
+          "pi_spearman": 0.43956043956043955,
+          "differential_pearson": 0.33620591666661953,
+          "differential_spearman": 0.3516483516483516
+        },
+        {
+          "models": [
+            "llama31_8b",
+            "llama33_70b"
+          ],
+          "pi_pearson": 0.31711259913765644,
+          "pi_spearman": 0.20329670329670327,
+          "differential_pearson": 0.13244954113072005,
+          "differential_spearman": 0.054945054945054944
+        },
+        {
+          "models": [
+            "llama31_70b",
+            "llama33_70b"
+          ],
+          "pi_pearson": 0.8502427694994665,
+          "pi_spearman": 0.9065934065934067,
+          "differential_pearson": 0.8448368634918657,
+          "differential_spearman": 0.8571428571428571
+        }
+      ]
+    },
+    {
+      "q": 0.375,
+      "layer_by_model": {
+        "llama31_8b": 12,
+        "llama31_70b": 30,
+        "llama33_70b": 30
+      },
+      "pairs": [
+        {
+          "models": [
+            "llama31_8b",
+            "llama31_70b"
+          ],
+          "pi_pearson": 0.6728693724664402,
+          "pi_spearman": 0.5164835164835164,
+          "differential_pearson": 0.5757603178631294,
+          "differential_spearman": 0.5054945054945055
+        },
+        {
+          "models": [
+            "llama31_8b",
+            "llama33_70b"
+          ],
+          "pi_pearson": 0.40751832372649266,
+          "pi_spearman": 0.2747252747252747,
+          "differential_pearson": 0.3268120897642113,
+          "differential_spearman": 0.21428571428571427
+        },
+        {
+          "models": [
+            "llama31_70b",
+            "llama33_70b"
+          ],
+          "pi_pearson": 0.8385053618606179,
+          "pi_spearman": 0.8846153846153846,
+          "differential_pearson": 0.8478346224325054,
+          "differential_spearman": 0.7857142857142857
+        }
+      ]
+    },
+    {
+      "q": 0.5,
+      "layer_by_model": {
+        "llama31_8b": 15,
+        "llama31_70b": 39,
+        "llama33_70b": 39
+      },
+      "pairs": [
+        {
+          "models": [
+            "llama31_8b",
+            "llama31_70b"
+          ],
+          "pi_pearson": 0.688844313613697,
+          "pi_spearman": 0.6538461538461539,
+          "differential_pearson": 0.5518695080798165,
+          "differential_spearman": 0.6593406593406593
+        },
+        {
+          "models": [
+            "llama31_8b",
+            "llama33_70b"
+          ],
+          "pi_pearson": 0.6060517043033065,
+          "pi_spearman": 0.48901098901098894,
+          "differential_pearson": 0.4963219116682717,
+          "differential_spearman": 0.5714285714285714
+        },
+        {
+          "models": [
+            "llama31_70b",
+            "llama33_70b"
+          ],
+          "pi_pearson": 0.6103308582361645,
+          "pi_spearman": 0.5439560439560439,
+          "differential_pearson": 0.8125533082824448,
+          "differential_spearman": 0.8626373626373626
+        }
+      ]
+    },
+    {
+      "q": 0.75,
+      "layer_by_model": {
+        "llama31_8b": 23,
+        "llama31_70b": 59,
+        "llama33_70b": 59
+      },
+      "pairs": [
+        {
+          "models": [
+            "llama31_8b",
+            "llama31_70b"
+          ],
+          "pi_pearson": 0.5080187702548187,
+          "pi_spearman": 0.43956043956043955,
+          "differential_pearson": 0.5084836508137479,
+          "differential_spearman": 0.4450549450549451
+        },
+        {
+          "models": [
+            "llama31_8b",
+            "llama33_70b"
+          ],
+          "pi_pearson": 0.3435045385481585,
+          "pi_spearman": 0.12637362637362637,
+          "differential_pearson": 0.40273121698530373,
+          "differential_spearman": 0.39560439560439564
+        },
+        {
+          "models": [
+            "llama31_70b",
+            "llama33_70b"
+          ],
+          "pi_pearson": 0.6859672744905775,
+          "pi_spearman": 0.7417582417582418,
+          "differential_pearson": 0.7780287835420496,
+          "differential_spearman": 0.532967032967033
+        }
+      ]
+    },
+    {
+      "q": 1.0,
+      "layer_by_model": {
+        "llama31_8b": 31,
+        "llama31_70b": 79,
+        "llama33_70b": 79
+      },
+      "pairs": [
+        {
+          "models": [
+            "llama31_8b",
+            "llama31_70b"
+          ],
+          "pi_pearson": 0.5605458191439325,
+          "pi_spearman": 0.6153846153846153,
+          "differential_pearson": 0.4947483021980652,
+          "differential_spearman": 0.510989010989011
+        },
+        {
+          "models": [
+            "llama31_8b",
+            "llama33_70b"
+          ],
+          "pi_pearson": 0.29858309954996204,
+          "pi_spearman": 0.25274725274725274,
+          "differential_pearson": 0.3999958370245666,
+          "differential_spearman": 0.45604395604395603
+        },
+        {
+          "models": [
+            "llama31_70b",
+            "llama33_70b"
+          ],
+          "pi_pearson": 0.5282808330814757,
+          "pi_spearman": 0.46703296703296704,
+          "differential_pearson": 0.5874561649434646,
+          "differential_spearman": 0.4230769230769231
+        }
+      ]
+    }
+  ]
+}

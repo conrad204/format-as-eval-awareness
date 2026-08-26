@@ -1,0 +1,6553 @@
+{
+  "header": {
+    "model": "meta-llama/Llama-3.1-8B-Instruct",
+    "model_key": "llama31_8b",
+    "model_revision": "0e9e39f249a16976918f6564b8830bc894c89659",
+    "n_transformer_layers": 32,
+    "hidden_size": 4096,
+    "n_items": 11520,
+    "items_sha256": "5528819d74e696d1a595062047a829836dfde1d2a45287b06a5ac1ba5d1b6c67",
+    "activations_all_layers_sha256": "e6a71be599e27fd846211e8e6ef215e4fb695a76c3415dc157c1450a134cd1b4",
+    "layer_semantics": "zero_based_transformer_block_output_before_final_model_norm",
+    "position": "last_prompt_token_after_chat_template_before_generation",
+    "stage": "main",
+    "layers": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31
+    ],
+    "depth_grid": null,
+    "n_boot": 10000,
+    "seed": 0,
+    "n_blocks": 320,
+    "n_cued": 7680,
+    "n_none": 3840,
+    "probe": "slda",
+    "probe_spec": "diagonal LDA, ridge 0.1, internal scaling",
+    "split": "leave-one-cue-vocabulary-family-out; no-cue scored by mean of 5 held-fold models",
+    "bootstrap_unit": "payload_block_id",
+    "repo_commit": "446aae447a598dec9d6c4a8e251c52d7b0df8831",
+    "sklearn": "1.9.0",
+    "numpy": "2.5.2",
+    "python": "3.14.7",
+    "template_features": {
+      "bench_imperative_v2": {
+        "heading_style": "imperative_line",
+        "option_style": "letter_paren",
+        "serialization": "plain",
+        "register": "neutral",
+        "terminal_field": null,
+        "message_role": "user",
+        "format": "benchmark"
+      },
+      "bench_mmlu_bare_v2": {
+        "heading_style": "none",
+        "option_style": "letter_dot",
+        "serialization": "plain",
+        "register": "neutral",
+        "terminal_field": "Answer:",
+        "message_role": "user",
+        "format": "benchmark"
+      },
+      "bench_preamble_v2": {
+        "heading_style": "preamble_line",
+        "option_style": "letter_dot",
+        "serialization": "plain",
+        "register": "neutral",
+        "terminal_field": "Answer:",
+        "message_role": "user",
+        "format": "benchmark"
+      },
+      "bench_qa_record_v2": {
+        "heading_style": "qa_record",
+        "option_style": "absent",
+        "serialization": "plain",
+        "register": "terse",
+        "terminal_field": "A:",
+        "message_role": "user",
+        "format": "benchmark"
+      },
+      "bench_sectioned_v2": {
+        "heading_style": "sectioned",
+        "option_style": "letter_dot",
+        "serialization": "plain",
+        "register": "neutral",
+        "terminal_field": null,
+        "message_role": "user",
+        "format": "benchmark"
+      },
+      "bench_tagged_v2": {
+        "heading_style": "none",
+        "option_style": "letter_dot",
+        "serialization": "xml_tags",
+        "register": "neutral",
+        "terminal_field": null,
+        "message_role": "user",
+        "format": "benchmark"
+      },
+      "deploy_bare_v2": {
+        "heading_style": "none",
+        "option_style": "absent",
+        "serialization": "plain",
+        "register": "conversational",
+        "terminal_field": null,
+        "message_role": "user",
+        "format": "casual"
+      },
+      "deploy_json_v2": {
+        "heading_style": "none",
+        "option_style": "json_array",
+        "serialization": "json",
+        "register": "neutral",
+        "terminal_field": "json_close",
+        "message_role": "user",
+        "format": "casual"
+      },
+      "deploy_lead_in_v2": {
+        "heading_style": "prose_lead_in",
+        "option_style": "absent",
+        "serialization": "plain",
+        "register": "conversational",
+        "terminal_field": null,
+        "message_role": "user",
+        "format": "casual"
+      },
+      "deploy_markdown_v2": {
+        "heading_style": "markdown_sections",
+        "option_style": "numbered",
+        "serialization": "markdown",
+        "register": "neutral",
+        "terminal_field": null,
+        "message_role": "user",
+        "format": "casual"
+      },
+      "deploy_mcq_bullets_v2": {
+        "heading_style": "none",
+        "option_style": "bullet",
+        "serialization": "plain",
+        "register": "conversational",
+        "terminal_field": null,
+        "message_role": "user",
+        "format": "casual"
+      },
+      "casual_short_answer_v1": {
+        "heading_style": "prose_lead_in",
+        "option_style": "absent",
+        "serialization": "plain",
+        "register": "conversational",
+        "terminal_field": null,
+        "message_role": "user",
+        "format": "casual"
+      },
+      "benchmark_mcq_v1": {
+        "heading_style": "sectioned",
+        "option_style": "letter_dot",
+        "serialization": "plain",
+        "register": "neutral",
+        "terminal_field": null,
+        "message_role": "user",
+        "format": "benchmark"
+      }
+    },
+    "wall_seconds": 2301.7
+  },
+  "layers": [
+    {
+      "layer": 0,
+      "purpose_auc_oof": 0.5704557291666668,
+      "purpose_auc_by_fold": [
+        0.5485314263237847,
+        0.5097486707899305,
+        0.5750325520833333,
+        0.5519171820746528,
+        0.6745249430338542
+      ],
+      "format_auc_by_fold": [],
+      "point": {
+        "delta_stated": 0.35662176751599567,
+        "delta_format": -0.010904288359533802,
+        "rho": -0.030576620253682938,
+        "pi_bench": -0.21541585559593754,
+        "pi_casual": -0.1848392353422547,
+        "pi_none": -0.20012754546909603,
+        "pi_none_tpl::bench_imperative_v2": 0.0036416232263594343,
+        "pi_none_tpl::bench_mmlu_bare_v2": -0.5578420732739509,
+        "pi_none_tpl::bench_preamble_v2": -0.507579113242758,
+        "pi_none_tpl::bench_qa_record_v2": -0.8844400923295599,
+        "pi_none_tpl::bench_sectioned_v2": 0.6321594333745915,
+        "pi_none_tpl::bench_tagged_v2": -0.37555945233041965,
+        "pi_none_tpl::benchmark_mcq_v1": 0.6666091128853671,
+        "pi_none_tpl::casual_short_answer_v1": 0.08117122870322946,
+        "pi_none_tpl::deploy_bare_v2": -0.4424676806297096,
+        "pi_none_tpl::deploy_json_v2": -1.7596725850592567,
+        "pi_none_tpl::deploy_lead_in_v2": -0.03865310369782374,
+        "pi_none_tpl::deploy_markdown_v2": 1.1996403196765415,
+        "pi_none_tpl::deploy_mcq_bullets_v2": -0.011361933888568062,
+        "smd_paired": -0.021404328468245342,
+        "block_win_rate": 0.475,
+        "n_blocks": 320
+      },
+      "ci95": {
+        "delta_stated": {
+          "ci95": [
+            0.33188518780816784,
+            0.3819519478568437
+          ],
+          "boot_mean": 0.3566036042501115,
+          "n_valid": 10000
+        },
+        "delta_format": {
+          "ci95": [
+            -0.06654896992984224,
+            0.04405168197166613
+          ],
+          "boot_mean": -0.011609485397979385,
+          "n_valid": 10000
+        },
+        "rho": {
+          "ci95": [
+            -0.1875249905604718,
+            0.12275123423554596
+          ],
+          "boot_mean": -0.032601226312847294,
+          "n_valid": 10000
+        },
+        "pi_bench": {
+          "ci95": [
+            -0.3655694999314034,
+            -0.07430468107177082
+          ],
+          "boot_mean": -0.21811241031359033,
+          "n_valid": 10000
+        },
+        "pi_casual": {
+          "ci95": [
+            -0.3363607041757831,
+            -0.03918636138925392
+          ],
+          "boot_mean": -0.18551118400074304,
+          "n_valid": 10000
+        },
+        "smd_paired": {
+          "ci95": [
+            -0.1321649203967423,
+            0.08510612682275424
+          ],
+          "boot_mean": -0.023163395040775914,
+          "n_valid": 10000
+        },
+        "block_win_rate": {
+          "ci95": [
+            0.421875,
+            0.528125
+          ],
+          "boot_mean": 0.47470812500000004,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_imperative_v2": {
+          "ci95": [
+            -0.2417854473024918,
+            0.24192510818755728
+          ],
+          "boot_mean": 0.003401479927067088,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_mmlu_bare_v2": {
+          "ci95": [
+            -0.8055170990817813,
+            -0.31972509946517774
+          ],
+          "boot_mean": -0.5610007129422531,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_preamble_v2": {
+          "ci95": [
+            -0.7502521612368299,
+            -0.27732535227897337
+          ],
+          "boot_mean": -0.5108773761969746,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_qa_record_v2": {
+          "ci95": [
+            -1.180292793235585,
+            -0.6055302435053835
+          ],
+          "boot_mean": -0.8903881747678057,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_sectioned_v2": {
+          "ci95": [
+            0.40450033495741583,
+            0.8580261904787359
+          ],
+          "boot_mean": 0.6309667267811021,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_tagged_v2": {
+          "ci95": [
+            -0.632187264567203,
+            -0.128016137347164
+          ],
+          "boot_mean": -0.377852197184504,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::benchmark_mcq_v1": {
+          "ci95": [
+            0.3342619962470895,
+            0.9972214115573752
+          ],
+          "boot_mean": 0.6639847275751402,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::casual_short_answer_v1": {
+          "ci95": [
+            -0.30777899044230506,
+            0.4461895038914151
+          ],
+          "boot_mean": 0.0810946951574439,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_bare_v2": {
+          "ci95": [
+            -0.755835807691416,
+            -0.14622679834403154
+          ],
+          "boot_mean": -0.44323600229946714,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_json_v2": {
+          "ci95": [
+            -2.119606146491701,
+            -1.4215481133792864
+          ],
+          "boot_mean": -1.760231567254815,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_lead_in_v2": {
+          "ci95": [
+            -0.312854255169826,
+            0.21949276404781334
+          ],
+          "boot_mean": -0.0402867537478824,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_markdown_v2": {
+          "ci95": [
+            0.9579718560095503,
+            1.445414599529324
+          ],
+          "boot_mean": 1.1997777792931432,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_mcq_bullets_v2": {
+          "ci95": [
+            -0.2493410000912336,
+            0.22473557736731917
+          ],
+          "boot_mean": -0.011939990362805472,
+          "n_valid": 10000
+        }
+      },
+      "seconds": 411.3
+    },
+    {
+      "layer": 1,
+      "purpose_auc_oof": 0.7551196967230902,
+      "purpose_auc_by_fold": [
+        0.8015424940321181,
+        0.7764061821831598,
+        0.5781945122612847,
+        0.7817671034071181,
+        0.8313852945963544
+      ],
+      "format_auc_by_fold": [],
+      "point": {
+        "delta_stated": 3.1975635252093184,
+        "delta_format": 2.651268053235511,
+        "rho": 0.829152582062292,
+        "pi_bench": -1.4038205237851225,
+        "pi_casual": -2.2329731058474143,
+        "pi_none": -1.8183968148162684,
+        "pi_none_tpl::bench_imperative_v2": -0.10573776166772716,
+        "pi_none_tpl::bench_mmlu_bare_v2": -1.2607314985411127,
+        "pi_none_tpl::bench_preamble_v2": -0.7309808474194719,
+        "pi_none_tpl::bench_qa_record_v2": -2.427051382428966,
+        "pi_none_tpl::bench_sectioned_v2": -1.8601868124986773,
+        "pi_none_tpl::bench_tagged_v2": -1.891894494330484,
+        "pi_none_tpl::benchmark_mcq_v1": -1.743549354853901,
+        "pi_none_tpl::casual_short_answer_v1": -1.7058585674463544,
+        "pi_none_tpl::deploy_bare_v2": -1.9237062547883228,
+        "pi_none_tpl::deploy_json_v2": -4.463822719314527,
+        "pi_none_tpl::deploy_lead_in_v2": -1.8683058035000073,
+        "pi_none_tpl::deploy_markdown_v2": -1.3612882475329493,
+        "pi_none_tpl::deploy_mcq_bullets_v2": -1.775945835450928,
+        "smd_paired": 2.3636442134584765,
+        "block_win_rate": 0.984375,
+        "n_blocks": 320
+      },
+      "ci95": {
+        "delta_stated": {
+          "ci95": [
+            3.087588930992036,
+            3.3096528688439686
+          ],
+          "boot_mean": 3.197458744369575,
+          "n_valid": 10000
+        },
+        "delta_format": {
+          "ci95": [
+            2.52522333805841,
+            2.7760807728536334
+          ],
+          "boot_mean": 2.6516339422830444,
+          "n_valid": 10000
+        },
+        "rho": {
+          "ci95": [
+            0.7836551532956236,
+            0.8775382102097817
+          ],
+          "boot_mean": 0.8295313065536338,
+          "n_valid": 10000
+        },
+        "pi_bench": {
+          "ci95": [
+            -1.4847641881650933,
+            -1.3293365650584743
+          ],
+          "boot_mean": -1.4048300700447978,
+          "n_valid": 10000
+        },
+        "pi_casual": {
+          "ci95": [
+            -2.3391243769382415,
+            -2.136378208937371
+          ],
+          "boot_mean": -2.2343613765984314,
+          "n_valid": 10000
+        },
+        "smd_paired": {
+          "ci95": [
+            2.1554355042736035,
+            2.6167595148900875
+          ],
+          "boot_mean": 2.375025142710687,
+          "n_valid": 10000
+        },
+        "block_win_rate": {
+          "ci95": [
+            0.96875,
+            0.996875
+          ],
+          "boot_mean": 0.9844206250000002,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_imperative_v2": {
+          "ci95": [
+            -0.16711105852407776,
+            -0.04849636500330748
+          ],
+          "boot_mean": -0.10662775723843967,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_mmlu_bare_v2": {
+          "ci95": [
+            -1.3533161897936177,
+            -1.17497313520413
+          ],
+          "boot_mean": -1.2614379179601958,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_preamble_v2": {
+          "ci95": [
+            -0.8012072568377347,
+            -0.663505130541266
+          ],
+          "boot_mean": -0.7317096012668982,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_qa_record_v2": {
+          "ci95": [
+            -2.556979051668438,
+            -2.305166415479346
+          ],
+          "boot_mean": -2.428961810817503,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_sectioned_v2": {
+          "ci95": [
+            -1.9722676449159033,
+            -1.752666683509065
+          ],
+          "boot_mean": -1.8608222134954766,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_tagged_v2": {
+          "ci95": [
+            -2.0043726264090687,
+            -1.786462306887665
+          ],
+          "boot_mean": -1.8931478406041207,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::benchmark_mcq_v1": {
+          "ci95": [
+            -1.8672690210245142,
+            -1.6285691413886136
+          ],
+          "boot_mean": -1.744668613662309,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::casual_short_answer_v1": {
+          "ci95": [
+            -1.8218034432690164,
+            -1.5959516198800177
+          ],
+          "boot_mean": -1.7073843257216241,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_bare_v2": {
+          "ci95": [
+            -2.04772981314849,
+            -1.8083448936680646
+          ],
+          "boot_mean": -1.924569906488045,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_json_v2": {
+          "ci95": [
+            -4.651947789121595,
+            -4.288451037505935
+          ],
+          "boot_mean": -4.466196711037097,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_lead_in_v2": {
+          "ci95": [
+            -1.9770096393270196,
+            -1.76751878986989
+          ],
+          "boot_mean": -1.8692657365254246,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_markdown_v2": {
+          "ci95": [
+            -1.4551010536255111,
+            -1.2704436200574647
+          ],
+          "boot_mean": -1.3625240308394577,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_mcq_bullets_v2": {
+          "ci95": [
+            -1.8875094227225035,
+            -1.6700556896436718
+          ],
+          "boot_mean": -1.7775928542780464,
+          "n_valid": 10000
+        }
+      },
+      "seconds": 418.6
+    },
+    {
+      "layer": 2,
+      "purpose_auc_oof": 0.7729582722981772,
+      "purpose_auc_by_fold": [
+        0.7914598253038194,
+        0.6821441650390626,
+        0.7609786987304688,
+        0.8536868625217016,
+        0.796873304578993
+      ],
+      "format_auc_by_fold": [],
+      "point": {
+        "delta_stated": 5.9335651350090775,
+        "delta_format": 2.113666964439079,
+        "rho": 0.3562220884655116,
+        "pi_bench": -1.396459660227082,
+        "pi_casual": -1.7526817486925939,
+        "pi_none": -1.5745707044598376,
+        "pi_none_tpl::bench_imperative_v2": 0.6056575735291747,
+        "pi_none_tpl::bench_mmlu_bare_v2": -1.590152040985418,
+        "pi_none_tpl::bench_preamble_v2": -1.0087409793048718,
+        "pi_none_tpl::bench_qa_record_v2": -2.695322850675174,
+        "pi_none_tpl::bench_sectioned_v2": -1.4420119110173872,
+        "pi_none_tpl::bench_tagged_v2": -2.26299285459445,
+        "pi_none_tpl::benchmark_mcq_v1": -1.3635024446385162,
+        "pi_none_tpl::casual_short_answer_v1": -2.3225460809642517,
+        "pi_none_tpl::deploy_bare_v2": -2.2885740596399295,
+        "pi_none_tpl::deploy_json_v2": -1.7457980177661878,
+        "pi_none_tpl::deploy_lead_in_v2": -2.4307570861009364,
+        "pi_none_tpl::deploy_markdown_v2": -0.03289906500664638,
+        "pi_none_tpl::deploy_mcq_bullets_v2": -2.004685342718921,
+        "smd_paired": 0.8151536894462961,
+        "block_win_rate": 0.809375,
+        "n_blocks": 320
+      },
+      "ci95": {
+        "delta_stated": {
+          "ci95": [
+            5.773559358550519,
+            6.093085256866916
+          ],
+          "boot_mean": 5.932383077278328,
+          "n_valid": 10000
+        },
+        "delta_format": {
+          "ci95": [
+            1.8279579015068208,
+            2.3977164854284116
+          ],
+          "boot_mean": 2.1141591700456512,
+          "n_valid": 10000
+        },
+        "rho": {
+          "ci95": [
+            0.3078067645972266,
+            0.4054440858267456
+          ],
+          "boot_mean": 0.356429221139356,
+          "n_valid": 10000
+        },
+        "pi_bench": {
+          "ci95": [
+            -1.465681919045387,
+            -1.331590241323043
+          ],
+          "boot_mean": -1.3975271892927237,
+          "n_valid": 10000
+        },
+        "pi_casual": {
+          "ci95": [
+            -1.835840813539748,
+            -1.6750086323477162
+          ],
+          "boot_mean": -1.7539564104320797,
+          "n_valid": 10000
+        },
+        "smd_paired": {
+          "ci95": [
+            0.6990754790244021,
+            0.940434292881466
+          ],
+          "boot_mean": 0.81824441145447,
+          "n_valid": 10000
+        },
+        "block_win_rate": {
+          "ci95": [
+            0.765625,
+            0.85
+          ],
+          "boot_mean": 0.8096287499999999,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_imperative_v2": {
+          "ci95": [
+            0.5257050460972245,
+            0.6820177204300719
+          ],
+          "boot_mean": 0.6047892442838085,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_mmlu_bare_v2": {
+          "ci95": [
+            -1.7310461174182892,
+            -1.4545352799188518
+          ],
+          "boot_mean": -1.5913890916400442,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_preamble_v2": {
+          "ci95": [
+            -1.0755143939161347,
+            -0.9463654312639111
+          ],
+          "boot_mean": -1.0095628933178846,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_qa_record_v2": {
+          "ci95": [
+            -2.811967659283462,
+            -2.584115677608367
+          ],
+          "boot_mean": -2.69680135344851,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_sectioned_v2": {
+          "ci95": [
+            -1.5352492504012059,
+            -1.3534713851534699
+          ],
+          "boot_mean": -1.4427209789757023,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_tagged_v2": {
+          "ci95": [
+            -2.3636503119545003,
+            -2.168182008698798
+          ],
+          "boot_mean": -2.264411207171541,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::benchmark_mcq_v1": {
+          "ci95": [
+            -1.4742305733327716,
+            -1.2597867312318094
+          ],
+          "boot_mean": -1.3644320274912587,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::casual_short_answer_v1": {
+          "ci95": [
+            -2.437157985638335,
+            -2.2115545969443597
+          ],
+          "boot_mean": -2.324632813168843,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_bare_v2": {
+          "ci95": [
+            -2.4241161005663616,
+            -2.156957048707737
+          ],
+          "boot_mean": -2.2898191876141207,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_json_v2": {
+          "ci95": [
+            -1.8434237351475453,
+            -1.6535711861424245
+          ],
+          "boot_mean": -1.7470315618212036,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_lead_in_v2": {
+          "ci95": [
+            -2.53757586883095,
+            -2.3286944009880637
+          ],
+          "boot_mean": -2.431954505773745,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_markdown_v2": {
+          "ci95": [
+            -0.15464833264675465,
+            0.08933083727301856
+          ],
+          "boot_mean": -0.03367178193597659,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_mcq_bullets_v2": {
+          "ci95": [
+            -2.142063863947766,
+            -1.8707095523490762
+          ],
+          "boot_mean": -2.006135199186187,
+          "n_valid": 10000
+        }
+      },
+      "seconds": 413.2
+    },
+    {
+      "layer": 3,
+      "purpose_auc_oof": 0.8357535129123264,
+      "purpose_auc_by_fold": [
+        0.8620673285590277,
+        0.9169023301866319,
+        0.7286800808376737,
+        0.8204074435763887,
+        0.86187744140625
+      ],
+      "format_auc_by_fold": [],
+      "point": {
+        "delta_stated": 12.683368221603814,
+        "delta_format": 4.013605393214578,
+        "rho": 0.31644633531794264,
+        "pi_bench": -1.0662242126006054,
+        "pi_casual": -1.3826705479185482,
+        "pi_none": -1.2244473802595766,
+        "pi_none_tpl::bench_imperative_v2": -0.3510293396172589,
+        "pi_none_tpl::bench_mmlu_bare_v2": -1.3109302958573144,
+        "pi_none_tpl::bench_preamble_v2": -0.7624925817753249,
+        "pi_none_tpl::bench_qa_record_v2": -1.883940281700952,
+        "pi_none_tpl::bench_sectioned_v2": -0.9296428287715276,
+        "pi_none_tpl::bench_tagged_v2": -1.394198730629118,
+        "pi_none_tpl::benchmark_mcq_v1": -0.5697171151899199,
+        "pi_none_tpl::casual_short_answer_v1": -0.6986365165502647,
+        "pi_none_tpl::deploy_bare_v2": -1.4545407990138348,
+        "pi_none_tpl::deploy_json_v2": -3.0117428827154695,
+        "pi_none_tpl::deploy_lead_in_v2": -1.1946228336600782,
+        "pi_none_tpl::deploy_markdown_v2": -0.0012834323127452738,
+        "pi_none_tpl::deploy_mcq_bullets_v2": -1.5582031570437251,
+        "smd_paired": 1.0940459234327218,
+        "block_win_rate": 0.85,
+        "n_blocks": 320
+      },
+      "ci95": {
+        "delta_stated": {
+          "ci95": [
+            12.34228847127915,
+            13.012520056542684
+          ],
+          "boot_mean": 12.682984192228192,
+          "n_valid": 10000
+        },
+        "delta_format": {
+          "ci95": [
+            3.6240161466437932,
+            4.420183558097028
+          ],
+          "boot_mean": 4.015794738594131,
+          "n_valid": 10000
+        },
+        "rho": {
+          "ci95": [
+            0.284939131905537,
+            0.34937631474596353
+          ],
+          "boot_mean": 0.31668239653042995,
+          "n_valid": 10000
+        },
+        "pi_bench": {
+          "ci95": [
+            -1.1133910876573987,
+            -1.0217952643220856
+          ],
+          "boot_mean": -1.066497262399476,
+          "n_valid": 10000
+        },
+        "pi_casual": {
+          "ci95": [
+            -1.4403629626013745,
+            -1.329056793208328
+          ],
+          "boot_mean": -1.3831796589299057,
+          "n_valid": 10000
+        },
+        "smd_paired": {
+          "ci95": [
+            0.9745424545461501,
+            1.2315782520570167
+          ],
+          "boot_mean": 1.0980336356697573,
+          "n_valid": 10000
+        },
+        "block_win_rate": {
+          "ci95": [
+            0.809375,
+            0.8875
+          ],
+          "boot_mean": 0.8500362499999999,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_imperative_v2": {
+          "ci95": [
+            -0.414224064175169,
+            -0.28793691729150267
+          ],
+          "boot_mean": -0.35140615369338823,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_mmlu_bare_v2": {
+          "ci95": [
+            -1.3902770541562322,
+            -1.2353455004196963
+          ],
+          "boot_mean": -1.3111381360403638,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_preamble_v2": {
+          "ci95": [
+            -0.8098405196682084,
+            -0.7173613622489373
+          ],
+          "boot_mean": -0.7625963102689758,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_qa_record_v2": {
+          "ci95": [
+            -1.9668171172404747,
+            -1.8028053666838337
+          ],
+          "boot_mean": -1.884349328916274,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_sectioned_v2": {
+          "ci95": [
+            -0.993441895521935,
+            -0.8695491181095879
+          ],
+          "boot_mean": -0.9297595493647459,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_tagged_v2": {
+          "ci95": [
+            -1.466638659056232,
+            -1.3260631958510436
+          ],
+          "boot_mean": -1.394523085480828,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::benchmark_mcq_v1": {
+          "ci95": [
+            -0.6300568276439772,
+            -0.5110386144536988
+          ],
+          "boot_mean": -0.5697854006303062,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::casual_short_answer_v1": {
+          "ci95": [
+            -0.7730288677928159,
+            -0.6259991750893916
+          ],
+          "boot_mean": -0.6987035826821508,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_bare_v2": {
+          "ci95": [
+            -1.529015127092763,
+            -1.3846269816075685
+          ],
+          "boot_mean": -1.45492101086359,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_json_v2": {
+          "ci95": [
+            -3.1338062463797014,
+            -2.8991415569779297
+          ],
+          "boot_mean": -3.013428629576598,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_lead_in_v2": {
+          "ci95": [
+            -1.2590880167825511,
+            -1.1317630095174012
+          ],
+          "boot_mean": -1.1951988833582723,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_markdown_v2": {
+          "ci95": [
+            -0.057388470981094494,
+            0.05375582735102807
+          ],
+          "boot_mean": -0.0012396448081787167,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_mcq_bullets_v2": {
+          "ci95": [
+            -1.6402606470393764,
+            -1.4790393362969905
+          ],
+          "boot_mean": -1.5586021423467218,
+          "n_valid": 10000
+        }
+      },
+      "seconds": 411.1
+    },
+    {
+      "layer": 4,
+      "purpose_auc_oof": 0.9528245035807291,
+      "purpose_auc_by_fold": [
+        0.981536865234375,
+        0.9456990559895834,
+        0.9647505018446181,
+        0.9603830973307291,
+        0.9514329698350694
+      ],
+      "format_auc_by_fold": [],
+      "point": {
+        "delta_stated": 41.4333729608377,
+        "delta_format": -6.642691021161471,
+        "rho": -0.16032223655650865,
+        "pi_bench": -0.38538844362270686,
+        "pi_casual": -0.22506620706619826,
+        "pi_none": -0.3052273253444525,
+        "pi_none_tpl::bench_imperative_v2": -0.26943150215176015,
+        "pi_none_tpl::bench_mmlu_bare_v2": -0.49616621439149605,
+        "pi_none_tpl::bench_preamble_v2": -0.3368375562134252,
+        "pi_none_tpl::bench_qa_record_v2": -0.6727961959835144,
+        "pi_none_tpl::bench_sectioned_v2": -0.20523278049392182,
+        "pi_none_tpl::bench_tagged_v2": -0.4038564819480739,
+        "pi_none_tpl::benchmark_mcq_v1": -0.22440842695454916,
+        "pi_none_tpl::casual_short_answer_v1": 0.06969081157705277,
+        "pi_none_tpl::deploy_bare_v2": -0.22763274552552246,
+        "pi_none_tpl::deploy_json_v2": -0.23298705775377204,
+        "pi_none_tpl::deploy_lead_in_v2": -0.3813533562423223,
+        "pi_none_tpl::deploy_markdown_v2": -0.031447398059342296,
+        "pi_none_tpl::deploy_mcq_bullets_v2": -0.3842367680985347,
+        "smd_paired": -0.9974699200628486,
+        "block_win_rate": 0.146875,
+        "n_blocks": 320
+      },
+      "ci95": {
+        "delta_stated": {
+          "ci95": [
+            40.6228813427421,
+            42.24574210115107
+          ],
+          "boot_mean": 41.433222313626075,
+          "n_valid": 10000
+        },
+        "delta_format": {
+          "ci95": [
+            -7.365981488723853,
+            -5.921184979202448
+          ],
+          "boot_mean": -6.646177063485476,
+          "n_valid": 10000
+        },
+        "rho": {
+          "ci95": [
+            -0.17827723957913433,
+            -0.14261159200463647
+          ],
+          "boot_mean": -0.16042503009509543,
+          "n_valid": 10000
+        },
+        "pi_bench": {
+          "ci95": [
+            -0.40825415094021067,
+            -0.36345845176188113
+          ],
+          "boot_mean": -0.3854932786222193,
+          "n_valid": 10000
+        },
+        "pi_casual": {
+          "ci95": [
+            -0.24795449278867301,
+            -0.20263379571506343
+          ],
+          "boot_mean": -0.2250682485271239,
+          "n_valid": 10000
+        },
+        "smd_paired": {
+          "ci95": [
+            -1.1476450710251769,
+            -0.8621600564257569
+          ],
+          "boot_mean": -1.0027845388350467,
+          "n_valid": 10000
+        },
+        "block_win_rate": {
+          "ci95": [
+            0.109375,
+            0.1875
+          ],
+          "boot_mean": 0.1467490625,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_imperative_v2": {
+          "ci95": [
+            -0.2999098961201634,
+            -0.2400375638953507
+          ],
+          "boot_mean": -0.26960220075175734,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_mmlu_bare_v2": {
+          "ci95": [
+            -0.5319044045492719,
+            -0.4616496692557522
+          ],
+          "boot_mean": -0.49619014954681295,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_preamble_v2": {
+          "ci95": [
+            -0.3611509347914104,
+            -0.3133270327888005
+          ],
+          "boot_mean": -0.33693146946389624,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_qa_record_v2": {
+          "ci95": [
+            -0.71055906009865,
+            -0.6357555887453439
+          ],
+          "boot_mean": -0.6729931716601762,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_sectioned_v2": {
+          "ci95": [
+            -0.23453840420649447,
+            -0.17645692512858985
+          ],
+          "boot_mean": -0.2052044525453849,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_tagged_v2": {
+          "ci95": [
+            -0.43477418982486,
+            -0.37274584387107235
+          ],
+          "boot_mean": -0.403964001174974,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::benchmark_mcq_v1": {
+          "ci95": [
+            -0.2576138321255459,
+            -0.19150170321149593
+          ],
+          "boot_mean": -0.2245175334271252,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::casual_short_answer_v1": {
+          "ci95": [
+            0.04182712834269441,
+            0.09702674843189563
+          ],
+          "boot_mean": 0.06988208288807332,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_bare_v2": {
+          "ci95": [
+            -0.26203862943296946,
+            -0.19364829757827343
+          ],
+          "boot_mean": -0.22767107909325904,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_json_v2": {
+          "ci95": [
+            -0.2734627031031961,
+            -0.19214495051911154
+          ],
+          "boot_mean": -0.23310231127268954,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_lead_in_v2": {
+          "ci95": [
+            -0.40809357439281063,
+            -0.35606050334747674
+          ],
+          "boot_mean": -0.38145497892810687,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_markdown_v2": {
+          "ci95": [
+            -0.06626346363692355,
+            0.0029427347489760247
+          ],
+          "boot_mean": -0.03137017440884817,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_mcq_bullets_v2": {
+          "ci95": [
+            -0.41692160985588794,
+            -0.3515889004243574
+          ],
+          "boot_mean": -0.3842467072442953,
+          "n_valid": 10000
+        }
+      },
+      "seconds": 420.7
+    },
+    {
+      "layer": 5,
+      "purpose_auc_oof": 0.9672768147786458,
+      "purpose_auc_by_fold": [
+        0.9883236355251735,
+        0.9646979437934029,
+        0.990542941623264,
+        0.9744517008463541,
+        0.9502987331814237
+      ],
+      "format_auc_by_fold": [],
+      "point": {
+        "delta_stated": 56.14425589519651,
+        "delta_format": -1.4993492193979663,
+        "rho": -0.026705300399684252,
+        "pi_bench": -0.16366959741257422,
+        "pi_casual": -0.13696429701289,
+        "pi_none": -0.15031694721273206,
+        "pi_none_tpl::bench_imperative_v2": -0.20852859571867421,
+        "pi_none_tpl::bench_mmlu_bare_v2": -0.26770896856878285,
+        "pi_none_tpl::bench_preamble_v2": -0.02663728268588395,
+        "pi_none_tpl::bench_qa_record_v2": -0.19979179737247782,
+        "pi_none_tpl::bench_sectioned_v2": -0.1694928196866505,
+        "pi_none_tpl::bench_tagged_v2": -0.07772689180780429,
+        "pi_none_tpl::benchmark_mcq_v1": -0.22613284988599194,
+        "pi_none_tpl::casual_short_answer_v1": 0.07276714815904108,
+        "pi_none_tpl::deploy_bare_v2": -0.1438704808427822,
+        "pi_none_tpl::deploy_json_v2": -0.22626836232997194,
+        "pi_none_tpl::deploy_lead_in_v2": -0.2201477579315144,
+        "pi_none_tpl::deploy_markdown_v2": 0.03935130350035448,
+        "pi_none_tpl::deploy_mcq_bullets_v2": -0.23201473238973075,
+        "smd_paired": -0.22845063373056862,
+        "block_win_rate": 0.371875,
+        "n_blocks": 320
+      },
+      "ci95": {
+        "delta_stated": {
+          "ci95": [
+            55.27950274054445,
+            56.99526431317963
+          ],
+          "boot_mean": 56.14366772308824,
+          "n_valid": 10000
+        },
+        "delta_format": {
+          "ci95": [
+            -2.2076921810096035,
+            -0.7811788300755769
+          ],
+          "boot_mean": -1.5014789062347818,
+          "n_valid": 10000
+        },
+        "rho": {
+          "ci95": [
+            -0.039308992968038727,
+            -0.013868896264728781
+          ],
+          "boot_mean": -0.026743551046035804,
+          "n_valid": 10000
+        },
+        "pi_bench": {
+          "ci95": [
+            -0.17836748456199633,
+            -0.1489169086615791
+          ],
+          "boot_mean": -0.16377509307722163,
+          "n_valid": 10000
+        },
+        "pi_casual": {
+          "ci95": [
+            -0.15300838029332758,
+            -0.12065470526018818
+          ],
+          "boot_mean": -0.13703154203118584,
+          "n_valid": 10000
+        },
+        "smd_paired": {
+          "ci95": [
+            -0.34320936671366575,
+            -0.11830419418772904
+          ],
+          "boot_mean": -0.2300216389887653,
+          "n_valid": 10000
+        },
+        "block_win_rate": {
+          "ci95": [
+            0.31875,
+            0.425
+          ],
+          "boot_mean": 0.37170093749999994,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_imperative_v2": {
+          "ci95": [
+            -0.23074811074838067,
+            -0.1865769050153556
+          ],
+          "boot_mean": -0.20863760417256152,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_mmlu_bare_v2": {
+          "ci95": [
+            -0.2949451668730233,
+            -0.24111306211890746
+          ],
+          "boot_mean": -0.2677081521390434,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_preamble_v2": {
+          "ci95": [
+            -0.04393298103960839,
+            -0.009252430481404565
+          ],
+          "boot_mean": -0.026748535959033485,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_qa_record_v2": {
+          "ci95": [
+            -0.22981589617237866,
+            -0.1704526315527829
+          ],
+          "boot_mean": -0.19980852927256,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_sectioned_v2": {
+          "ci95": [
+            -0.19097565504842973,
+            -0.14786466146600782
+          ],
+          "boot_mean": -0.16968256658529635,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_tagged_v2": {
+          "ci95": [
+            -0.10132173491076722,
+            -0.054349275681484795
+          ],
+          "boot_mean": -0.07795944771885537,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::benchmark_mcq_v1": {
+          "ci95": [
+            -0.2536494775068893,
+            -0.19862315780381978
+          ],
+          "boot_mean": -0.22639037368433382,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::casual_short_answer_v1": {
+          "ci95": [
+            0.04823259935985891,
+            0.09697851763080464
+          ],
+          "boot_mean": 0.07270113741372461,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_bare_v2": {
+          "ci95": [
+            -0.1721640749028954,
+            -0.11638427402077511
+          ],
+          "boot_mean": -0.1440298250100126,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_json_v2": {
+          "ci95": [
+            -0.2551316550196056,
+            -0.19821759824141297
+          ],
+          "boot_mean": -0.22644592322291146,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_lead_in_v2": {
+          "ci95": [
+            -0.240306259379624,
+            -0.19990796933913535
+          ],
+          "boot_mean": -0.22027243491065973,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_markdown_v2": {
+          "ci95": [
+            0.013493844382237703,
+            0.06447274375952312
+          ],
+          "boot_mean": 0.03941110023616106,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_mcq_bullets_v2": {
+          "ci95": [
+            -0.25926120251547824,
+            -0.20537624012015826
+          ],
+          "boot_mean": -0.23198656377395804,
+          "n_valid": 10000
+        }
+      },
+      "seconds": 415.7
+    },
+    {
+      "layer": 6,
+      "purpose_auc_oof": 0.9852621799045138,
+      "purpose_auc_by_fold": [
+        0.9730360243055555,
+        0.984653049045139,
+        0.9963090684678819,
+        0.9895782470703125,
+        0.9916263156467013
+      ],
+      "format_auc_by_fold": [],
+      "point": {
+        "delta_stated": 71.16156712301236,
+        "delta_format": 11.074387049004525,
+        "rho": 0.15562314739163843,
+        "pi_bench": -0.26038228007728076,
+        "pi_casual": -0.4160054274689193,
+        "pi_none": -0.3381938537731,
+        "pi_none_tpl::bench_imperative_v2": -0.16204966540876758,
+        "pi_none_tpl::bench_mmlu_bare_v2": -0.30923827602351195,
+        "pi_none_tpl::bench_preamble_v2": -0.12786763603462492,
+        "pi_none_tpl::bench_qa_record_v2": -0.41291847463297465,
+        "pi_none_tpl::bench_sectioned_v2": -0.26439182584190346,
+        "pi_none_tpl::bench_tagged_v2": -0.19938260775999359,
+        "pi_none_tpl::benchmark_mcq_v1": -0.4424165841531238,
+        "pi_none_tpl::casual_short_answer_v1": -0.08933456471635448,
+        "pi_none_tpl::deploy_bare_v2": -0.30064482756261346,
+        "pi_none_tpl::deploy_json_v2": -0.7655315714594714,
+        "pi_none_tpl::deploy_lead_in_v2": -0.2618050457013036,
+        "pi_none_tpl::deploy_markdown_v2": -0.5992189428072954,
+        "pi_none_tpl::deploy_mcq_bullets_v2": -0.3009695291923765,
+        "smd_paired": 1.4936511305399716,
+        "block_win_rate": 0.93125,
+        "n_blocks": 320
+      },
+      "ci95": {
+        "delta_stated": {
+          "ci95": [
+            70.27489558870009,
+            72.0748262005865
+          ],
+          "boot_mean": 71.1628502257799,
+          "n_valid": 10000
+        },
+        "delta_format": {
+          "ci95": [
+            10.25760204696007,
+            11.872455284406009
+          ],
+          "boot_mean": 11.073783688269733,
+          "n_valid": 10000
+        },
+        "rho": {
+          "ci95": [
+            0.1439419905025003,
+            0.16701161487585292
+          ],
+          "boot_mean": 0.15561815994988204,
+          "n_valid": 10000
+        },
+        "pi_bench": {
+          "ci95": [
+            -0.2747588092501577,
+            -0.24567671438825392
+          ],
+          "boot_mean": -0.2604331370873081,
+          "n_valid": 10000
+        },
+        "pi_casual": {
+          "ci95": [
+            -0.4343597591231399,
+            -0.39777259188027625
+          ],
+          "boot_mean": -0.4160512970371901,
+          "n_valid": 10000
+        },
+        "smd_paired": {
+          "ci95": [
+            1.349752572703196,
+            1.6570073298539465
+          ],
+          "boot_mean": 1.4986169221029693,
+          "n_valid": 10000
+        },
+        "block_win_rate": {
+          "ci95": [
+            0.903125,
+            0.95625
+          ],
+          "boot_mean": 0.9312856249999999,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_imperative_v2": {
+          "ci95": [
+            -0.18184653399577283,
+            -0.14261844041462882
+          ],
+          "boot_mean": -0.16218723208965846,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_mmlu_bare_v2": {
+          "ci95": [
+            -0.33358200487394063,
+            -0.28595360443454987
+          ],
+          "boot_mean": -0.30930665648134403,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_preamble_v2": {
+          "ci95": [
+            -0.14548339864147672,
+            -0.11013780452353693
+          ],
+          "boot_mean": -0.12785938268351904,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_qa_record_v2": {
+          "ci95": [
+            -0.4379686768347215,
+            -0.3872821927864401
+          ],
+          "boot_mean": -0.4127601925268273,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_sectioned_v2": {
+          "ci95": [
+            -0.28601720853822066,
+            -0.24342554023467472
+          ],
+          "boot_mean": -0.2645691750221873,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_tagged_v2": {
+          "ci95": [
+            -0.2177885989085914,
+            -0.1809376139155351
+          ],
+          "boot_mean": -0.1994895404901134,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::benchmark_mcq_v1": {
+          "ci95": [
+            -0.4671427372295166,
+            -0.41771587798552734
+          ],
+          "boot_mean": -0.44262566440948886,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::casual_short_answer_v1": {
+          "ci95": [
+            -0.11349540841672547,
+            -0.06627458423878704
+          ],
+          "boot_mean": -0.08946560933624084,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_bare_v2": {
+          "ci95": [
+            -0.328047329251789,
+            -0.2736245767144167
+          ],
+          "boot_mean": -0.3008261185792577,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_json_v2": {
+          "ci95": [
+            -0.7951504415460994,
+            -0.7352088887318047
+          ],
+          "boot_mean": -0.7655453466349275,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_lead_in_v2": {
+          "ci95": [
+            -0.28269934182033557,
+            -0.24145410207338144
+          ],
+          "boot_mean": -0.2618879334077116,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_markdown_v2": {
+          "ci95": [
+            -0.6279217921273558,
+            -0.5710606857496622
+          ],
+          "boot_mean": -0.599248865182597,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_mcq_bullets_v2": {
+          "ci95": [
+            -0.32529084077600556,
+            -0.2766082676475754
+          ],
+          "boot_mean": -0.300965165691117,
+          "n_valid": 10000
+        }
+      },
+      "seconds": 426.6
+    },
+    {
+      "layer": 7,
+      "purpose_auc_oof": 0.9841578504774304,
+      "purpose_auc_by_fold": [
+        0.9745093451605903,
+        0.9718577067057292,
+        0.9948527018229167,
+        0.9929962158203125,
+        0.9850345187717013
+      ],
+      "format_auc_by_fold": [],
+      "point": {
+        "delta_stated": 70.61168637048323,
+        "delta_format": 5.346881356921629,
+        "rho": 0.07572232914630839,
+        "pi_bench": -0.08383876380892574,
+        "pi_casual": -0.1595610929552342,
+        "pi_none": -0.12169992838207994,
+        "pi_none_tpl::bench_imperative_v2": -0.1675729756855324,
+        "pi_none_tpl::bench_mmlu_bare_v2": -0.0438500168145456,
+        "pi_none_tpl::bench_preamble_v2": -0.29089457209296166,
+        "pi_none_tpl::bench_qa_record_v2": -0.1789692382053299,
+        "pi_none_tpl::bench_sectioned_v2": 0.0873044892626651,
+        "pi_none_tpl::bench_tagged_v2": 0.06401869525497583,
+        "pi_none_tpl::benchmark_mcq_v1": -0.0239890761147716,
+        "pi_none_tpl::casual_short_answer_v1": 0.1392175276512541,
+        "pi_none_tpl::deploy_bare_v2": -0.040359078273616726,
+        "pi_none_tpl::deploy_json_v2": -0.49493790101505125,
+        "pi_none_tpl::deploy_lead_in_v2": -0.09114805960948423,
+        "pi_none_tpl::deploy_markdown_v2": -0.22001595850859465,
+        "pi_none_tpl::deploy_mcq_bullets_v2": -0.08321686752908547,
+        "smd_paired": 0.6210282939005147,
+        "block_win_rate": 0.703125,
+        "n_blocks": 320
+      },
+      "ci95": {
+        "delta_stated": {
+          "ci95": [
+            69.67857742138067,
+            71.53015222053733
+          ],
+          "boot_mean": 70.60905846015189,
+          "n_valid": 10000
+        },
+        "delta_format": {
+          "ci95": [
+            4.398966046246677,
+            6.274659731974778
+          ],
+          "boot_mean": 5.346421134478967,
+          "n_valid": 10000
+        },
+        "rho": {
+          "ci95": [
+            0.06235629867722884,
+            0.08897073404753272
+          ],
+          "boot_mean": 0.07572213484351513,
+          "n_valid": 10000
+        },
+        "pi_bench": {
+          "ci95": [
+            -0.09854868184676294,
+            -0.06895001495107975
+          ],
+          "boot_mean": -0.08391126215099508,
+          "n_valid": 10000
+        },
+        "pi_casual": {
+          "ci95": [
+            -0.17648995439233303,
+            -0.14291443105200838
+          ],
+          "boot_mean": -0.1596333969945102,
+          "n_valid": 10000
+        },
+        "smd_paired": {
+          "ci95": [
+            0.5089091633521321,
+            0.7401992515359573
+          ],
+          "boot_mean": 0.6233664935581105,
+          "n_valid": 10000
+        },
+        "block_win_rate": {
+          "ci95": [
+            0.653125,
+            0.753125
+          ],
+          "boot_mean": 0.7032425,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_imperative_v2": {
+          "ci95": [
+            -0.18576780727290143,
+            -0.14950311429533183
+          ],
+          "boot_mean": -0.16767521651773754,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_mmlu_bare_v2": {
+          "ci95": [
+            -0.06867091074916049,
+            -0.019766979095010864
+          ],
+          "boot_mean": -0.04395135061107147,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_preamble_v2": {
+          "ci95": [
+            -0.3105777648959547,
+            -0.2711280930947848
+          ],
+          "boot_mean": -0.29087460467978515,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_qa_record_v2": {
+          "ci95": [
+            -0.20387419201104806,
+            -0.15455625273603324
+          ],
+          "boot_mean": -0.17896004722643197,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_sectioned_v2": {
+          "ci95": [
+            0.06735916602945062,
+            0.1078050031594179
+          ],
+          "boot_mean": 0.08726773398599814,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_tagged_v2": {
+          "ci95": [
+            0.04320777593667269,
+            0.08453600319822613
+          ],
+          "boot_mean": 0.06387022626283083,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::benchmark_mcq_v1": {
+          "ci95": [
+            -0.0482109978773531,
+            -0.0003914699569604808
+          ],
+          "boot_mean": -0.024144931266392614,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::casual_short_answer_v1": {
+          "ci95": [
+            0.11300664114890814,
+            0.16525194719797398
+          ],
+          "boot_mean": 0.13909387953994065,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_bare_v2": {
+          "ci95": [
+            -0.06632676670319794,
+            -0.01459198498213452
+          ],
+          "boot_mean": -0.0404025209889924,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_json_v2": {
+          "ci95": [
+            -0.5257415721798729,
+            -0.4648666385654483
+          ],
+          "boot_mean": -0.4951568624654827,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_lead_in_v2": {
+          "ci95": [
+            -0.1129837122928574,
+            -0.06953525764550164
+          ],
+          "boot_mean": -0.09126249007621605,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_markdown_v2": {
+          "ci95": [
+            -0.2467471835199006,
+            -0.19368142773059593
+          ],
+          "boot_mean": -0.22015116022168305,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_mcq_bullets_v2": {
+          "ci95": [
+            -0.10918885345681559,
+            -0.05738204514946587
+          ],
+          "boot_mean": -0.0832351195945331,
+          "n_valid": 10000
+        }
+      },
+      "seconds": 423.8
+    },
+    {
+      "layer": 8,
+      "purpose_auc_oof": 0.983460693359375,
+      "purpose_auc_by_fold": [
+        0.9864620632595487,
+        0.9762115478515625,
+        0.9925062391493055,
+        0.9821421305338541,
+        0.9840715196397569
+      ],
+      "format_auc_by_fold": [],
+      "point": {
+        "delta_stated": 72.16545337505619,
+        "delta_format": 4.163605563384944,
+        "rho": 0.057695273412140494,
+        "pi_bench": 0.007741183835988849,
+        "pi_casual": -0.049954089576151606,
+        "pi_none": -0.021106452870081328,
+        "pi_none_tpl::bench_imperative_v2": 0.0987772374818076,
+        "pi_none_tpl::bench_mmlu_bare_v2": 0.03873364010262349,
+        "pi_none_tpl::bench_preamble_v2": -0.0642748408447876,
+        "pi_none_tpl::bench_qa_record_v2": -0.18248788338947197,
+        "pi_none_tpl::bench_sectioned_v2": 0.042065550604344,
+        "pi_none_tpl::bench_tagged_v2": 0.12350724362400259,
+        "pi_none_tpl::benchmark_mcq_v1": -0.007533504013913946,
+        "pi_none_tpl::casual_short_answer_v1": 0.2439791795173718,
+        "pi_none_tpl::deploy_bare_v2": -0.0007502692694368574,
+        "pi_none_tpl::deploy_json_v2": -0.2432040101336898,
+        "pi_none_tpl::deploy_lead_in_v2": -0.12523283355341114,
+        "pi_none_tpl::deploy_markdown_v2": -0.07663070036183563,
+        "pi_none_tpl::deploy_mcq_bullets_v2": 0.06528723864471606,
+        "smd_paired": 0.44055798486641273,
+        "block_win_rate": 0.6625,
+        "n_blocks": 320
+      },
+      "ci95": {
+        "delta_stated": {
+          "ci95": [
+            71.07759181752014,
+            73.26381399661504
+          ],
+          "boot_mean": 72.16565274927567,
+          "n_valid": 10000
+        },
+        "delta_format": {
+          "ci95": [
+            3.152771463058114,
+            5.192709008809355
+          ],
+          "boot_mean": 4.1731932447379005,
+          "n_valid": 10000
+        },
+        "rho": {
+          "ci95": [
+            0.04360658008749267,
+            0.07207132799679256
+          ],
+          "boot_mean": 0.05783485149867454,
+          "n_valid": 10000
+        },
+        "pi_bench": {
+          "ci95": [
+            -0.005934738026984955,
+            0.02115758073518272
+          ],
+          "boot_mean": 0.007775005109243817,
+          "n_valid": 10000
+        },
+        "pi_casual": {
+          "ci95": [
+            -0.06637205111756195,
+            -0.034203601016089095
+          ],
+          "boot_mean": -0.05005984638943072,
+          "n_valid": 10000
+        },
+        "smd_paired": {
+          "ci95": [
+            0.3317137609314261,
+            0.5595489764238808
+          ],
+          "boot_mean": 0.4433739133140783,
+          "n_valid": 10000
+        },
+        "block_win_rate": {
+          "ci95": [
+            0.609375,
+            0.7125
+          ],
+          "boot_mean": 0.6630371875000001,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_imperative_v2": {
+          "ci95": [
+            0.07941802421998381,
+            0.11856751932847108
+          ],
+          "boot_mean": 0.09884784897175009,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_mmlu_bare_v2": {
+          "ci95": [
+            0.015940951566204807,
+            0.06143977332398326
+          ],
+          "boot_mean": 0.03876654648466578,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_preamble_v2": {
+          "ci95": [
+            -0.08234881836503113,
+            -0.04640579974630816
+          ],
+          "boot_mean": -0.06425544370031733,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_qa_record_v2": {
+          "ci95": [
+            -0.20805561051889826,
+            -0.1561053640623421
+          ],
+          "boot_mean": -0.18227618310994445,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_sectioned_v2": {
+          "ci95": [
+            0.01998959653877509,
+            0.06417261434550317
+          ],
+          "boot_mean": 0.04206963188055966,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_tagged_v2": {
+          "ci95": [
+            0.10371258415146117,
+            0.14317797137188007
+          ],
+          "boot_mean": 0.1234667862348917,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::benchmark_mcq_v1": {
+          "ci95": [
+            -0.033962628198892,
+            0.017782073228861987
+          ],
+          "boot_mean": -0.007671065376858029,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::casual_short_answer_v1": {
+          "ci95": [
+            0.21750223238733232,
+            0.2695406187316767
+          ],
+          "boot_mean": 0.24373810888280167,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_bare_v2": {
+          "ci95": [
+            -0.02725589939298389,
+            0.025161223297165993
+          ],
+          "boot_mean": -0.0008698424746208642,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_json_v2": {
+          "ci95": [
+            -0.27437956147907266,
+            -0.212150479743776
+          ],
+          "boot_mean": -0.24341087629327263,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_lead_in_v2": {
+          "ci95": [
+            -0.1506267049841136,
+            -0.10024673935667516
+          ],
+          "boot_mean": -0.12548090441233195,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_markdown_v2": {
+          "ci95": [
+            -0.10065152047293606,
+            -0.05309257155860679
+          ],
+          "boot_mean": -0.0766574586310538,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_mcq_bullets_v2": {
+          "ci95": [
+            0.040959863304646925,
+            0.08956053746521826
+          ],
+          "boot_mean": 0.06525200196202802,
+          "n_valid": 10000
+        }
+      },
+      "seconds": 422.8
+    },
+    {
+      "layer": 9,
+      "purpose_auc_oof": 0.9838361952039931,
+      "purpose_auc_by_fold": [
+        0.9874945746527778,
+        0.9916008843315972,
+        0.9926842583550347,
+        0.9750535753038194,
+        0.9728613959418403
+      ],
+      "format_auc_by_fold": [],
+      "point": {
+        "delta_stated": 64.39467487623247,
+        "delta_format": 4.196258660046685,
+        "rho": 0.06516468431763896,
+        "pi_bench": 0.08056097413712122,
+        "pi_casual": 0.015396289819482227,
+        "pi_none": 0.047978631978301725,
+        "pi_none_tpl::bench_imperative_v2": 0.09644871115303917,
+        "pi_none_tpl::bench_mmlu_bare_v2": 0.18518779920759249,
+        "pi_none_tpl::bench_preamble_v2": 0.018760824285538158,
+        "pi_none_tpl::bench_qa_record_v2": 0.1537662137950236,
+        "pi_none_tpl::bench_sectioned_v2": -0.012754829650173783,
+        "pi_none_tpl::bench_tagged_v2": 0.0657341450622955,
+        "pi_none_tpl::benchmark_mcq_v1": 0.03230236294663438,
+        "pi_none_tpl::casual_short_answer_v1": 0.28632994878341356,
+        "pi_none_tpl::deploy_bare_v2": 0.10213731459033075,
+        "pi_none_tpl::deploy_json_v2": 0.0770687445230467,
+        "pi_none_tpl::deploy_lead_in_v2": 0.11098108820476771,
+        "pi_none_tpl::deploy_markdown_v2": -0.5010303925456769,
+        "pi_none_tpl::deploy_mcq_bullets_v2": 0.1645813528427206,
+        "smd_paired": 0.5076001076307176,
+        "block_win_rate": 0.68125,
+        "n_blocks": 320
+      },
+      "ci95": {
+        "delta_stated": {
+          "ci95": [
+            63.49470073756523,
+            65.28332761538239
+          ],
+          "boot_mean": 64.39473820967827,
+          "n_valid": 10000
+        },
+        "delta_format": {
+          "ci95": [
+            3.3187690999529336,
+            5.122065843131874
+          ],
+          "boot_mean": 4.201449144232667,
+          "n_valid": 10000
+        },
+        "rho": {
+          "ci95": [
+            0.05150610123311236,
+            0.07953487248403984
+          ],
+          "boot_mean": 0.0652469497470538,
+          "n_valid": 10000
+        },
+        "pi_bench": {
+          "ci95": [
+            0.0657212093308587,
+            0.09565318541628098
+          ],
+          "boot_mean": 0.08063441912997668,
+          "n_valid": 10000
+        },
+        "pi_casual": {
+          "ci95": [
+            -0.0016990251257713736,
+            0.03248085369727609
+          ],
+          "boot_mean": 0.015387469382922882,
+          "n_valid": 10000
+        },
+        "smd_paired": {
+          "ci95": [
+            0.40346967794861,
+            0.6203903900147212
+          ],
+          "boot_mean": 0.5095961770541136,
+          "n_valid": 10000
+        },
+        "block_win_rate": {
+          "ci95": [
+            0.63125,
+            0.73125
+          ],
+          "boot_mean": 0.6814346874999999,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_imperative_v2": {
+          "ci95": [
+            0.07579120776214662,
+            0.11720625878137242
+          ],
+          "boot_mean": 0.09637442335290662,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_mmlu_bare_v2": {
+          "ci95": [
+            0.15885723730231507,
+            0.21134113499617863
+          ],
+          "boot_mean": 0.1851433835238873,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_preamble_v2": {
+          "ci95": [
+            0.0006761632943532909,
+            0.03733395428243889
+          ],
+          "boot_mean": 0.01890221605026083,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_qa_record_v2": {
+          "ci95": [
+            0.1269378992161553,
+            0.18144859158653787
+          ],
+          "boot_mean": 0.15392664691000588,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_sectioned_v2": {
+          "ci95": [
+            -0.0375021849656015,
+            0.010593745529293905
+          ],
+          "boot_mean": -0.01257937927955007,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_tagged_v2": {
+          "ci95": [
+            0.04238125155263794,
+            0.08938041211631595
+          ],
+          "boot_mean": 0.0659166463562953,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::benchmark_mcq_v1": {
+          "ci95": [
+            0.006663642457454988,
+            0.05781159500864542
+          ],
+          "boot_mean": 0.03220557978299011,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::casual_short_answer_v1": {
+          "ci95": [
+            0.258254474298995,
+            0.31414218316959697
+          ],
+          "boot_mean": 0.2863376684934457,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_bare_v2": {
+          "ci95": [
+            0.07019888677305368,
+            0.1336050459590338
+          ],
+          "boot_mean": 0.10211734285247825,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_json_v2": {
+          "ci95": [
+            0.0511073024110598,
+            0.1029047213400564
+          ],
+          "boot_mean": 0.07711115001392455,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_lead_in_v2": {
+          "ci95": [
+            0.08482529583665877,
+            0.13545404371953215
+          ],
+          "boot_mean": 0.11069648526556257,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_markdown_v2": {
+          "ci95": [
+            -0.5394958200138734,
+            -0.46360133288955546
+          ],
+          "boot_mean": -0.5009862160349884,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_mcq_bullets_v2": {
+          "ci95": [
+            0.14137597781247543,
+            0.18796384516556278
+          ],
+          "boot_mean": 0.16462448459074863,
+          "n_valid": 10000
+        }
+      },
+      "seconds": 421.3
+    },
+    {
+      "layer": 10,
+      "purpose_auc_oof": 0.9787090386284722,
+      "purpose_auc_by_fold": [
+        0.9806416829427083,
+        0.9778493245442709,
+        0.9839918348524305,
+        0.9818623860677084,
+        0.9715254041883681
+      ],
+      "format_auc_by_fold": [],
+      "point": {
+        "delta_stated": 59.82085987147293,
+        "delta_format": 3.5424130577479374,
+        "rho": 0.05921702003881133,
+        "pi_bench": 0.08565437439599272,
+        "pi_casual": 0.026437354357181343,
+        "pi_none": 0.05604586437658706,
+        "pi_none_tpl::bench_imperative_v2": 0.16563492168505328,
+        "pi_none_tpl::bench_mmlu_bare_v2": 0.17029688523817882,
+        "pi_none_tpl::bench_preamble_v2": 0.10256407176183191,
+        "pi_none_tpl::bench_qa_record_v2": -0.06985478800867063,
+        "pi_none_tpl::bench_sectioned_v2": 0.06668049870631608,
+        "pi_none_tpl::bench_tagged_v2": 0.045764236230454426,
+        "pi_none_tpl::benchmark_mcq_v1": 0.16101270080944122,
+        "pi_none_tpl::casual_short_answer_v1": 0.3253991636079883,
+        "pi_none_tpl::deploy_bare_v2": 0.1909665843236289,
+        "pi_none_tpl::deploy_json_v2": -0.103642308104579,
+        "pi_none_tpl::deploy_lead_in_v2": 0.06455185868588945,
+        "pi_none_tpl::deploy_markdown_v2": -0.31080565931261167,
+        "pi_none_tpl::deploy_mcq_bullets_v2": 0.15609511728632516,
+        "smd_paired": 0.4536856863362742,
+        "block_win_rate": 0.6625,
+        "n_blocks": 320
+      },
+      "ci95": {
+        "delta_stated": {
+          "ci95": [
+            58.948366081376754,
+            60.663808073107354
+          ],
+          "boot_mean": 59.81725235724705,
+          "n_valid": 10000
+        },
+        "delta_format": {
+          "ci95": [
+            2.7026501732749018,
+            4.419668054345007
+          ],
+          "boot_mean": 3.5456240192452797,
+          "n_valid": 10000
+        },
+        "rho": {
+          "ci95": [
+            0.04521559585296623,
+            0.07385824389489017
+          ],
+          "boot_mean": 0.059275875775334455,
+          "n_valid": 10000
+        },
+        "pi_bench": {
+          "ci95": [
+            0.06975074526625236,
+            0.10187258395047064
+          ],
+          "boot_mean": 0.08576899650288583,
+          "n_valid": 10000
+        },
+        "pi_casual": {
+          "ci95": [
+            0.009889398415878813,
+            0.042716699126434936
+          ],
+          "boot_mean": 0.02649312072755139,
+          "n_valid": 10000
+        },
+        "smd_paired": {
+          "ci95": [
+            0.3445014252647635,
+            0.5726470332245356
+          ],
+          "boot_mean": 0.4557946651795619,
+          "n_valid": 10000
+        },
+        "block_win_rate": {
+          "ci95": [
+            0.609375,
+            0.715625
+          ],
+          "boot_mean": 0.66276375,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_imperative_v2": {
+          "ci95": [
+            0.14228104215566903,
+            0.18936953295326917
+          ],
+          "boot_mean": 0.16566625165106807,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_mmlu_bare_v2": {
+          "ci95": [
+            0.14369042916510677,
+            0.19737826073491738
+          ],
+          "boot_mean": 0.17046332253439908,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_preamble_v2": {
+          "ci95": [
+            0.07918091612930848,
+            0.12576015145626054
+          ],
+          "boot_mean": 0.10265549734199737,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_qa_record_v2": {
+          "ci95": [
+            -0.09663521141698302,
+            -0.04317365472294208
+          ],
+          "boot_mean": -0.06969235535536834,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_sectioned_v2": {
+          "ci95": [
+            0.03785229091413725,
+            0.09571771960396219
+          ],
+          "boot_mean": 0.06696028097339435,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_tagged_v2": {
+          "ci95": [
+            0.02120234741023856,
+            0.06996163843868833
+          ],
+          "boot_mean": 0.04582392251634194,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::benchmark_mcq_v1": {
+          "ci95": [
+            0.13245319707501954,
+            0.18945192974913763
+          ],
+          "boot_mean": 0.1609560923147398,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::casual_short_answer_v1": {
+          "ci95": [
+            0.2968539058341572,
+            0.35247609389799683
+          ],
+          "boot_mean": 0.3253932996359426,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_bare_v2": {
+          "ci95": [
+            0.16169361907789795,
+            0.22010764665610655
+          ],
+          "boot_mean": 0.19115313020658278,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_json_v2": {
+          "ci95": [
+            -0.1332223711067927,
+            -0.07450587964601596
+          ],
+          "boot_mean": -0.10354374798487623,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_lead_in_v2": {
+          "ci95": [
+            0.03941046790668506,
+            0.08881819481123471
+          ],
+          "boot_mean": 0.06458782769003986,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_markdown_v2": {
+          "ci95": [
+            -0.3413635789573244,
+            -0.2801742784654853
+          ],
+          "boot_mean": -0.31085493163830813,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_mcq_bullets_v2": {
+          "ci95": [
+            0.12943838501578714,
+            0.18272724887284295
+          ],
+          "boot_mean": 0.1559770401058043,
+          "n_valid": 10000
+        }
+      },
+      "seconds": 416.4
+    },
+    {
+      "layer": 11,
+      "purpose_auc_oof": 0.972620103624132,
+      "purpose_auc_by_fold": [
+        0.9826829698350694,
+        0.9622294108072916,
+        0.9811537000868056,
+        0.980743408203125,
+        0.9623141818576388
+      ],
+      "format_auc_by_fold": [],
+      "point": {
+        "delta_stated": 55.6657077402028,
+        "delta_format": 7.07162242456557,
+        "rho": 0.12703732174877774,
+        "pi_bench": 0.16354544114780703,
+        "pi_casual": 0.0365081193990292,
+        "pi_none": 0.10002678027341812,
+        "pi_none_tpl::bench_imperative_v2": 0.4754382133060054,
+        "pi_none_tpl::bench_mmlu_bare_v2": 0.19187928827682024,
+        "pi_none_tpl::bench_preamble_v2": 0.1432220758312646,
+        "pi_none_tpl::bench_qa_record_v2": -0.06468477421248064,
+        "pi_none_tpl::bench_sectioned_v2": 0.2250788248588877,
+        "pi_none_tpl::bench_tagged_v2": -0.057711963153161044,
+        "pi_none_tpl::benchmark_mcq_v1": 0.31691056494389347,
+        "pi_none_tpl::casual_short_answer_v1": 0.3935661004653276,
+        "pi_none_tpl::deploy_bare_v2": 0.18334887764534274,
+        "pi_none_tpl::deploy_json_v2": -0.08534878923737951,
+        "pi_none_tpl::deploy_lead_in_v2": 0.05408550679870561,
+        "pi_none_tpl::deploy_markdown_v2": -0.2877243876162224,
+        "pi_none_tpl::deploy_mcq_bullets_v2": 0.15815595934348223,
+        "smd_paired": 0.9038805901538615,
+        "block_win_rate": 0.81875,
+        "n_blocks": 320
+      },
+      "ci95": {
+        "delta_stated": {
+          "ci95": [
+            54.80187172825464,
+            56.544573283028974
+          ],
+          "boot_mean": 55.666954527551134,
+          "n_valid": 10000
+        },
+        "delta_format": {
+          "ci95": [
+            6.211811969693884,
+            7.938459169396366
+          ],
+          "boot_mean": 7.078088018757063,
+          "n_valid": 10000
+        },
+        "rho": {
+          "ci95": [
+            0.11190181383455143,
+            0.14253509688433988
+          ],
+          "boot_mean": 0.12715440492695773,
+          "n_valid": 10000
+        },
+        "pi_bench": {
+          "ci95": [
+            0.14729522559114042,
+            0.17958906209933878
+          ],
+          "boot_mean": 0.16368862767397854,
+          "n_valid": 10000
+        },
+        "pi_casual": {
+          "ci95": [
+            0.019049723641168928,
+            0.053759854444671476
+          ],
+          "boot_mean": 0.036534222747020825,
+          "n_valid": 10000
+        },
+        "smd_paired": {
+          "ci95": [
+            0.7841313600795687,
+            1.0361081154439231
+          ],
+          "boot_mean": 0.9082066804444076,
+          "n_valid": 10000
+        },
+        "block_win_rate": {
+          "ci95": [
+            0.778046875,
+            0.859375
+          ],
+          "boot_mean": 0.819045625,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_imperative_v2": {
+          "ci95": [
+            0.4487292447696115,
+            0.5024033852020178
+          ],
+          "boot_mean": 0.4754689094450544,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_mmlu_bare_v2": {
+          "ci95": [
+            0.16624728307048872,
+            0.21777257540251135
+          ],
+          "boot_mean": 0.19205875057387958,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_preamble_v2": {
+          "ci95": [
+            0.11818016911024963,
+            0.16866565983606446
+          ],
+          "boot_mean": 0.1433428291402432,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_qa_record_v2": {
+          "ci95": [
+            -0.09461290297751457,
+            -0.03521297509177734
+          ],
+          "boot_mean": -0.06443704638705623,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_sectioned_v2": {
+          "ci95": [
+            0.19669482462514107,
+            0.2529359116734388
+          ],
+          "boot_mean": 0.22526129271739065,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_tagged_v2": {
+          "ci95": [
+            -0.08380734364178692,
+            -0.031494065818373135
+          ],
+          "boot_mean": -0.057523492211244365,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::benchmark_mcq_v1": {
+          "ci95": [
+            0.2842308138548426,
+            0.34947997893692506
+          ],
+          "boot_mean": 0.3170045967778076,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::casual_short_answer_v1": {
+          "ci95": [
+            0.36469007665872083,
+            0.4217471487691423
+          ],
+          "boot_mean": 0.3933832243657961,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_bare_v2": {
+          "ci95": [
+            0.15537276747012593,
+            0.21233661137482138
+          ],
+          "boot_mean": 0.18357263136724647,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_json_v2": {
+          "ci95": [
+            -0.11327344521780638,
+            -0.05723668840252586
+          ],
+          "boot_mean": -0.08535408580070034,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_lead_in_v2": {
+          "ci95": [
+            0.02711037731491168,
+            0.08136097794143055
+          ],
+          "boot_mean": 0.05406612502560647,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_markdown_v2": {
+          "ci95": [
+            -0.3216570606972885,
+            -0.25321832812950645
+          ],
+          "boot_mean": -0.28781957865256347,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_mcq_bullets_v2": {
+          "ci95": [
+            0.1318501074624548,
+            0.18429180616845012
+          ],
+          "boot_mean": 0.15809705303010982,
+          "n_valid": 10000
+        }
+      },
+      "seconds": 417.0
+    },
+    {
+      "layer": 12,
+      "purpose_auc_oof": 0.970453355577257,
+      "purpose_auc_by_fold": [
+        0.9730343288845487,
+        0.97308349609375,
+        0.9810146755642362,
+        0.9742109510633681,
+        0.9637620713975694
+      ],
+      "format_auc_by_fold": [],
+      "point": {
+        "delta_stated": 48.46264505632056,
+        "delta_format": 5.238756048128094,
+        "rho": 0.10809884689620028,
+        "pi_bench": 0.12004959116060329,
+        "pi_casual": 0.011950744264402971,
+        "pi_none": 0.06600016771250314,
+        "pi_none_tpl::bench_imperative_v2": 0.3594994013341035,
+        "pi_none_tpl::bench_mmlu_bare_v2": 0.1743247880877453,
+        "pi_none_tpl::bench_preamble_v2": 0.2024391936076353,
+        "pi_none_tpl::bench_qa_record_v2": 0.012816116823091691,
+        "pi_none_tpl::bench_sectioned_v2": 0.10043670452198923,
+        "pi_none_tpl::bench_tagged_v2": -0.15608575432521293,
+        "pi_none_tpl::benchmark_mcq_v1": 0.18805200114466653,
+        "pi_none_tpl::casual_short_answer_v1": 0.39274729005939235,
+        "pi_none_tpl::deploy_bare_v2": 0.1382163302214814,
+        "pi_none_tpl::deploy_json_v2": -0.24840592379959509,
+        "pi_none_tpl::deploy_lead_in_v2": 0.10503463121326748,
+        "pi_none_tpl::deploy_markdown_v2": -0.21122626230990993,
+        "pi_none_tpl::deploy_mcq_bullets_v2": 0.09672654954692127,
+        "smd_paired": 0.7066884805784538,
+        "block_win_rate": 0.7625,
+        "n_blocks": 320
+      },
+      "ci95": {
+        "delta_stated": {
+          "ci95": [
+            47.76440766221583,
+            49.14243251538775
+          ],
+          "boot_mean": 48.46267693069895,
+          "n_valid": 10000
+        },
+        "delta_format": {
+          "ci95": [
+            4.42569293053198,
+            6.052655657106336
+          ],
+          "boot_mean": 5.242867458394617,
+          "n_valid": 10000
+        },
+        "rho": {
+          "ci95": [
+            0.0913791507498364,
+            0.12488333475264077
+          ],
+          "boot_mean": 0.10818510137564974,
+          "n_valid": 10000
+        },
+        "pi_bench": {
+          "ci95": [
+            0.1041297974623644,
+            0.13650321621298897
+          ],
+          "boot_mean": 0.12018638628801345,
+          "n_valid": 10000
+        },
+        "pi_casual": {
+          "ci95": [
+            -0.006938723681653908,
+            0.030248704932435058
+          ],
+          "boot_mean": 0.01200128491236372,
+          "n_valid": 10000
+        },
+        "smd_paired": {
+          "ci95": [
+            0.589963020788156,
+            0.8372289260924002
+          ],
+          "boot_mean": 0.7099765092825342,
+          "n_valid": 10000
+        },
+        "block_win_rate": {
+          "ci95": [
+            0.715625,
+            0.809375
+          ],
+          "boot_mean": 0.7626078125,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_imperative_v2": {
+          "ci95": [
+            0.33601750408324454,
+            0.3831803170837395
+          ],
+          "boot_mean": 0.3594294571452763,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_mmlu_bare_v2": {
+          "ci95": [
+            0.1471976445221813,
+            0.2028670138764587
+          ],
+          "boot_mean": 0.17449103258665938,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_preamble_v2": {
+          "ci95": [
+            0.17974936222356183,
+            0.2256002266334504
+          ],
+          "boot_mean": 0.2026150780515931,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_qa_record_v2": {
+          "ci95": [
+            -0.01954888025513948,
+            0.04573990824877175
+          ],
+          "boot_mean": 0.013133630040152767,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_sectioned_v2": {
+          "ci95": [
+            0.06824454335186073,
+            0.13265690854221773
+          ],
+          "boot_mean": 0.10067519806378954,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_tagged_v2": {
+          "ci95": [
+            -0.18839783900011903,
+            -0.12431954064597182
+          ],
+          "boot_mean": -0.1559648143944471,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::benchmark_mcq_v1": {
+          "ci95": [
+            0.15551521419819309,
+            0.21973398145015224
+          ],
+          "boot_mean": 0.1879962141036932,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::casual_short_answer_v1": {
+          "ci95": [
+            0.35989281154231956,
+            0.42624440191976476
+          ],
+          "boot_mean": 0.3929125815412416,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_bare_v2": {
+          "ci95": [
+            0.10815927439111554,
+            0.1687403699726274
+          ],
+          "boot_mean": 0.13833689280300931,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_json_v2": {
+          "ci95": [
+            -0.28280722185346086,
+            -0.2130128030722669
+          ],
+          "boot_mean": -0.24861231411732615,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_lead_in_v2": {
+          "ci95": [
+            0.07608563310207248,
+            0.13327856267185373
+          ],
+          "boot_mean": 0.10504541161868926,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_markdown_v2": {
+          "ci95": [
+            -0.2503183527109964,
+            -0.1719610693156324
+          ],
+          "boot_mean": -0.21120902832883584,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_mcq_bullets_v2": {
+          "ci95": [
+            0.06496999452869044,
+            0.12860844504448926
+          ],
+          "boot_mean": 0.09682236873488666,
+          "n_valid": 10000
+        }
+      },
+      "seconds": 421.8
+    },
+    {
+      "layer": 13,
+      "purpose_auc_oof": 0.9724635145399306,
+      "purpose_auc_by_fold": [
+        0.9765455457899306,
+        0.9694705539279513,
+        0.9826812744140626,
+        0.9700419108072916,
+        0.9729224310980904
+      ],
+      "format_auc_by_fold": [],
+      "point": {
+        "delta_stated": 46.43354069479195,
+        "delta_format": 2.9496502854390867,
+        "rho": 0.06352413021499184,
+        "pi_bench": 0.1793652825585469,
+        "pi_casual": 0.11584115234355508,
+        "pi_none": 0.14760321745105096,
+        "pi_none_tpl::bench_imperative_v2": 0.41923352442943185,
+        "pi_none_tpl::bench_mmlu_bare_v2": 0.23612474657729982,
+        "pi_none_tpl::bench_preamble_v2": 0.23396691479582574,
+        "pi_none_tpl::bench_qa_record_v2": 0.032062378910692885,
+        "pi_none_tpl::bench_sectioned_v2": 0.1367803527648731,
+        "pi_none_tpl::bench_tagged_v2": 0.01319775918961823,
+        "pi_none_tpl::benchmark_mcq_v1": 0.1941041190608799,
+        "pi_none_tpl::casual_short_answer_v1": 0.40552586173859645,
+        "pi_none_tpl::deploy_bare_v2": 0.23439517813431687,
+        "pi_none_tpl::deploy_json_v2": 0.12862992972009246,
+        "pi_none_tpl::deploy_lead_in_v2": 0.05464013174054049,
+        "pi_none_tpl::deploy_markdown_v2": -0.14587788725283388,
+        "pi_none_tpl::deploy_mcq_bullets_v2": 0.17461141691179263,
+        "smd_paired": 0.4823717008421255,
+        "block_win_rate": 0.684375,
+        "n_blocks": 320
+      },
+      "ci95": {
+        "delta_stated": {
+          "ci95": [
+            45.78646531785035,
+            47.09073883824193
+          ],
+          "boot_mean": 46.4341001712122,
+          "n_valid": 10000
+        },
+        "delta_format": {
+          "ci95": [
+            2.277535267274294,
+            3.6105006200577874
+          ],
+          "boot_mean": 2.953964387355233,
+          "n_valid": 10000
+        },
+        "rho": {
+          "ci95": [
+            0.049006016675583436,
+            0.07778420317265325
+          ],
+          "boot_mean": 0.06361713805393543,
+          "n_valid": 10000
+        },
+        "pi_bench": {
+          "ci95": [
+            0.16254999861237646,
+            0.19658314075063435
+          ],
+          "boot_mean": 0.17938600580888023,
+          "n_valid": 10000
+        },
+        "pi_casual": {
+          "ci95": [
+            0.09686531658313255,
+            0.13408290287296712
+          ],
+          "boot_mean": 0.11576886775494481,
+          "n_valid": 10000
+        },
+        "smd_paired": {
+          "ci95": [
+            0.36886831265483805,
+            0.6045193291798524
+          ],
+          "boot_mean": 0.48532128867505925,
+          "n_valid": 10000
+        },
+        "block_win_rate": {
+          "ci95": [
+            0.634375,
+            0.7375
+          ],
+          "boot_mean": 0.6845584375,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_imperative_v2": {
+          "ci95": [
+            0.3936321704431522,
+            0.4444817165598248
+          ],
+          "boot_mean": 0.41920000216857645,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_mmlu_bare_v2": {
+          "ci95": [
+            0.21052017393187214,
+            0.26276864478682455
+          ],
+          "boot_mean": 0.2361848178040375,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_preamble_v2": {
+          "ci95": [
+            0.208733839729557,
+            0.2591240701369211
+          ],
+          "boot_mean": 0.2339429825228625,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_qa_record_v2": {
+          "ci95": [
+            0.002928789544908586,
+            0.061045212529458485
+          ],
+          "boot_mean": 0.03213665746013096,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_sectioned_v2": {
+          "ci95": [
+            0.10922824320028493,
+            0.1639994935090783
+          ],
+          "boot_mean": 0.13680636490087886,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_tagged_v2": {
+          "ci95": [
+            -0.01211536934403151,
+            0.03874297746861382
+          ],
+          "boot_mean": 0.013281652642005787,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::benchmark_mcq_v1": {
+          "ci95": [
+            0.16145292424640675,
+            0.2262911839464441
+          ],
+          "boot_mean": 0.19402238683467646,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::casual_short_answer_v1": {
+          "ci95": [
+            0.37071394689547943,
+            0.44149518887281863
+          ],
+          "boot_mean": 0.4056455782344845,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_bare_v2": {
+          "ci95": [
+            0.2058816650870179,
+            0.2632274909036664
+          ],
+          "boot_mean": 0.23431697076082497,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_json_v2": {
+          "ci95": [
+            0.09488595715768537,
+            0.1610861947650965
+          ],
+          "boot_mean": 0.1285405178425955,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_lead_in_v2": {
+          "ci95": [
+            0.025744354876581006,
+            0.08349454079561039
+          ],
+          "boot_mean": 0.054506882757126764,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_markdown_v2": {
+          "ci95": [
+            -0.17869033831041609,
+            -0.11402361992463945
+          ],
+          "boot_mean": -0.14603972180586403,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_mcq_bullets_v2": {
+          "ci95": [
+            0.14369050423592367,
+            0.20466634212275314
+          ],
+          "boot_mean": 0.174519558146465,
+          "n_valid": 10000
+        }
+      },
+      "seconds": 421.6
+    },
+    {
+      "layer": 14,
+      "purpose_auc_oof": 0.9682370334201388,
+      "purpose_auc_by_fold": [
+        0.9673597547743056,
+        0.9683397081163193,
+        0.9776475694444444,
+        0.9576466878255208,
+        0.9762929280598958
+      ],
+      "format_auc_by_fold": [],
+      "point": {
+        "delta_stated": 39.848632720948565,
+        "delta_format": 2.0042154183424143,
+        "rho": 0.050295713591417435,
+        "pi_bench": 0.19377750038687389,
+        "pi_casual": 0.14348178679545645,
+        "pi_none": 0.16862964359116514,
+        "pi_none_tpl::bench_imperative_v2": 0.4245724411102203,
+        "pi_none_tpl::bench_mmlu_bare_v2": 0.21418381325222313,
+        "pi_none_tpl::bench_preamble_v2": 0.24435773838385744,
+        "pi_none_tpl::bench_qa_record_v2": -0.03782461834358302,
+        "pi_none_tpl::bench_sectioned_v2": 0.22771599637909845,
+        "pi_none_tpl::bench_tagged_v2": 0.10432844035253187,
+        "pi_none_tpl::benchmark_mcq_v1": 0.1569644817796523,
+        "pi_none_tpl::casual_short_answer_v1": 0.3690121793073572,
+        "pi_none_tpl::deploy_bare_v2": 0.25896746041654406,
+        "pi_none_tpl::deploy_json_v2": 0.10472434133072592,
+        "pi_none_tpl::deploy_lead_in_v2": 0.16781067250599502,
+        "pi_none_tpl::deploy_markdown_v2": -0.11705295129889588,
+        "pi_none_tpl::deploy_mcq_bullets_v2": 0.20082537181719778,
+        "smd_paired": 0.3511643970444061,
+        "block_win_rate": 0.609375,
+        "n_blocks": 320
+      },
+      "ci95": {
+        "delta_stated": {
+          "ci95": [
+            39.24516344873719,
+            40.46044056979931
+          ],
+          "boot_mean": 39.84852686773754,
+          "n_valid": 10000
+        },
+        "delta_format": {
+          "ci95": [
+            1.3910112932153167,
+            2.6360381240737096
+          ],
+          "boot_mean": 2.006972992443386,
+          "n_valid": 10000
+        },
+        "rho": {
+          "ci95": [
+            0.03497789266372857,
+            0.06613277694270217
+          ],
+          "boot_mean": 0.050364141068521905,
+          "n_valid": 10000
+        },
+        "pi_bench": {
+          "ci95": [
+            0.17765997827396468,
+            0.20933445081462482
+          ],
+          "boot_mean": 0.19379312352364786,
+          "n_valid": 10000
+        },
+        "pi_casual": {
+          "ci95": [
+            0.12566297034659663,
+            0.1612391374805737
+          ],
+          "boot_mean": 0.14342898245512595,
+          "n_valid": 10000
+        },
+        "smd_paired": {
+          "ci95": [
+            0.2455150220358977,
+            0.46580913610879765
+          ],
+          "boot_mean": 0.35310660765296814,
+          "n_valid": 10000
+        },
+        "block_win_rate": {
+          "ci95": [
+            0.55625,
+            0.6625
+          ],
+          "boot_mean": 0.609356875,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_imperative_v2": {
+          "ci95": [
+            0.4003807938364864,
+            0.44829985459493443
+          ],
+          "boot_mean": 0.42458046451267417,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_mmlu_bare_v2": {
+          "ci95": [
+            0.18733708572009317,
+            0.24059179957811344
+          ],
+          "boot_mean": 0.2141271310382497,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_preamble_v2": {
+          "ci95": [
+            0.21983707822882273,
+            0.2686733483082011
+          ],
+          "boot_mean": 0.24441932681037087,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_qa_record_v2": {
+          "ci95": [
+            -0.06957472222078266,
+            -0.006803815286696876
+          ],
+          "boot_mean": -0.037607475795448264,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_sectioned_v2": {
+          "ci95": [
+            0.19845607840097787,
+            0.2564054192911391
+          ],
+          "boot_mean": 0.22776384152238766,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_tagged_v2": {
+          "ci95": [
+            0.07785999783407928,
+            0.1305779392093902
+          ],
+          "boot_mean": 0.10422889597458704,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::benchmark_mcq_v1": {
+          "ci95": [
+            0.12671507870398782,
+            0.18670665816403836
+          ],
+          "boot_mean": 0.15681036118780828,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::casual_short_answer_v1": {
+          "ci95": [
+            0.3296969007746791,
+            0.40773600987785324
+          ],
+          "boot_mean": 0.3689050764378455,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_bare_v2": {
+          "ci95": [
+            0.22748200839513044,
+            0.29040229621108415
+          ],
+          "boot_mean": 0.2587974724050748,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_json_v2": {
+          "ci95": [
+            0.0756752632343325,
+            0.13448726133366357
+          ],
+          "boot_mean": 0.10473696048497975,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_lead_in_v2": {
+          "ci95": [
+            0.1412286532441916,
+            0.19432057457858012
+          ],
+          "boot_mean": 0.16777625221139514,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_markdown_v2": {
+          "ci95": [
+            -0.15902924824731315,
+            -0.0758415366905358
+          ],
+          "boot_mean": -0.11725548313237659,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_mcq_bullets_v2": {
+          "ci95": [
+            0.17225560637184167,
+            0.22937552335480507
+          ],
+          "boot_mean": 0.20085907294484154,
+          "n_valid": 10000
+        }
+      },
+      "seconds": 422.7
+    },
+    {
+      "layer": 15,
+      "purpose_auc_oof": 0.9595773654513888,
+      "purpose_auc_by_fold": [
+        0.956454806857639,
+        0.9631635877821181,
+        0.9646148681640624,
+        0.9452311197916667,
+        0.9783782958984375
+      ],
+      "format_auc_by_fold": [],
+      "point": {
+        "delta_stated": 31.503367312925,
+        "delta_format": 0.7311798289998958,
+        "rho": 0.023209576987026144,
+        "pi_bench": 0.2325728682366959,
+        "pi_casual": 0.20936329124966974,
+        "pi_none": 0.2209680797431828,
+        "pi_none_tpl::bench_imperative_v2": 0.4214100791230138,
+        "pi_none_tpl::bench_mmlu_bare_v2": 0.20421482840493496,
+        "pi_none_tpl::bench_preamble_v2": 0.26502942013179154,
+        "pi_none_tpl::bench_qa_record_v2": 0.14366801911216495,
+        "pi_none_tpl::bench_sectioned_v2": 0.27577467190620775,
+        "pi_none_tpl::bench_tagged_v2": 0.12306687709464473,
+        "pi_none_tpl::benchmark_mcq_v1": 0.14528506782775905,
+        "pi_none_tpl::casual_short_answer_v1": 0.490041875220853,
+        "pi_none_tpl::deploy_bare_v2": 0.24575491539521063,
+        "pi_none_tpl::deploy_json_v2": 0.2884031360023688,
+        "pi_none_tpl::deploy_lead_in_v2": 0.13658454548151266,
+        "pi_none_tpl::deploy_markdown_v2": 0.07733464837992872,
+        "pi_none_tpl::deploy_mcq_bullets_v2": 0.17929719866466046,
+        "smd_paired": 0.1536858400880905,
+        "block_win_rate": 0.559375,
+        "n_blocks": 320
+      },
+      "ci95": {
+        "delta_stated": {
+          "ci95": [
+            31.00511554225407,
+            32.01979453577458
+          ],
+          "boot_mean": 31.5052810178111,
+          "n_valid": 10000
+        },
+        "delta_format": {
+          "ci95": [
+            0.21145742681967286,
+            1.2613629812280271
+          ],
+          "boot_mean": 0.7330314940642773,
+          "n_valid": 10000
+        },
+        "rho": {
+          "ci95": [
+            0.0067156789968911,
+            0.040008520811750416
+          ],
+          "boot_mean": 0.023261537225884917,
+          "n_valid": 10000
+        },
+        "pi_bench": {
+          "ci95": [
+            0.21629664814467495,
+            0.24856627523772246
+          ],
+          "boot_mean": 0.23256727892096124,
+          "n_valid": 10000
+        },
+        "pi_casual": {
+          "ci95": [
+            0.1897031919899199,
+            0.22878682416230137
+          ],
+          "boot_mean": 0.20930574169507632,
+          "n_valid": 10000
+        },
+        "smd_paired": {
+          "ci95": [
+            0.04485266586914086,
+            0.2653318668124295
+          ],
+          "boot_mean": 0.1545235691699594,
+          "n_valid": 10000
+        },
+        "block_win_rate": {
+          "ci95": [
+            0.50625,
+            0.6125
+          ],
+          "boot_mean": 0.559285625,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_imperative_v2": {
+          "ci95": [
+            0.3938438681529028,
+            0.4485000090935444
+          ],
+          "boot_mean": 0.42136339109015425,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_mmlu_bare_v2": {
+          "ci95": [
+            0.17500346067411107,
+            0.23285534333388783
+          ],
+          "boot_mean": 0.20414824350072328,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_preamble_v2": {
+          "ci95": [
+            0.23695839301531177,
+            0.2928367885291554
+          ],
+          "boot_mean": 0.26501603449506617,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_qa_record_v2": {
+          "ci95": [
+            0.11255965201023316,
+            0.1744816978150784
+          ],
+          "boot_mean": 0.1437921970007933,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_sectioned_v2": {
+          "ci95": [
+            0.24685230602102914,
+            0.3049693716048609
+          ],
+          "boot_mean": 0.2759198769995598,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_tagged_v2": {
+          "ci95": [
+            0.09774289419576981,
+            0.14778281512133204
+          ],
+          "boot_mean": 0.1229426129980425,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::benchmark_mcq_v1": {
+          "ci95": [
+            0.1172326295425803,
+            0.17264622620552628
+          ],
+          "boot_mean": 0.14504365046654438,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::casual_short_answer_v1": {
+          "ci95": [
+            0.4497480106839364,
+            0.528271481649101
+          ],
+          "boot_mean": 0.48982186063658917,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_bare_v2": {
+          "ci95": [
+            0.21316384284528023,
+            0.2776621348146053
+          ],
+          "boot_mean": 0.24551378957502712,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_json_v2": {
+          "ci95": [
+            0.2552728904717334,
+            0.32169179435456224
+          ],
+          "boot_mean": 0.28830111744952197,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_lead_in_v2": {
+          "ci95": [
+            0.10463344957386769,
+            0.1680956501137266
+          ],
+          "boot_mean": 0.13659204410067538,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_markdown_v2": {
+          "ci95": [
+            0.043792513046129904,
+            0.11079434657040008
+          ],
+          "boot_mean": 0.07716530066269152,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_mcq_bullets_v2": {
+          "ci95": [
+            0.14924750223135322,
+            0.20954899931129087
+          ],
+          "boot_mean": 0.1795052001246644,
+          "n_valid": 10000
+        }
+      },
+      "seconds": 419.1
+    },
+    {
+      "layer": 16,
+      "purpose_auc_oof": 0.9410488891601563,
+      "purpose_auc_by_fold": [
+        0.9437577989366319,
+        0.9389444986979166,
+        0.9516788058810766,
+        0.9169260660807291,
+        0.9615308973524304
+      ],
+      "format_auc_by_fold": [],
+      "point": {
+        "delta_stated": 26.681534949333944,
+        "delta_format": 1.2821382173138507,
+        "rho": 0.048053390472044676,
+        "pi_bench": 0.25105960446522746,
+        "pi_casual": 0.2030062139931828,
+        "pi_none": 0.22703290922920513,
+        "pi_none_tpl::bench_imperative_v2": 0.4268765683382206,
+        "pi_none_tpl::bench_mmlu_bare_v2": 0.19433188085215528,
+        "pi_none_tpl::bench_preamble_v2": 0.3456947224199767,
+        "pi_none_tpl::bench_qa_record_v2": 0.15458957549098148,
+        "pi_none_tpl::bench_sectioned_v2": 0.25023872093257093,
+        "pi_none_tpl::bench_tagged_v2": 0.15637823080085858,
+        "pi_none_tpl::benchmark_mcq_v1": 0.19940046924508786,
+        "pi_none_tpl::casual_short_answer_v1": 0.4581698116059662,
+        "pi_none_tpl::deploy_bare_v2": 0.25346428563288875,
+        "pi_none_tpl::deploy_json_v2": 0.19366394927531924,
+        "pi_none_tpl::deploy_lead_in_v2": 0.1606922885912075,
+        "pi_none_tpl::deploy_markdown_v2": 0.1230385134677992,
+        "pi_none_tpl::deploy_mcq_bullets_v2": 0.17039709424767838,
+        "smd_paired": 0.2981478725261263,
+        "block_win_rate": 0.596875,
+        "n_blocks": 320
+      },
+      "ci95": {
+        "delta_stated": {
+          "ci95": [
+            26.21958769451756,
+            27.151902041241424
+          ],
+          "boot_mean": 26.682152558966877,
+          "n_valid": 10000
+        },
+        "delta_format": {
+          "ci95": [
+            0.8134974875667548,
+            1.745892370298228
+          ],
+          "boot_mean": 1.281235883846869,
+          "n_valid": 10000
+        },
+        "rho": {
+          "ci95": [
+            0.03060175080258029,
+            0.0652849191619229
+          ],
+          "boot_mean": 0.04801453042304129,
+          "n_valid": 10000
+        },
+        "pi_bench": {
+          "ci95": [
+            0.23371394406093782,
+            0.2683341194432802
+          ],
+          "boot_mean": 0.2510172537909833,
+          "n_valid": 10000
+        },
+        "pi_casual": {
+          "ci95": [
+            0.1822860816385491,
+            0.22309049532486597
+          ],
+          "boot_mean": 0.20300272336794198,
+          "n_valid": 10000
+        },
+        "smd_paired": {
+          "ci95": [
+            0.1896143868430551,
+            0.4095483117594446
+          ],
+          "boot_mean": 0.29882032518618934,
+          "n_valid": 10000
+        },
+        "block_win_rate": {
+          "ci95": [
+            0.54375,
+            0.65
+          ],
+          "boot_mean": 0.5969840625,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_imperative_v2": {
+          "ci95": [
+            0.3972372463598812,
+            0.45648830274298446
+          ],
+          "boot_mean": 0.426759577653013,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_mmlu_bare_v2": {
+          "ci95": [
+            0.16256821869095958,
+            0.22564698548815373
+          ],
+          "boot_mean": 0.19436099891556677,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_preamble_v2": {
+          "ci95": [
+            0.3190146189133022,
+            0.37198587627076146
+          ],
+          "boot_mean": 0.34555881153198886,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_qa_record_v2": {
+          "ci95": [
+            0.1227282144065935,
+            0.18612511843116344
+          ],
+          "boot_mean": 0.154754779827721,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_sectioned_v2": {
+          "ci95": [
+            0.2221911748836,
+            0.27850361397320345
+          ],
+          "boot_mean": 0.2502977941375473,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_tagged_v2": {
+          "ci95": [
+            0.12933256400685325,
+            0.1834779664265159
+          ],
+          "boot_mean": 0.1562387963863928,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::benchmark_mcq_v1": {
+          "ci95": [
+            0.1665515767757545,
+            0.23073850523516204
+          ],
+          "boot_mean": 0.19901390097938837,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::casual_short_answer_v1": {
+          "ci95": [
+            0.4212884088099275,
+            0.49366390117013087
+          ],
+          "boot_mean": 0.45810832982455557,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_bare_v2": {
+          "ci95": [
+            0.21394247633667407,
+            0.2918861189425766
+          ],
+          "boot_mean": 0.25335167872738473,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_json_v2": {
+          "ci95": [
+            0.15863456988557356,
+            0.2276017365848674
+          ],
+          "boot_mean": 0.19372122560750768,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_lead_in_v2": {
+          "ci95": [
+            0.12961865968015654,
+            0.19078775940195036
+          ],
+          "boot_mean": 0.1606649104360145,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_markdown_v2": {
+          "ci95": [
+            0.08644629682392155,
+            0.15959996407226157
+          ],
+          "boot_mean": 0.12283974572200966,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_mcq_bullets_v2": {
+          "ci95": [
+            0.13974883965187432,
+            0.20148740258790987
+          ],
+          "boot_mean": 0.1705560336484488,
+          "n_valid": 10000
+        }
+      },
+      "seconds": 419.4
+    },
+    {
+      "layer": 17,
+      "purpose_auc_oof": 0.9380653889973958,
+      "purpose_auc_by_fold": [
+        0.9472283257378472,
+        0.9401279025607638,
+        0.9332953559027778,
+        0.9169243706597222,
+        0.9582739935980903
+      ],
+      "format_auc_by_fold": [],
+      "point": {
+        "delta_stated": 22.269296326111178,
+        "delta_format": 1.1429344481516333,
+        "rho": 0.0513233301768732,
+        "pi_bench": 0.31765790752205963,
+        "pi_casual": 0.26633457734518645,
+        "pi_none": 0.29199624243362304,
+        "pi_none_tpl::bench_imperative_v2": 0.49748783003804653,
+        "pi_none_tpl::bench_mmlu_bare_v2": 0.3007169086574622,
+        "pi_none_tpl::bench_preamble_v2": 0.41062963681418,
+        "pi_none_tpl::bench_qa_record_v2": 0.21342706106487253,
+        "pi_none_tpl::bench_sectioned_v2": 0.29886780579955363,
+        "pi_none_tpl::bench_tagged_v2": 0.1847048570300305,
+        "pi_none_tpl::benchmark_mcq_v1": 0.3135043793393241,
+        "pi_none_tpl::casual_short_answer_v1": 0.5365769904927009,
+        "pi_none_tpl::deploy_bare_v2": 0.2825756662921516,
+        "pi_none_tpl::deploy_json_v2": 0.2894120405258035,
+        "pi_none_tpl::deploy_lead_in_v2": 0.26158563698342446,
+        "pi_none_tpl::deploy_markdown_v2": 0.14204667766203155,
+        "pi_none_tpl::deploy_mcq_bullets_v2": 0.23653132512934408,
+        "smd_paired": 0.31069422433298477,
+        "block_win_rate": 0.65,
+        "n_blocks": 320
+      },
+      "ci95": {
+        "delta_stated": {
+          "ci95": [
+            21.863173682519275,
+            22.694490864098793
+          ],
+          "boot_mean": 22.269374833650865,
+          "n_valid": 10000
+        },
+        "delta_format": {
+          "ci95": [
+            0.7408173148818251,
+            1.556113975597453
+          ],
+          "boot_mean": 1.1418335470875296,
+          "n_valid": 10000
+        },
+        "rho": {
+          "ci95": [
+            0.033364332203502337,
+            0.06978136355779144
+          ],
+          "boot_mean": 0.051269645701565676,
+          "n_valid": 10000
+        },
+        "pi_bench": {
+          "ci95": [
+            0.30066543618135744,
+            0.33426002900683444
+          ],
+          "boot_mean": 0.3176384935397467,
+          "n_valid": 10000
+        },
+        "pi_casual": {
+          "ci95": [
+            0.24793380891089867,
+            0.28467688064294294
+          ],
+          "boot_mean": 0.26636884783818104,
+          "n_valid": 10000
+        },
+        "smd_paired": {
+          "ci95": [
+            0.19960606972243858,
+            0.4310470480195533
+          ],
+          "boot_mean": 0.31182306610759675,
+          "n_valid": 10000
+        },
+        "block_win_rate": {
+          "ci95": [
+            0.596875,
+            0.703125
+          ],
+          "boot_mean": 0.64982,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_imperative_v2": {
+          "ci95": [
+            0.468960013447774,
+            0.5262590351601407
+          ],
+          "boot_mean": 0.49749716600760174,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_mmlu_bare_v2": {
+          "ci95": [
+            0.2710947464809012,
+            0.330885310798608
+          ],
+          "boot_mean": 0.30063325168896815,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_preamble_v2": {
+          "ci95": [
+            0.38326491355851533,
+            0.43799225850779516
+          ],
+          "boot_mean": 0.4105624081975661,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_qa_record_v2": {
+          "ci95": [
+            0.18244219738582168,
+            0.2446933385568109
+          ],
+          "boot_mean": 0.21347784004402248,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_sectioned_v2": {
+          "ci95": [
+            0.2717585582032908,
+            0.32599403305299274
+          ],
+          "boot_mean": 0.29891330668098903,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_tagged_v2": {
+          "ci95": [
+            0.15649196265152537,
+            0.21306849851743212
+          ],
+          "boot_mean": 0.1847030484262379,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::benchmark_mcq_v1": {
+          "ci95": [
+            0.28056341097624793,
+            0.3449751887149217
+          ],
+          "boot_mean": 0.31327421428220903,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::casual_short_answer_v1": {
+          "ci95": [
+            0.4979377769310476,
+            0.5747865823271081
+          ],
+          "boot_mean": 0.5366937708152676,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_bare_v2": {
+          "ci95": [
+            0.2464655391225897,
+            0.3184438681009321
+          ],
+          "boot_mean": 0.2824158782066242,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_json_v2": {
+          "ci95": [
+            0.25323769500428805,
+            0.32613092751489
+          ],
+          "boot_mean": 0.28958838069056775,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_lead_in_v2": {
+          "ci95": [
+            0.23197934666476422,
+            0.29209076951207735
+          ],
+          "boot_mean": 0.2617358842231943,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_markdown_v2": {
+          "ci95": [
+            0.11068798846526254,
+            0.1727141949962462
+          ],
+          "boot_mean": 0.14174954971449633,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_mcq_bullets_v2": {
+          "ci95": [
+            0.20604904521555956,
+            0.2666440498328718
+          ],
+          "boot_mean": 0.23664098971044217,
+          "n_valid": 10000
+        }
+      },
+      "seconds": 419.0
+    },
+    {
+      "layer": 18,
+      "purpose_auc_oof": 0.9303483072916666,
+      "purpose_auc_by_fold": [
+        0.9362182617187501,
+        0.9406077067057292,
+        0.935028076171875,
+        0.8983951144748263,
+        0.945314195421007
+      ],
+      "format_auc_by_fold": [],
+      "point": {
+        "delta_stated": 20.195593220563023,
+        "delta_format": 0.8706526374115017,
+        "rho": 0.043111020701536454,
+        "pi_bench": 0.30647754374284647,
+        "pi_casual": 0.26336652304131003,
+        "pi_none": 0.2849220333920782,
+        "pi_none_tpl::bench_imperative_v2": 0.5370580318328935,
+        "pi_none_tpl::bench_mmlu_bare_v2": 0.24069469004940103,
+        "pi_none_tpl::bench_preamble_v2": 0.38705651705282423,
+        "pi_none_tpl::bench_qa_record_v2": 0.18682193856712567,
+        "pi_none_tpl::bench_sectioned_v2": 0.27462540287973386,
+        "pi_none_tpl::bench_tagged_v2": 0.23309893112000923,
+        "pi_none_tpl::benchmark_mcq_v1": 0.2570929259122203,
+        "pi_none_tpl::casual_short_answer_v1": 0.5256612998060404,
+        "pi_none_tpl::deploy_bare_v2": 0.2817534829634573,
+        "pi_none_tpl::deploy_json_v2": 0.2661325353360131,
+        "pi_none_tpl::deploy_lead_in_v2": 0.2704494825747018,
+        "pi_none_tpl::deploy_markdown_v2": 0.15525546150829794,
+        "pi_none_tpl::deploy_mcq_bullets_v2": 0.23405136357116574,
+        "smd_paired": 0.2504082943588015,
+        "block_win_rate": 0.59375,
+        "n_blocks": 320
+      },
+      "ci95": {
+        "delta_stated": {
+          "ci95": [
+            19.80865210776977,
+            20.5798157081048
+          ],
+          "boot_mean": 20.195092982366237,
+          "n_valid": 10000
+        },
+        "delta_format": {
+          "ci95": [
+            0.48465805555315516,
+            1.251514466687904
+          ],
+          "boot_mean": 0.8681424959499174,
+          "n_valid": 10000
+        },
+        "rho": {
+          "ci95": [
+            0.02413682394172566,
+            0.0617099065826642
+          ],
+          "boot_mean": 0.042974377166195565,
+          "n_valid": 10000
+        },
+        "pi_bench": {
+          "ci95": [
+            0.29044084874635046,
+            0.3220681178120149
+          ],
+          "boot_mean": 0.3063479013227134,
+          "n_valid": 10000
+        },
+        "pi_casual": {
+          "ci95": [
+            0.24376976395601693,
+            0.28247482716792965
+          ],
+          "boot_mean": 0.26337352415651777,
+          "n_valid": 10000
+        },
+        "smd_paired": {
+          "ci95": [
+            0.13821660936358665,
+            0.36952107501475956
+          ],
+          "boot_mean": 0.2511408698662727,
+          "n_valid": 10000
+        },
+        "block_win_rate": {
+          "ci95": [
+            0.540625,
+            0.646875
+          ],
+          "boot_mean": 0.5935362499999999,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_imperative_v2": {
+          "ci95": [
+            0.511732554391976,
+            0.5629784976674101
+          ],
+          "boot_mean": 0.5370172678135116,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_mmlu_bare_v2": {
+          "ci95": [
+            0.21206076395553103,
+            0.2690116866896563
+          ],
+          "boot_mean": 0.24054767383130565,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_preamble_v2": {
+          "ci95": [
+            0.3608874754451039,
+            0.4123173381731643
+          ],
+          "boot_mean": 0.38683241867319323,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_qa_record_v2": {
+          "ci95": [
+            0.15423029408482272,
+            0.21946167409113485
+          ],
+          "boot_mean": 0.18669375085769657,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_sectioned_v2": {
+          "ci95": [
+            0.24578473747502735,
+            0.30271195584157135
+          ],
+          "boot_mean": 0.2745039463911742,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_tagged_v2": {
+          "ci95": [
+            0.20442487708174187,
+            0.2615908168293135
+          ],
+          "boot_mean": 0.23293625530202736,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::benchmark_mcq_v1": {
+          "ci95": [
+            0.22528180568864173,
+            0.28932999670529197
+          ],
+          "boot_mean": 0.2569238156568119,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::casual_short_answer_v1": {
+          "ci95": [
+            0.4854213667039296,
+            0.5670974545424683
+          ],
+          "boot_mean": 0.5260106495793229,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_bare_v2": {
+          "ci95": [
+            0.2477153719041335,
+            0.3152807033646045
+          ],
+          "boot_mean": 0.2815598625324345,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_json_v2": {
+          "ci95": [
+            0.22488268887789173,
+            0.3079093272224474
+          ],
+          "boot_mean": 0.266347858747609,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_lead_in_v2": {
+          "ci95": [
+            0.2403861440907163,
+            0.3004200862653947
+          ],
+          "boot_mean": 0.2704484355977403,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_markdown_v2": {
+          "ci95": [
+            0.11929214295385668,
+            0.19132119770041964
+          ],
+          "boot_mean": 0.15493218275800272,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_mcq_bullets_v2": {
+          "ci95": [
+            0.20373055658791833,
+            0.2645050961207302
+          ],
+          "boot_mean": 0.23408260869266523,
+          "n_valid": 10000
+        }
+      },
+      "seconds": 421.9
+    },
+    {
+      "layer": 19,
+      "purpose_auc_oof": 0.9246310085720486,
+      "purpose_auc_by_fold": [
+        0.9288686116536459,
+        0.9365573459201388,
+        0.9242774115668403,
+        0.8936394585503472,
+        0.9436611599392362
+      ],
+      "format_auc_by_fold": [],
+      "point": {
+        "delta_stated": 18.966954619823294,
+        "delta_format": 0.32899175806862835,
+        "rho": 0.0173455235520405,
+        "pi_bench": 0.3118625304804117,
+        "pi_casual": 0.29451700692837113,
+        "pi_none": 0.3031897687043914,
+        "pi_none_tpl::bench_imperative_v2": 0.567869938543986,
+        "pi_none_tpl::bench_mmlu_bare_v2": 0.23272902721870017,
+        "pi_none_tpl::bench_preamble_v2": 0.4283168987834068,
+        "pi_none_tpl::bench_qa_record_v2": 0.19958789639970534,
+        "pi_none_tpl::bench_sectioned_v2": 0.28440709218922816,
+        "pi_none_tpl::bench_tagged_v2": 0.21186999066955017,
+        "pi_none_tpl::benchmark_mcq_v1": 0.1963699833231137,
+        "pi_none_tpl::casual_short_answer_v1": 0.5427212544599231,
+        "pi_none_tpl::deploy_bare_v2": 0.28206311815878576,
+        "pi_none_tpl::deploy_json_v2": 0.31647245267227186,
+        "pi_none_tpl::deploy_lead_in_v2": 0.2843699530399472,
+        "pi_none_tpl::deploy_markdown_v2": 0.2253279082800112,
+        "pi_none_tpl::deploy_mcq_bullets_v2": 0.2617164042940925,
+        "smd_paired": 0.09120669624040208,
+        "block_win_rate": 0.559375,
+        "n_blocks": 320
+      },
+      "ci95": {
+        "delta_stated": {
+          "ci95": [
+            18.585062234069,
+            19.353181741321734
+          ],
+          "boot_mean": 18.966971813587595,
+          "n_valid": 10000
+        },
+        "delta_format": {
+          "ci95": [
+            -0.06032747796019835,
+            0.7217857082065364
+          ],
+          "boot_mean": 0.3287191158823957,
+          "n_valid": 10000
+        },
+        "rho": {
+          "ci95": [
+            -0.0031924552453054763,
+            0.03792895921799355
+          ],
+          "boot_mean": 0.017312199811503358,
+          "n_valid": 10000
+        },
+        "pi_bench": {
+          "ci95": [
+            0.2956064710520211,
+            0.3278543660970627
+          ],
+          "boot_mean": 0.31177128275655047,
+          "n_valid": 10000
+        },
+        "pi_casual": {
+          "ci95": [
+            0.2746879264577473,
+            0.31437797422283453
+          ],
+          "boot_mean": 0.29445908294504713,
+          "n_valid": 10000
+        },
+        "smd_paired": {
+          "ci95": [
+            -0.017422790914706963,
+            0.20237552403087866
+          ],
+          "boot_mean": 0.09145216718852994,
+          "n_valid": 10000
+        },
+        "block_win_rate": {
+          "ci95": [
+            0.503125,
+            0.6125
+          ],
+          "boot_mean": 0.5595846875000001,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_imperative_v2": {
+          "ci95": [
+            0.541421409408419,
+            0.5953595298793948
+          ],
+          "boot_mean": 0.5678899621128523,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_mmlu_bare_v2": {
+          "ci95": [
+            0.20285204016936467,
+            0.26241851882569567
+          ],
+          "boot_mean": 0.2326457922414349,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_preamble_v2": {
+          "ci95": [
+            0.4014702149525849,
+            0.454981716234282
+          ],
+          "boot_mean": 0.42815999313883585,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_qa_record_v2": {
+          "ci95": [
+            0.16384972874095224,
+            0.2351727302719478
+          ],
+          "boot_mean": 0.19945992613381677,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_sectioned_v2": {
+          "ci95": [
+            0.2550855988268056,
+            0.3130074078167265
+          ],
+          "boot_mean": 0.28428868474640395,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_tagged_v2": {
+          "ci95": [
+            0.17982954910172533,
+            0.2437695462585379
+          ],
+          "boot_mean": 0.21169484112025252,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::benchmark_mcq_v1": {
+          "ci95": [
+            0.1618152501167805,
+            0.2307767976134065
+          ],
+          "boot_mean": 0.19624473514013474,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::casual_short_answer_v1": {
+          "ci95": [
+            0.49923418648458484,
+            0.585309266915433
+          ],
+          "boot_mean": 0.5428734339208687,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_bare_v2": {
+          "ci95": [
+            0.24641665158675416,
+            0.3172791287866855
+          ],
+          "boot_mean": 0.28183064033005706,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_json_v2": {
+          "ci95": [
+            0.27459095742887424,
+            0.3579669066492135
+          ],
+          "boot_mean": 0.316660096850875,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_lead_in_v2": {
+          "ci95": [
+            0.2507669792110055,
+            0.3172696794314795
+          ],
+          "boot_mean": 0.2841694832820332,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_markdown_v2": {
+          "ci95": [
+            0.19043077135733746,
+            0.2601910979414524
+          ],
+          "boot_mean": 0.22507458206356087,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_mcq_bullets_v2": {
+          "ci95": [
+            0.23131319043603837,
+            0.29250483314731746
+          ],
+          "boot_mean": 0.26166362676241434,
+          "n_valid": 10000
+        }
+      },
+      "seconds": 418.6
+    },
+    {
+      "layer": 20,
+      "purpose_auc_oof": 0.9131559244791667,
+      "purpose_auc_by_fold": [
+        0.919977823893229,
+        0.9152018229166667,
+        0.9133266872829862,
+        0.8802151150173612,
+        0.938632541232639
+      ],
+      "format_auc_by_fold": [],
+      "point": {
+        "delta_stated": 17.399500016887306,
+        "delta_format": 0.548275954625719,
+        "rho": 0.03151101779324594,
+        "pi_bench": 0.3044400414642423,
+        "pi_casual": 0.27292902367099636,
+        "pi_none": 0.28868453256761933,
+        "pi_none_tpl::bench_imperative_v2": 0.5762370889134517,
+        "pi_none_tpl::bench_mmlu_bare_v2": 0.2216236382206899,
+        "pi_none_tpl::bench_preamble_v2": 0.42871098359422055,
+        "pi_none_tpl::bench_qa_record_v2": 0.14662545278292544,
+        "pi_none_tpl::bench_sectioned_v2": 0.2691017384653176,
+        "pi_none_tpl::bench_tagged_v2": 0.21074518749465945,
+        "pi_none_tpl::benchmark_mcq_v1": 0.2359725708149653,
+        "pi_none_tpl::casual_short_answer_v1": 0.4586031856831687,
+        "pi_none_tpl::deploy_bare_v2": 0.24748813657872815,
+        "pi_none_tpl::deploy_json_v2": 0.3506113051618043,
+        "pi_none_tpl::deploy_lead_in_v2": 0.2818683611949904,
+        "pi_none_tpl::deploy_markdown_v2": 0.2057582387264137,
+        "pi_none_tpl::deploy_mcq_bullets_v2": 0.20566100761334116,
+        "smd_paired": 0.1777945776200746,
+        "block_win_rate": 0.575,
+        "n_blocks": 320
+      },
+      "ci95": {
+        "delta_stated": {
+          "ci95": [
+            17.0249609518189,
+            17.778195614315617
+          ],
+          "boot_mean": 17.400603181752036,
+          "n_valid": 10000
+        },
+        "delta_format": {
+          "ci95": [
+            0.21251345399374202,
+            0.8894978220329807
+          ],
+          "boot_mean": 0.5480088957056901,
+          "n_valid": 10000
+        },
+        "rho": {
+          "ci95": [
+            0.01224687078695359,
+            0.0509716356355073
+          ],
+          "boot_mean": 0.031481201094336914,
+          "n_valid": 10000
+        },
+        "pi_bench": {
+          "ci95": [
+            0.2862762046402403,
+            0.32229472267308096
+          ],
+          "boot_mean": 0.30432907266976067,
+          "n_valid": 10000
+        },
+        "pi_casual": {
+          "ci95": [
+            0.2527635157288487,
+            0.2933252257144815
+          ],
+          "boot_mean": 0.27284787157542373,
+          "n_valid": 10000
+        },
+        "smd_paired": {
+          "ci95": [
+            0.0699571233162102,
+            0.29154748792100427
+          ],
+          "boot_mean": 0.17835545011138992,
+          "n_valid": 10000
+        },
+        "block_win_rate": {
+          "ci95": [
+            0.521875,
+            0.628125
+          ],
+          "boot_mean": 0.57473125,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_imperative_v2": {
+          "ci95": [
+            0.5474857275478977,
+            0.6050824568016171
+          ],
+          "boot_mean": 0.5761706322553802,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_mmlu_bare_v2": {
+          "ci95": [
+            0.1900022991525307,
+            0.2532003012377979
+          ],
+          "boot_mean": 0.22144291522490167,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_preamble_v2": {
+          "ci95": [
+            0.3975785750148199,
+            0.4590501618850593
+          ],
+          "boot_mean": 0.42869562352869117,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_qa_record_v2": {
+          "ci95": [
+            0.10756277321204913,
+            0.1854678683296097
+          ],
+          "boot_mean": 0.1464331147045915,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_sectioned_v2": {
+          "ci95": [
+            0.24022634561137993,
+            0.2975233531787194
+          ],
+          "boot_mean": 0.26901677796325074,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_tagged_v2": {
+          "ci95": [
+            0.17541997992470754,
+            0.24460683591849564
+          ],
+          "boot_mean": 0.21056331001643372,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::benchmark_mcq_v1": {
+          "ci95": [
+            0.20153263767012225,
+            0.27131638459348173
+          ],
+          "boot_mean": 0.23580370711844179,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::casual_short_answer_v1": {
+          "ci95": [
+            0.4126897216003128,
+            0.5060591965412323
+          ],
+          "boot_mean": 0.4588306861059603,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_bare_v2": {
+          "ci95": [
+            0.21048803832796562,
+            0.2827990762663603
+          ],
+          "boot_mean": 0.2472908840885633,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_json_v2": {
+          "ci95": [
+            0.3058911781121603,
+            0.3945913929892837
+          ],
+          "boot_mean": 0.35076051894440013,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_lead_in_v2": {
+          "ci95": [
+            0.25112025764464796,
+            0.3128037978906952
+          ],
+          "boot_mean": 0.2817454807696688,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_markdown_v2": {
+          "ci95": [
+            0.1682729735973716,
+            0.24281583929621
+          ],
+          "boot_mean": 0.2054558661647913,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_mcq_bullets_v2": {
+          "ci95": [
+            0.17307036473216847,
+            0.2384944956103297
+          ],
+          "boot_mean": 0.2054641031841059,
+          "n_valid": 10000
+        }
+      },
+      "seconds": 417.9
+    },
+    {
+      "layer": 21,
+      "purpose_auc_oof": 0.9109665595160591,
+      "purpose_auc_by_fold": [
+        0.9154917399088542,
+        0.9174567328559028,
+        0.9028828938802084,
+        0.8872646755642362,
+        0.9326748318142362
+      ],
+      "format_auc_by_fold": [],
+      "point": {
+        "delta_stated": 16.370085739719283,
+        "delta_format": 0.9494805769228108,
+        "rho": 0.05800095320325993,
+        "pi_bench": 0.3455491283681696,
+        "pi_casual": 0.28754817516490966,
+        "pi_none": 0.3165486517665396,
+        "pi_none_tpl::bench_imperative_v2": 0.5814449645744372,
+        "pi_none_tpl::bench_mmlu_bare_v2": 0.2523476096617939,
+        "pi_none_tpl::bench_preamble_v2": 0.41291554963956356,
+        "pi_none_tpl::bench_qa_record_v2": 0.31136611766531225,
+        "pi_none_tpl::bench_sectioned_v2": 0.2876602476755617,
+        "pi_none_tpl::bench_tagged_v2": 0.25031033774398914,
+        "pi_none_tpl::benchmark_mcq_v1": 0.2874670794603103,
+        "pi_none_tpl::casual_short_answer_v1": 0.4604388494712216,
+        "pi_none_tpl::deploy_bare_v2": 0.3138032908649385,
+        "pi_none_tpl::deploy_json_v2": 0.35415350391718364,
+        "pi_none_tpl::deploy_lead_in_v2": 0.25293741768201966,
+        "pi_none_tpl::deploy_markdown_v2": 0.20099832851645424,
+        "pi_none_tpl::deploy_mcq_bullets_v2": 0.24681258092501315,
+        "smd_paired": 0.325132568063955,
+        "block_win_rate": 0.628125,
+        "n_blocks": 320
+      },
+      "ci95": {
+        "delta_stated": {
+          "ci95": [
+            16.026876411332484,
+            16.72257948234015
+          ],
+          "boot_mean": 16.37116285893894,
+          "n_valid": 10000
+        },
+        "delta_format": {
+          "ci95": [
+            0.6362968746536263,
+            1.2676755850697075
+          ],
+          "boot_mean": 0.9488752334150671,
+          "n_valid": 10000
+        },
+        "rho": {
+          "ci95": [
+            0.038949047938401135,
+            0.0772066333379258
+          ],
+          "boot_mean": 0.05795111194168207,
+          "n_valid": 10000
+        },
+        "pi_bench": {
+          "ci95": [
+            0.32817742683139467,
+            0.36305763242004746
+          ],
+          "boot_mean": 0.3454877787785668,
+          "n_valid": 10000
+        },
+        "pi_casual": {
+          "ci95": [
+            0.26902836966072646,
+            0.3063650363887273
+          ],
+          "boot_mean": 0.2875366668368847,
+          "n_valid": 10000
+        },
+        "smd_paired": {
+          "ci95": [
+            0.21831583821323394,
+            0.43673428960618527
+          ],
+          "boot_mean": 0.32601534416710876,
+          "n_valid": 10000
+        },
+        "block_win_rate": {
+          "ci95": [
+            0.575,
+            0.68125
+          ],
+          "boot_mean": 0.6282375,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_imperative_v2": {
+          "ci95": [
+            0.5480783544715461,
+            0.6148788265592141
+          ],
+          "boot_mean": 0.5813632034134508,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_mmlu_bare_v2": {
+          "ci95": [
+            0.21877941441552476,
+            0.28468146105414077
+          ],
+          "boot_mean": 0.25221052080613315,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_preamble_v2": {
+          "ci95": [
+            0.381334159283131,
+            0.4440452192779221
+          ],
+          "boot_mean": 0.4128846832963981,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_qa_record_v2": {
+          "ci95": [
+            0.2725775092153141,
+            0.3502916819739108
+          ],
+          "boot_mean": 0.3113210189188895,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_sectioned_v2": {
+          "ci95": [
+            0.25456341298401364,
+            0.3195519665216489
+          ],
+          "boot_mean": 0.2876621276740551,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_tagged_v2": {
+          "ci95": [
+            0.21448149518549903,
+            0.2857220603160096
+          ],
+          "boot_mean": 0.250188037380184,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::benchmark_mcq_v1": {
+          "ci95": [
+            0.25451244570470355,
+            0.3214406966220864
+          ],
+          "boot_mean": 0.2872986553942041,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::casual_short_answer_v1": {
+          "ci95": [
+            0.4120077436290235,
+            0.5097713845025108
+          ],
+          "boot_mean": 0.46085073697839546,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_bare_v2": {
+          "ci95": [
+            0.27686485460705784,
+            0.3504999633623789
+          ],
+          "boot_mean": 0.31369260453739245,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_json_v2": {
+          "ci95": [
+            0.3099106846994113,
+            0.3988807654502452
+          ],
+          "boot_mean": 0.3540847545408648,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_lead_in_v2": {
+          "ci95": [
+            0.22122068664122962,
+            0.2850823914451167
+          ],
+          "boot_mean": 0.2529464400622804,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_markdown_v2": {
+          "ci95": [
+            0.1637608293968951,
+            0.2369572693074201
+          ],
+          "boot_mean": 0.2009062417086344,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_mcq_bullets_v2": {
+          "ci95": [
+            0.21415900608133565,
+            0.2797447900572165
+          ],
+          "boot_mean": 0.24668688077053394,
+          "n_valid": 10000
+        }
+      },
+      "seconds": 419.5
+    },
+    {
+      "layer": 22,
+      "purpose_auc_oof": 0.9045488145616319,
+      "purpose_auc_by_fold": [
+        0.9123433430989584,
+        0.9196285671657987,
+        0.8898400200737847,
+        0.8733350965711806,
+        0.9269290500217016
+      ],
+      "format_auc_by_fold": [],
+      "point": {
+        "delta_stated": 15.089541291874957,
+        "delta_format": 0.8771189908040261,
+        "rho": 0.058127611293016274,
+        "pi_bench": 0.32560867122897064,
+        "pi_casual": 0.26748105993595434,
+        "pi_none": 0.29654486558246246,
+        "pi_none_tpl::bench_imperative_v2": 0.5876344805563666,
+        "pi_none_tpl::bench_mmlu_bare_v2": 0.2437372886885119,
+        "pi_none_tpl::bench_preamble_v2": 0.4005415066908923,
+        "pi_none_tpl::bench_qa_record_v2": 0.32736271214433765,
+        "pi_none_tpl::bench_sectioned_v2": 0.23790140509059673,
+        "pi_none_tpl::bench_tagged_v2": 0.18647579069305756,
+        "pi_none_tpl::benchmark_mcq_v1": 0.2555904516952289,
+        "pi_none_tpl::casual_short_answer_v1": 0.49860703246589594,
+        "pi_none_tpl::deploy_bare_v2": 0.297534595221838,
+        "pi_none_tpl::deploy_json_v2": 0.2930260924286751,
+        "pi_none_tpl::deploy_lead_in_v2": 0.2407092643413821,
+        "pi_none_tpl::deploy_markdown_v2": 0.17045428016894537,
+        "pi_none_tpl::deploy_mcq_bullets_v2": 0.2409061646829099,
+        "smd_paired": 0.31726521322251183,
+        "block_win_rate": 0.6125,
+        "n_blocks": 320
+      },
+      "ci95": {
+        "delta_stated": {
+          "ci95": [
+            14.773962644190856,
+            15.413505293649893
+          ],
+          "boot_mean": 15.091259151937274,
+          "n_valid": 10000
+        },
+        "delta_format": {
+          "ci95": [
+            0.5805720652153915,
+            1.185013762314277
+          ],
+          "boot_mean": 0.8777583062295642,
+          "n_valid": 10000
+        },
+        "rho": {
+          "ci95": [
+            0.03862831581222497,
+            0.07825635028175233
+          ],
+          "boot_mean": 0.05815374650748379,
+          "n_valid": 10000
+        },
+        "pi_bench": {
+          "ci95": [
+            0.30869447610157463,
+            0.34283047537902034
+          ],
+          "boot_mean": 0.32568916384959096,
+          "n_valid": 10000
+        },
+        "pi_casual": {
+          "ci95": [
+            0.24690504269688876,
+            0.2878243662578678
+          ],
+          "boot_mean": 0.2675354173421072,
+          "n_valid": 10000
+        },
+        "smd_paired": {
+          "ci95": [
+            0.21123466493312856,
+            0.42937889864884715
+          ],
+          "boot_mean": 0.31839913622107285,
+          "n_valid": 10000
+        },
+        "block_win_rate": {
+          "ci95": [
+            0.559375,
+            0.665625
+          ],
+          "boot_mean": 0.612848125,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_imperative_v2": {
+          "ci95": [
+            0.5570323118085307,
+            0.6181201431653797
+          ],
+          "boot_mean": 0.5876337458323576,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_mmlu_bare_v2": {
+          "ci95": [
+            0.21252464204651067,
+            0.27540245931145024
+          ],
+          "boot_mean": 0.2437714320347659,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_preamble_v2": {
+          "ci95": [
+            0.36949542432759774,
+            0.4311424132199105
+          ],
+          "boot_mean": 0.4006120282923434,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_qa_record_v2": {
+          "ci95": [
+            0.2875752169782993,
+            0.3672080250072222
+          ],
+          "boot_mean": 0.32737214844502277,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_sectioned_v2": {
+          "ci95": [
+            0.20424939500609063,
+            0.2711247002927201
+          ],
+          "boot_mean": 0.23811080284593308,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_tagged_v2": {
+          "ci95": [
+            0.15048910344628513,
+            0.22264284389237482
+          ],
+          "boot_mean": 0.18661383356961342,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::benchmark_mcq_v1": {
+          "ci95": [
+            0.22012682324617552,
+            0.2909500554077918
+          ],
+          "boot_mean": 0.2556076488241227,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::casual_short_answer_v1": {
+          "ci95": [
+            0.4492755726921281,
+            0.5509839372231156
+          ],
+          "boot_mean": 0.4990619976352748,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_bare_v2": {
+          "ci95": [
+            0.25986343826438363,
+            0.33423437950616963
+          ],
+          "boot_mean": 0.2972342816511036,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_json_v2": {
+          "ci95": [
+            0.24895508915129552,
+            0.337820673014299
+          ],
+          "boot_mean": 0.29325195701787155,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_lead_in_v2": {
+          "ci95": [
+            0.20359074385729964,
+            0.2772858093274693
+          ],
+          "boot_mean": 0.24081181565288876,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_markdown_v2": {
+          "ci95": [
+            0.13101043892150177,
+            0.20836420486236543
+          ],
+          "boot_mean": 0.1702972017040337,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_mcq_bullets_v2": {
+          "ci95": [
+            0.2081734751863151,
+            0.27361170078409786
+          ],
+          "boot_mean": 0.2409195196556984,
+          "n_valid": 10000
+        }
+      },
+      "seconds": 420.0
+    },
+    {
+      "layer": 23,
+      "purpose_auc_oof": 0.901976521809896,
+      "purpose_auc_by_fold": [
+        0.9055548773871528,
+        0.9130367702907985,
+        0.8835669623480903,
+        0.8842959933810763,
+        0.9251183403862848
+      ],
+      "format_auc_by_fold": [],
+      "point": {
+        "delta_stated": 14.650507616770483,
+        "delta_format": 1.0823188756159792,
+        "rho": 0.07387586177403473,
+        "pi_bench": 0.29933517312776686,
+        "pi_casual": 0.22545931135373212,
+        "pi_none": 0.2623972422407495,
+        "pi_none_tpl::bench_imperative_v2": 0.5928566375102119,
+        "pi_none_tpl::bench_mmlu_bare_v2": 0.2136491998171348,
+        "pi_none_tpl::bench_preamble_v2": 0.4240421482423674,
+        "pi_none_tpl::bench_qa_record_v2": 0.26139648357674905,
+        "pi_none_tpl::bench_sectioned_v2": 0.20496461612689446,
+        "pi_none_tpl::bench_tagged_v2": 0.15901996842218097,
+        "pi_none_tpl::benchmark_mcq_v1": 0.15767051444337946,
+        "pi_none_tpl::casual_short_answer_v1": 0.40848278946191546,
+        "pi_none_tpl::deploy_bare_v2": 0.3058565221653112,
+        "pi_none_tpl::deploy_json_v2": 0.19589102923168425,
+        "pi_none_tpl::deploy_lead_in_v2": 0.22335558486813747,
+        "pi_none_tpl::deploy_markdown_v2": 0.0908980566303521,
+        "pi_none_tpl::deploy_mcq_bullets_v2": 0.23318530201035112,
+        "smd_paired": 0.3656858442832233,
+        "block_win_rate": 0.625,
+        "n_blocks": 320
+      },
+      "ci95": {
+        "delta_stated": {
+          "ci95": [
+            14.328496935280647,
+            14.982052354108259
+          ],
+          "boot_mean": 14.653140651149844,
+          "n_valid": 10000
+        },
+        "delta_format": {
+          "ci95": [
+            0.7636869752018812,
+            1.4074033990122332
+          ],
+          "boot_mean": 1.0839670559471892,
+          "n_valid": 10000
+        },
+        "rho": {
+          "ci95": [
+            0.052232465097438674,
+            0.09589735631918933
+          ],
+          "boot_mean": 0.07397342999121163,
+          "n_valid": 10000
+        },
+        "pi_bench": {
+          "ci95": [
+            0.2804623088532274,
+            0.3187365223709101
+          ],
+          "boot_mean": 0.29943909172492666,
+          "n_valid": 10000
+        },
+        "pi_casual": {
+          "ci95": [
+            0.2052804597442481,
+            0.24547564754877355
+          ],
+          "boot_mean": 0.22546566173371502,
+          "n_valid": 10000
+        },
+        "smd_paired": {
+          "ci95": [
+            0.25890261206343995,
+            0.481531963604564
+          ],
+          "boot_mean": 0.36771784156103793,
+          "n_valid": 10000
+        },
+        "block_win_rate": {
+          "ci95": [
+            0.571875,
+            0.678125
+          ],
+          "boot_mean": 0.6251590625,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_imperative_v2": {
+          "ci95": [
+            0.5581075698884499,
+            0.6276107222195276
+          ],
+          "boot_mean": 0.5929907642893424,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_mmlu_bare_v2": {
+          "ci95": [
+            0.18160174817455027,
+            0.24672301686842898
+          ],
+          "boot_mean": 0.2137067524437035,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_preamble_v2": {
+          "ci95": [
+            0.39117616453847825,
+            0.4565711621217059
+          ],
+          "boot_mean": 0.4240954235926371,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_qa_record_v2": {
+          "ci95": [
+            0.21594032406726704,
+            0.30626640425736124
+          ],
+          "boot_mean": 0.26141786484408586,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_sectioned_v2": {
+          "ci95": [
+            0.167064670032597,
+            0.24252176236649553
+          ],
+          "boot_mean": 0.20517331016452786,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_tagged_v2": {
+          "ci95": [
+            0.11626853154315116,
+            0.20171048805519906
+          ],
+          "boot_mean": 0.1591090127810038,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::benchmark_mcq_v1": {
+          "ci95": [
+            0.12129236499739025,
+            0.1938147253806782
+          ],
+          "boot_mean": 0.15766255287337416,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::casual_short_answer_v1": {
+          "ci95": [
+            0.35877097073314645,
+            0.45892097253775305
+          ],
+          "boot_mean": 0.40890200478140226,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_bare_v2": {
+          "ci95": [
+            0.26853918113638037,
+            0.3424150751565208
+          ],
+          "boot_mean": 0.3054671614433219,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_json_v2": {
+          "ci95": [
+            0.14495465965706028,
+            0.2464278137205003
+          ],
+          "boot_mean": 0.19601611543248404,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_lead_in_v2": {
+          "ci95": [
+            0.18605476204656776,
+            0.26060868067906107
+          ],
+          "boot_mean": 0.22350559969054384,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_markdown_v2": {
+          "ci95": [
+            0.04959878822320998,
+            0.13071279594710086
+          ],
+          "boot_mean": 0.09076293905989818,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_mcq_bullets_v2": {
+          "ci95": [
+            0.2004199793545467,
+            0.26610366422764875
+          ],
+          "boot_mean": 0.2331679989140485,
+          "n_valid": 10000
+        }
+      },
+      "seconds": 419.4
+    },
+    {
+      "layer": 24,
+      "purpose_auc_oof": 0.8917508273654513,
+      "purpose_auc_by_fold": [
+        0.8994954427083334,
+        0.9051954481336806,
+        0.8699154324001737,
+        0.8736589219835069,
+        0.912602742513021
+      ],
+      "format_auc_by_fold": [],
+      "point": {
+        "delta_stated": 13.914126994765882,
+        "delta_format": 1.3386324834323329,
+        "rho": 0.09620671738412982,
+        "pi_bench": 0.3098099986409368,
+        "pi_casual": 0.21360328125680697,
+        "pi_none": 0.2617066399488719,
+        "pi_none_tpl::bench_imperative_v2": 0.5422686407732593,
+        "pi_none_tpl::bench_mmlu_bare_v2": 0.21314159857210707,
+        "pi_none_tpl::bench_preamble_v2": 0.39575051431882785,
+        "pi_none_tpl::bench_qa_record_v2": 0.29364267364157665,
+        "pi_none_tpl::bench_sectioned_v2": 0.25426378345805395,
+        "pi_none_tpl::bench_tagged_v2": 0.2019427605217232,
+        "pi_none_tpl::benchmark_mcq_v1": 0.20962577656311746,
+        "pi_none_tpl::casual_short_answer_v1": 0.4058510620416246,
+        "pi_none_tpl::deploy_bare_v2": 0.30433486750618866,
+        "pi_none_tpl::deploy_json_v2": 0.18187439435091654,
+        "pi_none_tpl::deploy_lead_in_v2": 0.21798494151364028,
+        "pi_none_tpl::deploy_markdown_v2": 0.032718950614941386,
+        "pi_none_tpl::deploy_mcq_bullets_v2": 0.2481457471543448,
+        "smd_paired": 0.4838813638496807,
+        "block_win_rate": 0.73125,
+        "n_blocks": 320
+      },
+      "ci95": {
+        "delta_stated": {
+          "ci95": [
+            13.606049191121242,
+            14.239159753454038
+          ],
+          "boot_mean": 13.917280034282705,
+          "n_valid": 10000
+        },
+        "delta_format": {
+          "ci95": [
+            1.044288149557636,
+            1.6340648899965142
+          ],
+          "boot_mean": 1.339622704831208,
+          "n_valid": 10000
+        },
+        "rho": {
+          "ci95": [
+            0.07482488583272602,
+            0.11757355586455837
+          ],
+          "boot_mean": 0.09625783331456898,
+          "n_valid": 10000
+        },
+        "pi_bench": {
+          "ci95": [
+            0.2903513063094726,
+            0.3296301730503641
+          ],
+          "boot_mean": 0.30983131967316296,
+          "n_valid": 10000
+        },
+        "pi_casual": {
+          "ci95": [
+            0.1930757035438112,
+            0.23366632616172253
+          ],
+          "boot_mean": 0.213573486358594,
+          "n_valid": 10000
+        },
+        "smd_paired": {
+          "ci95": [
+            0.3721484516278593,
+            0.6087919016570524
+          ],
+          "boot_mean": 0.4866366713000526,
+          "n_valid": 10000
+        },
+        "block_win_rate": {
+          "ci95": [
+            0.68125,
+            0.78125
+          ],
+          "boot_mean": 0.7314640625,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_imperative_v2": {
+          "ci95": [
+            0.5088751275383062,
+            0.5755885956418201
+          ],
+          "boot_mean": 0.5422591208721507,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_mmlu_bare_v2": {
+          "ci95": [
+            0.1775339493284123,
+            0.24878104150098976
+          ],
+          "boot_mean": 0.21310927281258646,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_preamble_v2": {
+          "ci95": [
+            0.36134139346992233,
+            0.42989332565582666
+          ],
+          "boot_mean": 0.3958214985616559,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_qa_record_v2": {
+          "ci95": [
+            0.24378723944554864,
+            0.34229734580864307
+          ],
+          "boot_mean": 0.29351074321327303,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_sectioned_v2": {
+          "ci95": [
+            0.2177092110036546,
+            0.29072950590544
+          ],
+          "boot_mean": 0.2543481657727149,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_tagged_v2": {
+          "ci95": [
+            0.16192407898004868,
+            0.24216181117083282
+          ],
+          "boot_mean": 0.20199621316782213,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::benchmark_mcq_v1": {
+          "ci95": [
+            0.16919829658364235,
+            0.24982270037173593
+          ],
+          "boot_mean": 0.20965501075530218,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::casual_short_answer_v1": {
+          "ci95": [
+            0.3576285997884384,
+            0.4550715863498143
+          ],
+          "boot_mean": 0.4062540399714709,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_bare_v2": {
+          "ci95": [
+            0.2687140263059017,
+            0.3401719157785606
+          ],
+          "boot_mean": 0.3039746610462924,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_json_v2": {
+          "ci95": [
+            0.1302582436907742,
+            0.23292447175082132
+          ],
+          "boot_mean": 0.1819084040881641,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_lead_in_v2": {
+          "ci95": [
+            0.18270503925273593,
+            0.2537578778402396
+          ],
+          "boot_mean": 0.218099067962139,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_markdown_v2": {
+          "ci95": [
+            -0.009934005027746821,
+            0.07515685723769869
+          ],
+          "boot_mean": 0.0324846503454941,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_mcq_bullets_v2": {
+          "ci95": [
+            0.21438452626078744,
+            0.28194850670346305
+          ],
+          "boot_mean": 0.2481152014743473,
+          "n_valid": 10000
+        }
+      },
+      "seconds": 423.8
+    },
+    {
+      "layer": 25,
+      "purpose_auc_oof": 0.8912891981336806,
+      "purpose_auc_by_fold": [
+        0.8908555772569445,
+        0.8967285156250001,
+        0.8763580322265625,
+        0.8862796359592015,
+        0.9132266574435763
+      ],
+      "format_auc_by_fold": [],
+      "point": {
+        "delta_stated": 13.727225567056909,
+        "delta_format": 1.3260476835965702,
+        "rho": 0.09659983199947317,
+        "pi_bench": 0.3146595866488086,
+        "pi_casual": 0.2180597546493354,
+        "pi_none": 0.266359670649072,
+        "pi_none_tpl::bench_imperative_v2": 0.5476921669499485,
+        "pi_none_tpl::bench_mmlu_bare_v2": 0.2345129450562002,
+        "pi_none_tpl::bench_preamble_v2": 0.43045840723319967,
+        "pi_none_tpl::bench_qa_record_v2": 0.2926706537144225,
+        "pi_none_tpl::bench_sectioned_v2": 0.23276289836463349,
+        "pi_none_tpl::bench_tagged_v2": 0.16888270779482695,
+        "pi_none_tpl::benchmark_mcq_v1": 0.26106678578872544,
+        "pi_none_tpl::casual_short_answer_v1": 0.39747876710092145,
+        "pi_none_tpl::deploy_bare_v2": 0.25041608301850815,
+        "pi_none_tpl::deploy_json_v2": 0.22468252787160484,
+        "pi_none_tpl::deploy_lead_in_v2": 0.20439662435719277,
+        "pi_none_tpl::deploy_markdown_v2": 0.08549472353914997,
+        "pi_none_tpl::deploy_mcq_bullets_v2": 0.24754661971106212,
+        "smd_paired": 0.47727973031057525,
+        "block_win_rate": 0.684375,
+        "n_blocks": 320
+      },
+      "ci95": {
+        "delta_stated": {
+          "ci95": [
+            13.423177288576088,
+            14.038395297722685
+          ],
+          "boot_mean": 13.730452810669659,
+          "n_valid": 10000
+        },
+        "delta_format": {
+          "ci95": [
+            1.0229286645815825,
+            1.6277556544637315
+          ],
+          "boot_mean": 1.327003179036243,
+          "n_valid": 10000
+        },
+        "rho": {
+          "ci95": [
+            0.07440796859432537,
+            0.11888364676603971
+          ],
+          "boot_mean": 0.09665704423482112,
+          "n_valid": 10000
+        },
+        "pi_bench": {
+          "ci95": [
+            0.2946152504155189,
+            0.3347382317334161
+          ],
+          "boot_mean": 0.31467040838076277,
+          "n_valid": 10000
+        },
+        "pi_casual": {
+          "ci95": [
+            0.19733003386573753,
+            0.23842730056847788
+          ],
+          "boot_mean": 0.21801336414594166,
+          "n_valid": 10000
+        },
+        "smd_paired": {
+          "ci95": [
+            0.36547523660369285,
+            0.5966449269766619
+          ],
+          "boot_mean": 0.4793286506034838,
+          "n_valid": 10000
+        },
+        "block_win_rate": {
+          "ci95": [
+            0.634375,
+            0.734375
+          ],
+          "boot_mean": 0.6844640625,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_imperative_v2": {
+          "ci95": [
+            0.5131247165775911,
+            0.5820264901198688
+          ],
+          "boot_mean": 0.5474512093668169,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_mmlu_bare_v2": {
+          "ci95": [
+            0.1993509217932367,
+            0.2696508128561113
+          ],
+          "boot_mean": 0.23450005485986622,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_preamble_v2": {
+          "ci95": [
+            0.39587870729527885,
+            0.4646800569207017
+          ],
+          "boot_mean": 0.4305917097505001,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_qa_record_v2": {
+          "ci95": [
+            0.2468061110571861,
+            0.3385672234549009
+          ],
+          "boot_mean": 0.29261479826077164,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_sectioned_v2": {
+          "ci95": [
+            0.19673415370888656,
+            0.2686841286502491
+          ],
+          "boot_mean": 0.23290022949520145,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_tagged_v2": {
+          "ci95": [
+            0.12520255063123606,
+            0.2135574662982494
+          ],
+          "boot_mean": 0.16888617746477755,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::benchmark_mcq_v1": {
+          "ci95": [
+            0.2226963873479785,
+            0.2979342533329158
+          ],
+          "boot_mean": 0.2611246713531863,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::casual_short_answer_v1": {
+          "ci95": [
+            0.34416410026479244,
+            0.45400824490083835
+          ],
+          "boot_mean": 0.3978455858158266,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_bare_v2": {
+          "ci95": [
+            0.21240419634827923,
+            0.28826969170506545
+          ],
+          "boot_mean": 0.2500146327113483,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_json_v2": {
+          "ci95": [
+            0.17251932857545585,
+            0.27622917391539764
+          ],
+          "boot_mean": 0.22473832869540983,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_lead_in_v2": {
+          "ci95": [
+            0.16942364189384465,
+            0.2389387608682443
+          ],
+          "boot_mean": 0.2043085853948244,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_markdown_v2": {
+          "ci95": [
+            0.04322370164884232,
+            0.12634203430047286
+          ],
+          "boot_mean": 0.08522854844921153,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_mcq_bullets_v2": {
+          "ci95": [
+            0.2117713723332911,
+            0.28310849911684477
+          ],
+          "boot_mean": 0.24771751031470343,
+          "n_valid": 10000
+        }
+      },
+      "seconds": 421.3
+    },
+    {
+      "layer": 26,
+      "purpose_auc_oof": 0.8866952853732638,
+      "purpose_auc_by_fold": [
+        0.8793521457248265,
+        0.8965911865234375,
+        0.8719177246093749,
+        0.8894788953993057,
+        0.9025370279947916
+      ],
+      "format_auc_by_fold": [],
+      "point": {
+        "delta_stated": 13.790606075269046,
+        "delta_format": 1.159670151142258,
+        "rho": 0.08409131149224226,
+        "pi_bench": 0.25981399754142837,
+        "pi_casual": 0.17572268604918606,
+        "pi_none": 0.2177683417953072,
+        "pi_none_tpl::bench_imperative_v2": 0.47664703350077947,
+        "pi_none_tpl::bench_mmlu_bare_v2": 0.18853346694702416,
+        "pi_none_tpl::bench_preamble_v2": 0.31610650812323376,
+        "pi_none_tpl::bench_qa_record_v2": 0.2609180899472337,
+        "pi_none_tpl::bench_sectioned_v2": 0.22718089602290797,
+        "pi_none_tpl::bench_tagged_v2": 0.09273854941748205,
+        "pi_none_tpl::benchmark_mcq_v1": 0.23849682796052832,
+        "pi_none_tpl::casual_short_answer_v1": 0.3726347554884681,
+        "pi_none_tpl::deploy_bare_v2": 0.2237910199513711,
+        "pi_none_tpl::deploy_json_v2": 0.1702923117175786,
+        "pi_none_tpl::deploy_lead_in_v2": 0.16914558810899324,
+        "pi_none_tpl::deploy_markdown_v2": -0.0021892233349467575,
+        "pi_none_tpl::deploy_mcq_bullets_v2": 0.2391573116137609,
+        "smd_paired": 0.4319614382603726,
+        "block_win_rate": 0.6625,
+        "n_blocks": 320
+      },
+      "ci95": {
+        "delta_stated": {
+          "ci95": [
+            13.465834256389906,
+            14.128591524990417
+          ],
+          "boot_mean": 13.792651391425746,
+          "n_valid": 10000
+        },
+        "delta_format": {
+          "ci95": [
+            0.8650117186014546,
+            1.450589034883183
+          ],
+          "boot_mean": 1.160698889744732,
+          "n_valid": 10000
+        },
+        "rho": {
+          "ci95": [
+            0.06283844986557016,
+            0.10517521110850792
+          ],
+          "boot_mean": 0.08416057264790079,
+          "n_valid": 10000
+        },
+        "pi_bench": {
+          "ci95": [
+            0.2401779044139132,
+            0.2790715638993129
+          ],
+          "boot_mean": 0.25972624940384204,
+          "n_valid": 10000
+        },
+        "pi_casual": {
+          "ci95": [
+            0.15438856078815638,
+            0.19666776899222896
+          ],
+          "boot_mean": 0.17556567675594123,
+          "n_valid": 10000
+        },
+        "smd_paired": {
+          "ci95": [
+            0.3209126104882269,
+            0.5473643520924693
+          ],
+          "boot_mean": 0.43401790486235076,
+          "n_valid": 10000
+        },
+        "block_win_rate": {
+          "ci95": [
+            0.609375,
+            0.7125
+          ],
+          "boot_mean": 0.6623640625,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_imperative_v2": {
+          "ci95": [
+            0.44279670328580983,
+            0.5090581099839193
+          ],
+          "boot_mean": 0.4762761294210477,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_mmlu_bare_v2": {
+          "ci95": [
+            0.15321869999299764,
+            0.22269299386242278
+          ],
+          "boot_mean": 0.18829394932107504,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_preamble_v2": {
+          "ci95": [
+            0.2809388185100579,
+            0.35175392489865825
+          ],
+          "boot_mean": 0.31614251945194954,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_qa_record_v2": {
+          "ci95": [
+            0.21440783125087706,
+            0.3082929253483661
+          ],
+          "boot_mean": 0.261001795695027,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_sectioned_v2": {
+          "ci95": [
+            0.19250021407611995,
+            0.26329004123794136
+          ],
+          "boot_mean": 0.22738986174732417,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_tagged_v2": {
+          "ci95": [
+            0.04995443093792967,
+            0.13555930391611107
+          ],
+          "boot_mean": 0.09251681302478948,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::benchmark_mcq_v1": {
+          "ci95": [
+            0.20137037880313843,
+            0.2748919702911192
+          ],
+          "boot_mean": 0.23826104707091753,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::casual_short_answer_v1": {
+          "ci95": [
+            0.3199694436597692,
+            0.42433727422246903
+          ],
+          "boot_mean": 0.3728080293888577,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_bare_v2": {
+          "ci95": [
+            0.18717641147592068,
+            0.26097854229936845
+          ],
+          "boot_mean": 0.22345837785817313,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_json_v2": {
+          "ci95": [
+            0.11468092113963953,
+            0.22618695577541814
+          ],
+          "boot_mean": 0.17020901474449038,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_lead_in_v2": {
+          "ci95": [
+            0.13478742327151047,
+            0.20204525122069306
+          ],
+          "boot_mean": 0.16877700893512057,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_markdown_v2": {
+          "ci95": [
+            -0.04302163455663999,
+            0.03677095113799695
+          ],
+          "boot_mean": -0.002542381216938619,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_mcq_bullets_v2": {
+          "ci95": [
+            0.20482751873254285,
+            0.2733093964717714
+          ],
+          "boot_mean": 0.23929467756760697,
+          "n_valid": 10000
+        }
+      },
+      "seconds": 420.6
+    },
+    {
+      "layer": 27,
+      "purpose_auc_oof": 0.8897876654730904,
+      "purpose_auc_by_fold": [
+        0.877346462673611,
+        0.8981255425347221,
+        0.8771955702039931,
+        0.8914540608723959,
+        0.9065687391493055
+      ],
+      "format_auc_by_fold": [],
+      "point": {
+        "delta_stated": 13.862083652805069,
+        "delta_format": 1.0016044882753428,
+        "rho": 0.07225497359285252,
+        "pi_bench": 0.2661642217647338,
+        "pi_casual": 0.19390924817188138,
+        "pi_none": 0.23003673496830762,
+        "pi_none_tpl::bench_imperative_v2": 0.4954612705938598,
+        "pi_none_tpl::bench_mmlu_bare_v2": 0.1957978462673267,
+        "pi_none_tpl::bench_preamble_v2": 0.34865162848225006,
+        "pi_none_tpl::bench_qa_record_v2": 0.28050565633076535,
+        "pi_none_tpl::bench_sectioned_v2": 0.15307167213557046,
+        "pi_none_tpl::bench_tagged_v2": 0.11440548564071196,
+        "pi_none_tpl::benchmark_mcq_v1": 0.27717093224934314,
+        "pi_none_tpl::casual_short_answer_v1": 0.3372503173798711,
+        "pi_none_tpl::deploy_bare_v2": 0.2258932806496244,
+        "pi_none_tpl::deploy_json_v2": 0.2376469000789274,
+        "pi_none_tpl::deploy_lead_in_v2": 0.16230660279590362,
+        "pi_none_tpl::deploy_markdown_v2": 0.05151596821577733,
+        "pi_none_tpl::deploy_mcq_bullets_v2": 0.2329705634281397,
+        "smd_paired": 0.36651032813228196,
+        "block_win_rate": 0.628125,
+        "n_blocks": 320
+      },
+      "ci95": {
+        "delta_stated": {
+          "ci95": [
+            13.532871086927466,
+            14.197826527742409
+          ],
+          "boot_mean": 13.864013413327223,
+          "n_valid": 10000
+        },
+        "delta_format": {
+          "ci95": [
+            0.7006411337324588,
+            1.2998637489191074
+          ],
+          "boot_mean": 1.0025394970686823,
+          "n_valid": 10000
+        },
+        "rho": {
+          "ci95": [
+            0.05050734368885393,
+            0.09357324975617458
+          ],
+          "boot_mean": 0.07231285722100186,
+          "n_valid": 10000
+        },
+        "pi_bench": {
+          "ci95": [
+            0.24554174944732698,
+            0.2859527744889743
+          ],
+          "boot_mean": 0.26610322508020007,
+          "n_valid": 10000
+        },
+        "pi_casual": {
+          "ci95": [
+            0.17414561414012,
+            0.21327751684160834
+          ],
+          "boot_mean": 0.19379036785919823,
+          "n_valid": 10000
+        },
+        "smd_paired": {
+          "ci95": [
+            0.2530175755508981,
+            0.4887067133249862
+          ],
+          "boot_mean": 0.3687525292187229,
+          "n_valid": 10000
+        },
+        "block_win_rate": {
+          "ci95": [
+            0.575,
+            0.68125
+          ],
+          "boot_mean": 0.62819125,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_imperative_v2": {
+          "ci95": [
+            0.46078696307508166,
+            0.5294198704099551
+          ],
+          "boot_mean": 0.4951767095274845,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_mmlu_bare_v2": {
+          "ci95": [
+            0.16004530712812842,
+            0.2313998326010193
+          ],
+          "boot_mean": 0.1956246035130924,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_preamble_v2": {
+          "ci95": [
+            0.3138699238859576,
+            0.38385124005722876
+          ],
+          "boot_mean": 0.34858620447592936,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_qa_record_v2": {
+          "ci95": [
+            0.23367896429160542,
+            0.3271548138627593
+          ],
+          "boot_mean": 0.2805822054941159,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_sectioned_v2": {
+          "ci95": [
+            0.11622922411513241,
+            0.18970772276426243
+          ],
+          "boot_mean": 0.15331748889411975,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_tagged_v2": {
+          "ci95": [
+            0.0694099587174813,
+            0.15888556074616933
+          ],
+          "boot_mean": 0.11426244814916668,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::benchmark_mcq_v1": {
+          "ci95": [
+            0.24081482251136363,
+            0.31199749010769023
+          ],
+          "boot_mean": 0.27700579422259863,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::casual_short_answer_v1": {
+          "ci95": [
+            0.2863541194859971,
+            0.3886199309837777
+          ],
+          "boot_mean": 0.33716078530032584,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_bare_v2": {
+          "ci95": [
+            0.1887944471303091,
+            0.2626135095914688
+          ],
+          "boot_mean": 0.22562127183162084,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_json_v2": {
+          "ci95": [
+            0.18968690216314785,
+            0.2849962689026443
+          ],
+          "boot_mean": 0.2377002163224264,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_lead_in_v2": {
+          "ci95": [
+            0.13018593362387737,
+            0.1935692363379145
+          ],
+          "boot_mean": 0.161990872994808,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_markdown_v2": {
+          "ci95": [
+            0.005821532901145123,
+            0.09442913340832747
+          ],
+          "boot_mean": 0.051148488151317256,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_mcq_bullets_v2": {
+          "ci95": [
+            0.19751506910046657,
+            0.2677651888805017
+          ],
+          "boot_mean": 0.23318215528829805,
+          "n_valid": 10000
+        }
+      },
+      "seconds": 419.1
+    },
+    {
+      "layer": 28,
+      "purpose_auc_oof": 0.8892318386501736,
+      "purpose_auc_by_fold": [
+        0.8777109781901042,
+        0.8953704833984376,
+        0.8914286295572916,
+        0.8893008761935763,
+        0.8972880045572916
+      ],
+      "format_auc_by_fold": [],
+      "point": {
+        "delta_stated": 12.995138278047428,
+        "delta_format": 0.584831636797798,
+        "rho": 0.04500387947281399,
+        "pi_bench": 0.238809175676278,
+        "pi_casual": 0.193805296203464,
+        "pi_none": 0.216307235939871,
+        "pi_none_tpl::bench_imperative_v2": 0.41079702744946134,
+        "pi_none_tpl::bench_mmlu_bare_v2": 0.17820289595947209,
+        "pi_none_tpl::bench_preamble_v2": 0.31665254352323113,
+        "pi_none_tpl::bench_qa_record_v2": 0.2539663600059824,
+        "pi_none_tpl::bench_sectioned_v2": 0.20078466771766623,
+        "pi_none_tpl::bench_tagged_v2": 0.06510246260476484,
+        "pi_none_tpl::benchmark_mcq_v1": 0.26045690665670734,
+        "pi_none_tpl::casual_short_answer_v1": 0.4034128278356629,
+        "pi_none_tpl::deploy_bare_v2": 0.20520854414601378,
+        "pi_none_tpl::deploy_json_v2": 0.22494572440532762,
+        "pi_none_tpl::deploy_lead_in_v2": 0.13732750465892019,
+        "pi_none_tpl::deploy_markdown_v2": 0.09727292289373296,
+        "pi_none_tpl::deploy_mcq_bullets_v2": 0.21452233867412204,
+        "smd_paired": 0.22046768428863195,
+        "block_win_rate": 0.584375,
+        "n_blocks": 320
+      },
+      "ci95": {
+        "delta_stated": {
+          "ci95": [
+            12.685985549372447,
+            13.303350868513078
+          ],
+          "boot_mean": 12.99593271170366,
+          "n_valid": 10000
+        },
+        "delta_format": {
+          "ci95": [
+            0.2923171660811725,
+            0.8814974305235572
+          ],
+          "boot_mean": 0.5842941633505132,
+          "n_valid": 10000
+        },
+        "rho": {
+          "ci95": [
+            0.0225911402840385,
+            0.06772395001588165
+          ],
+          "boot_mean": 0.04495366405258159,
+          "n_valid": 10000
+        },
+        "pi_bench": {
+          "ci95": [
+            0.21911906583035382,
+            0.25877579700754516
+          ],
+          "boot_mean": 0.23872757184497145,
+          "n_valid": 10000
+        },
+        "pi_casual": {
+          "ci95": [
+            0.17393121743302642,
+            0.2133024189814609
+          ],
+          "boot_mean": 0.19377390779238987,
+          "n_valid": 10000
+        },
+        "smd_paired": {
+          "ci95": [
+            0.10904295128845103,
+            0.33709588330199375
+          ],
+          "boot_mean": 0.22127352613857185,
+          "n_valid": 10000
+        },
+        "block_win_rate": {
+          "ci95": [
+            0.528125,
+            0.6375
+          ],
+          "boot_mean": 0.58430625,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_imperative_v2": {
+          "ci95": [
+            0.37133683981631693,
+            0.4496581001459506
+          ],
+          "boot_mean": 0.4105265832156944,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_mmlu_bare_v2": {
+          "ci95": [
+            0.14199634449763615,
+            0.21435431627223053
+          ],
+          "boot_mean": 0.17800081017471978,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_preamble_v2": {
+          "ci95": [
+            0.28065201989001337,
+            0.3525186134793015
+          ],
+          "boot_mean": 0.31659891005017154,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_qa_record_v2": {
+          "ci95": [
+            0.2104592646198498,
+            0.29821414135969737
+          ],
+          "boot_mean": 0.25388619157006526,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_sectioned_v2": {
+          "ci95": [
+            0.16558057322878045,
+            0.23599857424950274
+          ],
+          "boot_mean": 0.2010558244464291,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_tagged_v2": {
+          "ci95": [
+            0.02038283406501305,
+            0.10801388852096853
+          ],
+          "boot_mean": 0.06495374203174949,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::benchmark_mcq_v1": {
+          "ci95": [
+            0.2236070691291279,
+            0.29607298542852517
+          ],
+          "boot_mean": 0.2603308603117319,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::casual_short_answer_v1": {
+          "ci95": [
+            0.35159689710441366,
+            0.4554962170697485
+          ],
+          "boot_mean": 0.4034796892665021,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_bare_v2": {
+          "ci95": [
+            0.16751465364715307,
+            0.2421098700275303
+          ],
+          "boot_mean": 0.2049923182488027,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_json_v2": {
+          "ci95": [
+            0.17493065593621007,
+            0.27449186522990365
+          ],
+          "boot_mean": 0.22503102588813326,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_lead_in_v2": {
+          "ci95": [
+            0.10642061982808121,
+            0.168181421649613
+          ],
+          "boot_mean": 0.1370961112797273,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_markdown_v2": {
+          "ci95": [
+            0.05514863402183866,
+            0.13779192787550362
+          ],
+          "boot_mean": 0.09710631691833159,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_mcq_bullets_v2": {
+          "ci95": [
+            0.17953063744879577,
+            0.2495845157559073
+          ],
+          "boot_mean": 0.21477003010465642,
+          "n_valid": 10000
+        }
+      },
+      "seconds": 419.1
+    },
+    {
+      "layer": 29,
+      "purpose_auc_oof": 0.8865665011935764,
+      "purpose_auc_by_fold": [
+        0.8753797743055556,
+        0.8863389756944445,
+        0.8924323187934028,
+        0.8838907877604166,
+        0.9022861056857638
+      ],
+      "format_auc_by_fold": [],
+      "point": {
+        "delta_stated": 12.457364114237713,
+        "delta_format": 1.1276044004064414,
+        "rho": 0.0905170941513771,
+        "pi_bench": 0.2607971868902176,
+        "pi_casual": 0.17028009273884048,
+        "pi_none": 0.21553863981452906,
+        "pi_none_tpl::bench_imperative_v2": 0.42954799872511834,
+        "pi_none_tpl::bench_mmlu_bare_v2": 0.2219406570217549,
+        "pi_none_tpl::bench_preamble_v2": 0.3115273601919545,
+        "pi_none_tpl::bench_qa_record_v2": 0.27982927394403295,
+        "pi_none_tpl::bench_sectioned_v2": 0.2158210914693285,
+        "pi_none_tpl::bench_tagged_v2": 0.09335043219670415,
+        "pi_none_tpl::benchmark_mcq_v1": 0.29395976849339517,
+        "pi_none_tpl::casual_short_answer_v1": 0.33389205832319957,
+        "pi_none_tpl::deploy_bare_v2": 0.2180252853329195,
+        "pi_none_tpl::deploy_json_v2": 0.1027869575714048,
+        "pi_none_tpl::deploy_lead_in_v2": 0.183512961928223,
+        "pi_none_tpl::deploy_markdown_v2": 0.09908421181686462,
+        "pi_none_tpl::deploy_mcq_bullets_v2": 0.17589052083179957,
+        "smd_paired": 0.464073712891355,
+        "block_win_rate": 0.696875,
+        "n_blocks": 320
+      },
+      "ci95": {
+        "delta_stated": {
+          "ci95": [
+            12.15994437279913,
+            12.757388038037211
+          ],
+          "boot_mean": 12.458565880829413,
+          "n_valid": 10000
+        },
+        "delta_format": {
+          "ci95": [
+            0.8634189616736697,
+            1.3941443259150534
+          ],
+          "boot_mean": 1.12724555121017,
+          "n_valid": 10000
+        },
+        "rho": {
+          "ci95": [
+            0.06936739355293127,
+            0.11168779082889076
+          ],
+          "boot_mean": 0.09047927353982615,
+          "n_valid": 10000
+        },
+        "pi_bench": {
+          "ci95": [
+            0.2410292085798448,
+            0.2805993405368304
+          ],
+          "boot_mean": 0.26079376494096007,
+          "n_valid": 10000
+        },
+        "pi_casual": {
+          "ci95": [
+            0.15090297235742495,
+            0.1902055727076938
+          ],
+          "boot_mean": 0.17031449140113386,
+          "n_valid": 10000
+        },
+        "smd_paired": {
+          "ci95": [
+            0.3527291670742533,
+            0.5851000987051174
+          ],
+          "boot_mean": 0.4655444374218429,
+          "n_valid": 10000
+        },
+        "block_win_rate": {
+          "ci95": [
+            0.646875,
+            0.746875
+          ],
+          "boot_mean": 0.696934375,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_imperative_v2": {
+          "ci95": [
+            0.38947256806998964,
+            0.4678520548164898
+          ],
+          "boot_mean": 0.4291771881116873,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_mmlu_bare_v2": {
+          "ci95": [
+            0.1867922370813884,
+            0.2574148980857626
+          ],
+          "boot_mean": 0.22187243252916197,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_preamble_v2": {
+          "ci95": [
+            0.27524753607581703,
+            0.34774219229124276
+          ],
+          "boot_mean": 0.31163768623196847,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_qa_record_v2": {
+          "ci95": [
+            0.23567300281223488,
+            0.3242519035323379
+          ],
+          "boot_mean": 0.27982766982111473,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_sectioned_v2": {
+          "ci95": [
+            0.18252953668213504,
+            0.248881673822982
+          ],
+          "boot_mean": 0.2161502787011166,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_tagged_v2": {
+          "ci95": [
+            0.046547522693149865,
+            0.13964705859567164
+          ],
+          "boot_mean": 0.09336233457362132,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::benchmark_mcq_v1": {
+          "ci95": [
+            0.25782893848440663,
+            0.3290464774601967
+          ],
+          "boot_mean": 0.29389901168601307,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::casual_short_answer_v1": {
+          "ci95": [
+            0.28092920574568664,
+            0.38626256646113893
+          ],
+          "boot_mean": 0.3339561957566522,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_bare_v2": {
+          "ci95": [
+            0.18034827399572936,
+            0.2550868940973852
+          ],
+          "boot_mean": 0.21784231811128574,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_json_v2": {
+          "ci95": [
+            0.05331063951596013,
+            0.15165756725226268
+          ],
+          "boot_mean": 0.10313992135934402,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_lead_in_v2": {
+          "ci95": [
+            0.15032661840329706,
+            0.2159895145333834
+          ],
+          "boot_mean": 0.1833555423527702,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_markdown_v2": {
+          "ci95": [
+            0.05572344743756317,
+            0.14132222228434685
+          ],
+          "boot_mean": 0.09898826312543113,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_mcq_bullets_v2": {
+          "ci95": [
+            0.1401396161892267,
+            0.21085230754665274
+          ],
+          "boot_mean": 0.17607612348172255,
+          "n_valid": 10000
+        }
+      },
+      "seconds": 419.0
+    },
+    {
+      "layer": 30,
+      "purpose_auc_oof": 0.8844740125868056,
+      "purpose_auc_by_fold": [
+        0.8777533637152778,
+        0.8834177652994791,
+        0.8898145887586806,
+        0.8811391194661459,
+        0.8967268202039931
+      ],
+      "format_auc_by_fold": [],
+      "point": {
+        "delta_stated": 12.2846646015857,
+        "delta_format": 1.0745117612686346,
+        "rho": 0.08746773282926561,
+        "pi_bench": 0.2381129899808522,
+        "pi_casual": 0.15064525715158658,
+        "pi_none": 0.19437912356621942,
+        "pi_none_tpl::bench_imperative_v2": 0.43850356087809994,
+        "pi_none_tpl::bench_mmlu_bare_v2": 0.19994733286843713,
+        "pi_none_tpl::bench_preamble_v2": 0.2840645964691183,
+        "pi_none_tpl::bench_qa_record_v2": 0.25723983634215897,
+        "pi_none_tpl::bench_sectioned_v2": 0.18469785608161907,
+        "pi_none_tpl::bench_tagged_v2": 0.04952567780693134,
+        "pi_none_tpl::benchmark_mcq_v1": 0.2767289253370789,
+        "pi_none_tpl::casual_short_answer_v1": 0.29929465772829855,
+        "pi_none_tpl::deploy_bare_v2": 0.1928301257656686,
+        "pi_none_tpl::deploy_json_v2": 0.07117154387873141,
+        "pi_none_tpl::deploy_lead_in_v2": 0.1842352935291912,
+        "pi_none_tpl::deploy_markdown_v2": 0.0793709220868045,
+        "pi_none_tpl::deploy_mcq_bullets_v2": 0.16254601435146843,
+        "smd_paired": 0.4210844492913227,
+        "block_win_rate": 0.64375,
+        "n_blocks": 320
+      },
+      "ci95": {
+        "delta_stated": {
+          "ci95": [
+            11.99952636178087,
+            12.574325668956588
+          ],
+          "boot_mean": 12.285781220105399,
+          "n_valid": 10000
+        },
+        "delta_format": {
+          "ci95": [
+            0.7991196007693818,
+            1.3579248803133779
+          ],
+          "boot_mean": 1.0747973478216364,
+          "n_valid": 10000
+        },
+        "rho": {
+          "ci95": [
+            0.06528259242548534,
+            0.11038554086593372
+          ],
+          "boot_mean": 0.0874794322294502,
+          "n_valid": 10000
+        },
+        "pi_bench": {
+          "ci95": [
+            0.2176704792940365,
+            0.25912043485790126
+          ],
+          "boot_mean": 0.23808394385862575,
+          "n_valid": 10000
+        },
+        "pi_casual": {
+          "ci95": [
+            0.1305579441142675,
+            0.17064871648827964
+          ],
+          "boot_mean": 0.15060451162917557,
+          "n_valid": 10000
+        },
+        "smd_paired": {
+          "ci95": [
+            0.3119942205022041,
+            0.5355160308637943
+          ],
+          "boot_mean": 0.42258635674866873,
+          "n_valid": 10000
+        },
+        "block_win_rate": {
+          "ci95": [
+            0.590625,
+            0.696875
+          ],
+          "boot_mean": 0.6437584375,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_imperative_v2": {
+          "ci95": [
+            0.3998574077887822,
+            0.47548524347184895
+          ],
+          "boot_mean": 0.4380765136025923,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_mmlu_bare_v2": {
+          "ci95": [
+            0.1628736245083789,
+            0.23725986791856535
+          ],
+          "boot_mean": 0.2000268361812119,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_preamble_v2": {
+          "ci95": [
+            0.24907496461984657,
+            0.31942167836328084
+          ],
+          "boot_mean": 0.28409594502410407,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_qa_record_v2": {
+          "ci95": [
+            0.20750291190261708,
+            0.30616898414236837
+          ],
+          "boot_mean": 0.25708440881168737,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_sectioned_v2": {
+          "ci95": [
+            0.14785386050972849,
+            0.2218703727266564
+          ],
+          "boot_mean": 0.18491876451721254,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_tagged_v2": {
+          "ci95": [
+            -0.0021120664391500767,
+            0.09960209524436532
+          ],
+          "boot_mean": 0.04948950412961236,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::benchmark_mcq_v1": {
+          "ci95": [
+            0.24055091965339942,
+            0.3131589760113695
+          ],
+          "boot_mean": 0.27688901887061784,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::casual_short_answer_v1": {
+          "ci95": [
+            0.24742652590354164,
+            0.3514167336225201
+          ],
+          "boot_mean": 0.29929234775053426,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_bare_v2": {
+          "ci95": [
+            0.15472202699754534,
+            0.23063058913842155
+          ],
+          "boot_mean": 0.19252905683695481,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_json_v2": {
+          "ci95": [
+            0.01724980144853888,
+            0.12534980660056957
+          ],
+          "boot_mean": 0.0713680617630547,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_lead_in_v2": {
+          "ci95": [
+            0.15147816973513104,
+            0.2158176075724259
+          ],
+          "boot_mean": 0.1840121389656457,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_markdown_v2": {
+          "ci95": [
+            0.03545689476912359,
+            0.1228267131741555
+          ],
+          "boot_mean": 0.0793304841444966,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_mcq_bullets_v2": {
+          "ci95": [
+            0.12552527831646218,
+            0.1988572181727323
+          ],
+          "boot_mean": 0.16263779504052706,
+          "n_valid": 10000
+        }
+      },
+      "seconds": 199.5
+    },
+    {
+      "layer": 31,
+      "purpose_auc_oof": 0.8859314643012153,
+      "purpose_auc_by_fold": [
+        0.8707054985894098,
+        0.8931087917751735,
+        0.898464626736111,
+        0.8793029785156249,
+        0.8944566514756944
+      ],
+      "format_auc_by_fold": [],
+      "point": {
+        "delta_stated": 10.640330512792286,
+        "delta_format": 1.0735327996066506,
+        "rho": 0.10089280575598672,
+        "pi_bench": 0.24396746974425643,
+        "pi_casual": 0.14307466398826968,
+        "pi_none": 0.19352106686626308,
+        "pi_none_tpl::bench_imperative_v2": 0.4392678058485455,
+        "pi_none_tpl::bench_mmlu_bare_v2": 0.18659008871842087,
+        "pi_none_tpl::bench_preamble_v2": 0.2768042226771612,
+        "pi_none_tpl::bench_qa_record_v2": 0.24772522352389886,
+        "pi_none_tpl::bench_sectioned_v2": 0.1717376737865073,
+        "pi_none_tpl::bench_tagged_v2": 0.0953011898268397,
+        "pi_none_tpl::benchmark_mcq_v1": 0.34485338622502065,
+        "pi_none_tpl::casual_short_answer_v1": 0.3293533480403213,
+        "pi_none_tpl::deploy_bare_v2": 0.17134759446721093,
+        "pi_none_tpl::deploy_json_v2": 0.07983947902969167,
+        "pi_none_tpl::deploy_lead_in_v2": 0.16965305441932074,
+        "pi_none_tpl::deploy_markdown_v2": 0.03404557635492698,
+        "pi_none_tpl::deploy_mcq_bullets_v2": 0.17862975117120178,
+        "smd_paired": 0.5191168092842545,
+        "block_win_rate": 0.703125,
+        "n_blocks": 320
+      },
+      "ci95": {
+        "delta_stated": {
+          "ci95": [
+            10.379329222338399,
+            10.900855509190542
+          ],
+          "boot_mean": 10.640722935611757,
+          "n_valid": 10000
+        },
+        "delta_format": {
+          "ci95": [
+            0.8494004607799172,
+            1.294218395585267
+          ],
+          "boot_mean": 1.0721740603857661,
+          "n_valid": 10000
+        },
+        "rho": {
+          "ci95": [
+            0.07981143252200411,
+            0.1215765853208554
+          ],
+          "boot_mean": 0.10076634747234013,
+          "n_valid": 10000
+        },
+        "pi_bench": {
+          "ci95": [
+            0.22478348678049176,
+            0.2630610744280838
+          ],
+          "boot_mean": 0.2438684886234978,
+          "n_valid": 10000
+        },
+        "pi_casual": {
+          "ci95": [
+            0.12519752077253887,
+            0.16092887123540522
+          ],
+          "boot_mean": 0.14310214115115769,
+          "n_valid": 10000
+        },
+        "smd_paired": {
+          "ci95": [
+            0.40822724858876597,
+            0.6378490466935056
+          ],
+          "boot_mean": 0.5203758583721999,
+          "n_valid": 10000
+        },
+        "block_win_rate": {
+          "ci95": [
+            0.653125,
+            0.753125
+          ],
+          "boot_mean": 0.7029490625,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_imperative_v2": {
+          "ci95": [
+            0.40387112134249065,
+            0.47421354904612045
+          ],
+          "boot_mean": 0.4388584536472292,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_mmlu_bare_v2": {
+          "ci95": [
+            0.15061859920646078,
+            0.2227828077913351
+          ],
+          "boot_mean": 0.1865514286609987,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_preamble_v2": {
+          "ci95": [
+            0.24279500672301635,
+            0.31078829347653253
+          ],
+          "boot_mean": 0.27680060393246303,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_qa_record_v2": {
+          "ci95": [
+            0.20152891026584185,
+            0.2938102855299214
+          ],
+          "boot_mean": 0.24751399038142094,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_sectioned_v2": {
+          "ci95": [
+            0.13709587149884414,
+            0.20584608228894677
+          ],
+          "boot_mean": 0.17178960004232066,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::bench_tagged_v2": {
+          "ci95": [
+            0.0528372488049158,
+            0.13747711535630477
+          ],
+          "boot_mean": 0.09523910844155634,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::benchmark_mcq_v1": {
+          "ci95": [
+            0.31109717654111063,
+            0.37936801979458074
+          ],
+          "boot_mean": 0.3450147820856526,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::casual_short_answer_v1": {
+          "ci95": [
+            0.2729076608175506,
+            0.3843660525348501
+          ],
+          "boot_mean": 0.3294054102252986,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_bare_v2": {
+          "ci95": [
+            0.13614220963028703,
+            0.20647481103560464
+          ],
+          "boot_mean": 0.17131724637652673,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_json_v2": {
+          "ci95": [
+            0.03438540385146319,
+            0.12502556393231473
+          ],
+          "boot_mean": 0.08017286400069493,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_lead_in_v2": {
+          "ci95": [
+            0.13812974727440355,
+            0.20107932102405912
+          ],
+          "boot_mean": 0.16959623464666915,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_markdown_v2": {
+          "ci95": [
+            -0.008659460926399425,
+            0.07518499163161838
+          ],
+          "boot_mean": 0.03384151629340152,
+          "n_valid": 10000
+        },
+        "pi_none_tpl::deploy_mcq_bullets_v2": {
+          "ci95": [
+            0.14409054096501073,
+            0.21322003810745238
+          ],
+          "boot_mean": 0.17867477251938593,
+          "n_valid": 10000
+        }
+      },
+      "seconds": 199.5
+    }
+  ]
+}

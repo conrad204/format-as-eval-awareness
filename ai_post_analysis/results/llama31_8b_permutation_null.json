@@ -1,0 +1,82 @@
+{
+  "header": {
+    "model_key": "llama31_8b",
+    "n_perm": 6,
+    "permutation": "purpose labels shuffled within (training fold x format cell)",
+    "statistic": "standardized block-paired no-cue shift (smd)",
+    "reference": "Hewitt and Liang (2019), control tasks"
+  },
+  "layers": [
+    {
+      "layer": 7,
+      "n_perm": 6,
+      "observed_purpose_auc": 0.9868743896484374,
+      "null_purpose_auc_mean": 0.4864527780038339,
+      "null_purpose_auc_max": 0.5239380900065104,
+      "benchmark_minus_casual": {
+        "observed_smd": -0.19439881124676084,
+        "null_mean": 0.16745675969800775,
+        "null_sd": 0.5840741538859576,
+        "null_abs_max": 1.1969788885511459,
+        "ratio_obs_to_null_abs_max": 0.16240788630956238,
+        "p_two_sided": 0.7142857142857143,
+        "null_draws": [
+          0.06417061406217545,
+          0.13798741812814055,
+          1.1969788885511459,
+          0.33295350432075504,
+          -0.5097397803904034,
+          -0.21761008648376703
+        ]
+      },
+      "benchmark_minus_casual__differential": {
+        "observed_smd": -0.24396763316842243,
+        "null_mean": 0.05294535740563139,
+        "null_sd": 0.3241606148130585,
+        "null_abs_max": 0.6418353872314345,
+        "ratio_obs_to_null_abs_max": 0.3801093520579787,
+        "p_two_sided": 0.42857142857142855,
+        "null_draws": [
+          -0.10690114857246054,
+          0.10610861618808047,
+          0.6418353872314345,
+          0.10966830391593672,
+          -0.24645023600113863,
+          -0.18658877832806428
+        ]
+      },
+      "markup_minus_plain": {
+        "observed_smd": -1.5514796658496026,
+        "null_mean": -0.1633583728860453,
+        "null_sd": 0.6753814041161595,
+        "null_abs_max": 0.8719708194725369,
+        "ratio_obs_to_null_abs_max": 1.7792793419258077,
+        "p_two_sided": 0.14285714285714285,
+        "null_draws": [
+          -0.7507406271148397,
+          -0.4137574985263661,
+          -0.2662999804456083,
+          -0.8719708194725369,
+          0.6542273439805697,
+          0.6683913442625099
+        ]
+      },
+      "markup_minus_plain__differential": {
+        "observed_smd": -0.75888826918706,
+        "null_mean": -0.03683130153862487,
+        "null_sd": 0.42146165086837006,
+        "null_abs_max": 0.642168021738253,
+        "ratio_obs_to_null_abs_max": 1.181759669584391,
+        "p_two_sided": 0.14285714285714285,
+        "null_draws": [
+          -0.2917234657834885,
+          -0.3071984988785996,
+          -0.22085097232236103,
+          -0.3785663748984815,
+          0.3351834809129283,
+          0.642168021738253
+        ]
+      }
+    }
+  ]
+}
