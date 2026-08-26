@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "conclusion_id": "full320_orthc_transfer_positive_20260826",
+  "status": "prospective_payload_disjoint_causal_transfer_positive",
+  "decision": "POSITIVE_REPLICATION",
+  "strongest_defensible_result": "On 80 prospectively selected full320 payload blocks with zero payload-block overlap with pilot80, the fixed pilot80-trained A/B-orthogonalized C direction reproduced a positive, dose-linear, random-calibrated high-minus-low purpose-interaction response in both frozen Llama models under copied pilot80 target readouts. The mean high-minus-low response was 0.7485 in Llama-3.1-8B and 0.6817 in Llama-3.3-70B; all 80 payload-block effects were positive in each model.",
+  "classification_rationale": "The protocol, block selection, transferred directions/readouts/scales, layers, alphas, random controls, inferential unit, tests, multiplicity correction, decision thresholds, and claim scope were frozen before any transfer intervention output. Both complete 264,960-record model runs passed immutable activation-reproduction and integrity gates. The one-shot frozen analysis met every predeclared positive criterion in both models: positive high-minus-low means with Holm p<=0.05, positive high-layer means with Holm p<=0.05, positive alpha=0.5 responses, and alpha=1 C effects exceeding the 97.5th percentile of absolute random-control means.",
+  "why_no_retry": "No retry was required. Both engineering shakedowns reproduced every sampled source and target vector with max_abs=0.0, both full model runs completed with all expected records, and the frozen analysis executed exactly once. No gate, layer, alpha, endpoint, random bank, model, block, estimator, or threshold was changed after outcomes existed.",
+  "source_artifacts": {
+    "config": {
+      "path": "configs/full320_orthogonalized_c_transfer_v1.json",
+      "sha256": "f58171224a631f26121451578b43659391f4c375cfbd0dbd1669b4d8389e2e15"
+    },
+    "preregistration": {
+      "path": "configs/full320_orthc_transfer_analysis_prereg_v1.json",
+      "sha256": "4a73be0215016556fcb39b7fa120f35357d0513d64efc52e6ad727764ec05119"
+    },
+    "pre_outcome_addendum": {
+      "path": "configs/full320_orthc_transfer_analysis_prereg_v1_addendum_20260826.json",
+      "sha256": "f9e2c5e9fc17e07f03283016c15aaefe6fe990bcfac0ec5823426637a89f99b8"
+    },
+    "results": {
+      "path": "artifacts/exploratory/full320_orthc_transfer_positive_20260826/transfer_results.json",
+      "sha256": "c178a95939ee5b1e6bcbc879061ace26ae9bf7dee9d3f19436aff9e9bd734055"
+    },
+    "analysis_manifest": {
+      "path": "artifacts/exploratory/full320_orthc_transfer_positive_20260826/analysis_manifest.json",
+      "sha256": "055af53bdea59fea91decf8cf7207bcbb77fdea2a36b8c746c91ffd3d092c79f"
+    },
+    "payload_block_effects": {
+      "path": "artifacts/exploratory/full320_orthc_transfer_positive_20260826/payload_block_effects.csv",
+      "sha256": "f1e2670672244773e4deae79e831f2b084dfda990a07abbaae6762cd83761fc7"
+    }
+  },
+  "complete_runs": {
+    "meta-llama/Llama-3.1-8B-Instruct": {
+      "records": 264960,
+      "manifest_path": "artifacts/exploratory/full320_orthc_transfer_positive_20260826/runner_manifest_8b.json",
+      "manifest_sha256": "717646d69996c63c8dc82598550bbc390fa4f13e0c313f66d5feae15fbdfb446",
+      "raw_path_cluster": "/scratch/jppatton/langea/runs/tae_2026/full320_orthc_transfer_v1/run_8b/causal_raw.jsonl",
+      "raw_sha256": "aaffc86f43535a2cb081c005e16533d70d9f60c84f4eef7ba35496a7d03bd6e2"
+    },
+    "meta-llama/Llama-3.3-70B-Instruct": {
+      "records": 264960,
+      "manifest_path": "artifacts/exploratory/full320_orthc_transfer_positive_20260826/runner_manifest_70b.json",
+      "manifest_sha256": "36f7eb897303a27cea243ee59150be6f29ea5c818bd2c8f7cec69bf63a66497b",
+      "raw_path_cluster": "/scratch/jppatton/langea/runs/tae_2026/full320_orthc_transfer_v1/run_70b/causal_raw.jsonl",
+      "raw_sha256": "990b5127938be00e49a67145d3404ccae952dab7fe17655e5fc9f3dddd8a6a94"
+    }
+  },
+  "primary_results": {
+    "meta-llama/Llama-3.1-8B-Instruct": {
+      "payload_blocks": 80,
+      "high_minus_low_mean": 0.7485359547265018,
+      "ci95_payload_bootstrap": [0.7387664155215603, 0.7582281120983998],
+      "holm_p_two_models": 7.0828099017135306e-99,
+      "all_payload_blocks_positive": true,
+      "high_layer_mean": 0.7495790735854742,
+      "low_layer_mean": 0.0010431188589722614,
+      "alpha_half_high_minus_low_mean": 0.37427408170770526,
+      "alpha_half_to_full_ratio": 0.5000081550450794,
+      "absolute_random_mean_97_5_percentile": 0.06337662999994695
+    },
+    "meta-llama/Llama-3.3-70B-Instruct": {
+      "payload_blocks": 80,
+      "high_minus_low_mean": 0.6816911266193866,
+      "ci95_payload_bootstrap": [0.6741727643302357, 0.6889652198637805],
+      "holm_p_two_models": 2.057176459848571e-104,
+      "all_payload_blocks_positive": true,
+      "high_layer_mean": 0.6818594239267481,
+      "low_layer_mean": 0.00016829730736139722,
+      "alpha_half_high_minus_low_mean": 0.34072264094561655,
+      "alpha_half_to_full_ratio": 0.49981968026386625,
+      "absolute_random_mean_97_5_percentile": 0.034570650595943844
+    }
+  },
+  "mandatory_limitations": [
+    "The full320 bank and its observational activations had been inspected before this transfer study. Independence is at the payload-block intervention level relative to pilot80, not at the source-bank or broader research-program level.",
+    "The C directions, random controls, residual scales, source layers, target layers, and target readouts were trained or selected on pilot80 and copied unchanged; this study tests transfer of that fixed internal intervention contract.",
+    "The transfer run tests C and random controls, not the full A/B/C factorial mechanism. It does not overturn the frozen negative decision for the stricter full A/B/C conjunction in artifacts/exploratory/pilot80_v3_causal_conclusion_20260823/conclusion.json.",
+    "No answer generation or behavioral endpoint was run. The result is internal causal readout transfer only.",
+    "The orthogonalized-C intervention retained substantial shared-purpose-readout collateral response (high-minus-low means 0.5302 in 8B and 0.2464 in 70B), so it is not a pure purpose-by-format interaction channel.",
+    "Format-readout collateral response differed by model (+0.0027 in 8B, -0.0192 in 70B).",
+    "Payload-block effect magnitudes were not correlated across models (Pearson r=0.0639, p=0.574; Spearman r=0.0630, p=0.579). The replicated claim concerns the aggregate direction and layer ordering, not shared item-level sensitivity."
+  ],
+  "forbidden_interpretations": [
+    "The models are evaluation-aware.",
+    "The A/B-orthogonalized C direction is a pure semantic, format-independent, or evaluation-awareness mechanism.",
+    "This is independent confirmation on a previously unseen item bank.",
+    "The complete A/B/C factorial mechanism replicated on full320.",
+    "The intervention steers generated behavior or task accuracy.",
+    "The result generalizes beyond the two frozen models, the selected full320 blocks, the fixed layers, and the copied pilot80 readouts.",
+    "The two models share payload-block-level sensitivity or an identical internal implementation.",
+    "This result changes any frozen confirmation conclusion or retroactively promotes exploratory evidence to confirmation."
+  ],
+  "publication_position": "A central, nontrivial positive mechanistic-transfer result with narrow scope: a fixed pilot-trained residual direction causally transfers across payload-disjoint blocks and preserves its preselected layer ordering in two model scales, with dose linearity and random-direction calibration. Report beside the stricter factorial negative result and the listed collateral responses; do not label it evaluation awareness."
+}

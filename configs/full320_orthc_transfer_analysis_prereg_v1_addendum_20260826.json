@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "addendum_id": "full320_orthc_transfer_analysis_prereg_v1_addendum_20260826",
+  "frozen_utc": "2026-08-26T01:28:00Z",
+  "status": "frozen_before_activation_extraction_completed_and_before_any_transfer_causal_output",
+  "parent": {
+    "path": "configs/full320_orthc_transfer_analysis_prereg_v1.json",
+    "sha256": "4a73be0215016556fcb39b7fa120f35357d0513d64efc52e6ad727764ec05119"
+  },
+  "reason": "The parent preregistration names shared-purpose and format-readout collateral responses as descriptive secondary outputs. The initially hashed analyzer computed those endpoints internally but did not serialize their block-level values or summaries. This pre-outcome amendment serializes the already-declared descriptive outputs; it does not change any estimand, inferential test, threshold, multiplicity rule, decision criterion, or claim boundary.",
+  "changes": {
+    "old_analysis_script_sha256": "df9a7f1c560f87ea63b2c14c10ac1bb66bfda5bc021ad00a75cd268a9c7e610b",
+    "new_analysis_script_sha256": "73f75d704c5279ebe355455b0bb59ca09c2cc5135e52241ed9910eb1855536cd",
+    "added_outputs": [
+      "Per-model descriptive high, low, high-minus-low means and high-minus-low SD for shared-purpose and format-readout C responses at alpha=1.",
+      "Payload-block CSV rows for those same declared descriptive collateral endpoints."
+    ],
+    "decision_rule_unchanged": true,
+    "claim_scope_unchanged": true
+  }
+}

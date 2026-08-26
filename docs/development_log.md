@@ -115,3 +115,50 @@ interventions, thresholds, seeds):
 - Initialized minimal git repos in non-git cluster working directories so a
   provenance-only `git rev-parse HEAD` call in the frozen analysis script
   could succeed.
+
+## 6. Prospective payload-disjoint orthogonalized-C transfer (2026-08-26)
+
+To test a narrower positive mechanistic claim without changing the frozen v3
+factorial decision, a transfer study was prospectively frozen on 80 full320
+payload blocks with zero payload-block overlap with pilot80. The source bank
+itself was not new: its observational activations had already been inspected.
+The independent units here are the intervention payload blocks relative to
+pilot80, not a new item bank or a new research program.
+
+The study copied the completed pilot80 orthogonalized-C plans without
+refitting: per-fold C directions, 32 random controls, common residual scales,
+target readouts, and the fixed low/high/target layers. It extracted fresh
+deterministic full320 baselines at batch size 1, then froze
+`configs/full320_orthogonalized_c_transfer_v1.json` (SHA-256
+`f58171224a631f26121451578b43659391f4c375cfbd0dbd1669b4d8389e2e15`)
+before any transfer intervention output.
+
+Outcome-blind eight-row shakedowns passed in both models: all 32 source/target
+comparisons had `max_abs=0.0`; minimum cosine was `0.9999998808` for 8B and
+`0.9999999404` for 70B. Both complete causal runs then passed the unchanged
+`max_abs<=0.125`, `cosine>=0.999` gate and produced exactly 264,960 records
+per model. No partial output was inspected.
+
+The frozen analyzer ran exactly once. Its predeclared decision was
+`POSITIVE_REPLICATION`:
+
+- 8B high-minus-low purpose-interaction response: `0.748536`, 95% payload-block
+  bootstrap CI `[0.738766, 0.758228]`, Holm `p=7.08e-99`.
+- 70B: `0.681691`, CI `[0.674173, 0.688965]`, Holm `p=2.06e-104`.
+- All 80 payload-block effects were positive in each model.
+- Alpha-0.5/full response ratios were `0.500008` and `0.499820`.
+- The C means exceeded the frozen 97.5th percentile of absolute random-control
+  means by large margins in both models.
+
+The claim is narrow but central: a fixed pilot-trained residual direction
+causally transfers across payload-disjoint blocks and preserves its
+preselected high-versus-low layer ordering in two model scales, with
+dose-linearity and random-direction calibration. It is not evaluation
+awareness, not behavioral steering, not a pure interaction channel, and not a
+full A/B/C factorial replication. Shared-purpose collateral responses were
+substantial (`0.5302` in 8B, `0.2464` in 70B), and payload-block effect
+magnitudes were not correlated across models (Pearson `r=0.0639`,
+`p=0.574`). The prior strict v3 factorial negative decision remains unchanged.
+
+Complete compact evidence, hashes, limitations, and raw cluster paths are in
+`artifacts/exploratory/full320_orthc_transfer_positive_20260826/`.
