@@ -26,6 +26,11 @@ analysis = [
   "matplotlib>=3.9",
 ]
 
+# reading the vendored third-party parquets in external/ (scripts/adapt_devbunova.py)
+external = [
+  "pyarrow>=17",
+]
+
 dev = [
   "numpy>=1.26",
   "scikit-learn>=1.5",

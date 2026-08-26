@@ -37,6 +37,7 @@ def extract_activations(
     max_length: int,
     device_map: str | None = None,
     all_layers: bool = False,
+    chat_template: bool = True,
 ) -> dict[str, Any]:
     try:
         import numpy as np
@@ -83,19 +84,33 @@ def extract_activations(
     if not 0 <= layer < n_layers:
         raise MVPError(f"layer must be in [0, {n_layers - 1}], got {layer}")
 
-    # The chat template is rendered to text first, so it already carries the
-    # model's control tokens; add_special_tokens must stay False or the
-    # tokenizer prepends a duplicate begin-of-text.
-    prompts = [
-        tokenizer.apply_chat_template(
-            [{"role": "user", "content": str(row["text"])}],
-            tokenize=False,
-            add_generation_prompt=True,
-        )
-        for row in rows
-    ]
+    # Template mode (default): the chat template is rendered to text first, so
+    # it already carries the model's control tokens; add_special_tokens must
+    # stay False or the tokenizer prepends a duplicate begin-of-text. The
+    # probed last position is then the constant assistant-header token.
+    # Raw mode (chat_template=False): the prompt text is tokenized bare with
+    # add_special_tokens=True (BOS only), matching Devbunova's extraction
+    # (external/eval-awareness-format, `tokenizer(batch, padding=True)`); the
+    # probed last position is the final *content* token, whose identity varies
+    # per prompt. Left padding + the last-position mask assert below select the
+    # same token her right-padded `attention_mask.sum()-1` indexing selects.
+    if chat_template:
+        prompts = [
+            tokenizer.apply_chat_template(
+                [{"role": "user", "content": str(row["text"])}],
+                tokenize=False,
+                add_generation_prompt=True,
+            )
+            for row in rows
+        ]
+    else:
+        prompts = [str(row["text"]) for row in rows]
+    add_special_tokens = not chat_template
     unpadded = tokenizer(
-        prompts, add_special_tokens=False, padding=False, truncation=False
+        prompts,
+        add_special_tokens=add_special_tokens,
+        padding=False,
+        truncation=False,
     )["input_ids"]
     longest = max(len(ids) for ids in unpadded)
     if longest > max_length:
@@ -127,7 +142,7 @@ def extract_activations(
                 captured.clear()
                 encoded = tokenizer(
                     prompts[start : start + batch_size],
-                    add_special_tokens=False,
+                    add_special_tokens=add_special_tokens,
                     return_tensors="pt",
                     padding=True,
                     truncation=False,
@@ -183,9 +198,17 @@ def extract_activations(
         "layers": list(target_layers),
         "device_map": device_map or "single_device",
         "layer_semantics": "zero_based_transformer_block_output_before_final_model_norm",
-        "position": "last_prompt_token_after_chat_template_before_generation",
-        "chat_template": "tokenizer.apply_chat_template(user_message, add_generation_prompt=True)",
-        "add_special_tokens": False,
+        "position": (
+            "last_prompt_token_after_chat_template_before_generation"
+            if chat_template
+            else "last_raw_prompt_token_no_chat_template"
+        ),
+        "chat_template": (
+            "tokenizer.apply_chat_template(user_message, add_generation_prompt=True)"
+            if chat_template
+            else "none_raw_text_devbunova_regime"
+        ),
+        "add_special_tokens": add_special_tokens,
         "npz_compression": "zip_deflate_level1",
         "max_length": max_length,
         "max_prompt_tokens": longest,

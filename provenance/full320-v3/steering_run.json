@@ -1,0 +1,101 @@
+{
+ "schema_version": 1,
+ "study": "causal validation of full320-v3 probes via NDIF steering",
+ "date": "2026-08-26",
+ "prereg": "docs/steering_prereg.md",
+ "results": "docs/steering_results.md",
+ "hf_repo": "Conradf/v3-steering",
+ "run_tag": "v3",
+ "extraction_backend": "NDIF remote via nnsight 0.7.0",
+ "ndif_model_revision": "unpinned_ndif_deployment (revision=null; same as full320-v3 405B pass)",
+ "items": "data/full320-v3/rendered_items_v3_full320_8-17-2026.jsonl",
+ "readouts": {
+  "logit": "verbalized eval-awareness (per-row tail steering, session, logits_to_keep=1)",
+  "gen": "answer style (model.edit uniform per-condition, all-position ActAdd, standalone remote generate, greedy 64/48 tok)"
+ },
+ "dose_unit": "delta_fmt (format probe contrast gap, matched norm for all directions)",
+ "random_null": "5 seeded isotropic directions (rand0-4)",
+ "models": {
+  "8b": {
+   "hf_id": "meta-llama/Llama-3.1-8B-Instruct",
+   "layer": 8,
+   "hidden": 4096,
+   "dose_unit_value_delta_fmt": 0.464297729237786,
+   "directions_npz_sha256": "291dc2a1cb589c4cb9da912f321073c0b91103d1c9c1d85b91aa62a68910a691",
+   "directions_json_sha256": "2c794620b69d89d7e53e193573768d63712d8eb7d5ef6da2cf0240683d583218",
+   "items_sha256": "5528819d74e696d1a595062047a829836dfde1d2a45287b06a5ac1ba5d1b6c67",
+   "n_logit_items": 640,
+   "n_gen_items": 640,
+   "probe_regression_check": {
+    "format": {
+     "pearson_r_stated_oof": 1.0,
+     "oof_auc": 1.0
+    },
+    "decorrelated": {
+     "pearson_r_stated_oof": 0.999931,
+     "oof_auc": 0.9886
+    },
+    "confounded": {
+     "pearson_r_stated_oof": 1.0,
+     "oof_auc": 0.6002
+    }
+   },
+   "cos_fmt_pur_dec": -0.0117,
+   "cos_fmt_pur_conf": 0.9406
+  },
+  "70b": {
+   "hf_id": "meta-llama/Llama-3.1-70B-Instruct",
+   "layer": 18,
+   "hidden": 8192,
+   "dose_unit_value_delta_fmt": 0.6488869465415966,
+   "directions_npz_sha256": "c625803b9a13afe9d613c2af693d0620fa2d2d26704de65a2f940bf1514d7ba5",
+   "directions_json_sha256": "82c52aedb1406f60fa283ed088092ad3a8d002d2135c76430dce607a340e2a92",
+   "items_sha256": "5528819d74e696d1a595062047a829836dfde1d2a45287b06a5ac1ba5d1b6c67",
+   "n_logit_items": 640,
+   "n_gen_items": 640,
+   "probe_regression_check": {
+    "format": {
+     "pearson_r_stated_oof": 1.0,
+     "oof_auc": 1.0
+    },
+    "decorrelated": {
+     "pearson_r_stated_oof": 0.999453,
+     "oof_auc": 0.9985
+    },
+    "confounded": {
+     "pearson_r_stated_oof": 1.0,
+     "oof_auc": 0.6817
+    }
+   },
+   "cos_fmt_pur_dec": -0.0196,
+   "cos_fmt_pur_conf": 0.8715
+  },
+  "405b": {
+   "hf_id": "meta-llama/Llama-3.1-405B-Instruct",
+   "layer": 37,
+   "hidden": 16384,
+   "dose_unit_value_delta_fmt": 1.4337379548905256,
+   "directions_npz_sha256": "d2ab7781c8c8e31f00b011cce62686e93e957adb605f2f3d774a8dec5a5e0940",
+   "directions_json_sha256": "d40583c42df05a6d83b64b137517781c45e828c1373c0eae721002ab4d1398ab",
+   "items_sha256": "5528819d74e696d1a595062047a829836dfde1d2a45287b06a5ac1ba5d1b6c67",
+   "n_logit_items": 320,
+   "n_gen_items": 640,
+   "probe_regression_check": {
+    "format": {
+     "pearson_r_stated_oof": 1.0,
+     "oof_auc": 1.0
+    },
+    "decorrelated": {
+     "pearson_r_stated_oof": 0.999573,
+     "oof_auc": 0.9979
+    },
+    "confounded": {
+     "pearson_r_stated_oof": 1.0,
+     "oof_auc": 0.6797
+    }
+   },
+   "cos_fmt_pur_dec": -0.0135,
+   "cos_fmt_pur_conf": 0.8971
+  }
+ }
+}

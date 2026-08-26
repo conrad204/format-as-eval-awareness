@@ -29,6 +29,10 @@ def main() -> None:
                         help="accelerate device map; use 'auto' to shard weights across GPUs")
     parser.add_argument("--max-length", type=int, default=2048,
                         help="maximum allowed prompt tokens; longer prompts fail rather than truncate")
+    parser.add_argument("--no-chat-template", action="store_true",
+                        help="tokenize raw prompt text (BOS only, no assistant header) — "
+                             "Devbunova's regime; the probed last token is the final "
+                             "content token instead of the constant header token")
     args = parser.parse_args()
     try:
         config = extract_activations(
@@ -41,6 +45,7 @@ def main() -> None:
             max_length=args.max_length,
             device_map=args.device_map,
             all_layers=args.all_layers,
+            chat_template=not args.no_chat_template,
         )
     except MVPError as exc:
         print(f"error: {exc}", file=sys.stderr)

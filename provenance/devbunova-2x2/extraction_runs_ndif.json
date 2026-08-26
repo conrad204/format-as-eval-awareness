@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "generated_by": "scripts/ndif_extract_devbunova.py",
+  "completed_at_utc": "2026-08-20T10:30:27Z",
+  "hf_repo": "Conradf/devbunova-2x2-activations",
+  "items": "data/devbunova-2x2/items_devbunova_2x2.jsonl",
+  "items_sha256": "bd4b7151cb0a2e4608674934c0f8d2f94efb4c886fd06ea53333d242beb74f26",
+  "n_items": 8479,
+  "chunks_per_run": 133,
+  "chunk_size": 64,
+  "last_chunk_size": 31,
+  "runs": {
+    "405b/raw":      {"model": "meta-llama/Llama-3.1-405B-Instruct", "sub_batch": 16},
+    "405b/template": {"model": "meta-llama/Llama-3.1-405B-Instruct", "sub_batch": 16},
+    "70b/raw":       {"model": "meta-llama/Llama-3.1-70B-Instruct",  "sub_batch": 16},
+    "70b/template":  {"model": "meta-llama/Llama-3.1-70B-Instruct",  "sub_batch": 16},
+    "8b/raw":        {"model": "meta-llama/Llama-3.1-8B-Instruct",   "sub_batch": 4, "note": "chunks 0-1 extracted at sub_batch 16 before the OOM fix"},
+    "8b/template":   {"model": "meta-llama/Llama-3.1-8B-Instruct",   "sub_batch": 4}
+  },
+  "tokenizer_revisions": {
+    "8b": "0e9e39f249a16976918f6564b8830bc894c89659",
+    "70b": "1605565b47bb9346c5515c34102e054115b4f98b",
+    "405b": "unpinned"
+  },
+  "model_revision": "unpinned_ndif_deployment",
+  "regimes": {
+    "raw": "no chat template, add_special_tokens=True (BOS once), Devbunova-identical tokenization; probed token = final content token",
+    "template": "apply_chat_template + add_generation_prompt, add_special_tokens=False; probed token = constant assistant header"
+  },
+  "position": "last_prompt_token, per-block residual stream before final model norm, bf16 bits in uint16",
+  "verification": "chunks 0 and 132 of all six prefixes QC-verified 2026-08-20 (shape, item_id alignment vs jsonl row order, model/regime stamps, finiteness)",
+  "incidents": [
+    "NDIF-wide provisioning outage ~2026-08-19T20:33Z to ~2026-08-20T06:00Z; 405b/raw paused at 77/133 chunks across it",
+    "405B deployment restarted around the outage: 405b/raw chunks 0-76 and 77-132 may come from different deployment instances (bf16 not bit-identical caveat; both regimes of every model still share a deployment epoch within each comparison window)",
+    "NDIF 8B deployment (shared 44GB GPU, ~17.7GiB process cap) OOMed at sub_batch 16; fixed by sub_batch 4 from 8b/raw chunk 2 onward"
+  ]
+}

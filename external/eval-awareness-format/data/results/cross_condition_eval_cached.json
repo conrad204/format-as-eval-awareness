@@ -1,0 +1,297 @@
+{
+  "config": {
+    "model": "~/my_projects/models/Llama-3.1-8B-Instruct",
+    "layers": [
+      8,
+      12,
+      16,
+      20,
+      22,
+      24,
+      26,
+      28,
+      30,
+      31
+    ],
+    "datasets": {
+      "bench_eval": 1076,
+      "casual_deploy": 1076,
+      "casual_eval": 1076,
+      "bench_deploy": 835,
+      "casual_deploy_formal": 835,
+      "bench_deploy_formal": 835
+    }
+  },
+  "results": {
+    "8": {
+      "train_acc": 1.0,
+      "casual_eval": {
+        "pct_eval": 0.0,
+        "pct_deploy": 1.0,
+        "mean_prob": 0.9999432093779672,
+        "std_prob": 0.0006494973738850694
+      },
+      "bench_deploy": {
+        "pct_eval": 0.9425149700598803,
+        "pct_deploy": 0.05748502994011976,
+        "mean_prob": 0.057280029985150464,
+        "std_prob": 0.2283018649960003
+      },
+      "casual_deploy_formal": {
+        "pct_eval": 0.0011976047904191617,
+        "pct_deploy": 0.9988023952095808,
+        "mean_prob": 0.9984851622603068,
+        "std_prob": 0.031203188108997634
+      },
+      "bench_deploy_formal": {
+        "pct_eval": 0.9005988023952096,
+        "pct_deploy": 0.09940119760479042,
+        "mean_prob": 0.0989917482853811,
+        "std_prob": 0.2854851917356075
+      }
+    },
+    "12": {
+      "train_acc": 1.0,
+      "casual_eval": {
+        "pct_eval": 0.0,
+        "pct_deploy": 1.0,
+        "mean_prob": 0.9998975832785357,
+        "std_prob": 0.0009791993430342376
+      },
+      "bench_deploy": {
+        "pct_eval": 0.9425149700598803,
+        "pct_deploy": 0.05748502994011976,
+        "mean_prob": 0.05646890928682217,
+        "std_prob": 0.22617027065954537
+      },
+      "casual_deploy_formal": {
+        "pct_eval": 0.0,
+        "pct_deploy": 1.0,
+        "mean_prob": 0.9993403839125037,
+        "std_prob": 0.009878104830279047
+      },
+      "bench_deploy_formal": {
+        "pct_eval": 0.9029940119760479,
+        "pct_deploy": 0.09700598802395209,
+        "mean_prob": 0.09547025471255745,
+        "std_prob": 0.2781882768872819
+      }
+    },
+    "16": {
+      "train_acc": 1.0,
+      "casual_eval": {
+        "pct_eval": 0.0,
+        "pct_deploy": 1.0,
+        "mean_prob": 0.9995381294341067,
+        "std_prob": 0.001869141310588141
+      },
+      "bench_deploy": {
+        "pct_eval": 0.9425149700598803,
+        "pct_deploy": 0.05748502994011976,
+        "mean_prob": 0.05751004540325198,
+        "std_prob": 0.22601862112035573
+      },
+      "casual_deploy_formal": {
+        "pct_eval": 0.0,
+        "pct_deploy": 1.0,
+        "mean_prob": 0.9988311453035479,
+        "std_prob": 0.01558017510274829
+      },
+      "bench_deploy_formal": {
+        "pct_eval": 0.895808383233533,
+        "pct_deploy": 0.10419161676646707,
+        "mean_prob": 0.10293843814920549,
+        "std_prob": 0.2864675927393406
+      }
+    },
+    "20": {
+      "train_acc": 1.0,
+      "casual_eval": {
+        "pct_eval": 0.0,
+        "pct_deploy": 1.0,
+        "mean_prob": 0.9999512678761311,
+        "std_prob": 0.00033920395327239
+      },
+      "bench_deploy": {
+        "pct_eval": 0.9413173652694611,
+        "pct_deploy": 0.058682634730538925,
+        "mean_prob": 0.059093903761835806,
+        "std_prob": 0.22580379206360232
+      },
+      "casual_deploy_formal": {
+        "pct_eval": 0.0011976047904191617,
+        "pct_deploy": 0.9988023952095808,
+        "mean_prob": 0.9972199825654016,
+        "std_prob": 0.02794634025520614
+      },
+      "bench_deploy_formal": {
+        "pct_eval": 0.8826347305389222,
+        "pct_deploy": 0.11736526946107785,
+        "mean_prob": 0.11371801866492068,
+        "std_prob": 0.2991153108071938
+      }
+    },
+    "22": {
+      "train_acc": 1.0,
+      "casual_eval": {
+        "pct_eval": 0.0,
+        "pct_deploy": 1.0,
+        "mean_prob": 0.9999611072430656,
+        "std_prob": 0.00024234196446288535
+      },
+      "bench_deploy": {
+        "pct_eval": 0.9401197604790419,
+        "pct_deploy": 0.059880239520958084,
+        "mean_prob": 0.06084743823681178,
+        "std_prob": 0.2257329690653899
+      },
+      "casual_deploy_formal": {
+        "pct_eval": 0.0,
+        "pct_deploy": 1.0,
+        "mean_prob": 0.9975253008359635,
+        "std_prob": 0.024692163134370122
+      },
+      "bench_deploy_formal": {
+        "pct_eval": 0.8850299401197604,
+        "pct_deploy": 0.11497005988023952,
+        "mean_prob": 0.11151952933932015,
+        "std_prob": 0.294444131963958
+      }
+    },
+    "24": {
+      "train_acc": 1.0,
+      "casual_eval": {
+        "pct_eval": 0.0,
+        "pct_deploy": 1.0,
+        "mean_prob": 0.9998421243938972,
+        "std_prob": 0.0008507511998826341
+      },
+      "bench_deploy": {
+        "pct_eval": 0.9449101796407186,
+        "pct_deploy": 0.055089820359281436,
+        "mean_prob": 0.05908737451460091,
+        "std_prob": 0.21807446580974624
+      },
+      "casual_deploy_formal": {
+        "pct_eval": 0.0,
+        "pct_deploy": 1.0,
+        "mean_prob": 0.9982755471227756,
+        "std_prob": 0.02434948476110721
+      },
+      "bench_deploy_formal": {
+        "pct_eval": 0.8874251497005988,
+        "pct_deploy": 0.1125748502994012,
+        "mean_prob": 0.11203938992154885,
+        "std_prob": 0.2922293508774507
+      }
+    },
+    "26": {
+      "train_acc": 1.0,
+      "casual_eval": {
+        "pct_eval": 0.0,
+        "pct_deploy": 1.0,
+        "mean_prob": 0.9998605415559857,
+        "std_prob": 0.0012042135943921928
+      },
+      "bench_deploy": {
+        "pct_eval": 0.9508982035928144,
+        "pct_deploy": 0.04910179640718563,
+        "mean_prob": 0.053715813775075026,
+        "std_prob": 0.20588852048631084
+      },
+      "casual_deploy_formal": {
+        "pct_eval": 0.0011976047904191617,
+        "pct_deploy": 0.9988023952095808,
+        "mean_prob": 0.9984877629105507,
+        "std_prob": 0.02241903524454118
+      },
+      "bench_deploy_formal": {
+        "pct_eval": 0.8982035928143712,
+        "pct_deploy": 0.10179640718562874,
+        "mean_prob": 0.10489426688684135,
+        "std_prob": 0.28152415096115796
+      }
+    },
+    "28": {
+      "train_acc": 1.0,
+      "casual_eval": {
+        "pct_eval": 0.0,
+        "pct_deploy": 1.0,
+        "mean_prob": 0.9999199538648603,
+        "std_prob": 0.0005074419767462199
+      },
+      "bench_deploy": {
+        "pct_eval": 0.9437125748502994,
+        "pct_deploy": 0.0562874251497006,
+        "mean_prob": 0.05907958568362344,
+        "std_prob": 0.21859003474046287
+      },
+      "casual_deploy_formal": {
+        "pct_eval": 0.0,
+        "pct_deploy": 1.0,
+        "mean_prob": 0.9991632070595049,
+        "std_prob": 0.008271983695496967
+      },
+      "bench_deploy_formal": {
+        "pct_eval": 0.8826347305389222,
+        "pct_deploy": 0.11736526946107785,
+        "mean_prob": 0.11279716204908176,
+        "std_prob": 0.29579189631849967
+      }
+    },
+    "30": {
+      "train_acc": 1.0,
+      "casual_eval": {
+        "pct_eval": 0.0,
+        "pct_deploy": 1.0,
+        "mean_prob": 0.9999304670188561,
+        "std_prob": 0.0004469119871115504
+      },
+      "bench_deploy": {
+        "pct_eval": 0.9461077844311377,
+        "pct_deploy": 0.05389221556886228,
+        "mean_prob": 0.05710276820199318,
+        "std_prob": 0.2151826459601946
+      },
+      "casual_deploy_formal": {
+        "pct_eval": 0.0,
+        "pct_deploy": 1.0,
+        "mean_prob": 0.9983361761385381,
+        "std_prob": 0.018369619847795473
+      },
+      "bench_deploy_formal": {
+        "pct_eval": 0.8922155688622755,
+        "pct_deploy": 0.10778443113772455,
+        "mean_prob": 0.10351643595130507,
+        "std_prob": 0.2782606083488283
+      }
+    },
+    "31": {
+      "train_acc": 1.0,
+      "casual_eval": {
+        "pct_eval": 0.0,
+        "pct_deploy": 1.0,
+        "mean_prob": 0.9999876249602915,
+        "std_prob": 7.40291766350207e-05
+      },
+      "bench_deploy": {
+        "pct_eval": 0.9461077844311377,
+        "pct_deploy": 0.05389221556886228,
+        "mean_prob": 0.058463396817989566,
+        "std_prob": 0.21088971481916807
+      },
+      "casual_deploy_formal": {
+        "pct_eval": 0.0,
+        "pct_deploy": 1.0,
+        "mean_prob": 0.9979203658462489,
+        "std_prob": 0.022000967142423528
+      },
+      "bench_deploy_formal": {
+        "pct_eval": 0.9065868263473054,
+        "pct_deploy": 0.09341317365269461,
+        "mean_prob": 0.09581289859224233,
+        "std_prob": 0.2668682816785397
+      }
+    }
+  }
+}

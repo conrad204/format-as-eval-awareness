@@ -11,7 +11,9 @@ v2 -> v3 reading notes:
     and the wrapper is no longer one template per format: 13 templates
     (7 benchmark, 6 casual), so "format" spans a template family.
   - Same three models and colors as v2 (8B blue, 3.1-70B violet,
-    3.3-70B orange) so the plot sets are directly comparable.
+    3.3-70B orange) so the plot sets are directly comparable, plus
+    Llama-3.1-405B-Instruct (pink, extracted via NDIF/nnsight — see
+    provenance/full320-v3/extraction_config_405b_ndif.json).
   - v2's endpoint plots 08-10 (generalization ladder, no-cue shift, cue
     locus) have no v3 counterpart yet: the v3 confirmation analysis has not
     been run. v3's stated stratum is all third-person; indirect/second-person
@@ -26,12 +28,12 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 R = str(ROOT / "results")
-OUT = ROOT / "plots" / "full320 results 8-18-2026"
+OUT = ROOT / "plots" / "full320 results 8-19-2026"
 OUT.mkdir(parents=True, exist_ok=True)
 OUT = str(OUT)
 
 SURF="#fcfcfb"; INK="#0b0b0b"; INK2="#52514e"; MUTED="#898781"; GRID="#e1e0d9"; BASE="#c3c2b7"
-S8B="#2a78d6"; S71="#8a5cd6"; S70="#eb6834"; S3="#1baf7a"
+S8B="#2a78d6"; S71="#8a5cd6"; S70="#eb6834"; S405="#d6336c"; S3="#1baf7a"
 plt.rcParams.update({"font.family":"sans-serif",
     "font.sans-serif":["DejaVu Sans","Segoe UI","Helvetica","Arial"],
     "figure.facecolor":SURF,"axes.facecolor":SURF,"savefig.facecolor":SURF,
@@ -42,7 +44,9 @@ MODELS = [  # (sweep json, short name, color)
     ("layer_sweep_full320-v3_llama31_8b.json",  "Llama-3.1-8B",  S8B),
     ("layer_sweep_full320-v3_llama31_70b.json", "Llama-3.1-70B", S71),
     ("layer_sweep_full320-v3_llama33_70b.json", "Llama-3.3-70B", S70),
+    ("layer_sweep_full320-v3_llama31_405b_ndif.json", "Llama-3.1-405B", S405),
 ]
+SHORT = ["8B", "3.1-70B", "3.3-70B", "405B"]
 D = [json.load(open(f"{R}/{s}")) for s, _, _ in MODELS]
 SURFACE = json.load(open(f"{R}/surface_probes_v3_full320.json"))
 NAMES = [n for _, n, _ in MODELS]
@@ -65,8 +69,8 @@ def axchrome(ax,xlab,ylab):
     ax.grid(True,color=GRID,lw=0.8,zorder=0); ax.set_axisbelow(True)
     for s in ("top","right"): ax.spines[s].set_visible(False)
     for s in ("left","bottom"): ax.spines[s].set_color(BASE)
-def model_handles(lw=2):
-    return [Line2D([],[],color=c,lw=lw,label=n) for n,c in zip(NAMES,COLS)]
+def model_handles(lw=2):  # short labels: four full names overflow into the titles
+    return [Line2D([],[],color=c,lw=lw,label=n) for n,c in zip(SHORT,COLS)]
 
 # --- 01: purpose signal by depth (decorrelated solid, confounded dashed) ---
 fig,ax=plt.subplots(figsize=(9.4,5.8))
@@ -75,9 +79,9 @@ for x,d,c in zip(X,D,COLS):
     ax.plot(x,series(d,"confounded","auc"),color=c,lw=2,ls=(0,(4,3)),alpha=.85,zorder=2)
 ax.axhline(0.5,color=BASE,lw=1.2,ls=":",zorder=1)
 ax.text(1,0.508,"chance",ha="left",va="bottom",color=MUTED,fontsize=9)
-# all three peaks sit near 23-26% depth / AUC 0.99+, so stagger the labels
-offsets=[(30,-58),(-40,14),(30,-32)]
-for p,name,c,x,(dx,dy) in zip(PEAKS,["8B","3.1-70B","3.3-70B"],COLS,X,offsets):
+# all four peaks sit near 23-30% depth / AUC 0.99+, so stagger the labels
+offsets=[(30,-58),(-40,14),(30,-32),(106,14)]
+for p,name,c,x,(dx,dy) in zip(PEAKS,SHORT,COLS,X,offsets):
     xv=p["layer"]/(len(x)-1)*100; yv=p["decorrelated"]["auc"]
     ax.plot([xv],[yv],"o",ms=9,color=c,mec=SURF,mew=2,zorder=4)
     ax.annotate(f"{name} peak · L{p['layer']} · AUC {yv:.3f}",(xv,yv),textcoords="offset points",
@@ -86,11 +90,11 @@ axchrome(ax,"relative depth through the network (%)","purpose AUC (held-out voca
 ax.set_ylim(0.42,1.04)
 header(fig,"Purpose decodes from unseen vocabulary",
        "Solid: decorrelated training, tested on a held-out cue-vocabulary fold.   Dashed: confounded training (purpose ⊗ format).",
-       model_handles(),3)
+       model_handles(),4)
 fig.tight_layout(rect=[0,0,1,0.87]); fig.savefig(f"{OUT}/01_purpose_signal_by_depth.png",dpi=200); plt.close(fig)
 
 # --- 02: confound signature at each model's peak layer ---
-fig,axes=plt.subplots(1,3,figsize=(13.6,5.4),sharey=True)
+fig,axes=plt.subplots(1,4,figsize=(17.4,5.4),sharey=True)
 cells=["evaluation::benchmark","evaluation::casual","deployment::benchmark","deployment::casual"]
 lbl=["eval\nquiz","eval\ncasual","deploy\nquiz","deploy\ncasual"]
 for ax,p,name,col in zip(axes,PEAKS,NAMES,COLS):
@@ -120,21 +124,21 @@ for axp,reg,title in ((axes[0],"b2c","trained on quiz  →  tested on casual"),
     axp.set_title(title,color=INK,loc="left",fontsize=11,fontweight="bold",pad=10)
     axchrome(axp,"relative depth (%)",""); axp.set_ylim(0.42,1.0)
 axes[0].set_ylabel("purpose AUC on the unseen format")
-header(fig,"Transfer to an unseen format family (still on unseen vocabulary)","",model_handles(),3)
+header(fig,"Transfer to an unseen format family (still on unseen vocabulary)","",model_handles(),4)
 fig.tight_layout(rect=[0,0,1,0.86]); fig.savefig(f"{OUT}/03_transfer_by_depth.png",dpi=200); plt.close(fig)
 
 # --- 04: ranking vs threshold at the peak layer ---
-fig,ax=plt.subplots(figsize=(10.6,5.6))
+fig,ax=plt.subplots(figsize=(12.2,5.6))
 groups=["decorrelated","quiz → casual","casual → quiz"]; regs=["decorrelated","b2c","c2b"]
-i=np.arange(3); w=0.14
-for k,(p,name,col) in enumerate(zip(PEAKS,["8B","3.1-70B","3.3-70B"],COLS)):
+i=np.arange(3); w=0.105
+for k,(p,name,col) in enumerate(zip(PEAKS,SHORT,COLS)):
     au=[p[r]["auc"] for r in regs]; ba=[p[r]["bal_acc"] for r in regs]
-    off=(k-1)*2.1*w
+    off=(k-1.5)*2.15*w
     ax.bar(i+off-w*0.52,au,w,color=col,zorder=3)
     ax.bar(i+off+w*0.52,ba,w,color=col,alpha=0.40,zorder=3)
-    for xi,v in zip(i+off-w*0.52,au): ax.text(xi,v+.012,f"{v:.2f}",ha="center",fontsize=8,color=INK,fontweight="bold")
-    for xi,v in zip(i+off+w*0.52,ba): ax.text(xi,v+.012,f"{v:.2f}",ha="center",fontsize=8,color=INK2)
-    for g in range(3): ax.text(i[g]+off,-0.062,name,ha="center",color=INK2,fontsize=8.5,fontweight="bold")
+    for xi,v in zip(i+off-w*0.52,au): ax.text(xi,v+.012,f"{v:.2f}",ha="center",fontsize=7.5,color=INK,fontweight="bold")
+    for xi,v in zip(i+off+w*0.52,ba): ax.text(xi,v+.012,f"{v:.2f}",ha="center",fontsize=7.5,color=INK2)
+    for g in range(3): ax.text(i[g]+off,-0.062,name,ha="center",color=INK2,fontsize=8,fontweight="bold")
 ax.axhline(0.5,color=BASE,lw=1.2,ls=":",zorder=1)
 ax.set_xticks(i); ax.set_xticklabels(groups,color=INK,fontsize=11,fontweight="bold")
 ax.tick_params(axis="x",pad=24,length=0); ax.set_ylim(0,1.06)
@@ -158,7 +162,7 @@ axchrome(ax,"relative depth through the network (%)","fraction of pairs scored e
 ax.set_ylim(0.45,1.05)
 header(fig,"Minimal pairs: almost always ranked correctly",
        "Same payload, same wrapper, one sentence changed — scored by a probe that never saw the pair's vocabulary fold.  320 payload blocks.",
-       model_handles(),3)
+       model_handles(),4)
 fig.tight_layout(rect=[0,0,1,0.87]); fig.savefig(f"{OUT}/05_paired_consistency_by_depth.png",dpi=200); plt.close(fig)
 
 # --- 06: transferable vs format-bound signal ---
@@ -167,7 +171,7 @@ def curves(d):
     dec=series(d,"decorrelated","auc")
     xf=(series(d,"b2c","auc")+series(d,"c2b","auc"))/2
     return x,dec,xf
-fig,axes=plt.subplots(1,3,figsize=(13.6,5.5),sharey=True)
+fig,axes=plt.subplots(1,4,figsize=(17.4,5.5),sharey=True)
 for ax,d,c,name in zip(axes,D,COLS,NAMES):
     x,dec,xf=curves(d)
     ax.fill_between(x,xf,dec,color=c,alpha=0.16,zorder=2,lw=0)

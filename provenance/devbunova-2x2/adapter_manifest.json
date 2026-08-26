@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "generated_by": "scripts/adapt_devbunova.py",
+  "source_hf_repo": "viliana-dev/eval-awareness-2x2",
+  "source_hf_revision": "a50e4c983e7e66ebbe8f160e3549cc98e29271d4",
+  "source_parquets": {
+    "bench_eval": "2ed042ebb80b00355a60d4cadb0d6f6830fba60c445054b1d1b62c6f48aee4f8",
+    "bench_deploy_rewritten": "8dde35d3b302efec22b5a1b4f13415074352d52131a97a622228bb647942ddf0",
+    "casual_deploy_matched": "136e9a2abfee2edac904d7b42d0fcd9044c3854c00e1ea1828404f8016832107",
+    "casual_eval_mutual": "f31d66b928386b4088dc84c89d920cee5139911d79c5d0c1f0d0507f0899da5b",
+    "bench_deploy_formal": "ae2238a01b2b837b61ce047e3ed0e212671afc10dfdfc122630774ee1de8bcb3",
+    "casual_deploy_formal": "1f1861e12dd588e4239c2fa942d94ef442230037e3805131b39a48277db4c327"
+  },
+  "strip_pattern": "\\n+(Answer|Solution):\\s*$",
+  "bench_eval_format_check": "all rows reproduced by format_bench_eval_prompt port",
+  "cells": {
+    "bench_eval": {
+      "asis": 1076,
+      "stripped": 1076,
+      "stripped_changed": 1076
+    },
+    "bench_deploy_rewritten": {
+      "asis": 835,
+      "stripped": 835,
+      "stripped_changed": 794
+    },
+    "casual_deploy_matched": {
+      "asis": 1076
+    },
+    "casual_eval_mutual": {
+      "asis": 1076
+    },
+    "bench_deploy_formal": {
+      "asis": 835,
+      "stripped": 835,
+      "stripped_changed": 786
+    },
+    "casual_deploy_formal": {
+      "asis": 835
+    }
+  },
+  "n_items": 8479,
+  "output": "data/devbunova-2x2/items_devbunova_2x2.jsonl",
+  "output_sha256": "bd4b7151cb0a2e4608674934c0f8d2f94efb4c886fd06ea53333d242beb74f26",
+  "notes": [
+    "Prompt strings are verbatim from the parquets (her published, sampled configs).",
+    "Her paper run drew random.sample from the *_full pools with global seed 42; the published n=1076/835 sampled configs are the citable reference but item-set identity with her exact run is not guaranteed.",
+    "Her `id` column is non-unique (e.g. 692 duplicate ids in bench_eval); kept as source_id, item_id is index-based.",
+    "Duplicate prompt texts exist in her data (96 in casual_eval_mutual, 16 in casual_deploy_matched, ...) and are preserved as-is.",
+    "stripped variant: trailing \\n+(Answer|Solution):\\s* removed; rows without the scaffold pass through unchanged (stripped_changed=false)."
+  ]
+}

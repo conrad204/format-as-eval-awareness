@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "what": "no-cue projection sweep over the frozen full320-v3 stated-stratum probes",
+  "script": "scripts/nocue_sweep.py",
+  "run_host": "RunPod pod rc0dh6fxsqjd0h (16 vCPU, 64 GB cgroup, 155 GB disk)",
+  "python": "3.12.11",
+  "numpy": "2.5.2",
+  "sklearn": "1.9.0",
+  "blas": "openblas (numpy wheel)",
+  "items": "data/full320-v3/rendered_items_v3_full320_8-17-2026.jsonl",
+  "items_sha256": "5528819d74e696d1a595062047a829836dfde1d2a45287b06a5ac1ba5d1b6c67",
+  "activations_8b_70b": {
+    "repo": "format-EA/full320-v3",
+    "repo_type": "dataset",
+    "revision": "d6c3be7be83c469d9a6a2aa4e797f3a7b538efde"
+  },
+  "activations_405b": {
+    "repo": "Conradf/v3-llama-3.1-405B-instruct",
+    "repo_type": "dataset",
+    "revision": "7c5c6c5cd2c7430e07eec970eeb3df904eae9452"
+  },
+  "n_boot": 2000,
+  "boot_seed": 0,
+  "regression_check": "scripts/verify_nocue_sweep.py vs results/layer_sweep_full320-v3_*.json: PASS, max abs deviation 0.0 on all four models",
+  "outputs": {
+    "results/nocue_sweep_full320-v3_llama31_405b_ndif.json": {
+      "sha256": "0206b16e1bbd45d743eee4f4b7add2ca5d4ce0c5f6d6c1a2c525503887a04fee",
+      "size": 513413
+    },
+    "results/nocue_scores/nocue_sweep_full320-v3_llama31_405b_ndif.scores.npz": {
+      "sha256": "4043ff85968b71f4b732fe90d9ff8576bee6cdd7e929d7f67d58c1b90c7799c3",
+      "size": 24747358
+    },
+    "results/nocue_sweep_full320-v3_llama31_70b.json": {
+      "sha256": "013c39b2d86382cba671db89425fd582c0ef7c245c4679d8b26c4b34ed57c888",
+      "size": 326478
+    },
+    "results/nocue_scores/nocue_sweep_full320-v3_llama31_70b.scores.npz": {
+      "sha256": "121cc0860afbfa53c4337d721a6dfdda0bdc6582d97210aeebf219a7396a459f",
+      "size": 15767190
+    },
+    "results/nocue_sweep_full320-v3_llama31_8b.json": {
+      "sha256": "5b7b94a611f897ffbc9c74d09626039aae57770446f20ef90f0cda4bfcbb06e1",
+      "size": 131380
+    },
+    "results/nocue_scores/nocue_sweep_full320-v3_llama31_8b.scores.npz": {
+      "sha256": "0aadda960f64eb67c67f25a72478b9136bd97e216f476c33338619f7b792b444",
+      "size": 6383818
+    },
+    "results/nocue_sweep_full320-v3_llama33_70b.json": {
+      "sha256": "d6672841245a22586edd47f8ef1a47c1bddaf7608c5c4510b543d54ad6b05678",
+      "size": 326856
+    },
+    "results/nocue_scores/nocue_sweep_full320-v3_llama33_70b.scores.npz": {
+      "sha256": "d7e371516334920b6e631b65c5f9532dca1b5ae68d2a8cd890473a03c2fe8aab",
+      "size": 15776317
+    }
+  }
+}

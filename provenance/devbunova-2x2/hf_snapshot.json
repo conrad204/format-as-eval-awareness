@@ -1,0 +1,63 @@
+{
+  "repo_id": "viliana-dev/eval-awareness-2x2",
+  "repo_type": "dataset",
+  "revision": "a50e4c983e7e66ebbe8f160e3549cc98e29271d4",
+  "pinned_at": "2026-08-19",
+  "note": "Third-party dataset (Devbunova, arXiv:2603.19426; MIT). Local copy lives at external/eval-awareness-2x2/ (committed 7196872, 2026-08-16), NOT under data/. Local files are named <config>/train.parquet; the HF repo names them <config>/train-00000-of-00001.parquet — sha256s below were verified identical to the local copies on 2026-08-19. Companion code vendored at external/eval-awareness-format/ (see its VENDORED.md).",
+  "files": {
+    "README.md": {
+      "sha256": "7bbc63ad14061d7e9d773d2215e04e365dc051e4df2059ca3223f3a401358e44",
+      "size": 6677,
+      "via": "download",
+      "local": "external/eval-awareness-2x2/README.md"
+    },
+    "bench_eval/train-00000-of-00001.parquet": {
+      "sha256": "2ed042ebb80b00355a60d4cadb0d6f6830fba60c445054b1d1b62c6f48aee4f8",
+      "size": 404207,
+      "via": "lfs",
+      "local": "external/eval-awareness-2x2/bench_eval/train.parquet"
+    },
+    "bench_eval_full/train-00000-of-00001.parquet": {
+      "sha256": "aedada12054734d9bd075e51712d63540c2051661586d766875a3e0c5a249ff7",
+      "size": 1078433,
+      "via": "lfs",
+      "local": "external/eval-awareness-2x2/bench_eval_full/train.parquet"
+    },
+    "bench_deploy_rewritten/train-00000-of-00001.parquet": {
+      "sha256": "8dde35d3b302efec22b5a1b4f13415074352d52131a97a622228bb647942ddf0",
+      "size": 228656,
+      "via": "lfs",
+      "local": "external/eval-awareness-2x2/bench_deploy_rewritten/train.parquet"
+    },
+    "bench_deploy_formal/train-00000-of-00001.parquet": {
+      "sha256": "ae2238a01b2b837b61ce047e3ed0e212671afc10dfdfc122630774ee1de8bcb3",
+      "size": 250247,
+      "via": "lfs",
+      "local": "external/eval-awareness-2x2/bench_deploy_formal/train.parquet"
+    },
+    "casual_deploy_matched/train-00000-of-00001.parquet": {
+      "sha256": "136e9a2abfee2edac904d7b42d0fcd9044c3854c00e1ea1828404f8016832107",
+      "size": 219210,
+      "via": "lfs",
+      "local": "external/eval-awareness-2x2/casual_deploy_matched/train.parquet"
+    },
+    "casual_deploy_formal/train-00000-of-00001.parquet": {
+      "sha256": "1f1861e12dd588e4239c2fa942d94ef442230037e3805131b39a48277db4c327",
+      "size": 160088,
+      "via": "lfs",
+      "local": "external/eval-awareness-2x2/casual_deploy_formal/train.parquet"
+    },
+    "casual_eval_mutual/train-00000-of-00001.parquet": {
+      "sha256": "f31d66b928386b4088dc84c89d920cee5139911d79c5d0c1f0d0507f0899da5b",
+      "size": 320480,
+      "via": "lfs",
+      "local": "external/eval-awareness-2x2/casual_eval_mutual/train.parquet"
+    },
+    "casual_eval_mutual_full/train-00000-of-00001.parquet": {
+      "sha256": "8ed54c78d3fb7ca0b38dd99c771ae79e570272569dcc4ce744bca8cbfcd1ffa0",
+      "size": 1422166,
+      "via": "lfs",
+      "local": "external/eval-awareness-2x2/casual_eval_mutual_full/train.parquet"
+    }
+  }
+}
