@@ -1,0 +1,55 @@
+{
+  "models": {
+    "70b": {
+      "baseline_max_abs": 0.0,
+      "baseline_min_cosine": 0.9999998807907104,
+      "bootstrap": "10,000 percentile resamples over 80 payload-block means per cell",
+      "high_all_320_blocks_positive": true,
+      "high_cell_interaction_points": [
+        1.1981825747905017,
+        0.5137273130037411,
+        1.204469781625982,
+        0.5119457231716258
+      ],
+      "high_cell_mean": 0.8570813481479627,
+      "high_layer": "74_high_interaction",
+      "low_cell_interaction_points": [
+        -1.8560561494482957e-05,
+        0.002155639691201525,
+        0.0009192902095142029,
+        0.0012386287910521715
+      ],
+      "low_cell_mean": 0.0010737495325683541,
+      "low_layer": "13_low_interaction",
+      "model": "meta-llama/Llama-3.3-70B-Instruct",
+      "raw_records": 163200
+    },
+    "8b": {
+      "baseline_max_abs": 0.0,
+      "baseline_min_cosine": 0.9999998807907104,
+      "bootstrap": "10,000 percentile resamples over 80 payload-block means per cell",
+      "high_all_320_blocks_positive": true,
+      "high_cell_interaction_points": [
+        1.3970191644655203,
+        0.25796519303398624,
+        1.4179083822931529,
+        0.2543068589855613
+      ],
+      "high_cell_mean": 0.8317998996945551,
+      "high_layer": "29_high_interaction",
+      "low_cell_interaction_points": [
+        -0.01342384049155355,
+        0.0050057838860754515,
+        -0.011588570034217968,
+        0.0029484717462330717
+      ],
+      "low_cell_mean": -0.004264538723365749,
+      "low_layer": "5_low_interaction",
+      "model": "meta-llama/Llama-3.1-8B-Instruct",
+      "raw_records": 163200
+    }
+  },
+  "primary_decision": "negative",
+  "schema_version": 1,
+  "status": "pass"
+}

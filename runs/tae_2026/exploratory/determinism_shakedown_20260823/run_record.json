@@ -1,0 +1,13 @@
+{
+  "canonical_artifact_path": "artifacts/exploratory/determinism_shakedown_20260823",
+  "evidence_files": [
+    "artifacts/exploratory/determinism_shakedown_20260823/70b_shakedown_report.json",
+    "artifacts/exploratory/determinism_shakedown_20260823/8b_shakedown_report.json",
+    "artifacts/exploratory/determinism_shakedown_20260823/run_manifest.json"
+  ],
+  "record_type": "completed run",
+  "run_id": "determinism_shakedown_20260823",
+  "schema_version": 1,
+  "status": "shakedown_passed",
+  "summary": "Both models pass with enormous margin (bit-identical run_a/run_b activation archives; observed max_abs is exactly 0.0, versus the 0.25 and 0.15625 originally observed). This isolates the source_activation_reproduction gate failure to non-deterministic GPU kernel execution (unpinned TF32/cuBLAS redu\u2026"
+}

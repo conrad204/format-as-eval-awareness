@@ -1,0 +1,48 @@
+{
+  "analysis": "full320_strict_equal_rows_8b_scale_v1",
+  "criteria": {
+    "assignment_stability": false,
+    "checkpoint_replication": false,
+    "label_null": false,
+    "primary_auc": false,
+    "primary_balanced_accuracy": false,
+    "robustness": false
+  },
+  "decision": "mixed",
+  "evidence_grade": "preregistered_within_family_size_associated_replication",
+  "input_hashes": {
+    "items": "5528819d74e696d1a595062047a829836dfde1d2a45287b06a5ac1ba5d1b6c67",
+    "meta-llama/Llama-3.1-8B-Instruct": "e6a71be599e27fd846211e8e6ef215e4fb695a76c3415dc157c1450a134cd1b4"
+  },
+  "output_hashes": {
+    "primary_scores.npz": {
+      "bytes": 1315163,
+      "sha256": "ffed83e84e3ae89670872d78ffe3deb50c9f3b92adba172efdae1e7be248a386"
+    },
+    "strict_equal_rows_matrix.png": {
+      "bytes": 130471,
+      "sha256": "0af36602ded62b6c0d1727640b15c2d8b75d507ffa4889b7cec94bf3b43ecb44"
+    },
+    "strict_equal_rows_metrics.tsv": {
+      "bytes": 52433,
+      "sha256": "1af34a621d0ed671dce5bece99d6a1f8d09a0426d9eb245ec6cddd03aeaaef76"
+    },
+    "strict_equal_rows_results.json": {
+      "bytes": 308827,
+      "sha256": "8479f1be2ead7665ffd58610402e87d7a09fcca6c13a2893c3c2375938401c55"
+    }
+  },
+  "prohibited_claims": [
+    "evaluation awareness",
+    "behavioral steering",
+    "model causal mechanism",
+    "pure format effect",
+    "training-time model causality",
+    "universal scaling law"
+  ],
+  "protocol_sha256": "d3e5245431052d002b15967fa323d9c1e56da088a5e49128493da896351f5a8d",
+  "repo_commit": "df1d0930984349ae511dfeced5f6ce687f7888ff",
+  "run_id": "full320_strict_equal_rows_8b_scale_v1_20260823",
+  "schema_version": 1,
+  "status": "completed_preregistered_replication_extension"
+}

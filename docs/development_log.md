@@ -162,3 +162,51 @@ magnitudes were not correlated across models (Pearson `r=0.0639`,
 
 Complete compact evidence, hashes, limitations, and raw cluster paths are in
 `artifacts/exploratory/full320_orthc_transfer_positive_20260826/`.
+
+## 7. Prospective Llama-3.1-70B checkpoint extension (2026-08-26 to 2026-08-27)
+
+After the positive two-model transfer was known, a distinct new-checkpoint
+extension was prospectively declared for
+`meta-llama/Llama-3.1-70B-Instruct`, revision
+`1605565b47bb9346c5515c34102e054115b4f98b`. Existing observational
+activations for this checkpoint had been inspected, but no matched
+pilot-trained orthogonalized-C intervention output existed. The extension was
+therefore frozen and reported as a model extension, not independent source-bank
+confirmation.
+
+Deterministic batch-one all-layer extraction completed for both pilot80
+(`1760 x 80 x 8192`) and full320 (`2880 x 80 x 8192`). The frozen pipeline fit
+the unchanged 25-fold pilot A/B/C plans, residualized C against span(A,B), and
+bound copied directions, random controls, scales, and readouts to the same 80
+prospectively selected full320 payload blocks. An outcome-blind eight-row
+shakedown passed all 16 source/target comparisons with `max_abs=0.0`; no
+scientific endpoint was computed.
+
+The complete four-H100 causal execution produced exactly 264,960 records in
+one invocation (Slurm job `53794464`, raw SHA-256
+`4c199e48afa1e2b49633610d307a7b13490e6fe0ecbeb021036269d468669ccd`).
+No partial output was inspected. The frozen analyzer then ran once and returned
+`POSITIVE_MODEL_EXTENSION`:
+
+- layer-74-minus-layer-13 mean `0.544546`, payload-block bootstrap 95% CI
+  `[0.537385, 0.551766]`, one-sided `p=1.64e-98`;
+- all 80 payload-block effects positive;
+- high-layer mean `0.545086`, one-sided `p=1.71e-98`;
+- alpha-0.5 high-minus-low mean `0.272533`, half/full ratio `0.500478`;
+- primary C effect above the frozen absolute-random 97.5th-percentile
+  threshold `0.027588`;
+- all 16 topic means and all 16 leave-one-topic-out means positive.
+
+The extension mean is descriptively smaller than the already-known 8B
+(`0.748536`) and Llama-3.3-70B (`0.681691`) effects. This was not a
+preregistered scaling comparison and does not establish a size or version
+scaling law. The defensible claim is only that the fixed internal
+intervention/readout response prospectively generalized to this additional
+checkpoint with layer-ordering, dose, and random-control support. It is not
+evaluation awareness, behavioral steering, a pure semantic mechanism, full
+A/B/C replication, or a universal model-family result.
+
+The complete 6.97 GB run/source/log archive is verified locally at
+`C:/format-EA-data/full320_orthc_llama31_70b_extension_v1/`. Compact evidence,
+hashes, frozen scopes, and all forbidden interpretations are in
+`artifacts/exploratory/full320_orthc_llama31_70b_model_extension_positive_20260827/`.
