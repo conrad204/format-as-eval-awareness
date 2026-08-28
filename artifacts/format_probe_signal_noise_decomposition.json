@@ -1,0 +1,890 @@
+{
+  "llama31_8b": {
+    "anchor_layer": 8,
+    "mid_layer": 16,
+    "final_layer": 31,
+    "anchor_depth": 0.27,
+    "layers": {
+      "8": {
+        "bb_self": {
+          "n_e": 2080,
+          "n_d": 2080,
+          "unpaired_signal_mean_diff": 11.912243001699679,
+          "unpaired_pooled_sd": 4.985093679625735,
+          "unpaired_d_prime": 2.389572547128946,
+          "approx_auc_from_dprime": 0.9544556867769105,
+          "real_auc": 0.986652413091716,
+          "n_pairs": 320,
+          "paired_signal_mean_diff": 11.226467674816146,
+          "paired_noise_sd": 7.703428535059586,
+          "paired_d_prime": 1.4573339161546865
+        },
+        "cc_self": {
+          "n_e": 1760,
+          "n_d": 1760,
+          "unpaired_signal_mean_diff": 11.373820236708129,
+          "unpaired_pooled_sd": 4.572886170275143,
+          "unpaired_d_prime": 2.487230124082399,
+          "approx_auc_from_dprime": 0.9606889294980551,
+          "real_auc": 0.9853166967975208,
+          "n_pairs": 320,
+          "paired_signal_mean_diff": 9.825441307082821,
+          "paired_noise_sd": 6.07943530246413,
+          "paired_d_prime": 1.616176637836799
+        },
+        "b2c_transfer": {
+          "n_e": 1760,
+          "n_d": 1760,
+          "unpaired_signal_mean_diff": 11.911262893273312,
+          "unpaired_pooled_sd": 5.611153249977459,
+          "unpaired_d_prime": 2.1227833856295337,
+          "approx_auc_from_dprime": 0.9333266842449011,
+          "real_auc": 0.9509930268595042,
+          "n_pairs": 320,
+          "paired_signal_mean_diff": 10.064857107964276,
+          "paired_noise_sd": 6.371714594186653,
+          "paired_d_prime": 1.5796151819397446
+        },
+        "c2b_transfer": {
+          "n_e": 2080,
+          "n_d": 2080,
+          "unpaired_signal_mean_diff": 10.410081439770126,
+          "unpaired_pooled_sd": 5.154178983547077,
+          "unpaired_d_prime": 2.0197361156841254,
+          "approx_auc_from_dprime": 0.9233784043929757,
+          "real_auc": 0.9400268121301776,
+          "n_pairs": 320,
+          "paired_signal_mean_diff": 9.641024596879893,
+          "paired_noise_sd": 6.5807334207788815,
+          "paired_d_prime": 1.4650380102676765
+        },
+        "bootstrap_ci": {
+          "bench": {
+            "n_boot": 1000,
+            "n_boot_valid": 1000,
+            "signal_share_ci95": [
+              71.78411653215164,
+              89.2334613701905
+            ],
+            "noise_share_ci95": [
+              10.766538629809506,
+              28.21588346784836
+            ],
+            "dprime_self_ci95": [
+              2.3310914922089068,
+              2.457571217366039
+            ],
+            "dprime_transfer_ci95": [
+              1.9660212886950592,
+              2.0742580721787385
+            ]
+          },
+          "casual": {
+            "n_boot": 1000,
+            "n_boot_valid": 1000,
+            "signal_share_ci95": [
+              -34.68897986954447,
+              -24.273379058510496
+            ],
+            "noise_share_ci95": [
+              124.2733790585105,
+              134.68897986954448
+            ],
+            "dprime_self_ci95": [
+              2.429144350468492,
+              2.554193966633668
+            ],
+            "dprime_transfer_ci95": [
+              2.0612083101953402,
+              2.1868104422058092
+            ]
+          }
+        }
+      },
+      "16": {
+        "bb_self": {
+          "n_e": 2080,
+          "n_d": 2080,
+          "unpaired_signal_mean_diff": 12.742194234060108,
+          "unpaired_pooled_sd": 5.966375763484518,
+          "unpaired_d_prime": 2.1356674033246503,
+          "approx_auc_from_dprime": 0.9344967730728052,
+          "real_auc": 0.9697353457840238,
+          "n_pairs": 320,
+          "paired_signal_mean_diff": 11.968449763937935,
+          "paired_noise_sd": 8.83594036568077,
+          "paired_d_prime": 1.3545190742146684
+        },
+        "cc_self": {
+          "n_e": 1760,
+          "n_d": 1760,
+          "unpaired_signal_mean_diff": 13.2026342951639,
+          "unpaired_pooled_sd": 6.037705980195565,
+          "unpaired_d_prime": 2.186697122793028,
+          "approx_auc_from_dprime": 0.9389752871714091,
+          "real_auc": 0.968591813016529,
+          "n_pairs": 320,
+          "paired_signal_mean_diff": 10.401194846359608,
+          "paired_noise_sd": 6.973063963626964,
+          "paired_d_prime": 1.4916247578703608
+        },
+        "b2c_transfer": {
+          "n_e": 1760,
+          "n_d": 1760,
+          "unpaired_signal_mean_diff": 14.522342981650844,
+          "unpaired_pooled_sd": 8.381381636821494,
+          "unpaired_d_prime": 1.732690815300735,
+          "approx_auc_from_dprime": 0.8897495778097564,
+          "real_auc": 0.9081963455578512,
+          "n_pairs": 320,
+          "paired_signal_mean_diff": 11.03769102363445,
+          "paired_noise_sd": 7.834636219984958,
+          "paired_d_prime": 1.4088326137567164
+        },
+        "c2b_transfer": {
+          "n_e": 2080,
+          "n_d": 2080,
+          "unpaired_signal_mean_diff": 10.519379669201545,
+          "unpaired_pooled_sd": 5.645869945828567,
+          "unpaired_d_prime": 1.8631990765167652,
+          "approx_auc_from_dprime": 0.9061612271845603,
+          "real_auc": 0.9231000369822486,
+          "n_pairs": 320,
+          "paired_signal_mean_diff": 9.022013098801745,
+          "paired_noise_sd": 7.576104802362358,
+          "paired_d_prime": 1.1908511476753236
+        },
+        "bootstrap_ci": {
+          "bench": {
+            "n_boot": 1000,
+            "n_boot_valid": 1000,
+            "signal_share_ci95": [
+              122.82273940840186,
+              161.63190642031861
+            ],
+            "noise_share_ci95": [
+              -61.631906420318614,
+              -22.82273940840188
+            ],
+            "dprime_self_ci95": [
+              2.079106154801131,
+              2.2024647136562123
+            ],
+            "dprime_transfer_ci95": [
+              1.8167499117237595,
+              1.915955652296513
+            ]
+          },
+          "casual": {
+            "n_boot": 1000,
+            "n_boot_valid": 1000,
+            "signal_share_ci95": [
+              -46.21620924887125,
+              -35.83667005942011
+            ],
+            "noise_share_ci95": [
+              135.83667005942013,
+              146.21620924887125
+            ],
+            "dprime_self_ci95": [
+              2.12235637312929,
+              2.2551081423244503
+            ],
+            "dprime_transfer_ci95": [
+              1.6776990828173381,
+              1.7917716935439731
+            ]
+          }
+        }
+      },
+      "31": {
+        "bb_self": {
+          "n_e": 2080,
+          "n_d": 2080,
+          "unpaired_signal_mean_diff": 8.466720868777646,
+          "unpaired_pooled_sd": 5.2485539004251445,
+          "unpaired_d_prime": 1.6131530759533255,
+          "approx_auc_from_dprime": 0.8729966702315011,
+          "real_auc": 0.9057854105029586,
+          "n_pairs": 320,
+          "paired_signal_mean_diff": 7.889726441477967,
+          "paired_noise_sd": 6.889057128035185,
+          "paired_d_prime": 1.1452549013377364
+        },
+        "cc_self": {
+          "n_e": 1760,
+          "n_d": 1760,
+          "unpaired_signal_mean_diff": 8.545571816569275,
+          "unpaired_pooled_sd": 5.192469709763912,
+          "unpaired_d_prime": 1.6457624780170013,
+          "approx_auc_from_dprime": 0.8777332372930843,
+          "real_auc": 0.8974912835743801,
+          "n_pairs": 320,
+          "paired_signal_mean_diff": 7.183861191469629,
+          "paired_noise_sd": 6.192422098178466,
+          "paired_d_prime": 1.1601052185352159
+        },
+        "b2c_transfer": {
+          "n_e": 1760,
+          "n_d": 1760,
+          "unpaired_signal_mean_diff": 9.401411989452273,
+          "unpaired_pooled_sd": 6.50289008473825,
+          "unpaired_d_prime": 1.4457282634249986,
+          "approx_auc_from_dprime": 0.8466768093686834,
+          "real_auc": 0.8560153021694215,
+          "n_pairs": 320,
+          "paired_signal_mean_diff": 7.657557873678084,
+          "paired_noise_sd": 6.654377232179594,
+          "paired_d_prime": 1.150755000279704
+        },
+        "c2b_transfer": {
+          "n_e": 2080,
+          "n_d": 2080,
+          "unpaired_signal_mean_diff": 6.586269104906705,
+          "unpaired_pooled_sd": 6.036332167506621,
+          "unpaired_d_prime": 1.0911044856610737,
+          "approx_auc_from_dprime": 0.7798028003275795,
+          "real_auc": 0.7804553439349112,
+          "n_pairs": 320,
+          "paired_signal_mean_diff": 5.642155332909814,
+          "paired_noise_sd": 5.659804709865585,
+          "paired_d_prime": 0.9968816279252521
+        },
+        "bootstrap_ci": {
+          "bench": {
+            "n_boot": 1000,
+            "n_boot_valid": 1000,
+            "signal_share_ci95": [
+              59.44039072392536,
+              69.81265440865465
+            ],
+            "noise_share_ci95": [
+              30.18734559134533,
+              40.559609276074646
+            ],
+            "dprime_self_ci95": [
+              1.5614345884349894,
+              1.6645569424917515
+            ],
+            "dprime_transfer_ci95": [
+              1.0482025502798136,
+              1.1352363106670198
+            ]
+          },
+          "casual": {
+            "n_boot": 1000,
+            "n_boot_valid": 1000,
+            "signal_share_ci95": [
+              -102.50219602533997,
+              -54.43406674691706
+            ],
+            "noise_share_ci95": [
+              154.43406674691704,
+              202.50219602533994
+            ],
+            "dprime_self_ci95": [
+              1.5839138616354063,
+              1.7077449522410686
+            ],
+            "dprime_transfer_ci95": [
+              1.3832509695176516,
+              1.5131227220930672
+            ]
+          }
+        }
+      }
+    }
+  },
+  "llama31_70b": {
+    "anchor_layer": 21,
+    "mid_layer": 40,
+    "final_layer": 79,
+    "anchor_depth": 0.27,
+    "layers": {
+      "21": {
+        "bb_self": {
+          "n_e": 2080,
+          "n_d": 2080,
+          "unpaired_signal_mean_diff": 19.600939086901356,
+          "unpaired_pooled_sd": 6.836955176217965,
+          "unpaired_d_prime": 2.8669105737422886,
+          "approx_auc_from_dprime": 0.9786796270544977,
+          "real_auc": 0.9954093472633136,
+          "n_pairs": 320,
+          "paired_signal_mean_diff": 20.234340718765594,
+          "paired_noise_sd": 11.532597777762906,
+          "paired_d_prime": 1.7545345037335252
+        },
+        "cc_self": {
+          "n_e": 1760,
+          "n_d": 1760,
+          "unpaired_signal_mean_diff": 18.484327722598486,
+          "unpaired_pooled_sd": 6.667259407977833,
+          "unpaired_d_prime": 2.7724026607515406,
+          "approx_auc_from_dprime": 0.9750245798699043,
+          "real_auc": 0.994583548553719,
+          "n_pairs": 320,
+          "paired_signal_mean_diff": 17.401719591910528,
+          "paired_noise_sd": 11.32229848483341,
+          "paired_d_prime": 1.5369423103639865
+        },
+        "b2c_transfer": {
+          "n_e": 1760,
+          "n_d": 1760,
+          "unpaired_signal_mean_diff": 19.62902800960814,
+          "unpaired_pooled_sd": 7.345748354347193,
+          "unpaired_d_prime": 2.6721617815823677,
+          "approx_auc_from_dprime": 0.9705878173517415,
+          "real_auc": 0.9854819860537191,
+          "n_pairs": 320,
+          "paired_signal_mean_diff": 17.956718795532183,
+          "paired_noise_sd": 11.842294837475496,
+          "paired_d_prime": 1.5163208687143395
+        },
+        "c2b_transfer": {
+          "n_e": 2080,
+          "n_d": 2080,
+          "unpaired_signal_mean_diff": 17.19362927161872,
+          "unpaired_pooled_sd": 6.57808837548527,
+          "unpaired_d_prime": 2.613772921582303,
+          "approx_auc_from_dprime": 0.9677144894442629,
+          "real_auc": 0.9801049371301775,
+          "n_pairs": 320,
+          "paired_signal_mean_diff": 17.87137155186884,
+          "paired_noise_sd": 10.452639849356492,
+          "paired_d_prime": 1.7097471843889347
+        },
+        "bootstrap_ci": {
+          "bench": {
+            "n_boot": 1000,
+            "n_boot_valid": 1000,
+            "signal_share_ci95": [
+              127.90393734026183,
+              158.71628267384025
+            ],
+            "noise_share_ci95": [
+              -58.71628267384027,
+              -27.903937340261837
+            ],
+            "dprime_self_ci95": [
+              2.7981285951850743,
+              2.9460584828837666
+            ],
+            "dprime_transfer_ci95": [
+              2.54811121001877,
+              2.684712703748785
+            ]
+          },
+          "casual": {
+            "n_boot": 1000,
+            "n_boot_valid": 1000,
+            "signal_share_ci95": [
+              -224.42957737048368,
+              -126.85042220277553
+            ],
+            "noise_share_ci95": [
+              226.85042220277552,
+              324.4295773704837
+            ],
+            "dprime_self_ci95": [
+              2.6975819393387885,
+              2.8505574845327315
+            ],
+            "dprime_transfer_ci95": [
+              2.598339398813886,
+              2.7489779521197275
+            ]
+          }
+        }
+      },
+      "40": {
+        "bb_self": {
+          "n_e": 2080,
+          "n_d": 2080,
+          "unpaired_signal_mean_diff": 15.515924002340029,
+          "unpaired_pooled_sd": 6.90299932108467,
+          "unpaired_d_prime": 2.247707595008427,
+          "approx_auc_from_dprime": 0.9440114773208922,
+          "real_auc": 0.9780013406065089,
+          "n_pairs": 320,
+          "paired_signal_mean_diff": 14.351150462312082,
+          "paired_noise_sd": 11.44295916107925,
+          "paired_d_prime": 1.2541467867091947
+        },
+        "cc_self": {
+          "n_e": 1760,
+          "n_d": 1760,
+          "unpaired_signal_mean_diff": 15.049325613368246,
+          "unpaired_pooled_sd": 6.589037021271262,
+          "unpaired_d_prime": 2.2839946967644584,
+          "approx_auc_from_dprime": 0.9468476992579881,
+          "real_auc": 0.9775158186983471,
+          "n_pairs": 320,
+          "paired_signal_mean_diff": 14.065715980921606,
+          "paired_noise_sd": 9.491992679148899,
+          "paired_d_prime": 1.4818506984123392
+        },
+        "b2c_transfer": {
+          "n_e": 1760,
+          "n_d": 1760,
+          "unpaired_signal_mean_diff": 16.189200366866547,
+          "unpaired_pooled_sd": 7.932510808852681,
+          "unpaired_d_prime": 2.040867104624604,
+          "approx_auc_from_dprime": 0.9255053930917778,
+          "real_auc": 0.9425855501033059,
+          "n_pairs": 320,
+          "paired_signal_mean_diff": 15.090950524436954,
+          "paired_noise_sd": 10.268520851845087,
+          "paired_d_prime": 1.4696323591459965
+        },
+        "c2b_transfer": {
+          "n_e": 2080,
+          "n_d": 2080,
+          "unpaired_signal_mean_diff": 12.820958592769536,
+          "unpaired_pooled_sd": 6.4392815981187805,
+          "unpaired_d_prime": 1.9910541878639296,
+          "approx_auc_from_dprime": 0.9204178693707131,
+          "real_auc": 0.9546997503698226,
+          "n_pairs": 320,
+          "paired_signal_mean_diff": 11.22674521047613,
+          "paired_noise_sd": 10.19884070420815,
+          "paired_d_prime": 1.100786406620103
+        },
+        "bootstrap_ci": {
+          "bench": {
+            "n_boot": 1000,
+            "n_boot_valid": 1000,
+            "signal_share_ci95": [
+              142.12126695378123,
+              175.37124341669352
+            ],
+            "noise_share_ci95": [
+              -75.37124341669355,
+              -42.121266953781195
+            ],
+            "dprime_self_ci95": [
+              2.197869464009962,
+              2.304766606467925
+            ],
+            "dprime_transfer_ci95": [
+              1.9447784949585283,
+              2.0439417099240287
+            ]
+          },
+          "casual": {
+            "n_boot": 1000,
+            "n_boot_valid": 1000,
+            "signal_share_ci95": [
+              -79.21694805618654,
+              -54.77661875465101
+            ],
+            "noise_share_ci95": [
+              154.77661875465103,
+              179.2169480561865
+            ],
+            "dprime_self_ci95": [
+              2.222801350222335,
+              2.3554224220502094
+            ],
+            "dprime_transfer_ci95": [
+              1.985313235141266,
+              2.1059998997872253
+            ]
+          }
+        }
+      },
+      "79": {
+        "bb_self": {
+          "n_e": 2080,
+          "n_d": 2080,
+          "unpaired_signal_mean_diff": 9.875555321310058,
+          "unpaired_pooled_sd": 4.873502738722993,
+          "unpaired_d_prime": 2.0263773000151746,
+          "approx_auc_from_dprime": 0.9240518079688371,
+          "real_auc": 0.9409460521449705,
+          "n_pairs": 320,
+          "paired_signal_mean_diff": 9.577837486773642,
+          "paired_noise_sd": 6.889307952327929,
+          "paired_d_prime": 1.3902466768867905
+        },
+        "cc_self": {
+          "n_e": 1760,
+          "n_d": 1760,
+          "unpaired_signal_mean_diff": 9.242211864044393,
+          "unpaired_pooled_sd": 4.818619987497338,
+          "unpaired_d_prime": 1.9180204888587924,
+          "approx_auc_from_dprime": 0.9124894324950024,
+          "real_auc": 0.9250716683884298,
+          "n_pairs": 320,
+          "paired_signal_mean_diff": 9.023661607947403,
+          "paired_noise_sd": 5.9160797937316705,
+          "paired_d_prime": 1.5252771974962784
+        },
+        "b2c_transfer": {
+          "n_e": 1760,
+          "n_d": 1760,
+          "unpaired_signal_mean_diff": 9.625592808304003,
+          "unpaired_pooled_sd": 5.783340303604386,
+          "unpaired_d_prime": 1.6643656266094158,
+          "approx_auc_from_dprime": 0.8803791395699978,
+          "real_auc": 0.8860866477272727,
+          "n_pairs": 320,
+          "paired_signal_mean_diff": 9.746037271604184,
+          "paired_noise_sd": 6.710987776747218,
+          "paired_d_prime": 1.452250785699991
+        },
+        "c2b_transfer": {
+          "n_e": 2080,
+          "n_d": 2080,
+          "unpaired_signal_mean_diff": 7.783487945129646,
+          "unpaired_pooled_sd": 4.822539000419303,
+          "unpaired_d_prime": 1.6139813373106777,
+          "approx_auc_from_dprime": 0.8731185355943101,
+          "real_auc": 0.8806291605029586,
+          "n_pairs": 320,
+          "paired_signal_mean_diff": 7.096238835463677,
+          "paired_noise_sd": 5.845627299372694,
+          "paired_d_prime": 1.2139396632804813
+        },
+        "bootstrap_ci": {
+          "bench": {
+            "n_boot": 1000,
+            "n_boot_valid": 1000,
+            "signal_share_ci95": [
+              93.98572420104037,
+              117.40841059850884
+            ],
+            "noise_share_ci95": [
+              -17.408410598508844,
+              6.014275798959611
+            ],
+            "dprime_self_ci95": [
+              1.967611379911497,
+              2.090068605915476
+            ],
+            "dprime_transfer_ci95": [
+              1.5630010204046305,
+              1.6679074086847596
+            ]
+          },
+          "casual": {
+            "n_boot": 1000,
+            "n_boot_valid": 1000,
+            "signal_share_ci95": [
+              -39.27610226533344,
+              -20.54190863806287
+            ],
+            "noise_share_ci95": [
+              120.54190863806286,
+              139.27610226533344
+            ],
+            "dprime_self_ci95": [
+              1.854919503125617,
+              1.9842195779609606
+            ],
+            "dprime_transfer_ci95": [
+              1.6031552742707016,
+              1.7263705104991445
+            ]
+          }
+        }
+      }
+    }
+  },
+  "llama33_70b": {
+    "anchor_layer": 21,
+    "mid_layer": 40,
+    "final_layer": 79,
+    "anchor_depth": 0.27,
+    "layers": {
+      "21": {
+        "bb_self": {
+          "n_e": 2080,
+          "n_d": 2080,
+          "unpaired_signal_mean_diff": 17.454086930705124,
+          "unpaired_pooled_sd": 5.87634087257241,
+          "unpaired_d_prime": 2.970230507248378,
+          "approx_auc_from_dprime": 0.9821474575043015,
+          "real_auc": 0.9939013960798817,
+          "n_pairs": 320,
+          "paired_signal_mean_diff": 18.19957836876263,
+          "paired_noise_sd": 10.101504687690921,
+          "paired_d_prime": 1.8016700413889357
+        },
+        "cc_self": {
+          "n_e": 1760,
+          "n_d": 1760,
+          "unpaired_signal_mean_diff": 17.4790340877908,
+          "unpaired_pooled_sd": 6.034385482302935,
+          "unpaired_d_prime": 2.8965723417987848,
+          "approx_auc_from_dprime": 0.97972910845892,
+          "real_auc": 0.992071603822314,
+          "n_pairs": 320,
+          "paired_signal_mean_diff": 16.717544257996877,
+          "paired_noise_sd": 10.458254838893781,
+          "paired_d_prime": 1.598502285087286
+        },
+        "b2c_transfer": {
+          "n_e": 1760,
+          "n_d": 1760,
+          "unpaired_signal_mean_diff": 18.125388682402722,
+          "unpaired_pooled_sd": 6.49348644094367,
+          "unpaired_d_prime": 2.7913184769457438,
+          "approx_auc_from_dprime": 0.9757954931546691,
+          "real_auc": 0.9857108729338842,
+          "n_pairs": 320,
+          "paired_signal_mean_diff": 17.272950639591798,
+          "paired_noise_sd": 10.803111714565556,
+          "paired_d_prime": 1.5988866074857973
+        },
+        "c2b_transfer": {
+          "n_e": 2080,
+          "n_d": 2080,
+          "unpaired_signal_mean_diff": 15.080673386680012,
+          "unpaired_pooled_sd": 5.747609654375873,
+          "unpaired_d_prime": 2.6238165591496845,
+          "approx_auc_from_dprime": 0.9682246197238956,
+          "real_auc": 0.9774822022928994,
+          "n_pairs": 320,
+          "paired_signal_mean_diff": 15.774989093653172,
+          "paired_noise_sd": 9.230089516602323,
+          "paired_d_prime": 1.709083001338007
+        },
+        "bootstrap_ci": {
+          "bench": {
+            "n_boot": 1000,
+            "n_boot_valid": 1000,
+            "signal_share_ci95": [
+              107.67704735140316,
+              130.07000829879308
+            ],
+            "noise_share_ci95": [
+              -30.070008298793095,
+              -7.677047351403165
+            ],
+            "dprime_self_ci95": [
+              2.8970923082092663,
+              3.0573310817801103
+            ],
+            "dprime_transfer_ci95": [
+              2.5566006170199427,
+              2.7027289900235982
+            ]
+          },
+          "casual": {
+            "n_boot": 1000,
+            "n_boot_valid": 1000,
+            "signal_share_ci95": [
+              -134.4641133391038,
+              -74.5063329384985
+            ],
+            "noise_share_ci95": [
+              174.50633293849853,
+              234.4641133391038
+            ],
+            "dprime_self_ci95": [
+              2.821532624279809,
+              2.979517917535658
+            ],
+            "dprime_transfer_ci95": [
+              2.7146388103993795,
+              2.8755612259579997
+            ]
+          }
+        }
+      },
+      "40": {
+        "bb_self": {
+          "n_e": 2080,
+          "n_d": 2080,
+          "unpaired_signal_mean_diff": 14.13593035031444,
+          "unpaired_pooled_sd": 6.331804831435152,
+          "unpaired_d_prime": 2.2325278063111784,
+          "approx_auc_from_dprime": 0.9427901623239289,
+          "real_auc": 0.9768962647928995,
+          "n_pairs": 320,
+          "paired_signal_mean_diff": 13.264223720557903,
+          "paired_noise_sd": 10.73378926878583,
+          "paired_d_prime": 1.2357447485139892
+        },
+        "cc_self": {
+          "n_e": 1760,
+          "n_d": 1760,
+          "unpaired_signal_mean_diff": 13.852688502962891,
+          "unpaired_pooled_sd": 6.0938276665674165,
+          "unpaired_d_prime": 2.273232730056174,
+          "approx_auc_from_dprime": 0.9460186784868587,
+          "real_auc": 0.9749050878099174,
+          "n_pairs": 320,
+          "paired_signal_mean_diff": 12.84503780670882,
+          "paired_noise_sd": 8.373471051785971,
+          "paired_d_prime": 1.5340159089663434
+        },
+        "b2c_transfer": {
+          "n_e": 1760,
+          "n_d": 1760,
+          "unpaired_signal_mean_diff": 14.463917165315411,
+          "unpaired_pooled_sd": 7.907266392518418,
+          "unpaired_d_prime": 1.8291931050913715,
+          "approx_auc_from_dprime": 0.9020696481012984,
+          "real_auc": 0.916144111570248,
+          "n_pairs": 320,
+          "paired_signal_mean_diff": 13.336458710175762,
+          "paired_noise_sd": 8.922365149505051,
+          "paired_d_prime": 1.4947223619194259
+        },
+        "c2b_transfer": {
+          "n_e": 2080,
+          "n_d": 2080,
+          "unpaired_signal_mean_diff": 11.743717979630496,
+          "unpaired_pooled_sd": 6.382312599120421,
+          "unpaired_d_prime": 1.8400411758660895,
+          "approx_auc_from_dprime": 0.9033888432214284,
+          "real_auc": 0.9396096061390531,
+          "n_pairs": 320,
+          "paired_signal_mean_diff": 10.60237722846523,
+          "paired_noise_sd": 10.078829042428412,
+          "paired_d_prime": 1.0519453384746245
+        },
+        "bootstrap_ci": {
+          "bench": {
+            "n_boot": 1000,
+            "n_boot_valid": 1000,
+            "signal_share_ci95": [
+              88.21657423556826,
+              104.08809228221303
+            ],
+            "noise_share_ci95": [
+              -4.088092282213046,
+              11.783425764431739
+            ],
+            "dprime_self_ci95": [
+              2.174625562130666,
+              2.29640602124066
+            ],
+            "dprime_transfer_ci95": [
+              1.7922241725953825,
+              1.8940198932375905
+            ]
+          },
+          "casual": {
+            "n_boot": 1000,
+            "n_boot_valid": 1000,
+            "signal_share_ci95": [
+              -24.007743767195837,
+              -16.64594845452562
+            ],
+            "noise_share_ci95": [
+              116.64594845452561,
+              124.00774376719583
+            ],
+            "dprime_self_ci95": [
+              2.209858228337517,
+              2.3424910652552273
+            ],
+            "dprime_transfer_ci95": [
+              1.7744605687406363,
+              1.8908903514673818
+            ]
+          }
+        }
+      },
+      "79": {
+        "bb_self": {
+          "n_e": 2080,
+          "n_d": 2080,
+          "unpaired_signal_mean_diff": 8.383116507405777,
+          "unpaired_pooled_sd": 4.533594219045021,
+          "unpaired_d_prime": 1.8491104634352649,
+          "approx_auc_from_dprime": 0.9044816700966318,
+          "real_auc": 0.9136626294378698,
+          "n_pairs": 320,
+          "paired_signal_mean_diff": 7.949643822138151,
+          "paired_noise_sd": 5.953775107296475,
+          "paired_d_prime": 1.3352274277870686
+        },
+        "cc_self": {
+          "n_e": 1760,
+          "n_d": 1760,
+          "unpaired_signal_mean_diff": 8.060237164561824,
+          "unpaired_pooled_sd": 4.677747401488031,
+          "unpaired_d_prime": 1.723102269694553,
+          "approx_auc_from_dprime": 0.888467282830412,
+          "real_auc": 0.8971594137396695,
+          "n_pairs": 320,
+          "paired_signal_mean_diff": 7.57327599997559,
+          "paired_noise_sd": 4.581381500593147,
+          "paired_d_prime": 1.6530550880766175
+        },
+        "b2c_transfer": {
+          "n_e": 1760,
+          "n_d": 1760,
+          "unpaired_signal_mean_diff": 7.433477671026626,
+          "unpaired_pooled_sd": 5.631991143955005,
+          "unpaired_d_prime": 1.3198667187190471,
+          "approx_auc_from_dprime": 0.8246640216809287,
+          "real_auc": 0.8304887654958678,
+          "n_pairs": 320,
+          "paired_signal_mean_diff": 7.2317946733790475,
+          "paired_noise_sd": 4.707399756593453,
+          "paired_d_prime": 1.5362610033808541
+        },
+        "c2b_transfer": {
+          "n_e": 2080,
+          "n_d": 2080,
+          "unpaired_signal_mean_diff": 6.7362724443054045,
+          "unpaired_pooled_sd": 5.018828369596849,
+          "unpaired_d_prime": 1.3422002005712168,
+          "approx_auc_from_dprime": 0.8287097482388825,
+          "real_auc": 0.8317524963017752,
+          "n_pairs": 320,
+          "paired_signal_mean_diff": 5.821145137112557,
+          "paired_noise_sd": 5.850385447788771,
+          "paired_d_prime": 0.9950019856063902
+        },
+        "bootstrap_ci": {
+          "bench": {
+            "n_boot": 1000,
+            "n_boot_valid": 1000,
+            "signal_share_ci95": [
+              62.81156833436948,
+              74.13442490567886
+            ],
+            "noise_share_ci95": [
+              25.86557509432114,
+              37.188431665630524
+            ],
+            "dprime_self_ci95": [
+              1.7939175842503325,
+              1.90929864942306
+            ],
+            "dprime_transfer_ci95": [
+              1.295685286636385,
+              1.395589307946484
+            ]
+          },
+          "casual": {
+            "n_boot": 1000,
+            "n_boot_valid": 1000,
+            "signal_share_ci95": [
+              24.678662452527004,
+              35.99007306532689
+            ],
+            "noise_share_ci95": [
+              64.00992693467312,
+              75.321337547473
+            ],
+            "dprime_self_ci95": [
+              1.6524726531994642,
+              1.7944834532653968
+            ],
+            "dprime_transfer_ci95": [
+              1.2627577275820085,
+              1.3809892399613208
+            ]
+          }
+        }
+      }
+    }
+  }
+}
