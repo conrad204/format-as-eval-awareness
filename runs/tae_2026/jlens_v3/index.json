@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "analysis": "development_only_jlens_full320_v3",
+  "runs": [
+    {
+      "run_id": "20260818_full320_8b",
+      "status": "failed",
+      "manifest": "20260818_full320_8b/run_manifest.json",
+      "job_id": 52584519,
+      "reason": "missing input_set assignment"
+    },
+    {
+      "run_id": "20260818_full320_8b_retry01",
+      "status": "failed",
+      "manifest": "20260818_full320_8b_retry01/run_manifest.json",
+      "job_id": 52585020,
+      "reason": "missing scores accumulator"
+    },
+    {
+      "run_id": "20260818_full320_8b_retry02",
+      "status": "failed",
+      "manifest": "20260818_full320_8b_retry02/run_manifest.json",
+      "job_id": 52585521,
+      "reason": "missing subprocess import during manifest write"
+    },
+    {
+      "run_id": "20260818_full320_8b_retry03",
+      "status": "completed_development_only",
+      "manifest": "20260818_full320_8b_retry03/run_manifest.json",
+      "job_id": 52588025,
+      "assay": "20260818_full320_8b_retry03/outputs/assay.json",
+      "geometry": "20260818_full320_8b_retry03/outputs/geometry_controls.json",
+      "factorial": "20260818_full320_8b_retry03/outputs/factorial_bootstrap.json"
+    }
+  ],
+  "shared_inputs": {
+    "items": "v3-activations/rendered_items_v3_full320_8-17-2026.jsonl",
+    "activations": "v3-activations/activations/llama31_8b/activations_all_layers.npz",
+    "lens": "artifacts/jlens_1000/lens.pt"
+  }
+}

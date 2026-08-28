@@ -1,0 +1,445 @@
+{
+  "schema_version": 2,
+  "purpose": "Per-fold cross-fitted linear format-erasure (reused from scripts/format_erasure_development.py) then retrain of the pinned balanced 2x2 purpose probe (scripts/sweep_full.py) on erased activations, at the pinned min-gap/final/spike depths. Two erasure bases are compared: matched_mean (single averaged format-contrast direction) and matched_pca (un-averaged per-group format-contrast basis, rank genuinely varies the amount removed).",
+  "mode": "development",
+  "methods": {
+    "note": "grid is thinner for 8192-dim models; see per-model 'method_grid' field"
+  },
+  "probe": {
+    "C": 0.1,
+    "max_iter": 3000,
+    "random_state": 0
+  },
+  "leakage_note": "the erasure basis Q is fit per held-out purpose-family fold using only that fold's training rows; it is never fit on, or using labels from, the held-out fold it is then applied to.",
+  "baseline_source": "results/full320_v3_c_robustness.json (C=0.1, the pinned scripts/sweep_full.py value), reused rather than recomputed since it is identical fold/layer setup.",
+  "script": {
+    "path": "X:\\code\\format-as-eval-awareness\\scripts\\full320_v3_format_erasure_retrain.py",
+    "sha256": "3ee9a90d02dd4d849898b49eb605187cbb673e7ceb9294cf728810cde24ce30f"
+  },
+  "git_commit": "fb551b2643edda05a9094cf1b7fac13026126378",
+  "items": {
+    "path": "v3-activations/rendered_items_v3_full320_8-17-2026.jsonl",
+    "sha256": "5528819d74e696d1a595062047a829836dfde1d2a45287b06a5ac1ba5d1b6c67"
+  },
+  "n_total_rows": 11520,
+  "n_stated_rows": 7680,
+  "n_excluded_no_cue_rows": 3840,
+  "llama31_8b": {
+    "depth_role": {
+      "14": "min_gap",
+      "31": "final",
+      "3": "spike"
+    },
+    "method_grid": {
+      "matched_mean": [
+        1,
+        4
+      ],
+      "matched_pca": [
+        1,
+        4,
+        16,
+        64
+      ]
+    },
+    "by_layer": {
+      "14": {
+        "raw_baseline": {
+          "purpose_auc": 0.985249972873264,
+          "b2c_auc": 0.9519883135330578,
+          "c2b_auc": 0.9466475591715977,
+          "gap": 0.03593203652093624
+        },
+        "matched_mean": {
+          "1": {
+            "purpose_auc_after_erasure": 0.9851,
+            "format_auc_after_erasure": 0.9277,
+            "b2c_auc_after_erasure": 0.9541,
+            "c2b_auc_after_erasure": 0.946,
+            "gap_after_erasure": 0.0351
+          },
+          "4": {
+            "purpose_auc_after_erasure": 0.9851,
+            "format_auc_after_erasure": 0.9277,
+            "b2c_auc_after_erasure": 0.9541,
+            "c2b_auc_after_erasure": 0.946,
+            "gap_after_erasure": 0.0351
+          }
+        },
+        "matched_pca": {
+          "1": {
+            "purpose_auc_after_erasure": 0.9852,
+            "format_auc_after_erasure": 1.0,
+            "b2c_auc_after_erasure": 0.9551,
+            "c2b_auc_after_erasure": 0.9461,
+            "gap_after_erasure": 0.0346
+          },
+          "4": {
+            "purpose_auc_after_erasure": 0.9849,
+            "format_auc_after_erasure": 0.9879,
+            "b2c_auc_after_erasure": 0.9595,
+            "c2b_auc_after_erasure": 0.9522,
+            "gap_after_erasure": 0.029
+          },
+          "16": {
+            "purpose_auc_after_erasure": 0.9849,
+            "format_auc_after_erasure": 0.944,
+            "b2c_auc_after_erasure": 0.9657,
+            "c2b_auc_after_erasure": 0.9589,
+            "gap_after_erasure": 0.0226
+          },
+          "64": {
+            "purpose_auc_after_erasure": 0.9842,
+            "format_auc_after_erasure": 0.9257,
+            "b2c_auc_after_erasure": 0.9719,
+            "c2b_auc_after_erasure": 0.9667,
+            "gap_after_erasure": 0.0149
+          }
+        }
+      },
+      "31": {
+        "raw_baseline": {
+          "purpose_auc": 0.9127840847439237,
+          "b2c_auc": 0.8560727660123966,
+          "c2b_auc": 0.7807463480029586,
+          "gap": 0.0943745277362461
+        },
+        "matched_mean": {
+          "1": {
+            "purpose_auc_after_erasure": 0.9125,
+            "format_auc_after_erasure": 0.9089,
+            "b2c_auc_after_erasure": 0.8551,
+            "c2b_auc_after_erasure": 0.8153,
+            "gap_after_erasure": 0.0773
+          },
+          "4": {
+            "purpose_auc_after_erasure": 0.9125,
+            "format_auc_after_erasure": 0.9089,
+            "b2c_auc_after_erasure": 0.8551,
+            "c2b_auc_after_erasure": 0.8153,
+            "gap_after_erasure": 0.0773
+          }
+        },
+        "matched_pca": {
+          "1": {
+            "purpose_auc_after_erasure": 0.9117,
+            "format_auc_after_erasure": 0.9946,
+            "b2c_auc_after_erasure": 0.8631,
+            "c2b_auc_after_erasure": 0.8468,
+            "gap_after_erasure": 0.0567
+          },
+          "4": {
+            "purpose_auc_after_erasure": 0.9118,
+            "format_auc_after_erasure": 0.939,
+            "b2c_auc_after_erasure": 0.8629,
+            "c2b_auc_after_erasure": 0.8484,
+            "gap_after_erasure": 0.0562
+          },
+          "16": {
+            "purpose_auc_after_erasure": 0.9107,
+            "format_auc_after_erasure": 0.9292,
+            "b2c_auc_after_erasure": 0.867,
+            "c2b_auc_after_erasure": 0.8594,
+            "gap_after_erasure": 0.0475
+          },
+          "64": {
+            "purpose_auc_after_erasure": 0.9102,
+            "format_auc_after_erasure": 0.9157,
+            "b2c_auc_after_erasure": 0.8706,
+            "c2b_auc_after_erasure": 0.8615,
+            "gap_after_erasure": 0.0442
+          }
+        }
+      },
+      "3": {
+        "raw_baseline": {
+          "purpose_auc": 0.8653344048394098,
+          "b2c_auc": 0.6415266658057851,
+          "c2b_auc": 0.6741924001479289,
+          "gap": 0.20747487186255276
+        },
+        "matched_mean": {
+          "1": {
+            "purpose_auc_after_erasure": 0.8665,
+            "format_auc_after_erasure": 0.9338,
+            "b2c_auc_after_erasure": 0.6446,
+            "c2b_auc_after_erasure": 0.6894,
+            "gap_after_erasure": 0.1995
+          },
+          "4": {
+            "purpose_auc_after_erasure": 0.8665,
+            "format_auc_after_erasure": 0.9338,
+            "b2c_auc_after_erasure": 0.6446,
+            "c2b_auc_after_erasure": 0.6894,
+            "gap_after_erasure": 0.1995
+          }
+        },
+        "matched_pca": {
+          "1": {
+            "purpose_auc_after_erasure": 0.8684,
+            "format_auc_after_erasure": 0.9847,
+            "b2c_auc_after_erasure": 0.6608,
+            "c2b_auc_after_erasure": 0.6851,
+            "gap_after_erasure": 0.1954
+          },
+          "4": {
+            "purpose_auc_after_erasure": 0.8674,
+            "format_auc_after_erasure": 0.9574,
+            "b2c_auc_after_erasure": 0.7621,
+            "c2b_auc_after_erasure": 0.7075,
+            "gap_after_erasure": 0.1326
+          },
+          "16": {
+            "purpose_auc_after_erasure": 0.8696,
+            "format_auc_after_erasure": 0.9335,
+            "b2c_auc_after_erasure": 0.7994,
+            "c2b_auc_after_erasure": 0.7535,
+            "gap_after_erasure": 0.0932
+          },
+          "64": {
+            "purpose_auc_after_erasure": 0.8718,
+            "format_auc_after_erasure": 0.9265,
+            "b2c_auc_after_erasure": 0.8271,
+            "c2b_auc_after_erasure": 0.8022,
+            "gap_after_erasure": 0.0572
+          }
+        }
+      }
+    },
+    "note": "reconstructed from the completed run's captured stdout (job killed only after llama31_8b finished, to avoid recomputing the 70B models with a thinner grid); numbers are the script's own printed aggregate AUCs, not re-derived."
+  },
+  "llama31_70b": {
+    "depth_role": {
+      "19": "min_gap",
+      "79": "final",
+      "4": "spike"
+    },
+    "method_grid": {
+      "matched_mean": [
+        1
+      ],
+      "matched_pca": [
+        1,
+        16
+      ]
+    },
+    "by_layer": {
+      "19": {
+        "raw_baseline": {
+          "purpose_auc": 0.9980607774522571,
+          "b2c_auc": 0.9847859633264463,
+          "c2b_auc": 0.9909282544378698,
+          "gap": 0.010203668570099023
+        },
+        "matched_mean": {
+          "1": {
+            "purpose_auc_after_erasure": 0.9980323621961805,
+            "format_auc_after_erasure": 0.9287235713505244,
+            "b2c_auc_after_erasure": 0.9836579932851239,
+            "c2b_auc_after_erasure": 0.9905443324704143,
+            "gap_after_erasure": 0.010931199318411466
+          }
+        },
+        "matched_pca": {
+          "1": {
+            "purpose_auc_after_erasure": 0.9981050618489584,
+            "format_auc_after_erasure": 1.0,
+            "b2c_auc_after_erasure": 0.9864885717975207,
+            "c2b_auc_after_erasure": 0.990838572485207,
+            "gap_after_erasure": 0.009441489707594508
+          },
+          "16": {
+            "purpose_auc_after_erasure": 0.9984495713975695,
+            "format_auc_after_erasure": 0.9285219760708043,
+            "b2c_auc_after_erasure": 0.9950800619834711,
+            "c2b_auc_after_erasure": 0.9960294933431953,
+            "gap_after_erasure": 0.0028947937342362895
+          }
+        }
+      },
+      "79": {
+        "raw_baseline": {
+          "purpose_auc": 0.9411436631944445,
+          "b2c_auc": 0.8860805139462811,
+          "c2b_auc": 0.8806474204881657,
+          "gap": 0.05777969597722121
+        },
+        "matched_mean": {
+          "1": {
+            "purpose_auc_after_erasure": 0.9409842258029513,
+            "format_auc_after_erasure": 0.9472087385270977,
+            "b2c_auc_after_erasure": 0.8832977143595042,
+            "c2b_auc_after_erasure": 0.8609571468195267,
+            "gap_after_erasure": 0.0688567952134358
+          }
+        },
+        "matched_pca": {
+          "1": {
+            "purpose_auc_after_erasure": 0.9408178032769097,
+            "format_auc_after_erasure": 0.9988075693837413,
+            "b2c_auc_after_erasure": 0.8931511492768596,
+            "c2b_auc_after_erasure": 0.8769644508136096,
+            "gap_after_erasure": 0.05576000323167507
+          },
+          "16": {
+            "purpose_auc_after_erasure": 0.9404784478081597,
+            "format_auc_after_erasure": 0.9593474786931818,
+            "b2c_auc_after_erasure": 0.8963820377066115,
+            "c2b_auc_after_erasure": 0.8901987795857988,
+            "gap_after_erasure": 0.047188039161954465
+          }
+        }
+      },
+      "4": {
+        "raw_baseline": {
+          "purpose_auc": 0.8703538004557292,
+          "b2c_auc": 0.660455513946281,
+          "c2b_auc": 0.6462543916420118,
+          "gap": 0.21699884766158273
+        },
+        "matched_mean": {
+          "1": {
+            "purpose_auc_after_erasure": 0.8693914116753472,
+            "format_auc_after_erasure": 0.9491230741914337,
+            "b2c_auc_after_erasure": 0.647970686983471,
+            "c2b_auc_after_erasure": 0.6547667806952662,
+            "gap_after_erasure": 0.21802267783597862
+          }
+        },
+        "matched_pca": {
+          "1": {
+            "purpose_auc_after_erasure": 0.8691912841796875,
+            "format_auc_after_erasure": 0.9977171656468532,
+            "b2c_auc_after_erasure": 0.661209646177686,
+            "c2b_auc_after_erasure": 0.6592957193047337,
+            "gap_after_erasure": 0.20893860143847764
+          },
+          "16": {
+            "purpose_auc_after_erasure": 0.8644313557942709,
+            "format_auc_after_erasure": 0.9530274803321677,
+            "b2c_auc_after_erasure": 0.7778463972107438,
+            "c2b_auc_after_erasure": 0.7624609375,
+            "gap_after_erasure": 0.09427768843889894
+          }
+        }
+      }
+    }
+  },
+  "llama33_70b": {
+    "depth_role": {
+      "21": "min_gap",
+      "79": "final",
+      "4": "spike"
+    },
+    "method_grid": {
+      "matched_mean": [
+        1
+      ],
+      "matched_pca": [
+        1,
+        16
+      ]
+    },
+    "by_layer": {
+      "21": {
+        "raw_baseline": {
+          "purpose_auc": 0.9938894992404514,
+          "b2c_auc": 0.985832902892562,
+          "c2b_auc": 0.9778210521449706,
+          "gap": 0.012062521721685204
+        },
+        "matched_mean": {
+          "1": {
+            "purpose_auc_after_erasure": 0.9938951958550346,
+            "format_auc_after_erasure": 0.9374098557692306,
+            "b2c_auc_after_erasure": 0.986640625,
+            "c2b_auc_after_erasure": 0.9814957008136094,
+            "gap_after_erasure": 0.009827032948229952
+          }
+        },
+        "matched_pca": {
+          "1": {
+            "purpose_auc_after_erasure": 0.9937455240885416,
+            "format_auc_after_erasure": 1.0,
+            "b2c_auc_after_erasure": 0.9845819344008264,
+            "c2b_auc_after_erasure": 0.9760285687869823,
+            "gap_after_erasure": 0.013440272494637195
+          },
+          "16": {
+            "purpose_auc_after_erasure": 0.9939963107638888,
+            "format_auc_after_erasure": 0.9404164390297203,
+            "b2c_auc_after_erasure": 0.9897707902892561,
+            "c2b_auc_after_erasure": 0.9866494082840237,
+            "gap_after_erasure": 0.005786211477249004
+          }
+        }
+      },
+      "79": {
+        "raw_baseline": {
+          "purpose_auc": 0.9117430962456597,
+          "b2c_auc": 0.8304267820247935,
+          "c2b_auc": 0.8318773113905324,
+          "gap": 0.08059104953799678
+        },
+        "matched_mean": {
+          "1": {
+            "purpose_auc_after_erasure": 0.9115198432074653,
+            "format_auc_after_erasure": 0.949405116368007,
+            "b2c_auc_after_erasure": 0.8262144886363638,
+            "c2b_auc_after_erasure": 0.8222122318786982,
+            "gap_after_erasure": 0.08730648294993426
+          }
+        },
+        "matched_pca": {
+          "1": {
+            "purpose_auc_after_erasure": 0.9115447998046875,
+            "format_auc_after_erasure": 0.9993809413243007,
+            "b2c_auc_after_erasure": 0.833568569214876,
+            "c2b_auc_after_erasure": 0.8466910133136095,
+            "gap_after_erasure": 0.0714150085404448
+          },
+          "16": {
+            "purpose_auc_after_erasure": 0.910840115017361,
+            "format_auc_after_erasure": 0.9599274065777972,
+            "b2c_auc_after_erasure": 0.8533700284090908,
+            "c2b_auc_after_erasure": 0.8559608450443786,
+            "gap_after_erasure": 0.05617467829062617
+          }
+        }
+      },
+      "4": {
+        "raw_baseline": {
+          "purpose_auc": 0.8697621663411458,
+          "b2c_auc": 0.6452156508264463,
+          "c2b_auc": 0.663748150887574,
+          "gap": 0.2152802654841356
+        },
+        "matched_mean": {
+          "1": {
+            "purpose_auc_after_erasure": 0.8691023763020834,
+            "format_auc_after_erasure": 0.9482634943181818,
+            "b2c_auc_after_erasure": 0.6481172520661156,
+            "c2b_auc_after_erasure": 0.6640183524408284,
+            "gap_after_erasure": 0.21303457404861137
+          }
+        },
+        "matched_pca": {
+          "1": {
+            "purpose_auc_after_erasure": 0.8683690728081597,
+            "format_auc_after_erasure": 0.9960238199300698,
+            "b2c_auc_after_erasure": 0.6515424845041322,
+            "c2b_auc_after_erasure": 0.6680625924556212,
+            "gap_after_erasure": 0.20856653432828298
+          },
+          "16": {
+            "purpose_auc_after_erasure": 0.8638983154296875,
+            "format_auc_after_erasure": 0.9523594569493006,
+            "b2c_auc_after_erasure": 0.7776039514462809,
+            "c2b_auc_after_erasure": 0.7620682322485207,
+            "gap_after_erasure": 0.09406222358228677
+          }
+        }
+      }
+    }
+  }
+}

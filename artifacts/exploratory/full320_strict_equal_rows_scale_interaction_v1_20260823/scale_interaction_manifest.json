@@ -1,0 +1,47 @@
+{
+  "analysis": "full320_strict_equal_rows_8b_scale_v1",
+  "criteria": {
+    "8b_replication": false,
+    "scale_interaction_depth_replication": false,
+    "scale_interaction_primary": false
+  },
+  "decision": "negative",
+  "evidence_grade": "preregistered_within_family_size_associated_replication",
+  "output_hashes": {
+    "scale_interaction_matrix.png": {
+      "bytes": 108580,
+      "sha256": "eca7be0ae8c889e5a8df619d42799a6a964752a4c2bd4a142187e210816e6727"
+    },
+    "scale_interaction_metrics.tsv": {
+      "bytes": 6046,
+      "sha256": "bf131a606167178cb978f938cd0a10033626584dc1e664382d03e8b59d517918"
+    },
+    "scale_interaction_results.json": {
+      "bytes": 30362,
+      "sha256": "3253074b6e63fa8b96b5f7fa6a73c8a8c17fa3ac3010414f11bd66cf601e0185"
+    }
+  },
+  "prohibited_claims": [
+    "evaluation awareness",
+    "behavioral steering",
+    "model causal mechanism",
+    "pure format effect",
+    "training-time model causality",
+    "universal scaling law"
+  ],
+  "protocol_sha256": "d3e5245431052d002b15967fa323d9c1e56da088a5e49128493da896351f5a8d",
+  "repo_commit": "c43d4c01bd7f25cd9d2909bb70d58a04fed2c2eb",
+  "run_id": "full320_strict_equal_rows_scale_interaction_v1_20260823",
+  "schema_version": 1,
+  "source_run_hashes": {
+    "70B": {
+      "path": "X:/code/format-as-eval-awareness/artifacts/exploratory/full320_strict_equal_rows_v1_20260823_r2/strict_equal_rows_results.json",
+      "sha256": "43179ec13567287ed7a4ea637c81d773a47055c5ed7a384dcb63668e4412e3f7"
+    },
+    "8B": {
+      "path": "X:/code/format-as-eval-awareness/artifacts/exploratory/full320_strict_equal_rows_8b_scale_v1_20260823/strict_equal_rows_results.json",
+      "sha256": "8479f1be2ead7665ffd58610402e87d7a09fcca6c13a2893c3c2375938401c55"
+    }
+  },
+  "status": "completed_preregistered_scale_interaction"
+}

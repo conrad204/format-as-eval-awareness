@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "protocol_id": "full320_orthogonalized_c_transfer_v1",
+  "frozen_utc": "2026-08-26T01:39:30Z",
+  "status": "frozen_after_outcome_blind_extraction_validation_and_before_any_transfer_intervention_output",
+  "parents": [
+    {
+      "path": "configs/full320_orthc_transfer_analysis_prereg_v1.json",
+      "sha256": "4a73be0215016556fcb39b7fa120f35357d0513d64efc52e6ad727764ec05119"
+    },
+    {
+      "path": "configs/full320_orthc_transfer_analysis_prereg_v1_addendum_20260826.json",
+      "sha256": "f9e2c5e9fc17e07f03283016c15aaefe6fe990bcfac0ec5823426637a89f99b8"
+    },
+    {
+      "path": "configs/full320_orthc_transfer_reextraction_v1.json",
+      "sha256": "947f0b8102c094ee3390150dd40d0516191d482ce5b16e8bacc74b1a0fdd8d24"
+    }
+  ],
+  "dataset": {
+    "items_path": "artifacts/exploratory/full320_orthc_transfer_v1_bank/items.jsonl",
+    "items_path_cluster": "/scratch/jppatton/langea/runs/tae_2026/full320_orthc_transfer_v1/bank/items.jsonl",
+    "items_sha256": "4c7d7a5b51d771982be01285d3be9b2b99b3fd6c79b7cbbf44e9b94c941f857d",
+    "n_rows": 2880,
+    "n_stated_rows": 1920,
+    "n_payload_blocks": 80,
+    "n_topics": 16,
+    "purpose_families": ["fg1", "fg2", "fg3", "fg4", "fg5"],
+    "selection_manifest": "artifacts/exploratory/full320_orthc_transfer_v1_bank/run_manifest.json",
+    "selection_manifest_sha256": "dbbb88b3d58143d5a199ee629af0a283a55a8b3fe815c325c9099e32d0aa485f"
+  },
+  "activation_contract": {
+    "inference_dtype": "bfloat16",
+    "stored_dtype": "float32",
+    "token_position": "last_prompt_token_after_tokenizer_chat_template_before_generation",
+    "layer_semantics": "zero_based_transformer_block_output_before_final_model_norm",
+    "baseline_reproduction_gate": "For every transfer test row and source layer, unsteered source and target captures must have max_abs<=0.125 and cosine>=0.999 versus the stored deterministic full320 activation; otherwise invalidate the complete model run.",
+    "determinism": {
+      "torch_backends_cuda_matmul_allow_tf32": false,
+      "torch_backends_cudnn_allow_tf32": false,
+      "torch_use_deterministic_algorithms": "True, warn_only=True",
+      "cublas_workspace_config": ":4096:8",
+      "attn_implementation": "eager",
+      "batch_size": 1,
+      "baseline_batch_size": 1
+    }
+  },
+  "interventions": {
+    "components": ["C"],
+    "alphas": [0.5, 1.0],
+    "signs": [-1, 1],
+    "zero_control": true,
+    "random_directions": 32,
+    "random_seeds": [20261201, 20261202, 20261203, 20261204, 20261205, 20261206, 20261207, 20261208, 20261209, 20261210, 20261211, 20261212, 20261213, 20261214, 20261215, 20261216, 20261217, 20261218, 20261219, 20261220, 20261221, 20261222, 20261223, 20261224, 20261225, 20261226, 20261227, 20261228, 20261229, 20261230, 20261231, 20261232],
+    "conditions_per_row_layer": 69,
+    "delta": "sign*alpha*copied_pilot80_common_residual_scale*unit(copied_pilot80_orthogonalized_C); random controls use alpha=1 and the copied per-fold random direction bank",
+    "readouts": "copied pilot80 per-fold target-layer normalized purpose_benchmark, purpose_casual, and format readouts; no transfer-bank fitting"
+  },
+  "models": [
+    {
+      "model_id": "meta-llama/Llama-3.1-8B-Instruct",
+      "revision": "0e9e39f249a16976918f6564b8830bc894c89659",
+      "checkpoint_path_cluster": "/scratch/jppatton/langea/confirmation_work/llama31_8b_model_0e9e39f2",
+      "tokenizer_path_cluster": "/scratch/jppatton/langea/confirmation_work/llama31_8b_tokenizer_0e9e39f2",
+      "activation_path": "C:/format-EA-data/full320_orthc_transfer_v1/extract_8b/activations_all_layers.npz",
+      "activation_path_cluster": "/scratch/jppatton/langea/runs/tae_2026/full320_orthc_transfer_v1/extract_8b/activations_all_layers.npz",
+      "activation_sha256": "5822e7a3a436c3106a82259f307b3dd08d06b7c34f95d0bf924d0e7ede9b810c",
+      "meta_sha256": "def3a6c7c74d76aec577cd864a3fdccf9f8aaba161bbac06c4190d2a95c708b0",
+      "hidden_size": 4096,
+      "n_layers": 32,
+      "source_layers": {"low_interaction": 5, "high_interaction": 29},
+      "target_layer": 31,
+      "execution_hardware": {"gpu_type": "NVIDIA H100 80GB HBM3", "gpu_count": 1, "batch_size": 1, "baseline_batch_size": 1},
+      "source_plan": {
+        "json_path_cluster": "/scratch/jppatton/langea/runs/tae_2026/overnight_orthC_8b/plan/causal_plan.json",
+        "json_sha256": "e3adf909ef024b6f31c35459b5b822608709dcdcb0a984b9a5f3df4249a42f9d",
+        "npz_path_cluster": "/scratch/jppatton/langea/runs/tae_2026/overnight_orthC_8b/plan/causal_plan.npz",
+        "npz_sha256": "5bcd5b4739333f613682410e48d8090fe3222e4eb7cd93361f1a97c19e42050a"
+      }
+    },
+    {
+      "model_id": "meta-llama/Llama-3.3-70B-Instruct",
+      "revision": "6f6073b423013f6a7d4d9f39144961bfbfbc386b",
+      "checkpoint_path_cluster": "/scratch/jppatton/langea/huggingface/hub/models--meta-llama--Llama-3.3-70B-Instruct/snapshots/6f6073b423013f6a7d4d9f39144961bfbfbc386b",
+      "tokenizer_path_cluster": "/scratch/jppatton/langea/huggingface/hub/models--meta-llama--Llama-3.3-70B-Instruct/snapshots/6f6073b423013f6a7d4d9f39144961bfbfbc386b",
+      "activation_path": "C:/format-EA-data/full320_orthc_transfer_v1/extract_70b/activations_all_layers.npz",
+      "activation_path_cluster": "/scratch/jppatton/langea/runs/tae_2026/full320_orthc_transfer_v1/extract_70b/activations_all_layers.npz",
+      "activation_sha256": "f368fee4059f1b5472a6fca8a53efa243ced8b77bb36212bd407667faf7addc7",
+      "meta_sha256": "def3a6c7c74d76aec577cd864a3fdccf9f8aaba161bbac06c4190d2a95c708b0",
+      "hidden_size": 8192,
+      "n_layers": 80,
+      "source_layers": {"low_interaction": 13, "high_interaction": 74},
+      "target_layer": 79,
+      "execution_hardware": {"gpu_type": "NVIDIA H100 80GB HBM3", "gpu_count": 4, "batch_size": 1, "baseline_batch_size": 1},
+      "source_plan": {
+        "json_path_cluster": "/scratch/jppatton/langea/runs/tae_2026/overnight_orthC_70b/plan/causal_plan.json",
+        "json_sha256": "c159ae37c4386b9f8896eb6a0ae194cb692299c25abbc5e36766c389f7dd46dc",
+        "npz_path_cluster": "/scratch/jppatton/langea/runs/tae_2026/overnight_orthC_70b/plan/causal_plan.npz",
+        "npz_sha256": "7d7433ad1e459d7836338ca0858246fb217f35da1a30da6df3cd69e8aa756d88"
+      }
+    }
+  ],
+  "engineering_shakedown": {
+    "selection": "First eight stated test rows after sorting item_id by SHA256('full320_orthc_transfer_baseline_shakedown_v1',item_id), evaluated at both frozen source layers and the target layer without any intervention or readout scoring.",
+    "required_before_causal_runs": true,
+    "script_sha256": "4cb97c46a0d8f1e2e410910c9e1c2962b3a9e8f415d72da1e683e705ffcb29e2",
+    "pass_gate": "Every comparison max_abs<=0.125 and cosine>=0.999."
+  },
+  "analysis": {
+    "unit": "payload_block_id",
+    "primary_estimand": "At alpha=1, mean payload-block purpose-interaction response under orthogonalized C at the frozen high source layer minus the frozen low source layer, separately per model.",
+    "primary_test": "One-sided one-sample t-test over 80 payload-block effects against zero, with Holm correction across the two models.",
+    "supporting_high_test": "One-sided one-sample t-test over 80 high-layer payload-block effects against zero, with Holm correction across the two models.",
+    "familywise_alpha": 0.05,
+    "bootstrap_seed": 20260826,
+    "bootstrap_resamples": 10000,
+    "random_specificity": "Per model, primary C mean must exceed the 97.5th percentile of the absolute 32 copied-random-direction high-minus-low means.",
+    "decision_rule": "POSITIVE_REPLICATION only if, in both models: primary high-minus-low mean>0 and Holm p<=0.05; high-layer C interaction mean>0 and Holm p<=0.05; alpha=0.5 high-minus-low mean>0; and alpha=1 primary mean exceeds the 97.5th percentile of absolute copied-random-direction high-minus-low means. Otherwise CLEAN_NEGATIVE_OR_MIXED_REPLICATION, unless an integrity or activation gate fails, which is TECHNICALLY_INVALID.",
+    "script_sha256": "73f75d704c5279ebe355455b0bb59ca09c2cc5135e52241ed9910eb1855536cd",
+    "one_shot": "Run exactly once only after both complete raw manifests exist; do not inspect partial outcomes."
+  },
+  "implementation": {
+    "plan_builder_sha256": "691b8fb5b2d737a9ed4d753f90146a8afbf3fd4eb6748fbba04772842c9d00e8",
+    "causal_runner_sha256": "68b5307eaeed3f400f9778cc0a75b3cf6b54545c59f704cf12fd1495ec03cefa",
+    "causal_engine_sha256": "c3f7f0f7711f678d289c19b56795277effc6d77259d4c5a6c382485b1354efef",
+    "cluster_launcher_sha256": "ae5a962bbb63832dd641159f49cfe320f4f36440052cecaa4b86b2404bfb6cdf"
+  },
+  "claim_scope": {
+    "allowed_if_positive": "On 80 pilot80-payload-disjoint full320 blocks, the fixed pilot80-trained A/B-orthogonalized C direction reproduced a positive, random-calibrated, high-minus-low purpose-interaction response in both frozen Llama models under copied pilot80 readouts.",
+    "prohibited": [
+      "latent evaluation awareness",
+      "pure semantic or format-independent mechanism",
+      "independent new-item-bank confirmation",
+      "full A/B/C factorial replication",
+      "behavioral steering",
+      "generalization beyond the two frozen models, selected blocks, layers, and copied readouts"
+    ]
+  },
+  "stopping_rule": "If either shakedown or complete causal model run fails any immutable integrity or reproduction gate, retain the invalid artifact, do not inspect partial outcomes, do not relax gates, and do not run the scientific analyzer."
+}

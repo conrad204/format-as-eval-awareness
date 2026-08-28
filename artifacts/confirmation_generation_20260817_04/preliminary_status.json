@@ -1,0 +1,37 @@
+{
+  "status": "pre_activation_gate_stage",
+  "generated_at": "2026-08-17",
+  "remote_run_dir": "/scratch/jppatton/langea/confirmation_work/generation_20260817_04",
+  "candidate_counts": {
+    "payloads": 72,
+    "frames": 50
+  },
+  "semantic_validation": {
+    "payloads_records": 72,
+    "payloads_pass": 72,
+    "frames_records": 50,
+    "frames_pass": 50,
+    "validator_job": "52328446",
+    "validator_state": "COMPLETED"
+  },
+  "generation_job": "52315277",
+  "generation_state": "COMPLETED_WITH_ONE_REJECTED_PARSE_BATCH",
+  "generator_model": "Stockmark-2-100B",
+  "generator_revision": "98e959a472d0fcaf0c8b6576af19fe3cba7ca4ab",
+  "retry_amendment": {
+    "date": "2026-08-17",
+    "reason": "The original payload pool contained 72 rather than the frozen 80 candidates because batch 7 returned the wrong candidate count. No candidate was edited or selected after any model outcome.",
+    "preserved_original_run": "/scratch/jppatton/langea/confirmation_work/generation_20260817_04",
+    "superseded_infrastructure_attempts": [
+      {"job": "52333566", "reason": "The generation server rejected a local snapshot path before model loading; no generation occurred."},
+      {"job": "52334572", "reason": "The retry submission overrode the exact revision with a mistyped hash before model loading; no generation occurred."}
+    ],
+    "retry_job": "52337294",
+    "retry_batch": 7,
+    "retry_max_tokens": 8192,
+    "retry_state": "PENDING_RESOURCES"
+  },
+  "semantic_validator_model": "tokyotech-llm/Llama-3.3-Swallow-70B-Instruct-v0.4",
+  "semantic_validator_revision": "66ff64690b07545b2807293b0e24eb1e17c88da4",
+  "scientific_status": "No Llama confirmation activations or confirmatory outcomes exist yet; bank construction still requires lexical/subword gates, assembly, sealing, extraction, and one-shot analysis."
+}

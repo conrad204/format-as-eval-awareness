@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "status": "locked_hash_manifest",
+  "branch": "pr/jpp",
+  "primary_frozen_result": {
+    "conclusion": {
+      "path": "artifacts/exploratory/pilot80_v3_causal_conclusion_20260823/conclusion.json",
+      "sha256": "bfefa78f6acde61cd8e897e79bf2208aa5eb0c6a8efee30b7a717a1cecffbfd5"
+    },
+    "remote_runner_manifest": {
+      "path": "/scratch/jppatton/langea/runs/tae_2026/pilot80_factorial_causal_v3_analysis/run_manifest.json",
+      "sha256": "a92813c0a32b4147bf74d9a22950a7756c7b7be13968674f927baa810d776507"
+    },
+    "remote_results": {
+      "path": "/scratch/jppatton/langea/runs/tae_2026/pilot80_factorial_causal_v3_analysis/causal_results.json",
+      "sha256": "f382c862d8e3ae3c6d4d1eff55acb32d268abf1bee2fd869a6f5a24a69d6a4fc"
+    },
+    "decision": "negative",
+    "use_for_inference": true
+  },
+  "sensitivity_runs": {
+    "8b": {
+      "runner_manifest": {"path": "/scratch/jppatton/langea/runs/tae_2026/overnight_orthC_8b/out/runner_manifest.json", "sha256": "9949e3bd436767026daa199c75628cd0d34d09c26057671f9a4fc4ab39e1dc74"},
+      "raw_sha256": "06dcc927c539cce61750bee67e02f9440c53668929310ebf48b536c413b42262",
+      "records": 163200,
+      "high_layer_all_320_blocks_positive": true,
+      "high_layer_mean": 0.8317998997,
+      "low_layer_mean": -0.0042645387
+    },
+    "70b": {
+      "runner_manifest": {"path": "/scratch/jppatton/langea/runs/tae_2026/overnight_orthC_70b/out/runner_manifest.json", "sha256": "c4f07bc553d736d5b6b5a037949f7af0007daa130309572cdfd47460f1458783"},
+      "raw_sha256": "2cdf5aa634078914f1f9f891d534b405527c813355179de1588e90a233dc95af",
+      "records": 163200,
+      "high_layer_all_320_blocks_positive": true,
+      "high_layer_mean": 0.8570813481,
+      "low_layer_mean": 0.0010737495
+    },
+    "private_manifest": {"path": "/scratch/jppatton/langea/runs/tae_2026/overnight_orthC_experiment_manifest.json", "sha256": "2d6d2fe8a65431b77bc5efce6d0b7c57914eea7c75bfe2f2199fdbb53884bb7f"},
+    "role": "exploratory sensitivity only"
+  },
+  "local_reporting_inputs": {
+    "contract": {"path": "X:/tmp/final_lock_contract_20260823.json", "sha256": "89eb7410ed853f2442d8a6acd06b75a8df6cf5084b56e443cdf8d6df6aae7668"},
+    "claim_audit": {"path": "X:/tmp/final_claim_audit_20260823.json", "sha256": "addb31f618322544451974b59da763a1b6b24929e53b7d5a0dfae2deaef917d9"},
+    "stats_suite": {"path": "X:/tmp/final_stats_suite_20260823.json", "sha256": "3e466d53603190f493f3a7e547cb6ebd4fb06577fd0da026aed43e2fbdc07d91"},
+    "development_log": {"path": "docs/development_log.md", "sha256": "7c0998c53b072ce9359f51732e5ee99e95c2b9a06a40ff07da88b26f4c2da60d"},
+    "sealed_prediction": {"path": "docs/sealed_prediction_20260823.md", "sha256": "477cc07132db26bec49389643e641ac3e871e9de83fd9ae7da62fb92a7d90500"},
+    "private_findings_memo": {"path": "X:/tmp/overnight_findings_20260823.md", "sha256": "6097bb495cc713b60eb99ac28bbe5fbebaa5638a91fd53bf5f11c41b945a2932"}
+  },
+  "locking_rule": "Primary frozen decision remains negative. Orthogonalized-C results remain exploratory and cannot be promoted into confirmation. No further GPU scaling is required for this evidence package."
+}

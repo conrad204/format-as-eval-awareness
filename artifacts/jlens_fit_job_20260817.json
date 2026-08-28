@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "implementation": "anthropics/jacobian-lens",
+  "corpus_manifest": "artifacts/jlens_fineweb_1000_seed20260817/manifest.json",
+  "failed_jobs": [
+    {"job": 52284202, "reason": "SBATCH export omitted required RUN_DIR; no model computation started"},
+    {"job": 52284403, "reason": "use_fast tokenizer conversion failed on cached Llama tokenizer"}
+  ],
+  "retry_job": 52285005,
+  "retry_status": "failed_before_model_loading",
+  "tokenizer_change": "use_fast=False; no scientific fit parameters changed",
+  "cache_blocker": "approved snapshot lacks tokenizer.model and tokenizer.json",
+  "model": "meta-llama/Llama-3.1-8B-Instruct",
+  "model_revision": "0e9e39f249a16976918f6564b8830bc894c89659",
+  "source_layers": [4, 9, 12, 15, 20, 24],
+  "target_layer": 31,
+  "dim_batch": 8,
+  "max_seq_len": 128,
+  "skip_first": 16,
+  "seed": 20260817,
+  "fit_is_development_only": true
+}

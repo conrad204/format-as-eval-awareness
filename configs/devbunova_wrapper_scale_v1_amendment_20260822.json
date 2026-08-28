@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "amendment_id": "devbunova_wrapper_scale_v1_amendment_20260822",
+  "status": "post_outcome_code_audit_correction",
+  "parent_protocol_id": "devbunova_wrapper_scale_v1",
+  "parent_protocol_sha256": "55716e4874e1c457002a368719efdcb41727df1c4fc0380df8df12238bf88da8",
+  "superseded_run_id": "devbunova_wrapper_scale_v1_20260822",
+  "replacement_run_id": "devbunova_wrapper_scale_v1_20260822_r2",
+  "reason": "Hostile review found implementation and manifest defects after the first immutable run. The estimands, selected rows, depths, tasks, probe, seeds, and primary decision threshold remain unchanged. A new immutable run is required rather than overwriting the original evidence.",
+  "corrections": [
+    "Use one shared class-stratified item bootstrap draw for all four RR/RT/TT/TR terms in each per-record symmetric-penalty confidence interval.",
+    "Reject duplicate full item IDs and selected row indices.",
+    "Validate metadata dtypes/shapes and require identical chunk row counts and strictly increasing, cross-model/regime-identical row_start metadata.",
+    "Assert that hard-coded task, regime, model-order, selection, expected-row, and output-name contracts exactly match the frozen protocol.",
+    "Implement every decision branch: task-model sign consistency for regime-specific, and no label-null excess for regime-invariant.",
+    "Serialize strict JSON with allow_nan=false.",
+    "Add the declared ordered_item_ids_sha256 manifest field, token_position, repository-relative paths, and restore explicit dataset repo/revision fields."
+  ],
+  "unchanged_primary_contract": {
+    "selected_rows": 816,
+    "n_per_cell": 204,
+    "normalized_depths": [0.0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1.0],
+    "primary_window": [0.5, 1.0],
+    "primary_tasks": ["purpose_benchmark", "purpose_casual"],
+    "primary_metric": "symmetric cross-regime ROC-AUC penalty",
+    "bootstrap_resamples": 1000,
+    "label_permutations": 32
+  },
+  "interpretation": "The original run is preserved as an audit trail but must not be used as the publication artifact. Only the replacement run may be cited."
+}

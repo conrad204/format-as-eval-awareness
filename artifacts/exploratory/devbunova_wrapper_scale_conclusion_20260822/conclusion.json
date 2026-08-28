@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "conclusion_id": "devbunova_wrapper_scale_conclusion_20260822",
+  "status": "development_negative_result_clean",
+  "analysis_repo_commit": "ef602174c208e36dd04e6d6301c8d8367a94d62b",
+  "source_runs": {
+    "primary": {
+      "run_id": "devbunova_wrapper_scale_v1_20260822_r2",
+      "result_path": "artifacts/exploratory/devbunova_wrapper_scale_v1_20260822_r2/results.json",
+      "result_sha256": "bcc00bc563af19be05cba7e383ed586e63a0714d32382432cab77226d1347c17",
+      "manifest_path": "artifacts/exploratory/devbunova_wrapper_scale_v1_20260822_r2/run_manifest.json",
+      "manifest_sha256": "7fa6e9eaf292919b4eb90b64b1b7a79ae31c73392600bb789dbb87829bfddbd2"
+    },
+    "robustness": {
+      "run_id": "devbunova_wrapper_scale_robustness_v3_20260822",
+      "result_path": "artifacts/exploratory/devbunova_wrapper_scale_robustness_v3_20260822/robustness_results.json",
+      "result_sha256": "0cf35f3e48383eda22a9b747839257a99884a7c14a6e073631543fe280d0066a",
+      "manifest_path": "artifacts/exploratory/devbunova_wrapper_scale_robustness_v3_20260822/run_manifest.json",
+      "manifest_sha256": "456dc898d95cfc1356b91133d0c141bdbcf2b9dc0be6c80e281dd38faad979e5"
+    }
+  },
+  "strongest_defensible_result": "Across the same item IDs observed under both stored regimes, fitted purpose-probe directions have low raw/template cosine while the corresponding held-out transfer loss is small and not identified beyond a common-item randomization null.",
+  "headline_sentence": "Across 816 item IDs observed under both stored regimes and three Llama-3.1 sizes, q=0.75 raw/template purpose-probe direction cosines were 0.27-0.52, but the small aggregate cross-regime AUC penalty of 0.01037 was not distinguishable from a 256-draw common-item regime-swap null (p=0.07393; null 95% interval -0.00994 to 0.01535).",
+  "novel_methodological_claim": "In this dataset, low probe-coefficient cosine did not entail a comparably large held-out transfer loss, and common-item randomization across checkpoints materially weakened the inference obtained from a conventional item bootstrap; neither observation identifies a wrapper mechanism.",
+  "primary_observation": {
+    "late_depth_mean_symmetric_auc_penalty": 0.010630126233499926,
+    "item_stratified_bootstrap_ci_95": [0.007529435793925404, 0.013979959630911191],
+    "model_means": {
+      "8b": 0.012767925797770096,
+      "70b": 0.00991085159554016,
+      "405b": 0.009211601307189548
+    },
+    "interpretation": "The conventional paired item bootstrap is positive, and the descriptive penalty decreases rather than increases with parameter count. It does not account for the exchangeability of the same item-level regime perturbation across checkpoints."
+  },
+  "fixed_q075_robustness": {
+    "observed_symmetric_auc_penalty": 0.010366605792643832,
+    "all_model_fold_seed_medians_positive": true,
+    "all_model_ridge_normalization_aggregates_positive": true,
+    "common_item_regime_swap_draws": 256,
+    "common_item_regime_swap_null_mean": 0.00006623679394143364,
+    "common_item_regime_swap_null_ci_95": [-0.009944592624631555, 0.01535116701909522],
+    "empirical_p_greater_equal": 0.07392996108949416,
+    "decision": "mixed_not_robust_positive",
+    "interpretation": "The point estimate is stable to folds, ridge, and row normalization, but it does not exceed the fixed post-outcome exploratory common-item exchangeability null. The data are suggestive, not sufficient for a regime-specific transfer claim."
+  },
+  "geometry_prediction_dissociation": {
+    "q075_direction_cosines": {
+      "8b_purpose_benchmark": 0.5156590541398113,
+      "8b_purpose_casual": 0.3126325487872528,
+      "70b_purpose_benchmark": 0.4530664570736536,
+      "70b_purpose_casual": 0.27099555003284104,
+      "405b_purpose_benchmark": 0.45490254618582826,
+      "405b_purpose_casual": 0.31635214146183055
+    },
+    "interpretation": "Low same-model coefficient cosine coexists with only about one AUC point of transfer loss. Coefficient alignment alone is therefore not evidence of a mechanistically distinct or behaviorally consequential representation."
+  },
+  "diagnostic_boundaries": {
+    "template_minus_raw_token_length_mean": 33.927696078431374,
+    "template_minus_raw_token_length_range": [18, 34],
+    "top1_token_agreement": {
+      "8b": 0.0024509803921568627,
+      "70b": 0.006127450980392157,
+      "405b": 0.006127450980392157
+    },
+    "late_depth_format_auc_range": [0.9950980392156863, 1.0],
+    "limitations_sentence": "Because the purpose cells are independent source distributions, raw/template operational semantics, model revisions, extraction hook semantics, and token-position alignment are undocumented, and format controls are saturated, this result does not identify content-independent format sensitivity, evaluation awareness, a causal mechanism, or causal scaling."
+  },
+  "superseded_evidence": [
+    {
+      "run_id": "devbunova_wrapper_scale_v1_20260822",
+      "reason": "Per-record symmetric confidence intervals used independent component resamples and the manifest failed its declared schema. Point estimates and the joint primary interval were unchanged after correction."
+    },
+    {
+      "run_id": "devbunova_wrapper_scale_robustness_v1_20260822",
+      "reason": "Model-specific swap masks incorrectly narrowed the aggregate null."
+    },
+    {
+      "run_id": "devbunova_wrapper_scale_robustness_v2_20260822",
+      "reason": "Correct common-mask design but only 32 Monte Carlo draws; superseded by the fixed 256-draw precision run."
+    }
+  ],
+  "sprint_stop_condition": {
+    "classification": "SPRINT_STOP_CONDITION_NOT_MET",
+    "reason": "This external observational assay does not run the canonical matched factorial geometry or a controlled intervention, so it cannot by itself satisfy TAE_MECHANISTIC_RESULT_STRONG, TAE_MECHANISTIC_RESULT_PARTIAL, TAE_NEGATIVE_RESULT_CLEAN, or TAE_TECHNICALLY_BLOCKED.",
+    "local_evidence_outcome": "DEVELOPMENT_NEGATIVE_RESULT_CLEAN"
+  },
+  "forbidden_interpretations": [
+    "The regimes causally route evaluation awareness.",
+    "Larger models are more or less evaluation-aware.",
+    "The raw/template penalty is statistically established.",
+    "Low coefficient cosine proves a distinct mechanism.",
+    "The independent core prompt distributions implement a matched A/B/C factorial decomposition."
+  ]
+}

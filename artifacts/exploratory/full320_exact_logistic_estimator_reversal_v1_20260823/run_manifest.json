@@ -1,0 +1,100 @@
+{
+  "analysis": "full320_exact_logistic_estimator_reversal_v1",
+  "analysis_script_sha256": "9b7338bd756fe497416d0ad9ce0ccb85571a50672414cb5adcf76b80d65de049",
+  "claim_scope": {
+    "allowed_if_positive": "On the fixed exact-row data and q=0.375 held-family endpoint, the mixed-minus-best-specialist observational decoding contrast changes sign between the prespecified L2-logistic and diagonal-LDA probe pipelines; the substantive contrast is pipeline-dependent.",
+    "prohibited": [
+      "one estimator is universally correct",
+      "evaluation awareness",
+      "behavioral or causal model effect",
+      "pure format effect",
+      "universal model claim"
+    ]
+  },
+  "criteria": {
+    "assignment_stability": true,
+    "interaction_auc_ci_positive": true,
+    "interaction_model_replication": true,
+    "logistic_auc_ci_positive": true,
+    "logistic_model_replication": true
+  },
+  "decision": "positive",
+  "elapsed_seconds": 937.9303622245789,
+  "helper_script_sha256": "c0b96e726ae2977bb5fcbdc55aeaf18ab7f6472c86ed0d14fe8541beb7ac634a",
+  "items_sha256": "5528819d74e696d1a595062047a829836dfde1d2a45287b06a5ac1ba5d1b6c67",
+  "models": [
+    {
+      "activation_sha256": "e6a71be599e27fd846211e8e6ef215e4fb695a76c3415dc157c1450a134cd1b4",
+      "layer": 12,
+      "model": "meta-llama/Llama-3.1-8B-Instruct",
+      "revision": "0e9e39f249a16976918f6564b8830bc894c89659"
+    },
+    {
+      "activation_sha256": "02018659ad8f68101d8ec35467321e791831e05b4d8d628f21e8fe222f6da8e2",
+      "layer": 30,
+      "model": "meta-llama/Llama-3.1-70B-Instruct",
+      "revision": "1605565b47bb9346c5515c34102e054115b4f98b"
+    },
+    {
+      "activation_sha256": "d455140f2dce01e1bd4e1a8333454a494b1e5de0df0428779a2faa43bc80c031",
+      "layer": 30,
+      "model": "meta-llama/Llama-3.3-70B-Instruct",
+      "revision": "6f6073b423013f6a7d4d9f39144961bfbfbc386b"
+    }
+  ],
+  "output_hashes": {
+    "estimator_oof_scores.npz": {
+      "bytes": 1783805,
+      "sha256": "07129917679ef60894fed323429a155cfedfda40fd630a197c8ac60a2dbdc4fd"
+    },
+    "estimator_reversal_matrix.png": {
+      "bytes": 80591,
+      "sha256": "dd290dc98c80b35320b52658eb5e4c8b75cf895d64aac1f89b1465720fbb9d59"
+    },
+    "estimator_reversal_metrics.tsv": {
+      "bytes": 14644,
+      "sha256": "32d244d15cd0269535a98436250c87e078d15af0cad3c528e7c1a96effd3774b"
+    },
+    "estimator_reversal_results.json": {
+      "bytes": 225372,
+      "sha256": "5b5dfff9fda1474dc22738bf2d3b540c8142ca42bf5cdcf03f67870364bce6eb"
+    }
+  },
+  "protocol_sha256": "d96ff99dec3c91a38f3bf977bb614693e3eca4768143ca715a64075233c0a546",
+  "repo_commit": "039d7351e0214f30f4b364492c62e93355ea74c9",
+  "run_id": "full320_exact_logistic_estimator_reversal_v1_20260823",
+  "schema_version": 1,
+  "source_lda_runs": {
+    "meta-llama/Llama-3.1-70B-Instruct": {
+      "canonical_indices_sha256": "17202f5f845fc72ec2e9ae6fb309efa69c7575f62067cab0bfe9b7062d105246",
+      "path": "X:/code/format-as-eval-awareness/artifacts/exploratory/full320_strict_equal_rows_v1_20260823_r2/strict_equal_rows_results.json",
+      "score_path": "X:/code/format-as-eval-awareness/artifacts/exploratory/full320_strict_equal_rows_v1_20260823_r2/primary_scores.npz",
+      "score_sha256": "130584338ab972dee37ccaab6c211fa418ce3a7d5dd2caba6734c22cce26c2e6",
+      "sha256": "43179ec13567287ed7a4ea637c81d773a47055c5ed7a384dcb63668e4412e3f7",
+      "source_analysis": "full320_strict_equal_rows_v1",
+      "source_run_id": "full320_strict_equal_rows_v1_20260823_r2",
+      "source_split_audit_sha256": "891c65bd3927cdcdb47d2a9fc0cd82a0994c26b32132b107f0c68ca4ab20dd15"
+    },
+    "meta-llama/Llama-3.1-8B-Instruct": {
+      "canonical_indices_sha256": "17202f5f845fc72ec2e9ae6fb309efa69c7575f62067cab0bfe9b7062d105246",
+      "path": "X:/code/format-as-eval-awareness/artifacts/exploratory/full320_strict_equal_rows_8b_scale_v1_20260823/strict_equal_rows_results.json",
+      "score_path": "X:/code/format-as-eval-awareness/artifacts/exploratory/full320_strict_equal_rows_8b_scale_v1_20260823/primary_scores.npz",
+      "score_sha256": "ffed83e84e3ae89670872d78ffe3deb50c9f3b92adba172efdae1e7be248a386",
+      "sha256": "8479f1be2ead7665ffd58610402e87d7a09fcca6c13a2893c3c2375938401c55",
+      "source_analysis": "full320_strict_equal_rows_8b_scale_v1",
+      "source_run_id": "full320_strict_equal_rows_8b_scale_v1_20260823",
+      "source_split_audit_sha256": "7ee702d2c1f665339d6f79adf60b658df8aa0d3b1a2252cb705d36642b279c91"
+    },
+    "meta-llama/Llama-3.3-70B-Instruct": {
+      "canonical_indices_sha256": "17202f5f845fc72ec2e9ae6fb309efa69c7575f62067cab0bfe9b7062d105246",
+      "path": "X:/code/format-as-eval-awareness/artifacts/exploratory/full320_strict_equal_rows_v1_20260823_r2/strict_equal_rows_results.json",
+      "score_path": "X:/code/format-as-eval-awareness/artifacts/exploratory/full320_strict_equal_rows_v1_20260823_r2/primary_scores.npz",
+      "score_sha256": "130584338ab972dee37ccaab6c211fa418ce3a7d5dd2caba6734c22cce26c2e6",
+      "sha256": "43179ec13567287ed7a4ea637c81d773a47055c5ed7a384dcb63668e4412e3f7",
+      "source_analysis": "full320_strict_equal_rows_v1",
+      "source_run_id": "full320_strict_equal_rows_v1_20260823_r2",
+      "source_split_audit_sha256": "891c65bd3927cdcdb47d2a9fc0cd82a0994c26b32132b107f0c68ca4ab20dd15"
+    }
+  },
+  "status": "completed_targeted_estimator_reversal"
+}

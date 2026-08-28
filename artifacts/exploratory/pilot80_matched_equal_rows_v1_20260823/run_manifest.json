@@ -1,0 +1,51 @@
+{
+  "analysis": "pilot80_matched_equal_rows_v1",
+  "criteria": {
+    "aggregate_auc": true,
+    "aggregate_balanced_accuracy": true,
+    "assignment_stability": true,
+    "checkpoint_replication": false,
+    "exact_revision_replication": true,
+    "label_null": true,
+    "robustness": false
+  },
+  "decision": "mixed",
+  "evidence_grade": "preregistered_external_bank_replication_development_activations",
+  "input_hashes": {
+    "items": "0dbcb9802924d3c2063fce87e24250d1a3430fd24856ea83b132e606843f6638",
+    "meta-llama/Llama-3.1-70B-Instruct": "5d09f6806ac83308a93b37ebf144ed6ed90bd49f67be9267d378f4797aa0b038",
+    "meta-llama/Llama-3.1-8B-Instruct": "983fca52b5d96a3c697a3533fca9ff13625c4789f17277d5f8edcdfa3b66eba7",
+    "meta-llama/Llama-3.3-70B-Instruct": "2d0733a24bf56746e9f1b78ae71526df2e0516a4478e235060bf45e3d25e9650"
+  },
+  "output_hashes": {
+    "matched_equal_rows_matrix.png": {
+      "bytes": 131740,
+      "sha256": "fee6128ee1554817d99ee74b46562e40aacd1d8f72e5a3e2a38161b183a5ea58"
+    },
+    "matched_equal_rows_metrics.tsv": {
+      "bytes": 152948,
+      "sha256": "5bea74d1a4c8639e9ba023c399e6f56474e674ae8d60b4f296052028ab5b06cd"
+    },
+    "matched_equal_rows_results.json": {
+      "bytes": 566478,
+      "sha256": "c7ca9f1c87389d58ddc915c2f2c787af3dfbebc0f46eeb5ed5ac1b3fa4be38ba"
+    },
+    "primary_scores.npz": {
+      "bytes": 565745,
+      "sha256": "944bacfe207962920b2349caae25e682491c7c784f298a76c38666a8deb93946"
+    }
+  },
+  "prohibited_claims": [
+    "evaluation awareness",
+    "behavioral steering",
+    "model causal mechanism",
+    "training-time model causality",
+    "universal scale law",
+    "confirmation-grade evidence"
+  ],
+  "protocol_sha256": "0644cd35ca89c5f56eb07aaef544b1cc9f7129ce51f44e3f18d2e0cf193949e8",
+  "repo_commit": "c795fdf6fd631faa3e4a5295890c2ab3a9feb396",
+  "run_id": "pilot80_matched_equal_rows_v1_20260823",
+  "schema_version": 1,
+  "status": "completed_preregistered_external_bank_replication"
+}

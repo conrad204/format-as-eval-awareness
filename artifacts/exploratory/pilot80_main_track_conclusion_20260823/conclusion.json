@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "status": "completed_honest_nonpositive_mechanistic_conclusion",
+  "decision": "TAE_TECHNICALLY_BLOCKED",
+  "publication_position": "HOLD_POSITIVE_MECHANISTIC_CLAIM",
+  "local_evidence_outcome": "DEVELOPMENT_OBSERVATIONAL_SIGNAL_WITH_INVALID_CAUSAL_VALIDATION",
+  "conclusion": "The repository supports a narrow, pipeline-dependent observational decoding result and reproducible factorial activation geometry, but it does not support a causal evaluation-awareness mechanism claim. The preregistered causal experiment is unusable because both model runs failed the unchanged per-row baseline reproduction gate before a complete response surface existed. Partial intervention records are excluded wholesale and were not analyzed.",
+  "observational_evidence": {
+    "estimator_reversal": {
+      "path": "artifacts/exploratory/full320_exact_logistic_estimator_reversal_v1_20260823/estimator_reversal_results.json",
+      "sha256": "5b5dfff9fda1474dc22738bf2d3b540c8142ca42bf5cdcf03f67870364bce6eb",
+      "claim": "At normalized depth q=0.375, the aggregate mixed-minus-best-specialist AUC effect is +0.00904956 for L2 logistic (95% common-block bootstrap CI [0.007981, 0.010120]) and -0.00430404 for paired diagonal LDA (CI [-0.005278, -0.003340]); this is pipeline-dependent observational stated-purpose decoding, not independent confirmation or causality.",
+      "mandatory_caveats": [
+        "The logistic analysis was a targeted post-comparator chosen after inspecting the paired diagonal-LDA result and a loose 8B precursor.",
+        "Only the fixed normalized depth q=0.375 was tested; this is not a layer trajectory.",
+        "The panel contains three fixed, related Llama checkpoints and reuses the same assignment seeds across checkpoints.",
+        "The endpoint is observational stated-purpose decoding, not semantic correctness, behavior, evaluation awareness, or a causal mechanism."
+      ]
+    },
+    "environment_matched_geometry": {
+      "meta-llama/Llama-3.1-8B-Instruct": {
+        "activation_sha256": "c53ad05decce56d9b436c250a75a24a1d1840c64c6783a1ac91c673b6b39abf7",
+        "geometry_sha256": "ad201f83c5ee0bd2ffa876b5ce6b4d8e0b01e507b10d07f7ef94799757e36338",
+        "max_held_stated_auc": 0.9914236111111112,
+        "selected_low_interaction_layer": 5,
+        "selected_high_interaction_layer": 29
+      },
+      "meta-llama/Llama-3.3-70B-Instruct": {
+        "activation_sha256": "65a5f1b87efacc847dbc975cd3cf1ac5f25b73a9d32ddc8dbf6a857347a9a1ea",
+        "geometry_sha256": "acffdfa2082e7cd8501b1ad36b281e4c6d1adcb1ecd13dc82249b8828e6e6cbe",
+        "max_held_stated_auc": 0.9954947916666668,
+        "mapped_low_interaction_layer": 13,
+        "mapped_high_interaction_layer": 74,
+        "independent_extrema_audit_not_used": [8, 78]
+      },
+      "interpretation": "Purpose, format, and purpose-by-format structure is measurable in the frozen pilot bank. This is representation geometry, not evidence that the geometry causally controls model behavior or evaluation awareness."
+    }
+  },
+  "causal_validation": {
+    "protocol": "configs/pilot80_factorial_causal_mediation_v2_reextracted.json",
+    "invalid_manifest": "artifacts/exploratory/pilot80_factorial_causal_v2_invalid_20260823/run_manifest.json",
+    "use_for_inference": false,
+    "models": {
+      "meta-llama/Llama-3.1-8B-Instruct": {
+        "job_id": 53274675,
+        "failed_source_layer": 29,
+        "failed_row_index": 419,
+        "max_abs": 0.25,
+        "cosine": 0.9994099140167236,
+        "partial_records_excluded": 28
+      },
+      "meta-llama/Llama-3.3-70B-Instruct": {
+        "job_id": 53274676,
+        "failed_source_layer": 74,
+        "failed_row_index": 312,
+        "max_abs": 0.15625,
+        "cosine": 0.9994453191757202,
+        "partial_records_excluded": 2408
+      }
+    },
+    "frozen_gate": {
+      "max_abs_lte": 0.125,
+      "cosine_gte": 0.999
+    },
+    "why_no_retry": "Relaxing the gate, selecting only passing layers, or analyzing partial records after these failures would be post-outcome protocol adaptation. The project rules prohibit all three."
+  },
+  "required_claim_boundary": {
+    "allowed": [
+      "Pipeline-dependent observational stated-purpose decoding",
+      "Environment-matched factorial representation geometry on the frozen pilot bank",
+      "A documented failed causal reproducibility gate"
+    ],
+    "prohibited": [
+      "Evaluation awareness",
+      "A causal A/B/C mechanism",
+      "Behavioral steering or internal causal mediation",
+      "Cross-model causal replication",
+      "A clean negative causal effect",
+      "Analysis of either partial causal raw file"
+    ]
+  },
+  "stop_reason": "Reasonable technical recovery was exhausted: exact archive verification, H100 and A100 baseline retries, batch-one environment-matched all-layer re-extraction, frozen geometry rebuilding, immutable plan rebuilding, and same-H100 causal execution. Both models still violated the preregistered high-layer reproduction gate. No scientifically valid causal run remains reachable without changing the failed gate.",
+  "positive_result_ready": false
+}
