@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "purpose": "Paired payload-block-bootstrap significance statistics for the full-layer normalized-depth matched-format-PCA erasure dose-response (rank contrasts vs. raw, adjacent-rank monotonicity, residual gap at rank 64, per-layer reduction probability), derived from the same cached OOF scores and same block-resample convention as scripts/full_layer_gap_erasure_bootstrap.py.",
+  "n_boot": 1000,
+  "rng_seed": 0,
+  "by_model": {
+    "llama31_8b": {
+      "n_layers": 32,
+      "ranks": [
+        0,
+        1,
+        4,
+        16,
+        64
+      ],
+      "contrasts_vs_raw": {
+        "1": {
+          "p_gap_reduced_vs_raw": 1.0,
+          "mean_reduction": 0.01011702806503752,
+          "reduction_ci95": [
+            0.009382457718289003,
+            0.010912479545014668
+          ]
+        },
+        "4": {
+          "p_gap_reduced_vs_raw": 1.0,
+          "mean_reduction": 0.0194890167677349,
+          "reduction_ci95": [
+            0.01844292431013071,
+            0.02057415490139806
+          ]
+        },
+        "16": {
+          "p_gap_reduced_vs_raw": 1.0,
+          "mean_reduction": 0.03552590216309546,
+          "reduction_ci95": [
+            0.03405647138699882,
+            0.036976040527749124
+          ]
+        },
+        "64": {
+          "p_gap_reduced_vs_raw": 1.0,
+          "mean_reduction": 0.04639642456154674,
+          "reduction_ci95": [
+            0.04476551153552995,
+            0.048052532690081716
+          ]
+        }
+      },
+      "adjacent_rank_monotonicity": {
+        "0->1": {
+          "p_gap_decreases": 1.0
+        },
+        "1->4": {
+          "p_gap_decreases": 1.0
+        },
+        "4->16": {
+          "p_gap_decreases": 1.0
+        },
+        "16->64": {
+          "p_gap_decreases": 1.0
+        }
+      },
+      "p_fully_monotone_dose_response": 1.0,
+      "residual_gap_at_rank64": {
+        "p_G_positive": 1.0,
+        "boot_median": 0.03283874144916441,
+        "boot_ci95": [
+          0.0313460649128485,
+          0.034398841290669266
+        ]
+      },
+      "layerwise_p_gap_reduced_rank64_vs_rank0": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ]
+    }
+  }
+}
