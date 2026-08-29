@@ -11,67 +11,55 @@ Output: `matched_format_projection_summary.{png,pdf}` (this directory).
 
 ## What's shown
 
-**Post-purpose-formation region**: layers where the raw both-format purpose
-AUC is at least 0.95, defined from the raw depth trajectory only (not
-spike/min_gap/final layer-picking). All three panels are restricted to this
-region.
+A single wide bar chart, one group of 3 bars (one per model) for each of:
 
-- **Panel A** — one faint point per eligible layer, all 3 models: x = raw
-  cross-format transfer gap, y = the same gap after rank-64 matched-format
-  projection (cross-fitted per held-out cue-vocabulary fold, purpose probe
-  retrained on the projected activations). The dashed diagonal is "no
-  change"; points below it are layers where projection reduced the gap. One
-  bold marker per model shows that model's median (raw, projected) pair.
-- **Panel B** — per-model dumbbell: hollow marker = median raw gap, filled
-  marker = median projected gap, connected by a line; the percentage label
-  is the median fraction of the raw gap removed, recomputed at render time
-  from the diagnostic JSON's `rescue_fraction_median_excl_near_zero` field
-  (not hand-typed).
-- **Panel C** — mean ΔAUC after projection, three bars per model: benchmark→
-  casual transfer gain, casual→benchmark transfer gain, and the mean
-  absolute change in both-format purpose decoding. The scale contrast is the
-  point: transfer gains are ~0.02–0.04 AUC; purpose decoding moves by
-  ~0.0006–0.0013 AUC.
+- **benchmark → casual transfer gain** — mean ΔAUC (projected − raw) for the
+  benchmark-trained, casual-tested purpose probe.
+- **casual → benchmark transfer gain** — mean ΔAUC (projected − raw) for the
+  casual-trained, benchmark-tested purpose probe.
+- **both-format purpose decoding, |change|** — mean absolute ΔAUC for the
+  probe trained and tested on both formats together.
+
+All three are averaged over each model's **post-purpose-formation region**
+(layers where raw both-format purpose AUC ≥ 0.95, defined from the raw depth
+trajectory only). Error bars are ±1 SD across the layers in that region —
+descriptive spread across a depth trajectory, not an independent-sample
+confidence interval (layers within a model are repeated measurements, not
+independent replicates; see `RULES.md` §10).
+
+An earlier draft of this figure also had a scatter panel (raw vs. projected
+gap, one point per layer) and a separate dumbbell panel; both were dropped
+because every layer fell on the same side of the y=x line, so the scatter
+panel repeated the same story as the bar chart without adding information —
+this bar chart is now the entire figure.
 
 ## Numbers used (recomputed from `results/full320_v3_matched_format_projection_diagnostic.json`, not hard-coded)
 
-| model | median raw gap | median projected gap | % of median gap removed | mean Δ benchmark→casual | mean Δ casual→benchmark | mean \|Δ both-format purpose\| |
-|---|---:|---:|---:|---:|---:|---:|
-| Llama-3.1-8B  | 0.058 | 0.015 | 72% | +0.041 | +0.041 | 0.0013 |
-| Llama-3.1-70B | 0.039 | 0.016 | 55% | +0.031 | +0.022 | 0.0006 |
-| Llama-3.3-70B | 0.050 | 0.014 | 74% | +0.041 | +0.027 | 0.0007 |
+| model | mean Δ benchmark→casual | mean Δ casual→benchmark | mean \|Δ both-format purpose\| |
+|---|---:|---:|---:|
+| Llama-3.1-8B  | 0.041 ± 0.011 | 0.041 ± 0.026 | 0.001 ± 0.001 |
+| Llama-3.1-70B | 0.031 ± 0.026 | 0.022 ± 0.017 | 0.001 ± 0.000 |
+| Llama-3.3-70B | 0.041 ± 0.025 | 0.027 ± 0.017 | 0.001 ± 0.000 |
 
-## Definitions (recap)
-
-- **Cross-format transfer gap** = both-format purpose AUC − mean(benchmark→
-  casual AUC, casual→benchmark AUC).
-- **Matched-format projection** = residualizing out a rank-64 basis of the
-  matched-format subspace (the format main-effect/interaction contrast from
-  the 2×2 factorial design in `RULES.md` §6), fit per held-out cue-vocabulary
-  fold on training rows only, then retraining the purpose probe on the
-  residual activations.
-- **Post-purpose-formation region** = layers with raw both-format purpose
-  AUC ≥ 0.95.
+(± values are the SD across post-purpose-formation layers used for the error
+bars, not standard errors.)
 
 ## Interpretation and caveats
 
-- This is a **descriptive, across-depth** figure. Layers within a model are
-  repeated measurements of one depth trajectory, not independent
-  replicates — Panel A's per-layer points are shown for density/spread, not
-  as an inferential sample; the only quantities treated as estimates are the
-  per-model medians/means in Panels B and C.
-- The pattern supports: **matched-format-associated structure is largely
-  unnecessary for linearly decoding stated purpose itself, but contributes
-  substantially to the failure of a purpose readout to transfer across
-  prompt formats.** Removing that structure closes roughly half to
-  three-quarters of the cross-format transfer gap while moving both-format
-  purpose decodability by two orders of magnitude less than the transfer
-  gain.
+- The core visual contrast: cross-format transfer improves by roughly
+  0.02–0.04 AUC on average, while both-format purpose decoding changes by
+  roughly 0.001 AUC — about one to two orders of magnitude smaller, despite
+  real layer-to-layer variability (the transfer-gain error bars are wide
+  relative to their means; the purpose-decoding error bars are uniformly
+  tiny in absolute terms).
+- This is a **descriptive, across-depth summary**. Layers within a model are
+  repeated measurements of one depth trajectory, not independent replicates.
+- Supports: **matched-format-associated structure is largely unnecessary for
+  linearly decoding stated purpose itself, but contributes substantially to
+  the failure of a purpose readout to transfer across prompt formats.**
 - This is a **frozen-activation representational intervention followed by
   probe retraining** — not behavioral steering and not a neural-circuit
-  causal claim. It does not establish that the model's actual behavior
-  changes, only that the linearly-decodable transfer penalty is
-  substantially explained by a removable linear subspace.
+  causal claim.
 - Full per-layer numbers, model summaries, and the exact join/definitions are
   in `results/full320_v3_matched_format_projection_diagnostic.{json,csv}` and
   `docs/matched_format_projection_transfer_diagnostic.md`.
