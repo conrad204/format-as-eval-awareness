@@ -112,19 +112,32 @@ def score_fold(Xl, rows, y, fam, is_bench, is_casual, fold, rank):
     return fold, rank, out
 
 
-def block_bootstrap_auc(y, s, blk, blocks, n_boot, rng, idx_mask=None):
-    if idx_mask is not None:
-        keep = idx_mask
-        y, s, blk = y[keep], s[keep], blk[keep]
+def block_bootstrap_gap(y, s_purpose, s_b2c, s_c2b, blk, blocks, n_boot, rng):
+    """Paired block bootstrap: ONE sample_blocks draw per replicate feeds all three
+    AUCs (purpose/b2c/c2b), so the gap = purpose - mean(b2c, c2b) is computed from
+    correlated, same-replicate data -- matching the convention in
+    scripts/format_bound_regrowth_bootstrap.py's gap_for_sample(). Computing each
+    AUC's bootstrap distribution from an INDEPENDENT block resample (as an earlier,
+    buggy version of this function did) destroys that covariance structure and
+    produces an invalid CI for the difference statistic.
+    """
     block_to_pos = {}
     for i, b in enumerate(blk):
         block_to_pos.setdefault(b, []).append(i)
-    out = np.empty(n_boot)
+    purpose_out = np.empty(n_boot)
+    b2c_out = np.empty(n_boot)
+    c2b_out = np.empty(n_boot)
+    m_p, m_b, m_c = ~np.isnan(s_purpose), ~np.isnan(s_b2c), ~np.isnan(s_c2b)
     for r in range(n_boot):
         sample_blocks = rng.choice(blocks, size=len(blocks), replace=True)
         idx = np.concatenate([block_to_pos[b] for b in sample_blocks if b in block_to_pos])
-        out[r] = roc_auc_score(y[idx], s[idx])
-    return out
+        idx_p = idx[m_p[idx]]
+        idx_b = idx[m_b[idx]]
+        idx_c = idx[m_c[idx]]
+        purpose_out[r] = roc_auc_score(y[idx_p], s_purpose[idx_p])
+        b2c_out[r] = roc_auc_score(y[idx_b], s_b2c[idx_b])
+        c2b_out[r] = roc_auc_score(y[idx_c], s_c2b[idx_c])
+    return purpose_out, b2c_out, c2b_out
 
 
 def main():
@@ -189,9 +202,8 @@ def main():
                 c2b_auc = float(roc_auc_score(y[m_c], s_c2b[m_c]))
                 gap = purpose_auc - (b2c_auc + c2b_auc) / 2
 
-                boot_purpose = block_bootstrap_auc(y, s_purpose, blk, blocks, N_BOOT, rng, idx_mask=m_p)
-                boot_b2c = block_bootstrap_auc(y, s_b2c, blk, blocks, N_BOOT, rng, idx_mask=m_b)
-                boot_c2b = block_bootstrap_auc(y, s_c2b, blk, blocks, N_BOOT, rng, idx_mask=m_c)
+                boot_purpose, boot_b2c, boot_c2b = block_bootstrap_gap(
+                    y, s_purpose, s_b2c, s_c2b, blk, blocks, N_BOOT, rng)
                 boot_gap = boot_purpose - (boot_b2c + boot_c2b) / 2
 
                 def ci(a):
