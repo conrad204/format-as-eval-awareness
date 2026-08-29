@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "purpose": "Holm/Bonferroni correction (alpha=0.05, m=27) of the apples-to-apples projected-basis conditional-null p-values.",
+  "alpha": 0.05,
+  "overall": {
+    "n_tests": 27,
+    "nominal_p<0.05": 23,
+    "bonferroni_significant": 18,
+    "holm_significant": 18
+  },
+  "by_rank": {
+    "1": {
+      "nominal": 5,
+      "bonferroni": 0,
+      "holm": 0
+    },
+    "4": {
+      "nominal": 9,
+      "bonferroni": 9,
+      "holm": 9
+    },
+    "16": {
+      "nominal": 9,
+      "bonferroni": 9,
+      "holm": 9
+    }
+  }
+}
