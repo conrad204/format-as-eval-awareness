@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "status": "development_only",
+  "purpose": "submission sprint evidence inventory",
+  "canonical_freeze": {
+    "repo_id": "format-EA/full320-v3",
+    "revision": "d6c3be7be83c469d9a6a2aa4e797f3a7b538efde",
+    "items_sha256": "5528819d74e696d1a595062047a829836dfde1d2a45287b06a5ac1ba5d1b6c67",
+    "n_items": 11520,
+    "n_payload_blocks": 320,
+    "source_of_truth": "artifacts/pinned_full320"
+  },
+  "models": [
+    {"model": "meta-llama/Llama-3.1-8B-Instruct", "revision": "0e9e39f249a16976918f6564b8830bc894c89659", "activation_all_layers_sha256": "e6a71be599e27fd846211e8e6ef215e4fb695a76c3415dc157c1450a134cd1b4", "pinned_result": "artifacts/pinned_full320/layer_sweep_full320-v3_llama31_8b.json", "pinned_result_sha256": "b996d05a3dae2e9bf1da43c2a8a28d2ecc74e53436083f0a34a3e95a424160a7"},
+    {"model": "meta-llama/Llama-3.1-70B-Instruct", "revision": "1605565b47bb9346c5515c34102e054115b4f98b", "activation_all_layers_sha256": "02018659ad8f68101d8ec35467321e791831e05b4d8d628f21e8fe222f6da8e2", "pinned_result": "artifacts/pinned_full320/layer_sweep_full320-v3_llama31_70b.json", "pinned_result_sha256": "894b60970e9c056a03a34a31de681c220bb4859dcec572f5e549a8e2b10c908d"},
+    {"model": "meta-llama/Llama-3.3-70B-Instruct", "revision": "6f6073b423013f6a7d4d9f39144961bfbfbc386b", "activation_all_layers_sha256": "d455140f2dce01e1bd4e1a8333454a494b1e5de0df0428779a2faa43bc80c031", "pinned_result": "artifacts/pinned_full320/layer_sweep_full320-v3_llama33_70b.json", "pinned_result_sha256": "79271b17979f683734d1bbcf9b88bb8e4100ae8bb51048eecec11fff1c251105"}
+  ],
+  "equal_n_control": {
+    "path": "artifacts/full320_equal_n_llama31_8b_l12.json",
+    "model": "meta-llama/Llama-3.1-8B-Instruct",
+    "layer": 12,
+    "seeds": [20260822, 20260823, 20260824, 20260825],
+    "bootstrap_unit": "payload_block",
+    "bootstrap_resamples": 1000,
+    "claim_label": "development equal-N observational control; not confirmation or behavioral causality"
+  },
+  "jlens_development": {
+    "run_manifest": "runs/tae_2026/jlens_v3/20260818_full320_8b_retry03/run_manifest.json",
+    "assay_sha256": "6ca60307ed3c093349b94ba7f1e93183477025b14065c84cfd2b9931fbf95b9f",
+    "geometry_sha256": "7b1100903c21ba6fd2500d9d25621e3e79da49f9f056346d6c1c83974343339f",
+    "factorial_sha256": "e35fbe477e4f063cb36690c925dc2212f60a37594a941aa6232c54ee72695d0",
+    "claim_label": "development mechanistic diagnostic; not confirmation or behavioral causality"
+  },
+  "pilot_appendix": {"dataset": "activations_dataset/activations/*_pilot80", "items_sha256": "0dbcb9802924d3c2063fce87e24250d1a3430fd24856ea83b132e606843f6638", "claim_label": "exploratory pilot; separate freeze; do not pool with full320"},
+  "devbunova_appendix": {"dataset": "external/eval-awareness-2x2", "claim_label": "external provenance/context only; no local activations or matched extraction"},
+  "unavailable": ["Llama-3.1-405B matched activation bundle", "model-specific 70B/405B jLens fits", "valid behavioral causal endpoint", "confirmation-bank extraction"],
+  "claim_restrictions": ["Use stated response purpose decodability, not evaluation awareness.", "Treat current results as development observational, equal-N observational, or development geometry.", "Do not interpret unequal-N cross-format gaps mechanistically.", "Do not claim confirmation, behavioral steering, or universal format erasure."]
+}

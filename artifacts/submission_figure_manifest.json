@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "status": "development_only",
+  "main_paper_candidates": [
+    {"figure": "01_purpose_signal_by_depth.png", "path": "plots/full320 results 8-18-2026/01_purpose_signal_by_depth.png", "claim": "held-out-vocabulary observational purpose decodability across all layers"},
+    {"figure": "02_confound_signature.png", "path": "plots/full320 results 8-18-2026/02_confound_signature.png", "claim": "confounded AUC versus balanced-accuracy calibration diagnostic"},
+    {"figure": "03_transfer_by_depth.png", "path": "plots/full320 results 8-18-2026/03_transfer_by_depth.png", "claim": "observational cross-format transfer"},
+    {"figure": "04_ranking_vs_threshold.png", "path": "plots/full320 results 8-18-2026/04_ranking_vs_threshold.png", "claim": "AUC and threshold-sensitive balanced accuracy kept separate"},
+    {"figure": "06_signal_split_by_depth.png", "path": "plots/full320 results 8-18-2026/06_signal_split_by_depth.png", "claim": "descriptive signal/transfer split; not A/B/C geometry"},
+    {"figure": "08_surface_battery.png", "path": "plots/full320 results 8-18-2026/08_surface_battery.png", "claim": "cue-excised lexical controls and intentionally decodable format/template controls"}
+  ],
+  "pinned_draft_figures": [
+    {"figure": "main_purpose_by_depth.png", "path": "paper/figures/main_purpose_by_depth.png", "sha256": "191723cc8c51c60ae823d397e49661e1e9a1ae54893ad648d1c1be2f0ae7482a", "claim": "pinned full320 held-out purpose AUC across depth"},
+    {"figure": "main_auc_balanced_accuracy.png", "path": "paper/figures/main_auc_balanced_accuracy.png", "sha256": "50d0c0e7f5c16340f99307c6bdbe3b5001cd5b29eded540ca23a61c25348f5c6", "claim": "pinned full320 AUC and balanced accuracy at descriptive peaks"},
+    {"figure": "main_cross_format_transfer.png", "path": "paper/figures/main_cross_format_transfer.png", "sha256": "76f78cdb78da9c9001e8e964794c14d28b97ce6aa8435136acc66fd84cf82c73", "claim": "pinned full320 cross-format transfer at descriptive peaks"},
+    {"figure": "main_equal_n_8b.png", "path": "paper/figures/main_equal_n_8b.png", "sha256": "ef26f4eb5baf41e9106500fbd5edccf6ffb30572b4f0e2f57ddfd7aeea387147", "claim": "8B layer-12 equal-training-size development control"},
+    {"figure": "appendix_jlens_direct_diagnostic.png", "path": "paper/figures/appendix_jlens_direct_diagnostic.png", "sha256": "be8e7daabd745f28ea10765b1a1239667fd25d0fa89697c250a74f96227309fb", "claim": "8B development-only direct Jacobian-lens purpose and no-cue format diagnostic"}
+  ],
+  "appendix_candidates": [
+    {"figure": "01_stated_signal_by_depth.png", "path": "plots/pilot results 8-16-2026/01_stated_signal_by_depth.png", "claim": "pilot exploratory layer selection"},
+    {"figure": "05_paired_consistency_by_depth.png", "path": "plots/pilot results 8-16-2026/05_paired_consistency_by_depth.png", "claim": "pilot held-out-vocabulary paired consistency"},
+    {"figure": "08_generalization_ladder.png", "path": "plots/pilot results 8-16-2026/08_generalization_ladder.png", "claim": "exploratory pilot endpoint ladder; not confirmation"},
+    {"figure": "09_nocue_format_shift.png", "path": "plots/pilot results 8-16-2026/09_nocue_format_shift.png", "claim": "exploratory no-cue format diagnostic with no stable cross-model direction"}
+  ],
+  "missing_required_evidence": [
+    "equal-N mixed-format control for all three models",
+    "all-model A/B/C vector geometry and transfer correlation",
+    "validated independent behavioral endpoint",
+    "sign-symmetric causal intervention with random-direction controls",
+    "confirmation bank and sealed extraction"
+  ],
+  "caption_restrictions": [
+    "Use stated response purpose decodability, not evaluation awareness.",
+    "Do not call format-bound gap plot A/B/C geometry.",
+    "Do not call pilot endpoints pre-registered confirmation endpoints.",
+    "Do not claim causal steering, confirmation, or scale from unavailable 405B data."
+  ]
+}

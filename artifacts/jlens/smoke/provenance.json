@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "status": "complete",
+  "run_job": 52308432,
+  "run_dir": "/scratch/jppatton/langea/runs/jlens_smoke_20260817_03",
+  "repo_commit": "b6651155f13a2c3c60acb19d580ba28a446e2ccf",
+  "jlens_commit": "581d398613e5602a5af361e1c34d3a92ea82ba8e",
+  "model_id": "meta-llama/Llama-3.1-8B-Instruct",
+  "model_revision": "0e9e39f249a16976918f6564b8830bc894c89659",
+  "model_path": "/scratch/jppatton/langea/confirmation_work/llama31_8b_model_0e9e39f2",
+  "tokenizer_path": "/scratch/jppatton/langea/confirmation_work/llama31_8b_tokenizer_0e9e39f2",
+  "tokenizer": {
+    "tokenizer.json": "79e3e522635f3171300913bb421464a87de6222182a0570b9b2ccba2a964b2b4",
+    "tokenizer_config.json": "177c7b61e616fecb84c17ce0591acb92c6c4d60e9ac5ababfb940ff23bbcd424",
+    "special_tokens_map.json": "6f38c73729248f6c127296386e3cdde96e254636cc58b4169d3fd32328d9a8ec",
+    "vocab_size": 128000,
+    "bos_token_id": 128000,
+    "eos_token_id": 128009,
+    "pad_token_id": null,
+    "use_fast": true,
+    "deterministic_battery": true
+  },
+  "corpus": {
+    "path": "/scratch/jppatton/langea/confirmation_work/tae_2026_b665115/raw.jsonl",
+    "sha256": "b0dc8a013b501f2e7080067eee8f81bdaa10fc0534100c3453ae4eeda900f6bd",
+    "selected_prompts": 2
+  },
+  "fit": {
+    "source_layers": [12],
+    "target_layer": 31,
+    "dim_batch": 1,
+    "max_seq_len": 128,
+    "skip_first": 16,
+    "n_prompts_fitted": 2,
+    "jacobian_shape": [4096, 4096],
+    "dtype": "float32",
+    "finite": true,
+    "frobenius_norm": 68.27595520019531,
+    "lens_sha256": "70308065f5e5d109133b6e895b426079a2a4ca14e71d97ad1ec0c62585d81539",
+    "reload_exact": true,
+    "apply_finite": true,
+    "gpu": "NVIDIA H100 80GB HBM3"
+  }
+}

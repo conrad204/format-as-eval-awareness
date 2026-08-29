@@ -1,0 +1,81 @@
+{
+  "schema_version": 2,
+  "status": "complete",
+  "implementation": "anthropics/jacobian-lens",
+  "jlens_dir": "/scratch/jppatton/langea/confirmation_work/jlens-581d3986",
+  "model": "/scratch/jppatton/langea/confirmation_work/llama31_8b_model_0e9e39f2",
+  "tokenizer": "/scratch/jppatton/langea/confirmation_work/llama31_8b_tokenizer_0e9e39f2",
+  "revision": "0e9e39f249a16976918f6564b8830bc894c89659",
+  "source_layers": [
+    12
+  ],
+  "target_layer": 31,
+  "dim_batch": 1,
+  "max_seq_len": 128,
+  "skip_first": 16,
+  "seed": 20260817,
+  "n_input_records": 2,
+  "n_prompts_fitted": 2,
+  "input_sha256": "d61af985c6b11e00f56160275041b67f2ea8ef712da4f1d41d0cf97ea520f36e",
+  "record_ids": [
+    "<urn:uuid:80890a53-49de-4f18-a90b-76b2526cbb96>",
+    "<urn:uuid:3c2dcbae-dfdf-4160-9356-4671a94a9505>"
+  ],
+  "lens_sha256": "70308065f5e5d109133b6e895b426079a2a4ca14e71d97ad1ec0c62585d81539",
+  "checkpoint_sha256": "fe0c154518d6a590b63c71b5b1f5acdfa7f543cd85aae9e8bf98362f33a407b5",
+  "pre_save_stats": {
+    "12": {
+      "shape": [
+        4096,
+        4096
+      ],
+      "dtype": "torch.float32",
+      "finite": true,
+      "min": -1.3395600318908691,
+      "max": 1.8541842699050903,
+      "max_abs": 1.8541842699050903,
+      "frobenius": 68.27595520019531,
+      "nonfinite": 0
+    }
+  },
+  "saved_raw_stats": {
+    "12": {
+      "shape": [
+        4096,
+        4096
+      ],
+      "dtype": "torch.float32",
+      "finite": true,
+      "min": -1.3395600318908691,
+      "max": 1.8541842699050903,
+      "max_abs": 1.8541842699050903,
+      "frobenius": 68.27595520019531,
+      "nonfinite": 0
+    }
+  },
+  "reload_stats": {
+    "12": {
+      "shape": [
+        4096,
+        4096
+      ],
+      "dtype": "torch.float32",
+      "finite": true,
+      "min": -1.3395600318908691,
+      "max": 1.8541842699050903,
+      "max_abs": 1.8541842699050903,
+      "frobenius": 68.27595520019531,
+      "nonfinite": 0
+    }
+  },
+  "reload_exact": true,
+  "apply_finite": true,
+  "environment": {
+    "python": "3.11.3 (main, Feb  5 2026, 20:59:04) [GCC 12.3.0]",
+    "platform": "Linux-4.18.0-553.150.1.el8_10.x86_64-x86_64-with-glibc2.28",
+    "torch": "2.6.0+cu124",
+    "cuda": "12.4",
+    "gpu": "NVIDIA H100 80GB HBM3"
+  },
+  "git_commit": "unknown"
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "status": "development_only",
+  "freeze": "pilot80-v2",
+  "items_sha256": "0dbcb9802924d3c2063fce87e24250d1a3430fd24856ea83b132e606843f6638",
+  "n_items": 1760,
+  "n_payload_blocks": 80,
+  "model_activation_all_layers": {
+    "llama31_8b": "983fca52b5d96a3c697a3533fca9ff13625c4789f17277d5f8edcdfa3b66eba7",
+    "llama31_70b": "5d09f6806ac83308a93b37ebf144ed6ed90bd49f67be9267d378f4797aa0b038",
+    "llama33_70b": "2d0733a24bf56746e9f1b78ae71526df2e0516a4478e235060bf45e3d25e9650"
+  },
+  "selected_layers": {"llama31_8b": 12, "llama31_70b": 31, "llama33_70b": 17},
+  "use": "separate exploratory appendix and methodological context",
+  "not_allowed": ["pooling with full320-v3", "confirmatory replication claim", "causal claim", "evaluation-awareness claim"]
+}

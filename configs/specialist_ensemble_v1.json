@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "protocol_id": "specialist_ensemble_v1",
+  "frozen_utc": "2026-08-23T09:52:21Z",
+  "status": "post_constituent_outcome_hypothesis_frozen_before_any_ensemble_score",
+  "post_full_point_pre_pilot_amendment": {
+    "amended_utc": "2026-08-23T09:53:20Z",
+    "reason": "The pilot bank uses assignment seeds 20261011-20261018 rather than the full320 seeds written initially. A lookup failed before any pilot ensemble metric was computed. The fixed adjacent-pair rule is unchanged and is now expressed per bank. The full320 aggregate point contrast +0.00230748 had been observed; no bootstrap, randomization, pilot point, model aggregate, or depth aggregate had been computed.",
+    "scope": "Pilot seed identifiers only; full320 pairings and every estimand/decision rule remain unchanged."
+  },
+  "scientific_question": "Are benchmark/casual purpose signals better preserved by late fusion of two format-specialized probes than by equal-capacity ensembles of probes trained on mixed environments?",
+  "theory": "If purpose directions are format-conditional rather than absent, averaging decisions from separately fitted environment specialists can preserve complementary signal that coefficient-level compromise during mixed training loses.",
+  "known_before_freeze": "Constituent single-probe and mixed-probe results had been inspected. No arithmetic specialist ensemble, two-mixed-probe ensemble, ensemble metric, bootstrap contrast, model contrast, depth contrast, or randomization result had been computed.",
+  "banks": [
+    {
+      "bank_id": "full320_v3",
+      "result_path": "artifacts/exploratory/full320_strict_equal_rows_v1_20260823_r2/strict_equal_rows_results.json",
+      "score_path": "artifacts/exploratory/full320_strict_equal_rows_v1_20260823_r2/primary_scores.npz",
+      "score_sha256": "130584338ab972dee37ccaab6c211fa418ce3a7d5dd2caba6734c22cce26c2e6",
+      "items_path": "v3-activations/rendered_items_v3_full320_8-17-2026.jsonl",
+      "items_sha256": "5528819d74e696d1a595062047a829836dfde1d2a45287b06a5ac1ba5d1b6c67",
+      "canonical_rows": "render_slot == stated and legacy == false",
+      "models": ["meta-llama/Llama-3.1-70B-Instruct", "meta-llama/Llama-3.3-70B-Instruct"],
+      "depths": [0.25, 0.375, 0.5, 0.625, 0.75]
+    },
+    {
+      "bank_id": "pilot80_v2_matched",
+      "result_path": "artifacts/exploratory/pilot80_matched_equal_rows_v1_20260823/matched_equal_rows_results.json",
+      "score_path": "artifacts/exploratory/pilot80_matched_equal_rows_v1_20260823/primary_scores.npz",
+      "score_sha256": "944bacfe207962920b2349caae25e682491c7c784f298a76c38666a8deb93946",
+      "items_path": "tests/data/rendered_items_v2_pilot80_8-16-2026.jsonl",
+      "items_sha256": "d312b59130d4ca9a655391ea28ea8f7b42363eb1d35e0ad9763fedc051a6dbf7",
+      "canonical_rows": "render_slot == stated",
+      "models": ["meta-llama/Llama-3.1-8B-Instruct", "meta-llama/Llama-3.1-70B-Instruct", "meta-llama/Llama-3.3-70B-Instruct"],
+      "depths": [0.25, 0.375, 0.5, 0.625, 0.75]
+    }
+  ],
+  "ensembles": {
+    "specialist": "For each model and depth, arithmetic mean of the raw benchmark-only and casual-only OOF decision scores.",
+    "mixed_controls_by_bank": {
+      "full320_v3": [
+        [20260823, 20260824],
+        [20260825, 20260826],
+        [20260827, 20260828],
+        [20260829, 20260830]
+      ],
+      "pilot80_v2_matched": [
+        [20261011, 20261012],
+        [20261013, 20261014],
+        [20261015, 20261016],
+        [20261017, 20261018]
+      ]
+    },
+    "mixed_definition": "For each fixed seed pair, arithmetic mean of the two raw mixed-environment OOF decision scores.",
+    "capacity_match": "Both specialist and mixed ensembles average two independently fitted diagonal-LDA probes, use two score vectors, and consume two equal-row training fits. No score scaling, weighting, fitting, calibration, seed selection, or test-label-dependent transformation is allowed.",
+    "orientation": "All constituent scores are class-1 evaluation minus class-0 deployment under identical probe code."
+  },
+  "metrics": {
+    "primary": "macro-format ROC AUC, unweighted mean of benchmark and casual ROC AUC",
+    "secondary": ["macro-format balanced accuracy at raw averaged score > 0", "worst-format ROC AUC"],
+    "primary_contrast": "specialist ensemble metric minus the unweighted mean metric of the four fixed mixed ensembles",
+    "additional_required": ["specialist minus each mixed ensemble", "specialist minus each constituent specialist", "all absolute metrics"]
+  },
+  "uncertainty": {
+    "unit": "complete payload_block_id",
+    "bootstrap_resamples": 4000,
+    "bootstrap_seed": 20261201,
+    "same_resamples_across": "banks, models, depths, formats, and all ensembles",
+    "interval": "percentile 95 percent with ensemble metrics and contrasts fully recomputed per resample"
+  },
+  "falsification": {
+    "paired_sign_flip_draws": 8192,
+    "paired_sign_flip_seed": 20261202,
+    "statistic": "mean complete-payload-block primary contrast, computed within block before sign flipping",
+    "finite_p": "(1 + count(null >= observed)) / 8193"
+  },
+  "decision_rules": {
+    "positive": "Both banks have aggregate primary contrast bootstrap CI lower bound > 0 and sign-flip p <= 0.05; the exact Llama-3.1-70B checkpoint contrast is positive in both banks; at least four of five model-bank point estimates are positive; and at least three of five depth point estimates are positive within each bank.",
+    "mixed": "Both bank aggregate point estimates are positive but any positive rule fails.",
+    "negative": "Either bank aggregate point estimate is nonpositive.",
+    "no_best_only": "All model and depth trajectories are mandatory; no selected layer or model may replace the frozen aggregate."
+  },
+  "claim_scope": {
+    "allowed_if_positive": "Late fusion of format-specialized linear purpose decoders outperforms equal-capacity mixed-format decoder ensembles on two frozen matched banks, supporting format-conditional linear access to purpose labels.",
+    "prohibited": ["evaluation awareness", "behavioral effect", "causal model mechanism", "training-time model learning claim", "content-independent format invariance", "universal population claim"]
+  },
+  "outputs": {
+    "result_json": "specialist_ensemble_results.json",
+    "table_tsv": "specialist_ensemble_metrics.tsv",
+    "figure": "specialist_ensemble_matrix.png",
+    "manifest_json": "run_manifest.json"
+  }
+}
