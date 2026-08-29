@@ -357,20 +357,20 @@ def validate_references(model: str, aucs: np.ndarray, tolerance: float) -> dict:
     ri64 = RANKS.index(64)
     max_raw = 0.0
     max_b64 = 0.0
-    for layer in range(aucs.shape[2]):
+    for layer in range(aucs.shape[3]):
         raw_expected = (
             float(raw_ref[layer]["decorrelated"]["auc"]),
             float(raw_ref[layer]["b2c"]["auc"]),
             float(raw_ref[layer]["c2b"]["auc"]),
         )
-        raw_actual = aucs[ci["raw"], 0, layer]
+        raw_actual = aucs[ci["raw"], 0, :, layer]
         max_raw = max(max_raw, float(np.max(np.abs(raw_actual - raw_expected))))
         b_expected = (
             float(b64[str(layer)]["purpose_auc_after_erasure"]),
             float(b64[str(layer)]["b2c_auc_after_erasure"]),
             float(b64[str(layer)]["c2b_auc_after_erasure"]),
         )
-        b_actual = aucs[ci["minus_b"], ri64, layer]
+        b_actual = aucs[ci["minus_b"], ri64, :, layer]
         max_b64 = max(max_b64, float(np.max(np.abs(b_actual - b_expected))))
     if max_raw > tolerance:
         raise AssertionError(f"raw reference reproduction failed: {max_raw} > {tolerance}")
