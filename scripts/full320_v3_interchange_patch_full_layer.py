@@ -196,7 +196,14 @@ def main() -> None:
     ap.add_argument("--batch-size", type=int, default=8)
     ap.add_argument("--out", required=True)
     ap.add_argument("--resume", action="store_true")
+    ap.add_argument("--conditions", default="real_swap,random_control",
+                     help="comma-separated subset of real_swap,random_control,matched_control. "
+                          "matched_control: fresh random-direction ADDITIVE perturbation, magnitude-"
+                          "matched per-row to that row's real_swap delta norm (computed offline from "
+                          "static activations, no extra GPU cost) -- isolates whether real_swap's "
+                          "purpose disruption is specific to Q_format(r) or just perturbation size.")
     args = ap.parse_args()
+    conditions = args.conditions.split(",")
 
     import torch
     from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -285,7 +292,7 @@ def main() -> None:
             if not test_fold_pairs:
                 continue
             todo = [p for p in test_fold_pairs
-                    if (layer, fold, p["src"], p["tgt"], "real_swap") not in done_keys]
+                    if any((layer, fold, p["src"], p["tgt"], c) not in done_keys for c in conditions)]
             if not todo:
                 continue
 
@@ -294,28 +301,44 @@ def main() -> None:
             R = random_orth_basis(d, Q.shape[1], seed=RANDOM_SUBSPACE_SEED_BASE + layer * 1009 + fold_hash(fold))
             purpose_probe = fit_probe_frozen(X_all[train_mask, target_layer, :].astype(np.float64), y_purpose[train_mask])
             format_probe = fit_probe_frozen(X_all[train_mask, target_layer, :].astype(np.float64), y_format[train_mask])
-            Q_t = torch.as_tensor(Q, dtype=torch.float32, device=device)
-            R_t = torch.as_tensor(R, dtype=torch.float32, device=device)
 
             offset = 0
             while offset < len(todo):
                 batch = todo[offset: offset + args.batch_size]
+                batch_offset = offset
                 offset += len(batch)
-                for condition, subspace in (("real_swap", Q_t), ("random_control", R_t)):
+                src_h_np = np.stack([X_all[p["src"], layer, :] for p in batch]).astype(np.float64)
+                tgt_h_np = np.stack([X_all[p["tgt"], layer, :] for p in batch]).astype(np.float64)
+                real_delta_np = (tgt_h_np - src_h_np) @ Q @ Q.T
+                for condition in conditions:
+                    if condition == "real_swap":
+                        delta_np = real_delta_np
+                    elif condition == "random_control":
+                        delta_np = (tgt_h_np - src_h_np) @ R @ R.T
+                    elif condition == "matched_control":
+                        # Fresh random ADDITIVE direction per row, magnitude-matched to
+                        # this row's own real_swap delta norm (computed offline from
+                        # static activations -- no extra GPU cost). Isolates whether
+                        # real_swap's purpose disruption is specific to Q_format(r) or
+                        # just a function of perturbation size.
+                        real_delta_norm = np.linalg.norm(real_delta_np, axis=-1, keepdims=True)
+                        rng_row = np.random.default_rng(
+                            RANDOM_SUBSPACE_SEED_BASE + layer * 100003 + fold_hash(fold) * 131 + batch_offset)
+                        u = rng_row.standard_normal(real_delta_np.shape)
+                        u /= np.linalg.norm(u, axis=-1, keepdims=True)
+                        delta_np = u * real_delta_norm
+                    else:
+                        raise ValueError(f"unknown condition {condition}")
+                    delta_t = torch.as_tensor(delta_np.astype(np.float32), device=device)
                     src_indices = [p["src"] for p in batch]
-                    tgt_h = torch.as_tensor(
-                        np.stack([X_all[p["tgt"], layer, :] for p in batch]).astype(np.float32), device=device,
-                    )
                     input_ids, attention_mask = pad_left([encoded[i] for i in src_indices], tokenizer.pad_token_id, torch, device)
                     capture: dict[str, Any] = {"h": None}
 
-                    def source_hook(_m, _i, output, _subspace=subspace, _tgt_h=tgt_h):
+                    def source_hook(_m, _i, output, _delta=delta_t):
                         hidden = output_hidden(output)
                         modified = hidden.clone()
                         last = modified[:, -1, :].to(torch.float32)
-                        proj_self = (last @ _subspace) @ _subspace.T
-                        proj_tgt = (_tgt_h.to(torch.float32) @ _subspace) @ _subspace.T
-                        modified[:, -1, :] = (last - proj_self + proj_tgt).to(hidden.dtype)
+                        modified[:, -1, :] = (last + _delta).to(hidden.dtype)
                         return replace_hidden(output, modified)
 
                     def target_hook(_m, _i, output):

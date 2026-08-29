@@ -17,6 +17,7 @@ RANK="${RANK:-16}"
 LAYERS="${LAYERS:-}"
 MAX_PAIRS_PER_FOLD="${MAX_PAIRS_PER_FOLD:-}"
 BATCH_SIZE="${BATCH_SIZE:-8}"
+CONDITIONS="${CONDITIONS:-}"
 RESUME_FLAG="${RESUME_FLAG:-}"
 
 case "$OUT" in
@@ -36,6 +37,7 @@ cd /scratch/jppatton/langea/deploy/full320_v3_erasure_bootstrap
 ARGS=(--model "$MODEL" --rank "$RANK" --batch-size "$BATCH_SIZE" --out "$OUT")
 [[ -n "$LAYERS" ]] && ARGS+=(--layers "$LAYERS")
 [[ -n "$MAX_PAIRS_PER_FOLD" ]] && ARGS+=(--max-pairs-per-fold "$MAX_PAIRS_PER_FOLD")
+[[ -n "$CONDITIONS" ]] && ARGS+=(--conditions "$CONDITIONS")
 [[ -n "$RESUME_FLAG" ]] && ARGS+=(--resume)
 
 /bighome/jppatton/langea/runtime/vllm/bin/python \
