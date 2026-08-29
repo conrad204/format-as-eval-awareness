@@ -1,34 +1,25 @@
 **Figure.** The matched-format-subspace geometry result is not an artifact of which
-3 depths were picked: at rank 16, purpose-direction energy sits far below chance and
-the apples-to-apples conditional-null p-value sits at (or near) the Monte Carlo floor
-across essentially the entire depth of all 3 checkpoints, not just the pre-registered
-`spike`/`min_gap`/`final` points.
+3 depths were picked: at rank 16, purpose-direction energy sits far below the exact
+high-dimensional chance level across essentially the entire depth of all 3
+checkpoints, not just the pre-registered `spike`/`min_gap`/`final` points.
 
-**Left:** observed E_purpose→format(16) = ||Q_format(16)^T w_purpose||^2 at every
-transformer layer (solid lines, one per model), against the exact high-dimensional
-chance level 16/d (dotted, one per model; d=4096 for Llama-3.1-8B, d=8192 for both
-70B checkpoints). The curve stays 1-4 orders of magnitude below the matching-color
+Observed E_purpose→format(16) = ||Q_format(16)^T w_purpose||^2 at every transformer
+layer (solid lines, one per model), against the exact high-dimensional chance level
+16/d (dotted, one per model; d=4096 for Llama-3.1-8B, d=8192 for both 70B
+checkpoints). The curve stays 1-4 orders of magnitude below the matching-color
 chance line at every depth past the first few layers.
 
-**Right:** the same apples-to-apples conditional-null p-value used in the
-pre-registered test (matched-format PCA basis projected into and re-orthonormalized
-within the empirical top-64 PC subspace, compared against 10,000 random rank-16
-subspaces drawn from that same top-64 subspace, using the real purpose-direction
-coordinate vector), computed independently at every layer. p sits at the 10,000-draw
-floor (~1e-4) at nearly every depth for all 3 models; the one visible departure
-(Llama-3.1-70B's last layer, ~2e-4) is still ~250x below the p=0.05 line.
-
-**What this figure is not:** a new significance claim, and not Holm/Bonferroni-
-corrected across layers. Adjacent layers share almost all their variance (residual-
-stream continuity), so the ~32-80 per-layer p-values plotted here are repeated
-measurements of one underlying depth trajectory per model, not independent tests --
-treating "how many of 80 layers hit p<0.05" as N=80 independent replicates would be
-exactly the pseudoreplication the project's operational rules prohibit. The only
-corrected, confirmatory claim is the pre-registered 3-depth, 27-cell family in
+**What this figure is not:** a new significance claim. Adjacent layers share almost
+all their variance (residual-stream continuity), so this is one continuous depth
+trajectory per model, not independent per-layer tests -- no per-layer significance
+count or correction is computed here, since treating "how many of ~32-80 layers
+clear some threshold" as N independent replicates would be exactly the
+pseudoreplication the project's operational rules prohibit. The only corrected,
+confirmatory claim is the pre-registered 3-depth, 27-cell family in
 `results/full320_v3_conditional_null_multiplicity.json` (rank 16: 9/9 cells survive
 both Holm and Bonferroni correction, both nulls). This figure's role is descriptive:
-it shows that result holding continuously around the 3 chosen points (dots), so the
-pinned-depth selection wasn't a favorable cherry-pick from an otherwise noisy profile.
+it shows that result holding continuously across depth, so the pinned-depth
+selection wasn't a favorable cherry-pick from an otherwise noisy profile.
 
 Source: `results/full320_v3_geometry_full_layer_sweep.json` (computed on uahpc via
 `scripts/full320_v3_geometry_full_layer_sweep.py`, same method as

@@ -9,15 +9,14 @@ subspace, using the real purpose-direction coordinate vector). Source:
 scripts/full320_v3_geometry_full_layer_sweep.py, computed on uahpc.
 
 Explicitly descriptive, not a new inferential claim: adjacent layers share most of
-their variance (residual-stream continuity), so per-layer p-values here are
-repeated measurements of one underlying depth trajectory, not independent tests.
-This figure is NOT Holm/Bonferroni-corrected across layers and no per-layer
-significance count is reported anywhere in this script or its caption -- doing so
-would be exactly the layers-as-independent-replicates pseudoreplication RULES.md
-prohibits. The only corrected, confirmatory claim is the pre-registered 3-depth
-27-cell family in results/full320_v3_conditional_null_multiplicity.json; this plot
-exists to show that the corrected 3-point result is not an artifact of which 3
-layers happened to be picked, by showing the whole trajectory around them.
+their variance (residual-stream continuity), so this is one continuous depth
+trajectory per model, not independent per-layer tests. No per-layer significance
+count or correction is computed or reported here -- doing so would be exactly the
+layers-as-independent-replicates pseudoreplication RULES.md prohibits. The only
+corrected, confirmatory claim is the pre-registered 3-depth 27-cell family in
+results/full320_v3_conditional_null_multiplicity.json; this plot exists to show
+that the corrected 3-point result is not an artifact of which 3 layers happened
+to be picked, by showing the whole trajectory around them.
 
 Self-contained. Reads only:
   results/full320_v3_geometry_full_layer_sweep.json
@@ -40,13 +39,6 @@ DIMS = {"llama31_8b": 4096, "llama31_70b": 8192, "llama33_70b": 8192}
 MODEL_ORDER = ["llama31_8b", "llama31_70b", "llama33_70b"]
 MODEL_LABEL = {"llama31_8b": "Llama-3.1-8B", "llama31_70b": "Llama-3.1-70B", "llama33_70b": "Llama-3.3-70B"}
 MODEL_COLOR = {"llama31_8b": "#2A5FA5", "llama31_70b": "#C9502F", "llama33_70b": "#1F7A5C"}
-# Pre-registered pinned depths, kept only as reference markers for continuity with
-# the corrected 3-depth test (matched_format_subspace_geometry), not re-tested here.
-PINNED_DEPTHS = {
-    "llama31_8b": {"spike": 3, "min_gap": 14, "final": 31},
-    "llama31_70b": {"spike": 4, "min_gap": 19, "final": 79},
-    "llama33_70b": {"spike": 4, "min_gap": 21, "final": 79},
-}
 RANK = 16
 N_DRAWS = 10_000
 P_FLOOR = 1 / (N_DRAWS + 1)
@@ -68,8 +60,7 @@ def main() -> None:
     })
     sweep = json.loads(SWEEP_PATH.read_text())
 
-    fig, axes = plt.subplots(1, 2, figsize=(11.5, 4.6), constrained_layout=True)
-    ax_energy, ax_p = axes
+    fig, ax_energy = plt.subplots(1, 1, figsize=(6.5, 4.6), constrained_layout=True)
 
     for key in MODEL_ORDER:
         label = MODEL_LABEL[key]
@@ -78,41 +69,25 @@ def main() -> None:
         by_layer = sweep["by_model"][key]["by_layer"]
         n_layers = sweep["by_model"][key]["n_layers"]
         layers = list(range(n_layers))
-        rel_depth = np.array([L / (n_layers - 1) for L in layers])
+        rel_depth_pct = np.array([100.0 * L / (n_layers - 1) for L in layers])
 
         energy = np.array([by_layer[str(L)]["by_rank"][str(RANK)]["E_purpose_in_format_subspace"] for L in layers])
-        p_cond = np.array([by_layer[str(L)]["by_rank"][str(RANK)]["p_conditional_apples_to_apples"] for L in layers])
 
-        ax_energy.plot(rel_depth, energy, "-", color=color, linewidth=1.4, alpha=0.9, label=label)
+        ax_energy.plot(rel_depth_pct, energy, "-", color=color, linewidth=1.4, alpha=0.9, label=label)
         ax_energy.axhline(RANK / d, color=color, linewidth=0.9, linestyle=":", alpha=0.6)
-        ax_p.plot(rel_depth, np.clip(p_cond, P_FLOOR, None), "-", color=color, linewidth=1.4, alpha=0.9, label=label)
-
-        for L in PINNED_DEPTHS[key].values():
-            rd = L / (n_layers - 1)
-            ax_energy.plot(rd, energy[layers.index(L)], "o", color=color, markersize=5,
-                            markeredgecolor="white", markeredgewidth=0.6, zorder=5)
-            ax_p.plot(rd, max(p_cond[layers.index(L)], P_FLOOR), "o", color=color, markersize=5,
-                       markeredgecolor="white", markeredgewidth=0.6, zorder=5)
 
     ax_energy.set_yscale("log")
-    ax_p.set_yscale("log")
-    ax_p.axhline(0.05, color=INK, linewidth=0.9, linestyle="--", alpha=0.5)
-    ax_p.axhline(P_FLOOR, color=INK, linewidth=0.7, linestyle=":", alpha=0.35)
-
-    for ax in (ax_energy, ax_p):
-        ax.set_xlabel("relative depth (0 = first layer, 1 = last layer)")
-        ax.grid(axis="both", color=GRID, linewidth=0.55, alpha=0.85, zorder=0)
-        ax.set_axisbelow(True)
-        ax.set_xlim(-0.02, 1.02)
+    ax_energy.set_xlabel("relative depth (% of layers, 0 = first, 100 = last)")
+    ax_energy.grid(axis="both", color=GRID, linewidth=0.55, alpha=0.85, zorder=0)
+    ax_energy.set_axisbelow(True)
+    ax_energy.set_xlim(-2, 102)
 
     ax_energy.set_ylabel(f"E_purpose→format({RANK})\n(dotted: exact chance {RANK}/d)")
-    ax_p.set_ylabel(f"conditional-null p (rank {RANK})\n(dashed: p=0.05, dotted: {N_DRAWS}-draw floor)")
     ax_energy.set_title("Purpose energy in matched-format subspace vs. depth", loc="left", fontsize=10, fontweight="bold")
-    ax_p.set_title("Apples-to-apples conditional-null p vs. depth", loc="left", fontsize=10, fontweight="bold")
     ax_energy.legend(loc="upper right", fontsize=7.5, framealpha=0.9)
 
     fig.suptitle(
-        "Full-layer geometry trajectory, rank 16 (dots: pre-registered pinned depths)",
+        f"Full-layer geometry trajectory, rank {RANK}",
         fontsize=12, fontweight="bold", x=0.02, ha="left",
     )
 
@@ -123,6 +98,7 @@ def main() -> None:
         fig.savefig(OUT_DIR / f"full_layer_geometry_trajectory.{suffix}", **kwargs)
     plt.close(fig)
     print(f"wrote {OUT_DIR / 'full_layer_geometry_trajectory.pdf'}")
+
 
 
 if __name__ == "__main__":
