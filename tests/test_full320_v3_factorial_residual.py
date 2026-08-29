@@ -1,3 +1,4 @@
+import json
 import sys
 from pathlib import Path
 
@@ -12,10 +13,12 @@ from full320_v3_factorial_residual_bootstrap import (  # noqa: E402
     weighted_auc_from_order,
 )
 from full320_v3_factorial_residual_sweep import (  # noqa: E402
-    combined_basis,
     captured_energy,
+    combined_basis,
     factorial_effects,
+    load_partial_layer,
     random_basis_orthogonal_to,
+    write_partial_layer,
 )
 from full320_v3_interchange_stratified_bootstrap import summarize  # noqa: E402
 from format_erasure_development import orth_basis, remove  # noqa: E402
@@ -156,3 +159,31 @@ def test_interchange_strata_reuse_blocks_and_preserve_gap_signs():
         for group in groups.values():
             assert group["metrics"]["purpose_abs_shift"]["gap"] == pytest.approx(1.0)
             assert group["metrics"]["format_iia"]["gap"] == pytest.approx(1.0)
+
+
+def test_partial_layer_checkpoint_publishes_atomically(tmp_path):
+    partial_dir = tmp_path / "partial"
+    ids = np.asarray(["item-a", "item-b"])
+    layer_scores = np.zeros((9, 4, 3, len(ids)), dtype=np.float32)
+    write_partial_layer(
+        partial_dir,
+        "llama31_8b",
+        2,
+        layer_scores,
+        {"max_factorial_identity_error": 0.0},
+        1.25,
+        ids,
+        [2],
+        4,
+    )
+
+    restored_scores, restored_sanity, restored_elapsed = load_partial_layer(
+        partial_dir, 2, "llama31_8b", ids
+    )
+    np.testing.assert_array_equal(restored_scores, layer_scores)
+    assert restored_sanity == {"max_factorial_identity_error": 0.0}
+    assert restored_elapsed == pytest.approx(1.25)
+    manifest = json.loads((partial_dir / "manifest.json").read_text(encoding="utf-8"))
+    assert manifest["status"] == "running"
+    assert manifest["completed_layers"] == [2]
+    assert not list(partial_dir.glob(".*.tmp"))

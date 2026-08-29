@@ -64,6 +64,86 @@ REGIMES = ("joint", "b2c", "c2b")
 DEFAULT_TOL = 1e-6
 
 
+PARTIAL_SCHEMA_VERSION = 1
+
+
+def _atomic_npz(path: Path, **arrays) -> None:
+    """Write a compressed NumPy archive without exposing a half-written file."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    tmp_path = path.with_name(f".{path.name}.tmp")
+    with tmp_path.open("wb") as handle:
+        np.savez_compressed(handle, **arrays)
+    os.replace(tmp_path, path)
+
+
+def _atomic_json(path: Path, payload: dict) -> None:
+    """Write JSON atomically so readers see complete manifests only."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    tmp_path = path.with_name(f".{path.name}.tmp")
+    tmp_path.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+    os.replace(tmp_path, path)
+
+
+def item_id_digest(ids: np.ndarray) -> str:
+    return hashlib.sha256("\n".join(map(str, ids)).encode("utf-8")).hexdigest()
+
+
+def partial_layer_path(partial_dir: Path, layer: int) -> Path:
+    return partial_dir / f"layer_{layer:03d}.npz"
+
+
+def write_partial_layer(
+    partial_dir: Path,
+    model: str,
+    layer: int,
+    layer_scores: np.ndarray,
+    sanity: dict,
+    elapsed: float,
+    ids: np.ndarray,
+    completed_layers: list[int],
+    n_layers: int,
+) -> None:
+    """Publish one completed layer and then atomically advance its manifest."""
+    _atomic_npz(
+        partial_layer_path(partial_dir, layer),
+        schema_version=np.asarray(PARTIAL_SCHEMA_VERSION),
+        model=np.asarray(model),
+        layer=np.asarray(layer),
+        item_id_digest=np.asarray(item_id_digest(ids)),
+        scores=layer_scores,
+        sanity_json=np.asarray(json.dumps(sanity, sort_keys=True)),
+        elapsed=np.asarray(elapsed),
+    )
+    _atomic_json(
+        partial_dir / "manifest.json",
+        {
+            "schema_version": PARTIAL_SCHEMA_VERSION,
+            "status": "complete" if len(completed_layers) == n_layers else "running",
+            "model": model,
+            "n_layers": n_layers,
+            "n_items": int(len(ids)),
+            "item_id_digest": item_id_digest(ids),
+            "conditions": list(CONDITIONS),
+            "ranks": list(RANKS),
+            "regimes": list(REGIMES),
+            "completed_layers": sorted(completed_layers),
+        },
+    )
+
+
+def load_partial_layer(partial_dir: Path, layer: int, model: str, ids: np.ndarray) -> tuple[np.ndarray, dict, float]:
+    with np.load(partial_layer_path(partial_dir, layer), allow_pickle=False) as payload:
+        if str(payload["model"].item()) != model or int(payload["layer"].item()) != layer:
+            raise ValueError(f"partial checkpoint identity mismatch at layer {layer}")
+        if str(payload["item_id_digest"].item()) != item_id_digest(ids):
+            raise ValueError(f"partial checkpoint item identity mismatch at layer {layer}")
+        return (
+            np.asarray(payload["scores"], dtype=np.float32),
+            json.loads(str(payload["sanity_json"].item())),
+            float(payload["elapsed"].item()),
+        )
+
+
 def sha256_file(path: Path) -> str:
     h = hashlib.sha256()
     with path.open("rb") as handle:
@@ -388,14 +468,19 @@ def main() -> None:
     ap.add_argument("--model", required=True, choices=sorted(MODELS))
     ap.add_argument("--out", default=None)
     ap.add_argument("--sanity-out", default=None)
+    ap.add_argument("--partial-dir", default=None)
+    ap.add_argument("--resume", action="store_true")
     ap.add_argument("--n-jobs", type=int, default=int(os.environ.get("N_JOBS", "1")))
     ap.add_argument("--tolerance", type=float, default=DEFAULT_TOL)
     args = ap.parse_args()
 
     out_path = Path(args.out) if args.out else ROOT / "results" / f"full320_v3_factorial_residual_scores_{args.model}.npz"
     sanity_path = Path(args.sanity_out) if args.sanity_out else out_path.with_suffix(".sanity.json")
+    partial_dir = Path(args.partial_dir) if args.partial_dir else out_path.with_name(f"{out_path.name}.partial")
     if out_path.exists() or sanity_path.exists():
         raise FileExistsError(f"immutable output exists: {out_path} or {sanity_path}")
+    if partial_dir.exists() and not args.resume and any(partial_dir.iterdir()):
+        raise FileExistsError(f"partial output exists; pass --resume: {partial_dir}")
 
     rows_all = [json.loads(line) for line in ITEMS_PATH.open(encoding="utf-8") if line.strip()]
     rows_by_id = {r["item_id"]: r for r in rows_all if r.get("label") is not None}
@@ -417,27 +502,97 @@ def main() -> None:
     is_bench, is_casual = fmt == "benchmark", fmt == "casual"
     n_layers = X.shape[1]
     hidden_dim = X.shape[2]
-
-    slices = [np.ascontiguousarray(X[:, layer, :]) for layer in range(n_layers)]
-    del X
-    gc.collect()
-    results = Parallel(n_jobs=args.n_jobs)(
-        delayed(layer_job)(args.model, layer, slices[layer], rows, y, fam, is_bench, is_casual)
-        for layer in range(n_layers)
-    )
-    del slices
-    gc.collect()
-
     scores = np.full(
         (len(CONDITIONS), len(RANKS), len(REGIMES), n_layers, len(y)),
         np.nan,
         dtype=np.float32,
     )
     layer_sanity = {}
-    for layer, layer_scores, sanity, elapsed in results:
-        scores[:, :, :, layer, :] = layer_scores
-        layer_sanity[str(layer)] = sanity
-        print(f"layer={layer} done in {elapsed:.1f}s", file=sys.stderr, flush=True)
+    completed_layers: list[int] = []
+    manifest_path = partial_dir / "manifest.json"
+    if args.resume:
+        if not manifest_path.exists():
+            raise FileNotFoundError(f"resume manifest missing: {manifest_path}")
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        expected = {
+            "schema_version": PARTIAL_SCHEMA_VERSION,
+            "model": args.model,
+            "n_layers": n_layers,
+            "n_items": len(ids),
+            "item_id_digest": item_id_digest(ids),
+            "conditions": list(CONDITIONS),
+            "ranks": list(RANKS),
+            "regimes": list(REGIMES),
+        }
+        for key, value in expected.items():
+            if manifest.get(key) != value:
+                raise ValueError(f"partial manifest mismatch for {key}: {manifest.get(key)!r} != {value!r}")
+        completed_layers = sorted(int(layer) for layer in manifest.get("completed_layers", []))
+        if any(layer < 0 or layer >= n_layers for layer in completed_layers):
+            raise ValueError("partial manifest contains an invalid layer")
+        for layer in completed_layers:
+            layer_scores, sanity, elapsed = load_partial_layer(partial_dir, layer, args.model, ids)
+            expected_shape = (len(CONDITIONS), len(RANKS), len(REGIMES), len(y))
+            if layer_scores.shape != expected_shape:
+                raise ValueError(f"partial checkpoint shape mismatch at layer {layer}")
+            scores[:, :, :, layer, :] = layer_scores
+            layer_sanity[str(layer)] = sanity
+            print(f"resumed layer={layer} ({len(completed_layers)}/{n_layers}) in {elapsed:.1f}s", file=sys.stderr, flush=True)
+    else:
+        _atomic_json(
+            manifest_path,
+            {
+                "schema_version": PARTIAL_SCHEMA_VERSION,
+                "status": "running",
+                "model": args.model,
+                "n_layers": n_layers,
+                "n_items": int(len(ids)),
+                "item_id_digest": item_id_digest(ids),
+                "conditions": list(CONDITIONS),
+                "ranks": list(RANKS),
+                "regimes": list(REGIMES),
+                "completed_layers": [],
+            },
+        )
+
+    completed_set = set(completed_layers)
+    pending_layers = [layer for layer in range(n_layers) if layer not in completed_set]
+    if pending_layers:
+        slices = {
+            layer: np.ascontiguousarray(X[:, layer, :])
+            for layer in pending_layers
+        }
+        del X
+        gc.collect()
+        results = Parallel(n_jobs=args.n_jobs, return_as="generator_unordered")(
+            delayed(layer_job)(args.model, layer, slices[layer], rows, y, fam, is_bench, is_casual)
+            for layer in pending_layers
+        )
+        for layer, layer_scores, sanity, elapsed in results:
+            scores[:, :, :, layer, :] = layer_scores
+            layer_sanity[str(layer)] = sanity
+            completed_layers = sorted([int(key) for key in layer_sanity])
+            write_partial_layer(
+                partial_dir,
+                args.model,
+                layer,
+                layer_scores,
+                sanity,
+                elapsed,
+                ids,
+                completed_layers,
+                n_layers,
+            )
+            print(
+                f"layer={layer} done in {elapsed:.1f}s; partial={len(completed_layers)}/{n_layers}",
+                file=sys.stderr,
+                flush=True,
+            )
+        del slices
+        gc.collect()
+    else:
+        del X
+        gc.collect()
 
     aucs = auc_arrays(scores, y)
     reference = validate_references(args.model, aucs, args.tolerance)
@@ -493,6 +648,10 @@ def main() -> None:
         "script_sha256": sha256_file(Path(__file__)),
         "output_path": str(out_path),
         "output_sha256": sha256_file(out_path),
+        "partial_dir": str(partial_dir),
+        "partial_manifest": str(manifest_path),
+        "partial_schema_version": PARTIAL_SCHEMA_VERSION,
+        "resumed": bool(args.resume),
         "basis": "leading singular directions of uncentered matched effect matrices; Q_B is a B-derived subspace and is not assumed pure because it can capture C",
         "hidden_dim": int(hidden_dim),
         "fold_semantics": "leave-one-purpose-family-out; held family excluded from every basis and probe fit",
