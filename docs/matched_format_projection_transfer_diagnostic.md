@@ -186,3 +186,87 @@ non-linear format-conditioned structure the linear basis cannot remove).
   new probe fits and should be labeled exploratory/development, not
   confirmation-grade, consistent with the rest of the full320-v3 erasure line
   of work.
+
+## Addendum: does format still exist after the projection? (2026-08-28)
+
+**Question**: the rank-64 matched-format projection is what removes most of
+the cross-format transfer penalty (see above). Does it also remove format
+itself — i.e. is "format" actually gone from the residual activations, or
+does the projection target something narrower?
+
+**Method**: zero new compute. Both sweeps already contain a format-sanity
+probe AUC (trained to predict benchmark-vs-casual format from the
+activations) before and after the projection:
+`results/layer_sweep_full320-v3_<model>.json`'s `format.auc` (raw) and
+`results/full320_v3_erasure_full_layer_sweep.json`'s
+`format_auc_after_erasure` (projected). Added as `raw_format_auc` /
+`proj_format_auc` / `delta_format_auc` to
+`results/full320_v3_matched_format_projection_diagnostic.json`, computed over
+**all layers** (format decodability is not gated by purpose formation, so
+the post-purpose-formation region restriction does not apply here). Figure:
+`plots/matched format projection summary 8-28-2026/format_persistence_after_projection.{png,pdf}`.
+
+**Result**: format is essentially perfectly linearly decodable in the raw
+activations at every layer of every model (median AUC 0.99999–1.0, minimum
+0.9994 across all layers/models — this is expected; format is a superficial,
+trivially-linearly-separable property of the prompt). After the rank-64
+matched-format projection, format decodability drops but stays far above
+chance everywhere:
+
+| model | raw format AUC (median) | projected format AUC (median, min–max, all layers) |
+|---|---:|---:|
+| Llama-3.1-8B  | 1.000 | 0.922 [0.913, 0.933] |
+| Llama-3.1-70B | 1.000 | 0.954 [0.917, 0.964] |
+| Llama-3.3-70B | 1.000 | 0.958 [0.915, 0.971] |
+
+This holds uniformly across the entire depth range (0–100% relative depth),
+not just the post-purpose-formation region — there is no layer, in any
+model, where the projected residual comes close to chance-level format
+decodability (0.5 AUC).
+
+A rank-dependence check at the three previously-pinned layers (spike/
+min_gap/final; `results/full320_v3_format_erasure_retrain.json`, computed in
+earlier development work, not rerun here) shows format decodability degrades
+gradually and is far from saturating by rank 64: e.g. Llama-3.1-8B spike
+layer goes 0.985 (rank 1) → 0.957 (rank 4) → 0.934 (rank 16) → 0.927
+(rank 64). Over the same rank sequence at that layer, the transfer gap drops
+far more steeply (`results/full320_v3_erasure_dose_response_bootstrap.json`:
+0.208 → 0.195 → 0.133 → 0.093 → 0.057, a 73% reduction by rank 64) while
+format AUC only falls by about 6 points. Format is therefore encoded in a
+meaningfully higher-dimensional (or more distributed) subspace than the
+rank-64 slice being removed; removing more dimensions would likely reduce
+format decodability further, but 64 dimensions is nowhere near "all of it."
+
+**Implications**:
+
+1. The projection is **not a format eraser**. It targets a specific,
+   identifiable low-rank component of format-associated variance (the
+   matched-format PCA basis built from the factorial design's format
+   main-effect/interaction contrast), not "format" as a general property.
+   Most of the linearly-decodable format signal survives.
+2. Despite leaving the bulk of format signal intact, removing that narrow
+   component accounts for the majority (median 55–74%) of the cross-format
+   purpose-transfer penalty (see main results above). This is a *more*
+   precise and *more* informative finding than "we erased format and
+   transfer got better": it shows the transfer failure is not explained by
+   "the representation encodes format" in general (which remains true after
+   the fix), but specifically by a narrow, removable axis that the purpose
+   readout was relying on in a format-conditioned way. This is the
+   shared-vs-interaction structure predicted by the factorial design in
+   `RULES.md` §6 — a format-decodable main effect (`B`) can coexist with a
+   fixed purpose readout once the purpose-format interaction component is
+   removed, without `B` itself causing transfer failure.
+3. Caution for prose: do not describe this result as "the model no longer
+   encodes format" or "format was erased" — both are false. The accurate
+   claim is narrower and, if anything, more mechanistically interesting:
+   *a specific low-rank format-associated axis, not general format
+   decodability, is responsible for most of the purpose-readout's
+   cross-format transfer failure.*
+4. This does not by itself establish what the remaining ~92–97% AUC format
+   signal is "doing" to the purpose probe, if anything — the transfer-gap
+   results already show the residual purpose probe transfers well despite
+   that remaining format signal, so at minimum it does not cause the same
+   kind of transfer failure the removed component did. Distinguishing why
+   is outside the scope of this representational diagnostic and would need
+   the causal-intervention track (`RULES.md` §7 Q3), not a probe/projection
+   analysis.

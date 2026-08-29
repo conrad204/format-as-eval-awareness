@@ -23,6 +23,11 @@ JSONs, joins them by (model, layer), and derives:
   delta_c2b_auc        = proj_c2b_auc   - raw_c2b_auc
   rescue_fraction      = delta_gap / raw_gap   only where raw_gap >= RAW_GAP_EPS
                           (0.01 AUC), else null + unstable_ratio=true
+  delta_format_auc     = proj_format_auc - raw_format_auc   (format
+                          decodability before/after the same projection --
+                          the "does format still exist" check; format_auc is
+                          a sanity probe trained to predict format from the
+                          (post-projection) activations, not the purpose probe)
 
 "raw_joint_auc" is the "decorrelated" regime (probe trained on both formats
 together) in results/layer_sweep_full320-v3_<model>.json; "proj_joint_auc" is
@@ -77,6 +82,7 @@ def load_raw(model):
             "raw_b2c_auc": b2c,
             "raw_c2b_auc": c2b,
             "raw_gap": joint - 0.5 * (b2c + c2b),
+            "raw_format_auc": r["format"]["auc"],
         }
     return out
 
@@ -129,6 +135,8 @@ def build_table():
                 "proj_c2b_auc": p["proj_c2b_auc"],
                 "proj_gap": proj_gap,
                 "proj_format_auc": p["proj_format_auc"],
+                "raw_format_auc": r["raw_format_auc"],
+                "delta_format_auc": p["proj_format_auc"] - r["raw_format_auc"],
                 "delta_gap": delta_gap,
                 "delta_joint_auc": p["proj_joint_auc"] - r["raw_joint_auc"],
                 "delta_b2c_auc": p["proj_b2c_auc"] - r["raw_b2c_auc"],
@@ -193,6 +201,19 @@ def summarize(rows):
             "frac_layers_both_directions_improved": float(
                 np.mean((delta_b2c > 0) & (delta_c2b > 0))
             ),
+            "format_persistence_all_layers": {
+                "n_layers": n_total,
+                "raw_format_auc_median": float(np.median([r["raw_format_auc"] for r in mrows])),
+                "raw_format_auc_min": float(np.min([r["raw_format_auc"] for r in mrows])),
+                "proj_format_auc_median": float(np.median([r["proj_format_auc"] for r in mrows])),
+                "proj_format_auc_min": float(np.min([r["proj_format_auc"] for r in mrows])),
+                "proj_format_auc_max": float(np.max([r["proj_format_auc"] for r in mrows])),
+                "note": (
+                    "Format decodability before/after the rank-64 matched-format projection, "
+                    "computed over ALL layers (not gated by purpose formation) since format "
+                    "decodability is a separate question from purpose decodability."
+                ),
+            },
         }
     return summaries
 

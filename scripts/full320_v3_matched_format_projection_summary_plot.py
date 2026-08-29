@@ -68,15 +68,17 @@ def main():
         s = summaries[m]
         d = eligible[m]
         vals = [s["mean_delta_b2c_auc"], s["mean_delta_c2b_auc"], s["mean_abs_delta_joint_auc"]]
-        errs = [
-            np.std([r["delta_b2c_auc"] for r in d]),
-            np.std([r["delta_c2b_auc"] for r in d]),
-            np.std([abs(r["delta_joint_auc"]) for r in d]),
+        series = [
+            np.array([r["delta_b2c_auc"] for r in d]),
+            np.array([r["delta_c2b_auc"] for r in d]),
+            np.array([abs(r["delta_joint_auc"]) for r in d]),
         ]
-        bars = ax.bar(bar_x + (k - 1) * width, vals, width, yerr=errs, color=COLORS[m], zorder=3,
+        lo_err = [v - ser.min() for v, ser in zip(vals, series)]
+        hi_err = [ser.max() - v for v, ser in zip(vals, series)]
+        bars = ax.bar(bar_x + (k - 1) * width, vals, width, yerr=[lo_err, hi_err], color=COLORS[m], zorder=3,
                        capsize=4, error_kw=dict(ecolor=INK2, elinewidth=1.3, capthick=1.3, zorder=4))
-        for b, v, e in zip(bars, vals, errs):
-            ax.text(b.get_x() + b.get_width() / 2, v + e + 0.0012, f"{v:.3f}", ha="center", va="bottom",
+        for b, v, hi in zip(bars, vals, hi_err):
+            ax.text(b.get_x() + b.get_width() / 2, v + hi + 0.0012, f"{v:.3f}", ha="center", va="bottom",
                     fontsize=9.2, color=INK2)
     ax.axhline(0, color=BASE, lw=1.0, zorder=1)
     ax.set_xticks(bar_x)
@@ -88,7 +90,9 @@ def main():
     ax.grid(axis="x", visible=False)
     ax.set_title("Transfer moves far more than purpose decoding does", fontsize=14.5, fontweight="bold",
                   color=INK, loc="left", pad=12)
-    ax.text(0.99, 0.97, "error bars: \u00b1 1 SD across post-purpose-formation layers\n(descriptive spread, not an independent-sample CI)",
+    ax.text(0.99, 0.97,
+             "error bars: min\u2013max across post-purpose-formation layers\n"
+             "(every eligible layer is positive; bars show true depth-trajectory range, not a CI)",
              transform=ax.transAxes, fontsize=8.6, color=MUTED, ha="right", va="top", style="italic")
 
     fig.text(0.006, 0.975,

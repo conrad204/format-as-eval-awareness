@@ -22,10 +22,16 @@ A single wide bar chart, one group of 3 bars (one per model) for each of:
 
 All three are averaged over each model's **post-purpose-formation region**
 (layers where raw both-format purpose AUC ≥ 0.95, defined from the raw depth
-trajectory only). Error bars are ±1 SD across the layers in that region —
-descriptive spread across a depth trajectory, not an independent-sample
-confidence interval (layers within a model are repeated measurements, not
-independent replicates; see `RULES.md` §10).
+trajectory only). Error bars are the min–max range across the layers in that
+region — the true depth-trajectory spread, not a symmetric SD/CI. An earlier
+draft used ±1 SD, but SD is a poor descriptive statistic here: it is
+symmetric and can visually suggest the effect crosses zero even though every
+eligible layer, for every model, has strictly positive transfer gain
+(confirmed directly from the per-layer table before choosing this
+statistic). Min–max avoids that distortion while still showing real
+depth-trajectory variability; it is still not an independent-sample CI
+(layers within a model are repeated measurements, not independent
+replicates; see `RULES.md` §10).
 
 An earlier draft of this figure also had a scatter panel (raw vs. projected
 gap, one point per layer) and a separate dumbbell panel; both were dropped
@@ -35,23 +41,23 @@ this bar chart is now the entire figure.
 
 ## Numbers used (recomputed from `results/full320_v3_matched_format_projection_diagnostic.json`, not hard-coded)
 
-| model | mean Δ benchmark→casual | mean Δ casual→benchmark | mean \|Δ both-format purpose\| |
-|---|---:|---:|---:|
-| Llama-3.1-8B  | 0.041 ± 0.011 | 0.041 ± 0.026 | 0.001 ± 0.001 |
-| Llama-3.1-70B | 0.031 ± 0.026 | 0.022 ± 0.017 | 0.001 ± 0.000 |
-| Llama-3.3-70B | 0.041 ± 0.025 | 0.027 ± 0.017 | 0.001 ± 0.000 |
-
-(± values are the SD across post-purpose-formation layers used for the error
-bars, not standard errors.)
+| model | Δ benchmark→casual (mean, min–max) | Δ casual→benchmark (mean, min–max) | \|Δ both-format purpose\| (mean, min–max) |
+|---|---|---|---|
+| Llama-3.1-8B  | 0.041, [0.020, 0.063] | 0.041, [0.017, 0.125] | 0.0013, [0.0001, 0.0029] |
+| Llama-3.1-70B | 0.031, [0.007, 0.156] | 0.022, [0.006, 0.101] | 0.0006, [0.0000, 0.0026] |
+| Llama-3.3-70B | 0.041, [0.005, 0.148] | 0.027, [0.013, 0.114] | 0.0007, [0.0000, 0.0023] |
 
 ## Interpretation and caveats
 
 - The core visual contrast: cross-format transfer improves by roughly
-  0.02–0.04 AUC on average, while both-format purpose decoding changes by
-  roughly 0.001 AUC — about one to two orders of magnitude smaller, despite
-  real layer-to-layer variability (the transfer-gain error bars are wide
-  relative to their means; the purpose-decoding error bars are uniformly
-  tiny in absolute terms).
+  0.02–0.04 AUC on average (and up to ~0.10–0.16 AUC at some individual
+  layers), while both-format purpose decoding changes by roughly 0.001 AUC
+  everywhere — one to three orders of magnitude smaller at every layer, not
+  just on average.
+- Every eligible layer, for every model, shows a strictly positive transfer
+  gain in both directions — the min–max range never reaches zero, so the
+  effect is consistent across the depth trajectory, not driven by a few
+  layers.
 - This is a **descriptive, across-depth summary**. Layers within a model are
   repeated measurements of one depth trajectory, not independent replicates.
 - Supports: **matched-format-associated structure is largely unnecessary for
