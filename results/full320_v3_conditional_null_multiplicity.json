@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "mode": "development",
+  "purpose": "Holm and Bonferroni correction (alpha=0.05, m=27) of the high-variance-subspace conditional-null p-values. No new compute.",
+  "alpha": 0.05,
+  "overall_empirical_p": {
+    "p_source": "empirical",
+    "n_tests": 27,
+    "nominal_p<0.05": 23,
+    "bonferroni_significant": 18,
+    "holm_significant": 19
+  },
+  "overall_analytic_p": {
+    "p_source": "analytic",
+    "n_tests": 27,
+    "nominal_p<0.05": 23,
+    "bonferroni_significant": 18,
+    "holm_significant": 19
+  },
+  "by_rank_within_family_of_27": {
+    "1": {
+      "n_cells": 9,
+      "nominal_p<0.05_empirical": 5,
+      "bonferroni_significant_within_family_of_27": 0,
+      "holm_significant_within_family_of_27": 1
+    },
+    "4": {
+      "n_cells": 9,
+      "nominal_p<0.05_empirical": 9,
+      "bonferroni_significant_within_family_of_27": 9,
+      "holm_significant_within_family_of_27": 9
+    },
+    "16": {
+      "n_cells": 9,
+      "nominal_p<0.05_empirical": 9,
+      "bonferroni_significant_within_family_of_27": 9,
+      "holm_significant_within_family_of_27": 9
+    }
+  }
+}
