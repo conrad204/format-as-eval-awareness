@@ -11,23 +11,21 @@ see `plots/jpp/interchange_patch_llama31_8b` for that full 3-condition view.
 **Left:** format interchange-intervention accuracy. **Right:** mean absolute
 purpose-readout shift.
 
-**Status: [N/3 checkpoints] -- fill in on final regeneration.** This script
-auto-detects which models have both `results/tae_ixpatch_full_<model>.jsonl`
-and `results/tae_ixpatch_matched_<model>.jsonl` present and plots only those;
-rerun `generate.py` once all 3 land and update this line and the reading
-below with the actual N.
+**Status: 3/3 checkpoints:** Llama-3.1-8B, Llama-3.1-70B, and
+Llama-3.3-70B. The 70B `real_swap` trajectories use every other layer; the
+relative-depth axis preserves their sampled positions rather than
+interpolating unmeasured layers.
 
-**Reading (from Llama-3.1-8B, the only checkpoint complete as of this
-caption):** `Q_format(16)` causally moves the format readout more reliably
-than an equally-sized random perturbation at every depth past the first few
-layers, and is comparatively *protective* of the purpose readout relative to
-the matched-magnitude random control from roughly the back half of the
-network onward -- though NOT across the whole depth range (early-to-mid
-layers still show more purpose disruption under `real_swap`; see
-`results/tae_ixpatch_full_llama31_8b_bootstrap.json`'s joint worst-layer
-statistic, which does not clear 0 for the matched-control purpose-disruption
-comparison). Whether this pattern replicates at 70B scale is the open
-question this figure will answer once `llama31_70b`/`llama33_70b` land.
+**Reading:** Both 70B checkpoints replicate and strengthen the 8B format
+effect: `real_swap` rises from near chance to approximately 0.99
+interchange-intervention accuracy, while each magnitude-matched control
+remains far lower. Both also reproduce the depth-dependent purpose pattern.
+Early and middle `real_swap` interventions disrupt the purpose readout more
+than the matched control; later the curves cross, after which `real_swap`
+becomes increasingly protective relative to the equally sized random
+perturbation. The Llama-3.3-70B purpose effect is larger in the middle layers,
+but has the same late-depth reversal. This does not establish whole-depth
+purpose protection: the comparison changes direction across depth.
 
 **What this figure is not:** a per-layer significance test. Adjacent layers
 share almost all their variance; no cross-layer significance count or

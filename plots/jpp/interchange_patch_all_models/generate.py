@@ -99,10 +99,10 @@ def main() -> None:
     fig, (ax_iia, ax_purpose) = plt.subplots(1, 2, figsize=(11.5, 4.6), constrained_layout=True)
 
     for model, (n_layers, stats) in available.items():
-        layers = list(range(n_layers))
-        rel_depth_pct = [100.0 * L / (n_layers - 1) for L in layers]
         color = MODEL_COLOR[model]
         for cond in ("real_swap", "matched_control"):
+            layers = sorted(L for L, c in stats if c == cond)
+            rel_depth_pct = [100.0 * L / (n_layers - 1) for L in layers]
             iia = [stats[(L, cond)]["format_iia"] for L in layers]
             pshift = [stats[(L, cond)]["mean_abs_purpose_shift"] for L in layers]
             label = f"{MODEL_LABEL[model]} ({cond})"
