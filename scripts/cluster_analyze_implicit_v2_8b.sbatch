@@ -3,8 +3,8 @@
 #SBATCH --partition=main
 #SBATCH --qos=main
 #SBATCH --account=sdibbo_grp
-#SBATCH --cpus-per-task=32
-#SBATCH --mem=150G
+#SBATCH --cpus-per-task=12
+#SBATCH --mem=32G
 #SBATCH --time=12:00:00
 #SBATCH --output=/scratch/jppatton/langea/logs/tae_implv2_analysis-%j.out
 #SBATCH --error=/scratch/jppatton/langea/logs/tae_implv2_analysis-%j.err
@@ -20,4 +20,4 @@ cd "$ROOT"
   --activations /scratch/jppatton/langea/results/implicit_v2_8b_all_layers/activations_all_layers.npz \
   --explicit-bank /scratch/jppatton/langea/results/implicit_v2_explicit_probe_bank_8b_all_layers.npz \
   --out /scratch/jppatton/langea/results/implicit_v2_8b_analysis.json \
-  --jobs 18
+  --jobs 12

@@ -3,8 +3,8 @@
 #SBATCH --partition=main
 #SBATCH --qos=main
 #SBATCH --account=sdibbo_grp
-#SBATCH --cpus-per-task=32
-#SBATCH --mem=150G
+#SBATCH --cpus-per-task=12
+#SBATCH --mem=48G
 #SBATCH --time=06:00:00
 #SBATCH --output=/scratch/jppatton/langea/logs/tae_implv2_expbank-%j.out
 #SBATCH --error=/scratch/jppatton/langea/logs/tae_implv2_expbank-%j.err
@@ -20,4 +20,4 @@ cd "$ROOT"
 /bighome/jppatton/langea/runtime/vllm/bin/python scripts/implicit_v2_freeze_explicit_probes.py \
   --items v3-activations/rendered_items_v3_full320_8-17-2026.jsonl \
   --activations v3-activations/activations/llama31_8b/activations_all_layers.npz \
-  --out "$OUT" --jobs 24
+  --out "$OUT" --jobs 12

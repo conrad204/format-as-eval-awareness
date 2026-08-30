@@ -3,8 +3,8 @@
 #SBATCH --partition=main
 #SBATCH --qos=main
 #SBATCH --account=sdibbo_grp
-#SBATCH --cpus-per-task=24
-#SBATCH --mem=150G
+#SBATCH --cpus-per-task=12
+#SBATCH --mem=48G
 #SBATCH --time=10:00:00
 #SBATCH --output=/scratch/jppatton/langea/logs/tae_implv2_nocue-%j.out
 #SBATCH --error=/scratch/jppatton/langea/logs/tae_implv2_nocue-%j.err
@@ -20,4 +20,4 @@ cd "$ROOT"
  --implicit-items results/implicit_v2_frozen_r3/items.jsonl \
  --implicit-activations /scratch/jppatton/langea/results/implicit_v2_8b_all_layers/activations_all_layers.npz \
  --raw-analysis /scratch/jppatton/langea/results/implicit_v2_8b_analysis.json \
- --out "/scratch/jppatton/langea/results/implicit_v2_nocue_control_r${RANK}.json" --jobs 18
+ --out "/scratch/jppatton/langea/results/implicit_v2_nocue_control_r${RANK}.json" --jobs 12

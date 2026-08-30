@@ -3,8 +3,8 @@
 #SBATCH --partition=main
 #SBATCH --qos=main
 #SBATCH --account=sdibbo_grp
-#SBATCH --cpus-per-task=24
-#SBATCH --mem=120G
+#SBATCH --cpus-per-task=12
+#SBATCH --mem=24G
 #SBATCH --time=06:00:00
 #SBATCH --output=/scratch/jppatton/langea/logs/tae_implv2_70b18ana-%j.out
 #SBATCH --error=/scratch/jppatton/langea/logs/tae_implv2_70b18ana-%j.err
@@ -18,4 +18,4 @@ cd "$ROOT"
  --model-key "$MODEL_KEY" --layer 18 --items results/implicit_v2_frozen_r3/items.jsonl \
  --activations "/scratch/jppatton/langea/results/implicit_v2_${MODEL_KEY}_l18/activations.npz" \
  --explicit-bank "/scratch/jppatton/langea/results/implicit_v2_${MODEL_KEY}_explicit_probe_bank_l18.npz" \
- --out "/scratch/jppatton/langea/results/implicit_v2_${MODEL_KEY}_l18_analysis.json" --jobs 18
+ --out "/scratch/jppatton/langea/results/implicit_v2_${MODEL_KEY}_l18_analysis.json" --jobs 12

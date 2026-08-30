@@ -3,8 +3,8 @@
 #SBATCH --partition=main
 #SBATCH --qos=main
 #SBATCH --account=sdibbo_grp
-#SBATCH --cpus-per-task=24
-#SBATCH --mem=150G
+#SBATCH --cpus-per-task=12
+#SBATCH --mem=40G
 #SBATCH --time=04:00:00
 #SBATCH --output=/scratch/jppatton/langea/logs/tae_implv2_70b18bank-%j.out
 #SBATCH --error=/scratch/jppatton/langea/logs/tae_implv2_70b18bank-%j.err
@@ -23,4 +23,4 @@ rm -f "$OUT" "${OUT%.npz}.manifest.json"
 cd "$ROOT"
 /bighome/jppatton/langea/runtime/vllm/bin/python scripts/implicit_v2_freeze_explicit_probes_fixed_layer.py \
  --model-key "$MODEL_KEY" --items v3-activations/rendered_items_v3_full320_8-17-2026.jsonl \
- --activations "$NPZ" --layer 18 --out "$OUT" --jobs 15
+ --activations "$NPZ" --layer 18 --out "$OUT" --jobs 12

@@ -21,3 +21,15 @@ id_rsa*
 id_ed25519*
 /langea
 /langea.pub
+
+# Extracted activation caches: regenerable from the frozen v3 tensors, and
+# individually over GitHub's 100 MB hard limit.
+*_activations/
+results/emergency/*.shards/
+
+# Transient run state superseded by the merged finals.
+results/emergency/*.partial/
+*.partial_snapshot.jsonl
+*.partial_stratified*.json
+.pytest-tmp*/
+results/*_local.log
