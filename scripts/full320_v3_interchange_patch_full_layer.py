@@ -338,7 +338,7 @@ def main() -> None:
                         hidden = output_hidden(output)
                         modified = hidden.clone()
                         last = modified[:, -1, :].to(torch.float32)
-                        modified[:, -1, :] = (last + _delta).to(hidden.dtype)
+                        modified[:, -1, :] = (last + _delta.to(last.device)).to(hidden.dtype)
                         return replace_hidden(output, modified)
 
                     def target_hook(_m, _i, output):
