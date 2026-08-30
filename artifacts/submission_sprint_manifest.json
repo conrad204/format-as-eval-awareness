@@ -71,6 +71,19 @@
       "bootstrap_resamples": 1000,
       "claim_label": "development frozen-activation internal mechanistic diagnostic; not behavioral steering or confirmation"
     },
+    "qb_rotation_8b": {
+      "scores": "results/emergency/qb_rotation_scores_llama31_8b.npz",
+      "sanity": "results/emergency/qb_rotation_scores_llama31_8b.sanity.json",
+      "summary": "results/emergency/qb_rotation_summary_llama31_8b.json",
+      "timing": "results/emergency/qb_rotation_timing_llama31_8b.json",
+      "model": "meta-llama/Llama-3.1-8B-Instruct",
+      "layers": 32,
+      "rank": 16,
+      "parent_rank": 64,
+      "payload_blocks": 320,
+      "bootstrap_resamples": 1000,
+      "claim_label": "development internal causal mediation; within-Q_B C-alignment result; not a validated behavioral endpoint"
+    },
     "interchange_70b_in_progress": {
       "models": ["meta-llama/Llama-3.1-70B-Instruct", "meta-llama/Llama-3.3-70B-Instruct"],
       "matched_records": ["results/tae_ixpatch_matched_llama31_70b.jsonl", "results/tae_ixpatch_matched_llama33_70b.jsonl"],

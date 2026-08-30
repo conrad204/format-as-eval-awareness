@@ -146,19 +146,41 @@ Held family is excluded from `Q_B`, from the rotation fit, and from every probe.
 
 Scripts: `full320_v3_qb_rotation_sweep.py`, `full320_v3_qb_rotation_bootstrap.py`,
 `qb_rotation_pod_run.sh`. Coverage: `tests/test_full320_v3_qb_rotation.py`
-(8 passed) — rotation orthonormality and identical projector to `Q_B`, descending
+(10 passed) — rotation orthonormality and identical projector to `Q_B`, descending
 alignment order, rank matching and containment of all three blocks, seeded
+controls, variance ordering, and paired-bootstrap identities.
+
+### Result: llama31_8b (complete, 32/32 layers, 1000 bootstrap reps)
+
+| quantity | value | 95% CI |
+|---|---:|---:|
+| `I_raw` | 0.07932 | — |
+| `I_topC16` | 0.06368 | — |
+| `I_bottomC16` | 0.06930 | — |
+| `I_randomB16` | 0.06764 | — |
+| `rescue_topC16` | 0.01565 | [0.01467, 0.01664] |
+| `rescue_bottomC16` | 0.01002 | [0.00932, 0.01063] |
+| `rescue_randomB16` | 0.01168 | [0.01101, 0.01239] |
+| **`C_enrichment`** | **0.00562** | **[0.00470, 0.00662]** |
+| **`C_vs_random_inside_B`** | **0.00397** | **[0.00316, 0.00479]** |
+
+Both contrasts are positive and exclude zero under the paired payload-block
+bootstrap. This supports a development-only internal result that C-aligned
+directions inside `Q_B` carry more of the transfer rescue than the least
+C-aligned or seeded random rank-16 directions. It is not behavioral steering,
+model-output causality, or a confirmation-grade claim.
+
+The completed artifact was assembled from 28 surviving checkpoints plus the
+four recomputed missing layers (10–13) against the frozen v3 8B activation bank.
+Global checks pass: maximum containment error `1.09e-14`, maximum orthonormality
+error `3.19e-14`, and zero held-family basis violations.
+
 ### Continuation state
 
-The 8B C-perp sweep is complete and its result is secured. The 8B rotation
-follow-up has not run because the box was stopped and the local environment is
-Python 3.14 / scikit-learn 1.8.0 rather than the pinned Python 3.8 /
-scikit-learn 1.3.2 environment.
-
-`scripts/emergency_then_rotation_watch.sh` is available for a 70B continuation:
-it waits for atomic C-perp checkpoints, assembles without recomputation, runs
-the 1000-replicate bootstrap, then runs the rotation sweep and paired bootstrap.
-No 70B emergency C-perp output or rotation output has been retrieved.
+The 8B C-perp sweep and within-`Q_B` rotation follow-up are complete and their
+results are secured. The 70B emergency C-perp and rotation outputs remain
+unretrieved; do not describe them as running or complete without a fresh queue
+check.
 
 ## Data path
 
@@ -214,5 +236,12 @@ Per model, pushed independently as each box finishes:
 - `results/emergency_cperp_scores_<model>.sanity.json` (all gates + timing + run manifest)
 - `results/emergency_cperp_benchmark_<model>.json` (one-layer timing)
 - `results/emergency_cperp_summary_<model>.json` (bootstrap, >=1000 reps)
+
+- `results/emergency/qb_rotation_scores_llama31_8b.npz` (32-layer OOF scores)
+- `results/emergency/qb_rotation_scores_llama31_8b.sanity.json` (rotation gates,
+  provenance, and per-layer diagnostics)
+- `results/emergency/qb_rotation_summary_llama31_8b.json` (paired payload-block
+  bootstrap, 1000 reps)
+- `results/emergency/qb_rotation_timing_llama31_8b.json` (layer timings)
 
 Activation banks and shard caches stay on the boxes.
