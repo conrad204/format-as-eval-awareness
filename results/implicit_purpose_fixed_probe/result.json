@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "mode": "development",
+  "model": "meta-llama/Llama-3.1-8B-Instruct",
+  "layer": 8,
+  "probe": "persisted fold-averaged explicit-purpose decorrelated probe",
+  "probe_retrained": false,
+  "probe_bank": "results\\devbunova_decomp\\decomp_8b.scores.npz",
+  "probe_bank_sha256": "da3a3502d81fdebd7f3bd13f73f32fde697650e5d43f0c8cd8ccc3415ae13980",
+  "items": "results\\implicit_purpose_fixed_probe\\items.jsonl",
+  "items_sha256": "fe3e2fe6e5ce89b982115e1aee03eeaa7a863cce656ae299846538f2af531cb0",
+  "activations": "results\\implicit_purpose_fixed_probe\\activations.npz",
+  "activations_sha256": "647ff40bd20396f280783a163b2b24750dadc6c5f84db1d99f3c852e56a0046e",
+  "n_payloads": 24,
+  "n_scenario_pairs": 5,
+  "n_matched_pairs": 120,
+  "n_items": 240,
+  "old_purpose_cue_vocabulary": [
+    "act",
+    "adopt",
+    "apply",
+    "appraise",
+    "audit",
+    "auditor",
+    "board",
+    "callers",
+    "carry",
+    "client",
+    "comb",
+    "crew",
+    "critique",
+    "customer",
+    "desk",
+    "draw",
+    "employ",
+    "exam",
+    "examiners",
+    "follow",
+    "forward",
+    "go",
+    "grade",
+    "grader",
+    "heed",
+    "householders",
+    "inspect",
+    "judge",
+    "lab",
+    "line",
+    "maintenance",
+    "mark",
+    "office",
+    "panel",
+    "practice",
+    "purchasing",
+    "put",
+    "rate",
+    "reader",
+    "receiving",
+    "review",
+    "reviewer",
+    "score",
+    "scorer",
+    "shopper",
+    "staff",
+    "support",
+    "tenant",
+    "testing",
+    "unit",
+    "user",
+    "verifiers",
+    "vet"
+  ],
+  "old_cue_vocab_hits": 0,
+  "metrics": {
+    "auc": 0.7928472222222221,
+    "paired_accuracy": 0.9666666666666667,
+    "paired_wins": 116,
+    "paired_mean_score_delta": 2.4388832070724304,
+    "payload_block_bootstrap_mean_delta_ci95": [
+      1.972438428936593,
+      2.981762272943414
+    ],
+    "exact_sign_test_p_one_sided": 6.396698705536314e-30,
+    "fold_auc": {
+      "fg1": 0.7371527777777778,
+      "fg2": 0.6991666666666667,
+      "fg3": 0.8530555555555556,
+      "fg4": 0.7477083333333332,
+      "fg5": 0.824513888888889
+    }
+  },
+  "by_scenario_pair": {
+    "s0": {
+      "n_payloads": 24,
+      "paired_accuracy": 0.9583333333333334,
+      "paired_mean_score_delta": 2.634259515003534
+    },
+    "s1": {
+      "n_payloads": 24,
+      "paired_accuracy": 0.9583333333333334,
+      "paired_mean_score_delta": 2.4248244885421197
+    },
+    "s2": {
+      "n_payloads": 24,
+      "paired_accuracy": 1.0,
+      "paired_mean_score_delta": 1.6728287619949593
+    },
+    "s3": {
+      "n_payloads": 24,
+      "paired_accuracy": 1.0,
+      "paired_mean_score_delta": 3.6926542440120884
+    },
+    "s4": {
+      "n_payloads": 24,
+      "paired_accuracy": 0.9166666666666666,
+      "paired_mean_score_delta": 1.7698490258094501
+    }
+  }
+}
