@@ -13,6 +13,7 @@ from full320_v3_qb_rotation_sweep import (  # noqa: E402
     init_worker,
     layer_job,
     random_subspace_inside,
+    rank_qb_by_activation_variance,
     rotate_qb_by_c_alignment,
 )
 
@@ -36,6 +37,23 @@ def test_rotation_is_orthonormal_and_stays_inside_qb():
     np.testing.assert_allclose(q_rot @ q_rot.T, q_b @ q_b.T, atol=1e-10)
     assert containment_error(q_rot, q_b) < 1e-10
     assert np.all(np.diff(singular) <= 1e-12), "singular values must be descending"
+
+
+def test_variance_ordering_returns_orthonormal_parent_rotation():
+    rng = np.random.default_rng(23)
+    q_b = np.linalg.qr(rng.normal(size=(48, 32)))[0]
+    latent = rng.normal(size=(300, 32))
+    latent[:, 0] *= 9.0
+    latent[:, 1] *= 4.0
+    projected = latent @ q_b.T
+    q_var, singular = rank_qb_by_activation_variance(q_b, projected)
+
+    np.testing.assert_allclose(q_var.T @ q_var, np.eye(q_b.shape[1]), atol=1e-10)
+    np.testing.assert_allclose(q_var @ q_var.T, q_b @ q_b.T, atol=1e-10)
+    assert np.all(np.diff(singular) <= 1e-12)
+    top_energy = np.sum((projected @ q_var[:, :SUB_RANK]) ** 2)
+    random_energy = np.sum((projected @ q_var[:, SUB_RANK : 2 * SUB_RANK]) ** 2)
+    assert top_energy > random_energy
 
 
 def test_top_block_captures_more_training_c_than_bottom_block():
@@ -106,6 +124,38 @@ def test_layer_job_emits_three_rank16_conditions_with_free_diagnostics(tmp_path)
     joint_i = 0
     for condition_i in range(3):
         assert np.all(np.isfinite(scores[condition_i, joint_i]))
+
+
+def test_layer_job_emits_top_variance_condition(tmp_path):
+    X, rows = emergency_fixture(n_families=3, groups_per_family=24, d=192)
+    shard_dir = tmp_path / "shards"
+    shard_dir.mkdir()
+    np.save(shard_dir / "layer_000.f32.npy", np.ascontiguousarray(X, dtype=np.float32))
+    fam = np.asarray([r["purpose_family_id"] for r in rows])
+    fmt = np.asarray([r["format"] for r in rows])
+    y = np.asarray([int(r["label"]) for r in rows])
+    init_worker(
+        {
+            "rows": rows,
+            "y": y,
+            "fam": fam,
+            "is_bench": fmt == "benchmark",
+            "is_casual": fmt == "casual",
+            "shard_dir": shard_dir,
+            "basis_backend": "gram",
+            "mode": "variance",
+        }
+    )
+    layer, scores, sanity, _ = layer_job(0)
+
+    assert layer == 0
+    assert scores.shape == (1, 3, len(y))
+    assert set(sanity["c_capture"]) == {"topVar16"}
+    assert set(sanity["energy_removed"]) == {"topVar16"}
+    assert len(sanity["c_alignment_spectrum"]) == 3
+    for fold in sanity["c_alignment_spectrum"]:
+        assert fold["top16_variance_energy_fraction"] >= 0.0
+    assert np.all(np.isfinite(scores[0, 0]))
 
 
 def test_captured_energy_of_top_block_is_bounded_by_parent():

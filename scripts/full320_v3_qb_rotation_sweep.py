@@ -14,13 +14,21 @@ compare three rank-16 subspaces that all live inside the same parent Q_B.
     bottomC16 = Q_B_rot[:, -16:]           least C-aligned directions in Q_B
     randomB16 = Q_B @ R                    seeded random 16-D rotation in span(Q_B)
 
-Equal rank, common parent subspace, so the contrast isolates C-alignment rather
-than "being in Q_B". Each condition is removed from the raw activations, and the
-rescue is scored against the raw baseline already computed by the emergency run --
-raw, minus_b, minus_b_cperp and minus_b_rperp are NOT recomputed here.
+With ``--mode variance``, the same fold-local parent Q_B is instead ordered by
+the uncentered activation matrix ``X_train @ Q_B`` and emits ``topVar16``. This
+is the maximum-energy rank-16 subspace inside Q_B, an upper-bound control for
+the explanation that topC16 merely removes more activation variance.
+
+Equal rank, common parent subspace, so the C-alignment contrast isolates
+C-alignment rather than "being in Q_B". Each condition is removed from the raw
+activations, and the rescue is scored against the raw baseline already computed
+by the emergency run -- raw, minus_b, minus_b_cperp and minus_b_rperp are NOT
+recomputed here. The variance mode is a diagnostic-only output and is not
+accepted by the C-alignment bootstrap consumer.
 
 Probe contract, folds, regimes, item set and no-leakage rules are unchanged:
-45 probe fits per layer (3 conditions x 5 folds x 3 regimes).
+45 probe fits per layer for the default (3 conditions x 5 folds x 3 regimes);
+variance mode fits 15 (1 condition x 5 folds x 3 regimes).
 """
 from __future__ import annotations
 
@@ -65,6 +73,12 @@ from full320_v3_factorial_residual_sweep import (  # noqa: E402
 )
 
 CONDITIONS = ("topC16", "bottomC16", "randomB16")
+# The energy-matched control: rank directions inside Q_B by activation variance
+# instead of C alignment. Among rank-16 subspaces of span(Q_B) this removes the
+# most activation energy possible, so it upper-bounds the "it just strips more
+# variance" explanation for topC16.
+VARIANCE_CONDITIONS = ("topVar16",)
+CONDITION_SETS = {"calignment": CONDITIONS, "variance": VARIANCE_CONDITIONS}
 REGIMES = ("joint", "b2c", "c2b")
 SUB_RANK = 16
 PARTIAL_SCHEMA_VERSION = 1
@@ -95,6 +109,18 @@ def containment_error(sub: np.ndarray, q_b: np.ndarray) -> float:
     return float(np.max(np.abs(sub - q_b @ (q_b.T @ sub))))
 
 
+def rank_qb_by_activation_variance(q_b: np.ndarray, X_train: np.ndarray):
+    """Order the columns of Q_B by the activation energy they carry on train rows.
+
+    Uncentered leading singular directions of ``X_train @ Q_B``, matching the
+    repository's uncentered basis convention. The first `k` columns therefore
+    span the maximum-energy rank-`k` subspace of span(Q_B).
+    """
+    projected = np.asarray(X_train, dtype=np.float64) @ q_b
+    _, singular, vh = np.linalg.svd(projected, full_matrices=False)
+    return q_b @ vh.T, singular
+
+
 def init_worker(shared: dict) -> None:
     _SHARED.clear()
     _SHARED.update(shared)
@@ -110,14 +136,15 @@ def layer_job(layer: int):
 
     started = time.time()
     X = np.asarray(np.load(shard_path(_SHARED["shard_dir"], layer), mmap_mode="r"), dtype=np.float32)
-    ci = {name: i for i, name in enumerate(CONDITIONS)}
-    scores = np.full((len(CONDITIONS), len(REGIMES), len(y)), np.nan, dtype=np.float32)
+    active = CONDITION_SETS[_SHARED.get("mode", "calignment")]
+    ci = {name: i for i, name in enumerate(active)}
+    scores = np.full((len(active), len(REGIMES), len(y)), np.nan, dtype=np.float32)
 
     max_containment = 0.0
     max_orthonormality = 0.0
     held_family_violations = 0
-    capture_folds: dict[str, list[dict]] = {name: [] for name in CONDITIONS}
-    energy_folds: dict[str, list[dict]] = {name: [] for name in CONDITIONS}
+    capture_folds: dict[str, list[dict]] = {name: [] for name in active}
+    energy_folds: dict[str, list[dict]] = {name: [] for name in active}
     alignment_folds: list[dict] = []
 
     for fold_pos, fold in enumerate(sorted(set(fam))):
@@ -131,26 +158,43 @@ def layer_job(layer: int):
             raise AssertionError("held-out C matrix does not contain exactly the held family")
 
         q_b = basis(B, RANK)
-        q_rot, singular = rotate_qb_by_c_alignment(q_b, C)
-        subspaces = {
-            "topC16": q_rot[:, :SUB_RANK],
-            "bottomC16": q_rot[:, -SUB_RANK:],
-            "randomB16": random_subspace_inside(
-                q_b, SUB_RANK, RANDOM_B16_SEED_BASE + layer * 10_007 + fold_pos * 101 + SUB_RANK
-            ),
-        }
-        total_alignment = float(np.sum(singular ** 2))
-        alignment_folds.append(
-            {
-                "fold": str(fold),
-                "qb_rank": int(q_b.shape[1]),
-                "top16_alignment_energy_fraction": float(np.sum(singular[:SUB_RANK] ** 2) / total_alignment),
-                "bottom16_alignment_energy_fraction": float(
-                    np.sum(singular[-SUB_RANK:] ** 2) / total_alignment
+        if _SHARED.get("mode", "calignment") == "variance":
+            q_var, variance_singular = rank_qb_by_activation_variance(q_b, X[train_mask])
+            subspaces = {"topVar16": q_var[:, :SUB_RANK]}
+            total_variance = float(np.sum(variance_singular ** 2))
+            alignment_folds.append(
+                {
+                    "fold": str(fold),
+                    "qb_rank": int(q_b.shape[1]),
+                    "top16_variance_energy_fraction": float(
+                        np.sum(variance_singular[:SUB_RANK] ** 2) / total_variance
+                    ),
+                    "singular_values": variance_singular.tolist(),
+                }
+            )
+        else:
+            q_rot, singular = rotate_qb_by_c_alignment(q_b, C)
+            subspaces = {
+                "topC16": q_rot[:, :SUB_RANK],
+                "bottomC16": q_rot[:, -SUB_RANK:],
+                "randomB16": random_subspace_inside(
+                    q_b, SUB_RANK, RANDOM_B16_SEED_BASE + layer * 10_007 + fold_pos * 101 + SUB_RANK
                 ),
-                "singular_values": singular.tolist(),
             }
-        )
+            total_alignment = float(np.sum(singular ** 2))
+            alignment_folds.append(
+                {
+                    "fold": str(fold),
+                    "qb_rank": int(q_b.shape[1]),
+                    "top16_alignment_energy_fraction": float(
+                        np.sum(singular[:SUB_RANK] ** 2) / total_alignment
+                    ),
+                    "bottom16_alignment_energy_fraction": float(
+                        np.sum(singular[-SUB_RANK:] ** 2) / total_alignment
+                    ),
+                    "singular_values": singular.tolist(),
+                }
+            )
 
         for name, sub in subspaces.items():
             max_containment = max(max_containment, containment_error(sub, q_b))
@@ -211,6 +255,7 @@ def write_partial_layer(
     ids: np.ndarray,
     completed_layers: list[int],
     n_layers: int,
+    conditions: "tuple[str, ...]" = CONDITIONS,
 ) -> None:
     _atomic_npz(
         partial_layer_path(partial_dir, layer),
@@ -231,7 +276,7 @@ def write_partial_layer(
             "n_layers": n_layers,
             "n_items": int(len(ids)),
             "item_id_digest": item_id_digest(ids),
-            "conditions": list(CONDITIONS),
+            "conditions": list(conditions),
             "ranks": [SUB_RANK],
             "regimes": list(REGIMES),
             "completed_layers": sorted(completed_layers),
@@ -255,7 +300,15 @@ def main() -> None:
     ap.add_argument("--benchmark", action="store_true")
     ap.add_argument("--basis-backend", choices=("gram", "svd"), default="gram")
     ap.add_argument("--tolerance", type=float, default=DEFAULT_TOL)
+    ap.add_argument(
+        "--mode",
+        choices=sorted(CONDITION_SETS),
+        default="calignment",
+        help="condition family to compute: C-aligned rank-16 controls or top-variance control",
+    )
     args = ap.parse_args()
+
+    conditions = CONDITION_SETS[args.mode]
 
     npz_path = Path(args.npz) if args.npz else MODELS[args.model]
     items_path = Path(args.items)
@@ -290,7 +343,7 @@ def main() -> None:
     blocks = np.asarray([r["payload_block_id"] for r in rows])
     is_bench, is_casual = fmt == "benchmark", fmt == "casual"
 
-    scores = np.full((len(CONDITIONS), len(REGIMES), n_layers, len(y)), np.nan, dtype=np.float32)
+    scores = np.full((len(conditions), len(REGIMES), n_layers, len(y)), np.nan, dtype=np.float32)
     layer_sanity: dict[str, dict] = {}
     layer_seconds: dict[str, float] = {}
     completed_layers: list[int] = []
@@ -303,7 +356,7 @@ def main() -> None:
             "n_layers": n_layers,
             "n_items": len(ids),
             "item_id_digest": item_id_digest(ids),
-            "conditions": list(CONDITIONS),
+            "conditions": list(conditions),
             "ranks": [SUB_RANK],
             "regimes": list(REGIMES),
         }
@@ -330,6 +383,7 @@ def main() -> None:
         "is_casual": is_casual,
         "shard_dir": shard_dir,
         "basis_backend": args.basis_backend,
+        "mode": args.mode,
     }
     run_started = time.time()
     if pending:
@@ -343,7 +397,16 @@ def main() -> None:
                 layer_seconds[str(layer)] = elapsed
                 completed_layers = sorted(int(key) for key in layer_sanity)
                 write_partial_layer(
-                    partial_dir, args.model, layer, layer_scores, sanity, elapsed, ids, completed_layers, n_layers
+                    partial_dir,
+                    args.model,
+                    layer,
+                    layer_scores,
+                    sanity,
+                    elapsed,
+                    ids,
+                    completed_layers,
+                    n_layers,
+                    conditions,
                 )
                 print(
                     f"layer={layer} done in {elapsed:.1f}s; partial={len(completed_layers)}/{n_layers}",
@@ -389,10 +452,10 @@ def main() -> None:
     np.savez_compressed(
         out_path,
         schema_version=np.asarray(1),
-        mode=np.asarray("development"),
+        mode=np.asarray(args.mode),
         model=np.asarray(args.model),
         ranks=np.asarray([SUB_RANK], dtype=np.int16),
-        conditions=np.asarray(CONDITIONS),
+        conditions=np.asarray(conditions),
         regimes=np.asarray(REGIMES),
         n_layers=np.asarray(n_layers),
         item_id=ids,
@@ -407,10 +470,15 @@ def main() -> None:
         json.dumps(
             {
                 "schema_version": 1,
-                "mode": "development",
-                "scope": "within-Q_B C-alignment rank-16 test; raw baseline reused from the emergency run",
+                "mode": args.mode,
+                "scope": (
+                    "within-Q_B rank-16 test; C-alignment conditions compare "
+                    "C-aligned, anti-aligned, and random subspaces"
+                    if args.mode == "calignment"
+                    else "within-Q_B maximum-activation-variance rank-16 control"
+                ),
                 "model": args.model,
-                "conditions": list(CONDITIONS),
+                "conditions": list(conditions),
                 "sub_rank": SUB_RANK,
                 "parent_rank": RANK,
                 "source_activation": str(npz_path),
@@ -420,13 +488,27 @@ def main() -> None:
                 "script_sha256": sha256_file(Path(__file__)),
                 "output_path": str(out_path),
                 "output_sha256": sha256_file(out_path),
-                "rotation": "M = C_train @ Q_B; M = U S Vᵀ; Q_B_rot = Q_B @ V, columns ordered by C alignment",
-                "random_control": f"seeded orthonormal 16-D rotation inside span(Q_B), seed {RANDOM_B16_SEED_BASE} + layer*10007 + fold*101 + 16",
-                "fold_semantics": "leave-one-purpose-family-out; held family excluded from Q_B, from the C rotation, and from every probe fit",
+                "rotation": (
+                    "M = C_train @ Q_B; M = U S Vᵀ; Q_B_rot = Q_B @ V, "
+                    "columns ordered by C alignment"
+                    if args.mode == "calignment"
+                    else "M = X_train @ Q_B; M = U S Vᵀ; Q_B_rot = Q_B @ V, "
+                    "columns ordered by activation variance"
+                ),
+                "random_control": (
+                    f"seeded orthonormal 16-D rotation inside span(Q_B), "
+                    f"seed {RANDOM_B16_SEED_BASE} + layer*10007 + fold*101 + 16"
+                    if args.mode == "calignment"
+                    else None
+                ),
+                "fold_semantics": (
+                    "leave-one-purpose-family-out; held family excluded from Q_B, "
+                    "from the ordering fit, and from every probe fit"
+                ),
+                "interpretation_boundary": "Frozen-activation representational intervention plus probe retraining; not behavioral steering or model-output causality.",
                 "global_checks": global_checks,
                 "timing": timing,
                 "layer_checks": layer_sanity,
-                "interpretation_boundary": "Frozen-activation representational intervention plus probe retraining; not behavioral steering or model-output causality.",
             },
             indent=2,
         )
