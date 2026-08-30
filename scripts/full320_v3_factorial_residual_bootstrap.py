@@ -42,23 +42,43 @@ def ci(values: np.ndarray) -> list[float]:
 
 
 def prepare_auc_order(scores: np.ndarray, y: np.ndarray):
-    """Pre-sort fixed OOF scores for exact weighted AUC in all bootstrap draws."""
+    """Pre-sort fixed OOF scores and record their exact tie groups.
+
+    Float32 OOF scores do contain exact ties, so tie structure is carried
+    explicitly and tied pairs get half credit -- exactly the Mann-Whitney
+    statistic ``sklearn.metrics.roc_auc_score`` computes. Scores are fixed across
+    bootstrap replicates, so groups are computed once and only weights change.
+    """
     order = np.argsort(scores, axis=1, kind="mergesort")
     sorted_scores = np.take_along_axis(scores, order, axis=1)
-    if np.any(np.diff(sorted_scores, axis=1) == 0):
-        raise ValueError("exact score tie detected; weighted fast AUC needs tie-group handling")
     positive = y[order] == 1
-    return order, positive
+    n = scores.shape[1]
+    index = np.arange(n)
+    is_new = np.empty_like(sorted_scores, dtype=bool)
+    is_new[:, 0] = True
+    is_new[:, 1:] = sorted_scores[:, 1:] != sorted_scores[:, :-1]
+    group_start = np.maximum.accumulate(np.where(is_new, index, 0), axis=1)
+    reversed_new = np.empty_like(is_new)
+    reversed_new[:, -1] = True
+    reversed_new[:, :-1] = is_new[:, 1:]
+    group_end = np.minimum.accumulate(np.where(reversed_new, index, n - 1)[:, ::-1], axis=1)[:, ::-1]
+    return order, positive, group_start.astype(np.int64), group_end.astype(np.int64)
 
 
-def weighted_auc_from_order(order: np.ndarray, positive: np.ndarray, weights: np.ndarray) -> np.ndarray:
-    """Weighted Mann-Whitney AUC for many score rows and one item-weight draw."""
+def weighted_auc_from_order(prepared, weights: np.ndarray) -> np.ndarray:
+    """Weighted Mann-Whitney AUC with exact half credit for tied scores."""
+    order, positive, group_start, group_end = prepared
     w = weights[order]
-    negative_weight = w * (~positive)
-    negative_below = np.cumsum(negative_weight, axis=1) - negative_weight
-    numerator = np.sum(w * positive * negative_below, axis=1)
-    total_positive = np.sum(w * positive, axis=1)
-    total_negative = np.sum(negative_weight, axis=1)
+    negative_weight = w * ~positive
+    # cumulative[:, k] is the negative weight strictly below sorted position k.
+    cumulative = np.zeros((w.shape[0], w.shape[1] + 1), dtype=np.float64)
+    np.cumsum(negative_weight, axis=1, out=cumulative[:, 1:])
+    below = np.take_along_axis(cumulative, group_start, axis=1)
+    within = np.take_along_axis(cumulative, group_end + 1, axis=1) - below
+    positive_weight = w * positive
+    numerator = np.sum(positive_weight * (below + 0.5 * within), axis=1)
+    total_positive = np.sum(positive_weight, axis=1)
+    total_negative = cumulative[:, -1]
     if np.any(total_positive == 0) or np.any(total_negative == 0):
         raise ValueError("bootstrap draw omitted a class")
     return numerator / (total_positive * total_negative)
@@ -121,8 +141,10 @@ def analyze_model(model: str, n_boot: int) -> tuple[dict, list[dict]]:
     prepared = {}
     for regime, regime_i in ridx.items():
         mask = masks[regime]
-        matrix = scores[:, :, regime_i, :, mask].reshape(n_cells, int(mask.sum()))
-        prepared[regime] = (*prepare_auc_order(matrix, y[mask]), item_block[mask])
+        # NOTE: scores[:, :, regime_i, :, mask] would move the masked axis to the
+        # front (advanced indices separated by a slice), scrambling the reshape.
+        matrix = scores[:, :, regime_i, :, :][:, :, :, mask].reshape(n_cells, int(mask.sum()))
+        prepared[regime] = (prepare_auc_order(matrix, y[mask]), item_block[mask])
 
     boot_gap = np.empty((len(conditions), len(ranks), n_boot), dtype=np.float64)
     boot_auc = np.empty((len(conditions), len(ranks), len(regimes), n_boot), dtype=np.float64)
@@ -133,8 +155,8 @@ def analyze_model(model: str, n_boot: int) -> tuple[dict, list[dict]]:
         counts = np.bincount(sampled, minlength=len(unique_blocks)).astype(np.float64)
         rep_auc = np.empty((len(conditions), len(ranks), len(regimes), n_layers), dtype=np.float64)
         for regime, regime_i in ridx.items():
-            order, positive, regime_item_block = prepared[regime]
-            values = weighted_auc_from_order(order, positive, counts[regime_item_block])
+            regime_prepared, regime_item_block = prepared[regime]
+            values = weighted_auc_from_order(regime_prepared, counts[regime_item_block])
             rep_auc[:, :, regime_i, :] = values.reshape(len(conditions), len(ranks), n_layers)
         rep_gap = rep_auc[:, :, ridx["joint"]] - (
             rep_auc[:, :, ridx["b2c"]] + rep_auc[:, :, ridx["c2b"]]

@@ -107,13 +107,15 @@ def test_weighted_auc_matches_explicit_block_resampling():
         [
             [-2.1, -0.7, 0.2, 1.4, 2.8, 3.3],
             [-1.2, 0.4, -0.8, 2.1, 1.7, 3.9],
+            # Tied scores must get half credit, matching roc_auc_score.
+            [0.5, 0.5, 1.5, 0.5, 1.5, 2.5],
         ]
     )
     y = np.asarray([0, 0, 1, 0, 1, 1])
     item_block = np.asarray([0, 0, 1, 1, 2, 2])
     block_counts = np.asarray([2, 0, 3])
-    order, positive = prepare_auc_order(scores, y)
-    actual = weighted_auc_from_order(order, positive, block_counts[item_block])
+    prepared = prepare_auc_order(scores, y)
+    actual = weighted_auc_from_order(prepared, block_counts[item_block])
     expanded = np.concatenate(
         [np.flatnonzero(item_block == block) for block in [0, 0, 2, 2, 2]]
     )
