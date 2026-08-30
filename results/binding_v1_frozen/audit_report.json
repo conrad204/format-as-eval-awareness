@@ -1,0 +1,308 @@
+{
+  "audited_before_activations": true,
+  "bank": "results/binding_v1_frozen",
+  "checks": {
+    "10_setup_only_word_1_3gram_leave_one_family_out": {
+      "max_auc": 0.5,
+      "mean_auc": 0.5,
+      "min_auc": 0.5,
+      "per_family_auc": {
+        "branch": 0.5,
+        "channel": 0.5,
+        "pipeline": 0.5,
+        "queue": 0.5,
+        "record": 0.5,
+        "service": 0.5,
+        "station": 0.5,
+        "workspace": 0.5
+      }
+    },
+    "11_metadata_only_baselines": {
+      "format_only": {
+        "max_auc": 0.5,
+        "mean_auc": 0.5,
+        "min_auc": 0.5,
+        "per_family_auc": {
+          "branch": 0.5,
+          "channel": 0.5,
+          "pipeline": 0.5,
+          "queue": 0.5,
+          "record": 0.5,
+          "service": 0.5,
+          "station": 0.5,
+          "workspace": 0.5
+        }
+      },
+      "mapping_only": {
+        "max_auc": 0.5,
+        "mean_auc": 0.5,
+        "min_auc": 0.5,
+        "per_family_auc": {
+          "branch": 0.5,
+          "channel": 0.5,
+          "pipeline": 0.5,
+          "queue": 0.5,
+          "record": 0.5,
+          "service": 0.5,
+          "station": 0.5,
+          "workspace": 0.5
+        }
+      },
+      "nonce_route_identity": {
+        "max_auc": 0.5,
+        "mean_auc": 0.5,
+        "min_auc": 0.5,
+        "per_family_auc": {
+          "branch": 0.5,
+          "channel": 0.5,
+          "pipeline": 0.5,
+          "queue": 0.5,
+          "record": 0.5,
+          "service": 0.5,
+          "station": 0.5,
+          "workspace": 0.5
+        }
+      },
+      "payload_identity": {
+        "max_auc": 0.5,
+        "mean_auc": 0.5,
+        "min_auc": 0.5,
+        "per_family_auc": {
+          "branch": 0.5,
+          "channel": 0.5,
+          "pipeline": 0.5,
+          "queue": 0.5,
+          "record": 0.5,
+          "service": 0.5,
+          "station": 0.5,
+          "workspace": 0.5
+        }
+      },
+      "selection_only": {
+        "max_auc": 0.5,
+        "mean_auc": 0.5,
+        "min_auc": 0.5,
+        "per_family_auc": {
+          "branch": 0.5,
+          "channel": 0.5,
+          "pipeline": 0.5,
+          "queue": 0.5,
+          "record": 0.5,
+          "service": 0.5,
+          "station": 0.5,
+          "workspace": 0.5
+        }
+      }
+    },
+    "1_exact_factorial_balance": {
+      "every_cell_exactly_once": true,
+      "label_counts": {
+        "0": 2048,
+        "1": 2048
+      },
+      "n_items": 4096,
+      "unique_cells": 4096
+    },
+    "2_payload_in_all_eight_cells": {
+      "all_blocks_have_8_items": true,
+      "blocks": 512
+    },
+    "3_nonce_route_purpose_balance": {
+      "all_exactly_chance": true,
+      "max_abs_deviation": 0.0,
+      "n_distinct_current_route_names": 1024
+    },
+    "4_family_purpose_balance": {
+      "branch": {
+        "label_mean": 0.5,
+        "n": 512
+      },
+      "channel": {
+        "label_mean": 0.5,
+        "n": 512
+      },
+      "pipeline": {
+        "label_mean": 0.5,
+        "n": 512
+      },
+      "queue": {
+        "label_mean": 0.5,
+        "n": 512
+      },
+      "record": {
+        "label_mean": 0.5,
+        "n": 512
+      },
+      "service": {
+        "label_mean": 0.5,
+        "n": 512
+      },
+      "station": {
+        "label_mean": 0.5,
+        "n": 512
+      },
+      "workspace": {
+        "label_mean": 0.5,
+        "n": 512
+      }
+    },
+    "5_format_purpose_balance": {
+      "benchmark": {
+        "label_mean": 0.5,
+        "n": 2048
+      },
+      "casual": {
+        "label_mean": 0.5,
+        "n": 2048
+      }
+    },
+    "6_label_is_deterministic_interaction": {
+      "holds_for_all_items": true,
+      "mapping_alone_label_mean": {
+        "-1": {
+          "label_mean": 0.5,
+          "n": 2048
+        },
+        "1": {
+          "label_mean": 0.5,
+          "n": 2048
+        }
+      },
+      "selected_alone_label_mean": {
+        "-1": {
+          "label_mean": 0.5,
+          "n": 2048
+        },
+        "1": {
+          "label_mean": 0.5,
+          "n": 2048
+        }
+      }
+    },
+    "7_role_description_label_balance": {
+      "branch::measure": {
+        "balanced": true,
+        "label0": 256,
+        "label1": 256
+      },
+      "branch::operate": {
+        "balanced": true,
+        "label0": 256,
+        "label1": 256
+      },
+      "channel::measure": {
+        "balanced": true,
+        "label0": 256,
+        "label1": 256
+      },
+      "channel::operate": {
+        "balanced": true,
+        "label0": 256,
+        "label1": 256
+      },
+      "pipeline::measure": {
+        "balanced": true,
+        "label0": 256,
+        "label1": 256
+      },
+      "pipeline::operate": {
+        "balanced": true,
+        "label0": 256,
+        "label1": 256
+      },
+      "queue::measure": {
+        "balanced": true,
+        "label0": 256,
+        "label1": 256
+      },
+      "queue::operate": {
+        "balanced": true,
+        "label0": 256,
+        "label1": 256
+      },
+      "record::measure": {
+        "balanced": true,
+        "label0": 256,
+        "label1": 256
+      },
+      "record::operate": {
+        "balanced": true,
+        "label0": 256,
+        "label1": 256
+      },
+      "service::measure": {
+        "balanced": true,
+        "label0": 256,
+        "label1": 256
+      },
+      "service::operate": {
+        "balanced": true,
+        "label0": 256,
+        "label1": 256
+      },
+      "station::measure": {
+        "balanced": true,
+        "label0": 256,
+        "label1": 256
+      },
+      "station::operate": {
+        "balanced": true,
+        "label0": 256,
+        "label1": 256
+      },
+      "workspace::measure": {
+        "balanced": true,
+        "label0": 256,
+        "label1": 256
+      },
+      "workspace::operate": {
+        "balanced": true,
+        "label0": 256,
+        "label1": 256
+      }
+    },
+    "8_old_cue_vocabulary_in_scaffolding": {
+      "hits": {},
+      "note": "reported for continuity; not the validity argument for binding_v1",
+      "total_hits": 0
+    },
+    "9a_word_1_2gram_leakage_leave_one_family_out": {
+      "max_auc": 0.5,
+      "mean_auc": 0.5,
+      "min_auc": 0.5,
+      "per_family_auc": {
+        "branch": 0.5,
+        "channel": 0.5,
+        "pipeline": 0.5,
+        "queue": 0.5,
+        "record": 0.5,
+        "service": 0.5,
+        "station": 0.5,
+        "workspace": 0.5
+      }
+    },
+    "9b_char_3_5gram_leakage_leave_one_family_out": {
+      "max_auc": 0.5,
+      "mean_auc": 0.5,
+      "min_auc": 0.5,
+      "per_family_auc": {
+        "branch": 0.5,
+        "channel": 0.5,
+        "pipeline": 0.5,
+        "queue": 0.5,
+        "record": 0.5,
+        "service": 0.5,
+        "station": 0.5,
+        "workspace": 0.5
+      }
+    }
+  },
+  "experiment": "binding_v1",
+  "freeze_manifest_sha256": "f4d888d49509bc1def23cdb17aae55bb4602be6c1cba9d8e9ea0051b0c86f18c",
+  "inference_unit": "binding_family",
+  "items_sha256": "bdfd3d4360d1704511f7c3451432c5127b1dbecad75e73654ab4d301f1018efd",
+  "n_families": 8,
+  "n_items": 4096,
+  "schema_version": 1,
+  "text_baseline_cv": "leave-one-entire-relational-family-out"
+}
