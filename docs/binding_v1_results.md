@@ -60,30 +60,52 @@ last-prompt-token position, same block-output convention, same pinned
 checkpoints). Llama-3.1-8B: all 32 layers. Both 70B models: pre-specified
 validation layer 18, inherited from the old explicit study.
 
-### A. Frozen explicit purpose probe -> bound purpose: it does not transfer
+### A. Frozen explicit purpose probe -> bound purpose: fails at the pre-specified layer, but transfers in the deeper half at 70B
 
 The persisted explicit-purpose probes (joint, benchmark-trained,
 casual-trained; refit only from the original explicit rows, never from
-binding_v1) discriminate the bound purpose at essentially chance.
+binding_v1) were first evaluated at the **pre-specified** validation layer 18
+inherited from the explicit study. There the result is flatly negative:
 
 | model | layer | family-mean AUC | family bootstrap CI | families > 0.5 | sign test |
 |---|---|---|---|---|---|
-| Llama-3.1-8B | best (18) | 0.527 | [0.504, 0.562] | 6/8 | 0.145 |
-| Llama-3.1-8B | 8 | 0.502 | [0.498, 0.506] | 4/8 | 0.637 |
-| Llama-3.1-70B | 18 | 0.506 | [0.496, 0.516] | 7/8 | 0.035 |
-| Llama-3.3-70B | 18 | 0.505 | [0.496, 0.516] | 4/8 | 0.637 |
+| Llama-3.1-8B | 18 | 0.527 | [0.504, 0.562] | 6/8 | 0.145 |
+| Llama-3.1-70B | 18 (pre-specified) | 0.506 | [0.496, 0.516] | 7/8 | 0.035 |
+| Llama-3.3-70B | 18 (pre-specified) | 0.506 | [0.496, 0.517] | 4/8 | 0.637 |
+
+Full-depth extraction of both 70B models changes this picture. Layer 18 is only
+22.8% of an 80-layer network, and the effect lives in the back half:
+
+| model | relative depth | family-mean AUC | family bootstrap CI | families > 0.5 |
+|---|---|---|---|---|
+| Llama-3.1-70B | 50% (L40) | 0.582 | [0.529, 0.634] | 7/8 |
+| Llama-3.1-70B | 70% (L56) | 0.569 | [0.517, 0.620] | 7/8 |
+| Llama-3.1-70B | 100% (L79) | 0.587 | [0.541, 0.632] | 7/8 |
+| Llama-3.3-70B | 50% (L40) | 0.587 | [0.526, 0.659] | 7/8 |
+| Llama-3.3-70B | 60% (L48) | 0.602 | [0.539, 0.672] | 7/8 |
+| Llama-3.3-70B | 90% (L72) | 0.581 | [0.523, 0.649] | 7/8 |
+
+In both 70B checkpoints a broad contiguous band from roughly 45% depth to the
+final layer shows family-mean AUC around 0.57-0.62 with family bootstrap CIs
+excluding 0.5 and 7/8 families above chance. The best single layers are 0.601
+[0.552, 0.647] (Llama-3.1-70B L78) and 0.624 [0.554, 0.703] (Llama-3.3-70B L44),
+both with 7/8 families and exact family sign-test p = 0.035.
+
+**Two honesty caveats.** First, only layer 18 was pre-registered; the deeper
+band was examined after seeing results, so the "best layer" CI and p-value are
+optimistically biased by selection on the same data. The defensible claim is the
+broad band, not any single layer. Second, Llama-3.1-8B stays at chance at
+**every** one of its 32 layers (maximum family-mean AUC 0.527), so this is a
+70B-only effect, not a general one.
 
 The paired factorial interaction statistic
-`I = (s(+,+) - s(+,-) - s(-,+) + s(-,-)) / 4` tells the same story: the 8B
-maximum is +0.175 at layer 18 (7/8 families positive) but the trajectory is not
-stable across depth, and the 70B values are +0.019 and +0.020. This is a
-**negative result for the headline transfer test**, and it is reported as such.
+`I = (s(+,+) - s(+,-) - s(-,+) + s(-,-)) / 4` follows the same depth pattern.
 
 For contrast, the same frozen probes on `implicit-v2` reach family-mean AUC
-0.60-0.72. The difference between those two datasets is precisely the global
-semantic axis that `binding_v1` balances away, so the honest reading is that
-much of the earlier fixed-probe transfer rode on that broad axis rather than on
-the purpose bound to the current response.
+0.60-0.72 at shallow depth in the 8B alone. Since `binding_v1` balances away the
+global offline/live semantic axis, the reading is that much of the earlier
+shallow fixed-probe transfer rode on that broad axis, while a weaker but real
+bound-purpose component survives in the deeper half of the 70B models.
 
 ### B. Bound purpose is decodable from held-out relational families
 
@@ -93,17 +115,22 @@ recover the interaction well above chance.
 
 | model | layer | joint AUC | bench->casual | casual->bench | transfer gap | families gap > 0 |
 |---|---|---|---|---|---|---|
-| Llama-3.1-8B | 14 | 0.802 | 0.688 | 0.656 | +0.130 | 8/8 |
-| Llama-3.1-8B | 18 | 0.764 | 0.634 | 0.621 | +0.137 | 8/8 |
-| Llama-3.1-8B | 31 | 0.703 | 0.621 | 0.592 | +0.096 | 8/8 |
-| Llama-3.1-70B | 18 | 0.748 | 0.585 | 0.561 | +0.175 | 8/8 |
-| Llama-3.3-70B | 18 | 0.793 | 0.621 | 0.584 | +0.190 | 8/8 |
+| Llama-3.1-8B | 14 (45%) | 0.802 | 0.688 | 0.656 | +0.130 | 8/8 |
+| Llama-3.1-8B | 31 (100%) | 0.703 | 0.621 | 0.592 | +0.096 | 8/8 |
+| Llama-3.1-70B | 18 (23%) | 0.748 | 0.585 | 0.561 | +0.175 | 8/8 |
+| Llama-3.1-70B | 30 (38%) | 0.939 | - | - | +0.089 | 8/8 |
+| Llama-3.1-70B | 79 (100%) | 0.879 | - | - | +0.106 | 7/8 |
+| Llama-3.3-70B | 18 (23%) | 0.793 | 0.621 | 0.584 | +0.191 | 8/8 |
+| Llama-3.3-70B | 38 (48%) | 0.966 | - | - | +0.084 | 8/8 |
+| Llama-3.3-70B | 79 (100%) | 0.916 | - | - | +0.162 | 8/8 |
 
-Decoding is near chance through roughly the first third of the 8B network and
-rises sharply to its peak near 45% relative depth. **The original
-format-conditioned transfer phenomenon reappears**: the cross-format mean AUC is
-far below the joint-format AUC, and the gap is positive in 8/8 families at every
-layer from 12 onward, and in 8/8 families in both 70B checkpoints.
+At full depth the 70B models decode the bound purpose far better than layer 18
+suggested: peaks of **0.939** (Llama-3.1-70B, L30) and **0.966**
+(Llama-3.3-70B, L38). Decoding is near chance through roughly the first fifth of
+each network and rises sharply to a mid-depth peak. **The original
+format-conditioned transfer phenomenon reappears everywhere**: the cross-format
+mean AUC stays well below the joint-format AUC, and the gap is positive in 8/8
+families at essentially every layer past the onset in all three checkpoints.
 
 ### C. Factorial geometry
 
@@ -166,14 +193,16 @@ interaction.
 ## Plain answers
 
 - **Did the old explicit-purpose probe generalize to the relationally bound
-  purpose variable?** No. Family-mean AUC is about 0.50-0.53 in all three
-  checkpoints, with family CIs generally spanning chance.
-- **Was the effect consistent across template families?** For the frozen probe,
-  no (2/8 to 7/8 families depending on layer, unstable). For binding-trained
-  probes and for the transfer gap, yes: 8/8 families.
-- **Did it replicate across models?** The negative fixed-probe result replicates
-  in 3/3. The positive binding-decodability and transfer-gap results also
-  replicate in 3/3.
+  purpose variable?** Partly, and only at scale and depth. At the pre-specified
+  layer 18 and at every 8B layer it is at chance. In the deeper half of both 70B
+  models it reaches about 0.57-0.62 family-mean AUC with CIs excluding 0.5 and
+  7/8 families above chance, though that band was identified post hoc.
+- **Was the effect consistent across template families?** For the frozen probe
+  in the deep 70B band, 7/8 families. For binding-trained probes and for the
+  transfer gap, 8/8 families.
+- **Did it replicate across models?** The deep-band fixed-probe transfer
+  replicates in 2/2 of the 70B models but is absent in the 8B. The positive
+  binding-decodability and transfer-gap results replicate in 3/3.
 - **Did benchmark/casual format still affect transfer?** Yes, strongly and in
   8/8 families in every model.
 - **Did the format-associated subspace explain any of it?** Yes: roughly 75-85%
@@ -194,9 +223,14 @@ interaction.
 3. The format-conditioned cross-format transfer deficit reproduces in this
    relational regime, and a cross-fitted format-associated subspace accounts for
    most of it.
-4. The direction learned from explicitly stated purpose is **not** the direction
-   that carries this bound variable; the two are nearly orthogonal. This bounds
-   the earlier fixed-probe implicit result rather than extending it.
+4. At 70B scale, a direction learned purely from **explicitly stated** purpose
+   carries measurable information about the **relationally bound** purpose in
+   the deeper half of the network (family-mean AUC about 0.57-0.62, 7/8
+   families, CIs excluding chance), without any retraining. The alignment is
+   weak, not an identity: `cos(P, explicit probe)` stays near +0.03-0.04, and
+   the effect is absent in the 8B and at the pre-specified layer 18. So the two
+   constructs partially overlap deep in large models rather than being the same
+   direction.
 
 ## What this does NOT establish
 
