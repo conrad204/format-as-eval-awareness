@@ -95,6 +95,69 @@ reference JSONs, recorded in `reference_reproduction` with per-layer error curve
 and `strict_pass: false`. It does not affect `specific_C`, which contrasts four
 conditions that share one probe code path, folds, and items.
 
+### Zero-compute layerwise diagnostics (8B)
+
+`scripts/emergency_cperp_layerwise_diagnostics.py`, output
+`results/emergency/emergency_cperp_layerwise_llama31_8b.json`. No probe fitting;
+re-scores the stored OOF archive only.
+
+1. **Layerwise trajectory.** `specific_C` per layer is negative in 31 of 32
+   layers (single positive layer +0.0050), peak magnitude -0.0175 at q=0.13,
+   early-half mean -0.0036, late-half mean -0.0055. The depth integral is not
+   hiding a band where removing `Q_C|B` helps.
+2. **C capture inside `Q_B` vs the minus-B rescue.** Integrated capture 0.271 vs
+   integrated rescue 0.0464. Raw Pearson -0.524, Spearman -0.407; capture peaks
+   mid-network (0.152 / 0.327 / 0.286 at first / middle / last layer) while
+   rescue rises monotonically (0.0116 / 0.0370 / 0.0503), so the raw sign is a
+   depth artifact. Partial correlation given a quadratic in q is +0.195 with
+   permutation p = 0.279 (20,000 perms): no reliable association. Layers are not
+   independent, so this is descriptive.
+
+## Follow-up: within-`Q_B` C-alignment test (rank 16)
+
+The residual-C story is falsified, so the successor question is narrower: inside
+the rank-64 `Q_B`, are the directions most aligned with C the ones carrying the
+portability rescue?
+
+    M       = C_train @ Q_B
+    M       = U S Vᵀ
+    Q_B_rot = Q_B @ V          columns ordered by C alignment
+
+    topC16    = Q_B_rot[:, :16]
+    bottomC16 = Q_B_rot[:, -16:]
+    randomB16 = Q_B @ R        seeded orthonormal 16-D rotation inside span(Q_B)
+
+All three are rank 16 and live inside the same parent `Q_B`, so the contrast
+isolates C-alignment rather than membership in `Q_B`. Only these three conditions
+are fitted (45 probe fits per layer); `raw` is reused from the emergency archive
+and no earlier condition is recomputed. Reported: `rescue_c = I_raw - I_c`, plus
+paired `C_enrichment = rescue_topC16 - rescue_bottomC16` and
+`C_vs_random_inside_B = rescue_topC16 - rescue_randomB16`. Both contrasts are
+baseline-free algebraically (the `raw` term cancels), which is asserted in the
+tests.
+
+Free diagnostics per fold/layer: held-out C capture by each block, activation
+energy removed by each block, containment `max|Q_sub - Q_B Q_Bᵀ Q_sub|`,
+orthonormality `max|Q_subᵀ Q_sub - I|`, and the C-alignment singular spectrum.
+Held family is excluded from `Q_B`, from the rotation fit, and from every probe.
+
+Scripts: `full320_v3_qb_rotation_sweep.py`, `full320_v3_qb_rotation_bootstrap.py`,
+`qb_rotation_pod_run.sh`. Coverage: `tests/test_full320_v3_qb_rotation.py`
+(8 passed) — rotation orthonormality and identical projector to `Q_B`, descending
+alignment order, rank matching and containment of all three blocks, seeded
+reproducibility, refusal when the parent rank cannot be split, per-layer job
+diagnostics, the baseline join, and refusal on item misalignment.
+
+### Continuation state
+
+`scripts/emergency_then_rotation_watch.sh` runs unattended on each 70B box: it
+waits for the C_perp sweep to exit, re-assembles from the atomic layer
+checkpoints with `--reference-mode report` (no recompute), runs the 1000-rep
+bootstrap, then runs the rotation sweep and its paired bootstrap. The 8B box was
+stopped after its result was secured, so the 8B rotation run needs a box with the
+pinned environment (local Python is 3.14 / sklearn 1.8.0 and cannot install the
+1.3.2 / 1.24.4 pins).
+
 ## Data path
 
 Pinned freeze `format-EA/full320-v3` rev `d6c3be7be83c469d9a6a2aa4e797f3a7b538efde`,

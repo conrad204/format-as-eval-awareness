@@ -118,3 +118,107 @@ def test_captured_energy_of_top_block_is_bounded_by_parent():
     parent = captured_energy(C_holdout, q_b)[2]
     top = captured_energy(C_holdout, q_rot[:, :SUB_RANK])[2]
     assert top <= parent + 1e-12
+
+
+def _write_run(path, conditions, regimes, scores, ids, blocks, y, fmt, n_layers, model="llama31_8b"):
+    np.savez_compressed(
+        path,
+        schema_version=np.asarray(1),
+        model=np.asarray(model),
+        ranks=np.asarray([16], dtype=np.int16),
+        conditions=np.asarray(conditions),
+        regimes=np.asarray(regimes),
+        n_layers=np.asarray(n_layers),
+        item_id=ids,
+        payload_block_id=blocks,
+        purpose_family_id=np.asarray(["fg1"] * len(y)),
+        fold_id=np.asarray(["fg1"] * len(y)),
+        format=fmt,
+        y=y,
+        scores=scores[:, None],
+    )
+
+
+def rotation_pair(tmp_path, seed=17, n_layers=3, n_blocks=40):
+    """Emergency-style baseline run plus a rotation run on identical items."""
+    import json
+
+    from full320_v3_qb_rotation_sweep import CONDITIONS as ROT_CONDITIONS
+
+    rng = np.random.default_rng(seed)
+    blocks = np.repeat([f"pb{i}" for i in range(n_blocks)], 4)
+    y = np.tile([1, 1, 0, 0], n_blocks)
+    fmt = np.tile(["benchmark", "casual", "benchmark", "casual"], n_blocks)
+    ids = np.asarray([f"item{i}" for i in range(len(y))])
+    regimes = ["joint", "b2c", "c2b"]
+
+    def build(conditions, cross_penalty):
+        scores = np.full((len(conditions), len(regimes), n_layers, len(y)), np.nan)
+        for ci, name in enumerate(conditions):
+            for layer in range(n_layers):
+                base = rng.normal(size=len(y)) + (y * 2 - 1)
+                weak = base - cross_penalty[name] * (y * 2 - 1)
+                scores[ci, 0, layer] = base
+                scores[ci, 1, layer, fmt == "casual"] = weak[fmt == "casual"]
+                scores[ci, 2, layer, fmt == "benchmark"] = weak[fmt == "benchmark"]
+        return scores
+
+    emergency_conditions = ["raw", "minus_b", "minus_b_cperp", "minus_b_rperp"]
+    emergency = build(
+        emergency_conditions,
+        {"raw": 0.9, "minus_b": 0.6, "minus_b_cperp": 0.2, "minus_b_rperp": 0.5},
+    )
+    # topC16 rescues most (smallest residual gap), then bottomC16, then randomB16.
+    rotation = build(list(ROT_CONDITIONS), {"topC16": 0.2, "bottomC16": 0.5, "randomB16": 0.7})
+
+    emergency_path = tmp_path / "emergency_cperp_scores_llama31_8b.npz"
+    rotation_path = tmp_path / "qb_rotation_scores_llama31_8b.npz"
+    _write_run(emergency_path, emergency_conditions, regimes, emergency, ids, blocks, y, fmt, n_layers)
+    _write_run(rotation_path, list(ROT_CONDITIONS), regimes, rotation, ids, blocks, y, fmt, n_layers)
+    layer_checks = {
+        str(layer): {
+            "c_capture": {name: {"cross_fitted_fraction": 0.1} for name in ROT_CONDITIONS},
+            "energy_removed": {name: {"pooled_fraction_all": 0.05} for name in ROT_CONDITIONS},
+        }
+        for layer in range(n_layers)
+    }
+    rotation_path.with_suffix(".sanity.json").write_text(
+        json.dumps({"layer_checks": layer_checks, "global_checks": {"held_family_basis_violations": 0}}),
+        encoding="utf-8",
+    )
+    return emergency_path, rotation_path
+
+
+def test_rotation_bootstrap_reuses_raw_baseline_and_pairs_contrasts(tmp_path):
+    from full320_v3_qb_rotation_bootstrap import analyze
+
+    emergency_path, rotation_path = rotation_pair(tmp_path)
+    result = analyze(emergency_path, rotation_path, n_boot=200)
+
+    integrated = result["integrated_gap"]
+    assert set(integrated) == {"raw", "topC16", "bottomC16", "randomB16"}
+    for name in ("topC16", "bottomC16", "randomB16"):
+        assert result["rescue"][name] == pytest.approx(integrated["raw"] - integrated[name])
+    enrichment = result["contrasts"]["C_enrichment"]
+    assert enrichment["difference"] == pytest.approx(
+        result["rescue"]["topC16"] - result["rescue"]["bottomC16"]
+    )
+    # Equivalent baseline-free form: the raw term cancels in every contrast.
+    assert enrichment["difference"] == pytest.approx(integrated["bottomC16"] - integrated["topC16"])
+    assert result["contrasts"]["C_vs_random_inside_B"]["difference"] == pytest.approx(
+        integrated["randomB16"] - integrated["topC16"]
+    )
+    low, high = enrichment["ci95"]
+    assert low < enrichment["difference"] < high
+    assert enrichment["difference"] > 0 and enrichment["positive_and_excludes_zero"]
+
+
+def test_rotation_bootstrap_refuses_misaligned_runs(tmp_path):
+    from full320_v3_qb_rotation_bootstrap import analyze
+
+    emergency_path, rotation_path = rotation_pair(tmp_path)
+    payload = dict(np.load(rotation_path, allow_pickle=True))
+    payload["item_id"] = np.asarray([f"other{i}" for i in range(len(payload["y"]))])
+    np.savez_compressed(rotation_path, **payload)
+    with pytest.raises(ValueError, match="item_id differs"):
+        analyze(emergency_path, rotation_path, n_boot=50)
