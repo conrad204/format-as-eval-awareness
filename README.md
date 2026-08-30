@@ -8,14 +8,26 @@ Status checked on 2026-08-29. Cluster state is live and can change; a `RUNNING` 
 
 | Job | State | Current status | What it means |
 |---|---|---|---|
-| `54204383` | RUNNING | Llama-3.1-70B matched-control interchange patch; around layer 34/80, about 73k of 339,840 records in the latest log | Incomplete; no final 70B result or bootstrap |
-| `54204384` | RUNNING | Llama-3.3-70B matched-control interchange patch; around layer 34/80, about 72k of 339,840 records in the latest log | Incomplete; no final 70B result or bootstrap |
-| `54208103` | RUNNING | Llama-3.1-70B real-swap interchange run; startup/sanity check passed and layer 0 completed | Incomplete; cannot compare against a complete matched run yet |
-| `54208125` | PENDING | Llama-3.3-70B real-swap interchange run | Waiting because of `QOSMaxGRESPerUser` |
-| `54198919` | FAILED | 8B factorial B/C residual sweep finished layer computation but failed in reference validation because a 32-layer result was compared with a 3-value reference | No residual result exists |
-| `54206731` | CANCELLED | Retry of the 8B factorial residual sweep | No result; the retry was canceled before execution |
+| `54213519` | RUNNING | Llama-3.1-70B real-swap interchange; latest log through about layer 70/80 | Incomplete; remote output has 76,332 records |
+| `54213525` | RUNNING | Llama-3.3-70B real-swap interchange; latest log through about layer 26/80 | Incomplete; remote output has 28,056 records |
+| `54216482` | PENDING | Llama-3.3-70B matched-control interchange; waiting for resources | Incomplete; two earlier 3.3-70B attempts were out of memory |
 
-The incomplete local files below are checkpoints or partial transfers, not final evidence:
+Remote output coverage currently is:
+
+```text
+Llama-3.1-70B real swap:        76,332 records
+Llama-3.3-70B real swap:        28,056 records
+Llama-3.1-70B matched control: 169,920 records (80 layers complete)
+Llama-3.3-70B matched control:  84,960 records (layers 0–39 only)
+```
+
+There is no final 70B real-vs-matched bootstrap or causal conclusion. The local tracked copies may lag the remote files until they are retrieved, assembled, hashed, and committed.
+
+The factorial residual run `54198919` failed during reference validation after layer computation because a 32-layer result was compared with a 3-value reference. Retry `54206731` was canceled. The indexing fix is `6fe3442`; streaming/checkpoint support is `0926871`. No factorial residual result exists.
+
+The within-`Q_B` rotation follow-up is implemented but has no result yet. The 8B rotation requires a compatible pinned environment; do not report `topC16`, `bottomC16`, or `randomB16` until its sweep and paired bootstrap complete.
+
+Incomplete local files are checkpoints or partial transfers, not final evidence:
 
 ```text
 results/tae_ixpatch_matched_llama31_70b_partial.jsonl
@@ -25,7 +37,12 @@ results/tae_ixpatch_full_llama31_8b.job54161731.partial_stratified.json
 results/tae_ixpatch_full_llama31_8b.job54161731.partial_stratified_v2.json
 ```
 
-The streaming/checkpoint repair for the factorial residual script is committed in `0926871`. The reference-indexing fix is in `6fe3442`. Neither creates a result by itself.
+## Paper source boundary
+
+The LaTeX sources and generated PDFs under `paper/` are intentionally unchanged
+in this integration. The real-forward 8B causal result is documented in the
+Markdown evidence files and manifests above; do not edit or rebuild the paper
+source without an explicit paper-edit decision.
 
 ## What is ready now
 
@@ -70,6 +87,27 @@ Safe interpretation:
 This is **development internal causal mediation**. It is not validated behavioral steering, evaluation-awareness confirmation, a universal causal format mechanism, or a multi-model causal replication.
 
 The original random control was rank-matched but not magnitude-matched. The completed matched control addresses that objection. The matched-control uncertainty uses one shared payload-block resample per bootstrap replicate, reused across layers and conditions; layers are a continuous depth trajectory, not independent replicated experiments.
+### 8B rank-64 `C_perp_B` specificity result
+
+The completed emergency analysis asks whether, after removing the rank-64 format subspace `Q_B`, removing the residual interaction subspace `Q_Cperp` improves cross-format purpose transfer more than an equal-rank random `Q_B`-orthogonal control.
+
+```text
+specific_C = -0.00452
+95% CI     = [-0.00538, -0.00354]
+```
+
+`specific_C` is negative in 31 of 32 layers. Removing `Q_B` itself removes approximately 58.4% of the integrated raw transfer gap, but removing residual `Q_Cperp` afterward worsens transfer relative to the random control. This is a development frozen-activation intervention plus probe-retraining diagnostic, not behavioral steering or confirmation-grade evidence.
+
+Artifacts:
+
+```text
+results/emergency/emergency_cperp_summary_llama31_8b.json
+results/emergency/emergency_cperp_scores_llama31_8b.npz
+results/emergency/emergency_cperp_scores_llama31_8b.sanity.json
+results/emergency/emergency_cperp_layerwise_llama31_8b.json
+docs/emergency_cperp_status.md
+```
+
 
 ## Scientific question and intended claim
 

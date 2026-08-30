@@ -7,7 +7,8 @@
     {"figure": "03_transfer_by_depth.png", "path": "plots/full320 results 8-18-2026/03_transfer_by_depth.png", "claim": "observational cross-format transfer"},
     {"figure": "04_ranking_vs_threshold.png", "path": "plots/full320 results 8-18-2026/04_ranking_vs_threshold.png", "claim": "AUC and threshold-sensitive balanced accuracy kept separate"},
     {"figure": "06_signal_split_by_depth.png", "path": "plots/full320 results 8-18-2026/06_signal_split_by_depth.png", "claim": "descriptive signal/transfer split; not A/B/C geometry"},
-    {"figure": "08_surface_battery.png", "path": "plots/full320 results 8-18-2026/08_surface_battery.png", "claim": "cue-excised lexical controls and intentionally decodable format/template controls"}
+    {"figure": "08_surface_battery.png", "path": "plots/full320 results 8-18-2026/08_surface_battery.png", "claim": "cue-excised lexical controls and intentionally decodable format/template controls"},
+    {"figure": "full_layer_geometry_trajectory.png", "path": "plots/jpp/full_layer_geometry_trajectory/full_layer_geometry_trajectory.png", "claim": "descriptive full-layer matched-format subspace geometry; continuity check, not independent per-layer significance"}
   ],
   "pinned_draft_figures": [
     {"figure": "main_purpose_by_depth.png", "path": "paper/figures/main_purpose_by_depth.png", "sha256": "191723cc8c51c60ae823d397e49661e1e9a1ae54893ad648d1c1be2f0ae7482a", "claim": "pinned full320 held-out purpose AUC across depth"},
@@ -20,19 +21,19 @@
     {"figure": "01_stated_signal_by_depth.png", "path": "plots/pilot results 8-16-2026/01_stated_signal_by_depth.png", "claim": "pilot exploratory layer selection"},
     {"figure": "05_paired_consistency_by_depth.png", "path": "plots/pilot results 8-16-2026/05_paired_consistency_by_depth.png", "claim": "pilot held-out-vocabulary paired consistency"},
     {"figure": "08_generalization_ladder.png", "path": "plots/pilot results 8-16-2026/08_generalization_ladder.png", "claim": "exploratory pilot endpoint ladder; not confirmation"},
-    {"figure": "09_nocue_format_shift.png", "path": "plots/pilot results 8-16-2026/09_nocue_format_shift.png", "claim": "exploratory no-cue format diagnostic with no stable cross-model direction"}
+    {"figure": "09_interchange_patch_llama31_8b.png", "path": "plots/jpp/interchange_patch_llama31_8b/interchange_patch_llama31_8b.png", "claim": "development internal causal mediation: rank-16 format-subspace interchange versus unmatched and magnitude-matched random controls; not a behavioral endpoint"}
   ],
   "missing_required_evidence": [
     "equal-N mixed-format control for all three models",
     "all-model A/B/C vector geometry and transfer correlation",
-    "validated independent behavioral endpoint",
-    "sign-symmetric causal intervention with random-direction controls",
+    "complete 70B real-forward interchange outputs and shared-block bootstrap",
+    "behaviorally validated causal endpoint (current steering readouts are internal/logit or style diagnostics)",
     "confirmation bank and sealed extraction"
   ],
   "caption_restrictions": [
     "Use stated response purpose decodability, not evaluation awareness.",
     "Do not call format-bound gap plot A/B/C geometry.",
     "Do not call pilot endpoints pre-registered confirmation endpoints.",
-    "Do not claim causal steering, confirmation, or scale from unavailable 405B data."
+    "Do not claim validated behavioral steering, confirmation-grade 405B scale, or pinned-checkpoint replication from the unpinned NDIF 405B data."
   ]
 }

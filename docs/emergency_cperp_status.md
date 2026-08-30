@@ -31,11 +31,14 @@ scikit-learn 1.3.2, joblib 1.4.2, huggingface_hub 0.24.7. RAM limits are 240 GB 
 the two 70B boxes and 120 GB on the 8B box, so workers are sized 30 / 30 / 16
 (measured worker RSS 2.5-2.9 GB at d=8192).
 
-| Box (pod) | Model | Workers | Download + sha256 | s/layer | Layers | State |
-|---|---|---:|---|---:|---:|---|
-| `fnl8h155oqjl09` 213.173.105.104:12391 | llama31_70b | 30 | OK (after one truncated attempt) | ~1050 | in progress | running |
-| `oqzjtpmw5gqrbp` 213.173.105.104:13544 | llama33_70b | 30 | OK | 1058 | in progress | running |
-| `u2h6griexkcqb6` 213.173.105.69:49326 | llama31_8b | 16 | OK | 199 median | 32/32 | **complete** |
+| Box / job | Model | State at 2026-08-29 status refresh | Result |
+|---|---|---|---|
+| `u2h6griexkcqb6` | llama31_8b | complete, 32/32 layers, 1000 bootstrap reps | Final 8B result below |
+| 70B emergency boxes | llama31_70b, llama33_70b | no active `emergency_cperp` jobs visible in current `squeue` | No 70B C-perp result retrieved |
+
+The active cluster jobs currently visible are regular `tae_ixpatch` real/matched
+interchange jobs, not emergency C-perp jobs. Do not describe the 70B C-perp
+boxes as currently running without a fresh queue check.
 
 8B timings: shard expansion 35 s; one layer alone 305 s; median 199 s under 16-way
 parallelism. 70B first layer 1058 s under 30-way parallelism, so ~2.7 waves for 80
@@ -145,18 +148,17 @@ Scripts: `full320_v3_qb_rotation_sweep.py`, `full320_v3_qb_rotation_bootstrap.py
 `qb_rotation_pod_run.sh`. Coverage: `tests/test_full320_v3_qb_rotation.py`
 (8 passed) — rotation orthonormality and identical projector to `Q_B`, descending
 alignment order, rank matching and containment of all three blocks, seeded
-reproducibility, refusal when the parent rank cannot be split, per-layer job
-diagnostics, the baseline join, and refusal on item misalignment.
-
 ### Continuation state
 
-`scripts/emergency_then_rotation_watch.sh` runs unattended on each 70B box: it
-waits for the C_perp sweep to exit, re-assembles from the atomic layer
-checkpoints with `--reference-mode report` (no recompute), runs the 1000-rep
-bootstrap, then runs the rotation sweep and its paired bootstrap. The 8B box was
-stopped after its result was secured, so the 8B rotation run needs a box with the
-pinned environment (local Python is 3.14 / sklearn 1.8.0 and cannot install the
-1.3.2 / 1.24.4 pins).
+The 8B C-perp sweep is complete and its result is secured. The 8B rotation
+follow-up has not run because the box was stopped and the local environment is
+Python 3.14 / scikit-learn 1.8.0 rather than the pinned Python 3.8 /
+scikit-learn 1.3.2 environment.
+
+`scripts/emergency_then_rotation_watch.sh` is available for a 70B continuation:
+it waits for atomic C-perp checkpoints, assembles without recomputation, runs
+the 1000-replicate bootstrap, then runs the rotation sweep and paired bootstrap.
+No 70B emergency C-perp output or rotation output has been retrieved.
 
 ## Data path
 

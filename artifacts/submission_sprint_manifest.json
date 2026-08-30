@@ -24,6 +24,62 @@
     "bootstrap_resamples": 1000,
     "claim_label": "development equal-N observational control; not confirmation or behavioral causality"
   },
+  "development_extensions": {
+    "full320_405b": {
+      "model": "meta-llama/Llama-3.1-405B-Instruct",
+      "activation_provenance": "provenance/full320-v3/extraction_config_405b_ndif.json",
+      "result": "results/layer_sweep_full320-v3_llama31_405b_ndif.json",
+      "activation_layers": 126,
+      "model_revision": "unpinned_ndif_deployment",
+      "claim_label": "development-only full320 scale extension"
+    },
+    "full_layer_geometry": {
+      "result": "results/full320_v3_geometry_full_layer_sweep.json",
+      "figure": "plots/jpp/full_layer_geometry_trajectory/full_layer_geometry_trajectory.png",
+      "models": ["llama31_8b", "llama31_70b", "llama33_70b"],
+      "ranks": [1, 4, 16, 64],
+      "conditional_null_ranks": [1, 4, 16],
+      "conditional_null_draws": 10000,
+      "claim_label": "development descriptive depth trajectory; no independent per-layer significance claim"
+    },
+    "erasure_dose_response": {
+      "result": "results/full320_v3_erasure_dose_response_bootstrap.json",
+      "bootstrap_unit": "paired payload block",
+      "bootstrap_resamples": 1000,
+      "claim_label": "development dose-response with corrected paired gap CIs"
+    },
+    "full_layer_interchange_8b": {
+      "records": "results/tae_ixpatch_full_llama31_8b.jsonl",
+      "matched_control_records": "results/tae_ixpatch_matched_llama31_8b.jsonl",
+      "bootstrap": "results/tae_ixpatch_full_llama31_8b_bootstrap.json",
+      "provenance": ["results/tae_ixpatch_full_llama31_8b.manifest.json", "results/tae_ixpatch_matched_llama31_8b.manifest.json"],
+      "model": "meta-llama/Llama-3.1-8B-Instruct",
+      "layers": 32,
+      "rank": 16,
+      "payload_blocks": 280,
+      "bootstrap_resamples": 2000,
+      "claim_label": "development internal causal mediation; matched-control bootstrap complete; not a validated behavioral endpoint"
+    },
+    "emergency_cperp_8b": {
+      "summary": "results/emergency/emergency_cperp_summary_llama31_8b.json",
+      "scores": "results/emergency/emergency_cperp_scores_llama31_8b.npz",
+      "layerwise": "results/emergency/emergency_cperp_layerwise_llama31_8b.json",
+      "status": "complete",
+      "model": "meta-llama/Llama-3.1-8B-Instruct",
+      "layers": 32,
+      "rank": 64,
+      "bootstrap_resamples": 1000,
+      "claim_label": "development frozen-activation internal mechanistic diagnostic; not behavioral steering or confirmation"
+    },
+    "interchange_70b_in_progress": {
+      "models": ["meta-llama/Llama-3.1-70B-Instruct", "meta-llama/Llama-3.3-70B-Instruct"],
+      "matched_records": ["results/tae_ixpatch_matched_llama31_70b.jsonl", "results/tae_ixpatch_matched_llama33_70b.jsonl"],
+      "matched_control_manifest": "results/tae_ixpatch_matched_llama31_70b.final.manifest.json",
+      "real_swap_records": ["results/tae_ixpatch_full_llama31_70b.jsonl", "results/tae_ixpatch_full_llama33_70b.jsonl"],
+      "status": "incomplete; no 70B bootstrap or causal conclusion",
+      "claim_label": "development in-progress; do not report as final evidence"
+    }
+  },
   "jlens_development": {
     "run_manifest": "runs/tae_2026/jlens_v3/20260818_full320_8b_retry03/run_manifest.json",
     "assay_sha256": "6ca60307ed3c093349b94ba7f1e93183477025b14065c84cfd2b9931fbf95b9f",
@@ -32,7 +88,7 @@
     "claim_label": "development mechanistic diagnostic; not confirmation or behavioral causality"
   },
   "pilot_appendix": {"dataset": "activations_dataset/activations/*_pilot80", "items_sha256": "0dbcb9802924d3c2063fce87e24250d1a3430fd24856ea83b132e606843f6638", "claim_label": "exploratory pilot; separate freeze; do not pool with full320"},
-  "devbunova_appendix": {"dataset": "external/eval-awareness-2x2", "claim_label": "external provenance/context only; no local activations or matched extraction"},
-  "unavailable": ["Llama-3.1-405B matched activation bundle", "model-specific 70B/405B jLens fits", "valid behavioral causal endpoint", "confirmation-bank extraction"],
-  "claim_restrictions": ["Use stated response purpose decodability, not evaluation awareness.", "Treat current results as development observational, equal-N observational, or development geometry.", "Do not interpret unequal-N cross-format gaps mechanistically.", "Do not claim confirmation, behavioral steering, or universal format erasure."]
+  "devbunova_appendix": {"dataset": "external/eval-awareness-2x2", "result": "results/devbunova_decomp/decomp_405b.json", "claim_label": "independent external activation archive/results; local checkout has partial chunks; not a matched source-corpus freeze"},
+  "unavailable": ["pinned 405B confirmation-grade checkpoint", "model-specific 70B/405B jLens fits", "valid behavioral causal endpoint", "confirmation-bank extraction"],
+  "claim_restrictions": ["Use stated response purpose decodability, not evaluation awareness.", "Treat current results as development observational, equal-N observational, development geometry, or development-only scale extension.", "Do not interpret unequal-N cross-format gaps mechanistically.", "Treat 405B results as development-only because the NDIF model revision is unpinned.", "Do not claim validated behavioral steering or universal format erasure."]
 }
