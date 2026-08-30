@@ -11,10 +11,9 @@ see `plots/jpp/interchange_patch_llama31_8b` for that full 3-condition view.
 **Left:** format interchange-intervention accuracy. **Right:** mean absolute
 purpose-readout shift.
 
-**Status: 3/3 checkpoints:** Llama-3.1-8B, Llama-3.1-70B, and
-Llama-3.3-70B. The 70B `real_swap` trajectories use every other layer; the
-relative-depth axis preserves their sampled positions rather than
-interpolating unmeasured layers.
+**Status: 3/3 checkpoints, exact full-layer resolution:** Llama-3.1-8B,
+Llama-3.1-70B, and Llama-3.3-70B. Both conditions contain every transformer
+layer for every checkpoint; no layer is interpolated.
 
 **Reading:** Both 70B checkpoints replicate and strengthen the 8B format
 effect: `real_swap` rises from near chance to approximately 0.99
