@@ -1,0 +1,1583 @@
+{
+  "schema_version": 1,
+  "experiment": "binding_v1_format_subspace",
+  "model_key": "llama33_70b",
+  "basis": "matched benchmark-minus-casual block contrasts from training families only",
+  "cross_fitting": "leave-one-entire-relational-family-out for both basis and probe",
+  "ranks": [
+    1,
+    4,
+    16,
+    64
+  ],
+  "inference_unit": "binding_family",
+  "items_sha256": "bdfd3d4360d1704511f7c3451432c5127b1dbecad75e73654ab4d301f1018efd",
+  "activations_sha256": "9b84ba3bbc672fa99c698850db0ff146e69c0c1e04a965340d2fd4f5c057e6d2",
+  "layers": [
+    {
+      "layer": 18,
+      "by_rank": {
+        "1": {
+          "projected_per_family": {
+            "branch": {
+              "joint_format_auc": 0.782135009765625,
+              "joint_benchmark_items_auc": 0.77862548828125,
+              "joint_casual_items_auc": 0.79290771484375,
+              "benchmark_self_auc": 0.7669677734375,
+              "benchmark_to_casual_auc": 0.60235595703125,
+              "casual_self_auc": 0.77874755859375,
+              "casual_to_benchmark_auc": 0.5755615234375,
+              "cross_format_mean_auc": 0.588958740234375,
+              "transfer_gap": 0.19317626953125
+            },
+            "channel": {
+              "joint_format_auc": 0.737640380859375,
+              "joint_benchmark_items_auc": 0.7406005859375,
+              "joint_casual_items_auc": 0.73883056640625,
+              "benchmark_self_auc": 0.71246337890625,
+              "benchmark_to_casual_auc": 0.5689697265625,
+              "casual_self_auc": 0.70404052734375,
+              "casual_to_benchmark_auc": 0.5404052734375,
+              "cross_format_mean_auc": 0.5546875,
+              "transfer_gap": 0.182952880859375
+            },
+            "pipeline": {
+              "joint_format_auc": 0.750518798828125,
+              "joint_benchmark_items_auc": 0.74334716796875,
+              "joint_casual_items_auc": 0.75848388671875,
+              "benchmark_self_auc": 0.72943115234375,
+              "benchmark_to_casual_auc": 0.5762939453125,
+              "casual_self_auc": 0.72906494140625,
+              "casual_to_benchmark_auc": 0.54412841796875,
+              "cross_format_mean_auc": 0.560211181640625,
+              "transfer_gap": 0.1903076171875
+            },
+            "queue": {
+              "joint_format_auc": 0.92578125,
+              "joint_benchmark_items_auc": 0.90679931640625,
+              "joint_casual_items_auc": 0.9554443359375,
+              "benchmark_self_auc": 0.8846435546875,
+              "benchmark_to_casual_auc": 0.63482666015625,
+              "casual_self_auc": 0.92205810546875,
+              "casual_to_benchmark_auc": 0.59173583984375,
+              "cross_format_mean_auc": 0.61328125,
+              "transfer_gap": 0.3125
+            },
+            "record": {
+              "joint_format_auc": 0.9783935546875,
+              "joint_benchmark_items_auc": 0.9752197265625,
+              "joint_casual_items_auc": 0.98699951171875,
+              "benchmark_self_auc": 0.9688720703125,
+              "benchmark_to_casual_auc": 0.8487548828125,
+              "casual_self_auc": 0.99176025390625,
+              "casual_to_benchmark_auc": 0.71209716796875,
+              "cross_format_mean_auc": 0.780426025390625,
+              "transfer_gap": 0.197967529296875
+            },
+            "service": {
+              "joint_format_auc": 0.5123748779296875,
+              "joint_benchmark_items_auc": 0.513916015625,
+              "joint_casual_items_auc": 0.51629638671875,
+              "benchmark_self_auc": 0.5086669921875,
+              "benchmark_to_casual_auc": 0.50140380859375,
+              "casual_self_auc": 0.477783203125,
+              "casual_to_benchmark_auc": 0.505126953125,
+              "cross_format_mean_auc": 0.503265380859375,
+              "transfer_gap": 0.0091094970703125
+            },
+            "station": {
+              "joint_format_auc": 0.9160919189453125,
+              "joint_benchmark_items_auc": 0.9097900390625,
+              "joint_casual_items_auc": 0.93975830078125,
+              "benchmark_self_auc": 0.90350341796875,
+              "benchmark_to_casual_auc": 0.67535400390625,
+              "casual_self_auc": 0.9329833984375,
+              "casual_to_benchmark_auc": 0.63092041015625,
+              "cross_format_mean_auc": 0.65313720703125,
+              "transfer_gap": 0.2629547119140625
+            },
+            "workspace": {
+              "joint_format_auc": 0.7678070068359375,
+              "joint_benchmark_items_auc": 0.7530517578125,
+              "joint_casual_items_auc": 0.7816162109375,
+              "benchmark_self_auc": 0.74383544921875,
+              "benchmark_to_casual_auc": 0.59063720703125,
+              "casual_self_auc": 0.757080078125,
+              "casual_to_benchmark_auc": 0.56536865234375,
+              "cross_format_mean_auc": 0.5780029296875,
+              "transfer_gap": 0.1898040771484375
+            }
+          },
+          "projected_family_unit_summary": {
+            "joint_format_auc": {
+              "family_mean": 0.7963428497314453,
+              "family_values": {
+                "branch": 0.782135009765625,
+                "channel": 0.737640380859375,
+                "pipeline": 0.750518798828125,
+                "queue": 0.92578125,
+                "record": 0.9783935546875,
+                "service": 0.5123748779296875,
+                "station": 0.9160919189453125,
+                "workspace": 0.7678070068359375
+              },
+              "family_bootstrap_ci95": [
+                0.6954860687255859,
+                0.8866710662841797
+              ],
+              "n_families": 8,
+              "families_above_reference": 8,
+              "reference": 0.5,
+              "exact_family_sign_test_p_one_sided": 0.00390625
+            },
+            "joint_benchmark_items_auc": {
+              "family_mean": 0.7901687622070312,
+              "family_values": {
+                "branch": 0.77862548828125,
+                "channel": 0.7406005859375,
+                "pipeline": 0.74334716796875,
+                "queue": 0.90679931640625,
+                "record": 0.9752197265625,
+                "service": 0.513916015625,
+                "station": 0.9097900390625,
+                "workspace": 0.7530517578125
+              },
+              "family_bootstrap_ci95": [
+                0.6912307739257812,
+                0.8759162902832032
+              ],
+              "n_families": 8,
+              "families_above_reference": 8,
+              "reference": 0.5,
+              "exact_family_sign_test_p_one_sided": 0.00390625
+            },
+            "joint_casual_items_auc": {
+              "family_mean": 0.8087921142578125,
+              "family_values": {
+                "branch": 0.79290771484375,
+                "channel": 0.73883056640625,
+                "pipeline": 0.75848388671875,
+                "queue": 0.9554443359375,
+                "record": 0.98699951171875,
+                "service": 0.51629638671875,
+                "station": 0.93975830078125,
+                "workspace": 0.7816162109375
+              },
+              "family_bootstrap_ci95": [
+                0.7034194946289063,
+                0.9015426635742188
+              ],
+              "n_families": 8,
+              "families_above_reference": 8,
+              "reference": 0.5,
+              "exact_family_sign_test_p_one_sided": 0.00390625
+            },
+            "benchmark_self_auc": {
+              "family_mean": 0.7772979736328125,
+              "family_values": {
+                "branch": 0.7669677734375,
+                "channel": 0.71246337890625,
+                "pipeline": 0.72943115234375,
+                "queue": 0.8846435546875,
+                "record": 0.9688720703125,
+                "service": 0.5086669921875,
+                "station": 0.90350341796875,
+                "workspace": 0.74383544921875
+              },
+              "family_bootstrap_ci95": [
+                0.6804122924804688,
+                0.8646793365478516
+              ],
+              "n_families": 8,
+              "families_above_reference": 8,
+              "reference": 0.5,
+              "exact_family_sign_test_p_one_sided": 0.00390625
+            },
+            "benchmark_to_casual_auc": {
+              "family_mean": 0.6248245239257812,
+              "family_values": {
+                "branch": 0.60235595703125,
+                "channel": 0.5689697265625,
+                "pipeline": 0.5762939453125,
+                "queue": 0.63482666015625,
+                "record": 0.8487548828125,
+                "service": 0.50140380859375,
+                "station": 0.67535400390625,
+                "workspace": 0.59063720703125
+              },
+              "family_bootstrap_ci95": [
+                0.5665184020996094,
+                0.6989212036132812
+              ],
+              "n_families": 8,
+              "families_above_reference": 8,
+              "reference": 0.5,
+              "exact_family_sign_test_p_one_sided": 0.00390625
+            },
+            "casual_self_auc": {
+              "family_mean": 0.7866897583007812,
+              "family_values": {
+                "branch": 0.77874755859375,
+                "channel": 0.70404052734375,
+                "pipeline": 0.72906494140625,
+                "queue": 0.92205810546875,
+                "record": 0.99176025390625,
+                "service": 0.477783203125,
+                "station": 0.9329833984375,
+                "workspace": 0.757080078125
+              },
+              "family_bootstrap_ci95": [
+                0.6731185913085938,
+                0.8884735107421875
+              ],
+              "n_families": 8,
+              "families_above_reference": 7,
+              "reference": 0.5,
+              "exact_family_sign_test_p_one_sided": 0.03515625
+            },
+            "casual_to_benchmark_auc": {
+              "family_mean": 0.5831680297851562,
+              "family_values": {
+                "branch": 0.5755615234375,
+                "channel": 0.5404052734375,
+                "pipeline": 0.54412841796875,
+                "queue": 0.59173583984375,
+                "record": 0.71209716796875,
+                "service": 0.505126953125,
+                "station": 0.63092041015625,
+                "workspace": 0.56536865234375
+              },
+              "family_bootstrap_ci95": [
+                0.5461803436279297,
+                0.6269001007080078
+              ],
+              "n_families": 8,
+              "families_above_reference": 8,
+              "reference": 0.5,
+              "exact_family_sign_test_p_one_sided": 0.00390625
+            },
+            "cross_format_mean_auc": {
+              "family_mean": 0.6039962768554688,
+              "family_values": {
+                "branch": 0.588958740234375,
+                "channel": 0.5546875,
+                "pipeline": 0.560211181640625,
+                "queue": 0.61328125,
+                "record": 0.780426025390625,
+                "service": 0.503265380859375,
+                "station": 0.65313720703125,
+                "workspace": 0.5780029296875
+              },
+              "family_bootstrap_ci95": [
+                0.556365966796875,
+                0.6611876487731934
+              ],
+              "n_families": 8,
+              "families_above_reference": 8,
+              "reference": 0.5,
+              "exact_family_sign_test_p_one_sided": 0.00390625
+            },
+            "transfer_gap": {
+              "family_mean": 0.19234657287597656,
+              "family_values": {
+                "branch": 0.19317626953125,
+                "channel": 0.182952880859375,
+                "pipeline": 0.1903076171875,
+                "queue": 0.3125,
+                "record": 0.197967529296875,
+                "service": 0.0091094970703125,
+                "station": 0.2629547119140625,
+                "workspace": 0.1898040771484375
+              },
+              "family_bootstrap_ci95": [
+                0.13141441345214844,
+                0.24422931671142578
+              ],
+              "n_families": 8,
+              "families_above_reference": 8,
+              "reference": 0.0,
+              "exact_family_sign_test_p_one_sided": 0.00390625
+            }
+          },
+          "projected_minus_raw_per_family": {
+            "branch": {
+              "delta_joint_format_auc": -0.00067138671875,
+              "delta_cross_format_mean_auc": 0.001495361328125,
+              "delta_transfer_gap": -0.002166748046875
+            },
+            "channel": {
+              "delta_joint_format_auc": -0.0043182373046875,
+              "delta_cross_format_mean_auc": -0.0047607421875,
+              "delta_transfer_gap": 0.0004425048828125
+            },
+            "pipeline": {
+              "delta_joint_format_auc": 0.0111541748046875,
+              "delta_cross_format_mean_auc": 0.004547119140625,
+              "delta_transfer_gap": 0.0066070556640625
+            },
+            "queue": {
+              "delta_joint_format_auc": 0.0121612548828125,
+              "delta_cross_format_mean_auc": 0.002166748046875,
+              "delta_transfer_gap": 0.0099945068359375
+            },
+            "record": {
+              "delta_joint_format_auc": -0.0016021728515625,
+              "delta_cross_format_mean_auc": 0.01409912109375,
+              "delta_transfer_gap": -0.0157012939453125
+            },
+            "service": {
+              "delta_joint_format_auc": 0.0066986083984375,
+              "delta_cross_format_mean_auc": 0.000213623046875,
+              "delta_transfer_gap": 0.0064849853515625
+            },
+            "station": {
+              "delta_joint_format_auc": -3.0517578125e-05,
+              "delta_cross_format_mean_auc": -0.00701904296875,
+              "delta_transfer_gap": 0.006988525390625
+            },
+            "workspace": {
+              "delta_joint_format_auc": 0.003265380859375,
+              "delta_cross_format_mean_auc": 0.001007080078125,
+              "delta_transfer_gap": 0.00225830078125
+            }
+          },
+          "projected_minus_raw_family_unit_summary": {
+            "delta_joint_format_auc": {
+              "family_mean": 0.0033321380615234375,
+              "family_values": {
+                "branch": -0.00067138671875,
+                "channel": -0.0043182373046875,
+                "pipeline": 0.0111541748046875,
+                "queue": 0.0121612548828125,
+                "record": -0.0016021728515625,
+                "service": 0.0066986083984375,
+                "station": -3.0517578125e-05,
+                "workspace": 0.003265380859375
+              },
+              "family_bootstrap_ci95": [
+                -0.000438690185546875,
+                0.007415771484375
+              ],
+              "n_families": 8,
+              "families_above_reference": 0,
+              "reference": 0.5,
+              "exact_family_sign_test_p_one_sided": 1.0
+            },
+            "delta_cross_format_mean_auc": {
+              "family_mean": 0.001468658447265625,
+              "family_values": {
+                "branch": 0.001495361328125,
+                "channel": -0.0047607421875,
+                "pipeline": 0.004547119140625,
+                "queue": 0.002166748046875,
+                "record": 0.01409912109375,
+                "service": 0.000213623046875,
+                "station": -0.00701904296875,
+                "workspace": 0.001007080078125
+              },
+              "family_bootstrap_ci95": [
+                -0.0023957252502441405,
+                0.005829143524169918
+              ],
+              "n_families": 8,
+              "families_above_reference": 0,
+              "reference": 0.5,
+              "exact_family_sign_test_p_one_sided": 1.0
+            },
+            "delta_transfer_gap": {
+              "family_mean": 0.0018634796142578125,
+              "family_values": {
+                "branch": -0.002166748046875,
+                "channel": 0.0004425048828125,
+                "pipeline": 0.0066070556640625,
+                "queue": 0.0099945068359375,
+                "record": -0.0157012939453125,
+                "service": 0.0064849853515625,
+                "station": 0.006988525390625,
+                "workspace": 0.00225830078125
+              },
+              "family_bootstrap_ci95": [
+                -0.003910064697265625,
+                0.0063991546630859375
+              ],
+              "n_families": 8,
+              "families_above_reference": 6,
+              "reference": 0.0,
+              "exact_family_sign_test_p_one_sided": 0.14453125
+            }
+          }
+        },
+        "4": {
+          "projected_per_family": {
+            "branch": {
+              "joint_format_auc": 0.7980194091796875,
+              "joint_benchmark_items_auc": 0.79638671875,
+              "joint_casual_items_auc": 0.81329345703125,
+              "benchmark_self_auc": 0.7760009765625,
+              "benchmark_to_casual_auc": 0.649169921875,
+              "casual_self_auc": 0.782958984375,
+              "casual_to_benchmark_auc": 0.576416015625,
+              "cross_format_mean_auc": 0.61279296875,
+              "transfer_gap": 0.1852264404296875
+            },
+            "channel": {
+              "joint_format_auc": 0.75048828125,
+              "joint_benchmark_items_auc": 0.75909423828125,
+              "joint_casual_items_auc": 0.7481689453125,
+              "benchmark_self_auc": 0.717041015625,
+              "benchmark_to_casual_auc": 0.59051513671875,
+              "casual_self_auc": 0.72320556640625,
+              "casual_to_benchmark_auc": 0.53997802734375,
+              "cross_format_mean_auc": 0.56524658203125,
+              "transfer_gap": 0.18524169921875
+            },
+            "pipeline": {
+              "joint_format_auc": 0.7619171142578125,
+              "joint_benchmark_items_auc": 0.7607421875,
+              "joint_casual_items_auc": 0.77215576171875,
+              "benchmark_self_auc": 0.73541259765625,
+              "benchmark_to_casual_auc": 0.6187744140625,
+              "casual_self_auc": 0.73101806640625,
+              "casual_to_benchmark_auc": 0.5445556640625,
+              "cross_format_mean_auc": 0.5816650390625,
+              "transfer_gap": 0.1802520751953125
+            },
+            "queue": {
+              "joint_format_auc": 0.9291534423828125,
+              "joint_benchmark_items_auc": 0.9141845703125,
+              "joint_casual_items_auc": 0.95281982421875,
+              "benchmark_self_auc": 0.88946533203125,
+              "benchmark_to_casual_auc": 0.71405029296875,
+              "casual_self_auc": 0.91937255859375,
+              "casual_to_benchmark_auc": 0.592529296875,
+              "cross_format_mean_auc": 0.653289794921875,
+              "transfer_gap": 0.2758636474609375
+            },
+            "record": {
+              "joint_format_auc": 0.9770355224609375,
+              "joint_benchmark_items_auc": 0.9718017578125,
+              "joint_casual_items_auc": 0.98663330078125,
+              "benchmark_self_auc": 0.9674072265625,
+              "benchmark_to_casual_auc": 0.90570068359375,
+              "casual_self_auc": 0.9925537109375,
+              "casual_to_benchmark_auc": 0.7274169921875,
+              "cross_format_mean_auc": 0.816558837890625,
+              "transfer_gap": 0.1604766845703125
+            },
+            "service": {
+              "joint_format_auc": 0.50836181640625,
+              "joint_benchmark_items_auc": 0.5086669921875,
+              "joint_casual_items_auc": 0.51397705078125,
+              "benchmark_self_auc": 0.50823974609375,
+              "benchmark_to_casual_auc": 0.52386474609375,
+              "casual_self_auc": 0.47723388671875,
+              "casual_to_benchmark_auc": 0.50262451171875,
+              "cross_format_mean_auc": 0.51324462890625,
+              "transfer_gap": -0.0048828125
+            },
+            "station": {
+              "joint_format_auc": 0.9149322509765625,
+              "joint_benchmark_items_auc": 0.9052734375,
+              "joint_casual_items_auc": 0.93206787109375,
+              "benchmark_self_auc": 0.8878173828125,
+              "benchmark_to_casual_auc": 0.77032470703125,
+              "casual_self_auc": 0.9324951171875,
+              "casual_to_benchmark_auc": 0.6260986328125,
+              "cross_format_mean_auc": 0.698211669921875,
+              "transfer_gap": 0.2167205810546875
+            },
+            "workspace": {
+              "joint_format_auc": 0.7639617919921875,
+              "joint_benchmark_items_auc": 0.75457763671875,
+              "joint_casual_items_auc": 0.77423095703125,
+              "benchmark_self_auc": 0.740478515625,
+              "benchmark_to_casual_auc": 0.61895751953125,
+              "casual_self_auc": 0.75555419921875,
+              "casual_to_benchmark_auc": 0.5633544921875,
+              "cross_format_mean_auc": 0.591156005859375,
+              "transfer_gap": 0.1728057861328125
+            }
+          },
+          "projected_family_unit_summary": {
+            "joint_format_auc": {
+              "family_mean": 0.8004837036132812,
+              "family_values": {
+                "branch": 0.7980194091796875,
+                "channel": 0.75048828125,
+                "pipeline": 0.7619171142578125,
+                "queue": 0.9291534423828125,
+                "record": 0.9770355224609375,
+                "service": 0.50836181640625,
+                "station": 0.9149322509765625,
+                "workspace": 0.7639617919921875
+              },
+              "family_bootstrap_ci95": [
+                0.6994819164276124,
+                0.8892604351043701
+              ],
+              "n_families": 8,
+              "families_above_reference": 8,
+              "reference": 0.5,
+              "exact_family_sign_test_p_one_sided": 0.00390625
+            },
+            "joint_benchmark_items_auc": {
+              "family_mean": 0.7963409423828125,
+              "family_values": {
+                "branch": 0.79638671875,
+                "channel": 0.75909423828125,
+                "pipeline": 0.7607421875,
+                "queue": 0.9141845703125,
+                "record": 0.9718017578125,
+                "service": 0.5086669921875,
+                "station": 0.9052734375,
+                "workspace": 0.75457763671875
+              },
+              "family_bootstrap_ci95": [
+                0.6968765258789062,
+                0.8800710678100585
+              ],
+              "n_families": 8,
+              "families_above_reference": 8,
+              "reference": 0.5,
+              "exact_family_sign_test_p_one_sided": 0.00390625
+            },
+            "joint_casual_items_auc": {
+              "family_mean": 0.8116683959960938,
+              "family_values": {
+                "branch": 0.81329345703125,
+                "channel": 0.7481689453125,
+                "pipeline": 0.77215576171875,
+                "queue": 0.95281982421875,
+                "record": 0.98663330078125,
+                "service": 0.51397705078125,
+                "station": 0.93206787109375,
+                "workspace": 0.77423095703125
+              },
+              "family_bootstrap_ci95": [
+                0.7070159912109375,
+                0.9024429321289062
+              ],
+              "n_families": 8,
+              "families_above_reference": 8,
+              "reference": 0.5,
+              "exact_family_sign_test_p_one_sided": 0.00390625
+            },
+            "benchmark_self_auc": {
+              "family_mean": 0.7777328491210938,
+              "family_values": {
+                "branch": 0.7760009765625,
+                "channel": 0.717041015625,
+                "pipeline": 0.73541259765625,
+                "queue": 0.88946533203125,
+                "record": 0.9674072265625,
+                "service": 0.50823974609375,
+                "station": 0.8878173828125,
+                "workspace": 0.740478515625
+              },
+              "family_bootstrap_ci95": [
+                0.6826622009277343,
+                0.8624174118041992
+              ],
+              "n_families": 8,
+              "families_above_reference": 8,
+              "reference": 0.5,
+              "exact_family_sign_test_p_one_sided": 0.00390625
+            },
+            "benchmark_to_casual_auc": {
+              "family_mean": 0.673919677734375,
+              "family_values": {
+                "branch": 0.649169921875,
+                "channel": 0.59051513671875,
+                "pipeline": 0.6187744140625,
+                "queue": 0.71405029296875,
+                "record": 0.90570068359375,
+                "service": 0.52386474609375,
+                "station": 0.77032470703125,
+                "workspace": 0.61895751953125
+              },
+              "family_bootstrap_ci95": [
+                0.6027139663696289,
+                0.7572484970092773
+              ],
+              "n_families": 8,
+              "families_above_reference": 8,
+              "reference": 0.5,
+              "exact_family_sign_test_p_one_sided": 0.00390625
+            },
+            "casual_self_auc": {
+              "family_mean": 0.7892990112304688,
+              "family_values": {
+                "branch": 0.782958984375,
+                "channel": 0.72320556640625,
+                "pipeline": 0.73101806640625,
+                "queue": 0.91937255859375,
+                "record": 0.9925537109375,
+                "service": 0.47723388671875,
+                "station": 0.9324951171875,
+                "workspace": 0.75555419921875
+              },
+              "family_bootstrap_ci95": [
+                0.6761550903320312,
+                0.8900869369506835
+              ],
+              "n_families": 8,
+              "families_above_reference": 7,
+              "reference": 0.5,
+              "exact_family_sign_test_p_one_sided": 0.03515625
+            },
+            "casual_to_benchmark_auc": {
+              "family_mean": 0.5841217041015625,
+              "family_values": {
+                "branch": 0.576416015625,
+                "channel": 0.53997802734375,
+                "pipeline": 0.5445556640625,
+                "queue": 0.592529296875,
+                "record": 0.7274169921875,
+                "service": 0.50262451171875,
+                "station": 0.6260986328125,
+                "workspace": 0.5633544921875
+              },
+              "family_bootstrap_ci95": [
+                0.5454463958740234,
+                0.6314567565917968
+              ],
+              "n_families": 8,
+              "families_above_reference": 8,
+              "reference": 0.5,
+              "exact_family_sign_test_p_one_sided": 0.00390625
+            },
+            "cross_format_mean_auc": {
+              "family_mean": 0.6290206909179688,
+              "family_values": {
+                "branch": 0.61279296875,
+                "channel": 0.56524658203125,
+                "pipeline": 0.5816650390625,
+                "queue": 0.653289794921875,
+                "record": 0.816558837890625,
+                "service": 0.51324462890625,
+                "station": 0.698211669921875,
+                "workspace": 0.591156005859375
+              },
+              "family_bootstrap_ci95": [
+                0.5738334655761719,
+                0.6933860778808594
+              ],
+              "n_families": 8,
+              "families_above_reference": 8,
+              "reference": 0.5,
+              "exact_family_sign_test_p_one_sided": 0.00390625
+            },
+            "transfer_gap": {
+              "family_mean": 0.1714630126953125,
+              "family_values": {
+                "branch": 0.1852264404296875,
+                "channel": 0.18524169921875,
+                "pipeline": 0.1802520751953125,
+                "queue": 0.2758636474609375,
+                "record": 0.1604766845703125,
+                "service": -0.0048828125,
+                "station": 0.2167205810546875,
+                "workspace": 0.1728057861328125
+              },
+              "family_bootstrap_ci95": [
+                0.11322975158691406,
+                0.2154999256134033
+              ],
+              "n_families": 8,
+              "families_above_reference": 7,
+              "reference": 0.0,
+              "exact_family_sign_test_p_one_sided": 0.03515625
+            }
+          },
+          "projected_minus_raw_per_family": {
+            "branch": {
+              "delta_joint_format_auc": 0.0152130126953125,
+              "delta_cross_format_mean_auc": 0.02532958984375,
+              "delta_transfer_gap": -0.0101165771484375
+            },
+            "channel": {
+              "delta_joint_format_auc": 0.0085296630859375,
+              "delta_cross_format_mean_auc": 0.00579833984375,
+              "delta_transfer_gap": 0.0027313232421875
+            },
+            "pipeline": {
+              "delta_joint_format_auc": 0.022552490234375,
+              "delta_cross_format_mean_auc": 0.0260009765625,
+              "delta_transfer_gap": -0.003448486328125
+            },
+            "queue": {
+              "delta_joint_format_auc": 0.015533447265625,
+              "delta_cross_format_mean_auc": 0.04217529296875,
+              "delta_transfer_gap": -0.026641845703125
+            },
+            "record": {
+              "delta_joint_format_auc": -0.002960205078125,
+              "delta_cross_format_mean_auc": 0.05023193359375,
+              "delta_transfer_gap": -0.053192138671875
+            },
+            "service": {
+              "delta_joint_format_auc": 0.002685546875,
+              "delta_cross_format_mean_auc": 0.01019287109375,
+              "delta_transfer_gap": -0.00750732421875
+            },
+            "station": {
+              "delta_joint_format_auc": -0.001190185546875,
+              "delta_cross_format_mean_auc": 0.038055419921875,
+              "delta_transfer_gap": -0.03924560546875
+            },
+            "workspace": {
+              "delta_joint_format_auc": -0.000579833984375,
+              "delta_cross_format_mean_auc": 0.01416015625,
+              "delta_transfer_gap": -0.014739990234375
+            }
+          },
+          "projected_minus_raw_family_unit_summary": {
+            "delta_joint_format_auc": {
+              "family_mean": 0.007472991943359375,
+              "family_values": {
+                "branch": 0.0152130126953125,
+                "channel": 0.0085296630859375,
+                "pipeline": 0.022552490234375,
+                "queue": 0.015533447265625,
+                "record": -0.002960205078125,
+                "service": 0.002685546875,
+                "station": -0.001190185546875,
+                "workspace": -0.000579833984375
+              },
+              "family_bootstrap_ci95": [
+                0.00157928466796875,
+                0.013851165771484375
+              ],
+              "n_families": 8,
+              "families_above_reference": 0,
+              "reference": 0.5,
+              "exact_family_sign_test_p_one_sided": 1.0
+            },
+            "delta_cross_format_mean_auc": {
+              "family_mean": 0.026493072509765625,
+              "family_values": {
+                "branch": 0.02532958984375,
+                "channel": 0.00579833984375,
+                "pipeline": 0.0260009765625,
+                "queue": 0.04217529296875,
+                "record": 0.05023193359375,
+                "service": 0.01019287109375,
+                "station": 0.038055419921875,
+                "workspace": 0.01416015625
+              },
+              "family_bootstrap_ci95": [
+                0.016135597229003908,
+                0.03696870803833007
+              ],
+              "n_families": 8,
+              "families_above_reference": 0,
+              "reference": 0.5,
+              "exact_family_sign_test_p_one_sided": 1.0
+            },
+            "delta_transfer_gap": {
+              "family_mean": -0.01902008056640625,
+              "family_values": {
+                "branch": -0.0101165771484375,
+                "channel": 0.0027313232421875,
+                "pipeline": -0.003448486328125,
+                "queue": -0.026641845703125,
+                "record": -0.053192138671875,
+                "service": -0.00750732421875,
+                "station": -0.03924560546875,
+                "workspace": -0.014739990234375
+              },
+              "family_bootstrap_ci95": [
+                -0.03197288513183594,
+                -0.007457208633422859
+              ],
+              "n_families": 8,
+              "families_above_reference": 1,
+              "reference": 0.0,
+              "exact_family_sign_test_p_one_sided": 0.99609375
+            }
+          }
+        },
+        "16": {
+          "projected_per_family": {
+            "branch": {
+              "joint_format_auc": 0.801177978515625,
+              "joint_benchmark_items_auc": 0.797607421875,
+              "joint_casual_items_auc": 0.8145751953125,
+              "benchmark_self_auc": 0.7808837890625,
+              "benchmark_to_casual_auc": 0.67083740234375,
+              "casual_self_auc": 0.7862548828125,
+              "casual_to_benchmark_auc": 0.6424560546875,
+              "cross_format_mean_auc": 0.656646728515625,
+              "transfer_gap": 0.14453125
+            },
+            "channel": {
+              "joint_format_auc": 0.7567138671875,
+              "joint_benchmark_items_auc": 0.769775390625,
+              "joint_casual_items_auc": 0.753662109375,
+              "benchmark_self_auc": 0.72430419921875,
+              "benchmark_to_casual_auc": 0.60198974609375,
+              "casual_self_auc": 0.7266845703125,
+              "casual_to_benchmark_auc": 0.5855712890625,
+              "cross_format_mean_auc": 0.593780517578125,
+              "transfer_gap": 0.162933349609375
+            },
+            "pipeline": {
+              "joint_format_auc": 0.768524169921875,
+              "joint_benchmark_items_auc": 0.7745361328125,
+              "joint_casual_items_auc": 0.7769775390625,
+              "benchmark_self_auc": 0.739013671875,
+              "benchmark_to_casual_auc": 0.61810302734375,
+              "casual_self_auc": 0.7459716796875,
+              "casual_to_benchmark_auc": 0.6090087890625,
+              "cross_format_mean_auc": 0.613555908203125,
+              "transfer_gap": 0.15496826171875
+            },
+            "queue": {
+              "joint_format_auc": 0.93194580078125,
+              "joint_benchmark_items_auc": 0.9107666015625,
+              "joint_casual_items_auc": 0.95697021484375,
+              "benchmark_self_auc": 0.89508056640625,
+              "benchmark_to_casual_auc": 0.720458984375,
+              "casual_self_auc": 0.92022705078125,
+              "casual_to_benchmark_auc": 0.690185546875,
+              "cross_format_mean_auc": 0.705322265625,
+              "transfer_gap": 0.22662353515625
+            },
+            "record": {
+              "joint_format_auc": 0.9787445068359375,
+              "joint_benchmark_items_auc": 0.9739990234375,
+              "joint_casual_items_auc": 0.98736572265625,
+              "benchmark_self_auc": 0.971435546875,
+              "benchmark_to_casual_auc": 0.92559814453125,
+              "casual_self_auc": 0.99163818359375,
+              "casual_to_benchmark_auc": 0.88055419921875,
+              "cross_format_mean_auc": 0.903076171875,
+              "transfer_gap": 0.0756683349609375
+            },
+            "service": {
+              "joint_format_auc": 0.5084991455078125,
+              "joint_benchmark_items_auc": 0.51220703125,
+              "joint_casual_items_auc": 0.5113525390625,
+              "benchmark_self_auc": 0.51080322265625,
+              "benchmark_to_casual_auc": 0.52496337890625,
+              "casual_self_auc": 0.47772216796875,
+              "casual_to_benchmark_auc": 0.5015869140625,
+              "cross_format_mean_auc": 0.513275146484375,
+              "transfer_gap": -0.0047760009765625
+            },
+            "station": {
+              "joint_format_auc": 0.914306640625,
+              "joint_benchmark_items_auc": 0.90338134765625,
+              "joint_casual_items_auc": 0.92999267578125,
+              "benchmark_self_auc": 0.88519287109375,
+              "benchmark_to_casual_auc": 0.77508544921875,
+              "casual_self_auc": 0.93572998046875,
+              "casual_to_benchmark_auc": 0.7606201171875,
+              "cross_format_mean_auc": 0.767852783203125,
+              "transfer_gap": 0.146453857421875
+            },
+            "workspace": {
+              "joint_format_auc": 0.7745208740234375,
+              "joint_benchmark_items_auc": 0.76104736328125,
+              "joint_casual_items_auc": 0.78857421875,
+              "benchmark_self_auc": 0.74627685546875,
+              "benchmark_to_casual_auc": 0.62847900390625,
+              "casual_self_auc": 0.7593994140625,
+              "casual_to_benchmark_auc": 0.6268310546875,
+              "cross_format_mean_auc": 0.627655029296875,
+              "transfer_gap": 0.1468658447265625
+            }
+          },
+          "projected_family_unit_summary": {
+            "joint_format_auc": {
+              "family_mean": 0.8043041229248047,
+              "family_values": {
+                "branch": 0.801177978515625,
+                "channel": 0.7567138671875,
+                "pipeline": 0.768524169921875,
+                "queue": 0.93194580078125,
+                "record": 0.9787445068359375,
+                "service": 0.5084991455078125,
+                "station": 0.914306640625,
+                "workspace": 0.7745208740234375
+              },
+              "family_bootstrap_ci95": [
+                0.7022323608398438,
+                0.8926405429840087
+              ],
+              "n_families": 8,
+              "families_above_reference": 8,
+              "reference": 0.5,
+              "exact_family_sign_test_p_one_sided": 0.00390625
+            },
+            "joint_benchmark_items_auc": {
+              "family_mean": 0.8004150390625,
+              "family_values": {
+                "branch": 0.797607421875,
+                "channel": 0.769775390625,
+                "pipeline": 0.7745361328125,
+                "queue": 0.9107666015625,
+                "record": 0.9739990234375,
+                "service": 0.51220703125,
+                "station": 0.90338134765625,
+                "workspace": 0.76104736328125
+              },
+              "family_bootstrap_ci95": [
+                0.7033843994140625,
+                0.8821487426757812
+              ],
+              "n_families": 8,
+              "families_above_reference": 8,
+              "reference": 0.5,
+              "exact_family_sign_test_p_one_sided": 0.00390625
+            },
+            "joint_casual_items_auc": {
+              "family_mean": 0.8149337768554688,
+              "family_values": {
+                "branch": 0.8145751953125,
+                "channel": 0.753662109375,
+                "pipeline": 0.7769775390625,
+                "queue": 0.95697021484375,
+                "record": 0.98736572265625,
+                "service": 0.5113525390625,
+                "station": 0.92999267578125,
+                "workspace": 0.78857421875
+              },
+              "family_bootstrap_ci95": [
+                0.710887336730957,
+                0.9046182632446289
+              ],
+              "n_families": 8,
+              "families_above_reference": 8,
+              "reference": 0.5,
+              "exact_family_sign_test_p_one_sided": 0.00390625
+            },
+            "benchmark_self_auc": {
+              "family_mean": 0.7816238403320312,
+              "family_values": {
+                "branch": 0.7808837890625,
+                "channel": 0.72430419921875,
+                "pipeline": 0.739013671875,
+                "queue": 0.89508056640625,
+                "record": 0.971435546875,
+                "service": 0.51080322265625,
+                "station": 0.88519287109375,
+                "workspace": 0.74627685546875
+              },
+              "family_bootstrap_ci95": [
+                0.6869125366210938,
+                0.865791893005371
+              ],
+              "n_families": 8,
+              "families_above_reference": 8,
+              "reference": 0.5,
+              "exact_family_sign_test_p_one_sided": 0.00390625
+            },
+            "benchmark_to_casual_auc": {
+              "family_mean": 0.6831893920898438,
+              "family_values": {
+                "branch": 0.67083740234375,
+                "channel": 0.60198974609375,
+                "pipeline": 0.61810302734375,
+                "queue": 0.720458984375,
+                "record": 0.92559814453125,
+                "service": 0.52496337890625,
+                "station": 0.77508544921875,
+                "workspace": 0.62847900390625
+              },
+              "family_bootstrap_ci95": [
+                0.6089059829711914,
+                0.768327522277832
+              ],
+              "n_families": 8,
+              "families_above_reference": 8,
+              "reference": 0.5,
+              "exact_family_sign_test_p_one_sided": 0.00390625
+            },
+            "casual_self_auc": {
+              "family_mean": 0.7929534912109375,
+              "family_values": {
+                "branch": 0.7862548828125,
+                "channel": 0.7266845703125,
+                "pipeline": 0.7459716796875,
+                "queue": 0.92022705078125,
+                "record": 0.99163818359375,
+                "service": 0.47772216796875,
+                "station": 0.93572998046875,
+                "workspace": 0.7593994140625
+              },
+              "family_bootstrap_ci95": [
+                0.680389404296875,
+                0.8919931411743164
+              ],
+              "n_families": 8,
+              "families_above_reference": 7,
+              "reference": 0.5,
+              "exact_family_sign_test_p_one_sided": 0.03515625
+            },
+            "casual_to_benchmark_auc": {
+              "family_mean": 0.6621017456054688,
+              "family_values": {
+                "branch": 0.6424560546875,
+                "channel": 0.5855712890625,
+                "pipeline": 0.6090087890625,
+                "queue": 0.690185546875,
+                "record": 0.88055419921875,
+                "service": 0.5015869140625,
+                "station": 0.7606201171875,
+                "workspace": 0.6268310546875
+              },
+              "family_bootstrap_ci95": [
+                0.5931987762451172,
+                0.7392349243164062
+              ],
+              "n_families": 8,
+              "families_above_reference": 8,
+              "reference": 0.5,
+              "exact_family_sign_test_p_one_sided": 0.00390625
+            },
+            "cross_format_mean_auc": {
+              "family_mean": 0.6726455688476562,
+              "family_values": {
+                "branch": 0.656646728515625,
+                "channel": 0.593780517578125,
+                "pipeline": 0.613555908203125,
+                "queue": 0.705322265625,
+                "record": 0.903076171875,
+                "service": 0.513275146484375,
+                "station": 0.767852783203125,
+                "workspace": 0.627655029296875
+              },
+              "family_bootstrap_ci95": [
+                0.6006546020507812,
+                0.7535820007324219
+              ],
+              "n_families": 8,
+              "families_above_reference": 8,
+              "reference": 0.5,
+              "exact_family_sign_test_p_one_sided": 0.00390625
+            },
+            "transfer_gap": {
+              "family_mean": 0.13165855407714844,
+              "family_values": {
+                "branch": 0.14453125,
+                "channel": 0.162933349609375,
+                "pipeline": 0.15496826171875,
+                "queue": 0.22662353515625,
+                "record": 0.0756683349609375,
+                "service": -0.0047760009765625,
+                "station": 0.146453857421875,
+                "workspace": 0.1468658447265625
+              },
+              "family_bootstrap_ci95": [
+                0.08318328857421875,
+                0.17083945274353027
+              ],
+              "n_families": 8,
+              "families_above_reference": 7,
+              "reference": 0.0,
+              "exact_family_sign_test_p_one_sided": 0.03515625
+            }
+          },
+          "projected_minus_raw_per_family": {
+            "branch": {
+              "delta_joint_format_auc": 0.01837158203125,
+              "delta_cross_format_mean_auc": 0.069183349609375,
+              "delta_transfer_gap": -0.050811767578125
+            },
+            "channel": {
+              "delta_joint_format_auc": 0.0147552490234375,
+              "delta_cross_format_mean_auc": 0.034332275390625,
+              "delta_transfer_gap": -0.0195770263671875
+            },
+            "pipeline": {
+              "delta_joint_format_auc": 0.0291595458984375,
+              "delta_cross_format_mean_auc": 0.057891845703125,
+              "delta_transfer_gap": -0.0287322998046875
+            },
+            "queue": {
+              "delta_joint_format_auc": 0.0183258056640625,
+              "delta_cross_format_mean_auc": 0.094207763671875,
+              "delta_transfer_gap": -0.0758819580078125
+            },
+            "record": {
+              "delta_joint_format_auc": -0.001251220703125,
+              "delta_cross_format_mean_auc": 0.136749267578125,
+              "delta_transfer_gap": -0.13800048828125
+            },
+            "service": {
+              "delta_joint_format_auc": 0.0028228759765625,
+              "delta_cross_format_mean_auc": 0.010223388671875,
+              "delta_transfer_gap": -0.0074005126953125
+            },
+            "station": {
+              "delta_joint_format_auc": -0.0018157958984375,
+              "delta_cross_format_mean_auc": 0.107696533203125,
+              "delta_transfer_gap": -0.1095123291015625
+            },
+            "workspace": {
+              "delta_joint_format_auc": 0.009979248046875,
+              "delta_cross_format_mean_auc": 0.0506591796875,
+              "delta_transfer_gap": -0.040679931640625
+            }
+          },
+          "projected_minus_raw_family_unit_summary": {
+            "delta_joint_format_auc": {
+              "family_mean": 0.011293411254882812,
+              "family_values": {
+                "branch": 0.01837158203125,
+                "channel": 0.0147552490234375,
+                "pipeline": 0.0291595458984375,
+                "queue": 0.0183258056640625,
+                "record": -0.001251220703125,
+                "service": 0.0028228759765625,
+                "station": -0.0018157958984375,
+                "workspace": 0.009979248046875
+              },
+              "family_bootstrap_ci95": [
+                0.0043944835662841795,
+                0.018650102615356445
+              ],
+              "n_families": 8,
+              "families_above_reference": 0,
+              "reference": 0.5,
+              "exact_family_sign_test_p_one_sided": 1.0
+            },
+            "delta_cross_format_mean_auc": {
+              "family_mean": 0.07011795043945312,
+              "family_values": {
+                "branch": 0.069183349609375,
+                "channel": 0.034332275390625,
+                "pipeline": 0.057891845703125,
+                "queue": 0.094207763671875,
+                "record": 0.136749267578125,
+                "service": 0.010223388671875,
+                "station": 0.107696533203125,
+                "workspace": 0.0506591796875
+              },
+              "family_bootstrap_ci95": [
+                0.04422760009765625,
+                0.09654617309570312
+              ],
+              "n_families": 8,
+              "families_above_reference": 0,
+              "reference": 0.5,
+              "exact_family_sign_test_p_one_sided": 1.0
+            },
+            "delta_transfer_gap": {
+              "family_mean": -0.05882453918457031,
+              "family_values": {
+                "branch": -0.050811767578125,
+                "channel": -0.0195770263671875,
+                "pipeline": -0.0287322998046875,
+                "queue": -0.0758819580078125,
+                "record": -0.13800048828125,
+                "service": -0.0074005126953125,
+                "station": -0.1095123291015625,
+                "workspace": -0.040679931640625
+              },
+              "family_bootstrap_ci95": [
+                -0.08945083618164062,
+                -0.031017303466796875
+              ],
+              "n_families": 8,
+              "families_above_reference": 0,
+              "reference": 0.0,
+              "exact_family_sign_test_p_one_sided": 1.0
+            }
+          }
+        },
+        "64": {
+          "projected_per_family": {
+            "branch": {
+              "joint_format_auc": 0.806488037109375,
+              "joint_benchmark_items_auc": 0.8011474609375,
+              "joint_casual_items_auc": 0.8211669921875,
+              "benchmark_self_auc": 0.7781982421875,
+              "benchmark_to_casual_auc": 0.7705078125,
+              "casual_self_auc": 0.8048095703125,
+              "casual_to_benchmark_auc": 0.7220458984375,
+              "cross_format_mean_auc": 0.74627685546875,
+              "transfer_gap": 0.060211181640625
+            },
+            "channel": {
+              "joint_format_auc": 0.7496337890625,
+              "joint_benchmark_items_auc": 0.76446533203125,
+              "joint_casual_items_auc": 0.74493408203125,
+              "benchmark_self_auc": 0.71771240234375,
+              "benchmark_to_casual_auc": 0.6925048828125,
+              "casual_self_auc": 0.7291259765625,
+              "casual_to_benchmark_auc": 0.66168212890625,
+              "cross_format_mean_auc": 0.677093505859375,
+              "transfer_gap": 0.072540283203125
+            },
+            "pipeline": {
+              "joint_format_auc": 0.771636962890625,
+              "joint_benchmark_items_auc": 0.782958984375,
+              "joint_casual_items_auc": 0.782958984375,
+              "benchmark_self_auc": 0.7442626953125,
+              "benchmark_to_casual_auc": 0.73077392578125,
+              "casual_self_auc": 0.7532958984375,
+              "casual_to_benchmark_auc": 0.65850830078125,
+              "cross_format_mean_auc": 0.69464111328125,
+              "transfer_gap": 0.076995849609375
+            },
+            "queue": {
+              "joint_format_auc": 0.9310150146484375,
+              "joint_benchmark_items_auc": 0.91021728515625,
+              "joint_casual_items_auc": 0.95941162109375,
+              "benchmark_self_auc": 0.8970947265625,
+              "benchmark_to_casual_auc": 0.9200439453125,
+              "casual_self_auc": 0.93170166015625,
+              "casual_to_benchmark_auc": 0.815185546875,
+              "cross_format_mean_auc": 0.86761474609375,
+              "transfer_gap": 0.0634002685546875
+            },
+            "record": {
+              "joint_format_auc": 0.9799652099609375,
+              "joint_benchmark_items_auc": 0.9736328125,
+              "joint_casual_items_auc": 0.988037109375,
+              "benchmark_self_auc": 0.9688720703125,
+              "benchmark_to_casual_auc": 0.97430419921875,
+              "casual_self_auc": 0.99249267578125,
+              "casual_to_benchmark_auc": 0.96636962890625,
+              "cross_format_mean_auc": 0.9703369140625,
+              "transfer_gap": 0.0096282958984375
+            },
+            "service": {
+              "joint_format_auc": 0.5080108642578125,
+              "joint_benchmark_items_auc": 0.51239013671875,
+              "joint_casual_items_auc": 0.50970458984375,
+              "benchmark_self_auc": 0.5150146484375,
+              "benchmark_to_casual_auc": 0.51983642578125,
+              "casual_self_auc": 0.48626708984375,
+              "casual_to_benchmark_auc": 0.510009765625,
+              "cross_format_mean_auc": 0.514923095703125,
+              "transfer_gap": -0.0069122314453125
+            },
+            "station": {
+              "joint_format_auc": 0.9111328125,
+              "joint_benchmark_items_auc": 0.899658203125,
+              "joint_casual_items_auc": 0.92584228515625,
+              "benchmark_self_auc": 0.8887939453125,
+              "benchmark_to_casual_auc": 0.8992919921875,
+              "casual_self_auc": 0.93536376953125,
+              "casual_to_benchmark_auc": 0.87091064453125,
+              "cross_format_mean_auc": 0.885101318359375,
+              "transfer_gap": 0.026031494140625
+            },
+            "workspace": {
+              "joint_format_auc": 0.7698516845703125,
+              "joint_benchmark_items_auc": 0.75860595703125,
+              "joint_casual_items_auc": 0.7830810546875,
+              "benchmark_self_auc": 0.74639892578125,
+              "benchmark_to_casual_auc": 0.7347412109375,
+              "casual_self_auc": 0.764892578125,
+              "casual_to_benchmark_auc": 0.71514892578125,
+              "cross_format_mean_auc": 0.724945068359375,
+              "transfer_gap": 0.0449066162109375
+            }
+          },
+          "projected_family_unit_summary": {
+            "joint_format_auc": {
+              "family_mean": 0.803466796875,
+              "family_values": {
+                "branch": 0.806488037109375,
+                "channel": 0.7496337890625,
+                "pipeline": 0.771636962890625,
+                "queue": 0.9310150146484375,
+                "record": 0.9799652099609375,
+                "service": 0.5080108642578125,
+                "station": 0.9111328125,
+                "workspace": 0.7698516845703125
+              },
+              "family_bootstrap_ci95": [
+                0.7025225639343262,
+                0.8915874004364013
+              ],
+              "n_families": 8,
+              "families_above_reference": 8,
+              "reference": 0.5,
+              "exact_family_sign_test_p_one_sided": 0.00390625
+            },
+            "joint_benchmark_items_auc": {
+              "family_mean": 0.800384521484375,
+              "family_values": {
+                "branch": 0.8011474609375,
+                "channel": 0.76446533203125,
+                "pipeline": 0.782958984375,
+                "queue": 0.91021728515625,
+                "record": 0.9736328125,
+                "service": 0.51239013671875,
+                "station": 0.899658203125,
+                "workspace": 0.75860595703125
+              },
+              "family_bootstrap_ci95": [
+                0.7028457641601562,
+                0.8816001892089844
+              ],
+              "n_families": 8,
+              "families_above_reference": 8,
+              "reference": 0.5,
+              "exact_family_sign_test_p_one_sided": 0.00390625
+            },
+            "joint_casual_items_auc": {
+              "family_mean": 0.81439208984375,
+              "family_values": {
+                "branch": 0.8211669921875,
+                "channel": 0.74493408203125,
+                "pipeline": 0.782958984375,
+                "queue": 0.95941162109375,
+                "record": 0.988037109375,
+                "service": 0.50970458984375,
+                "station": 0.92584228515625,
+                "workspace": 0.7830810546875
+              },
+              "family_bootstrap_ci95": [
+                0.709930419921875,
+                0.905731201171875
+              ],
+              "n_families": 8,
+              "families_above_reference": 8,
+              "reference": 0.5,
+              "exact_family_sign_test_p_one_sided": 0.00390625
+            },
+            "benchmark_self_auc": {
+              "family_mean": 0.78204345703125,
+              "family_values": {
+                "branch": 0.7781982421875,
+                "channel": 0.71771240234375,
+                "pipeline": 0.7442626953125,
+                "queue": 0.8970947265625,
+                "record": 0.9688720703125,
+                "service": 0.5150146484375,
+                "station": 0.8887939453125,
+                "workspace": 0.74639892578125
+              },
+              "family_bootstrap_ci95": [
+                0.6878726959228516,
+                0.866241455078125
+              ],
+              "n_families": 8,
+              "families_above_reference": 8,
+              "reference": 0.5,
+              "exact_family_sign_test_p_one_sided": 0.00390625
+            },
+            "benchmark_to_casual_auc": {
+              "family_mean": 0.7802505493164062,
+              "family_values": {
+                "branch": 0.7705078125,
+                "channel": 0.6925048828125,
+                "pipeline": 0.73077392578125,
+                "queue": 0.9200439453125,
+                "record": 0.97430419921875,
+                "service": 0.51983642578125,
+                "station": 0.8992919921875,
+                "workspace": 0.7347412109375
+              },
+              "family_bootstrap_ci95": [
+                0.6822645187377929,
+                0.8742069244384766
+              ],
+              "n_families": 8,
+              "families_above_reference": 8,
+              "reference": 0.5,
+              "exact_family_sign_test_p_one_sided": 0.00390625
+            },
+            "casual_self_auc": {
+              "family_mean": 0.79974365234375,
+              "family_values": {
+                "branch": 0.8048095703125,
+                "channel": 0.7291259765625,
+                "pipeline": 0.7532958984375,
+                "queue": 0.93170166015625,
+                "record": 0.99249267578125,
+                "service": 0.48626708984375,
+                "station": 0.93536376953125,
+                "workspace": 0.764892578125
+              },
+              "family_bootstrap_ci95": [
+                0.68792724609375,
+                0.8979110717773438
+              ],
+              "n_families": 8,
+              "families_above_reference": 7,
+              "reference": 0.5,
+              "exact_family_sign_test_p_one_sided": 0.03515625
+            },
+            "casual_to_benchmark_auc": {
+              "family_mean": 0.7399826049804688,
+              "family_values": {
+                "branch": 0.7220458984375,
+                "channel": 0.66168212890625,
+                "pipeline": 0.65850830078125,
+                "queue": 0.815185546875,
+                "record": 0.96636962890625,
+                "service": 0.510009765625,
+                "station": 0.87091064453125,
+                "workspace": 0.71514892578125
+              },
+              "family_bootstrap_ci95": [
+                0.6500843048095704,
+                0.828826904296875
+              ],
+              "n_families": 8,
+              "families_above_reference": 8,
+              "reference": 0.5,
+              "exact_family_sign_test_p_one_sided": 0.00390625
+            },
+            "cross_format_mean_auc": {
+              "family_mean": 0.7601165771484375,
+              "family_values": {
+                "branch": 0.74627685546875,
+                "channel": 0.677093505859375,
+                "pipeline": 0.69464111328125,
+                "queue": 0.86761474609375,
+                "record": 0.9703369140625,
+                "service": 0.514923095703125,
+                "station": 0.885101318359375,
+                "workspace": 0.724945068359375
+              },
+              "family_bootstrap_ci95": [
+                0.6655654907226562,
+                0.8502159118652344
+              ],
+              "n_families": 8,
+              "families_above_reference": 8,
+              "reference": 0.5,
+              "exact_family_sign_test_p_one_sided": 0.00390625
+            },
+            "transfer_gap": {
+              "family_mean": 0.0433502197265625,
+              "family_values": {
+                "branch": 0.060211181640625,
+                "channel": 0.072540283203125,
+                "pipeline": 0.076995849609375,
+                "queue": 0.0634002685546875,
+                "record": 0.0096282958984375,
+                "service": -0.0069122314453125,
+                "station": 0.026031494140625,
+                "workspace": 0.0449066162109375
+              },
+              "family_bootstrap_ci95": [
+                0.02279238700866699,
+                0.06199526786804198
+              ],
+              "n_families": 8,
+              "families_above_reference": 7,
+              "reference": 0.0,
+              "exact_family_sign_test_p_one_sided": 0.03515625
+            }
+          },
+          "projected_minus_raw_per_family": {
+            "branch": {
+              "delta_joint_format_auc": 0.023681640625,
+              "delta_cross_format_mean_auc": 0.1588134765625,
+              "delta_transfer_gap": -0.1351318359375
+            },
+            "channel": {
+              "delta_joint_format_auc": 0.0076751708984375,
+              "delta_cross_format_mean_auc": 0.117645263671875,
+              "delta_transfer_gap": -0.1099700927734375
+            },
+            "pipeline": {
+              "delta_joint_format_auc": 0.0322723388671875,
+              "delta_cross_format_mean_auc": 0.13897705078125,
+              "delta_transfer_gap": -0.1067047119140625
+            },
+            "queue": {
+              "delta_joint_format_auc": 0.01739501953125,
+              "delta_cross_format_mean_auc": 0.256500244140625,
+              "delta_transfer_gap": -0.239105224609375
+            },
+            "record": {
+              "delta_joint_format_auc": -3.0517578125e-05,
+              "delta_cross_format_mean_auc": 0.204010009765625,
+              "delta_transfer_gap": -0.20404052734375
+            },
+            "service": {
+              "delta_joint_format_auc": 0.0023345947265625,
+              "delta_cross_format_mean_auc": 0.011871337890625,
+              "delta_transfer_gap": -0.0095367431640625
+            },
+            "station": {
+              "delta_joint_format_auc": -0.0049896240234375,
+              "delta_cross_format_mean_auc": 0.224945068359375,
+              "delta_transfer_gap": -0.2299346923828125
+            },
+            "workspace": {
+              "delta_joint_format_auc": 0.00531005859375,
+              "delta_cross_format_mean_auc": 0.14794921875,
+              "delta_transfer_gap": -0.14263916015625
+            }
+          },
+          "projected_minus_raw_family_unit_summary": {
+            "delta_joint_format_auc": {
+              "family_mean": 0.010456085205078125,
+              "family_values": {
+                "branch": 0.023681640625,
+                "channel": 0.0076751708984375,
+                "pipeline": 0.0322723388671875,
+                "queue": 0.01739501953125,
+                "record": -3.0517578125e-05,
+                "service": 0.0023345947265625,
+                "station": -0.0049896240234375,
+                "workspace": 0.00531005859375
+              },
+              "family_bootstrap_ci95": [
+                0.002582550048828125,
+                0.019174575805664062
+              ],
+              "n_families": 8,
+              "families_above_reference": 0,
+              "reference": 0.5,
+              "exact_family_sign_test_p_one_sided": 1.0
+            },
+            "delta_cross_format_mean_auc": {
+              "family_mean": 0.15758895874023438,
+              "family_values": {
+                "branch": 0.1588134765625,
+                "channel": 0.117645263671875,
+                "pipeline": 0.13897705078125,
+                "queue": 0.256500244140625,
+                "record": 0.204010009765625,
+                "service": 0.011871337890625,
+                "station": 0.224945068359375,
+                "workspace": 0.14794921875
+              },
+              "family_bootstrap_ci95": [
+                0.10597610473632812,
+                0.20293807983398438
+              ],
+              "n_families": 8,
+              "families_above_reference": 0,
+              "reference": 0.5,
+              "exact_family_sign_test_p_one_sided": 1.0
+            },
+            "delta_transfer_gap": {
+              "family_mean": -0.14713287353515625,
+              "family_values": {
+                "branch": -0.1351318359375,
+                "channel": -0.1099700927734375,
+                "pipeline": -0.1067047119140625,
+                "queue": -0.239105224609375,
+                "record": -0.20404052734375,
+                "service": -0.0095367431640625,
+                "station": -0.2299346923828125,
+                "workspace": -0.14263916015625
+              },
+              "family_bootstrap_ci95": [
+                -0.1949680805206299,
+                -0.09576606750488281
+              ],
+              "n_families": 8,
+              "families_above_reference": 0,
+              "reference": 0.0,
+              "exact_family_sign_test_p_one_sided": 1.0
+            }
+          }
+        }
+      }
+    }
+  ]
+}
