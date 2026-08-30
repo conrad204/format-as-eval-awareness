@@ -91,6 +91,69 @@ def test_prepare_shards_writes_exact_atomic_layer_files(tmp_path):
     assert prepare_shards(npz_path, keep_mask, shard_dir) == (n_layers, d, 0.0)
 
 
+def test_prepare_shards_streams_in_blocks_without_materializing_x(tmp_path):
+    """Streaming expansion must equal direct slicing, including across chunk edges."""
+    rng = np.random.default_rng(9)
+    n_items, n_layers, d = 11, 4, 6
+    X = rng.normal(size=(n_items, n_layers, d)).astype(np.float32)
+    npz_path = tmp_path / "activations_all_layers.npz"
+    np.savez_compressed(
+        npz_path, X=X, item_ids=np.asarray([f"item{i}" for i in range(n_items)])
+    )
+    keep_mask = np.ones(n_items, dtype=bool)
+    keep_mask[[0, 5, 6, 10]] = False  # drops rows inside and at the edges of chunks
+    shard_dir = tmp_path / "shards"
+
+    row_bytes = n_layers * d * 4
+    layers, hidden, _ = prepare_shards(
+        npz_path, keep_mask, shard_dir, target_chunk_bytes=3 * row_bytes
+    )
+    assert (layers, hidden) == (n_layers, d)
+    assert not list(shard_dir.glob(".*tmp*"))
+    for layer in range(n_layers):
+        shard = np.load(shard_path(shard_dir, layer))
+        assert shard.shape == (int(keep_mask.sum()), d)
+        assert shard.dtype == np.float32
+        np.testing.assert_array_equal(shard, X[keep_mask][:, layer, :])
+
+
+def test_prepare_shards_can_expand_only_requested_layers(tmp_path):
+    rng = np.random.default_rng(12)
+    n_items, n_layers, d = 8, 5, 4
+    X = rng.normal(size=(n_items, n_layers, d)).astype(np.float32)
+    npz_path = tmp_path / "activations_all_layers.npz"
+    np.savez_compressed(
+        npz_path, X=X, item_ids=np.asarray([f"item{i}" for i in range(n_items)])
+    )
+    keep_mask = np.ones(n_items, dtype=bool)
+    shard_dir = tmp_path / "shards"
+
+    prepare_shards(npz_path, keep_mask, shard_dir, layers=[1, 3])
+    assert sorted(p.name for p in shard_dir.glob("layer_*.npy")) == [
+        "layer_001.f32.npy",
+        "layer_003.f32.npy",
+    ]
+    for layer in (1, 3):
+        np.testing.assert_array_equal(np.load(shard_path(shard_dir, layer)), X[:, layer, :])
+
+    # A later call for a different slice adds only what is missing.
+    _, _, seconds = prepare_shards(npz_path, keep_mask, shard_dir, layers=[3, 4])
+    assert seconds > 0
+    np.testing.assert_array_equal(np.load(shard_path(shard_dir, 4)), X[:, 4, :])
+    assert prepare_shards(npz_path, keep_mask, shard_dir, layers=[1, 3, 4])[2] == 0.0
+    with pytest.raises(ValueError, match="outside 0"):
+        prepare_shards(npz_path, keep_mask, shard_dir, layers=[99])
+
+
+def test_prepare_shards_rejects_a_mask_of_the_wrong_length(tmp_path):
+    rng = np.random.default_rng(10)
+    X = rng.normal(size=(4, 2, 3)).astype(np.float32)
+    npz_path = tmp_path / "activations_all_layers.npz"
+    np.savez_compressed(npz_path, X=X, item_ids=np.asarray(["a", "b", "c", "d"]))
+    with pytest.raises(ValueError, match="keep_mask length"):
+        prepare_shards(npz_path, np.ones(3, dtype=bool), tmp_path / "shards")
+
+
 def test_tie_aware_weighted_auc_equals_sklearn_with_sample_weights():
     from sklearn.metrics import roc_auc_score
 

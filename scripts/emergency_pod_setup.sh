@@ -69,6 +69,12 @@ echo "$ITEMS_SHA  $ITEMS" | sha256sum -c -
 test -s "$ROOT/results/full320_v3_erasure_full_layer_sweep.json"
 test -s "$ROOT/results/layer_sweep_full320-v3_$MODEL.json"
 
+if [ "${TAE_SKIP_BENCHMARK:-0}" = "1" ]; then
+  echo "=== benchmark skipped (TAE_SKIP_BENCHMARK=1) ==="
+  echo "=== setup complete for $MODEL ==="
+  exit 0
+fi
+
 echo "=== one-layer benchmark ==="
 mkdir -p "$ROOT/results" "$ROOT/runlogs"
 cd "$ROOT"

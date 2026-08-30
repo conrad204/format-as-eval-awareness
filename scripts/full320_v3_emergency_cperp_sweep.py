@@ -32,6 +32,7 @@ import os
 import platform
 import sys
 import time
+import zipfile
 from concurrent.futures import ProcessPoolExecutor, as_completed
 from pathlib import Path
 
@@ -164,28 +165,98 @@ def shard_path(shard_dir: Path, layer: int) -> Path:
     return shard_dir / f"layer_{layer:03d}.f32.npy"
 
 
-def prepare_shards(npz_path: Path, keep_mask: np.ndarray, shard_dir: Path) -> tuple[int, int, float]:
-    """Expand the compressed bank into local float32 per-layer shards, once."""
+def _read_npy_header(handle):
+    """Consume an ``.npy`` header from a stream; public API in numpy 1.x and 2.x."""
+    version = np.lib.format.read_magic(handle)
+    if version == (1, 0):
+        return np.lib.format.read_array_header_1_0(handle)
+    if version == (2, 0):
+        return np.lib.format.read_array_header_2_0(handle)
+    raise ValueError(f"unsupported npy header version {version}")
+
+
+def _peek_x_header(npz_path: Path):
+    """Shape and dtype of the ``X`` member without decompressing the whole array."""
+    with zipfile.ZipFile(npz_path) as archive:
+        with archive.open("X.npy") as handle:
+            shape, fortran, dtype = _read_npy_header(handle)
+    if fortran:
+        raise ValueError("X is Fortran-ordered; streaming expansion assumes C order")
+    return shape, dtype
+
+
+def prepare_shards(
+    npz_path: Path,
+    keep_mask: np.ndarray,
+    shard_dir: Path,
+    target_chunk_bytes: int = 256 << 20,
+    layers: "list[int] | None" = None,
+) -> tuple[int, int, float]:
+    """Stream the compressed bank into local float32 per-layer shards, once.
+
+    The archive is read in item-blocks and appended straight to per-layer files,
+    so peak memory is one block (~`target_chunk_bytes`) instead of the whole
+    activation tensor. That is what lets a small-RAM box expand a bank several
+    times larger than its memory.
+
+    `layers` restricts which shards are written; a box that only computes a slice
+    of the depth range does not need to materialize the rest. The stream is still
+    read once end to end, because the layout interleaves layers within each row.
+    """
     shard_dir.mkdir(parents=True, exist_ok=True)
     started = time.time()
-    with np.load(npz_path) as payload:
-        shape = payload["X"].shape
-    n_layers, hidden = int(shape[1]), int(shape[2])
-    if all(shard_path(shard_dir, layer).exists() for layer in range(n_layers)):
+    shape, dtype = _peek_x_header(npz_path)
+    n_items, n_layers, hidden = (int(v) for v in shape)
+    if len(keep_mask) != n_items:
+        raise ValueError(f"keep_mask length {len(keep_mask)} != {n_items} rows in X")
+    wanted = sorted(range(n_layers) if layers is None else {int(v) for v in layers})
+    if any(layer < 0 or layer >= n_layers for layer in wanted):
+        raise ValueError(f"requested shard layer outside 0..{n_layers - 1}")
+    missing = [layer for layer in wanted if not shard_path(shard_dir, layer).exists()]
+    if not missing:
         return n_layers, hidden, 0.0
-    print(f"expanding {npz_path.name} -> {shard_dir} ({n_layers} layers)", file=sys.stderr, flush=True)
-    X = np.load(npz_path)["X"][keep_mask]
-    for layer in range(n_layers):
-        target = shard_path(shard_dir, layer)
-        if target.exists():
-            continue
-        tmp = target.with_name(f".{target.name}.tmp")
-        # np.save appends ".npy" to a path argument; write through a handle so the
-        # temp name stays exactly what os.replace expects.
-        with tmp.open("wb") as handle:
-            np.save(handle, np.ascontiguousarray(X[:, layer, :], dtype=np.float32))
-        os.replace(tmp, target)
-    del X
+
+    n_keep = int(keep_mask.sum())
+    row_bytes = n_layers * hidden * np.dtype(dtype).itemsize
+    chunk = max(1, min(n_items, target_chunk_bytes // max(1, row_bytes)))
+    print(
+        f"streaming {npz_path.name} -> {shard_dir} "
+        f"({len(missing)} of {n_layers} layers, {n_keep} rows, chunk={chunk})",
+        file=sys.stderr,
+        flush=True,
+    )
+    targets = [shard_path(shard_dir, layer) for layer in missing]
+    temps = [target.with_name(f".{target.name}.tmp") for target in targets]
+    handles = []
+    try:
+        for temp in temps:
+            handle = temp.open("wb")
+            np.lib.format.write_array_header_2_0(
+                handle, {"descr": "<f4", "fortran_order": False, "shape": (n_keep, hidden)}
+            )
+            handles.append(handle)
+        with zipfile.ZipFile(npz_path) as archive:
+            with archive.open("X.npy") as stream:
+                _read_npy_header(stream)
+                start = 0
+                while start < n_items:
+                    count = min(chunk, n_items - start)
+                    raw = stream.read(count * row_bytes)
+                    if len(raw) != count * row_bytes:
+                        raise ValueError("truncated X stream")
+                    block = np.frombuffer(raw, dtype=dtype).reshape(count, n_layers, hidden)
+                    block_mask = keep_mask[start : start + count]
+                    if block_mask.any():
+                        kept = block[block_mask]
+                        for layer, handle in zip(missing, handles):
+                            handle.write(np.ascontiguousarray(kept[:, layer, :], dtype=np.float32).tobytes())
+                    start += count
+                    del block
+    finally:
+        for handle in handles:
+            handle.close()
+    for temp, target in zip(temps, targets):
+        os.replace(temp, target)
     gc.collect()
     return n_layers, hidden, time.time() - started
 

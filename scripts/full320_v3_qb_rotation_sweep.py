@@ -44,6 +44,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from format_erasure_development import orth_basis  # noqa: E402
 from full320_v3_emergency_cperp_sweep import (  # noqa: E402
     RANK,
+    _peek_x_header,
     gram_orth_basis,
     load_partial_layer,
     partial_layer_path,
@@ -276,7 +277,11 @@ def main() -> None:
     if int(keep_mask.sum()) != len(rows_by_id):
         raise ValueError("activation/item membership mismatch")
 
-    n_layers, hidden_dim, shard_seconds = prepare_shards(npz_path, keep_mask, shard_dir)
+    # Read the header only; shards are expanded after we know what is still pending,
+    # so an assembly-only rerun costs no expansion at all.
+    shape, _ = _peek_x_header(npz_path)
+    n_layers, hidden_dim = int(shape[1]), int(shape[2])
+    shard_seconds = 0.0
     rows = [rows_by_id[iid] for iid in raw_ids[keep_mask]]
     ids = np.asarray([r["item_id"] for r in rows])
     y = np.asarray([int(r["label"]) for r in rows])
@@ -315,6 +320,8 @@ def main() -> None:
 
     requested = list(range(n_layers)) if args.layers is None else [int(v) for v in args.layers]
     pending = [layer for layer in requested if layer not in set(completed_layers)]
+    if pending:
+        _, _, shard_seconds = prepare_shards(npz_path, keep_mask, shard_dir, layers=pending)
     shared = {
         "rows": rows,
         "y": y,
