@@ -1,4 +1,4 @@
-# binding_v2 and provenance_v1/v2: results
+# binding_v2 and provenance_v1/v2/v3: results
 
 Two experiments, both frozen before activations existed, both run on
 `Llama-3.1-8B`, `Llama-3.1-70B`, `Llama-3.3-70B`.
@@ -211,6 +211,85 @@ stated-purpose direction are largely distinct objects.
 
 ---
 
+## 3b. provenance_v3: two independent deployment-log corpora
+
+`provenance_v2`'s stated weakness was a single deployment-log source. With LMSYS
+access granted, `provenance_v3` adds a second, independent log corpus, making
+leave-one-log-corpus-out a real test rather than a relabeling:
+
+| class | sources |
+|---|---|
+| evaluation corpus | MMLU (250) + ARC-Challenge (250) |
+| deployment log | WildChat-1M (250) + LMSYS-Chat-1M (250) |
+
+Length matching is exact: eval-vs-deployment mean difference **0.000**
+characters, max sorted-pair difference **0.0**, and the two log corpora differ by
+1.31 characters.
+
+**The two log corpora are deliberately not pooled.** WildChat is general free
+ChatGPT use; LMSYS is Chatbot Arena, where users deliberately compare and probe
+models — arguably a mild evaluation context in its own right. The audit shows
+they are nearly as separable from each other (**0.9607**) as evaluation is from
+deployment (**0.9586**), so treating "deployment" as one population would have
+been wrong.
+
+Audit ceilings: word 1–2 gram 0.9586, char 3–5 gram 0.9652, source-pair holdout
+0.9223, **leave-one-log-corpus-out 0.9424**, length only 0.4558.
+
+### 2 x 2 source robustness
+
+Frozen probe, no retraining, best layer per model, all four eval-source ×
+log-corpus pairs:
+
+| model | max AUC (layer) | median | worst source pair | all four pairs |
+|---|---|---|---|---|
+| Llama-3.1-8B | 0.7017 (L27) | 0.5342 | 0.6745 | 0.674–0.725 |
+| Llama-3.1-70B | 0.7371 (L24) | 0.5899 | 0.6916 | 0.692–0.786 |
+| Llama-3.3-70B | 0.7257 (L31) | 0.5587 | 0.6615 | 0.662–0.786 |
+
+The provenance signal survives swapping **both** the evaluation source and the
+deployment-log corpus. This is the robustness upgrade v3 was built to deliver,
+and it holds. Magnitudes match v2 (0.73–0.75) and remain far below the 0.96
+surface ceiling, so the interpretation limits in §3 are unchanged.
+
+### Arena traffic vs general use, inside the deployment class
+
+Both log corpora carry label 0, which allows a prediction the label itself cannot
+make: a direction tracking something genuinely eval-like should rank arena
+traffic above general use. AUC > 0.5 means arena scored as more evaluation-like:
+
+| model | mean over layers | median | range | layers CI > 0.5 | layers CI < 0.5 |
+|---|---|---|---|---|---|
+| Llama-3.1-8B | 0.5126 | 0.5281 | 0.428–0.603 | 4/32 | 5/32 |
+| Llama-3.1-70B | **0.5498** | 0.5520 | 0.470–0.587 | **13/21** | **0/21** |
+| Llama-3.3-70B | **0.5447** | 0.5425 | 0.479–0.603 | **7/21** | **0/21** |
+
+In both 70B checkpoints the effect is small but strictly one-directional: never
+significantly reversed at any depth. The 8B is inconsistent (4 layers up, 5
+down), i.e. null.
+
+**How much this is worth:** at AUC ≈ 0.55 it is a weak effect, and arena and
+general traffic also differ in topic and register, so content alone could produce
+it. It is *consistent with* the direction tracking something about
+model-testing context beyond the corpus label, and it is the only result here
+that points at all toward evaluation-like sensitivity without a stated cue. It
+is not sufficient to claim evaluation awareness, and I do not claim it.
+
+### No-cue projection replicates
+
+| model | layer | raw AUC | projected | Δ AUC | probe weight in Q | external variance in Q |
+|---|---|---|---|---|---|---|
+| Llama-3.1-8B | 14 | 0.5089 | 0.4747 | −0.034 | 0.0042 | 0.234 |
+| Llama-3.1-8B | 31 | 0.6415 | 0.6707 | +0.029 | 0.0022 | 0.165 |
+| Llama-3.1-70B | 18 | 0.3996 | 0.3650 | −0.035 | 0.0099 | 0.261 |
+| Llama-3.3-70B | 18 | 0.4418 | 0.4152 | −0.027 | 0.0091 | 0.238 |
+
+Same picture as v2 on an independent bank: the no-cue format subspace holds
+16–26% of external variance but 0.2–1.0% of the probe's weight norm.
+
+---
+
+
 ## 4. Effect on the paper's central claim
 
 | claim | effect | basis |
@@ -220,37 +299,48 @@ stated-purpose direction are largely distinct objects.
 | an abstract bound variable survives indirection | **weakened** | cross-hop transfer 0.50–0.64; near-collapse in both 70B checkpoints |
 | stated-purpose direction generalizes to other purpose-like variables | **unchanged / negative** | frozen probe at chance on binding_v2 (0.505–0.512) |
 | formatting contaminates eval-ness readout on real text | **newly supported** | format effect ≥ provenance effect at 48/80 layers in both 70B models |
-| the model spontaneously represents being evaluated | **not tested** | provenance AUC 0.73–0.75 sits far under the 0.96 surface ceiling |
+| provenance result is robust across independent corpora | **newly supported** | all four eval-source × log-corpus pairs 0.66–0.79 in every checkpoint |
+| the model spontaneously represents being evaluated | **not established; one weak positive** | provenance AUC 0.73–0.75 vs 0.96 surface ceiling; arena-over-general AUC ≈ 0.55, one-directional in both 70B models, null in 8B |
 
 ## 5. Claim boundaries
 
 - Corpus provenance is not the model's own judgment about being evaluated.
 - Frozen-activation probe scoring is not behavior and not a causal intervention.
-- provenance_v2 has **one** deployment-log source; robustness across independent
-  log corpora is untested (LMSYS-Chat-1M is gated and was not accessible).
+- `provenance_v3` adds a second log corpus (LMSYS), so cross-log-corpus
+  robustness is now tested and holds; both log corpora are nonetheless public
+  research releases, not private production traffic.
+- The arena-over-general effect (AUC ≈ 0.55) is small and confounded with topic
+  and register. It is suggestive, not decisive, and needs a content-matched
+  design to become evidence.
 - Provenance and lexical content are inseparable in natural corpora; the audit
   ceiling (0.96) bounds every provenance interpretation here.
 - The projections use uncentered SVD, not centered PCA, and the subspace is
   called format-associated, never "pure format".
 - `provenance_v1` is a human-authored-instruction pilot, retained for
-  transparency; v2 is the version with genuine deployment-log provenance.
+  transparency; v2 has genuine deployment-log provenance and v3 adds a second
+  independent log corpus.
 
 ## 6. Artifacts
 
 Banks (frozen, hash-gated, audited pre-activation):
 `results/binding_v2_frozen/`, `results/provenance_v1_frozen/`,
-`results/provenance_v2_frozen/` (+ `SOURCE_LICENSES.txt`).
+`results/provenance_v2_frozen/` (+ `SOURCE_LICENSES.txt`),
+`results/provenance_v3_frozen/`.
 
 Results: `results/binding_v2_{model}_analysis.json`,
 `results/binding_v2_{model}_template_subspace.json`,
-`results/provenance_v{1,2}_{model}_frozen_probe.json`,
-`results/provenance_v2_{model}_qnocue_r64.json`,
+`results/provenance_v{1,2,3}_{model}_frozen_probe.json`,
+`results/provenance_v{2,3}_{model}_qnocue_r64.json`,
+`results/provenance_v3_{model}_log_corpus_contrast.json`,
 `results/binding_v2_provenance_{binding,subspace,provenance}.csv`,
-`results/binding_v2_provenance_figure.png`.
+`results/provenance_v3_{provenance,log_corpus_contrast}.csv`,
+`results/binding_v2_provenance_figure.png`,
+`results/provenance_v3_figure.png`.
 
 Code: `scripts/binding_v2_{build,audit,analyze,format_subspace,provenance_report}.py`,
 `scripts/provenance_v1_{build,audit,score}.py`,
-`scripts/provenance_v2_{build,audit,format_projection}.py`, plus the
+`scripts/provenance_v2_{build,audit,format_projection}.py`,
+`scripts/provenance_v3_{build,audit,log_corpus_contrast,report}.py`, plus the
 `cluster_*binding_v2*`, `cluster_*provenance_v*` SLURM launchers.
 
 A `write_text` newline bug was found and fixed during this run: on Windows it

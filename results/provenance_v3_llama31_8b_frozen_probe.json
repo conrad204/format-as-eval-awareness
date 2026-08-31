@@ -1,0 +1,5111 @@
+{
+  "schema_version": 1,
+  "experiment": "provenance_v3_frozen_explicit_probe_transfer",
+  "model_key": "llama31_8b",
+  "probe_retrained_on_provenance": false,
+  "positive_score_convention": "evaluation under original stated-purpose probe training",
+  "inference_unit": "complete underlying-text pair, resampled within source corpus",
+  "same_block_sample_across_layers_and_regimes": true,
+  "n_bootstrap": 1000,
+  "n_rows": 2000,
+  "n_unique_texts": 1000,
+  "known_limitations": [
+    "natural topic and lexical content remain inseparable from provenance; the audit reports the surface ceiling that bounds every interpretation",
+    "corpus origin is not the model's own judgment about being evaluated",
+    "frozen-activation probe scoring is not behavior and not a causal intervention",
+    "both log corpora are public research releases, not private production traffic"
+  ],
+  "items_sha256": "2a574bf1bf0cd5cc8ec53c97e2bf69e9246316b1a3d5364e370acc0f8fcddc7e",
+  "activations_sha256": "80d2d718a3dda031346e9a9c6000f43d18231d47a2a4a04328aaffa0401b9129",
+  "probe_bank_sha256": "34cefeb00518db23ff1202879f5ce635642c9ce4409e6baaf7ab2b0b92fcbae9",
+  "layers": [
+    {
+      "layer": 0,
+      "normalized_depth": 0.0,
+      "regimes": {
+        "joint": {
+          "pooled_auc": 0.574149,
+          "benchmark_auc": 0.535672,
+          "casual_auc": 0.609872,
+          "benchmark_minus_casual_auc": -0.07419999999999993,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.5198640000000001,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.581492,
+            "cais/mmlu|allenai/WildChat-1M": 0.5696680000000001,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.625572
+          },
+          "source_pair_auc_mean": 0.574149,
+          "source_pair_auc_min": 0.5198640000000001,
+          "mean_score_eval_benchmark": 2.6892255455527736,
+          "mean_score_eval_casual": 2.506070583795444,
+          "mean_score_deploy_benchmark": 2.1877929101693767,
+          "mean_score_deploy_casual": 0.9332934694142382,
+          "paired_benchmark_minus_casual_shift_eval": 0.18315496175732957,
+          "paired_benchmark_minus_casual_shift_deploy": 1.254499440755138,
+          "provenance_x_format_score_interaction": -1.0713444789978084,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.5434819,
+              0.6040552
+            ],
+            "benchmark_auc": [
+              0.5002605,
+              0.5720681
+            ],
+            "casual_auc": [
+              0.5745905,
+              0.6447522000000001
+            ],
+            "source_pair_auc_mean": [
+              0.5434819000000001,
+              0.6040552000000001
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              -0.12407949771732091,
+              0.5145214006304739
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              0.91790461987257,
+              1.6241934001445768
+            ],
+            "provenance_x_format_score_interaction": [
+              -1.541291047912091,
+              -0.5854305870831013
+            ]
+          }
+        },
+        "benchmark": {
+          "pooled_auc": 0.476066,
+          "benchmark_auc": 0.48150399999999993,
+          "casual_auc": 0.47141599999999995,
+          "benchmark_minus_casual_auc": 0.010087999999999986,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.42259599999999997,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.471612,
+            "cais/mmlu|allenai/WildChat-1M": 0.48324,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.526816
+          },
+          "source_pair_auc_mean": 0.47606599999999993,
+          "source_pair_auc_min": 0.42259599999999997,
+          "mean_score_eval_benchmark": -2.5519078727888647,
+          "mean_score_eval_casual": 2.5425661264471766,
+          "mean_score_deploy_benchmark": -2.677576819304143,
+          "mean_score_deploy_casual": 2.8352011975528923,
+          "paired_benchmark_minus_casual_shift_eval": -5.094473999236041,
+          "paired_benchmark_minus_casual_shift_deploy": -5.512778016857035,
+          "provenance_x_format_score_interaction": 0.41830401762099356,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.44888882500000005,
+              0.503734275
+            ],
+            "benchmark_auc": [
+              0.4493095,
+              0.5185087999999999
+            ],
+            "casual_auc": [
+              0.4366832000000001,
+              0.5088029000000001
+            ],
+            "source_pair_auc_mean": [
+              0.448888825,
+              0.503734275
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              -5.682026040554047,
+              -4.482403147220612
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -6.213406705856324,
+              -4.8353351116180425
+            ],
+            "provenance_x_format_score_interaction": [
+              -0.46800861358642576,
+              1.3472314238548275
+            ]
+          }
+        },
+        "casual": {
+          "pooled_auc": 0.509631,
+          "benchmark_auc": 0.515876,
+          "casual_auc": 0.5134839999999999,
+          "benchmark_minus_casual_auc": 0.0023920000000000607,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.443604,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.5395880000000001,
+            "cais/mmlu|allenai/WildChat-1M": 0.48254,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.572792
+          },
+          "source_pair_auc_mean": 0.509631,
+          "source_pair_auc_min": 0.443604,
+          "mean_score_eval_benchmark": 6.0680951831897,
+          "mean_score_eval_casual": 3.3227638060262596,
+          "mean_score_deploy_benchmark": 5.910886878803362,
+          "mean_score_deploy_casual": 3.1366016370538157,
+          "paired_benchmark_minus_casual_shift_eval": 2.745331377163441,
+          "paired_benchmark_minus_casual_shift_deploy": 2.774285241749547,
+          "provenance_x_format_score_interaction": -0.028953864586105826,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.482664475,
+              0.536684525
+            ],
+            "benchmark_auc": [
+              0.48088319999999996,
+              0.5493894000000001
+            ],
+            "casual_auc": [
+              0.4764633,
+              0.5500442000000001
+            ],
+            "source_pair_auc_mean": [
+              0.482664475,
+              0.536684525
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              2.437270128726959,
+              3.0684108793735505
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              2.4744602739810944,
+              3.091610813140869
+            ],
+            "provenance_x_format_score_interaction": [
+              -0.46842628717422485,
+              0.39670200347900386
+            ]
+          }
+        }
+      }
+    },
+    {
+      "layer": 1,
+      "normalized_depth": 0.03225806451612903,
+      "regimes": {
+        "joint": {
+          "pooled_auc": 0.338806,
+          "benchmark_auc": 0.40490000000000004,
+          "casual_auc": 0.278604,
+          "benchmark_minus_casual_auc": 0.12629600000000002,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.332804,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.328476,
+            "cais/mmlu|allenai/WildChat-1M": 0.34930399999999995,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.34463999999999995
+          },
+          "source_pair_auc_mean": 0.33880599999999994,
+          "source_pair_auc_min": 0.328476,
+          "mean_score_eval_benchmark": -4.326185994938013,
+          "mean_score_eval_casual": -8.105320630089572,
+          "mean_score_deploy_benchmark": -2.630893939237199,
+          "mean_score_deploy_casual": -3.0867711412161016,
+          "paired_benchmark_minus_casual_shift_eval": 3.7791346351515602,
+          "paired_benchmark_minus_casual_shift_deploy": 0.4558772019789027,
+          "provenance_x_format_score_interaction": 3.3232574331726576,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.312800975,
+              0.366429575
+            ],
+            "benchmark_auc": [
+              0.3719158,
+              0.43781329999999996
+            ],
+            "casual_auc": [
+              0.24799569999999999,
+              0.31083669999999997
+            ],
+            "source_pair_auc_mean": [
+              0.312800975,
+              0.36642957500000006
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              3.262242203950882,
+              4.330689907073975
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -0.009144787350669502,
+              1.0001799672842024
+            ],
+            "provenance_x_format_score_interaction": [
+              2.623213808238506,
+              4.0181771125644445
+            ]
+          }
+        },
+        "benchmark": {
+          "pooled_auc": 0.380256,
+          "benchmark_auc": 0.370744,
+          "casual_auc": 0.373864,
+          "benchmark_minus_casual_auc": -0.003119999999999956,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.347644,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.37312,
+            "cais/mmlu|allenai/WildChat-1M": 0.387908,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.41235199999999994
+          },
+          "source_pair_auc_mean": 0.3802559999999999,
+          "source_pair_auc_min": 0.347644,
+          "mean_score_eval_benchmark": -2.1168204564501623,
+          "mean_score_eval_casual": 0.3361416139042086,
+          "mean_score_deploy_benchmark": 0.4861672146990663,
+          "mean_score_deploy_casual": 3.357435511823466,
+          "paired_benchmark_minus_casual_shift_eval": -2.4529620703543706,
+          "paired_benchmark_minus_casual_shift_deploy": -2.8712682971244,
+          "provenance_x_format_score_interaction": 0.41830622677002927,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.35517875,
+              0.405741625
+            ],
+            "benchmark_auc": [
+              0.33744550000000006,
+              0.40359170000000005
+            ],
+            "casual_auc": [
+              0.3382654,
+              0.4076849
+            ],
+            "source_pair_auc_mean": [
+              0.35517874999999993,
+              0.405741625
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              -3.2165446817874908,
+              -1.633074548840523
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -3.5346843957901,
+              -2.1608904480934146
+            ],
+            "provenance_x_format_score_interaction": [
+              -0.6153939068317413,
+              1.4736236184835434
+            ]
+          }
+        },
+        "casual": {
+          "pooled_auc": 0.35443899999999995,
+          "benchmark_auc": 0.411696,
+          "casual_auc": 0.30334,
+          "benchmark_minus_casual_auc": 0.10835600000000001,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.357568,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.35464799999999996,
+            "cais/mmlu|allenai/WildChat-1M": 0.354028,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.35151200000000005
+          },
+          "source_pair_auc_mean": 0.354439,
+          "source_pair_auc_min": 0.35151200000000005,
+          "mean_score_eval_benchmark": -3.9430361476960316,
+          "mean_score_eval_casual": -5.269216507139758,
+          "mean_score_deploy_benchmark": -2.606004115814465,
+          "mean_score_deploy_casual": -1.874491949396457,
+          "paired_benchmark_minus_casual_shift_eval": 1.326180359443726,
+          "paired_benchmark_minus_casual_shift_deploy": -0.731512166418008,
+          "provenance_x_format_score_interaction": 2.057692525861734,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.32596115000000003,
+              0.3817887
+            ],
+            "benchmark_auc": [
+              0.3776023,
+              0.4449486
+            ],
+            "casual_auc": [
+              0.2707546,
+              0.3367571999999999
+            ],
+            "source_pair_auc_mean": [
+              0.32596115000000003,
+              0.38178870000000004
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              0.9507897824048996,
+              1.6987669140100479
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -1.148088550567627,
+              -0.30317704081535346
+            ],
+            "provenance_x_format_score_interaction": [
+              1.4673560798168181,
+              2.601887480914592
+            ]
+          }
+        }
+      }
+    },
+    {
+      "layer": 2,
+      "normalized_depth": 0.06451612903225806,
+      "regimes": {
+        "joint": {
+          "pooled_auc": 0.30998800000000004,
+          "benchmark_auc": 0.35231599999999996,
+          "casual_auc": 0.230796,
+          "benchmark_minus_casual_auc": 0.12151999999999996,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.292404,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.306316,
+            "cais/mmlu|allenai/WildChat-1M": 0.31232000000000004,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.32891200000000004
+          },
+          "source_pair_auc_mean": 0.309988,
+          "source_pair_auc_min": 0.292404,
+          "mean_score_eval_benchmark": -7.02579287495611,
+          "mean_score_eval_casual": -3.3502426687858917,
+          "mean_score_deploy_benchmark": -4.301003022866879,
+          "mean_score_deploy_casual": 3.7545940537771747,
+          "paired_benchmark_minus_casual_shift_eval": -3.675550206170219,
+          "paired_benchmark_minus_casual_shift_deploy": -8.055597076644052,
+          "provenance_x_format_score_interaction": 4.380046870473833,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.286636525,
+              0.33388037499999995
+            ],
+            "benchmark_auc": [
+              0.32115979999999994,
+              0.3851533
+            ],
+            "casual_auc": [
+              0.2026146,
+              0.2606259
+            ],
+            "source_pair_auc_mean": [
+              0.28663652500000003,
+              0.33388037499999995
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              -4.162348580360413,
+              -3.14525106549263
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -8.650179791450501,
+              -7.440291094779968
+            ],
+            "provenance_x_format_score_interaction": [
+              3.6314130902290342,
+              5.200266271829605
+            ]
+          }
+        },
+        "benchmark": {
+          "pooled_auc": 0.28927,
+          "benchmark_auc": 0.358364,
+          "casual_auc": 0.225016,
+          "benchmark_minus_casual_auc": 0.13334800000000002,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.29589200000000004,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.29847599999999996,
+            "cais/mmlu|allenai/WildChat-1M": 0.280092,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.28262
+          },
+          "source_pair_auc_mean": 0.28927,
+          "source_pair_auc_min": 0.280092,
+          "mean_score_eval_benchmark": -1.5053187166245763,
+          "mean_score_eval_casual": -4.178231805064202,
+          "mean_score_deploy_benchmark": 2.126354271700323,
+          "mean_score_deploy_casual": 3.619997557031236,
+          "paired_benchmark_minus_casual_shift_eval": 2.6729130884396257,
+          "paired_benchmark_minus_casual_shift_deploy": -1.493643285330912,
+          "provenance_x_format_score_interaction": 4.166556373770538,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.26588075,
+              0.31528955000000003
+            ],
+            "benchmark_auc": [
+              0.32540470000000005,
+              0.39058170000000003
+            ],
+            "casual_auc": [
+              0.19759690000000002,
+              0.2528516
+            ],
+            "source_pair_auc_mean": [
+              0.26588075,
+              0.31528955000000003
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              2.02473464012146,
+              3.379275232553482
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -2.190503317117691,
+              -0.7711203500628476
+            ],
+            "provenance_x_format_score_interaction": [
+              3.2245387069880964,
+              5.155042046308517
+            ]
+          }
+        },
+        "casual": {
+          "pooled_auc": 0.303045,
+          "benchmark_auc": 0.312488,
+          "casual_auc": 0.196472,
+          "benchmark_minus_casual_auc": 0.11601599999999998,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.269332,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.3009279999999999,
+            "cais/mmlu|allenai/WildChat-1M": 0.30446399999999996,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.33745600000000003
+          },
+          "source_pair_auc_mean": 0.303045,
+          "source_pair_auc_min": 0.269332,
+          "mean_score_eval_benchmark": -8.080825315700059,
+          "mean_score_eval_casual": -2.0731602448158735,
+          "mean_score_deploy_benchmark": -4.780578619225989,
+          "mean_score_deploy_casual": 4.482685345357118,
+          "paired_benchmark_minus_casual_shift_eval": -6.007665070884186,
+          "paired_benchmark_minus_casual_shift_deploy": -9.263263964583107,
+          "provenance_x_format_score_interaction": 3.255598893698921,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.28324842499999997,
+              0.323616075
+            ],
+            "benchmark_auc": [
+              0.28217349999999997,
+              0.3447175
+            ],
+            "casual_auc": [
+              0.1705616,
+              0.22344689999999998
+            ],
+            "source_pair_auc_mean": [
+              0.28324842499999997,
+              0.323616075
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              -6.439485621452332,
+              -5.546964943408966
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -9.755657052993774,
+              -8.760253739356996
+            ],
+            "provenance_x_format_score_interaction": [
+              2.5945929050445558,
+              3.8830530405044557
+            ]
+          }
+        }
+      }
+    },
+    {
+      "layer": 3,
+      "normalized_depth": 0.0967741935483871,
+      "regimes": {
+        "joint": {
+          "pooled_auc": 0.514091,
+          "benchmark_auc": 0.538008,
+          "casual_auc": 0.49139199999999994,
+          "benchmark_minus_casual_auc": 0.0466160000000001,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.486448,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.53342,
+            "cais/mmlu|allenai/WildChat-1M": 0.4956520000000001,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.5408440000000001
+          },
+          "source_pair_auc_mean": 0.5140910000000001,
+          "source_pair_auc_min": 0.486448,
+          "mean_score_eval_benchmark": -8.747963719035788,
+          "mean_score_eval_casual": -10.21158650833567,
+          "mean_score_deploy_benchmark": -9.680358423461875,
+          "mean_score_deploy_casual": -9.82126327880877,
+          "paired_benchmark_minus_casual_shift_eval": 1.4636227892998812,
+          "paired_benchmark_minus_casual_shift_deploy": 0.14090485534689257,
+          "provenance_x_format_score_interaction": 1.3227179339529886,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.484346775,
+              0.543678075
+            ],
+            "benchmark_auc": [
+              0.501575,
+              0.570806
+            ],
+            "casual_auc": [
+              0.4561381,
+              0.5275257999999999
+            ],
+            "source_pair_auc_mean": [
+              0.484346775,
+              0.543678075
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              0.7754369288682937,
+              2.1406493544578553
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -0.6381487295031547,
+              0.8944072887301443
+            ],
+            "provenance_x_format_score_interaction": [
+              0.2753989815711975,
+              2.257379460404627
+            ]
+          }
+        },
+        "benchmark": {
+          "pooled_auc": 0.512944,
+          "benchmark_auc": 0.539776,
+          "casual_auc": 0.5065719999999999,
+          "benchmark_minus_casual_auc": 0.03320400000000012,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.511164,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.52926,
+            "cais/mmlu|allenai/WildChat-1M": 0.49649200000000004,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.51486
+          },
+          "source_pair_auc_mean": 0.512944,
+          "source_pair_auc_min": 0.49649200000000004,
+          "mean_score_eval_benchmark": -2.69613794324907,
+          "mean_score_eval_casual": -18.582365549079768,
+          "mean_score_deploy_benchmark": -4.086744858774758,
+          "mean_score_deploy_casual": -18.92647382822598,
+          "paired_benchmark_minus_casual_shift_eval": 15.886227605830692,
+          "paired_benchmark_minus_casual_shift_deploy": 14.839728969451219,
+          "provenance_x_format_score_interaction": 1.0464986363794733,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.49053847500000003,
+              0.534373675
+            ],
+            "benchmark_auc": [
+              0.5042921,
+              0.5732232
+            ],
+            "casual_auc": [
+              0.47103779999999995,
+              0.5432996
+            ],
+            "source_pair_auc_mean": [
+              0.490538475,
+              0.534373675
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              14.894434952735901,
+              16.87652587890625
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              13.997013235092163,
+              15.753139162063599
+            ],
+            "provenance_x_format_score_interaction": [
+              -0.36605379581451414,
+              2.3887071371078488
+            ]
+          }
+        },
+        "casual": {
+          "pooled_auc": 0.536512,
+          "benchmark_auc": 0.534312,
+          "casual_auc": 0.536452,
+          "benchmark_minus_casual_auc": -0.0021400000000000308,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.510128,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.557148,
+            "cais/mmlu|allenai/WildChat-1M": 0.515784,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.562988
+          },
+          "source_pair_auc_mean": 0.5365120000000001,
+          "source_pair_auc_min": 0.510128,
+          "mean_score_eval_benchmark": -7.230357018455202,
+          "mean_score_eval_casual": -6.284440147347348,
+          "mean_score_deploy_benchmark": -7.739771436190134,
+          "mean_score_deploy_casual": -7.035086841721184,
+          "paired_benchmark_minus_casual_shift_eval": -0.9459168711078553,
+          "paired_benchmark_minus_casual_shift_deploy": -0.7046845944689498,
+          "provenance_x_format_score_interaction": -0.24123227663890545,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.5060274499999999,
+              0.565646475
+            ],
+            "benchmark_auc": [
+              0.49846940000000006,
+              0.5697566000000001
+            ],
+            "casual_auc": [
+              0.4996965,
+              0.5727896
+            ],
+            "source_pair_auc_mean": [
+              0.5060274499999999,
+              0.5656464749999999
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              -1.51038156747818,
+              -0.331893215328455
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -1.3258675038814545,
+              -0.08579845502972604
+            ],
+            "provenance_x_format_score_interaction": [
+              -1.0880609459243715,
+              0.5705690547823904
+            ]
+          }
+        }
+      }
+    },
+    {
+      "layer": 4,
+      "normalized_depth": 0.12903225806451613,
+      "regimes": {
+        "joint": {
+          "pooled_auc": 0.600747,
+          "benchmark_auc": 0.5684680000000001,
+          "casual_auc": 0.6422399999999999,
+          "benchmark_minus_casual_auc": -0.07377199999999984,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.5968439999999999,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.622352,
+            "cais/mmlu|allenai/WildChat-1M": 0.578772,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.60502
+          },
+          "source_pair_auc_mean": 0.600747,
+          "source_pair_auc_min": 0.578772,
+          "mean_score_eval_benchmark": -6.900979772436138,
+          "mean_score_eval_casual": -9.23321411062498,
+          "mean_score_deploy_benchmark": -8.533314193567879,
+          "mean_score_deploy_casual": -13.139654977753647,
+          "paired_benchmark_minus_casual_shift_eval": 2.3322343381888433,
+          "paired_benchmark_minus_casual_shift_deploy": 4.606340784185766,
+          "provenance_x_format_score_interaction": -2.274106445996923,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.57250255,
+              0.631792025
+            ],
+            "benchmark_auc": [
+              0.5344599000000001,
+              0.6068602999999999
+            ],
+            "casual_auc": [
+              0.6086947999999999,
+              0.6775202999999999
+            ],
+            "source_pair_auc_mean": [
+              0.57250255,
+              0.631792025
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              1.8274689853191375,
+              2.8673494935035704
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              3.9902881145477296,
+              5.230064952373504
+            ],
+            "provenance_x_format_score_interaction": [
+              -3.061289393901825,
+              -1.5205598652362826
+            ]
+          }
+        },
+        "benchmark": {
+          "pooled_auc": 0.6227340000000001,
+          "benchmark_auc": 0.601428,
+          "casual_auc": 0.658648,
+          "benchmark_minus_casual_auc": -0.05722000000000005,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.648348,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.676076,
+            "cais/mmlu|allenai/WildChat-1M": 0.565768,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.600744
+          },
+          "source_pair_auc_mean": 0.622734,
+          "source_pair_auc_min": 0.565768,
+          "mean_score_eval_benchmark": -2.361049243600741,
+          "mean_score_eval_casual": -5.508053873263611,
+          "mean_score_deploy_benchmark": -4.509703833263193,
+          "mean_score_deploy_casual": -10.2972506274638,
+          "paired_benchmark_minus_casual_shift_eval": 3.1470046296628698,
+          "paired_benchmark_minus_casual_shift_deploy": 5.787546794200609,
+          "provenance_x_format_score_interaction": -2.6405421645377394,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.5943385250000001,
+              0.65311
+            ],
+            "benchmark_auc": [
+              0.5667953000000001,
+              0.6371539999999999
+            ],
+            "casual_auc": [
+              0.6275816,
+              0.6930936999999999
+            ],
+            "source_pair_auc_mean": [
+              0.5943385249999998,
+              0.65311
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              2.729123109579086,
+              3.5587326407432553
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              5.252660465240479,
+              6.353749203681946
+            ],
+            "provenance_x_format_score_interaction": [
+              -3.3819752097129823,
+              -1.9697593152523043
+            ]
+          }
+        },
+        "casual": {
+          "pooled_auc": 0.5745199999999999,
+          "benchmark_auc": 0.519736,
+          "casual_auc": 0.6295,
+          "benchmark_minus_casual_auc": -0.10976399999999997,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.583684,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.60634,
+            "cais/mmlu|allenai/WildChat-1M": 0.543168,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.5648880000000001
+          },
+          "source_pair_auc_mean": 0.5745199999999999,
+          "source_pair_auc_min": 0.543168,
+          "mean_score_eval_benchmark": -9.137958265324723,
+          "mean_score_eval_casual": -7.207229680175647,
+          "mean_score_deploy_benchmark": -9.576327094599456,
+          "mean_score_deploy_casual": -10.159274079493251,
+          "paired_benchmark_minus_casual_shift_eval": -1.930728585149077,
+          "paired_benchmark_minus_casual_shift_deploy": 0.5829469848937948,
+          "provenance_x_format_score_interaction": -2.5136755700428717,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.544223975,
+              0.6060336749999999
+            ],
+            "benchmark_auc": [
+              0.4823409,
+              0.5570336
+            ],
+            "casual_auc": [
+              0.5974756,
+              0.663953
+            ],
+            "source_pair_auc_mean": [
+              0.5442239750000001,
+              0.606033675
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              -2.378447335958481,
+              -1.4696566581726076
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              0.03510769759304822,
+              1.1136988937854766
+            ],
+            "provenance_x_format_score_interaction": [
+              -3.2186670541763305,
+              -1.82916033603251
+            ]
+          }
+        }
+      }
+    },
+    {
+      "layer": 5,
+      "normalized_depth": 0.16129032258064516,
+      "regimes": {
+        "joint": {
+          "pooled_auc": 0.5785790000000001,
+          "benchmark_auc": 0.5213800000000001,
+          "casual_auc": 0.62188,
+          "benchmark_minus_casual_auc": -0.10049999999999992,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.611264,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.5844,
+            "cais/mmlu|allenai/WildChat-1M": 0.56938,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.549272
+          },
+          "source_pair_auc_mean": 0.578579,
+          "source_pair_auc_min": 0.549272,
+          "mean_score_eval_benchmark": -2.8966596105530553,
+          "mean_score_eval_casual": -3.9878358481366067,
+          "mean_score_deploy_benchmark": -3.627681046056849,
+          "mean_score_deploy_casual": -7.044553195183222,
+          "paired_benchmark_minus_casual_shift_eval": 1.0911762375835519,
+          "paired_benchmark_minus_casual_shift_deploy": 3.416872149126372,
+          "provenance_x_format_score_interaction": -2.32569591154282,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.547303,
+              0.6100434
+            ],
+            "benchmark_auc": [
+              0.48479630000000007,
+              0.5586518999999999
+            ],
+            "casual_auc": [
+              0.5885554,
+              0.6575282000000001
+            ],
+            "source_pair_auc_mean": [
+              0.547303,
+              0.6100434
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              0.6032900750637055,
+              1.5808656662702558
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              2.9766213595867157,
+              3.8692621290683746
+            ],
+            "provenance_x_format_score_interaction": [
+              -2.97954992800951,
+              -1.720550924539566
+            ]
+          }
+        },
+        "benchmark": {
+          "pooled_auc": 0.592284,
+          "benchmark_auc": 0.528672,
+          "casual_auc": 0.6558120000000001,
+          "benchmark_minus_casual_auc": -0.12714000000000003,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.6507399999999999,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.63068,
+            "cais/mmlu|allenai/WildChat-1M": 0.548408,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.539308
+          },
+          "source_pair_auc_mean": 0.5922839999999999,
+          "source_pair_auc_min": 0.539308,
+          "mean_score_eval_benchmark": -2.7130067520990795,
+          "mean_score_eval_casual": -4.296529870587375,
+          "mean_score_deploy_benchmark": -3.5181857789187796,
+          "mean_score_deploy_casual": -7.998369795193861,
+          "paired_benchmark_minus_casual_shift_eval": 1.5835231184882954,
+          "paired_benchmark_minus_casual_shift_deploy": 4.480184016275082,
+          "provenance_x_format_score_interaction": -2.896660897786787,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.562348625,
+              0.6231717
+            ],
+            "benchmark_auc": [
+              0.4932826,
+              0.565197
+            ],
+            "casual_auc": [
+              0.6242681000000001,
+              0.6889276000000001
+            ],
+            "source_pair_auc_mean": [
+              0.562348625,
+              0.6231717
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              1.1801207304000854,
+              2.001845496892929
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              3.993795657157898,
+              4.963422906398773
+            ],
+            "provenance_x_format_score_interaction": [
+              -3.5419875755906105,
+              -2.2819299787282947
+            ]
+          }
+        },
+        "casual": {
+          "pooled_auc": 0.6170000000000001,
+          "benchmark_auc": 0.570204,
+          "casual_auc": 0.6573359999999999,
+          "benchmark_minus_casual_auc": -0.08713199999999988,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.622168,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.618568,
+            "cais/mmlu|allenai/WildChat-1M": 0.6141599999999999,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.6131039999999999
+          },
+          "source_pair_auc_mean": 0.617,
+          "source_pair_auc_min": 0.6131039999999999,
+          "mean_score_eval_benchmark": -2.78341752914933,
+          "mean_score_eval_casual": -0.8475592555389341,
+          "mean_score_deploy_benchmark": -4.036102515176045,
+          "mean_score_deploy_casual": -4.462384048883197,
+          "paired_benchmark_minus_casual_shift_eval": -1.935858273610396,
+          "paired_benchmark_minus_casual_shift_deploy": 0.4262815337071521,
+          "provenance_x_format_score_interaction": -2.362139807317548,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.5894213500000001,
+              0.6463421
+            ],
+            "benchmark_auc": [
+              0.5347355,
+              0.6077164999999999
+            ],
+            "casual_auc": [
+              0.6250315999999999,
+              0.6915131
+            ],
+            "source_pair_auc_mean": [
+              0.5894213500000001,
+              0.6463421
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              -2.452613836526871,
+              -1.4203342616558077
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -0.007160776515956966,
+              0.8722413703799248
+            ],
+            "provenance_x_format_score_interaction": [
+              -3.047292672097683,
+              -1.7020960730966181
+            ]
+          }
+        }
+      }
+    },
+    {
+      "layer": 6,
+      "normalized_depth": 0.1935483870967742,
+      "regimes": {
+        "joint": {
+          "pooled_auc": 0.437728,
+          "benchmark_auc": 0.393704,
+          "casual_auc": 0.478604,
+          "benchmark_minus_casual_auc": -0.08489999999999998,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.4707680000000001,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.47872,
+            "cais/mmlu|allenai/WildChat-1M": 0.395536,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.405888
+          },
+          "source_pair_auc_mean": 0.437728,
+          "source_pair_auc_min": 0.395536,
+          "mean_score_eval_benchmark": -8.924112648610192,
+          "mean_score_eval_casual": -5.803504375956046,
+          "mean_score_deploy_benchmark": -6.673792633415405,
+          "mean_score_deploy_casual": -5.69937534011338,
+          "paired_benchmark_minus_casual_shift_eval": -3.120608272654146,
+          "paired_benchmark_minus_casual_shift_deploy": -0.9744172933020266,
+          "provenance_x_format_score_interaction": -2.1461909793521197,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.40704617499999995,
+              0.46915250000000003
+            ],
+            "benchmark_auc": [
+              0.36065969999999997,
+              0.429896
+            ],
+            "casual_auc": [
+              0.4416236,
+              0.5170562000000001
+            ],
+            "source_pair_auc_mean": [
+              0.407046175,
+              0.4691524999999999
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              -3.671753001213074,
+              -2.5759830117225646
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -1.4901408672332763,
+              -0.4589210607111455
+            ],
+            "provenance_x_format_score_interaction": [
+              -2.9198414839804174,
+              -1.362124964594841
+            ]
+          }
+        },
+        "benchmark": {
+          "pooled_auc": 0.48378400000000005,
+          "benchmark_auc": 0.41136799999999996,
+          "casual_auc": 0.551024,
+          "benchmark_minus_casual_auc": -0.139656,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.5264,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.5463359999999999,
+            "cais/mmlu|allenai/WildChat-1M": 0.419068,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.443332
+          },
+          "source_pair_auc_mean": 0.483784,
+          "source_pair_auc_min": 0.419068,
+          "mean_score_eval_benchmark": -8.68122319584067,
+          "mean_score_eval_casual": -3.5348775467359927,
+          "mean_score_deploy_benchmark": -6.860041002423257,
+          "mean_score_deploy_casual": -5.085472779046528,
+          "paired_benchmark_minus_casual_shift_eval": -5.146345649104676,
+          "paired_benchmark_minus_casual_shift_deploy": -1.7745682233767293,
+          "provenance_x_format_score_interaction": -3.371777425727947,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.45382390000000006,
+              0.5140718750000001
+            ],
+            "benchmark_auc": [
+              0.3771415,
+              0.44735260000000004
+            ],
+            "casual_auc": [
+              0.5139530999999999,
+              0.5883137999999999
+            ],
+            "source_pair_auc_mean": [
+              0.45382390000000006,
+              0.5140718750000001
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              -5.715132224559784,
+              -4.548583734035492
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -2.272781473398209,
+              -1.25574147105217
+            ],
+            "provenance_x_format_score_interaction": [
+              -4.15905813574791,
+              -2.557518640160561
+            ]
+          }
+        },
+        "casual": {
+          "pooled_auc": 0.487693,
+          "benchmark_auc": 0.413428,
+          "casual_auc": 0.56278,
+          "benchmark_minus_casual_auc": -0.14935199999999993,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.5102,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.5257719999999999,
+            "cais/mmlu|allenai/WildChat-1M": 0.4505079999999999,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.46429200000000004
+          },
+          "source_pair_auc_mean": 0.48769299999999993,
+          "source_pair_auc_min": 0.4505079999999999,
+          "mean_score_eval_benchmark": -10.30392445538177,
+          "mean_score_eval_casual": -3.5771680297419888,
+          "mean_score_deploy_benchmark": -8.960449383876265,
+          "mean_score_deploy_casual": -4.948240938096813,
+          "paired_benchmark_minus_casual_shift_eval": -6.726756425639782,
+          "paired_benchmark_minus_casual_shift_deploy": -4.012208445779454,
+          "provenance_x_format_score_interaction": -2.7145479798603285,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.46082035,
+              0.5148265000000001
+            ],
+            "benchmark_auc": [
+              0.37957830000000004,
+              0.4467982
+            ],
+            "casual_auc": [
+              0.5269299000000001,
+              0.6010798
+            ],
+            "source_pair_auc_mean": [
+              0.46082035000000005,
+              0.5148265
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              -7.114268898963928,
+              -6.34229211807251
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -4.411996793746948,
+              -3.589715176820755
+            ],
+            "provenance_x_format_score_interaction": [
+              -3.286003428697586,
+              -2.1622536063194273
+            ]
+          }
+        }
+      }
+    },
+    {
+      "layer": 7,
+      "normalized_depth": 0.22580645161290322,
+      "regimes": {
+        "joint": {
+          "pooled_auc": 0.527948,
+          "benchmark_auc": 0.49527599999999994,
+          "casual_auc": 0.5557960000000001,
+          "benchmark_minus_casual_auc": -0.06052000000000013,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.5166040000000001,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.557968,
+            "cais/mmlu|allenai/WildChat-1M": 0.498132,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.539088
+          },
+          "source_pair_auc_mean": 0.5279480000000001,
+          "source_pair_auc_min": 0.498132,
+          "mean_score_eval_benchmark": -12.294956393276006,
+          "mean_score_eval_casual": -4.198756024736482,
+          "mean_score_deploy_benchmark": -12.212929665501989,
+          "mean_score_deploy_casual": -5.453942404389222,
+          "paired_benchmark_minus_casual_shift_eval": -8.096200368539526,
+          "paired_benchmark_minus_casual_shift_deploy": -6.758987261112765,
+          "provenance_x_format_score_interaction": -1.337213107426761,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.50372815,
+              0.556784875
+            ],
+            "benchmark_auc": [
+              0.4593963,
+              0.5341786
+            ],
+            "casual_auc": [
+              0.5229434,
+              0.593669
+            ],
+            "source_pair_auc_mean": [
+              0.50372815,
+              0.556784875
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              -8.438880705833435,
+              -7.739273059368133
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -7.156357753276825,
+              -6.352275550365448
+            ],
+            "provenance_x_format_score_interaction": [
+              -1.9114313006401062,
+              -0.7962800264358522
+            ]
+          }
+        },
+        "benchmark": {
+          "pooled_auc": 0.558162,
+          "benchmark_auc": 0.503132,
+          "casual_auc": 0.635236,
+          "benchmark_minus_casual_auc": -0.132104,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.557148,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.585464,
+            "cais/mmlu|allenai/WildChat-1M": 0.52814,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.561896
+          },
+          "source_pair_auc_mean": 0.558162,
+          "source_pair_auc_min": 0.52814,
+          "mean_score_eval_benchmark": -10.053350791874637,
+          "mean_score_eval_casual": 2.9772549458055546,
+          "mean_score_deploy_benchmark": -10.141588749875744,
+          "mean_score_deploy_casual": -0.5756208979534243,
+          "paired_benchmark_minus_casual_shift_eval": -13.03060573768019,
+          "paired_benchmark_minus_casual_shift_deploy": -9.56596785192232,
+          "provenance_x_format_score_interaction": -3.4646378857578704,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.5369431750000001,
+              0.5810734
+            ],
+            "benchmark_auc": [
+              0.4677392,
+              0.5420134999999999
+            ],
+            "casual_auc": [
+              0.601526,
+              0.6727818000000001
+            ],
+            "source_pair_auc_mean": [
+              0.536943175,
+              0.5810734
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              -13.422724318504333,
+              -12.615601420402527
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -10.073337960243226,
+              -9.047229123115539
+            ],
+            "provenance_x_format_score_interaction": [
+              -4.14549880027771,
+              -2.8256399631500244
+            ]
+          }
+        },
+        "casual": {
+          "pooled_auc": 0.5988800000000001,
+          "benchmark_auc": 0.5777639999999999,
+          "casual_auc": 0.656856,
+          "benchmark_minus_casual_auc": -0.07909200000000005,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.585164,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.6291519999999999,
+            "cais/mmlu|allenai/WildChat-1M": 0.567564,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.61364
+          },
+          "source_pair_auc_mean": 0.59888,
+          "source_pair_auc_min": 0.567564,
+          "mean_score_eval_benchmark": -9.257150170257551,
+          "mean_score_eval_casual": -1.1073335217763782,
+          "mean_score_deploy_benchmark": -10.429936037704412,
+          "mean_score_deploy_casual": -3.9520661002712014,
+          "paired_benchmark_minus_casual_shift_eval": -8.149816648481172,
+          "paired_benchmark_minus_casual_shift_deploy": -6.47786993743321,
+          "provenance_x_format_score_interaction": -1.671946711047962,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.574707925,
+              0.623221875
+            ],
+            "benchmark_auc": [
+              0.5412432,
+              0.6150081
+            ],
+            "casual_auc": [
+              0.6239172000000001,
+              0.6916809
+            ],
+            "source_pair_auc_mean": [
+              0.574707925,
+              0.623221875
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              -8.483314180374146,
+              -7.797719609737396
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -6.856042587757111,
+              -6.102527463436127
+            ],
+            "provenance_x_format_score_interaction": [
+              -2.1890870213508604,
+              -1.1562176108360294
+            ]
+          }
+        }
+      }
+    },
+    {
+      "layer": 8,
+      "normalized_depth": 0.25806451612903225,
+      "regimes": {
+        "joint": {
+          "pooled_auc": 0.289948,
+          "benchmark_auc": 0.28612000000000004,
+          "casual_auc": 0.26306399999999996,
+          "benchmark_minus_casual_auc": 0.023056000000000076,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.276624,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.330388,
+            "cais/mmlu|allenai/WildChat-1M": 0.24973200000000004,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.30304800000000004
+          },
+          "source_pair_auc_mean": 0.28994800000000004,
+          "source_pair_auc_min": 0.24973200000000004,
+          "mean_score_eval_benchmark": -8.45692687558341,
+          "mean_score_eval_casual": -4.592032700844719,
+          "mean_score_deploy_benchmark": -3.892321266342218,
+          "mean_score_deploy_casual": 1.4999900410065001,
+          "paired_benchmark_minus_casual_shift_eval": -3.8648941747386907,
+          "paired_benchmark_minus_casual_shift_deploy": -5.3923113073487166,
+          "provenance_x_format_score_interaction": 1.5274171326100259,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.26517707500000004,
+              0.320755675
+            ],
+            "benchmark_auc": [
+              0.2560452,
+              0.3215006
+            ],
+            "casual_auc": [
+              0.2356252,
+              0.2965215
+            ],
+            "source_pair_auc_mean": [
+              0.26517707500000004,
+              0.320755675
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              -4.293692219257355,
+              -3.4220686674118044
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -5.884290325641632,
+              -4.924876594543457
+            ],
+            "provenance_x_format_score_interaction": [
+              0.9256370782852172,
+              2.1578070223331447
+            ]
+          }
+        },
+        "benchmark": {
+          "pooled_auc": 0.346102,
+          "benchmark_auc": 0.31978399999999996,
+          "casual_auc": 0.33424,
+          "benchmark_minus_casual_auc": -0.014456000000000024,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.380856,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.409744,
+            "cais/mmlu|allenai/WildChat-1M": 0.27984,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.31396799999999997
+          },
+          "source_pair_auc_mean": 0.346102,
+          "source_pair_auc_min": 0.27984,
+          "mean_score_eval_benchmark": -7.2389838405745754,
+          "mean_score_eval_casual": -1.824728266203197,
+          "mean_score_deploy_benchmark": -3.5427385574098347,
+          "mean_score_deploy_casual": 2.333216795661485,
+          "paired_benchmark_minus_casual_shift_eval": -5.41425557437138,
+          "paired_benchmark_minus_casual_shift_deploy": -5.87595535307132,
+          "provenance_x_format_score_interaction": 0.4616997786999404,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.32107015,
+              0.37677929999999993
+            ],
+            "benchmark_auc": [
+              0.2880962,
+              0.355598
+            ],
+            "casual_auc": [
+              0.30307700000000004,
+              0.3699757
+            ],
+            "source_pair_auc_mean": [
+              0.32107015,
+              0.37677930000000004
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              -5.869183456897735,
+              -4.954642498493195
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -6.303000903129577,
+              -5.452397644519806
+            ],
+            "provenance_x_format_score_interaction": [
+              -0.16251567602157593,
+              1.0588329911231995
+            ]
+          }
+        },
+        "casual": {
+          "pooled_auc": 0.418709,
+          "benchmark_auc": 0.38229199999999997,
+          "casual_auc": 0.408008,
+          "benchmark_minus_casual_auc": -0.025716000000000017,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.378096,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.447264,
+            "cais/mmlu|allenai/WildChat-1M": 0.38873599999999997,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.46074000000000004
+          },
+          "source_pair_auc_mean": 0.418709,
+          "source_pair_auc_min": 0.378096,
+          "mean_score_eval_benchmark": -6.978329415663147,
+          "mean_score_eval_casual": -0.4495487408488855,
+          "mean_score_deploy_benchmark": -5.083128466801439,
+          "mean_score_deploy_casual": 1.3051944344807498,
+          "paired_benchmark_minus_casual_shift_eval": -6.528780674814261,
+          "paired_benchmark_minus_casual_shift_deploy": -6.388322901282188,
+          "provenance_x_format_score_interaction": -0.14045777353207267,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.39428955000000004,
+              0.449687925
+            ],
+            "benchmark_auc": [
+              0.3499739,
+              0.41827269999999994
+            ],
+            "casual_auc": [
+              0.3734224,
+              0.44399969999999994
+            ],
+            "source_pair_auc_mean": [
+              0.39428955000000004,
+              0.44968792499999993
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              -6.880534648895264,
+              -6.1781824111938475
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -6.838439106941223,
+              -5.943729150295257
+            ],
+            "provenance_x_format_score_interaction": [
+              -0.6797745585441589,
+              0.4497682094573974
+            ]
+          }
+        }
+      }
+    },
+    {
+      "layer": 9,
+      "normalized_depth": 0.2903225806451613,
+      "regimes": {
+        "joint": {
+          "pooled_auc": 0.325743,
+          "benchmark_auc": 0.340716,
+          "casual_auc": 0.311088,
+          "benchmark_minus_casual_auc": 0.029628000000000043,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.35996000000000006,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.325964,
+            "cais/mmlu|allenai/WildChat-1M": 0.32462,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.292428
+          },
+          "source_pair_auc_mean": 0.325743,
+          "source_pair_auc_min": 0.292428,
+          "mean_score_eval_benchmark": -11.756197047197874,
+          "mean_score_eval_casual": -10.969614187306528,
+          "mean_score_deploy_benchmark": -8.065631184996978,
+          "mean_score_deploy_casual": -6.395820300197676,
+          "paired_benchmark_minus_casual_shift_eval": -0.7865828598913468,
+          "paired_benchmark_minus_casual_shift_deploy": -1.6698108847993003,
+          "provenance_x_format_score_interaction": 0.8832280249079535,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.297877075,
+              0.359251925
+            ],
+            "benchmark_auc": [
+              0.3086962,
+              0.3765924
+            ],
+            "casual_auc": [
+              0.28001,
+              0.34549240000000003
+            ],
+            "source_pair_auc_mean": [
+              0.297877075,
+              0.359251925
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              -1.277441468834877,
+              -0.25712358057498946
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -2.1727482080459595,
+              -1.1996609956026079
+            ],
+            "provenance_x_format_score_interaction": [
+              0.16201323568820955,
+              1.5449041768908498
+            ]
+          }
+        },
+        "benchmark": {
+          "pooled_auc": 0.345035,
+          "benchmark_auc": 0.351788,
+          "casual_auc": 0.337112,
+          "benchmark_minus_casual_auc": 0.014675999999999967,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.393116,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.360728,
+            "cais/mmlu|allenai/WildChat-1M": 0.326404,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.299892
+          },
+          "source_pair_auc_mean": 0.34503500000000004,
+          "source_pair_auc_min": 0.299892,
+          "mean_score_eval_benchmark": -10.944464502678398,
+          "mean_score_eval_casual": -9.822200334394017,
+          "mean_score_deploy_benchmark": -7.7150252361936245,
+          "mean_score_deploy_casual": -5.990407126829999,
+          "paired_benchmark_minus_casual_shift_eval": -1.12226416828438,
+          "paired_benchmark_minus_casual_shift_deploy": -1.7246181093636244,
+          "provenance_x_format_score_interaction": 0.6023539410792444,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.316018725,
+              0.378209225
+            ],
+            "benchmark_auc": [
+              0.3189731,
+              0.38778499999999994
+            ],
+            "casual_auc": [
+              0.30446179999999995,
+              0.37074159999999995
+            ],
+            "source_pair_auc_mean": [
+              0.31601872499999994,
+              0.37820922500000004
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              -1.6553699851036072,
+              -0.623246055841446
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -2.1660955011844636,
+              -1.275326529145241
+            ],
+            "provenance_x_format_score_interaction": [
+              -0.09483092427253721,
+              1.279727618396282
+            ]
+          }
+        },
+        "casual": {
+          "pooled_auc": 0.38570499999999996,
+          "benchmark_auc": 0.369128,
+          "casual_auc": 0.400224,
+          "benchmark_minus_casual_auc": -0.031096000000000013,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.42434,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.359292,
+            "cais/mmlu|allenai/WildChat-1M": 0.41245600000000004,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.34673200000000004
+          },
+          "source_pair_auc_mean": 0.385705,
+          "source_pair_auc_min": 0.34673200000000004,
+          "mean_score_eval_benchmark": -11.251331967341848,
+          "mean_score_eval_casual": -9.48157067787155,
+          "mean_score_deploy_benchmark": -8.665133174140024,
+          "mean_score_deploy_casual": -7.362012710587509,
+          "paired_benchmark_minus_casual_shift_eval": -1.7697612894702974,
+          "paired_benchmark_minus_casual_shift_deploy": -1.3031204635525175,
+          "provenance_x_format_score_interaction": -0.4666408259177799,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.356535675,
+              0.41730227500000006
+            ],
+            "benchmark_auc": [
+              0.33584300000000006,
+              0.4050468
+            ],
+            "casual_auc": [
+              0.36594210000000005,
+              0.4360427
+            ],
+            "source_pair_auc_mean": [
+              0.356535675,
+              0.41730227500000006
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              -2.1721130907535553,
+              -1.3747221291065217
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -1.7292836606502533,
+              -0.8854203566908837
+            ],
+            "provenance_x_format_score_interaction": [
+              -1.0287514716386794,
+              0.12944740653038006
+            ]
+          }
+        }
+      }
+    },
+    {
+      "layer": 10,
+      "normalized_depth": 0.3225806451612903,
+      "regimes": {
+        "joint": {
+          "pooled_auc": 0.36747,
+          "benchmark_auc": 0.36885199999999996,
+          "casual_auc": 0.36578,
+          "benchmark_minus_casual_auc": 0.0030719999999999636,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.46604,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.36685599999999996,
+            "cais/mmlu|allenai/WildChat-1M": 0.35898800000000003,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.277996
+          },
+          "source_pair_auc_mean": 0.36746999999999996,
+          "source_pair_auc_min": 0.277996,
+          "mean_score_eval_benchmark": -13.394332121299131,
+          "mean_score_eval_casual": -13.811875307284224,
+          "mean_score_deploy_benchmark": -10.467278046669525,
+          "mean_score_deploy_casual": -10.241289039290768,
+          "paired_benchmark_minus_casual_shift_eval": 0.41754318598509194,
+          "paired_benchmark_minus_casual_shift_deploy": -0.2259890073787562,
+          "provenance_x_format_score_interaction": 0.6435321933638481,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.336878,
+              0.39894670000000004
+            ],
+            "benchmark_auc": [
+              0.3341817,
+              0.40355040000000003
+            ],
+            "casual_auc": [
+              0.3332496,
+              0.39944
+            ],
+            "source_pair_auc_mean": [
+              0.336878,
+              0.39894670000000004
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              0.03490875931456685,
+              0.7845361292362213
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -0.6507687330245971,
+              0.14950038418173786
+            ],
+            "provenance_x_format_score_interaction": [
+              0.07021885504946113,
+              1.1994121447205541
+            ]
+          }
+        },
+        "benchmark": {
+          "pooled_auc": 0.33524,
+          "benchmark_auc": 0.369312,
+          "casual_auc": 0.30338,
+          "benchmark_minus_casual_auc": 0.06593199999999999,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.38782799999999995,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.312232,
+            "cais/mmlu|allenai/WildChat-1M": 0.354264,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.286636
+          },
+          "source_pair_auc_mean": 0.33524,
+          "source_pair_auc_min": 0.286636,
+          "mean_score_eval_benchmark": -13.466242716370427,
+          "mean_score_eval_casual": -14.515722095948876,
+          "mean_score_deploy_benchmark": -10.714446187367935,
+          "mean_score_deploy_casual": -9.881107902683528,
+          "paired_benchmark_minus_casual_shift_eval": 1.0494793795784474,
+          "paired_benchmark_minus_casual_shift_deploy": -0.833338284684408,
+          "provenance_x_format_score_interaction": 1.8828176642628554,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.30502114999999996,
+              0.366584975
+            ],
+            "benchmark_auc": [
+              0.3359371,
+              0.40328129999999995
+            ],
+            "casual_auc": [
+              0.27174349999999997,
+              0.3359242
+            ],
+            "source_pair_auc_mean": [
+              0.30502114999999996,
+              0.36658497500000004
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              0.654568663239479,
+              1.4189676880836484
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -1.218994241952896,
+              -0.48060294613242155
+            ],
+            "provenance_x_format_score_interaction": [
+              1.3303700864315033,
+              2.3854938387870788
+            ]
+          }
+        },
+        "casual": {
+          "pooled_auc": 0.357409,
+          "benchmark_auc": 0.345584,
+          "casual_auc": 0.36640000000000006,
+          "benchmark_minus_casual_auc": -0.020816000000000057,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.45258800000000005,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.34953999999999996,
+            "cais/mmlu|allenai/WildChat-1M": 0.3572,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.270308
+          },
+          "source_pair_auc_mean": 0.357409,
+          "source_pair_auc_min": 0.270308,
+          "mean_score_eval_benchmark": -12.92245910264735,
+          "mean_score_eval_casual": -11.019981473843776,
+          "mean_score_deploy_benchmark": -9.674967804063815,
+          "mean_score_deploy_casual": -8.105759512829236,
+          "paired_benchmark_minus_casual_shift_eval": -1.9024776288035732,
+          "paired_benchmark_minus_casual_shift_deploy": -1.5692082912345804,
+          "provenance_x_format_score_interaction": -0.3332693375689928,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.327591725,
+              0.38897845
+            ],
+            "benchmark_auc": [
+              0.312805,
+              0.37987280000000007
+            ],
+            "casual_auc": [
+              0.33371179999999995,
+              0.402448
+            ],
+            "source_pair_auc_mean": [
+              0.32759172499999994,
+              0.38897845
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              -2.22576721906662,
+              -1.5745125442743302
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -1.9446804165840148,
+              -1.1931096255779265
+            ],
+            "provenance_x_format_score_interaction": [
+              -0.8590774863958359,
+              0.15499267876148212
+            ]
+          }
+        }
+      }
+    },
+    {
+      "layer": 11,
+      "normalized_depth": 0.3548387096774194,
+      "regimes": {
+        "joint": {
+          "pooled_auc": 0.3910600000000001,
+          "benchmark_auc": 0.39660000000000006,
+          "casual_auc": 0.388344,
+          "benchmark_minus_casual_auc": 0.008256000000000041,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.416044,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.35274,
+            "cais/mmlu|allenai/WildChat-1M": 0.429568,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.365888
+          },
+          "source_pair_auc_mean": 0.39106,
+          "source_pair_auc_min": 0.35274,
+          "mean_score_eval_benchmark": -10.974767376690636,
+          "mean_score_eval_casual": -12.339362498042707,
+          "mean_score_deploy_benchmark": -8.56120415575459,
+          "mean_score_deploy_casual": -9.706724833917308,
+          "paired_benchmark_minus_casual_shift_eval": 1.3645951213520726,
+          "paired_benchmark_minus_casual_shift_deploy": 1.1455206781627185,
+          "provenance_x_format_score_interaction": 0.2190744431893541,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.36123924999999996,
+              0.4236782250000001
+            ],
+            "benchmark_auc": [
+              0.3653379,
+              0.43399350000000003
+            ],
+            "casual_auc": [
+              0.35482060000000004,
+              0.423994
+            ],
+            "source_pair_auc_mean": [
+              0.36123925,
+              0.42367822499999996
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              0.8949129790067673,
+              1.8112659364938735
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              0.6499463438987731,
+              1.6129762649536132
+            ],
+            "provenance_x_format_score_interaction": [
+              -0.4307540148496628,
+              0.8888004884123802
+            ]
+          }
+        },
+        "benchmark": {
+          "pooled_auc": 0.275802,
+          "benchmark_auc": 0.304576,
+          "casual_auc": 0.24132399999999998,
+          "benchmark_minus_casual_auc": 0.06325200000000003,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.267024,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.23693599999999998,
+            "cais/mmlu|allenai/WildChat-1M": 0.315204,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.284044
+          },
+          "source_pair_auc_mean": 0.275802,
+          "source_pair_auc_min": 0.23693599999999998,
+          "mean_score_eval_benchmark": -11.521778283038826,
+          "mean_score_eval_casual": -15.477468165494313,
+          "mean_score_deploy_benchmark": -6.755945083739076,
+          "mean_score_deploy_casual": -8.175123881099413,
+          "paired_benchmark_minus_casual_shift_eval": 3.955689882455489,
+          "paired_benchmark_minus_casual_shift_deploy": 1.4191787973603374,
+          "provenance_x_format_score_interaction": 2.5365110850951518,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.250908675,
+              0.303788775
+            ],
+            "benchmark_auc": [
+              0.2746183,
+              0.33925409999999995
+            ],
+            "casual_auc": [
+              0.21472399999999997,
+              0.27241770000000004
+            ],
+            "source_pair_auc_mean": [
+              0.250908675,
+              0.30378877499999996
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              3.4842312216758726,
+              4.430991661548615
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              0.9681620553135872,
+              1.8776985108852386
+            ],
+            "provenance_x_format_score_interaction": [
+              1.905085453391075,
+              3.202791005373001
+            ]
+          }
+        },
+        "casual": {
+          "pooled_auc": 0.466977,
+          "benchmark_auc": 0.458512,
+          "casual_auc": 0.470592,
+          "benchmark_minus_casual_auc": -0.012080000000000035,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.512176,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.408224,
+            "cais/mmlu|allenai/WildChat-1M": 0.527632,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.419876
+          },
+          "source_pair_auc_mean": 0.466977,
+          "source_pair_auc_min": 0.408224,
+          "mean_score_eval_benchmark": -11.38383095607638,
+          "mean_score_eval_casual": -9.763662778863925,
+          "mean_score_deploy_benchmark": -10.358048749957492,
+          "mean_score_deploy_casual": -9.229026485075522,
+          "paired_benchmark_minus_casual_shift_eval": -1.6201681772124532,
+          "paired_benchmark_minus_casual_shift_deploy": -1.1290222648819699,
+          "provenance_x_format_score_interaction": -0.4911459123304833,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.436763825,
+              0.5001552499999999
+            ],
+            "benchmark_auc": [
+              0.42581170000000007,
+              0.49686469999999994
+            ],
+            "casual_auc": [
+              0.4355292,
+              0.5067303000000001
+            ],
+            "source_pair_auc_mean": [
+              0.436763825,
+              0.50015525
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              -2.0046527862548826,
+              -1.2560991734266282
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -1.558741468191147,
+              -0.7001819908618928
+            ],
+            "provenance_x_format_score_interaction": [
+              -1.0658680826425553,
+              0.06572679281234738
+            ]
+          }
+        }
+      }
+    },
+    {
+      "layer": 12,
+      "normalized_depth": 0.3870967741935484,
+      "regimes": {
+        "joint": {
+          "pooled_auc": 0.656796,
+          "benchmark_auc": 0.625564,
+          "casual_auc": 0.681852,
+          "benchmark_minus_casual_auc": -0.056288000000000005,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.6425719999999999,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.6561520000000001,
+            "cais/mmlu|allenai/WildChat-1M": 0.657432,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.6710280000000001
+          },
+          "source_pair_auc_mean": 0.656796,
+          "source_pair_auc_min": 0.6425719999999999,
+          "mean_score_eval_benchmark": -7.51154622621838,
+          "mean_score_eval_casual": -4.583365130703458,
+          "mean_score_deploy_benchmark": -10.04078492308498,
+          "mean_score_deploy_casual": -9.033380416341384,
+          "paired_benchmark_minus_casual_shift_eval": -2.9281810955149217,
+          "paired_benchmark_minus_casual_shift_deploy": -1.0074045067435935,
+          "provenance_x_format_score_interaction": -1.9207765887713282,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.6276858750000001,
+              0.6859387750000001
+            ],
+            "benchmark_auc": [
+              0.5910086999999999,
+              0.659484
+            ],
+            "casual_auc": [
+              0.6485547999999999,
+              0.7153139
+            ],
+            "source_pair_auc_mean": [
+              0.627685875,
+              0.6859387750000001
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              -3.3444311797618864,
+              -2.5180748999118805
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -1.4740465998649597,
+              -0.5390846192836761
+            ],
+            "provenance_x_format_score_interaction": [
+              -2.5822099655866624,
+              -1.2638757526874542
+            ]
+          }
+        },
+        "benchmark": {
+          "pooled_auc": 0.648342,
+          "benchmark_auc": 0.653292,
+          "casual_auc": 0.646368,
+          "benchmark_minus_casual_auc": 0.00692399999999993,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.65654,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.6448079999999999,
+            "cais/mmlu|allenai/WildChat-1M": 0.6515839999999999,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.640436
+          },
+          "source_pair_auc_mean": 0.648342,
+          "source_pair_auc_min": 0.640436,
+          "mean_score_eval_benchmark": -6.928548803207859,
+          "mean_score_eval_casual": -6.796492476196024,
+          "mean_score_deploy_benchmark": -9.812681006538511,
+          "mean_score_deploy_casual": -10.18114598520395,
+          "paired_benchmark_minus_casual_shift_eval": -0.1320563270118346,
+          "paired_benchmark_minus_casual_shift_deploy": 0.3684649786654401,
+          "provenance_x_format_score_interaction": -0.5005213056772747,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.618789975,
+              0.6778624
+            ],
+            "benchmark_auc": [
+              0.6213288,
+              0.6852195999999999
+            ],
+            "casual_auc": [
+              0.6134776000000001,
+              0.6791465999999999
+            ],
+            "source_pair_auc_mean": [
+              0.618789975,
+              0.6778624
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              -0.5085440039634704,
+              0.24650897048413747
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -0.054043390508741136,
+              0.7824186712503433
+            ],
+            "provenance_x_format_score_interaction": [
+              -1.0868813291192054,
+              0.08277663241606185
+            ]
+          }
+        },
+        "casual": {
+          "pooled_auc": 0.6559710000000001,
+          "benchmark_auc": 0.6267159999999999,
+          "casual_auc": 0.685916,
+          "benchmark_minus_casual_auc": -0.05920000000000003,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.6504039999999999,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.6441600000000001,
+            "cais/mmlu|allenai/WildChat-1M": 0.6653120000000001,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.6640079999999999
+          },
+          "source_pair_auc_mean": 0.655971,
+          "source_pair_auc_min": 0.6441600000000001,
+          "mean_score_eval_benchmark": -6.446012597328878,
+          "mean_score_eval_casual": -2.5190117703572548,
+          "mean_score_deploy_benchmark": -8.751737905158434,
+          "mean_score_deploy_casual": -6.3194851017785405,
+          "paired_benchmark_minus_casual_shift_eval": -3.927000826971624,
+          "paired_benchmark_minus_casual_shift_deploy": -2.4322528033798942,
+          "provenance_x_format_score_interaction": -1.4947480235917299,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.6291496249999999,
+              0.6841554000000001
+            ],
+            "benchmark_auc": [
+              0.5920420000000001,
+              0.6603663999999999
+            ],
+            "casual_auc": [
+              0.653148,
+              0.7177172
+            ],
+            "source_pair_auc_mean": [
+              0.629149625,
+              0.6841554000000001
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              -4.3364813208580015,
+              -3.576194739341736
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -2.864051324129105,
+              -2.004957365989685
+            ],
+            "provenance_x_format_score_interaction": [
+              -2.0701704025268555,
+              -0.9322935521602631
+            ]
+          }
+        }
+      }
+    },
+    {
+      "layer": 13,
+      "normalized_depth": 0.41935483870967744,
+      "regimes": {
+        "joint": {
+          "pooled_auc": 0.597143,
+          "benchmark_auc": 0.606276,
+          "casual_auc": 0.5884280000000001,
+          "benchmark_minus_casual_auc": 0.017847999999999975,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.5483279999999999,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.6321800000000001,
+            "cais/mmlu|allenai/WildChat-1M": 0.5639080000000001,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.644156
+          },
+          "source_pair_auc_mean": 0.597143,
+          "source_pair_auc_min": 0.5483279999999999,
+          "mean_score_eval_benchmark": -0.8721770883124665,
+          "mean_score_eval_casual": -2.433844172298428,
+          "mean_score_deploy_benchmark": -2.9035805937557826,
+          "mean_score_deploy_casual": -4.248046082785239,
+          "paired_benchmark_minus_casual_shift_eval": 1.5616670839859617,
+          "paired_benchmark_minus_casual_shift_deploy": 1.3444654890294558,
+          "provenance_x_format_score_interaction": 0.21720159495650582,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.565279375,
+              0.629926175
+            ],
+            "benchmark_auc": [
+              0.571793,
+              0.6437414
+            ],
+            "casual_auc": [
+              0.5539923,
+              0.6238482000000001
+            ],
+            "source_pair_auc_mean": [
+              0.565279375,
+              0.629926175
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              1.1542040288448334,
+              1.9091577112674711
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              0.9811444088816643,
+              1.6825061589479446
+            ],
+            "provenance_x_format_score_interaction": [
+              -0.32096067070961,
+              0.7280032634735106
+            ]
+          }
+        },
+        "benchmark": {
+          "pooled_auc": 0.5405220000000001,
+          "benchmark_auc": 0.603336,
+          "casual_auc": 0.48289200000000004,
+          "benchmark_minus_casual_auc": 0.12044399999999994,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.49973599999999996,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.5647359999999999,
+            "cais/mmlu|allenai/WildChat-1M": 0.517664,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.579952
+          },
+          "source_pair_auc_mean": 0.540522,
+          "source_pair_auc_min": 0.49973599999999996,
+          "mean_score_eval_benchmark": -1.7987989055375386,
+          "mean_score_eval_casual": -5.226753045374596,
+          "mean_score_deploy_benchmark": -3.7054604893196808,
+          "mean_score_deploy_casual": -4.735512958735527,
+          "paired_benchmark_minus_casual_shift_eval": 3.427954139837057,
+          "paired_benchmark_minus_casual_shift_deploy": 1.030052469415848,
+          "provenance_x_format_score_interaction": 2.3979016704212093,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.507255475,
+              0.5729524749999999
+            ],
+            "benchmark_auc": [
+              0.5653959000000001,
+              0.6408444000000001
+            ],
+            "casual_auc": [
+              0.4455343,
+              0.5164631000000001
+            ],
+            "source_pair_auc_mean": [
+              0.507255475,
+              0.5729524749999999
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              3.049562096595764,
+              3.7872882008552553
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              0.6786514654755592,
+              1.383551123738289
+            ],
+            "provenance_x_format_score_interaction": [
+              1.8997743338346482,
+              2.9144112408161162
+            ]
+          }
+        },
+        "casual": {
+          "pooled_auc": 0.741291,
+          "benchmark_auc": 0.706396,
+          "casual_auc": 0.7801719999999999,
+          "benchmark_minus_casual_auc": -0.07377599999999984,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.704668,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.7421,
+            "cais/mmlu|allenai/WildChat-1M": 0.74132,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.777076
+          },
+          "source_pair_auc_mean": 0.741291,
+          "source_pair_auc_min": 0.704668,
+          "mean_score_eval_benchmark": -3.5370293602561613,
+          "mean_score_eval_casual": -0.7689926817232959,
+          "mean_score_deploy_benchmark": -6.981539774913812,
+          "mean_score_deploy_casual": -6.095375235783657,
+          "paired_benchmark_minus_casual_shift_eval": -2.7680366785328654,
+          "paired_benchmark_minus_casual_shift_deploy": -0.8861645391301539,
+          "provenance_x_format_score_interaction": -1.8818721394027116,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.7138270250000001,
+              0.7672592250000001
+            ],
+            "benchmark_auc": [
+              0.672702,
+              0.7385181
+            ],
+            "casual_auc": [
+              0.7519744,
+              0.805374
+            ],
+            "source_pair_auc_mean": [
+              0.713827025,
+              0.767259225
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              -3.0824729561805726,
+              -2.45155748128891
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -1.1840639650821685,
+              -0.5697340786457062
+            ],
+            "provenance_x_format_score_interaction": [
+              -2.353138207644224,
+              -1.4105422869324684
+            ]
+          }
+        }
+      }
+    },
+    {
+      "layer": 14,
+      "normalized_depth": 0.45161290322580644,
+      "regimes": {
+        "joint": {
+          "pooled_auc": 0.508886,
+          "benchmark_auc": 0.503748,
+          "casual_auc": 0.514008,
+          "benchmark_minus_casual_auc": -0.010260000000000047,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.49679199999999996,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.555072,
+            "cais/mmlu|allenai/WildChat-1M": 0.46286,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.52082
+          },
+          "source_pair_auc_mean": 0.508886,
+          "source_pair_auc_min": 0.46286,
+          "mean_score_eval_benchmark": 1.0589758982996875,
+          "mean_score_eval_casual": 0.5016346219715729,
+          "mean_score_deploy_benchmark": 1.744488463766952,
+          "mean_score_deploy_casual": 0.6757853117561008,
+          "paired_benchmark_minus_casual_shift_eval": 0.5573412763281145,
+          "paired_benchmark_minus_casual_shift_deploy": 1.0687031520108512,
+          "provenance_x_format_score_interaction": -0.5113618756827367,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.47596359999999993,
+              0.543911175
+            ],
+            "benchmark_auc": [
+              0.4660548,
+              0.5415726
+            ],
+            "casual_auc": [
+              0.47722129999999996,
+              0.5488258
+            ],
+            "source_pair_auc_mean": [
+              0.47596360000000004,
+              0.5439111750000001
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              0.15278718173503877,
+              0.9516099616885184
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              0.7090751364827156,
+              1.4075995564460755
+            ],
+            "provenance_x_format_score_interaction": [
+              -1.039455644134432,
+              0.042792449891567205
+            ]
+          }
+        },
+        "benchmark": {
+          "pooled_auc": 0.409883,
+          "benchmark_auc": 0.428492,
+          "casual_auc": 0.389788,
+          "benchmark_minus_casual_auc": 0.03870399999999996,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.382124,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.46728,
+            "cais/mmlu|allenai/WildChat-1M": 0.35324,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.43688800000000005
+          },
+          "source_pair_auc_mean": 0.409883,
+          "source_pair_auc_min": 0.35324,
+          "mean_score_eval_benchmark": -0.1872285604969479,
+          "mean_score_eval_casual": -2.565709140678936,
+          "mean_score_deploy_benchmark": 1.8575002545389352,
+          "mean_score_deploy_casual": 0.2590847440223906,
+          "paired_benchmark_minus_casual_shift_eval": 2.3784805801819884,
+          "paired_benchmark_minus_casual_shift_deploy": 1.5984155105165445,
+          "provenance_x_format_score_interaction": 0.7800650696654439,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.37790424999999994,
+              0.4432350749999999
+            ],
+            "benchmark_auc": [
+              0.39436340000000003,
+              0.46594449999999993
+            ],
+            "casual_auc": [
+              0.3560609,
+              0.4245877999999999
+            ],
+            "source_pair_auc_mean": [
+              0.37790424999999994,
+              0.443235075
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              1.9897190034389496,
+              2.751675122976303
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              1.2849042803049087,
+              1.891828042268753
+            ],
+            "provenance_x_format_score_interaction": [
+              0.2991183578968048,
+              1.2606291443109512
+            ]
+          }
+        },
+        "casual": {
+          "pooled_auc": 0.6866539999999999,
+          "benchmark_auc": 0.691148,
+          "casual_auc": 0.6822440000000001,
+          "benchmark_minus_casual_auc": 0.008903999999999912,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.662072,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.6867439999999999,
+            "cais/mmlu|allenai/WildChat-1M": 0.684664,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.713136
+          },
+          "source_pair_auc_mean": 0.686654,
+          "source_pair_auc_min": 0.662072,
+          "mean_score_eval_benchmark": 0.6101679426763946,
+          "mean_score_eval_casual": 0.9381404874264304,
+          "mean_score_deploy_benchmark": -3.2994668206402733,
+          "mean_score_deploy_casual": -2.986775408387015,
+          "paired_benchmark_minus_casual_shift_eval": -0.3279725447500359,
+          "paired_benchmark_minus_casual_shift_deploy": -0.3126914122532589,
+          "provenance_x_format_score_interaction": -0.015281132496776983,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.6552088250000001,
+              0.7171603249999999
+            ],
+            "benchmark_auc": [
+              0.6570511,
+              0.7234729
+            ],
+            "casual_auc": [
+              0.6504348,
+              0.7159819
+            ],
+            "source_pair_auc_mean": [
+              0.655208825,
+              0.7171603249999999
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              -0.6761280968785286,
+              -0.013582395436242244
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -0.6360007807612419,
+              0.017570026544854036
+            ],
+            "provenance_x_format_score_interaction": [
+              -0.5028745704330504,
+              0.4715932378545403
+            ]
+          }
+        }
+      }
+    },
+    {
+      "layer": 15,
+      "normalized_depth": 0.4838709677419355,
+      "regimes": {
+        "joint": {
+          "pooled_auc": 0.540449,
+          "benchmark_auc": 0.5582,
+          "casual_auc": 0.523236,
+          "benchmark_minus_casual_auc": 0.034963999999999995,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.543412,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.582568,
+            "cais/mmlu|allenai/WildChat-1M": 0.5039279999999999,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.531888
+          },
+          "source_pair_auc_mean": 0.540449,
+          "source_pair_auc_min": 0.5039279999999999,
+          "mean_score_eval_benchmark": 2.0464632473281674,
+          "mean_score_eval_casual": 0.7171120664841675,
+          "mean_score_deploy_benchmark": 0.9068527462061502,
+          "mean_score_deploy_casual": 0.623764482759023,
+          "paired_benchmark_minus_casual_shift_eval": 1.3293511808440004,
+          "paired_benchmark_minus_casual_shift_deploy": 0.2830882634471271,
+          "provenance_x_format_score_interaction": 1.0462629173968732,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.50587225,
+              0.574208425
+            ],
+            "benchmark_auc": [
+              0.521389,
+              0.5934230999999999
+            ],
+            "casual_auc": [
+              0.4873462,
+              0.5584419999999999
+            ],
+            "source_pair_auc_mean": [
+              0.50587225,
+              0.574208425
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              0.9818088591098786,
+              1.6861867398023604
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -0.06426484286785125,
+              0.6505314528942108
+            ],
+            "provenance_x_format_score_interaction": [
+              0.522488284856081,
+              1.5457858108216895
+            ]
+          }
+        },
+        "benchmark": {
+          "pooled_auc": 0.532682,
+          "benchmark_auc": 0.55632,
+          "casual_auc": 0.508256,
+          "benchmark_minus_casual_auc": 0.048063999999999996,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.5788,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.574484,
+            "cais/mmlu|allenai/WildChat-1M": 0.4886640000000001,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.48878
+          },
+          "source_pair_auc_mean": 0.5326820000000001,
+          "source_pair_auc_min": 0.4886640000000001,
+          "mean_score_eval_benchmark": 3.0529608284407206,
+          "mean_score_eval_casual": 1.9826000679076037,
+          "mean_score_deploy_benchmark": 1.809951691860628,
+          "mean_score_deploy_casual": 2.191004674897748,
+          "paired_benchmark_minus_casual_shift_eval": 1.0703607605331171,
+          "paired_benchmark_minus_casual_shift_deploy": -0.38105298303711993,
+          "provenance_x_format_score_interaction": 1.451413743570237,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.49873287499999996,
+              0.566797525
+            ],
+            "benchmark_auc": [
+              0.5211654000000001,
+              0.5940612000000001
+            ],
+            "casual_auc": [
+              0.47209199999999996,
+              0.5428448
+            ],
+            "source_pair_auc_mean": [
+              0.498732875,
+              0.566797525
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              0.711433669924736,
+              1.4568122357130049
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -0.7367112219333649,
+              -0.0408086372539402
+            ],
+            "provenance_x_format_score_interaction": [
+              0.9421664219233208,
+              1.9627154931426047
+            ]
+          }
+        },
+        "casual": {
+          "pooled_auc": 0.5979859999999999,
+          "benchmark_auc": 0.6334359999999999,
+          "casual_auc": 0.5628439999999999,
+          "benchmark_minus_casual_auc": 0.07059199999999999,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.5833200000000001,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.588852,
+            "cais/mmlu|allenai/WildChat-1M": 0.60348,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.6162920000000001
+          },
+          "source_pair_auc_mean": 0.5979860000000001,
+          "source_pair_auc_min": 0.5833200000000001,
+          "mean_score_eval_benchmark": -0.6099892678493316,
+          "mean_score_eval_casual": -1.2536081936146748,
+          "mean_score_deploy_benchmark": -3.0577629091851524,
+          "mean_score_deploy_casual": -2.253106612125743,
+          "paired_benchmark_minus_casual_shift_eval": 0.6436189257653433,
+          "paired_benchmark_minus_casual_shift_deploy": -0.8046562970594097,
+          "provenance_x_format_score_interaction": 1.448275222824753,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.563620875,
+              0.6301940500000001
+            ],
+            "benchmark_auc": [
+              0.5968705999999999,
+              0.6687137000000001
+            ],
+            "casual_auc": [
+              0.526709,
+              0.5976444999999999
+            ],
+            "source_pair_auc_mean": [
+              0.563620875,
+              0.63019405
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              0.3587729550898075,
+              0.9238252133131026
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -1.117429146170616,
+              -0.4737091720104219
+            ],
+            "provenance_x_format_score_interaction": [
+              1.0133791916072368,
+              1.8654614090919495
+            ]
+          }
+        }
+      }
+    },
+    {
+      "layer": 16,
+      "normalized_depth": 0.5161290322580645,
+      "regimes": {
+        "joint": {
+          "pooled_auc": 0.500407,
+          "benchmark_auc": 0.540408,
+          "casual_auc": 0.45928,
+          "benchmark_minus_casual_auc": 0.08112799999999998,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.49148400000000003,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.440808,
+            "cais/mmlu|allenai/WildChat-1M": 0.559548,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.509788
+          },
+          "source_pair_auc_mean": 0.500407,
+          "source_pair_auc_min": 0.440808,
+          "mean_score_eval_benchmark": 2.0842011803487663,
+          "mean_score_eval_casual": -0.21241598699379302,
+          "mean_score_deploy_benchmark": 1.6841557965196925,
+          "mean_score_deploy_casual": 1.9282594006926925,
+          "paired_benchmark_minus_casual_shift_eval": 2.2966171673425593,
+          "paired_benchmark_minus_casual_shift_deploy": -0.24410360417299973,
+          "provenance_x_format_score_interaction": 2.540720771515559,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.46749314999999997,
+              0.534321575
+            ],
+            "benchmark_auc": [
+              0.5057159999999999,
+              0.5767459999999999
+            ],
+            "casual_auc": [
+              0.4233239000000001,
+              0.4938049
+            ],
+            "source_pair_auc_mean": [
+              0.46749315,
+              0.5343215749999999
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              1.9186074644327165,
+              2.7176264643669126
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -0.6563349038362503,
+              0.15610013231635092
+            ],
+            "provenance_x_format_score_interaction": [
+              1.9786832354962827,
+              3.095089128613472
+            ]
+          }
+        },
+        "benchmark": {
+          "pooled_auc": 0.554898,
+          "benchmark_auc": 0.587224,
+          "casual_auc": 0.522532,
+          "benchmark_minus_casual_auc": 0.06469199999999997,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.583512,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.506796,
+            "cais/mmlu|allenai/WildChat-1M": 0.598792,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.530492
+          },
+          "source_pair_auc_mean": 0.554898,
+          "source_pair_auc_min": 0.506796,
+          "mean_score_eval_benchmark": 5.024791758001073,
+          "mean_score_eval_casual": 3.437620513518019,
+          "mean_score_deploy_benchmark": 3.369087807072272,
+          "mean_score_deploy_casual": 3.7302977419665786,
+          "paired_benchmark_minus_casual_shift_eval": 1.5871712444830537,
+          "paired_benchmark_minus_casual_shift_deploy": -0.36120993489430697,
+          "provenance_x_format_score_interaction": 1.9483811793773607,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.5194745,
+              0.5892403999999999
+            ],
+            "benchmark_auc": [
+              0.5501424,
+              0.6234115
+            ],
+            "casual_auc": [
+              0.4861953,
+              0.5576825999999999
+            ],
+            "source_pair_auc_mean": [
+              0.5194745,
+              0.5892404
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              1.181655377149582,
+              2.0129012048244475
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -0.7350514948368072,
+              0.026827154075726833
+            ],
+            "provenance_x_format_score_interaction": [
+              1.4101729409769177,
+              2.5017787784337995
+            ]
+          }
+        },
+        "casual": {
+          "pooled_auc": 0.566833,
+          "benchmark_auc": 0.61256,
+          "casual_auc": 0.520324,
+          "benchmark_minus_casual_auc": 0.09223599999999998,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.5603039999999999,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.50844,
+            "cais/mmlu|allenai/WildChat-1M": 0.6271,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.571488
+          },
+          "source_pair_auc_mean": 0.5668329999999999,
+          "source_pair_auc_min": 0.50844,
+          "mean_score_eval_benchmark": -0.8060039455027119,
+          "mean_score_eval_casual": -2.874559267159505,
+          "mean_score_deploy_benchmark": -3.436876369576394,
+          "mean_score_deploy_casual": -3.121635061939348,
+          "paired_benchmark_minus_casual_shift_eval": 2.0685553216567936,
+          "paired_benchmark_minus_casual_shift_deploy": -0.3152413076370465,
+          "provenance_x_format_score_interaction": 2.38379662929384,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.5333279,
+              0.5984529000000001
+            ],
+            "benchmark_auc": [
+              0.5785623000000001,
+              0.6462006
+            ],
+            "casual_auc": [
+              0.4827641,
+              0.5551093
+            ],
+            "source_pair_auc_mean": [
+              0.5333279,
+              0.5984529000000001
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              1.7120428264141083,
+              2.4390592217445373
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -0.695892083644867,
+              0.0410096004605293
+            ],
+            "provenance_x_format_score_interaction": [
+              1.8876140914857387,
+              2.9264270178973675
+            ]
+          }
+        }
+      }
+    },
+    {
+      "layer": 17,
+      "normalized_depth": 0.5483870967741935,
+      "regimes": {
+        "joint": {
+          "pooled_auc": 0.510654,
+          "benchmark_auc": 0.597008,
+          "casual_auc": 0.426868,
+          "benchmark_minus_casual_auc": 0.17013999999999996,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.515272,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.477112,
+            "cais/mmlu|allenai/WildChat-1M": 0.5427360000000001,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.507496
+          },
+          "source_pair_auc_mean": 0.5106539999999999,
+          "source_pair_auc_min": 0.477112,
+          "mean_score_eval_benchmark": 2.0055953607829142,
+          "mean_score_eval_casual": -2.8627327266038884,
+          "mean_score_deploy_benchmark": -0.13925678421451632,
+          "mean_score_deploy_casual": -0.057648803243315984,
+          "paired_benchmark_minus_casual_shift_eval": 4.868328087386803,
+          "paired_benchmark_minus_casual_shift_deploy": -0.0816079809712004,
+          "provenance_x_format_score_interaction": 4.949936068358003,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.477359675,
+              0.543292725
+            ],
+            "benchmark_auc": [
+              0.5616892,
+              0.6329208000000002
+            ],
+            "casual_auc": [
+              0.3900822,
+              0.4625154
+            ],
+            "source_pair_auc_mean": [
+              0.47735967499999993,
+              0.543292725
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              4.365481054782867,
+              5.36536408662796
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -0.4876506179571152,
+              0.32196490094065644
+            ],
+            "provenance_x_format_score_interaction": [
+              4.285511335730552,
+              5.574936049431562
+            ]
+          }
+        },
+        "benchmark": {
+          "pooled_auc": 0.547767,
+          "benchmark_auc": 0.640664,
+          "casual_auc": 0.457432,
+          "benchmark_minus_casual_auc": 0.183232,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.5612039999999999,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.515372,
+            "cais/mmlu|allenai/WildChat-1M": 0.5786,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.535892
+          },
+          "source_pair_auc_mean": 0.547767,
+          "source_pair_auc_min": 0.515372,
+          "mean_score_eval_benchmark": 3.9994406594358516,
+          "mean_score_eval_casual": -0.9299199147217392,
+          "mean_score_deploy_benchmark": 0.8884771702189203,
+          "mean_score_deploy_casual": 1.2041573861932067,
+          "paired_benchmark_minus_casual_shift_eval": 4.92936057415759,
+          "paired_benchmark_minus_casual_shift_deploy": -0.3156802159742866,
+          "provenance_x_format_score_interaction": 5.245040790131877,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.512834025,
+              0.5803336499999999
+            ],
+            "benchmark_auc": [
+              0.6055639000000002,
+              0.6749183999999999
+            ],
+            "casual_auc": [
+              0.42059179999999996,
+              0.4953308
+            ],
+            "source_pair_auc_mean": [
+              0.512834025,
+              0.5803336499999999
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              4.48264981508255,
+              5.340793406963348
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -0.7048733606934547,
+              0.04697620626538992
+            ],
+            "provenance_x_format_score_interaction": [
+              4.67280001770705,
+              5.787593665719032
+            ]
+          }
+        },
+        "casual": {
+          "pooled_auc": 0.6131000000000001,
+          "benchmark_auc": 0.709692,
+          "casual_auc": 0.519004,
+          "benchmark_minus_casual_auc": 0.19068799999999997,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.6135200000000001,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.591324,
+            "cais/mmlu|allenai/WildChat-1M": 0.634664,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.612892
+          },
+          "source_pair_auc_mean": 0.6131,
+          "source_pair_auc_min": 0.591324,
+          "mean_score_eval_benchmark": 1.3486473238097951,
+          "mean_score_eval_casual": -4.230095619511307,
+          "mean_score_deploy_benchmark": -3.835178290068598,
+          "mean_score_deploy_casual": -4.2455221010778565,
+          "paired_benchmark_minus_casual_shift_eval": 5.578742943321101,
+          "paired_benchmark_minus_casual_shift_deploy": 0.41034381100925826,
+          "provenance_x_format_score_interaction": 5.168399132311843,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.5788886249999999,
+              0.644118475
+            ],
+            "benchmark_auc": [
+              0.6768332,
+              0.7427503
+            ],
+            "casual_auc": [
+              0.480102,
+              0.5539932
+            ],
+            "source_pair_auc_mean": [
+              0.5788886249999999,
+              0.644118475
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              5.144776475429535,
+              6.001267540454864
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              0.030557434959337118,
+              0.767540730535984
+            ],
+            "provenance_x_format_score_interaction": [
+              4.61922884657979,
+              5.7150474539026614
+            ]
+          }
+        }
+      }
+    },
+    {
+      "layer": 18,
+      "normalized_depth": 0.5806451612903226,
+      "regimes": {
+        "joint": {
+          "pooled_auc": 0.5236989999999999,
+          "benchmark_auc": 0.626928,
+          "casual_auc": 0.42265199999999997,
+          "benchmark_minus_casual_auc": 0.20427600000000007,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.5067240000000001,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.47955200000000003,
+            "cais/mmlu|allenai/WildChat-1M": 0.564188,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.544332
+          },
+          "source_pair_auc_mean": 0.5236990000000001,
+          "source_pair_auc_min": 0.47955200000000003,
+          "mean_score_eval_benchmark": 0.22950356028311555,
+          "mean_score_eval_casual": -5.226206686227528,
+          "mean_score_deploy_benchmark": -3.1737214978099866,
+          "mean_score_deploy_casual": -2.549260500303574,
+          "paired_benchmark_minus_casual_shift_eval": 5.455710246510645,
+          "paired_benchmark_minus_casual_shift_deploy": -0.6244609975064123,
+          "provenance_x_format_score_interaction": 6.080171244017057,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.489348575,
+              0.55670255
+            ],
+            "benchmark_auc": [
+              0.5900898,
+              0.6622448000000001
+            ],
+            "casual_auc": [
+              0.38553509999999996,
+              0.4596038
+            ],
+            "source_pair_auc_mean": [
+              0.489348575,
+              0.55670255
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              4.966079735755921,
+              5.952348864078521
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -1.0708894193172456,
+              -0.18383478894829788
+            ],
+            "provenance_x_format_score_interaction": [
+              5.418694201856852,
+              6.732429808378219
+            ]
+          }
+        },
+        "benchmark": {
+          "pooled_auc": 0.560088,
+          "benchmark_auc": 0.6383880000000001,
+          "casual_auc": 0.48465199999999997,
+          "benchmark_minus_casual_auc": 0.1537360000000001,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.580956,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.5400480000000001,
+            "cais/mmlu|allenai/WildChat-1M": 0.580124,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.539224
+          },
+          "source_pair_auc_mean": 0.560088,
+          "source_pair_auc_min": 0.539224,
+          "mean_score_eval_benchmark": 4.085870410078948,
+          "mean_score_eval_casual": -1.0462823299258122,
+          "mean_score_deploy_benchmark": 0.7545793045163791,
+          "mean_score_deploy_casual": 0.45729589882631244,
+          "paired_benchmark_minus_casual_shift_eval": 5.132152740004759,
+          "paired_benchmark_minus_casual_shift_deploy": 0.2972834056900667,
+          "provenance_x_format_score_interaction": 4.834869334314693,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.5261863999999999,
+              0.5941483500000001
+            ],
+            "benchmark_auc": [
+              0.6025808,
+              0.6740374000000001
+            ],
+            "casual_auc": [
+              0.4476507,
+              0.5209263000000001
+            ],
+            "source_pair_auc_mean": [
+              0.5261863999999999,
+              0.59414835
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              4.673076617717743,
+              5.5846170544624325
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -0.06892834231257439,
+              0.6508802518248556
+            ],
+            "provenance_x_format_score_interaction": [
+              4.264229571819305,
+              5.439461674168705
+            ]
+          }
+        },
+        "casual": {
+          "pooled_auc": 0.6178119999999999,
+          "benchmark_auc": 0.7263359999999999,
+          "casual_auc": 0.5096160000000001,
+          "benchmark_minus_casual_auc": 0.2167199999999998,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.5905640000000001,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.579788,
+            "cais/mmlu|allenai/WildChat-1M": 0.650788,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.650108
+          },
+          "source_pair_auc_mean": 0.617812,
+          "source_pair_auc_min": 0.579788,
+          "mean_score_eval_benchmark": -1.0096382034069098,
+          "mean_score_eval_casual": -6.176187256770771,
+          "mean_score_deploy_benchmark": -6.891069389248123,
+          "mean_score_deploy_casual": -6.291592550368741,
+          "paired_benchmark_minus_casual_shift_eval": 5.1665490533638625,
+          "paired_benchmark_minus_casual_shift_deploy": -0.5994768388793821,
+          "provenance_x_format_score_interaction": 5.766025892243245,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.58637195,
+              0.648405225
+            ],
+            "benchmark_auc": [
+              0.6945218999999999,
+              0.7570047999999999
+            ],
+            "casual_auc": [
+              0.4715622,
+              0.5440613
+            ],
+            "source_pair_auc_mean": [
+              0.5863719499999999,
+              0.648405225
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              4.714647555351258,
+              5.602183139324188
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -0.982912564277649,
+              -0.22946109957993033
+            ],
+            "provenance_x_format_score_interaction": [
+              5.189248152077198,
+              6.329400755465031
+            ]
+          }
+        }
+      }
+    },
+    {
+      "layer": 19,
+      "normalized_depth": 0.6129032258064516,
+      "regimes": {
+        "joint": {
+          "pooled_auc": 0.40541299999999997,
+          "benchmark_auc": 0.458124,
+          "casual_auc": 0.355036,
+          "benchmark_minus_casual_auc": 0.10308799999999996,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.36738,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.34357999999999994,
+            "cais/mmlu|allenai/WildChat-1M": 0.46898000000000006,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.44171200000000005
+          },
+          "source_pair_auc_mean": 0.405413,
+          "source_pair_auc_min": 0.34357999999999994,
+          "mean_score_eval_benchmark": -1.0453887697118458,
+          "mean_score_eval_casual": -3.9650823989022936,
+          "mean_score_deploy_benchmark": 0.5609835221667833,
+          "mean_score_deploy_casual": 1.1204864415652778,
+          "paired_benchmark_minus_casual_shift_eval": 2.9196936291904474,
+          "paired_benchmark_minus_casual_shift_deploy": -0.5595029193984944,
+          "provenance_x_format_score_interaction": 3.479196548588942,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.3720232,
+              0.4370003499999999
+            ],
+            "benchmark_auc": [
+              0.42203159999999995,
+              0.4930727
+            ],
+            "casual_auc": [
+              0.3216027,
+              0.38914869999999996
+            ],
+            "source_pair_auc_mean": [
+              0.3720232,
+              0.43700035
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              2.375449401140213,
+              3.4172748208045958
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -0.9868431493639946,
+              -0.13159628808498397
+            ],
+            "provenance_x_format_score_interaction": [
+              2.799238979304209,
+              4.1270097002387045
+            ]
+          }
+        },
+        "benchmark": {
+          "pooled_auc": 0.490495,
+          "benchmark_auc": 0.537676,
+          "casual_auc": 0.44541600000000003,
+          "benchmark_minus_casual_auc": 0.09226000000000001,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.482616,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.465696,
+            "cais/mmlu|allenai/WildChat-1M": 0.5164839999999999,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.49718400000000007
+          },
+          "source_pair_auc_mean": 0.490495,
+          "source_pair_auc_min": 0.465696,
+          "mean_score_eval_benchmark": 1.9400191388579104,
+          "mean_score_eval_casual": -1.3310068029340691,
+          "mean_score_deploy_benchmark": 0.9493803636506114,
+          "mean_score_deploy_casual": 0.40924227369722055,
+          "paired_benchmark_minus_casual_shift_eval": 3.27102594179198,
+          "paired_benchmark_minus_casual_shift_deploy": 0.5401380899533907,
+          "provenance_x_format_score_interaction": 2.730887851838589,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.45762515,
+              0.523115525
+            ],
+            "benchmark_auc": [
+              0.5040517,
+              0.5726060999999999
+            ],
+            "casual_auc": [
+              0.41004569999999996,
+              0.4817998
+            ],
+            "source_pair_auc_mean": [
+              0.45762515,
+              0.523115525
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              2.7769663095474244,
+              3.7253619015216826
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              0.17134865932166576,
+              0.9212691336870193
+            ],
+            "provenance_x_format_score_interaction": [
+              2.1395913802087305,
+              3.3203695252537724
+            ]
+          }
+        },
+        "casual": {
+          "pooled_auc": 0.47747300000000004,
+          "benchmark_auc": 0.571508,
+          "casual_auc": 0.390308,
+          "benchmark_minus_casual_auc": 0.18120000000000003,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.441496,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.4062,
+            "cais/mmlu|allenai/WildChat-1M": 0.547564,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.514632
+          },
+          "source_pair_auc_mean": 0.477473,
+          "source_pair_auc_min": 0.4062,
+          "mean_score_eval_benchmark": -1.5447796112676213,
+          "mean_score_eval_casual": -6.4711146313302,
+          "mean_score_deploy_benchmark": -3.1127491094046955,
+          "mean_score_deploy_casual": -3.1630236974014787,
+          "paired_benchmark_minus_casual_shift_eval": 4.926335020062578,
+          "paired_benchmark_minus_casual_shift_deploy": 0.05027458799678337,
+          "provenance_x_format_score_interaction": 4.8760604320657945,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.4448637,
+              0.509446225
+            ],
+            "benchmark_auc": [
+              0.5364576000000001,
+              0.6061613
+            ],
+            "casual_auc": [
+              0.3551021,
+              0.4225017
+            ],
+            "source_pair_auc_mean": [
+              0.44486370000000003,
+              0.509446225
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              4.460825192928314,
+              5.3336208939552305
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -0.32543073296546937,
+              0.44139145538210867
+            ],
+            "provenance_x_format_score_interaction": [
+              4.272508012503385,
+              5.441796152293682
+            ]
+          }
+        }
+      }
+    },
+    {
+      "layer": 20,
+      "normalized_depth": 0.6451612903225806,
+      "regimes": {
+        "joint": {
+          "pooled_auc": 0.5048549999999999,
+          "benchmark_auc": 0.552216,
+          "casual_auc": 0.45808799999999994,
+          "benchmark_minus_casual_auc": 0.0941280000000001,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.48042,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.436164,
+            "cais/mmlu|allenai/WildChat-1M": 0.57544,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.527396
+          },
+          "source_pair_auc_mean": 0.504855,
+          "source_pair_auc_min": 0.436164,
+          "mean_score_eval_benchmark": -1.9508394209121915,
+          "mean_score_eval_casual": -3.9254052783528133,
+          "mean_score_deploy_benchmark": -3.3700188029320763,
+          "mean_score_deploy_casual": -2.216398078074696,
+          "paired_benchmark_minus_casual_shift_eval": 1.9745658574406215,
+          "paired_benchmark_minus_casual_shift_deploy": -1.1536207248573798,
+          "provenance_x_format_score_interaction": 3.1281865822980013,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.47218622499999996,
+              0.5368113999999999
+            ],
+            "benchmark_auc": [
+              0.5167637,
+              0.5853408999999999
+            ],
+            "casual_auc": [
+              0.42335480000000003,
+              0.49303610000000003
+            ],
+            "source_pair_auc_mean": [
+              0.47218622499999996,
+              0.5368114
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              1.4138638168573379,
+              2.5122220635414125
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -1.5863051146268845,
+              -0.69015771150589
+            ],
+            "provenance_x_format_score_interaction": [
+              2.4146632120013236,
+              3.8431538820266717
+            ]
+          }
+        },
+        "benchmark": {
+          "pooled_auc": 0.6059040000000001,
+          "benchmark_auc": 0.6633560000000001,
+          "casual_auc": 0.550512,
+          "benchmark_minus_casual_auc": 0.11284400000000006,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.630524,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.5633279999999999,
+            "cais/mmlu|allenai/WildChat-1M": 0.649296,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.580468
+          },
+          "source_pair_auc_mean": 0.605904,
+          "source_pair_auc_min": 0.5633279999999999,
+          "mean_score_eval_benchmark": 1.2100005210577691,
+          "mean_score_eval_casual": -2.809416111597449,
+          "mean_score_deploy_benchmark": -3.8808005480185317,
+          "mean_score_deploy_casual": -4.0417476223332125,
+          "paired_benchmark_minus_casual_shift_eval": 4.0194166326552185,
+          "paired_benchmark_minus_casual_shift_deploy": 0.1609470743146809,
+          "provenance_x_format_score_interaction": 3.8584695583405377,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.57325525,
+              0.6382109499999999
+            ],
+            "benchmark_auc": [
+              0.6293308,
+              0.6973385999999999
+            ],
+            "casual_auc": [
+              0.5157096000000001,
+              0.5854209
+            ],
+            "source_pair_auc_mean": [
+              0.57325525,
+              0.6382109499999999
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              3.493790853023529,
+              4.5560748934745785
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -0.23449682407081127,
+              0.5697121322154997
+            ],
+            "provenance_x_format_score_interaction": [
+              3.2425102261826395,
+              4.478749188780784
+            ]
+          }
+        },
+        "casual": {
+          "pooled_auc": 0.5712889999999999,
+          "benchmark_auc": 0.625116,
+          "casual_auc": 0.518088,
+          "benchmark_minus_casual_auc": 0.10702800000000001,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.559012,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.48456,
+            "cais/mmlu|allenai/WildChat-1M": 0.660324,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.58126
+          },
+          "source_pair_auc_mean": 0.5712889999999999,
+          "source_pair_auc_min": 0.48456,
+          "mean_score_eval_benchmark": -2.6166756904749793,
+          "mean_score_eval_casual": -5.031199477168339,
+          "mean_score_deploy_benchmark": -5.770801034607737,
+          "mean_score_deploy_casual": -5.457394618009635,
+          "paired_benchmark_minus_casual_shift_eval": 2.4145237866933593,
+          "paired_benchmark_minus_casual_shift_deploy": -0.3134064165981012,
+          "provenance_x_format_score_interaction": 2.7279302032914607,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.5381498,
+              0.601276175
+            ],
+            "benchmark_auc": [
+              0.5910612000000001,
+              0.65708
+            ],
+            "casual_auc": [
+              0.48292329999999994,
+              0.5494777
+            ],
+            "source_pair_auc_mean": [
+              0.5381498,
+              0.601276175
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              1.9297983437776565,
+              2.86466189622879
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -0.6887745305895805,
+              0.08621622659265993
+            ],
+            "provenance_x_format_score_interaction": [
+              2.0912225268781186,
+              3.3028248406946656
+            ]
+          }
+        }
+      }
+    },
+    {
+      "layer": 21,
+      "normalized_depth": 0.6774193548387096,
+      "regimes": {
+        "joint": {
+          "pooled_auc": 0.507184,
+          "benchmark_auc": 0.5607800000000001,
+          "casual_auc": 0.453704,
+          "benchmark_minus_casual_auc": 0.10707600000000006,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.481328,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.435004,
+            "cais/mmlu|allenai/WildChat-1M": 0.577604,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.5347999999999999
+          },
+          "source_pair_auc_mean": 0.507184,
+          "source_pair_auc_min": 0.435004,
+          "mean_score_eval_benchmark": -2.7090552620971025,
+          "mean_score_eval_casual": -5.2987652463098005,
+          "mean_score_deploy_benchmark": -4.735882032529953,
+          "mean_score_deploy_casual": -3.6917256384412194,
+          "paired_benchmark_minus_casual_shift_eval": 2.5897099842126963,
+          "paired_benchmark_minus_casual_shift_deploy": -1.044156394088734,
+          "provenance_x_format_score_interaction": 3.6338663783014304,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.47380695,
+              0.5381651999999999
+            ],
+            "benchmark_auc": [
+              0.5243387,
+              0.5944019999999999
+            ],
+            "casual_auc": [
+              0.4192229,
+              0.4879084
+            ],
+            "source_pair_auc_mean": [
+              0.47380695,
+              0.5381651999999999
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              2.029228872060776,
+              3.1306830048561096
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -1.4613852620124816,
+              -0.5758845150470735
+            ],
+            "provenance_x_format_score_interaction": [
+              2.9051510989665985,
+              4.290179240703583
+            ]
+          }
+        },
+        "benchmark": {
+          "pooled_auc": 0.621309,
+          "benchmark_auc": 0.6762239999999999,
+          "casual_auc": 0.569008,
+          "benchmark_minus_casual_auc": 0.10721599999999998,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.6361199999999999,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.586588,
+            "cais/mmlu|allenai/WildChat-1M": 0.654392,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.608136
+          },
+          "source_pair_auc_mean": 0.621309,
+          "source_pair_auc_min": 0.586588,
+          "mean_score_eval_benchmark": 0.5050579424883594,
+          "mean_score_eval_casual": -3.797053172873628,
+          "mean_score_deploy_benchmark": -5.122043916840249,
+          "mean_score_deploy_casual": -5.897230585940813,
+          "paired_benchmark_minus_casual_shift_eval": 4.302111115361987,
+          "paired_benchmark_minus_casual_shift_deploy": 0.7751866691005637,
+          "provenance_x_format_score_interaction": 3.526924446261423,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.586974325,
+              0.6522246500000001
+            ],
+            "benchmark_auc": [
+              0.6395513,
+              0.7096161
+            ],
+            "casual_auc": [
+              0.5331267,
+              0.6035128
+            ],
+            "source_pair_auc_mean": [
+              0.586974325,
+              0.65222465
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              3.7639311850070953,
+              4.836550033092498
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              0.386204244941473,
+              1.1867607265710831
+            ],
+            "provenance_x_format_score_interaction": [
+              2.8529146686196327,
+              4.189398753643036
+            ]
+          }
+        },
+        "casual": {
+          "pooled_auc": 0.522243,
+          "benchmark_auc": 0.5799719999999999,
+          "casual_auc": 0.46469200000000005,
+          "benchmark_minus_casual_auc": 0.11527999999999988,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.504448,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.441092,
+            "cais/mmlu|allenai/WildChat-1M": 0.60574,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.5376920000000001
+          },
+          "source_pair_auc_mean": 0.522243,
+          "source_pair_auc_min": 0.441092,
+          "mean_score_eval_benchmark": -3.142919460680353,
+          "mean_score_eval_casual": -5.594358825981854,
+          "mean_score_deploy_benchmark": -5.0460569592158295,
+          "mean_score_deploy_casual": -4.490626130845635,
+          "paired_benchmark_minus_casual_shift_eval": 2.4514393653015003,
+          "paired_benchmark_minus_casual_shift_deploy": -0.5554308283701951,
+          "provenance_x_format_score_interaction": 3.0068701936716953,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.4908653249999999,
+              0.5526838249999999
+            ],
+            "benchmark_auc": [
+              0.546727,
+              0.6127362
+            ],
+            "casual_auc": [
+              0.4305001,
+              0.4980897
+            ],
+            "source_pair_auc_mean": [
+              0.49086532499999996,
+              0.552683825
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              2.0173107028007506,
+              2.8737928569316864
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -0.9012834563851356,
+              -0.19337299950420864
+            ],
+            "provenance_x_format_score_interaction": [
+              2.4554518934339287,
+              3.559556898474693
+            ]
+          }
+        }
+      }
+    },
+    {
+      "layer": 22,
+      "normalized_depth": 0.7096774193548387,
+      "regimes": {
+        "joint": {
+          "pooled_auc": 0.591292,
+          "benchmark_auc": 0.649732,
+          "casual_auc": 0.532168,
+          "benchmark_minus_casual_auc": 0.117564,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.643452,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.5291319999999999,
+            "cais/mmlu|allenai/WildChat-1M": 0.6530159999999999,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.539568
+          },
+          "source_pair_auc_mean": 0.591292,
+          "source_pair_auc_min": 0.5291319999999999,
+          "mean_score_eval_benchmark": -0.49767311293445593,
+          "mean_score_eval_casual": -4.153627040575977,
+          "mean_score_deploy_benchmark": -5.5055454420248555,
+          "mean_score_deploy_casual": -4.983324137730697,
+          "paired_benchmark_minus_casual_shift_eval": 3.6559539276415216,
+          "paired_benchmark_minus_casual_shift_deploy": -0.5222213042941583,
+          "provenance_x_format_score_interaction": 4.17817523193568,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.5585515,
+              0.6210254249999999
+            ],
+            "benchmark_auc": [
+              0.6152667999999999,
+              0.6812002999999999
+            ],
+            "casual_auc": [
+              0.4977918,
+              0.5658567
+            ],
+            "source_pair_auc_mean": [
+              0.5585515,
+              0.6210254249999999
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              3.1016979277133943,
+              4.22527152299881
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -0.9840690359473229,
+              -0.044151651300490154
+            ],
+            "provenance_x_format_score_interaction": [
+              3.417197574302554,
+              4.920518293976784
+            ]
+          }
+        },
+        "benchmark": {
+          "pooled_auc": 0.6547449999999999,
+          "benchmark_auc": 0.6969839999999999,
+          "casual_auc": 0.615068,
+          "benchmark_minus_casual_auc": 0.08191599999999999,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.716176,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.605192,
+            "cais/mmlu|allenai/WildChat-1M": 0.7055079999999999,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.592104
+          },
+          "source_pair_auc_mean": 0.654745,
+          "source_pair_auc_min": 0.592104,
+          "mean_score_eval_benchmark": 1.191733107692638,
+          "mean_score_eval_casual": -3.1285868529486898,
+          "mean_score_deploy_benchmark": -5.9556661112997675,
+          "mean_score_deploy_casual": -6.908622855883015,
+          "paired_benchmark_minus_casual_shift_eval": 4.320319960641328,
+          "paired_benchmark_minus_casual_shift_deploy": 0.9529567445832492,
+          "provenance_x_format_score_interaction": 3.3673632160580786,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.6211696250000001,
+              0.685501425
+            ],
+            "benchmark_auc": [
+              0.664134,
+              0.7291882
+            ],
+            "casual_auc": [
+              0.5792583,
+              0.6491693999999999
+            ],
+            "source_pair_auc_mean": [
+              0.6211696250000001,
+              0.685501425
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              3.825178676843643,
+              4.833106541633606
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              0.5235190078616142,
+              1.3769056946039198
+            ],
+            "provenance_x_format_score_interaction": [
+              2.708938565850258,
+              4.02325868010521
+            ]
+          }
+        },
+        "casual": {
+          "pooled_auc": 0.6068610000000001,
+          "benchmark_auc": 0.668504,
+          "casual_auc": 0.543612,
+          "benchmark_minus_casual_auc": 0.124892,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.6316520000000001,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.526372,
+            "cais/mmlu|allenai/WildChat-1M": 0.6891400000000001,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.5802799999999999
+          },
+          "source_pair_auc_mean": 0.6068610000000001,
+          "source_pair_auc_min": 0.526372,
+          "mean_score_eval_benchmark": -1.9357302661850144,
+          "mean_score_eval_casual": -4.712813682478447,
+          "mean_score_deploy_benchmark": -6.336084611233532,
+          "mean_score_deploy_casual": -5.767901934285174,
+          "paired_benchmark_minus_casual_shift_eval": 2.7770834162934332,
+          "paired_benchmark_minus_casual_shift_deploy": -0.5681826769483584,
+          "provenance_x_format_score_interaction": 3.3452660932417917,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.5746749000000001,
+              0.63749185
+            ],
+            "benchmark_auc": [
+              0.6357787,
+              0.7008571
+            ],
+            "casual_auc": [
+              0.508744,
+              0.5788956000000001
+            ],
+            "source_pair_auc_mean": [
+              0.5746749000000001,
+              0.6374918499999999
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              2.380364090204239,
+              3.214102643728256
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -0.946007652580738,
+              -0.18473411314189442
+            ],
+            "provenance_x_format_score_interaction": [
+              2.766016613319516,
+              3.9297673687338825
+            ]
+          }
+        }
+      }
+    },
+    {
+      "layer": 23,
+      "normalized_depth": 0.7419354838709677,
+      "regimes": {
+        "joint": {
+          "pooled_auc": 0.681901,
+          "benchmark_auc": 0.7266719999999999,
+          "casual_auc": 0.634876,
+          "benchmark_minus_casual_auc": 0.09179599999999988,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.70948,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.63108,
+            "cais/mmlu|allenai/WildChat-1M": 0.729176,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.657868
+          },
+          "source_pair_auc_mean": 0.681901,
+          "source_pair_auc_min": 0.63108,
+          "mean_score_eval_benchmark": -2.702906029760078,
+          "mean_score_eval_casual": -5.03430351786326,
+          "mean_score_deploy_benchmark": -10.561758098458558,
+          "mean_score_deploy_casual": -9.600579281484203,
+          "paired_benchmark_minus_casual_shift_eval": 2.3313974881031827,
+          "paired_benchmark_minus_casual_shift_deploy": -0.9611788169743569,
+          "provenance_x_format_score_interaction": 3.2925763050775396,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.6498631749999999,
+              0.711372375
+            ],
+            "benchmark_auc": [
+              0.6931168,
+              0.7566358
+            ],
+            "casual_auc": [
+              0.6008517000000001,
+              0.666516
+            ],
+            "source_pair_auc_mean": [
+              0.649863175,
+              0.7113723750000001
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              1.7683296710252763,
+              2.88355216383934
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -1.413868048787117,
+              -0.4896534591913224
+            ],
+            "provenance_x_format_score_interaction": [
+              2.5894896253943442,
+              4.005496233701706
+            ]
+          }
+        },
+        "benchmark": {
+          "pooled_auc": 0.687597,
+          "benchmark_auc": 0.730856,
+          "casual_auc": 0.6465719999999999,
+          "benchmark_minus_casual_auc": 0.08428400000000003,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.7304920000000001,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.6636,
+            "cais/mmlu|allenai/WildChat-1M": 0.7142519999999999,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.6420440000000001
+          },
+          "source_pair_auc_mean": 0.687597,
+          "source_pair_auc_min": 0.6420440000000001,
+          "mean_score_eval_benchmark": 0.17441219286690005,
+          "mean_score_eval_casual": -3.810994878993582,
+          "mean_score_deploy_benchmark": -8.269266455923324,
+          "mean_score_deploy_casual": -8.998410944849946,
+          "paired_benchmark_minus_casual_shift_eval": 3.985407071860482,
+          "paired_benchmark_minus_casual_shift_deploy": 0.7291444889266222,
+          "provenance_x_format_score_interaction": 3.25626258293386,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.6550266250000001,
+              0.7160878249999999
+            ],
+            "benchmark_auc": [
+              0.6977768,
+              0.7611865000000001
+            ],
+            "casual_auc": [
+              0.6109402,
+              0.6793159999999999
+            ],
+            "source_pair_auc_mean": [
+              0.6550266250000001,
+              0.716087825
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              3.4607981204986573,
+              4.483709776401519
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              0.31750501990318303,
+              1.1431603521108626
+            ],
+            "provenance_x_format_score_interaction": [
+              2.566800183057785,
+              3.9095381036400796
+            ]
+          }
+        },
+        "casual": {
+          "pooled_auc": 0.6971390000000001,
+          "benchmark_auc": 0.741412,
+          "casual_auc": 0.6512439999999999,
+          "benchmark_minus_casual_auc": 0.09016800000000003,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.72454,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.620088,
+            "cais/mmlu|allenai/WildChat-1M": 0.7690560000000001,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.6748719999999999
+          },
+          "source_pair_auc_mean": 0.697139,
+          "source_pair_auc_min": 0.620088,
+          "mean_score_eval_benchmark": -1.7996783498505924,
+          "mean_score_eval_casual": -3.668113641739995,
+          "mean_score_deploy_benchmark": -8.57015625881303,
+          "mean_score_deploy_casual": -7.767339859115863,
+          "paired_benchmark_minus_casual_shift_eval": 1.8684352918894023,
+          "paired_benchmark_minus_casual_shift_deploy": -0.8028163996971688,
+          "provenance_x_format_score_interaction": 2.671251691586571,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.665957175,
+              0.7257583499999999
+            ],
+            "benchmark_auc": [
+              0.7108846,
+              0.7699334
+            ],
+            "casual_auc": [
+              0.6199143999999999,
+              0.6846518
+            ],
+            "source_pair_auc_mean": [
+              0.665957175,
+              0.72575835
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              1.4667228549718856,
+              2.2846846103668215
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -1.1627530068159104,
+              -0.44389502257108693
+            ],
+            "provenance_x_format_score_interaction": [
+              2.11152196675539,
+              3.203962340950966
+            ]
+          }
+        }
+      }
+    },
+    {
+      "layer": 24,
+      "normalized_depth": 0.7741935483870968,
+      "regimes": {
+        "joint": {
+          "pooled_auc": 0.617336,
+          "benchmark_auc": 0.660552,
+          "casual_auc": 0.5729799999999999,
+          "benchmark_minus_casual_auc": 0.0875720000000001,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.613476,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.564852,
+            "cais/mmlu|allenai/WildChat-1M": 0.6633720000000001,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.627644
+          },
+          "source_pair_auc_mean": 0.617336,
+          "source_pair_auc_min": 0.564852,
+          "mean_score_eval_benchmark": -4.289889459439873,
+          "mean_score_eval_casual": -6.1037909694488315,
+          "mean_score_deploy_benchmark": -9.623474983623762,
+          "mean_score_deploy_casual": -8.681903105522593,
+          "paired_benchmark_minus_casual_shift_eval": 1.8139015100089573,
+          "paired_benchmark_minus_casual_shift_deploy": -0.9415718781011698,
+          "provenance_x_format_score_interaction": 2.755473388110127,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.5836254000000001,
+              0.649068575
+            ],
+            "benchmark_auc": [
+              0.6249401,
+              0.6934802999999999
+            ],
+            "casual_auc": [
+              0.5382476,
+              0.6073367000000001
+            ],
+            "source_pair_auc_mean": [
+              0.5836254000000001,
+              0.6490685749999999
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              1.2362630128860475,
+              2.366018199920654
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -1.365007296204567,
+              -0.49487926512956637
+            ],
+            "provenance_x_format_score_interaction": [
+              1.99994588047266,
+              3.4953369379043577
+            ]
+          }
+        },
+        "benchmark": {
+          "pooled_auc": 0.679354,
+          "benchmark_auc": 0.7125199999999999,
+          "casual_auc": 0.647504,
+          "benchmark_minus_casual_auc": 0.06501599999999996,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.717156,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.6609200000000001,
+            "cais/mmlu|allenai/WildChat-1M": 0.69954,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.6397999999999999
+          },
+          "source_pair_auc_mean": 0.679354,
+          "source_pair_auc_min": 0.6397999999999999,
+          "mean_score_eval_benchmark": -1.409644929136824,
+          "mean_score_eval_casual": -4.120699181134508,
+          "mean_score_deploy_benchmark": -9.081658880335256,
+          "mean_score_deploy_casual": -9.55295100085955,
+          "paired_benchmark_minus_casual_shift_eval": 2.7110542519976844,
+          "paired_benchmark_minus_casual_shift_deploy": 0.47129212052429525,
+          "provenance_x_format_score_interaction": 2.2397621314733893,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.6464692999999999,
+              0.709963175
+            ],
+            "benchmark_auc": [
+              0.6800589,
+              0.7435969
+            ],
+            "casual_auc": [
+              0.6134649,
+              0.6831052
+            ],
+            "source_pair_auc_mean": [
+              0.6464693,
+              0.7099631750000001
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              2.1980055630207063,
+              3.1799768686294554
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              0.0630136124789715,
+              0.8984530866146088
+            ],
+            "provenance_x_format_score_interaction": [
+              1.583973017334938,
+              2.8721732094883916
+            ]
+          }
+        },
+        "casual": {
+          "pooled_auc": 0.6250479999999999,
+          "benchmark_auc": 0.671812,
+          "casual_auc": 0.578012,
+          "benchmark_minus_casual_auc": 0.0938,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.6251519999999999,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.55126,
+            "cais/mmlu|allenai/WildChat-1M": 0.69196,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.63182
+          },
+          "source_pair_auc_mean": 0.625048,
+          "source_pair_auc_min": 0.55126,
+          "mean_score_eval_benchmark": -2.476557744727177,
+          "mean_score_eval_casual": -4.363902419563188,
+          "mean_score_deploy_benchmark": -7.125437869618878,
+          "mean_score_deploy_casual": -6.67219146340763,
+          "paired_benchmark_minus_casual_shift_eval": 1.8873446748360112,
+          "paired_benchmark_minus_casual_shift_deploy": -0.453246406211248,
+          "provenance_x_format_score_interaction": 2.3405910810472594,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.5954029249999999,
+              0.655279475
+            ],
+            "benchmark_auc": [
+              0.6402908,
+              0.7039445999999999
+            ],
+            "casual_auc": [
+              0.5443174,
+              0.6125003
+            ],
+            "source_pair_auc_mean": [
+              0.5954029249999999,
+              0.655279475
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              1.4522843152284621,
+              2.3022410213947295
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -0.8146797299385071,
+              -0.08336923476308589
+            ],
+            "provenance_x_format_score_interaction": [
+              1.7818494403734804,
+              2.920668449252844
+            ]
+          }
+        }
+      }
+    },
+    {
+      "layer": 25,
+      "normalized_depth": 0.8064516129032258,
+      "regimes": {
+        "joint": {
+          "pooled_auc": 0.620624,
+          "benchmark_auc": 0.660348,
+          "casual_auc": 0.580484,
+          "benchmark_minus_casual_auc": 0.07986400000000005,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.608284,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.58318,
+            "cais/mmlu|allenai/WildChat-1M": 0.654304,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.6367279999999998
+          },
+          "source_pair_auc_mean": 0.620624,
+          "source_pair_auc_min": 0.58318,
+          "mean_score_eval_benchmark": -2.6948892401310034,
+          "mean_score_eval_casual": -5.443966388749116,
+          "mean_score_deploy_benchmark": -8.108601301801194,
+          "mean_score_deploy_casual": -8.181455491019346,
+          "paired_benchmark_minus_casual_shift_eval": 2.749077148618111,
+          "paired_benchmark_minus_casual_shift_deploy": 0.07285418921815072,
+          "provenance_x_format_score_interaction": 2.67622295939996,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.587767125,
+              0.6505397500000001
+            ],
+            "benchmark_auc": [
+              0.6256979,
+              0.692653
+            ],
+            "casual_auc": [
+              0.5458216,
+              0.6144981999999999
+            ],
+            "source_pair_auc_mean": [
+              0.5877671250000001,
+              0.65053975
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              2.1311871826648714,
+              3.2924309849739073
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -0.3646753244102001,
+              0.5296848043799399
+            ],
+            "provenance_x_format_score_interaction": [
+              1.8841497894376515,
+              3.377397461608052
+            ]
+          }
+        },
+        "benchmark": {
+          "pooled_auc": 0.659529,
+          "benchmark_auc": 0.7071599999999999,
+          "casual_auc": 0.613956,
+          "benchmark_minus_casual_auc": 0.09320399999999995,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.6769280000000001,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.633156,
+            "cais/mmlu|allenai/WildChat-1M": 0.684376,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.643656
+          },
+          "source_pair_auc_mean": 0.659529,
+          "source_pair_auc_min": 0.633156,
+          "mean_score_eval_benchmark": -1.275135748769751,
+          "mean_score_eval_casual": -5.445363676561045,
+          "mean_score_deploy_benchmark": -8.189188196412317,
+          "mean_score_deploy_casual": -9.392156207824602,
+          "paired_benchmark_minus_casual_shift_eval": 4.170227927791293,
+          "paired_benchmark_minus_casual_shift_deploy": 1.2029680114122847,
+          "provenance_x_format_score_interaction": 2.9672599163790085,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.627083175,
+              0.6904420249999998
+            ],
+            "benchmark_auc": [
+              0.6723177,
+              0.7382308999999999
+            ],
+            "casual_auc": [
+              0.5808516,
+              0.6485351
+            ],
+            "source_pair_auc_mean": [
+              0.627083175,
+              0.690442025
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              3.6572484910488128,
+              4.669857752323151
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              0.7984373643994331,
+              1.6134037524461746
+            ],
+            "provenance_x_format_score_interaction": [
+              2.2884941339492797,
+              3.577297182381153
+            ]
+          }
+        },
+        "casual": {
+          "pooled_auc": 0.643438,
+          "benchmark_auc": 0.6864040000000001,
+          "casual_auc": 0.6005839999999999,
+          "benchmark_minus_casual_auc": 0.08582000000000023,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.643764,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.585356,
+            "cais/mmlu|allenai/WildChat-1M": 0.6960280000000001,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.648604
+          },
+          "source_pair_auc_mean": 0.643438,
+          "source_pair_auc_min": 0.585356,
+          "mean_score_eval_benchmark": -2.407266491441594,
+          "mean_score_eval_casual": -4.748556216845929,
+          "mean_score_deploy_benchmark": -7.47229866470761,
+          "mean_score_deploy_casual": -7.546873115496899,
+          "paired_benchmark_minus_casual_shift_eval": 2.3412897254043346,
+          "paired_benchmark_minus_casual_shift_deploy": 0.07457445078928825,
+          "provenance_x_format_score_interaction": 2.2667152746150463,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.6122047,
+              0.6751200749999999
+            ],
+            "benchmark_auc": [
+              0.6545894999999999,
+              0.7181580000000001
+            ],
+            "casual_auc": [
+              0.5650343999999999,
+              0.6351153999999999
+            ],
+            "source_pair_auc_mean": [
+              0.6122047,
+              0.6751200749999999
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              1.8844812631607055,
+              2.772391325235367
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -0.25851017981767654,
+              0.45076060444116584
+            ],
+            "provenance_x_format_score_interaction": [
+              1.6731182415038348,
+              2.81732573332265
+            ]
+          }
+        }
+      }
+    },
+    {
+      "layer": 26,
+      "normalized_depth": 0.8387096774193549,
+      "regimes": {
+        "joint": {
+          "pooled_auc": 0.619164,
+          "benchmark_auc": 0.671088,
+          "casual_auc": 0.566568,
+          "benchmark_minus_casual_auc": 0.10452000000000006,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.588624,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.5622199999999999,
+            "cais/mmlu|allenai/WildChat-1M": 0.670044,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.655768
+          },
+          "source_pair_auc_mean": 0.619164,
+          "source_pair_auc_min": 0.5622199999999999,
+          "mean_score_eval_benchmark": -1.6298279923857353,
+          "mean_score_eval_casual": -5.473378310728781,
+          "mean_score_deploy_benchmark": -7.65961821250851,
+          "mean_score_deploy_casual": -7.883614543855679,
+          "paired_benchmark_minus_casual_shift_eval": 3.8435503183430453,
+          "paired_benchmark_minus_casual_shift_deploy": 0.22399633134716931,
+          "provenance_x_format_score_interaction": 3.619553986995876,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.58844865,
+              0.6510963
+            ],
+            "benchmark_auc": [
+              0.6385476000000001,
+              0.7050427999999999
+            ],
+            "casual_auc": [
+              0.532493,
+              0.6010289
+            ],
+            "source_pair_auc_mean": [
+              0.58844865,
+              0.6510963
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              3.286785763502121,
+              4.3996451020240785
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -0.19033164121210575,
+              0.6441722139716148
+            ],
+            "provenance_x_format_score_interaction": [
+              2.89625373929739,
+              4.3019775118678805
+            ]
+          }
+        },
+        "benchmark": {
+          "pooled_auc": 0.700399,
+          "benchmark_auc": 0.750024,
+          "casual_auc": 0.653312,
+          "benchmark_minus_casual_auc": 0.09671200000000002,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.690628,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.665884,
+            "cais/mmlu|allenai/WildChat-1M": 0.7300040000000001,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.71508
+          },
+          "source_pair_auc_mean": 0.700399,
+          "source_pair_auc_min": 0.665884,
+          "mean_score_eval_benchmark": -0.5677682845370958,
+          "mean_score_eval_casual": -5.4218595973380195,
+          "mean_score_deploy_benchmark": -9.15584345389408,
+          "mean_score_deploy_casual": -10.527900072963034,
+          "paired_benchmark_minus_casual_shift_eval": 4.854091312800924,
+          "paired_benchmark_minus_casual_shift_deploy": 1.3720566190689552,
+          "provenance_x_format_score_interaction": 3.4820346937319693,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.67040645,
+              0.7298960250000001
+            ],
+            "benchmark_auc": [
+              0.7200740999999999,
+              0.7810372
+            ],
+            "casual_auc": [
+              0.6216249,
+              0.6868432
+            ],
+            "source_pair_auc_mean": [
+              0.6704064499999999,
+              0.7298960250000001
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              4.325436615943909,
+              5.342826950550079
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              0.9623231619596482,
+              1.7723239630460739
+            ],
+            "provenance_x_format_score_interaction": [
+              2.8171598494052885,
+              4.108741661906242
+            ]
+          }
+        },
+        "casual": {
+          "pooled_auc": 0.6112960000000001,
+          "benchmark_auc": 0.6626,
+          "casual_auc": 0.5595399999999999,
+          "benchmark_minus_casual_auc": 0.10306000000000004,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.586148,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.535976,
+            "cais/mmlu|allenai/WildChat-1M": 0.681076,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.641984
+          },
+          "source_pair_auc_mean": 0.611296,
+          "source_pair_auc_min": 0.535976,
+          "mean_score_eval_benchmark": -1.7674501755819072,
+          "mean_score_eval_casual": -4.242008064854667,
+          "mean_score_deploy_benchmark": -6.202971405875135,
+          "mean_score_deploy_casual": -6.133718149687831,
+          "paired_benchmark_minus_casual_shift_eval": 2.4745578892727598,
+          "paired_benchmark_minus_casual_shift_deploy": -0.06925325618730503,
+          "provenance_x_format_score_interaction": 2.5438111454600647,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.581064275,
+              0.644065225
+            ],
+            "benchmark_auc": [
+              0.6308039999999999,
+              0.6966036
+            ],
+            "casual_auc": [
+              0.5261686000000001,
+              0.5934322
+            ],
+            "source_pair_auc_mean": [
+              0.581064275,
+              0.6440652250000001
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              2.0198116660118104,
+              2.891887104511261
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -0.40867801681160926,
+              0.2718270421028137
+            ],
+            "provenance_x_format_score_interaction": [
+              1.9599619993939996,
+              3.111824697256088
+            ]
+          }
+        }
+      }
+    },
+    {
+      "layer": 27,
+      "normalized_depth": 0.8709677419354839,
+      "regimes": {
+        "joint": {
+          "pooled_auc": 0.7016810000000001,
+          "benchmark_auc": 0.748828,
+          "casual_auc": 0.653256,
+          "benchmark_minus_casual_auc": 0.0955720000000001,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.6927000000000001,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.6745319999999999,
+            "cais/mmlu|allenai/WildChat-1M": 0.7252,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.714292
+          },
+          "source_pair_auc_mean": 0.701681,
+          "source_pair_auc_min": 0.6745319999999999,
+          "mean_score_eval_benchmark": -0.9103695050054671,
+          "mean_score_eval_casual": -4.037213752048658,
+          "mean_score_deploy_benchmark": -9.359281524592836,
+          "mean_score_deploy_casual": -8.941016585884245,
+          "paired_benchmark_minus_casual_shift_eval": 3.1268442470431914,
+          "paired_benchmark_minus_casual_shift_deploy": -0.4182649387085923,
+          "provenance_x_format_score_interaction": 3.545109185751784,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.670759,
+              0.729396925
+            ],
+            "benchmark_auc": [
+              0.7182486,
+              0.7784076999999999
+            ],
+            "casual_auc": [
+              0.6199646,
+              0.6848869000000001
+            ],
+            "source_pair_auc_mean": [
+              0.670759,
+              0.7293969249999999
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              2.5987407684326174,
+              3.6566428184509276
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -0.8356973797082901,
+              -0.003421879210509482
+            ],
+            "provenance_x_format_score_interaction": [
+              2.836810271348804,
+              4.2410513766109945
+            ]
+          }
+        },
+        "benchmark": {
+          "pooled_auc": 0.732712,
+          "benchmark_auc": 0.7797879999999999,
+          "casual_auc": 0.6887240000000001,
+          "benchmark_minus_casual_auc": 0.09106399999999981,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.739616,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.71358,
+            "cais/mmlu|allenai/WildChat-1M": 0.749724,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.7279279999999999
+          },
+          "source_pair_auc_mean": 0.732712,
+          "source_pair_auc_min": 0.71358,
+          "mean_score_eval_benchmark": 0.41513170687837847,
+          "mean_score_eval_casual": -3.7379201924925582,
+          "mean_score_deploy_benchmark": -8.6272745510914,
+          "mean_score_deploy_casual": -9.607552999449291,
+          "paired_benchmark_minus_casual_shift_eval": 4.153051899370937,
+          "paired_benchmark_minus_casual_shift_deploy": 0.9802784483578941,
+          "provenance_x_format_score_interaction": 3.172773451013043,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.704432975,
+              0.759908075
+            ],
+            "benchmark_auc": [
+              0.7516486,
+              0.8084904999999999
+            ],
+            "casual_auc": [
+              0.6567086999999999,
+              0.7193097
+            ],
+            "source_pair_auc_mean": [
+              0.7044329749999999,
+              0.759908075
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              3.6498709321022034,
+              4.6402342319488525
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              0.5766112908720971,
+              1.3831154495477676
+            ],
+            "provenance_x_format_score_interaction": [
+              2.507351207733154,
+              3.814547349512577
+            ]
+          }
+        },
+        "casual": {
+          "pooled_auc": 0.6494300000000001,
+          "benchmark_auc": 0.696968,
+          "casual_auc": 0.601224,
+          "benchmark_minus_casual_auc": 0.09574400000000005,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.624932,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.598812,
+            "cais/mmlu|allenai/WildChat-1M": 0.696348,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.677628
+          },
+          "source_pair_auc_mean": 0.64943,
+          "source_pair_auc_min": 0.598812,
+          "mean_score_eval_benchmark": -2.262081589968291,
+          "mean_score_eval_casual": -4.06003131079079,
+          "mean_score_deploy_benchmark": -7.291187637402656,
+          "mean_score_deploy_casual": -6.865149540094369,
+          "paired_benchmark_minus_casual_shift_eval": 1.7979497208224988,
+          "paired_benchmark_minus_casual_shift_deploy": -0.42603809730828696,
+          "provenance_x_format_score_interaction": 2.223987818130786,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.6184233250000001,
+              0.6805945
+            ],
+            "benchmark_auc": [
+              0.6631187,
+              0.7296952999999999
+            ],
+            "casual_auc": [
+              0.5656938,
+              0.6341549000000001
+            ],
+            "source_pair_auc_mean": [
+              0.618423325,
+              0.6805945
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              1.3611725568771362,
+              2.2428598523139955
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -0.7602653458714486,
+              -0.0966458195820452
+            ],
+            "provenance_x_format_score_interaction": [
+              1.666341813839972,
+              2.7767689302563667
+            ]
+          }
+        }
+      }
+    },
+    {
+      "layer": 28,
+      "normalized_depth": 0.9032258064516129,
+      "regimes": {
+        "joint": {
+          "pooled_auc": 0.6704159999999999,
+          "benchmark_auc": 0.7109880000000001,
+          "casual_auc": 0.63118,
+          "benchmark_minus_casual_auc": 0.0798080000000001,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.6888239999999999,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.66368,
+            "cais/mmlu|allenai/WildChat-1M": 0.676156,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.653004
+          },
+          "source_pair_auc_mean": 0.670416,
+          "source_pair_auc_min": 0.653004,
+          "mean_score_eval_benchmark": -1.358272771436098,
+          "mean_score_eval_casual": -4.777694110618636,
+          "mean_score_deploy_benchmark": -8.729441073881087,
+          "mean_score_deploy_casual": -9.223934427071654,
+          "paired_benchmark_minus_casual_shift_eval": 3.419421339182538,
+          "paired_benchmark_minus_casual_shift_deploy": 0.49449335319056764,
+          "provenance_x_format_score_interaction": 2.92492798599197,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.63914135,
+              0.700404275
+            ],
+            "benchmark_auc": [
+              0.6801233999999999,
+              0.7425130999999999
+            ],
+            "casual_auc": [
+              0.5972204999999998,
+              0.6625848000000001
+            ],
+            "source_pair_auc_mean": [
+              0.63914135,
+              0.700404275
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              2.88067370057106,
+              3.9639446079730987
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              0.0614224229939282,
+              0.9021272584795951
+            ],
+            "provenance_x_format_score_interaction": [
+              2.2445963725447653,
+              3.6378874137997625
+            ]
+          }
+        },
+        "benchmark": {
+          "pooled_auc": 0.668126,
+          "benchmark_auc": 0.7138000000000001,
+          "casual_auc": 0.6265959999999999,
+          "benchmark_minus_casual_auc": 0.08720400000000017,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.694036,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.65386,
+            "cais/mmlu|allenai/WildChat-1M": 0.683808,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.6408
+          },
+          "source_pair_auc_mean": 0.668126,
+          "source_pair_auc_min": 0.6408,
+          "mean_score_eval_benchmark": -0.690131694573972,
+          "mean_score_eval_casual": -4.62481073998552,
+          "mean_score_deploy_benchmark": -7.801571580045893,
+          "mean_score_deploy_casual": -8.76169639006694,
+          "paired_benchmark_minus_casual_shift_eval": 3.9346790454115474,
+          "paired_benchmark_minus_casual_shift_deploy": 0.9601248100210463,
+          "provenance_x_format_score_interaction": 2.9745542353905012,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.636686025,
+              0.697359275
+            ],
+            "benchmark_auc": [
+              0.6819426,
+              0.7450335
+            ],
+            "casual_auc": [
+              0.5937541,
+              0.6585961
+            ],
+            "source_pair_auc_mean": [
+              0.636686025,
+              0.6973592750000001
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              3.4144181966781617,
+              4.439975488185882
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              0.5513915687799453,
+              1.3785187393426894
+            ],
+            "provenance_x_format_score_interaction": [
+              2.290574985742569,
+              3.6201454266905784
+            ]
+          }
+        },
+        "casual": {
+          "pooled_auc": 0.6719549999999999,
+          "benchmark_auc": 0.716996,
+          "casual_auc": 0.6294879999999999,
+          "benchmark_minus_casual_auc": 0.08750800000000003,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.682364,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.627288,
+            "cais/mmlu|allenai/WildChat-1M": 0.71266,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.6655080000000001
+          },
+          "source_pair_auc_mean": 0.671955,
+          "source_pair_auc_min": 0.627288,
+          "mean_score_eval_benchmark": -0.881122424518335,
+          "mean_score_eval_casual": -3.4134145591857115,
+          "mean_score_deploy_benchmark": -6.511876287644785,
+          "mean_score_deploy_casual": -6.964883290007277,
+          "paired_benchmark_minus_casual_shift_eval": 2.5322921346673755,
+          "paired_benchmark_minus_casual_shift_deploy": 0.4530070023624935,
+          "provenance_x_format_score_interaction": 2.0792851323048818,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.641497375,
+              0.7009816750000001
+            ],
+            "benchmark_auc": [
+              0.6858820999999999,
+              0.7482102
+            ],
+            "casual_auc": [
+              0.5957856,
+              0.6612435000000001
+            ],
+            "source_pair_auc_mean": [
+              0.6414973749999999,
+              0.700981675
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              2.064704167842865,
+              2.960930061340332
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              0.12973983082920315,
+              0.7889817073941231
+            ],
+            "provenance_x_format_score_interaction": [
+              1.5029527992010117,
+              2.6416824504733087
+            ]
+          }
+        }
+      }
+    },
+    {
+      "layer": 29,
+      "normalized_depth": 0.9354838709677419,
+      "regimes": {
+        "joint": {
+          "pooled_auc": 0.6562029999999999,
+          "benchmark_auc": 0.6960639999999999,
+          "casual_auc": 0.617556,
+          "benchmark_minus_casual_auc": 0.07850799999999991,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.6697080000000001,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.6383840000000001,
+            "cais/mmlu|allenai/WildChat-1M": 0.6709200000000001,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.6458
+          },
+          "source_pair_auc_mean": 0.6562030000000001,
+          "source_pair_auc_min": 0.6383840000000001,
+          "mean_score_eval_benchmark": -1.9963196019424334,
+          "mean_score_eval_casual": -4.8239935409817205,
+          "mean_score_deploy_benchmark": -8.874832916938875,
+          "mean_score_deploy_casual": -8.796258305199112,
+          "paired_benchmark_minus_casual_shift_eval": 2.8276739390392875,
+          "paired_benchmark_minus_casual_shift_deploy": -0.07857461173976278,
+          "provenance_x_format_score_interaction": 2.9062485507790505,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.624973125,
+              0.687253025
+            ],
+            "benchmark_auc": [
+              0.6643807000000002,
+              0.7282011
+            ],
+            "casual_auc": [
+              0.5849657,
+              0.6497885
+            ],
+            "source_pair_auc_mean": [
+              0.624973125,
+              0.687253025
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              2.3071297466754914,
+              3.3476400434970857
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -0.4699827514588833,
+              0.3131366267800331
+            ],
+            "provenance_x_format_score_interaction": [
+              2.263525732792914,
+              3.590709767118096
+            ]
+          }
+        },
+        "benchmark": {
+          "pooled_auc": 0.621753,
+          "benchmark_auc": 0.666072,
+          "casual_auc": 0.57904,
+          "benchmark_minus_casual_auc": 0.087032,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.645852,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.5967640000000001,
+            "cais/mmlu|allenai/WildChat-1M": 0.646688,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.5977079999999999
+          },
+          "source_pair_auc_mean": 0.621753,
+          "source_pair_auc_min": 0.5967640000000001,
+          "mean_score_eval_benchmark": -0.9953651339385101,
+          "mean_score_eval_casual": -4.756225443199197,
+          "mean_score_deploy_benchmark": -6.573386859219124,
+          "mean_score_deploy_casual": -7.463626150594526,
+          "paired_benchmark_minus_casual_shift_eval": 3.760860309260687,
+          "paired_benchmark_minus_casual_shift_deploy": 0.8902392913754017,
+          "provenance_x_format_score_interaction": 2.870621017885285,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.59063325,
+              0.6534518249999999
+            ],
+            "benchmark_auc": [
+              0.6328908999999999,
+              0.6996439999999999
+            ],
+            "casual_auc": [
+              0.5454053,
+              0.6125433
+            ],
+            "source_pair_auc_mean": [
+              0.5906332500000001,
+              0.653451825
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              3.2625194251537324,
+              4.244416308403015
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              0.5071715369820595,
+              1.2722016245126724
+            ],
+            "provenance_x_format_score_interaction": [
+              2.2155926495790483,
+              3.50044676810503
+            ]
+          }
+        },
+        "casual": {
+          "pooled_auc": 0.648443,
+          "benchmark_auc": 0.694172,
+          "casual_auc": 0.605884,
+          "benchmark_minus_casual_auc": 0.08828800000000003,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.645284,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.58492,
+            "cais/mmlu|allenai/WildChat-1M": 0.7055880000000001,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.65798
+          },
+          "source_pair_auc_mean": 0.6484430000000001,
+          "source_pair_auc_min": 0.58492,
+          "mean_score_eval_benchmark": -1.1187529726617067,
+          "mean_score_eval_casual": -3.6656948554739937,
+          "mean_score_deploy_benchmark": -6.293034174185764,
+          "mean_score_deploy_casual": -6.605154814656071,
+          "paired_benchmark_minus_casual_shift_eval": 2.5469418828122867,
+          "paired_benchmark_minus_casual_shift_deploy": 0.3121206404703078,
+          "provenance_x_format_score_interaction": 2.234821242341979,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.6171241,
+              0.6782258250000001
+            ],
+            "benchmark_auc": [
+              0.6624595000000001,
+              0.7251491
+            ],
+            "casual_auc": [
+              0.5719413,
+              0.6388326
+            ],
+            "source_pair_auc_mean": [
+              0.6171241,
+              0.6782258250000001
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              2.1039428532123567,
+              2.973104238510132
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -0.013043978554196653,
+              0.6264499977231024
+            ],
+            "provenance_x_format_score_interaction": [
+              1.70428576618433,
+              2.7632220932282503
+            ]
+          }
+        }
+      }
+    },
+    {
+      "layer": 30,
+      "normalized_depth": 0.967741935483871,
+      "regimes": {
+        "joint": {
+          "pooled_auc": 0.679504,
+          "benchmark_auc": 0.705604,
+          "casual_auc": 0.6538520000000001,
+          "benchmark_minus_casual_auc": 0.05175199999999991,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.68148,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.6536519999999999,
+            "cais/mmlu|allenai/WildChat-1M": 0.704036,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.6788479999999999
+          },
+          "source_pair_auc_mean": 0.6795039999999999,
+          "source_pair_auc_min": 0.6536519999999999,
+          "mean_score_eval_benchmark": -2.0919882719191483,
+          "mean_score_eval_casual": -4.194168391086636,
+          "mean_score_deploy_benchmark": -9.389896404175834,
+          "mean_score_deploy_casual": -9.371984221083379,
+          "paired_benchmark_minus_casual_shift_eval": 2.1021801191674867,
+          "paired_benchmark_minus_casual_shift_deploy": -0.017912183092453973,
+          "provenance_x_format_score_interaction": 2.1200923022599407,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.6492554,
+              0.7112126000000001
+            ],
+            "benchmark_auc": [
+              0.6735279,
+              0.7372891
+            ],
+            "casual_auc": [
+              0.6209468,
+              0.6867371
+            ],
+            "source_pair_auc_mean": [
+              0.6492554,
+              0.7112126
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              1.5250774174928665,
+              2.6640016555786135
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -0.39048341289162636,
+              0.4007867529988287
+            ],
+            "provenance_x_format_score_interaction": [
+              1.433388702571392,
+              2.8179546143859624
+            ]
+          }
+        },
+        "benchmark": {
+          "pooled_auc": 0.637055,
+          "benchmark_auc": 0.673116,
+          "casual_auc": 0.603316,
+          "benchmark_minus_casual_auc": 0.06980000000000008,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.6512439999999999,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.5982160000000001,
+            "cais/mmlu|allenai/WildChat-1M": 0.674024,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.6247360000000001
+          },
+          "source_pair_auc_mean": 0.637055,
+          "source_pair_auc_min": 0.5982160000000001,
+          "mean_score_eval_benchmark": -3.2045945298221024,
+          "mean_score_eval_casual": -7.072893749917397,
+          "mean_score_deploy_benchmark": -9.126985337151531,
+          "mean_score_deploy_casual": -10.613343383446198,
+          "paired_benchmark_minus_casual_shift_eval": 3.8682992200952957,
+          "paired_benchmark_minus_casual_shift_deploy": 1.4863580462946662,
+          "provenance_x_format_score_interaction": 2.3819411738006293,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.605555025,
+              0.6668950000000001
+            ],
+            "benchmark_auc": [
+              0.6406294,
+              0.7037073
+            ],
+            "casual_auc": [
+              0.571249,
+              0.6356328
+            ],
+            "source_pair_auc_mean": [
+              0.605555025,
+              0.6668950000000001
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              3.322320741415024,
+              4.3895577669143675
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              1.1024995118379592,
+              1.8902379870414734
+            ],
+            "provenance_x_format_score_interaction": [
+              1.7242419183254243,
+              3.0261853665113447
+            ]
+          }
+        },
+        "casual": {
+          "pooled_auc": 0.645267,
+          "benchmark_auc": 0.684712,
+          "casual_auc": 0.606576,
+          "benchmark_minus_casual_auc": 0.07813599999999998,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.62776,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.5707720000000001,
+            "cais/mmlu|allenai/WildChat-1M": 0.7153079999999998,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.667228
+          },
+          "source_pair_auc_mean": 0.645267,
+          "source_pair_auc_min": 0.5707720000000001,
+          "mean_score_eval_benchmark": -1.4347720665482093,
+          "mean_score_eval_casual": -3.6427534663150714,
+          "mean_score_deploy_benchmark": -6.550224563914917,
+          "mean_score_deploy_casual": -6.624444952557406,
+          "paired_benchmark_minus_casual_shift_eval": 2.2079813997668625,
+          "paired_benchmark_minus_casual_shift_deploy": 0.07422038864248845,
+          "provenance_x_format_score_interaction": 2.133761011124374,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.612063275,
+              0.6764627
+            ],
+            "benchmark_auc": [
+              0.6515799000000001,
+              0.7165133
+            ],
+            "casual_auc": [
+              0.5714788,
+              0.6396815
+            ],
+            "source_pair_auc_mean": [
+              0.612063275,
+              0.6764627
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              1.7401370048522948,
+              2.66586372256279
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -0.24230699129402636,
+              0.41398944482207295
+            ],
+            "provenance_x_format_score_interaction": [
+              1.5583274252712727,
+              2.691377339512109
+            ]
+          }
+        }
+      }
+    },
+    {
+      "layer": 31,
+      "normalized_depth": 1.0,
+      "regimes": {
+        "joint": {
+          "pooled_auc": 0.641497,
+          "benchmark_auc": 0.678996,
+          "casual_auc": 0.6043719999999999,
+          "benchmark_minus_casual_auc": 0.07462400000000013,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.626348,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.594364,
+            "cais/mmlu|allenai/WildChat-1M": 0.6878599999999999,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.657416
+          },
+          "source_pair_auc_mean": 0.641497,
+          "source_pair_auc_min": 0.594364,
+          "mean_score_eval_benchmark": -0.7631569034117415,
+          "mean_score_eval_casual": -3.4974558465589864,
+          "mean_score_deploy_benchmark": -7.200297627002272,
+          "mean_score_deploy_casual": -7.200285287649736,
+          "paired_benchmark_minus_casual_shift_eval": 2.734298943147245,
+          "paired_benchmark_minus_casual_shift_deploy": -1.2339352535477132e-05,
+          "provenance_x_format_score_interaction": 2.7343112824997804,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.609708725,
+              0.6725356499999999
+            ],
+            "benchmark_auc": [
+              0.6470001000000001,
+              0.7124527
+            ],
+            "casual_auc": [
+              0.5701632,
+              0.6388193
+            ],
+            "source_pair_auc_mean": [
+              0.609708725,
+              0.67253565
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              2.1353407084941862,
+              3.3330366253852843
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -0.39352591857314106,
+              0.41425844579935045
+            ],
+            "provenance_x_format_score_interaction": [
+              2.026630217442289,
+              3.4721819084137677
+            ]
+          }
+        },
+        "benchmark": {
+          "pooled_auc": 0.6456090000000001,
+          "benchmark_auc": 0.673508,
+          "casual_auc": 0.62104,
+          "benchmark_minus_casual_auc": 0.05246799999999996,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.6453359999999999,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.5935079999999999,
+            "cais/mmlu|allenai/WildChat-1M": 0.695864,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.6477280000000001
+          },
+          "source_pair_auc_mean": 0.645609,
+          "source_pair_auc_min": 0.5935079999999999,
+          "mean_score_eval_benchmark": -1.5231097742757893,
+          "mean_score_eval_casual": -5.121274063619041,
+          "mean_score_deploy_benchmark": -8.00045451788805,
+          "mean_score_deploy_casual": -9.410875868205732,
+          "paired_benchmark_minus_casual_shift_eval": 3.5981642893432517,
+          "paired_benchmark_minus_casual_shift_deploy": 1.410421350317681,
+          "provenance_x_format_score_interaction": 2.1877429390255707,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.6153843250000001,
+              0.6768075
+            ],
+            "benchmark_auc": [
+              0.6427189,
+              0.7063197999999999
+            ],
+            "casual_auc": [
+              0.5876007,
+              0.6555683999999999
+            ],
+            "source_pair_auc_mean": [
+              0.6153843250000001,
+              0.6768075
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              3.0445435881614684,
+              4.153231477737426
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              1.008627700805664,
+              1.832710826396942
+            ],
+            "provenance_x_format_score_interaction": [
+              1.4758139848709106,
+              2.902024021744728
+            ]
+          }
+        },
+        "casual": {
+          "pooled_auc": 0.60431,
+          "benchmark_auc": 0.65702,
+          "casual_auc": 0.5529599999999999,
+          "benchmark_minus_casual_auc": 0.10406000000000015,
+          "source_pair_auc": {
+            "allenai/ai2_arc|allenai/WildChat-1M": 0.557604,
+            "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.5233760000000001,
+            "cais/mmlu|allenai/WildChat-1M": 0.684808,
+            "cais/mmlu|lmsys/lmsys-chat-1m": 0.651452
+          },
+          "source_pair_auc_mean": 0.60431,
+          "source_pair_auc_min": 0.5233760000000001,
+          "mean_score_eval_benchmark": -0.8163952350207667,
+          "mean_score_eval_casual": -3.9965869828752165,
+          "mean_score_deploy_benchmark": -5.6771114790520425,
+          "mean_score_deploy_casual": -5.703067564637474,
+          "paired_benchmark_minus_casual_shift_eval": 3.18019174785445,
+          "paired_benchmark_minus_casual_shift_deploy": 0.025956085585432845,
+          "provenance_x_format_score_interaction": 3.1542356622690173,
+          "block_bootstrap_ci95": {
+            "pooled_auc": [
+              0.5709606750000001,
+              0.636238925
+            ],
+            "benchmark_auc": [
+              0.6228041000000001,
+              0.6878749000000001
+            ],
+            "casual_auc": [
+              0.5178635,
+              0.5868195
+            ],
+            "source_pair_auc_mean": [
+              0.570960675,
+              0.636238925
+            ],
+            "paired_benchmark_minus_casual_shift_eval": [
+              2.654598039388657,
+              3.688285064697266
+            ],
+            "paired_benchmark_minus_casual_shift_deploy": [
+              -0.31603399738669397,
+              0.385775026679039
+            ],
+            "provenance_x_format_score_interaction": [
+              2.5488521214574575,
+              3.7834096912294624
+            ]
+          }
+        }
+      }
+    }
+  ]
+}
