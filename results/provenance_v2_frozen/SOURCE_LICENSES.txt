@@ -1,0 +1,28 @@
+provenance_v2 source notice
+===========================
+
+The frozen bank contains transformed excerpts from the datasets below. Each row
+records its source in `source_dataset`, `source_file`, and `source_row`. The
+added benchmark/casual scaffolds do not replace the source dataset terms.
+
+cais/mmlu
+- Source: https://huggingface.co/datasets/cais/mmlu
+- Pinned revision: c30699e8356da336a370243923dbaf21066bb9fe
+- License reported by the dataset card: MIT
+
+allenai/ai2_arc
+- Source: https://huggingface.co/datasets/allenai/ai2_arc
+- Pinned revision: 210d026faf9955653af8916fad021475a3f00453
+- License reported by the dataset card: CC BY-SA 4.0
+
+allenai/WildChat-1M
+- Source: https://huggingface.co/datasets/allenai/WildChat-1M
+- Pinned revision: 7d6490e462285cf85d91eabea0f9a954fbddcd1f
+- License reported by the dataset card: ODC-By 1.0
+- Citation: Wenting Zhao, Xiang Ren, Jack Hessel, Claire Cardie, Yejin Choi,
+  and Yuntian Deng. "WildChat: 1M ChatGPT Interaction Logs in the Wild."
+  ICLR 2024. https://openreview.net/forum?id=Bl8u7ZRlbM
+
+No user metadata from WildChat (IP hashes, geography, headers, timestamps) is
+copied into the frozen bank. Only eligible first-user-turn text is retained;
+rows marked toxic or redacted are excluded before sampling.

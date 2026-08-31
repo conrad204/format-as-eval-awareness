@@ -1,0 +1,151 @@
+{
+  "audited_before_activations": true,
+  "bank": "results/provenance_v1_frozen",
+  "checks": {
+    "1_counts": {
+      "n_rows": 2000,
+      "n_unique_texts": 1000,
+      "provenance_counts": {
+        "deployment_origin": 1000,
+        "eval_origin": 1000
+      },
+      "provenance_x_format": {
+        "deployment_origin|benchmark": 500,
+        "deployment_origin|casual": 500,
+        "eval_origin|benchmark": 500,
+        "eval_origin|casual": 500
+      },
+      "scaffold_counts": {
+        "prov_bench_imperative": 250,
+        "prov_bench_preamble": 250,
+        "prov_bench_sectioned": 250,
+        "prov_bench_tagged": 250,
+        "prov_casual_bare": 334,
+        "prov_casual_lead_in": 334,
+        "prov_casual_markdown": 332
+      },
+      "source_counts": {
+        "HuggingFaceH4/no_robots": 710,
+        "OpenAssistant/oasst1": 290,
+        "allenai/ai2_arc": 128,
+        "cais/mmlu": 872
+      }
+    },
+    "2_orthogonality": {
+      "every_text_appears_once_per_format": true,
+      "format_mean_by_provenance": {
+        "deployment_origin": 0.5,
+        "eval_origin": 0.5
+      },
+      "provenance_mean_by_format": {
+        "benchmark": 0.5,
+        "casual": 0.5
+      },
+      "provenance_mean_by_scaffold": {
+        "prov_bench_imperative": 0.5,
+        "prov_bench_preamble": 0.5,
+        "prov_bench_sectioned": 0.5,
+        "prov_bench_tagged": 0.5,
+        "prov_casual_bare": 0.5,
+        "prov_casual_lead_in": 0.5,
+        "prov_casual_markdown": 0.5
+      }
+    },
+    "3_length_match": {
+      "deployment_origin": {
+        "max": 593.0,
+        "mean": 160.184,
+        "median": 127.0,
+        "min": 60.0,
+        "sd": 100.3098609918896
+      },
+      "eval_origin": {
+        "max": 589.0,
+        "mean": 159.814,
+        "median": 130.0,
+        "min": 60.0,
+        "sd": 100.09210675090135
+      },
+      "histogram_overlap_fraction": 0.944,
+      "mean_difference_chars": -0.37000000000000455,
+      "note": "prompt_chars is the underlying text before scaffolding, so it is the length quantity that provenance could confound"
+    },
+    "4_surface_predicts_provenance": {
+      "char_3_5gram_holdout_source_pair": {
+        "max_auc": 0.9488226232394367,
+        "mean_auc": 0.9125497864947912,
+        "min_auc": 0.8534759569756406,
+        "per_group_pair_auc": {
+          "HuggingFaceH4/no_robots|allenai/ai2_arc": 0.9488226232394367,
+          "HuggingFaceH4/no_robots|cais/mmlu": 0.9180514278330534,
+          "OpenAssistant/oasst1|allenai/ai2_arc": 0.9298491379310344,
+          "OpenAssistant/oasst1|cais/mmlu": 0.8534759569756406
+        }
+      },
+      "interpretation": "THIS IS THE CEILING THAT MATTERS. Real eval corpora and real user turns differ lexically, so a high value here is expected and is a property of natural data, not a defect of the bank. Any later activation-probe result on provenance must be read against this number: it cannot be claimed as evidence of a purpose representation beyond what surface content already provides.",
+      "length_only_holdout_source_pair": {
+        "max_auc": 0.4976232394366197,
+        "mean_auc": 0.44198735844758524,
+        "min_auc": 0.3822198275862069,
+        "per_group_pair_auc": {
+          "HuggingFaceH4/no_robots|allenai/ai2_arc": 0.4976232394366197,
+          "HuggingFaceH4/no_robots|cais/mmlu": 0.4613031399405609,
+          "OpenAssistant/oasst1|allenai/ai2_arc": 0.3822198275862069,
+          "OpenAssistant/oasst1|cais/mmlu": 0.4268032268269535
+        }
+      },
+      "word_1_2gram_holdout_source_pair": {
+        "max_auc": 0.9537522007042253,
+        "mean_auc": 0.9325693956327334,
+        "min_auc": 0.9074343562163872,
+        "per_group_pair_auc": {
+          "HuggingFaceH4/no_robots|allenai/ai2_arc": 0.9537522007042253,
+          "HuggingFaceH4/no_robots|cais/mmlu": 0.9228356376792868,
+          "OpenAssistant/oasst1|allenai/ai2_arc": 0.9462553879310345,
+          "OpenAssistant/oasst1|cais/mmlu": 0.9074343562163872
+        }
+      },
+      "word_1_2gram_leave_one_scaffold_out": {
+        "max_auc": 0.998208,
+        "mean_auc": 0.9967031163128924,
+        "min_auc": 0.994334683925562,
+        "per_group_auc": {
+          "prov_bench_imperative": 0.9978239999999999,
+          "prov_bench_preamble": 0.998208,
+          "prov_bench_sectioned": 0.99552,
+          "prov_bench_tagged": 0.9958400000000001,
+          "prov_casual_bare": 0.9982071784574563,
+          "prov_casual_lead_in": 0.994334683925562,
+          "prov_casual_markdown": 0.9969879518072289
+        }
+      }
+    },
+    "5_surface_predicts_format": {
+      "note": "expected to be near 1.0 and uninformative: format IS a scaffold we add. Reported for completeness only.",
+      "word_1_2gram_holdout_scaffold_pair": {
+        "max_auc": 1.0,
+        "mean_auc": 0.9899786391073274,
+        "min_auc": 0.9503233532934132,
+        "per_group_pair_auc": {
+          "prov_casual_bare|prov_bench_imperative": 0.9990179640718563,
+          "prov_casual_bare|prov_bench_preamble": 0.9959640718562873,
+          "prov_casual_bare|prov_bench_sectioned": 0.9503233532934132,
+          "prov_casual_bare|prov_bench_tagged": 0.9908383233532934,
+          "prov_casual_lead_in|prov_bench_imperative": 1.0,
+          "prov_casual_lead_in|prov_bench_preamble": 0.9999401197604791,
+          "prov_casual_lead_in|prov_bench_sectioned": 0.9845868263473054,
+          "prov_casual_lead_in|prov_bench_tagged": 0.9998802395209582,
+          "prov_casual_markdown|prov_bench_imperative": 0.9999277108433735,
+          "prov_casual_markdown|prov_bench_preamble": 0.999855421686747,
+          "prov_casual_markdown|prov_bench_sectioned": 0.9607831325301203,
+          "prov_casual_markdown|prov_bench_tagged": 0.9986265060240963
+        }
+      }
+    }
+  },
+  "experiment": "provenance_v1",
+  "freeze_manifest_sha256_of_spec": "6e5c6e529fc7dd644232249e79f739a4a4ebfea7e2145ef46c97fbd99b81ccff",
+  "items_sha256": "1040383665d716d71f087ac78ee50da563dada1a696fa790fd48c7bd259b814f",
+  "known_limitation": "in natural corpora provenance is inseparable from topic and lexical content; a surface-text baseline predicts provenance well above chance and the audit reports that ceiling. The cleanly identified factor here is format, plus the paired within-text contrast.",
+  "schema_version": 1
+}

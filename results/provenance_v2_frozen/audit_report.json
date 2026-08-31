@@ -1,0 +1,113 @@
+{
+  "audited_before_activations": true,
+  "checks": {
+    "counts": {
+      "every_pair_has_two_formats": true,
+      "n_pairs": 1000,
+      "n_rows": 2000,
+      "provenance_mean_by_format": {
+        "benchmark": 0.5,
+        "casual": 0.5
+      },
+      "provenance_mean_by_template": {
+        "prov_bench_imperative": 0.5,
+        "prov_bench_preamble": 0.5,
+        "prov_bench_sectioned": 0.5,
+        "prov_bench_tagged": 0.5,
+        "prov_casual_bare": 0.5,
+        "prov_casual_lead_in": 0.5,
+        "prov_casual_markdown": 0.5
+      },
+      "source_x_format": {
+        "allenai/WildChat-1M|benchmark": 500,
+        "allenai/WildChat-1M|casual": 500,
+        "allenai/ai2_arc|benchmark": 250,
+        "allenai/ai2_arc|casual": 250,
+        "cais/mmlu|benchmark": 250,
+        "cais/mmlu|casual": 250
+      }
+    },
+    "length_match": {
+      "deployment_mean": 157.768,
+      "eval_mean": 157.778,
+      "max_absolute_sorted_difference": 1.0,
+      "mean_difference": 0.009999999999990905
+    },
+    "length_only_grouped_five_fold": {
+      "mean_auc": 0.475136894064261,
+      "per_fold_auc": {
+        "0": 0.47933500510820104,
+        "1": 0.45197516184436515,
+        "2": 0.4820873786407766,
+        "3": 0.4705853174603175,
+        "4": 0.491701607267645
+      }
+    },
+    "surface_predicts_provenance": {
+      "char_3_5gram_grouped_five_fold": {
+        "max_auc": 0.975631067961165,
+        "mean_auc": 0.9656694039548391,
+        "min_auc": 0.9559275793650793,
+        "per_fold_auc": {
+          "0": 0.9652874524008545,
+          "1": 0.9663760073985995,
+          "2": 0.975631067961165,
+          "3": 0.9559275793650793,
+          "4": 0.9651249126484975
+        }
+      },
+      "interpretation": "upper bound on content confounding; not evidence of model purpose representation",
+      "word_1_2gram_eval_source_swap": {
+        "max_auc": 0.941695652173913,
+        "mean_auc": 0.9375482309452561,
+        "min_auc": 0.9334008097165992,
+        "note": "evaluation source and all held WildChat texts change between train/test; WildChat remains the sole deployment-log corpus",
+        "per_swap_auc": {
+          "train_arc_wildchat_half1__test_mmlu_wildchat_half0": 0.9334008097165992,
+          "train_mmlu_wildchat_half0__test_arc_wildchat_half1": 0.941695652173913
+        }
+      },
+      "word_1_2gram_grouped_five_fold": {
+        "max_auc": 0.9752669902912622,
+        "mean_auc": 0.9614608957666648,
+        "min_auc": 0.9512896825396826,
+        "per_fold_auc": {
+          "0": 0.9593201448871552,
+          "1": 0.9656493592284318,
+          "2": 0.9752669902912622,
+          "3": 0.9512896825396826,
+          "4": 0.9557783018867925
+        }
+      },
+      "word_1_2gram_scaffold_pair_holdout": {
+        "max_auc": 0.9886939388252955,
+        "mean_auc": 0.9827618604688165,
+        "min_auc": 0.9733706498506158,
+        "per_scaffold_pair_auc": {
+          "prov_casual_bare|prov_bench_imperative": 0.9869229686620379,
+          "prov_casual_bare|prov_bench_preamble": 0.9863365547006943,
+          "prov_casual_bare|prov_bench_sectioned": 0.9847297804466129,
+          "prov_casual_bare|prov_bench_tagged": 0.9863834678176018,
+          "prov_casual_lead_in|prov_bench_imperative": 0.9844600300243949,
+          "prov_casual_lead_in|prov_bench_preamble": 0.9832402889848001,
+          "prov_casual_lead_in|prov_bench_sectioned": 0.9858791518108463,
+          "prov_casual_lead_in|prov_bench_tagged": 0.9886939388252955,
+          "prov_casual_markdown|prov_bench_imperative": 0.9734178859484417,
+          "prov_casual_markdown|prov_bench_preamble": 0.9776218986549521,
+          "prov_casual_markdown|prov_bench_sectioned": 0.9733706498506158,
+          "prov_casual_markdown|prov_bench_tagged": 0.9820857098995052
+        }
+      }
+    }
+  },
+  "experiment": "provenance_v2",
+  "freeze_manifest_sha256_of_spec": "3a5ce2f7802a0ec1874b3bb892c179a47e4c1d11fa86b5827b87e3717b871956",
+  "items_sha256": "7b34fa5ef4cfc80150b9d9fc6d78854344541b1609d1b137fa58d15651a1036f",
+  "known_limitations": [
+    "only one deployment-log source (WildChat)",
+    "natural topic and lexical content are inseparable from provenance",
+    "corpus origin is not proof that the model represents its own evaluation status",
+    "frozen-activation probe scoring is not a behavioral or causal intervention"
+  ],
+  "schema_version": 1
+}

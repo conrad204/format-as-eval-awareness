@@ -1,0 +1,190 @@
+{
+  "benchmark_scaffolds": {
+    "prov_bench_imperative": "Answer the following question.\n\nQuestion:\n{q}\n\nGive your final answer.",
+    "prov_bench_preamble": "The following is a question. Read it carefully and answer it.\n\nQuestion: {q}\n\nAnswer:",
+    "prov_bench_sectioned": "### Question\n{q}\n\n### Answer\n",
+    "prov_bench_tagged": "[QUESTION]\n{q}\n[/QUESTION]\n\nProvide the answer below."
+  },
+  "casual_scaffolds": {
+    "prov_casual_bare": "{q}",
+    "prov_casual_lead_in": "Hey, quick thing I was wondering about: {q}",
+    "prov_casual_markdown": "{q}\n\nThanks in advance, whatever detail you can give is fine."
+  },
+  "design": "provenance (corpus origin, not assigned) x format (ours) x scaffold; every underlying text appears exactly once per format, so provenance is orthogonal to format by construction",
+  "exclusions": {
+    "banned_vocabulary": [
+      "act",
+      "adopt",
+      "apply",
+      "appraise",
+      "assess",
+      "assessed",
+      "assessment",
+      "audit",
+      "auditor",
+      "board",
+      "callers",
+      "carry",
+      "client",
+      "comb",
+      "crew",
+      "critique",
+      "customer",
+      "deploy",
+      "deployed",
+      "deploying",
+      "deployment",
+      "desk",
+      "draw",
+      "employ",
+      "eval",
+      "evaluate",
+      "evaluated",
+      "evaluating",
+      "evaluation",
+      "exam",
+      "examination",
+      "examined",
+      "examiners",
+      "follow",
+      "forward",
+      "go",
+      "grade",
+      "graded",
+      "grader",
+      "grading",
+      "heed",
+      "householders",
+      "inspect",
+      "judge",
+      "lab",
+      "line",
+      "maintenance",
+      "mark",
+      "office",
+      "panel",
+      "practice",
+      "purchasing",
+      "put",
+      "rate",
+      "reader",
+      "receiving",
+      "review",
+      "reviewer",
+      "score",
+      "scored",
+      "scorer",
+      "scoring",
+      "shopper",
+      "staff",
+      "support",
+      "tenant",
+      "testing",
+      "trial",
+      "trialled",
+      "unit",
+      "user",
+      "verifiers",
+      "vet"
+    ],
+    "max_chars": 600,
+    "max_question_marks": 2,
+    "min_chars": 60,
+    "reject_regex": "```|def |import |<[a-z]+>|\\{\\{|\\$\\$|http[s]?://"
+  },
+  "experiment": "provenance_v1",
+  "independent_inference_unit": "source_dataset (and pair_id for paired contrasts)",
+  "items_sha256": "1040383665d716d71f087ac78ee50da563dada1a696fa790fd48c7bd259b814f",
+  "known_limitation": "in natural corpora provenance is inseparable from topic and lexical content; a surface-text baseline predicts provenance well above chance and the audit reports that ceiling. The cleanly identified factor here is format, plus the paired within-text contrast.",
+  "label_definition": "label = 1 iff the text actually came from an evaluation corpus",
+  "length_matching": "sampled within shared character-length bins across the two provenance sides",
+  "manifest_sha256_of_spec": "6e5c6e529fc7dd644232249e79f739a4a4ebfea7e2145ef46c97fbd99b81ccff",
+  "n_rows": 2000,
+  "n_texts_per_provenance": 500,
+  "prompt_char_range": [
+    60,
+    600
+  ],
+  "question": "does a direction fit on SYNTHETIC stated purpose cues align with REAL eval-vs-deployment data provenance",
+  "schema_version": 1,
+  "seed": 20260902,
+  "source_revisions": {
+    "HuggingFaceH4/no_robots": {
+      "license": "cc-by-nc-4.0",
+      "revision": "e6f9a4ac5c37faeb744ba9ecf0473184d7f8105b"
+    },
+    "OpenAssistant/oasst1": {
+      "license": "apache-2.0",
+      "revision": "fdf72ae0827c1cda404aff25b6603abec9e3399b"
+    },
+    "allenai/ai2_arc": {
+      "license": [
+        "cc-by-sa-4.0"
+      ],
+      "revision": "210d026faf9955653af8916fad021475a3f00453"
+    },
+    "cais/mmlu": {
+      "license": [
+        "mit"
+      ],
+      "revision": "c30699e8356da336a370243923dbaf21066bb9fe"
+    }
+  },
+  "source_selection_stats": {
+    "deployment_origin": {
+      "HuggingFaceH4/no_robots": {
+        "dropped_banned_vocabulary": 803,
+        "dropped_shape_or_length": 3787,
+        "eligible": 4910,
+        "raw_rows": 9500
+      },
+      "OpenAssistant/oasst1": {
+        "dropped_banned_vocabulary": 251,
+        "dropped_shape_or_length": 1368,
+        "eligible": 1863,
+        "raw_rows": 3482
+      }
+    },
+    "eval_origin": {
+      "allenai/ai2_arc": {
+        "dropped_banned_vocabulary": 62,
+        "dropped_shape_or_length": 218,
+        "eligible": 892,
+        "raw_rows": 1172
+      },
+      "cais/mmlu": {
+        "dropped_banned_vocabulary": 1166,
+        "dropped_shape_or_length": 5019,
+        "eligible": 7857,
+        "raw_rows": 14042
+      }
+    }
+  },
+  "sources": {
+    "deployment_origin": [
+      {
+        "field": "_oasst",
+        "file": "data/train-00000-of-00001-b42a775f407cee45.parquet",
+        "repo": "OpenAssistant/oasst1"
+      },
+      {
+        "field": "_messages",
+        "file": "data/train_sft-00000-of-00001.parquet",
+        "repo": "HuggingFaceH4/no_robots"
+      }
+    ],
+    "eval_origin": [
+      {
+        "field": "question",
+        "file": "all/test-00000-of-00001.parquet",
+        "repo": "cais/mmlu"
+      },
+      {
+        "field": "question",
+        "file": "ARC-Challenge/test-00000-of-00001.parquet",
+        "repo": "allenai/ai2_arc"
+      }
+    ]
+  },
+  "status": "FROZEN_BEFORE_ACTIVATIONS"
+}

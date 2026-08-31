@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "binding_v2_rows": 544,
+  "subspace_rows": 4,
+  "provenance_rows": 384,
+  "template_subspace": [
+    {
+      "model": "llama31_8b",
+      "layer": 14,
+      "rank": 64,
+      "n_held_templates": 11,
+      "raw_joint_auc": 0.5996637147845644,
+      "raw_cross_auc": 0.5697875236742426,
+      "raw_transfer_gap": 0.029876191110321974,
+      "projected_joint_auc": 0.5823177083333333,
+      "projected_cross_auc": 0.5765186409998421,
+      "projected_transfer_gap": 0.005799067333491115,
+      "fraction_gap_removed": 0.8058966984085335,
+      "raw_format_auc": 0.9602937640565815,
+      "projected_format_auc": 0.6063154370857008,
+      "templates_with_gap_reduced": 10
+    },
+    {
+      "model": "llama31_8b",
+      "layer": 31,
+      "rank": 64,
+      "n_held_templates": 11,
+      "raw_joint_auc": 0.5910660190774937,
+      "raw_cross_auc": 0.5683914831912878,
+      "raw_transfer_gap": 0.022674535886205837,
+      "projected_joint_auc": 0.5826380812519728,
+      "projected_cross_auc": 0.575762692846433,
+      "projected_transfer_gap": 0.0068753884055397655,
+      "fraction_gap_removed": 0.6967793104985915,
+      "raw_format_auc": 0.9418087367818813,
+      "projected_format_auc": 0.5054902232776988,
+      "templates_with_gap_reduced": 10
+    },
+    {
+      "model": "llama31_70b",
+      "layer": 18,
+      "rank": 64,
+      "n_held_templates": 11,
+      "raw_joint_auc": 0.5402853609335543,
+      "raw_cross_auc": 0.5227380987610479,
+      "raw_transfer_gap": 0.01754726217250632,
+      "projected_joint_auc": 0.5339720076744002,
+      "projected_cross_auc": 0.5318742971709279,
+      "projected_transfer_gap": 0.0020977105034722335,
+      "fraction_gap_removed": 0.8804536865723132,
+      "raw_format_auc": 0.9982139078776041,
+      "projected_format_auc": 0.29830515235361427,
+      "templates_with_gap_reduced": 11
+    },
+    {
+      "model": "llama33_70b",
+      "layer": 18,
+      "rank": 64,
+      "n_held_templates": 11,
+      "raw_joint_auc": 0.5484526848070549,
+      "raw_cross_auc": 0.5292110682015467,
+      "raw_transfer_gap": 0.01924161660550818,
+      "projected_joint_auc": 0.5405309935290403,
+      "projected_cross_auc": 0.5372099535392992,
+      "projected_transfer_gap": 0.003321039989741133,
+      "fraction_gap_removed": 0.8274032760433216,
+      "raw_format_auc": 0.9996579873441445,
+      "projected_format_auc": 0.4477689122672033,
+      "templates_with_gap_reduced": 10
+    }
+  ]
+}

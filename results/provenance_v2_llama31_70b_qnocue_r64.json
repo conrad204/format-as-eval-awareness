@@ -1,0 +1,525 @@
+{
+  "schema_version": 1,
+  "experiment": "provenance_v2_external_qnocue_projection",
+  "model_key": "llama31_70b",
+  "rank": 64,
+  "basis": "fold-specific uncentered SVD of no-cue matched benchmark-minus-casual contrasts",
+  "basis_uses_provenance_rows": false,
+  "probe_retrained_after_projection": false,
+  "claim_boundary": "frozen activation-score diagnostic, not behavioral causality",
+  "n_bootstrap": 1000,
+  "same_block_sample_across_raw_projected_layers_regimes": true,
+  "reference_items_sha256": "5528819d74e696d1a595062047a829836dfde1d2a45287b06a5ac1ba5d1b6c67",
+  "reference_activations_sha256": "02018659ad8f68101d8ec35467321e791831e05b4d8d628f21e8fe222f6da8e2",
+  "provenance_items_sha256": "7b34fa5ef4cfc80150b9d9fc6d78854344541b1609d1b137fa58d15651a1036f",
+  "provenance_activations_sha256": "3d89a21f50e1d1cf00c9cd363a1fc2282f03db96239e9e913c66137f485f6dba",
+  "probe_bank_sha256": "f08b7bbb784785f81501599d0ea84e6a492e8816d06878e870e92940f800b73e",
+  "layers": [
+    {
+      "layer": 18,
+      "normalized_depth": 0.22784810126582278,
+      "regimes": {
+        "joint": {
+          "raw": {
+            "pooled_auc": 0.391293,
+            "benchmark_auc": 0.4230480000000001,
+            "casual_auc": 0.35417200000000004,
+            "benchmark_minus_casual_auc": 0.06887600000000005,
+            "source_pair_auc": {
+              "allenai/ai2_arc|allenai/WildChat-1M": 0.36463,
+              "cais/mmlu|allenai/WildChat-1M": 0.417956
+            },
+            "source_pair_auc_mean": 0.391293,
+            "source_pair_auc_min": 0.36463,
+            "mean_score_eval_benchmark": -2.0829439371422604,
+            "mean_score_eval_casual": -4.320036941654384,
+            "mean_score_deploy_benchmark": -0.5564850043529013,
+            "mean_score_deploy_casual": -2.105365315002976,
+            "paired_benchmark_minus_casual_shift_eval": 2.237093004512123,
+            "paired_benchmark_minus_casual_shift_deploy": 1.548880310650075,
+            "provenance_x_format_score_interaction": 0.6882126938620479
+          },
+          "projected": {
+            "pooled_auc": 0.359043,
+            "benchmark_auc": 0.3889,
+            "casual_auc": 0.324944,
+            "benchmark_minus_casual_auc": 0.06395600000000001,
+            "source_pair_auc": {
+              "allenai/ai2_arc|allenai/WildChat-1M": 0.34116,
+              "cais/mmlu|allenai/WildChat-1M": 0.376926
+            },
+            "source_pair_auc_mean": 0.359043,
+            "source_pair_auc_min": 0.34116,
+            "mean_score_eval_benchmark": -2.9332522342707152,
+            "mean_score_eval_casual": -5.196509191605165,
+            "mean_score_deploy_benchmark": -0.666154662513637,
+            "mean_score_deploy_casual": -2.282506063572088,
+            "paired_benchmark_minus_casual_shift_eval": 2.26325695733445,
+            "paired_benchmark_minus_casual_shift_deploy": 1.6163514010584514,
+            "provenance_x_format_score_interaction": 0.6469055562759987
+          },
+          "projected_minus_raw": {
+            "delta_pooled_auc": -0.03225,
+            "delta_benchmark_auc": -0.03414800000000007,
+            "delta_casual_auc": -0.02922800000000003,
+            "delta_benchmark_minus_casual_auc": -0.0049200000000000355,
+            "delta_source_pair_auc_mean": -0.03225,
+            "delta_source_pair_auc_min": -0.02346999999999999,
+            "delta_mean_score_eval_benchmark": -0.8503082971284548,
+            "delta_mean_score_eval_casual": -0.8764722499507815,
+            "delta_mean_score_deploy_benchmark": -0.1096696581607357,
+            "delta_mean_score_deploy_casual": -0.1771407485691121,
+            "delta_paired_benchmark_minus_casual_shift_eval": 0.026163952822327197,
+            "delta_paired_benchmark_minus_casual_shift_deploy": 0.0674710904083764,
+            "delta_provenance_x_format_score_interaction": -0.0413071375860492
+          },
+          "probe_weight_fraction_in_qnocue_by_fold": [
+            0.008926947817919945,
+            0.009765170908651302,
+            0.010072004965790636,
+            0.010477883232929643,
+            0.010435792446153534
+          ],
+          "probe_weight_fraction_in_qnocue_mean": 0.009935559874289013,
+          "block_bootstrap_ci95": {
+            "raw": {
+              "pooled_auc": [
+                0.360074425,
+                0.42219087499999997
+              ],
+              "benchmark_auc": [
+                0.386923,
+                0.4567502
+              ],
+              "casual_auc": [
+                0.3199837,
+                0.3918134
+              ],
+              "source_pair_auc_mean": [
+                0.360074425,
+                0.42219087499999997
+              ],
+              "paired_benchmark_minus_casual_shift_eval": [
+                1.7699763611000108,
+                2.6997096323824525
+              ],
+              "paired_benchmark_minus_casual_shift_deploy": [
+                1.0608343714159405,
+                2.0391040497688526
+              ],
+              "provenance_x_format_score_interaction": [
+                0.02727255967786204,
+                1.3541199786593083
+              ]
+            },
+            "projected": {
+              "pooled_auc": [
+                0.3306883,
+                0.38812402500000004
+              ],
+              "benchmark_auc": [
+                0.35484389999999993,
+                0.4240479
+              ],
+              "casual_auc": [
+                0.2926297,
+                0.3596802
+              ],
+              "source_pair_auc_mean": [
+                0.3306883,
+                0.38812402500000004
+              ],
+              "paired_benchmark_minus_casual_shift_eval": [
+                1.8295299379221917,
+                2.6884375228797963
+              ],
+              "paired_benchmark_minus_casual_shift_deploy": [
+                1.1345402015359165,
+                2.064468795648382
+              ],
+              "provenance_x_format_score_interaction": [
+                0.03651291233818356,
+                1.2912952227920063
+              ]
+            },
+            "projected_minus_raw": {
+              "pooled_auc": [
+                -0.039747075000000055,
+                -0.0252791
+              ],
+              "benchmark_auc": [
+                -0.04395650000000005,
+                -0.024382699999999907
+              ],
+              "casual_auc": [
+                -0.03712139999999993,
+                -0.02144760000000002
+              ],
+              "source_pair_auc_mean": [
+                -0.039747075000000055,
+                -0.0252791
+              ],
+              "paired_benchmark_minus_casual_shift_eval": [
+                -0.11817024707230304,
+                0.17291288124790233
+              ],
+              "paired_benchmark_minus_casual_shift_deploy": [
+                -0.05398142184554817,
+                0.1943870266005146
+              ],
+              "provenance_x_format_score_interaction": [
+                -0.2465703753649217,
+                0.14200617491803982
+              ]
+            }
+          }
+        },
+        "benchmark": {
+          "raw": {
+            "pooled_auc": 0.335036,
+            "benchmark_auc": 0.37362799999999996,
+            "casual_auc": 0.290388,
+            "benchmark_minus_casual_auc": 0.08323999999999998,
+            "source_pair_auc": {
+              "allenai/ai2_arc|allenai/WildChat-1M": 0.309658,
+              "cais/mmlu|allenai/WildChat-1M": 0.360414
+            },
+            "source_pair_auc_mean": 0.335036,
+            "source_pair_auc_min": 0.309658,
+            "mean_score_eval_benchmark": -3.2210687535196176,
+            "mean_score_eval_casual": -4.062632728916661,
+            "mean_score_deploy_benchmark": -0.34638332079525436,
+            "mean_score_deploy_casual": -0.11243642200039516,
+            "paired_benchmark_minus_casual_shift_eval": 0.8415639753970436,
+            "paired_benchmark_minus_casual_shift_deploy": -0.23394689879485914,
+            "provenance_x_format_score_interaction": 1.0755108741919028
+          },
+          "projected": {
+            "pooled_auc": 0.31087400000000004,
+            "benchmark_auc": 0.339712,
+            "casual_auc": 0.278252,
+            "benchmark_minus_casual_auc": 0.061460000000000015,
+            "source_pair_auc": {
+              "allenai/ai2_arc|allenai/WildChat-1M": 0.295018,
+              "cais/mmlu|allenai/WildChat-1M": 0.32672999999999996
+            },
+            "source_pair_auc_mean": 0.310874,
+            "source_pair_auc_min": 0.295018,
+            "mean_score_eval_benchmark": -5.738572854519922,
+            "mean_score_eval_casual": -5.861967641303026,
+            "mean_score_deploy_benchmark": -2.3818928571898996,
+            "mean_score_deploy_casual": -1.906396271120945,
+            "paired_benchmark_minus_casual_shift_eval": 0.1233947867831042,
+            "paired_benchmark_minus_casual_shift_deploy": -0.47549658606895484,
+            "provenance_x_format_score_interaction": 0.5988913728520591
+          },
+          "projected_minus_raw": {
+            "delta_pooled_auc": -0.02416199999999996,
+            "delta_benchmark_auc": -0.033915999999999946,
+            "delta_casual_auc": -0.01213599999999998,
+            "delta_benchmark_minus_casual_auc": -0.021779999999999966,
+            "delta_source_pair_auc_mean": -0.024162000000000017,
+            "delta_source_pair_auc_min": -0.014639999999999986,
+            "delta_mean_score_eval_benchmark": -2.5175041010003043,
+            "delta_mean_score_eval_casual": -1.7993349123863647,
+            "delta_mean_score_deploy_benchmark": -2.0355095363946454,
+            "delta_mean_score_deploy_casual": -1.79395984912055,
+            "delta_paired_benchmark_minus_casual_shift_eval": -0.7181691886139394,
+            "delta_paired_benchmark_minus_casual_shift_deploy": -0.2415496872740957,
+            "delta_provenance_x_format_score_interaction": -0.47661950133984377
+          },
+          "probe_weight_fraction_in_qnocue_by_fold": [
+            0.01660680940342341,
+            0.016993202193266416,
+            0.017835035069191263,
+            0.019012713287826465,
+            0.02158210824010473
+          ],
+          "probe_weight_fraction_in_qnocue_mean": 0.01840597363876246,
+          "block_bootstrap_ci95": {
+            "raw": {
+              "pooled_auc": [
+                0.30673885,
+                0.364642525
+              ],
+              "benchmark_auc": [
+                0.33945159999999996,
+                0.40802450000000007
+              ],
+              "casual_auc": [
+                0.2564121,
+                0.3227358
+              ],
+              "source_pair_auc_mean": [
+                0.30673885,
+                0.364642525
+              ],
+              "paired_benchmark_minus_casual_shift_eval": [
+                0.3174979208922707,
+                1.3286496248829127
+              ],
+              "paired_benchmark_minus_casual_shift_deploy": [
+                -0.7120591967577263,
+                0.23245134713102378
+              ],
+              "provenance_x_format_score_interaction": [
+                0.4050188427324624,
+                1.780814735807395
+              ]
+            },
+            "projected": {
+              "pooled_auc": [
+                0.28370354999999997,
+                0.340008475
+              ],
+              "benchmark_auc": [
+                0.3072516,
+                0.3735699
+              ],
+              "casual_auc": [
+                0.2463715,
+                0.31058260000000004
+              ],
+              "source_pair_auc_mean": [
+                0.28370354999999997,
+                0.340008475
+              ],
+              "paired_benchmark_minus_casual_shift_eval": [
+                -0.30035949542384477,
+                0.5454614409785333
+              ],
+              "paired_benchmark_minus_casual_shift_deploy": [
+                -0.9026466171458679,
+                -0.06518054891083912
+              ],
+              "provenance_x_format_score_interaction": [
+                0.01309801666911315,
+                1.2146399559346643
+              ]
+            },
+            "projected_minus_raw": {
+              "pooled_auc": [
+                -0.03197594999999992,
+                -0.016256050000000022
+              ],
+              "benchmark_auc": [
+                -0.0446324,
+                -0.02293840000000007
+              ],
+              "casual_auc": [
+                -0.019897000000000078,
+                -0.004358899999999975
+              ],
+              "source_pair_auc_mean": [
+                -0.031975949999999975,
+                -0.016256050000000022
+              ],
+              "paired_benchmark_minus_casual_shift_eval": [
+                -0.8999261330900684,
+                -0.530614475832694
+              ],
+              "paired_benchmark_minus_casual_shift_deploy": [
+                -0.3992603624464956,
+                -0.07752366018578928
+              ],
+              "provenance_x_format_score_interaction": [
+                -0.7287002917569804,
+                -0.24780428780101232
+              ]
+            }
+          }
+        },
+        "casual": {
+          "raw": {
+            "pooled_auc": 0.469025,
+            "benchmark_auc": 0.5175719999999999,
+            "casual_auc": 0.417096,
+            "benchmark_minus_casual_auc": 0.1004759999999999,
+            "source_pair_auc": {
+              "allenai/ai2_arc|allenai/WildChat-1M": 0.42477999999999994,
+              "cais/mmlu|allenai/WildChat-1M": 0.51327
+            },
+            "source_pair_auc_mean": 0.46902499999999997,
+            "source_pair_auc_min": 0.42477999999999994,
+            "mean_score_eval_benchmark": -0.6779052795718219,
+            "mean_score_eval_casual": -4.853792602762496,
+            "mean_score_deploy_benchmark": -0.9303998195603012,
+            "mean_score_deploy_casual": -3.832396774586243,
+            "paired_benchmark_minus_casual_shift_eval": 4.175887323190675,
+            "paired_benchmark_minus_casual_shift_deploy": 2.901996955025942,
+            "provenance_x_format_score_interaction": 1.2738903681647327
+          },
+          "projected": {
+            "pooled_auc": 0.362674,
+            "benchmark_auc": 0.388768,
+            "casual_auc": 0.331204,
+            "benchmark_minus_casual_auc": 0.057564000000000004,
+            "source_pair_auc": {
+              "allenai/ai2_arc|allenai/WildChat-1M": 0.32313400000000003,
+              "cais/mmlu|allenai/WildChat-1M": 0.40221399999999996
+            },
+            "source_pair_auc_mean": 0.362674,
+            "source_pair_auc_min": 0.32313400000000003,
+            "mean_score_eval_benchmark": -2.684069461504653,
+            "mean_score_eval_casual": -5.638749994858932,
+            "mean_score_deploy_benchmark": -1.0454413645304563,
+            "mean_score_deploy_casual": -3.2323796053755096,
+            "paired_benchmark_minus_casual_shift_eval": 2.954680533354279,
+            "paired_benchmark_minus_casual_shift_deploy": 2.186938240845053,
+            "provenance_x_format_score_interaction": 0.7677422925092263
+          },
+          "projected_minus_raw": {
+            "delta_pooled_auc": -0.10635100000000003,
+            "delta_benchmark_auc": -0.12880399999999992,
+            "delta_casual_auc": -0.08589200000000002,
+            "delta_benchmark_minus_casual_auc": -0.042911999999999895,
+            "delta_source_pair_auc_mean": -0.10635099999999997,
+            "delta_source_pair_auc_min": -0.1016459999999999,
+            "delta_mean_score_eval_benchmark": -2.0061641819328315,
+            "delta_mean_score_eval_casual": -0.7849573920964357,
+            "delta_mean_score_deploy_benchmark": -0.11504154497015517,
+            "delta_mean_score_deploy_casual": 0.6000171692107332,
+            "delta_paired_benchmark_minus_casual_shift_eval": -1.2212067898363954,
+            "delta_paired_benchmark_minus_casual_shift_deploy": -0.7150587141808891,
+            "delta_provenance_x_format_score_interaction": -0.5061480756555063
+          },
+          "probe_weight_fraction_in_qnocue_by_fold": [
+            0.01571676032742231,
+            0.01621444348737123,
+            0.019987884884455874,
+            0.020964094858012993,
+            0.018140770603468238
+          ],
+          "probe_weight_fraction_in_qnocue_mean": 0.018204790832146128,
+          "block_bootstrap_ci95": {
+            "raw": {
+              "pooled_auc": [
+                0.43909912500000003,
+                0.49752514999999997
+              ],
+              "benchmark_auc": [
+                0.48031159999999995,
+                0.5522756999999999
+              ],
+              "casual_auc": [
+                0.381042,
+                0.4527886
+              ],
+              "source_pair_auc_mean": [
+                0.439099125,
+                0.49752515
+              ],
+              "paired_benchmark_minus_casual_shift_eval": [
+                3.8225398701620663,
+                4.510840238876632
+              ],
+              "paired_benchmark_minus_casual_shift_deploy": [
+                2.486309784651182,
+                3.2854627174954065
+              ],
+              "provenance_x_format_score_interaction": [
+                0.7717167200362417,
+                1.7782348064042348
+              ]
+            },
+            "projected": {
+              "pooled_auc": [
+                0.33412697500000005,
+                0.391914925
+              ],
+              "benchmark_auc": [
+                0.35416500000000006,
+                0.42404529999999996
+              ],
+              "casual_auc": [
+                0.29850530000000003,
+                0.3642493
+              ],
+              "source_pair_auc_mean": [
+                0.33412697500000005,
+                0.39191492499999997
+              ],
+              "paired_benchmark_minus_casual_shift_eval": [
+                2.664994042676278,
+                3.238222305303323
+              ],
+              "paired_benchmark_minus_casual_shift_deploy": [
+                1.8275255991683628,
+                2.54056706387272
+              ],
+              "provenance_x_format_score_interaction": [
+                0.31781065140443204,
+                1.194261967878706
+              ]
+            },
+            "projected_minus_raw": {
+              "pooled_auc": [
+                -0.11775964999999994,
+                -0.09612672500000002
+              ],
+              "benchmark_auc": [
+                -0.14257740000000002,
+                -0.11532709999999995
+              ],
+              "casual_auc": [
+                -0.09792210000000001,
+                -0.07319489999999998
+              ],
+              "source_pair_auc_mean": [
+                -0.11775965,
+                -0.09612672500000002
+              ],
+              "paired_benchmark_minus_casual_shift_eval": [
+                -1.3588442163984995,
+                -1.0856948121386776
+              ],
+              "paired_benchmark_minus_casual_shift_deploy": [
+                -0.831187077608585,
+                -0.5826143579797294
+              ],
+              "provenance_x_format_score_interaction": [
+                -0.6884901275524912,
+                -0.338163660102955
+              ]
+            }
+          }
+        }
+      },
+      "external_centered_variance_captured_by_fold": [
+        0.2611898694212338,
+        0.26119144919749515,
+        0.2594747656532937,
+        0.2603346068871238,
+        0.2619430683725051
+      ],
+      "external_centered_variance_captured_mean": 0.26082675190633026,
+      "basis_rows_by_fold": [
+        {
+          "fold": "fg1",
+          "n_training_groups": 2399,
+          "n_unique_payloads": 320
+        },
+        {
+          "fold": "fg2",
+          "n_training_groups": 2386,
+          "n_unique_payloads": 320
+        },
+        {
+          "fold": "fg3",
+          "n_training_groups": 2395,
+          "n_unique_payloads": 320
+        },
+        {
+          "fold": "fg4",
+          "n_training_groups": 2398,
+          "n_unique_payloads": 320
+        },
+        {
+          "fold": "fg5",
+          "n_training_groups": 2394,
+          "n_unique_payloads": 320
+        }
+      ]
+    }
+  ]
+}
