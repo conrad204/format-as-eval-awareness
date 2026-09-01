@@ -33,3 +33,7 @@ results/emergency/*.partial/
 *.partial_stratified*.json
 .pytest-tmp*/
 results/*_local.log
+
+# Hidden-channel activation cache: 589 MB, regenerable via
+# scripts/extract_hidden_channel_activations.py; over GitHub 100 MB limit.
+results/hidden_channel_acts/*.npz

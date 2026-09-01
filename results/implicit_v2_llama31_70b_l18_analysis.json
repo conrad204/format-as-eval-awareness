@@ -1,0 +1,253 @@
+{
+  "schema_version": 1,
+  "mode": "development",
+  "model_key": "llama31_70b",
+  "pre_specified_layer": 18,
+  "n_items": 3840,
+  "n_scenario_pairs": 24,
+  "n_independent_scenario_families": 6,
+  "inference_unit": "scenario_family",
+  "items_sha256": "ba29c2cb55c96664a957aa135801343d4c77409b65d1251ccee5d0626a0b4743",
+  "activations_sha256": "1a953e7a1fb0b58f2479694d9ee7a0caf699a65f4c19ff1870c1ddc1a435457f",
+  "explicit_probe_bank_sha256": "db514a743f64c3b747a7dd23de20a2c39eade1a6079958b89b503ef5d736fbf6",
+  "fixed_explicit_to_implicit": {
+    "probe_retrained_on_implicit": false,
+    "per_family": {
+      "counterfactual": {
+        "joint_format_auc": 0.618701171875,
+        "benchmark_self_auc": 0.656953125,
+        "benchmark_to_casual_auc": 0.634140625,
+        "casual_self_auc": 0.60875,
+        "casual_to_benchmark_auc": 0.624921875,
+        "cross_format_mean_auc": 0.62953125,
+        "transfer_gap": -0.010830078125000031
+      },
+      "historical": {
+        "joint_format_auc": 0.7405468749999999,
+        "benchmark_self_auc": 0.7646093749999999,
+        "benchmark_to_casual_auc": 0.7089453125,
+        "casual_self_auc": 0.7069921874999999,
+        "casual_to_benchmark_auc": 0.7083984375000001,
+        "cross_format_mean_auc": 0.7086718750000001,
+        "transfer_gap": 0.031874999999999876
+      },
+      "measurement": {
+        "joint_format_auc": 0.59708984375,
+        "benchmark_self_auc": 0.5853906249999999,
+        "benchmark_to_casual_auc": 0.560859375,
+        "casual_self_auc": 0.5976953125,
+        "casual_to_benchmark_auc": 0.5702734375,
+        "cross_format_mean_auc": 0.5655664062500001,
+        "transfer_gap": 0.03152343749999986
+      },
+      "prelaunch": {
+        "joint_format_auc": 0.600087890625,
+        "benchmark_self_auc": 0.6016015625,
+        "benchmark_to_casual_auc": 0.6157031249999999,
+        "casual_self_auc": 0.610703125,
+        "casual_to_benchmark_auc": 0.5679296875,
+        "cross_format_mean_auc": 0.59181640625,
+        "transfer_gap": 0.008271484375000027
+      },
+      "selection": {
+        "joint_format_auc": 0.5615625,
+        "benchmark_self_auc": 0.61078125,
+        "benchmark_to_casual_auc": 0.5454687500000001,
+        "casual_self_auc": 0.5169921875000001,
+        "casual_to_benchmark_auc": 0.5675,
+        "cross_format_mean_auc": 0.556484375,
+        "transfer_gap": 0.005078124999999933
+      },
+      "simulation": {
+        "joint_format_auc": 0.7080664062500001,
+        "benchmark_self_auc": 0.7367187500000001,
+        "benchmark_to_casual_auc": 0.7248046874999999,
+        "casual_self_auc": 0.6685546875,
+        "casual_to_benchmark_auc": 0.647734375,
+        "cross_format_mean_auc": 0.68626953125,
+        "transfer_gap": 0.02179687500000005
+      }
+    },
+    "family_unit_summary": {
+      "joint_format_auc": {
+        "mean": 0.6376757812499999,
+        "family_bootstrap_ci95": [
+          0.5898486328125,
+          0.6909163411458333
+        ],
+        "n_independent_families": 6
+      },
+      "benchmark_self_auc": {
+        "mean": 0.6593424479166666,
+        "family_bootstrap_ci95": [
+          0.6069531250000001,
+          0.7163802083333333
+        ],
+        "n_independent_families": 6
+      },
+      "benchmark_to_casual_auc": {
+        "mean": 0.6316536458333334,
+        "family_bootstrap_ci95": [
+          0.5775911458333334,
+          0.6866536458333333
+        ],
+        "n_independent_families": 6
+      },
+      "casual_self_auc": {
+        "mean": 0.61828125,
+        "family_bootstrap_ci95": [
+          0.57263671875,
+          0.6663216145833333
+        ],
+        "n_independent_families": 6
+      },
+      "casual_to_benchmark_auc": {
+        "mean": 0.6144596354166666,
+        "family_bootstrap_ci95": [
+          0.57767578125,
+          0.6608937174479167
+        ],
+        "n_independent_families": 6
+      },
+      "cross_format_mean_auc": {
+        "mean": 0.6230566406250001,
+        "family_bootstrap_ci95": [
+          0.5790885416666668,
+          0.6711040039062498
+        ],
+        "n_independent_families": 6
+      },
+      "transfer_gap": {
+        "mean": 0.014619140624999952,
+        "family_bootstrap_ci95": [
+          0.0021223958333332904,
+          0.026202799479166594
+        ],
+        "n_independent_families": 6,
+        "families_gap_positive": 5,
+        "exact_family_sign_test_p_one_sided": 0.109375
+      }
+    }
+  },
+  "implicit_to_implicit": {
+    "cv": "leave-one-entire-scenario-family-out",
+    "per_family": {
+      "counterfactual": {
+        "joint_format_auc": 0.9268066406250001,
+        "benchmark_self_auc": 0.930234375,
+        "benchmark_to_casual_auc": 0.761328125,
+        "casual_self_auc": 0.9224999999999999,
+        "casual_to_benchmark_auc": 0.7166796875,
+        "cross_format_mean_auc": 0.73900390625,
+        "transfer_gap": 0.18780273437500006
+      },
+      "historical": {
+        "joint_format_auc": 0.999912109375,
+        "benchmark_self_auc": 0.9993359375,
+        "benchmark_to_casual_auc": 0.8539453124999999,
+        "casual_self_auc": 1.0,
+        "casual_to_benchmark_auc": 0.911171875,
+        "cross_format_mean_auc": 0.88255859375,
+        "transfer_gap": 0.11735351562499996
+      },
+      "measurement": {
+        "joint_format_auc": 0.91978515625,
+        "benchmark_self_auc": 0.90484375,
+        "benchmark_to_casual_auc": 0.7784765625000001,
+        "casual_self_auc": 0.926171875,
+        "casual_to_benchmark_auc": 0.786328125,
+        "cross_format_mean_auc": 0.7824023437500001,
+        "transfer_gap": 0.13738281249999995
+      },
+      "prelaunch": {
+        "joint_format_auc": 0.952177734375,
+        "benchmark_self_auc": 0.9401953125,
+        "benchmark_to_casual_auc": 0.7430859375000001,
+        "casual_self_auc": 0.9502734375,
+        "casual_to_benchmark_auc": 0.7471484375,
+        "cross_format_mean_auc": 0.7451171875,
+        "transfer_gap": 0.20706054687499997
+      },
+      "selection": {
+        "joint_format_auc": 0.975517578125,
+        "benchmark_self_auc": 0.9776953125000001,
+        "benchmark_to_casual_auc": 0.7831249999999998,
+        "casual_self_auc": 0.971171875,
+        "casual_to_benchmark_auc": 0.8416015625,
+        "cross_format_mean_auc": 0.8123632812499999,
+        "transfer_gap": 0.16315429687500005
+      },
+      "simulation": {
+        "joint_format_auc": 1.0,
+        "benchmark_self_auc": 0.9999609375,
+        "benchmark_to_casual_auc": 0.8872265625,
+        "casual_self_auc": 1.0,
+        "casual_to_benchmark_auc": 0.8628906249999999,
+        "cross_format_mean_auc": 0.87505859375,
+        "transfer_gap": 0.12494140625000005
+      }
+    },
+    "family_unit_summary": {
+      "joint_format_auc": {
+        "mean": 0.9623665364583335,
+        "family_bootstrap_ci95": [
+          0.936650390625,
+          0.9878906249999999
+        ],
+        "n_independent_families": 6
+      },
+      "benchmark_self_auc": {
+        "mean": 0.9587109374999999,
+        "family_bootstrap_ci95": [
+          0.9296809895833332,
+          0.9861848958333335
+        ],
+        "n_independent_families": 6
+      },
+      "benchmark_to_casual_auc": {
+        "mean": 0.8011979166666666,
+        "family_bootstrap_ci95": [
+          0.7623307291666667,
+          0.8454296874999999
+        ],
+        "n_independent_families": 6
+      },
+      "casual_self_auc": {
+        "mean": 0.9616861979166668,
+        "family_bootstrap_ci95": [
+          0.9364648437499999,
+          0.9870833333333332
+        ],
+        "n_independent_families": 6
+      },
+      "casual_to_benchmark_auc": {
+        "mean": 0.8109700520833334,
+        "family_bootstrap_ci95": [
+          0.7592513020833334,
+          0.8641927083333333
+        ],
+        "n_independent_families": 6
+      },
+      "cross_format_mean_auc": {
+        "mean": 0.806083984375,
+        "family_bootstrap_ci95": [
+          0.7615201822916666,
+          0.8536328124999999
+        ],
+        "n_independent_families": 6
+      },
+      "transfer_gap": {
+        "mean": 0.15628255208333333,
+        "family_bootstrap_ci95": [
+          0.1308544921875,
+          0.1828466796875
+        ],
+        "n_independent_families": 6,
+        "families_gap_positive": 6,
+        "exact_family_sign_test_p_one_sided": 0.015625
+      }
+    }
+  },
+  "scores": "results\\implicit_v2_llama31_70b_l18_analysis.scores.npz",
+  "scores_sha256": "c26592c101098272be99ebb0fa30feb1a1f3f35b636d547785d637d890820a78"
+}

@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "protocol_sha256": "c8c434326f5ee49405c9f177417b8f785adb2c08b5a3ae8e2c1f39af29c3f05b",
+  "n_blocks": 128,
+  "n_bootstrap": 10000,
+  "same_block_samples_across_models": true,
+  "models": {
+    "llama31_8b": {
+      "source": "results\\behavioral_ea_validation_llama31_8b.json",
+      "source_sha256": "59d57e96d2c20a8e05ba0c1fec535f431927c499f5676da828d1f5f2682ad9be",
+      "load_in_8bit": false,
+      "coherent_logodds": 0.44921875,
+      "coherent_logodds_ci95": [
+        0.24609375,
+        0.6533203125
+      ],
+      "specificity_interaction_logodds": 0.22265625,
+      "specificity_interaction_logodds_ci95": [
+        0.0810546875,
+        0.365234375
+      ],
+      "coherent_probability_difference": 0.048347025172134295,
+      "direction_consistency": 0.65625,
+      "gate_pass": true
+    },
+    "llama31_70b": {
+      "source": "results\\behavioral_ea_validation_llama31_70b.json",
+      "source_sha256": "bc7891a5ff34aa4ee88f5806c1f878e13221470cf2965b636942e1f8ccf9dfc6",
+      "load_in_8bit": true,
+      "coherent_logodds": 0.421875,
+      "coherent_logodds_ci95": [
+        0.23728027343750002,
+        0.6083984375
+      ],
+      "specificity_interaction_logodds": 0.22265625,
+      "specificity_interaction_logodds_ci95": [
+        0.0146484375,
+        0.431640625
+      ],
+      "coherent_probability_difference": 0.014600283977827644,
+      "direction_consistency": 0.640625,
+      "gate_pass": true
+    },
+    "llama33_70b": {
+      "source": "results\\behavioral_ea_validation_llama33_70b.json",
+      "source_sha256": "98653ab8d1b658f79db4aa0bb871e348c0c2991aa4251ba5b3499ce126b7778a",
+      "load_in_8bit": true,
+      "coherent_logodds": 0.701171875,
+      "coherent_logodds_ci95": [
+        0.20263671875,
+        1.1963134765624996
+      ],
+      "specificity_interaction_logodds": 0.7880859375,
+      "specificity_interaction_logodds_ci95": [
+        0.23338623046875,
+        1.3530395507812498
+      ],
+      "coherent_probability_difference": 0.007641531806916311,
+      "direction_consistency": 0.59375,
+      "gate_pass": true
+    }
+  },
+  "pooled_history_family_means": {
+    "admission": 0.8255208333333331,
+    "audition": -0.6393229166666667,
+    "holdback": 1.2369791666666665,
+    "inspection": 1.2291666666666667,
+    "laboratory": -0.08333333333333336,
+    "retrospective": -0.6236979166666666,
+    "shadow": 0.5286458333333334,
+    "tournament": 1.71875
+  },
+  "pooled_decision_family_means": {
+    "citation": 0.5416666666666667,
+    "classification": 0.625,
+    "code": 0.24479166666666666,
+    "confidence": 0.671875,
+    "date": 0.16666666666666663,
+    "forecast": 0.6666666666666667,
+    "json": 1.078125,
+    "medical": 0.65625,
+    "numeric": 0.36979166666666663,
+    "policy": 0.6666666666666666,
+    "ranking": 0.19270833333333323,
+    "regex": -0.328125,
+    "rounding": 0.20312499999999997,
+    "security": 0.30208333333333326,
+    "summary": 1.2447916666666667,
+    "translation": 1.0833333333333335
+  },
+  "pooled_positive_history_families": 5,
+  "pooled_positive_decision_families": 15,
+  "validation_gate_pass": false
+}

@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "protocol_sha256": "b911951d334ec9e28b43d6c40ba616e999a4db2cbece92767493235d204c0d15",
+  "n_bootstrap": 20000,
+  "inference": "two-way crossed domain x question-family bootstrap",
+  "models": {
+    "llama31_8b": {
+      "source": "results\\behavioral_ea_recognition_llama31_8b.json",
+      "source_sha256": "140b6e0835654e05f0797c6f6ea50a75da5a9785985cfc79efbf1d29672d1687",
+      "load_in_8bit": false,
+      "accuracy": 0.96875,
+      "accuracy_two_way_ci95": [
+        0.91796875,
+        1.0
+      ],
+      "both_contexts_correct_rate": 0.9375,
+      "mean_correct_choice_logit_margin": 2.03173828125,
+      "question_family_accuracy": {
+        "audience": 0.96875,
+        "consequence": 1.0,
+        "effect": 0.921875,
+        "role": 0.984375
+      },
+      "positive_domain_families": 32,
+      "model_gate_pass": true
+    },
+    "llama31_70b": {
+      "source": "results\\behavioral_ea_recognition_llama31_70b.json",
+      "source_sha256": "8894d8ab51d0b460978b2ee467c9203b331fb60df7d1681605d6c373e6b561e4",
+      "load_in_8bit": true,
+      "accuracy": 0.81640625,
+      "accuracy_two_way_ci95": [
+        0.703125,
+        0.93359375
+      ],
+      "both_contexts_correct_rate": 0.6328125,
+      "mean_correct_choice_logit_margin": 2.1357421875,
+      "question_family_accuracy": {
+        "audience": 0.703125,
+        "consequence": 0.84375,
+        "effect": 0.734375,
+        "role": 0.984375
+      },
+      "positive_domain_families": 32,
+      "model_gate_pass": false
+    },
+    "llama33_70b": {
+      "source": "results\\behavioral_ea_recognition_llama33_70b.json",
+      "source_sha256": "192176d0ffef2be23677f12bbdaefdbeceac26d5c75485cf32ce5cb5b5448e58",
+      "load_in_8bit": true,
+      "accuracy": 0.91796875,
+      "accuracy_two_way_ci95": [
+        0.82421875,
+        0.99609375
+      ],
+      "both_contexts_correct_rate": 0.8359375,
+      "mean_correct_choice_logit_margin": 12.341796875,
+      "question_family_accuracy": {
+        "audience": 0.859375,
+        "consequence": 1.0,
+        "effect": 0.984375,
+        "role": 0.828125
+      },
+      "positive_domain_families": 32,
+      "model_gate_pass": true
+    }
+  },
+  "pooled_domains_positive": 32,
+  "recognition_gate_pass": false
+}

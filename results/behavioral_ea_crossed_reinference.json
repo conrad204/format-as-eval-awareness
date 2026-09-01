@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "purpose": "correct two-way crossed re-inference of superseded iid-cell analyses",
+  "n_bootstrap": 20000,
+  "seed": 20260905,
+  "experiments": {
+    "initial": {
+      "models": {
+        "llama31_8b": {
+          "source": "results\\behavioral_ea_llama31_8b.json",
+          "source_sha256": "120001d4f7cefadbe8d6b9214d2dbc64dff37283c269a7fd0c3fe25fe264fd12",
+          "load_in_8bit": false,
+          "n_history_families": 8,
+          "n_decision_families": 16,
+          "coherent_logodds": 0.69140625,
+          "coherent_logodds_crossed_ci95": [
+            0.0380859375,
+            1.3505859375
+          ],
+          "specificity_interaction_logodds": 0.65234375,
+          "specificity_interaction_crossed_ci95": [
+            0.3759765625,
+            0.9609375
+          ],
+          "positive_history_families": 7,
+          "positive_decision_families": 16,
+          "coherent_crossed_ci_excludes_zero": true,
+          "interaction_crossed_ci_excludes_zero": true
+        },
+        "llama31_70b": {
+          "source": "results\\behavioral_ea_llama31_70b.json",
+          "source_sha256": "1cfcf6ff5473a50f857918ef623bff3d8b7af1c6374b640f287ceec9ce27e1b9",
+          "load_in_8bit": true,
+          "n_history_families": 8,
+          "n_decision_families": 16,
+          "coherent_logodds": 0.357421875,
+          "coherent_logodds_crossed_ci95": [
+            -0.17482910156249998,
+            0.9404296875
+          ],
+          "specificity_interaction_logodds": 0.4072265625,
+          "specificity_interaction_crossed_ci95": [
+            -0.06057128906249998,
+            0.9384765625
+          ],
+          "positive_history_families": 5,
+          "positive_decision_families": 13,
+          "coherent_crossed_ci_excludes_zero": false,
+          "interaction_crossed_ci_excludes_zero": false
+        },
+        "llama33_70b": {
+          "source": "results\\behavioral_ea_llama33_70b.json",
+          "source_sha256": "19d0045742fe3174cafc8b53ce6756b69a22642fe9bf03302660d19818da3105",
+          "load_in_8bit": true,
+          "n_history_families": 8,
+          "n_decision_families": 16,
+          "coherent_logodds": 1.3095703125,
+          "coherent_logodds_crossed_ci95": [
+            0.31494140625,
+            2.250988769531249
+          ],
+          "specificity_interaction_logodds": 1.5712890625,
+          "specificity_interaction_crossed_ci95": [
+            0.45797119140625003,
+            2.617687988281249
+          ],
+          "positive_history_families": 7,
+          "positive_decision_families": 15,
+          "coherent_crossed_ci_excludes_zero": true,
+          "interaction_crossed_ci_excludes_zero": true
+        }
+      },
+      "models_with_coherent_ci_excluding_zero": 2,
+      "models_with_interaction_ci_excluding_zero": 2
+    },
+    "validation": {
+      "models": {
+        "llama31_8b": {
+          "source": "results\\behavioral_ea_validation_llama31_8b.json",
+          "source_sha256": "59d57e96d2c20a8e05ba0c1fec535f431927c499f5676da828d1f5f2682ad9be",
+          "load_in_8bit": false,
+          "n_history_families": 8,
+          "n_decision_families": 16,
+          "coherent_logodds": 0.44921875,
+          "coherent_logodds_crossed_ci95": [
+            -0.123046875,
+            0.9941650390624979
+          ],
+          "specificity_interaction_logodds": 0.22265625,
+          "specificity_interaction_crossed_ci95": [
+            -0.091796875,
+            0.5380859375
+          ],
+          "positive_history_families": 5,
+          "positive_decision_families": 14,
+          "coherent_crossed_ci_excludes_zero": false,
+          "interaction_crossed_ci_excludes_zero": false
+        },
+        "llama31_70b": {
+          "source": "results\\behavioral_ea_validation_llama31_70b.json",
+          "source_sha256": "bc7891a5ff34aa4ee88f5806c1f878e13221470cf2965b636942e1f8ccf9dfc6",
+          "load_in_8bit": true,
+          "n_history_families": 8,
+          "n_decision_families": 16,
+          "coherent_logodds": 0.421875,
+          "coherent_logodds_crossed_ci95": [
+            -0.0810546875,
+            0.9033203125
+          ],
+          "specificity_interaction_logodds": 0.22265625,
+          "specificity_interaction_crossed_ci95": [
+            -0.279296875,
+            0.7256103515624979
+          ],
+          "positive_history_families": 6,
+          "positive_decision_families": 13,
+          "coherent_crossed_ci_excludes_zero": false,
+          "interaction_crossed_ci_excludes_zero": false
+        },
+        "llama33_70b": {
+          "source": "results\\behavioral_ea_validation_llama33_70b.json",
+          "source_sha256": "98653ab8d1b658f79db4aa0bb871e348c0c2991aa4251ba5b3499ce126b7778a",
+          "load_in_8bit": true,
+          "n_history_families": 8,
+          "n_decision_families": 16,
+          "coherent_logodds": 0.701171875,
+          "coherent_logodds_crossed_ci95": [
+            -0.610400390625,
+            1.9169921875
+          ],
+          "specificity_interaction_logodds": 0.7880859375,
+          "specificity_interaction_crossed_ci95": [
+            -0.36474609375,
+            1.812512207031249
+          ],
+          "positive_history_families": 5,
+          "positive_decision_families": 14,
+          "coherent_crossed_ci_excludes_zero": false,
+          "interaction_crossed_ci_excludes_zero": false
+        }
+      },
+      "models_with_coherent_ci_excluding_zero": 0,
+      "models_with_interaction_ci_excluding_zero": 0
+    }
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "schema_version": 3,
+  "model_key": "llama31_8b",
+  "precision": "bfloat16",
+  "activations_sha256": "8c2ed57e35db1d11a1ec24cd26d707d98f1776c9c6d8ef08d2464e28b5bfec58",
+  "design": "pooled over both mappings so the channel letter is orthogonal to status; leave-episode-family-out cross-fitting; layer chosen inside training folds only",
+  "supersedes": [
+    "probe_hidden_channel_status.py (invalid scrambled control)",
+    "probe_hidden_channel_status_v2.py (cross-mapping transfer is confounded by design)"
+  ],
+  "layer_stride": 4,
+  "n_bootstrap": 10000,
+  "readouts": {
+    "status": {
+      "pooled_auc": 0.7241907119750977,
+      "family_mean_auc": 0.7698974609375,
+      "family_ci95": [
+        0.6899673461914062,
+        0.8403663635253906
+      ],
+      "families_above_chance": 29,
+      "n_families": 32,
+      "layer_chosen_per_fold": {
+        "0": {
+          "layer": 16,
+          "inner_auc": 0.7562527126736112
+        },
+        "1": {
+          "layer": 16,
+          "inner_auc": 0.6935848659939237
+        },
+        "2": {
+          "layer": 16,
+          "inner_auc": 0.6731753879123266
+        },
+        "3": {
+          "layer": 16,
+          "inner_auc": 0.6547359890407985
+        }
+      }
+    },
+    "permutation_null": {
+      "pooled_auc": 0.49762630462646484,
+      "family_mean_auc": 0.503570556640625,
+      "family_ci95": [
+        0.4834281921386719,
+        0.5242919921875
+      ],
+      "families_above_chance": 14,
+      "n_families": 32,
+      "layer_chosen_per_fold": {
+        "0": {
+          "layer": 24,
+          "inner_auc": 0.5210418701171875
+        },
+        "1": {
+          "layer": 16,
+          "inner_auc": 0.5118408203125
+        },
+        "2": {
+          "layer": 0,
+          "inner_auc": 0.5015089246961806
+        },
+        "3": {
+          "layer": 24,
+          "inner_auc": 0.5098927815755209
+        }
+      }
+    },
+    "letter_control": {
+      "pooled_auc": 0.9591617584228516,
+      "family_mean_auc": 0.973358154296875,
+      "family_ci95": [
+        0.9574882507324218,
+        0.985595703125
+      ],
+      "families_above_chance": 32,
+      "n_families": 32,
+      "layer_chosen_per_fold": {
+        "0": {
+          "layer": 20,
+          "inner_auc": 0.9552527533637153
+        },
+        "1": {
+          "layer": 20,
+          "inner_auc": 0.9573974609375
+        },
+        "2": {
+          "layer": 20,
+          "inner_auc": 0.9399464925130209
+        },
+        "3": {
+          "layer": 20,
+          "inner_auc": 0.947569105360243
+        }
+      }
+    }
+  }
+}

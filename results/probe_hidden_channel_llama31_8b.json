@@ -1,0 +1,697 @@
+{
+  "schema_version": 1,
+  "model_key": "llama31_8b",
+  "precision": "bfloat16",
+  "activations_sha256": "8c2ed57e35db1d11a1ec24cd26d707d98f1776c9c6d8ef08d2464e28b5bfec58",
+  "n_layers": 32,
+  "cross_fitting": "leave-episode-family-out, 4 folds",
+  "probe": {
+    "C": 0.1,
+    "max_iter": 3000,
+    "random_state": 0
+  },
+  "n_bootstrap": 10000,
+  "note": "status label is orthogonal to the visible channel letter because both mappings are pooled; a letter-only probe scores 0.5",
+  "layers": [
+    {
+      "layer": 0,
+      "status_latent_auc": 0.5003137588500977,
+      "status_latent_family_mean_auc": 0.50311279296875,
+      "status_latent_family_ci95": [
+        0.482940673828125,
+        0.522674560546875
+      ],
+      "token_control_auc": 0.6654148101806641,
+      "token_control_family_mean_auc": 0.998748779296875,
+      "token_control_family_ci95": [
+        0.996246337890625,
+        1.0
+      ],
+      "status_scrambled_auc": 0.677764892578125,
+      "status_scrambled_family_mean_auc": 1.0,
+      "status_scrambled_family_ci95": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "layer": 1,
+      "status_latent_auc": 0.4998178482055664,
+      "status_latent_family_mean_auc": 0.503326416015625,
+      "status_latent_family_ci95": [
+        0.4887687683105469,
+        0.518218994140625
+      ],
+      "token_control_auc": 0.7297344207763672,
+      "token_control_family_mean_auc": 1.0,
+      "token_control_family_ci95": [
+        1.0,
+        1.0
+      ],
+      "status_scrambled_auc": 0.7810020446777344,
+      "status_scrambled_family_mean_auc": 1.0,
+      "status_scrambled_family_ci95": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "layer": 2,
+      "status_latent_auc": 0.49828338623046875,
+      "status_latent_family_mean_auc": 0.48846435546875,
+      "status_latent_family_ci95": [
+        0.4024650573730469,
+        0.5750442504882812
+      ],
+      "token_control_auc": 0.6964101791381836,
+      "token_control_family_mean_auc": 1.0,
+      "token_control_family_ci95": [
+        1.0,
+        1.0
+      ],
+      "status_scrambled_auc": 0.6966476440429688,
+      "status_scrambled_family_mean_auc": 1.0,
+      "status_scrambled_family_ci95": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "layer": 3,
+      "status_latent_auc": 0.4966106414794922,
+      "status_latent_family_mean_auc": 0.49505615234375,
+      "status_latent_family_ci95": [
+        0.40688629150390626,
+        0.5837112426757812
+      ],
+      "token_control_auc": 0.7163286209106445,
+      "token_control_family_mean_auc": 0.99957275390625,
+      "token_control_family_ci95": [
+        0.999176025390625,
+        0.9998779296875
+      ],
+      "status_scrambled_auc": 0.7078208923339844,
+      "status_scrambled_family_mean_auc": 0.999755859375,
+      "status_scrambled_family_ci95": [
+        0.999267578125,
+        1.0
+      ]
+    },
+    {
+      "layer": 4,
+      "status_latent_auc": 0.5084428787231445,
+      "status_latent_family_mean_auc": 0.54718017578125,
+      "status_latent_family_ci95": [
+        0.45855712890625,
+        0.6351936340332032
+      ],
+      "token_control_auc": 0.7874879837036133,
+      "token_control_family_mean_auc": 0.993133544921875,
+      "token_control_family_ci95": [
+        0.984100341796875,
+        0.9998779296875
+      ],
+      "status_scrambled_auc": 0.7895278930664062,
+      "status_scrambled_family_mean_auc": 1.0,
+      "status_scrambled_family_ci95": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "layer": 5,
+      "status_latent_auc": 0.5390853881835938,
+      "status_latent_family_mean_auc": 0.627044677734375,
+      "status_latent_family_ci95": [
+        0.517425537109375,
+        0.7364524841308593
+      ],
+      "token_control_auc": 0.8048372268676758,
+      "token_control_family_mean_auc": 0.999298095703125,
+      "token_control_family_ci95": [
+        0.998382568359375,
+        1.0
+      ],
+      "status_scrambled_auc": 0.8022232055664062,
+      "status_scrambled_family_mean_auc": 0.9986572265625,
+      "status_scrambled_family_ci95": [
+        0.996337890625,
+        1.0
+      ]
+    },
+    {
+      "layer": 6,
+      "status_latent_auc": 0.5541162490844727,
+      "status_latent_family_mean_auc": 0.676727294921875,
+      "status_latent_family_ci95": [
+        0.5680831909179688,
+        0.7782600402832032
+      ],
+      "token_control_auc": 0.8789892196655273,
+      "token_control_family_mean_auc": 0.99700927734375,
+      "token_control_family_ci95": [
+        0.993316650390625,
+        0.99951171875
+      ],
+      "status_scrambled_auc": 0.777587890625,
+      "status_scrambled_family_mean_auc": 0.99853515625,
+      "status_scrambled_family_ci95": [
+        0.99560546875,
+        1.0
+      ]
+    },
+    {
+      "layer": 7,
+      "status_latent_auc": 0.5897817611694336,
+      "status_latent_family_mean_auc": 0.7591552734375,
+      "status_latent_family_ci95": [
+        0.6539527893066406,
+        0.8517768859863282
+      ],
+      "token_control_auc": 0.8938064575195312,
+      "token_control_family_mean_auc": 0.9993896484375,
+      "token_control_family_ci95": [
+        0.998291015625,
+        1.0
+      ],
+      "status_scrambled_auc": 0.86669921875,
+      "status_scrambled_family_mean_auc": 1.0,
+      "status_scrambled_family_ci95": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "layer": 8,
+      "status_latent_auc": 0.5759925842285156,
+      "status_latent_family_mean_auc": 0.728851318359375,
+      "status_latent_family_ci95": [
+        0.6155082702636718,
+        0.8340484619140625
+      ],
+      "token_control_auc": 0.9229249954223633,
+      "token_control_family_mean_auc": 0.99700927734375,
+      "token_control_family_ci95": [
+        0.991546630859375,
+        1.0
+      ],
+      "status_scrambled_auc": 0.8790245056152344,
+      "status_scrambled_family_mean_auc": 0.9991455078125,
+      "status_scrambled_family_ci95": [
+        0.9976806640625,
+        1.0
+      ]
+    },
+    {
+      "layer": 9,
+      "status_latent_auc": 0.5547447204589844,
+      "status_latent_family_mean_auc": 0.684967041015625,
+      "status_latent_family_ci95": [
+        0.5716545104980468,
+        0.7915679931640625
+      ],
+      "token_control_auc": 0.8888740539550781,
+      "token_control_family_mean_auc": 0.997894287109375,
+      "token_control_family_ci95": [
+        0.99591064453125,
+        0.99945068359375
+      ],
+      "status_scrambled_auc": 0.8700942993164062,
+      "status_scrambled_family_mean_auc": 0.99609375,
+      "status_scrambled_family_ci95": [
+        0.9912109375,
+        0.9998779296875
+      ]
+    },
+    {
+      "layer": 10,
+      "status_latent_auc": 0.5702981948852539,
+      "status_latent_family_mean_auc": 0.673095703125,
+      "status_latent_family_ci95": [
+        0.5698844909667968,
+        0.7685585021972656
+      ],
+      "token_control_auc": 0.9269018173217773,
+      "token_control_family_mean_auc": 0.99639892578125,
+      "token_control_family_ci95": [
+        0.992095947265625,
+        0.999755859375
+      ],
+      "status_scrambled_auc": 0.9353599548339844,
+      "status_scrambled_family_mean_auc": 0.9925537109375,
+      "status_scrambled_family_ci95": [
+        0.9842498779296875,
+        0.998779296875
+      ]
+    },
+    {
+      "layer": 11,
+      "status_latent_auc": 0.5967302322387695,
+      "status_latent_family_mean_auc": 0.693756103515625,
+      "status_latent_family_ci95": [
+        0.6026298522949218,
+        0.7781692504882812
+      ],
+      "token_control_auc": 0.9064569473266602,
+      "token_control_family_mean_auc": 0.985137939453125,
+      "token_control_family_ci95": [
+        0.972564697265625,
+        0.9951171875
+      ],
+      "status_scrambled_auc": 0.9040069580078125,
+      "status_scrambled_family_mean_auc": 0.9630126953125,
+      "status_scrambled_family_ci95": [
+        0.93115234375,
+        0.9875518798828125
+      ]
+    },
+    {
+      "layer": 12,
+      "status_latent_auc": 0.6322708129882812,
+      "status_latent_family_mean_auc": 0.739501953125,
+      "status_latent_family_ci95": [
+        0.6516387939453125,
+        0.817840576171875
+      ],
+      "token_control_auc": 0.9321556091308594,
+      "token_control_family_mean_auc": 0.982818603515625,
+      "token_control_family_ci95": [
+        0.966766357421875,
+        0.99560546875
+      ],
+      "status_scrambled_auc": 0.9278526306152344,
+      "status_scrambled_family_mean_auc": 0.9698486328125,
+      "status_scrambled_family_ci95": [
+        0.9385986328125,
+        0.991943359375
+      ]
+    },
+    {
+      "layer": 13,
+      "status_latent_auc": 0.6934242248535156,
+      "status_latent_family_mean_auc": 0.76776123046875,
+      "status_latent_family_ci95": [
+        0.6824028015136718,
+        0.8414009094238282
+      ],
+      "token_control_auc": 0.9454574584960938,
+      "token_control_family_mean_auc": 0.978759765625,
+      "token_control_family_ci95": [
+        0.962921142578125,
+        0.990966796875
+      ],
+      "status_scrambled_auc": 0.9306068420410156,
+      "status_scrambled_family_mean_auc": 0.965087890625,
+      "status_scrambled_family_ci95": [
+        0.932373046875,
+        0.988525390625
+      ]
+    },
+    {
+      "layer": 14,
+      "status_latent_auc": 0.6954507827758789,
+      "status_latent_family_mean_auc": 0.766204833984375,
+      "status_latent_family_ci95": [
+        0.6868896484375,
+        0.8383491516113282
+      ],
+      "token_control_auc": 0.9473247528076172,
+      "token_control_family_mean_auc": 0.972625732421875,
+      "token_control_family_ci95": [
+        0.9555656433105468,
+        0.985626220703125
+      ],
+      "status_scrambled_auc": 0.9206199645996094,
+      "status_scrambled_family_mean_auc": 0.9495849609375,
+      "status_scrambled_family_ci95": [
+        0.9096649169921875,
+        0.9796142578125
+      ]
+    },
+    {
+      "layer": 15,
+      "status_latent_auc": 0.7070035934448242,
+      "status_latent_family_mean_auc": 0.765167236328125,
+      "status_latent_family_ci95": [
+        0.6889938354492188,
+        0.8310859680175782
+      ],
+      "token_control_auc": 0.9620265960693359,
+      "token_control_family_mean_auc": 0.975341796875,
+      "token_control_family_ci95": [
+        0.9595947265625,
+        0.98760986328125
+      ],
+      "status_scrambled_auc": 0.9333839416503906,
+      "status_scrambled_family_mean_auc": 0.9481201171875,
+      "status_scrambled_family_ci95": [
+        0.90869140625,
+        0.9798583984375
+      ]
+    },
+    {
+      "layer": 16,
+      "status_latent_auc": 0.7241907119750977,
+      "status_latent_family_mean_auc": 0.7698974609375,
+      "status_latent_family_ci95": [
+        0.6897270202636718,
+        0.8404853820800782
+      ],
+      "token_control_auc": 0.9595060348510742,
+      "token_control_family_mean_auc": 0.972412109375,
+      "token_control_family_ci95": [
+        0.95574951171875,
+        0.98529052734375
+      ],
+      "status_scrambled_auc": 0.9256324768066406,
+      "status_scrambled_family_mean_auc": 0.9483642578125,
+      "status_scrambled_family_ci95": [
+        0.9130859375,
+        0.97705078125
+      ]
+    },
+    {
+      "layer": 17,
+      "status_latent_auc": 0.7307720184326172,
+      "status_latent_family_mean_auc": 0.75994873046875,
+      "status_latent_family_ci95": [
+        0.6854530334472656,
+        0.8256851196289062
+      ],
+      "token_control_auc": 0.9667978286743164,
+      "token_control_family_mean_auc": 0.98016357421875,
+      "token_control_family_ci95": [
+        0.96673583984375,
+        0.9906005859375
+      ],
+      "status_scrambled_auc": 0.9394378662109375,
+      "status_scrambled_family_mean_auc": 0.9603271484375,
+      "status_scrambled_family_ci95": [
+        0.9294403076171875,
+        0.9854766845703125
+      ]
+    },
+    {
+      "layer": 18,
+      "status_latent_auc": 0.7059612274169922,
+      "status_latent_family_mean_auc": 0.73992919921875,
+      "status_latent_family_ci95": [
+        0.6661964416503906,
+        0.8069488525390625
+      ],
+      "token_control_auc": 0.9585189819335938,
+      "token_control_family_mean_auc": 0.974639892578125,
+      "token_control_family_ci95": [
+        0.9604476928710938,
+        0.986053466796875
+      ],
+      "status_scrambled_auc": 0.92779541015625,
+      "status_scrambled_family_mean_auc": 0.9486083984375,
+      "status_scrambled_family_ci95": [
+        0.915771484375,
+        0.9765625
+      ]
+    },
+    {
+      "layer": 19,
+      "status_latent_auc": 0.6939735412597656,
+      "status_latent_family_mean_auc": 0.73162841796875,
+      "status_latent_family_ci95": [
+        0.656463623046875,
+        0.8004486083984375
+      ],
+      "token_control_auc": 0.9561939239501953,
+      "token_control_family_mean_auc": 0.9737548828125,
+      "token_control_family_ci95": [
+        0.9586174011230468,
+        0.985870361328125
+      ],
+      "status_scrambled_auc": 0.9222488403320312,
+      "status_scrambled_family_mean_auc": 0.9510498046875,
+      "status_scrambled_family_ci95": [
+        0.9195556640625,
+        0.9774169921875
+      ]
+    },
+    {
+      "layer": 20,
+      "status_latent_auc": 0.6968822479248047,
+      "status_latent_family_mean_auc": 0.735321044921875,
+      "status_latent_family_ci95": [
+        0.6582923889160156,
+        0.8050849914550782
+      ],
+      "token_control_auc": 0.9591617584228516,
+      "token_control_family_mean_auc": 0.973358154296875,
+      "token_control_family_ci95": [
+        0.95703125,
+        0.985748291015625
+      ],
+      "status_scrambled_auc": 0.9256706237792969,
+      "status_scrambled_family_mean_auc": 0.9521484375,
+      "status_scrambled_family_ci95": [
+        0.9229736328125,
+        0.9771728515625
+      ]
+    },
+    {
+      "layer": 21,
+      "status_latent_auc": 0.6778736114501953,
+      "status_latent_family_mean_auc": 0.735382080078125,
+      "status_latent_family_ci95": [
+        0.6634757995605469,
+        0.802154541015625
+      ],
+      "token_control_auc": 0.9477062225341797,
+      "token_control_family_mean_auc": 0.964385986328125,
+      "token_control_family_ci95": [
+        0.94671630859375,
+        0.9784866333007812
+      ],
+      "status_scrambled_auc": 0.9192428588867188,
+      "status_scrambled_family_mean_auc": 0.9476318359375,
+      "status_scrambled_family_ci95": [
+        0.9194305419921875,
+        0.9716796875
+      ]
+    },
+    {
+      "layer": 22,
+      "status_latent_auc": 0.6634426116943359,
+      "status_latent_family_mean_auc": 0.723052978515625,
+      "status_latent_family_ci95": [
+        0.6553947448730468,
+        0.7863487243652343
+      ],
+      "token_control_auc": 0.9256486892700195,
+      "token_control_family_mean_auc": 0.95654296875,
+      "token_control_family_ci95": [
+        0.9381103515625,
+        0.972412109375
+      ],
+      "status_scrambled_auc": 0.8885154724121094,
+      "status_scrambled_family_mean_auc": 0.931396484375,
+      "status_scrambled_family_ci95": [
+        0.8956298828125,
+        0.9610626220703125
+      ]
+    },
+    {
+      "layer": 23,
+      "status_latent_auc": 0.6620502471923828,
+      "status_latent_family_mean_auc": 0.715362548828125,
+      "status_latent_family_ci95": [
+        0.64959716796875,
+        0.779022216796875
+      ],
+      "token_control_auc": 0.9214935302734375,
+      "token_control_family_mean_auc": 0.952789306640625,
+      "token_control_family_ci95": [
+        0.9334098815917968,
+        0.9696044921875
+      ],
+      "status_scrambled_auc": 0.8709335327148438,
+      "status_scrambled_family_mean_auc": 0.92236328125,
+      "status_scrambled_family_ci95": [
+        0.8848846435546875,
+        0.9537353515625
+      ]
+    },
+    {
+      "layer": 24,
+      "status_latent_auc": 0.6661930084228516,
+      "status_latent_family_mean_auc": 0.717010498046875,
+      "status_latent_family_ci95": [
+        0.652740478515625,
+        0.7806419372558593
+      ],
+      "token_control_auc": 0.9192886352539062,
+      "token_control_family_mean_auc": 0.949737548828125,
+      "token_control_family_ci95": [
+        0.929656982421875,
+        0.96673583984375
+      ],
+      "status_scrambled_auc": 0.8718681335449219,
+      "status_scrambled_family_mean_auc": 0.9202880859375,
+      "status_scrambled_family_ci95": [
+        0.8834197998046875,
+        0.9520263671875
+      ]
+    },
+    {
+      "layer": 25,
+      "status_latent_auc": 0.6587133407592773,
+      "status_latent_family_mean_auc": 0.70751953125,
+      "status_latent_family_ci95": [
+        0.6416297912597656,
+        0.7698974609375
+      ],
+      "token_control_auc": 0.915369987487793,
+      "token_control_family_mean_auc": 0.947998046875,
+      "token_control_family_ci95": [
+        0.9279777526855468,
+        0.965057373046875
+      ],
+      "status_scrambled_auc": 0.8764495849609375,
+      "status_scrambled_family_mean_auc": 0.919189453125,
+      "status_scrambled_family_ci95": [
+        0.8831787109375,
+        0.950439453125
+      ]
+    },
+    {
+      "layer": 26,
+      "status_latent_auc": 0.6507835388183594,
+      "status_latent_family_mean_auc": 0.717437744140625,
+      "status_latent_family_ci95": [
+        0.6550285339355468,
+        0.7754234313964843
+      ],
+      "token_control_auc": 0.9057340621948242,
+      "token_control_family_mean_auc": 0.947418212890625,
+      "token_control_family_ci95": [
+        0.926849365234375,
+        0.964813232421875
+      ],
+      "status_scrambled_auc": 0.8723793029785156,
+      "status_scrambled_family_mean_auc": 0.9229736328125,
+      "status_scrambled_family_ci95": [
+        0.8879364013671875,
+        0.9534912109375
+      ]
+    },
+    {
+      "layer": 27,
+      "status_latent_auc": 0.658360481262207,
+      "status_latent_family_mean_auc": 0.72198486328125,
+      "status_latent_family_ci95": [
+        0.6573173522949218,
+        0.781005859375
+      ],
+      "token_control_auc": 0.9087648391723633,
+      "token_control_family_mean_auc": 0.945770263671875,
+      "token_control_family_ci95": [
+        0.925933837890625,
+        0.963714599609375
+      ],
+      "status_scrambled_auc": 0.8628387451171875,
+      "status_scrambled_family_mean_auc": 0.9189453125,
+      "status_scrambled_family_ci95": [
+        0.8836639404296875,
+        0.94970703125
+      ]
+    },
+    {
+      "layer": 28,
+      "status_latent_auc": 0.6431875228881836,
+      "status_latent_family_mean_auc": 0.702880859375,
+      "status_latent_family_ci95": [
+        0.641021728515625,
+        0.7636734008789062
+      ],
+      "token_control_auc": 0.9038581848144531,
+      "token_control_family_mean_auc": 0.93975830078125,
+      "token_control_family_ci95": [
+        0.91900634765625,
+        0.9588623046875
+      ],
+      "status_scrambled_auc": 0.8551673889160156,
+      "status_scrambled_family_mean_auc": 0.9151611328125,
+      "status_scrambled_family_ci95": [
+        0.87744140625,
+        0.9473907470703125
+      ]
+    },
+    {
+      "layer": 29,
+      "status_latent_auc": 0.6265392303466797,
+      "status_latent_family_mean_auc": 0.68011474609375,
+      "status_latent_family_ci95": [
+        0.61383056640625,
+        0.7454559326171875
+      ],
+      "token_control_auc": 0.89739990234375,
+      "token_control_family_mean_auc": 0.938507080078125,
+      "token_control_family_ci95": [
+        0.9158309936523438,
+        0.95867919921875
+      ],
+      "status_scrambled_auc": 0.8504295349121094,
+      "status_scrambled_family_mean_auc": 0.9130859375,
+      "status_scrambled_family_ci95": [
+        0.8763397216796875,
+        0.9451934814453125
+      ]
+    },
+    {
+      "layer": 30,
+      "status_latent_auc": 0.6132688522338867,
+      "status_latent_family_mean_auc": 0.669403076171875,
+      "status_latent_family_ci95": [
+        0.6076316833496094,
+        0.7296180725097656
+      ],
+      "token_control_auc": 0.9010133743286133,
+      "token_control_family_mean_auc": 0.9429931640625,
+      "token_control_family_ci95": [
+        0.9215370178222656,
+        0.9618232727050782
+      ],
+      "status_scrambled_auc": 0.858612060546875,
+      "status_scrambled_family_mean_auc": 0.9256591796875,
+      "status_scrambled_family_ci95": [
+        0.8972137451171875,
+        0.9517822265625
+      ]
+    },
+    {
+      "layer": 31,
+      "status_latent_auc": 0.5704307556152344,
+      "status_latent_family_mean_auc": 0.6259765625,
+      "status_latent_family_ci95": [
+        0.5717460632324218,
+        0.6800552368164062
+      ],
+      "token_control_auc": 0.875452995300293,
+      "token_control_family_mean_auc": 0.933441162109375,
+      "token_control_family_ci95": [
+        0.9114372253417968,
+        0.9535537719726562
+      ],
+      "status_scrambled_auc": 0.8238945007324219,
+      "status_scrambled_family_mean_auc": 0.891845703125,
+      "status_scrambled_family_ci95": [
+        0.859130859375,
+        0.9229736328125
+      ]
+    }
+  ],
+  "best_latent_layer": 16,
+  "best_latent_family_mean_auc": 0.7698974609375,
+  "best_latent_family_ci95": [
+    0.6897270202636718,
+    0.8404853820800782
+  ],
+  "max_token_control_auc": 0.9667978286743164,
+  "max_scrambled_family_mean_auc": 1.0
+}

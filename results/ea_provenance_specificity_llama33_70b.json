@@ -1,0 +1,1608 @@
+{
+  "schema_version": 1,
+  "experiment": "controlled_ea_direction_external_provenance_specificity",
+  "status": "EXPLORATORY_FROZEN_BEFORE_CONTROL_OUTCOMES",
+  "model_key": "llama33_70b",
+  "layer": 18,
+  "direction_fit_on_provenance": false,
+  "layer_selected_on_provenance": false,
+  "positive_score_convention": "evaluation minus deployment in controlled full320 training",
+  "n_training_blocks": 320,
+  "n_null": 100,
+  "n_bootstrap": 1000,
+  "same_block_sample_across_named_directions": true,
+  "train_items_sha256": "5528819d74e696d1a595062047a829836dfde1d2a45287b06a5ac1ba5d1b6c67",
+  "train_activations_sha256": "d455140f2dce01e1bd4e1a8333454a494b1e5de0df0428779a2faa43bc80c031",
+  "provenance_items_sha256": "2a574bf1bf0cd5cc8ec53c97e2bf69e9246316b1a3d5364e370acc0f8fcddc7e",
+  "provenance_activations_sha256": "98966abc93d94cd8c565285846318da51b67f1b87740972090a0e48a3db520a7",
+  "directions": [
+    {
+      "name": "purpose",
+      "pooled_auc": 0.305976,
+      "benchmark_auc": 0.22018,
+      "casual_auc": 0.250632,
+      "source_pair_auc_min": 0.285352,
+      "source_pair_auc_mean": 0.305976,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.285352,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.320068,
+        "cais/mmlu|allenai/WildChat-1M": 0.291788,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.326696
+      },
+      "block_bootstrap_ci95": {
+        "pooled_auc": [
+          0.28676255,
+          0.327457625
+        ],
+        "benchmark_auc": [
+          0.1954812,
+          0.2493809
+        ],
+        "casual_auc": [
+          0.2206426,
+          0.280441
+        ],
+        "source_pair_auc_min": [
+          0.2596717,
+          0.3092623
+        ],
+        "source_pair_auc_mean": [
+          0.28676254999999995,
+          0.327457625
+        ]
+      }
+    },
+    {
+      "name": "purpose_orthogonal_to_format",
+      "pooled_auc": 0.331873,
+      "benchmark_auc": 0.308224,
+      "casual_auc": 0.277988,
+      "source_pair_auc_min": 0.305896,
+      "source_pair_auc_mean": 0.331873,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.305896,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.334052,
+        "cais/mmlu|allenai/WildChat-1M": 0.330088,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.357456
+      },
+      "block_bootstrap_ci95": {
+        "pooled_auc": [
+          0.309083875,
+          0.35613992499999997
+        ],
+        "benchmark_auc": [
+          0.2788733,
+          0.34124079999999996
+        ],
+        "casual_auc": [
+          0.24695540000000002,
+          0.30886939999999996
+        ],
+        "source_pair_auc_min": [
+          0.2775149,
+          0.3344961
+        ],
+        "source_pair_auc_mean": [
+          0.309083875,
+          0.35613992499999997
+        ]
+      }
+    },
+    {
+      "name": "format",
+      "pooled_auc": 0.706303,
+      "benchmark_auc": 0.951424,
+      "casual_auc": 0.767996,
+      "source_pair_auc_min": 0.65368,
+      "source_pair_auc_mean": 0.7063030000000001,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.70108,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.65368,
+        "cais/mmlu|allenai/WildChat-1M": 0.7595,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.710952
+      },
+      "block_bootstrap_ci95": {
+        "pooled_auc": [
+          0.694679925,
+          0.71775355
+        ],
+        "benchmark_auc": [
+          0.9378036,
+          0.9647294000000001
+        ],
+        "casual_auc": [
+          0.7392111,
+          0.795346
+        ],
+        "source_pair_auc_min": [
+          0.6377584,
+          0.6692065
+        ],
+        "source_pair_auc_mean": [
+          0.694679925,
+          0.71775355
+        ]
+      }
+    },
+    {
+      "name": "nocue_format",
+      "pooled_auc": 0.699985,
+      "benchmark_auc": 0.95604,
+      "casual_auc": 0.784564,
+      "source_pair_auc_min": 0.6541,
+      "source_pair_auc_mean": 0.6999850000000001,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.703156,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.6541,
+        "cais/mmlu|allenai/WildChat-1M": 0.744212,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.698472
+      },
+      "block_bootstrap_ci95": {
+        "pooled_auc": [
+          0.6898321749999999,
+          0.7095518749999999
+        ],
+        "benchmark_auc": [
+          0.9427703000000001,
+          0.9685292
+        ],
+        "casual_auc": [
+          0.7574864,
+          0.8102239
+        ],
+        "source_pair_auc_min": [
+          0.6394936,
+          0.6683351
+        ],
+        "source_pair_auc_mean": [
+          0.6898321749999999,
+          0.709551875
+        ]
+      }
+    },
+    {
+      "name": "purpose_block_signflip_000",
+      "pooled_auc": 0.699035,
+      "benchmark_auc": 0.801152,
+      "casual_auc": 0.682384,
+      "source_pair_auc_min": 0.688316,
+      "source_pair_auc_mean": 0.699035,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.709936,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.6933,
+        "cais/mmlu|allenai/WildChat-1M": 0.704588,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.688316
+      }
+    },
+    {
+      "name": "purpose_block_signflip_001",
+      "pooled_auc": 0.350324,
+      "benchmark_auc": 0.335108,
+      "casual_auc": 0.337348,
+      "source_pair_auc_min": 0.320188,
+      "source_pair_auc_mean": 0.35032399999999997,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.320188,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.36534,
+        "cais/mmlu|allenai/WildChat-1M": 0.335132,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.380636
+      }
+    },
+    {
+      "name": "purpose_block_signflip_002",
+      "pooled_auc": 0.812012,
+      "benchmark_auc": 0.907268,
+      "casual_auc": 0.917744,
+      "source_pair_auc_min": 0.799252,
+      "source_pair_auc_mean": 0.812012,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.804088,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.799252,
+        "cais/mmlu|allenai/WildChat-1M": 0.824804,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.819904
+      }
+    },
+    {
+      "name": "purpose_block_signflip_003",
+      "pooled_auc": 0.840134,
+      "benchmark_auc": 0.9239,
+      "casual_auc": 0.920916,
+      "source_pair_auc_min": 0.824216,
+      "source_pair_auc_mean": 0.8401339999999999,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.847836,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.824216,
+        "cais/mmlu|allenai/WildChat-1M": 0.855412,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.833072
+      }
+    },
+    {
+      "name": "purpose_block_signflip_004",
+      "pooled_auc": 0.494093,
+      "benchmark_auc": 0.449908,
+      "casual_auc": 0.507656,
+      "source_pair_auc_min": 0.461272,
+      "source_pair_auc_mean": 0.494093,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.461272,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.521948,
+        "cais/mmlu|allenai/WildChat-1M": 0.46916,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.523992
+      }
+    },
+    {
+      "name": "purpose_block_signflip_005",
+      "pooled_auc": 0.627683,
+      "benchmark_auc": 0.740452,
+      "casual_auc": 0.582292,
+      "source_pair_auc_min": 0.539652,
+      "source_pair_auc_mean": 0.627683,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.6871,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.539652,
+        "cais/mmlu|allenai/WildChat-1M": 0.712736,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.571244
+      }
+    },
+    {
+      "name": "purpose_block_signflip_006",
+      "pooled_auc": 0.459256,
+      "benchmark_auc": 0.275388,
+      "casual_auc": 0.572444,
+      "source_pair_auc_min": 0.45148,
+      "source_pair_auc_mean": 0.459256,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.467564,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.460508,
+        "cais/mmlu|allenai/WildChat-1M": 0.457472,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.45148
+      }
+    },
+    {
+      "name": "purpose_block_signflip_007",
+      "pooled_auc": 0.325692,
+      "benchmark_auc": 0.359528,
+      "casual_auc": 0.290744,
+      "source_pair_auc_min": 0.288332,
+      "source_pair_auc_mean": 0.325692,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.335016,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.363728,
+        "cais/mmlu|allenai/WildChat-1M": 0.288332,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.315692
+      }
+    },
+    {
+      "name": "purpose_block_signflip_008",
+      "pooled_auc": 0.183733,
+      "benchmark_auc": 0.277684,
+      "casual_auc": 0.097208,
+      "source_pair_auc_min": 0.144408,
+      "source_pair_auc_mean": 0.183733,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.171092,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.225796,
+        "cais/mmlu|allenai/WildChat-1M": 0.144408,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.193636
+      }
+    },
+    {
+      "name": "purpose_block_signflip_009",
+      "pooled_auc": 0.115755,
+      "benchmark_auc": 0.063156,
+      "casual_auc": 0.11528,
+      "source_pair_auc_min": 0.102132,
+      "source_pair_auc_mean": 0.115755,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.102132,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.116008,
+        "cais/mmlu|allenai/WildChat-1M": 0.114316,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.130564
+      }
+    },
+    {
+      "name": "purpose_block_signflip_010",
+      "pooled_auc": 0.218184,
+      "benchmark_auc": 0.174536,
+      "casual_auc": 0.252468,
+      "source_pair_auc_min": 0.200124,
+      "source_pair_auc_mean": 0.218184,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.23932,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.222596,
+        "cais/mmlu|allenai/WildChat-1M": 0.210696,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.200124
+      }
+    },
+    {
+      "name": "purpose_block_signflip_011",
+      "pooled_auc": 0.445324,
+      "benchmark_auc": 0.386376,
+      "casual_auc": 0.493404,
+      "source_pair_auc_min": 0.337972,
+      "source_pair_auc_mean": 0.44532399999999994,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.375964,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.55094,
+        "cais/mmlu|allenai/WildChat-1M": 0.337972,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.51642
+      }
+    },
+    {
+      "name": "purpose_block_signflip_012",
+      "pooled_auc": 0.533332,
+      "benchmark_auc": 0.435372,
+      "casual_auc": 0.638192,
+      "source_pair_auc_min": 0.47568,
+      "source_pair_auc_mean": 0.533332,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.521352,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.587012,
+        "cais/mmlu|allenai/WildChat-1M": 0.47568,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.549284
+      }
+    },
+    {
+      "name": "purpose_block_signflip_013",
+      "pooled_auc": 0.239819,
+      "benchmark_auc": 0.184104,
+      "casual_auc": 0.282988,
+      "source_pair_auc_min": 0.172216,
+      "source_pair_auc_mean": 0.239819,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.172216,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.204464,
+        "cais/mmlu|allenai/WildChat-1M": 0.27182,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.310776
+      }
+    },
+    {
+      "name": "purpose_block_signflip_014",
+      "pooled_auc": 0.207207,
+      "benchmark_auc": 0.077968,
+      "casual_auc": 0.244412,
+      "source_pair_auc_min": 0.188988,
+      "source_pair_auc_mean": 0.207207,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.190256,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.227024,
+        "cais/mmlu|allenai/WildChat-1M": 0.188988,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.22256
+      }
+    },
+    {
+      "name": "purpose_block_signflip_015",
+      "pooled_auc": 0.604371,
+      "benchmark_auc": 0.818016,
+      "casual_auc": 0.569672,
+      "source_pair_auc_min": 0.55578,
+      "source_pair_auc_mean": 0.6043710000000001,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.627464,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.55578,
+        "cais/mmlu|allenai/WildChat-1M": 0.655304,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.578936
+      }
+    },
+    {
+      "name": "purpose_block_signflip_016",
+      "pooled_auc": 0.749012,
+      "benchmark_auc": 0.915804,
+      "casual_auc": 0.689512,
+      "source_pair_auc_min": 0.730772,
+      "source_pair_auc_mean": 0.749012,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.768844,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.750136,
+        "cais/mmlu|allenai/WildChat-1M": 0.746296,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.730772
+      }
+    },
+    {
+      "name": "purpose_block_signflip_017",
+      "pooled_auc": 0.792576,
+      "benchmark_auc": 0.921828,
+      "casual_auc": 0.70944,
+      "source_pair_auc_min": 0.764252,
+      "source_pair_auc_mean": 0.792576,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.804372,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.764252,
+        "cais/mmlu|allenai/WildChat-1M": 0.818824,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.782856
+      }
+    },
+    {
+      "name": "purpose_block_signflip_018",
+      "pooled_auc": 0.332632,
+      "benchmark_auc": 0.314652,
+      "casual_auc": 0.3365,
+      "source_pair_auc_min": 0.253272,
+      "source_pair_auc_mean": 0.332632,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.253272,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.356236,
+        "cais/mmlu|allenai/WildChat-1M": 0.31366,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.40736
+      }
+    },
+    {
+      "name": "purpose_block_signflip_019",
+      "pooled_auc": 0.544491,
+      "benchmark_auc": 0.579172,
+      "casual_auc": 0.56038,
+      "source_pair_auc_min": 0.504856,
+      "source_pair_auc_mean": 0.544491,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.504856,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.550548,
+        "cais/mmlu|allenai/WildChat-1M": 0.539848,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.582712
+      }
+    },
+    {
+      "name": "purpose_block_signflip_020",
+      "pooled_auc": 0.541954,
+      "benchmark_auc": 0.479356,
+      "casual_auc": 0.618504,
+      "source_pair_auc_min": 0.532208,
+      "source_pair_auc_mean": 0.541954,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.538236,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.550832,
+        "cais/mmlu|allenai/WildChat-1M": 0.532208,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.54654
+      }
+    },
+    {
+      "name": "purpose_block_signflip_021",
+      "pooled_auc": 0.493133,
+      "benchmark_auc": 0.509372,
+      "casual_auc": 0.495332,
+      "source_pair_auc_min": 0.40452,
+      "source_pair_auc_mean": 0.493133,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.58716,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.499012,
+        "cais/mmlu|allenai/WildChat-1M": 0.48184,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.40452
+      }
+    },
+    {
+      "name": "purpose_block_signflip_022",
+      "pooled_auc": 0.195036,
+      "benchmark_auc": 0.142296,
+      "casual_auc": 0.229956,
+      "source_pair_auc_min": 0.178884,
+      "source_pair_auc_mean": 0.195036,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.196724,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.178884,
+        "cais/mmlu|allenai/WildChat-1M": 0.212052,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.192484
+      }
+    },
+    {
+      "name": "purpose_block_signflip_023",
+      "pooled_auc": 0.610539,
+      "benchmark_auc": 0.574888,
+      "casual_auc": 0.66096,
+      "source_pair_auc_min": 0.556948,
+      "source_pair_auc_mean": 0.6105389999999999,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.665588,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.589608,
+        "cais/mmlu|allenai/WildChat-1M": 0.630012,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.556948
+      }
+    },
+    {
+      "name": "purpose_block_signflip_024",
+      "pooled_auc": 0.449652,
+      "benchmark_auc": 0.420096,
+      "casual_auc": 0.470776,
+      "source_pair_auc_min": 0.4147,
+      "source_pair_auc_mean": 0.449652,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.4147,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.4167,
+        "cais/mmlu|allenai/WildChat-1M": 0.481856,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.485352
+      }
+    },
+    {
+      "name": "purpose_block_signflip_025",
+      "pooled_auc": 0.399152,
+      "benchmark_auc": 0.448804,
+      "casual_auc": 0.303196,
+      "source_pair_auc_min": 0.371216,
+      "source_pair_auc_mean": 0.399152,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.380492,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.371216,
+        "cais/mmlu|allenai/WildChat-1M": 0.426576,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.418324
+      }
+    },
+    {
+      "name": "purpose_block_signflip_026",
+      "pooled_auc": 0.215269,
+      "benchmark_auc": 0.141272,
+      "casual_auc": 0.247456,
+      "source_pair_auc_min": 0.18364,
+      "source_pair_auc_mean": 0.21526900000000002,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.18364,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.223328,
+        "cais/mmlu|allenai/WildChat-1M": 0.206856,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.247252
+      }
+    },
+    {
+      "name": "purpose_block_signflip_027",
+      "pooled_auc": 0.452231,
+      "benchmark_auc": 0.54554,
+      "casual_auc": 0.347916,
+      "source_pair_auc_min": 0.4462,
+      "source_pair_auc_mean": 0.452231,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.4462,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.449576,
+        "cais/mmlu|allenai/WildChat-1M": 0.454936,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.458212
+      }
+    },
+    {
+      "name": "purpose_block_signflip_028",
+      "pooled_auc": 0.580277,
+      "benchmark_auc": 0.591956,
+      "casual_auc": 0.588708,
+      "source_pair_auc_min": 0.564676,
+      "source_pair_auc_mean": 0.580277,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.596052,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.59328,
+        "cais/mmlu|allenai/WildChat-1M": 0.5671,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.564676
+      }
+    },
+    {
+      "name": "purpose_block_signflip_029",
+      "pooled_auc": 0.555519,
+      "benchmark_auc": 0.617692,
+      "casual_auc": 0.52098,
+      "source_pair_auc_min": 0.484768,
+      "source_pair_auc_mean": 0.555519,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.6306,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.528596,
+        "cais/mmlu|allenai/WildChat-1M": 0.578112,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.484768
+      }
+    },
+    {
+      "name": "purpose_block_signflip_030",
+      "pooled_auc": 0.764075,
+      "benchmark_auc": 0.758956,
+      "casual_auc": 0.817136,
+      "source_pair_auc_min": 0.735484,
+      "source_pair_auc_mean": 0.764075,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.79014,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.765264,
+        "cais/mmlu|allenai/WildChat-1M": 0.765412,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.735484
+      }
+    },
+    {
+      "name": "purpose_block_signflip_031",
+      "pooled_auc": 0.792733,
+      "benchmark_auc": 0.822744,
+      "casual_auc": 0.81456,
+      "source_pair_auc_min": 0.750152,
+      "source_pair_auc_mean": 0.7927329999999999,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.834764,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.757972,
+        "cais/mmlu|allenai/WildChat-1M": 0.828044,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.750152
+      }
+    },
+    {
+      "name": "purpose_block_signflip_032",
+      "pooled_auc": 0.50693,
+      "benchmark_auc": 0.546284,
+      "casual_auc": 0.466036,
+      "source_pair_auc_min": 0.44088,
+      "source_pair_auc_mean": 0.50693,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.58194,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.559052,
+        "cais/mmlu|allenai/WildChat-1M": 0.445848,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.44088
+      }
+    },
+    {
+      "name": "purpose_block_signflip_033",
+      "pooled_auc": 0.513759,
+      "benchmark_auc": 0.547432,
+      "casual_auc": 0.527612,
+      "source_pair_auc_min": 0.475508,
+      "source_pair_auc_mean": 0.513759,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.554012,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.490772,
+        "cais/mmlu|allenai/WildChat-1M": 0.534744,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.475508
+      }
+    },
+    {
+      "name": "purpose_block_signflip_034",
+      "pooled_auc": 0.161982,
+      "benchmark_auc": 0.10652,
+      "casual_auc": 0.114232,
+      "source_pair_auc_min": 0.131264,
+      "source_pair_auc_mean": 0.16198200000000001,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.131264,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.186588,
+        "cais/mmlu|allenai/WildChat-1M": 0.136908,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.193168
+      }
+    },
+    {
+      "name": "purpose_block_signflip_035",
+      "pooled_auc": 0.211981,
+      "benchmark_auc": 0.19056,
+      "casual_auc": 0.224,
+      "source_pair_auc_min": 0.190448,
+      "source_pair_auc_mean": 0.211981,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.215052,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.231492,
+        "cais/mmlu|allenai/WildChat-1M": 0.190448,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.210932
+      }
+    },
+    {
+      "name": "purpose_block_signflip_036",
+      "pooled_auc": 0.070795,
+      "benchmark_auc": 0.03574,
+      "casual_auc": 0.0525,
+      "source_pair_auc_min": 0.053652,
+      "source_pair_auc_mean": 0.070795,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.053652,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.073236,
+        "cais/mmlu|allenai/WildChat-1M": 0.06708,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.089212
+      }
+    },
+    {
+      "name": "purpose_block_signflip_037",
+      "pooled_auc": 0.291272,
+      "benchmark_auc": 0.162648,
+      "casual_auc": 0.40204,
+      "source_pair_auc_min": 0.225388,
+      "source_pair_auc_mean": 0.291272,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.309812,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.225388,
+        "cais/mmlu|allenai/WildChat-1M": 0.357812,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.272076
+      }
+    },
+    {
+      "name": "purpose_block_signflip_038",
+      "pooled_auc": 0.719804,
+      "benchmark_auc": 0.783964,
+      "casual_auc": 0.710172,
+      "source_pair_auc_min": 0.704724,
+      "source_pair_auc_mean": 0.719804,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.714352,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.704724,
+        "cais/mmlu|allenai/WildChat-1M": 0.733276,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.726864
+      }
+    },
+    {
+      "name": "purpose_block_signflip_039",
+      "pooled_auc": 0.801985,
+      "benchmark_auc": 0.885904,
+      "casual_auc": 0.880692,
+      "source_pair_auc_min": 0.772196,
+      "source_pair_auc_mean": 0.801985,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.828884,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.794916,
+        "cais/mmlu|allenai/WildChat-1M": 0.811944,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.772196
+      }
+    },
+    {
+      "name": "purpose_block_signflip_040",
+      "pooled_auc": 0.61226,
+      "benchmark_auc": 0.601428,
+      "casual_auc": 0.630552,
+      "source_pair_auc_min": 0.513116,
+      "source_pair_auc_mean": 0.61226,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.718292,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.65308,
+        "cais/mmlu|allenai/WildChat-1M": 0.564552,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.513116
+      }
+    },
+    {
+      "name": "purpose_block_signflip_041",
+      "pooled_auc": 0.818793,
+      "benchmark_auc": 0.814192,
+      "casual_auc": 0.825652,
+      "source_pair_auc_min": 0.792584,
+      "source_pair_auc_mean": 0.8187930000000001,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.82976,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.792584,
+        "cais/mmlu|allenai/WildChat-1M": 0.84452,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.808308
+      }
+    },
+    {
+      "name": "purpose_block_signflip_042",
+      "pooled_auc": 0.196831,
+      "benchmark_auc": 0.246164,
+      "casual_auc": 0.143532,
+      "source_pair_auc_min": 0.176056,
+      "source_pair_auc_mean": 0.19683099999999998,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.207512,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.215984,
+        "cais/mmlu|allenai/WildChat-1M": 0.176056,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.187772
+      }
+    },
+    {
+      "name": "purpose_block_signflip_043",
+      "pooled_auc": 0.585133,
+      "benchmark_auc": 0.618396,
+      "casual_auc": 0.559648,
+      "source_pair_auc_min": 0.491164,
+      "source_pair_auc_mean": 0.5851329999999999,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.554208,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.491164,
+        "cais/mmlu|allenai/WildChat-1M": 0.669412,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.625748
+      }
+    },
+    {
+      "name": "purpose_block_signflip_044",
+      "pooled_auc": 0.150086,
+      "benchmark_auc": 0.079052,
+      "casual_auc": 0.20624,
+      "source_pair_auc_min": 0.108044,
+      "source_pair_auc_mean": 0.150086,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.108044,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.116252,
+        "cais/mmlu|allenai/WildChat-1M": 0.184104,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.191944
+      }
+    },
+    {
+      "name": "purpose_block_signflip_045",
+      "pooled_auc": 0.18651,
+      "benchmark_auc": 0.04624,
+      "casual_auc": 0.178184,
+      "source_pair_auc_min": 0.171112,
+      "source_pair_auc_mean": 0.18651,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.171112,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.199612,
+        "cais/mmlu|allenai/WildChat-1M": 0.174464,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.200852
+      }
+    },
+    {
+      "name": "purpose_block_signflip_046",
+      "pooled_auc": 0.766219,
+      "benchmark_auc": 0.90432,
+      "casual_auc": 0.810784,
+      "source_pair_auc_min": 0.72736,
+      "source_pair_auc_mean": 0.766219,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.794792,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.72736,
+        "cais/mmlu|allenai/WildChat-1M": 0.80712,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.735604
+      }
+    },
+    {
+      "name": "purpose_block_signflip_047",
+      "pooled_auc": 0.548065,
+      "benchmark_auc": 0.501992,
+      "casual_auc": 0.575004,
+      "source_pair_auc_min": 0.53886,
+      "source_pair_auc_mean": 0.548065,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.545492,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.558092,
+        "cais/mmlu|allenai/WildChat-1M": 0.53886,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.549816
+      }
+    },
+    {
+      "name": "purpose_block_signflip_048",
+      "pooled_auc": 0.649658,
+      "benchmark_auc": 0.713992,
+      "casual_auc": 0.604332,
+      "source_pair_auc_min": 0.620844,
+      "source_pair_auc_mean": 0.649658,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.639816,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.676824,
+        "cais/mmlu|allenai/WildChat-1M": 0.620844,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.661148
+      }
+    },
+    {
+      "name": "purpose_block_signflip_049",
+      "pooled_auc": 0.206097,
+      "benchmark_auc": 0.1436,
+      "casual_auc": 0.225588,
+      "source_pair_auc_min": 0.19144,
+      "source_pair_auc_mean": 0.206097,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.198008,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.19144,
+        "cais/mmlu|allenai/WildChat-1M": 0.221868,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.213072
+      }
+    },
+    {
+      "name": "purpose_block_signflip_050",
+      "pooled_auc": 0.17479,
+      "benchmark_auc": 0.094768,
+      "casual_auc": 0.203288,
+      "source_pair_auc_min": 0.159324,
+      "source_pair_auc_mean": 0.17479,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.159324,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.181528,
+        "cais/mmlu|allenai/WildChat-1M": 0.16822,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.190088
+      }
+    },
+    {
+      "name": "purpose_block_signflip_051",
+      "pooled_auc": 0.763504,
+      "benchmark_auc": 0.8424,
+      "casual_auc": 0.702072,
+      "source_pair_auc_min": 0.727892,
+      "source_pair_auc_mean": 0.763504,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.796696,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.769796,
+        "cais/mmlu|allenai/WildChat-1M": 0.759632,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.727892
+      }
+    },
+    {
+      "name": "purpose_block_signflip_052",
+      "pooled_auc": 0.641601,
+      "benchmark_auc": 0.758028,
+      "casual_auc": 0.644748,
+      "source_pair_auc_min": 0.63084,
+      "source_pair_auc_mean": 0.6416010000000001,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.633324,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.63084,
+        "cais/mmlu|allenai/WildChat-1M": 0.652228,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.650012
+      }
+    },
+    {
+      "name": "purpose_block_signflip_053",
+      "pooled_auc": 0.231999,
+      "benchmark_auc": 0.165276,
+      "casual_auc": 0.291956,
+      "source_pair_auc_min": 0.135704,
+      "source_pair_auc_mean": 0.231999,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.135704,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.230396,
+        "cais/mmlu|allenai/WildChat-1M": 0.23622,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.325676
+      }
+    },
+    {
+      "name": "purpose_block_signflip_054",
+      "pooled_auc": 0.706004,
+      "benchmark_auc": 0.800984,
+      "casual_auc": 0.65362,
+      "source_pair_auc_min": 0.679544,
+      "source_pair_auc_mean": 0.7060040000000001,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.701864,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.731148,
+        "cais/mmlu|allenai/WildChat-1M": 0.679544,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.71146
+      }
+    },
+    {
+      "name": "purpose_block_signflip_055",
+      "pooled_auc": 0.643079,
+      "benchmark_auc": 0.629868,
+      "casual_auc": 0.678328,
+      "source_pair_auc_min": 0.582548,
+      "source_pair_auc_mean": 0.643079,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.67714,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.582548,
+        "cais/mmlu|allenai/WildChat-1M": 0.702944,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.609684
+      }
+    },
+    {
+      "name": "purpose_block_signflip_056",
+      "pooled_auc": 0.760415,
+      "benchmark_auc": 0.946848,
+      "casual_auc": 0.890448,
+      "source_pair_auc_min": 0.726888,
+      "source_pair_auc_mean": 0.7604150000000001,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.792804,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.742936,
+        "cais/mmlu|allenai/WildChat-1M": 0.779032,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.726888
+      }
+    },
+    {
+      "name": "purpose_block_signflip_057",
+      "pooled_auc": 0.689001,
+      "benchmark_auc": 0.614128,
+      "casual_auc": 0.805156,
+      "source_pair_auc_min": 0.672556,
+      "source_pair_auc_mean": 0.689001,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.701548,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.70534,
+        "cais/mmlu|allenai/WildChat-1M": 0.672556,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.67656
+      }
+    },
+    {
+      "name": "purpose_block_signflip_058",
+      "pooled_auc": 0.275519,
+      "benchmark_auc": 0.232248,
+      "casual_auc": 0.308156,
+      "source_pair_auc_min": 0.264444,
+      "source_pair_auc_mean": 0.275519,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.285496,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.264444,
+        "cais/mmlu|allenai/WildChat-1M": 0.286932,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.265204
+      }
+    },
+    {
+      "name": "purpose_block_signflip_059",
+      "pooled_auc": 0.616387,
+      "benchmark_auc": 0.871404,
+      "casual_auc": 0.50818,
+      "source_pair_auc_min": 0.593424,
+      "source_pair_auc_mean": 0.616387,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.620532,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.593424,
+        "cais/mmlu|allenai/WildChat-1M": 0.640972,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.61062
+      }
+    },
+    {
+      "name": "purpose_block_signflip_060",
+      "pooled_auc": 0.439526,
+      "benchmark_auc": 0.216332,
+      "casual_auc": 0.543864,
+      "source_pair_auc_min": 0.409956,
+      "source_pair_auc_mean": 0.439526,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.43148,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.467732,
+        "cais/mmlu|allenai/WildChat-1M": 0.409956,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.448936
+      }
+    },
+    {
+      "name": "purpose_block_signflip_061",
+      "pooled_auc": 0.416735,
+      "benchmark_auc": 0.455704,
+      "casual_auc": 0.38056,
+      "source_pair_auc_min": 0.3664,
+      "source_pair_auc_mean": 0.416735,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.468936,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.451408,
+        "cais/mmlu|allenai/WildChat-1M": 0.380196,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.3664
+      }
+    },
+    {
+      "name": "purpose_block_signflip_062",
+      "pooled_auc": 0.472221,
+      "benchmark_auc": 0.349552,
+      "casual_auc": 0.570348,
+      "source_pair_auc_min": 0.454152,
+      "source_pair_auc_mean": 0.472221,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.477712,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.454152,
+        "cais/mmlu|allenai/WildChat-1M": 0.489888,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.467132
+      }
+    },
+    {
+      "name": "purpose_block_signflip_063",
+      "pooled_auc": 0.589378,
+      "benchmark_auc": 0.582304,
+      "casual_auc": 0.601492,
+      "source_pair_auc_min": 0.578596,
+      "source_pair_auc_mean": 0.589378,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.600604,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.583232,
+        "cais/mmlu|allenai/WildChat-1M": 0.59508,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.578596
+      }
+    },
+    {
+      "name": "purpose_block_signflip_064",
+      "pooled_auc": 0.393024,
+      "benchmark_auc": 0.439444,
+      "casual_auc": 0.349044,
+      "source_pair_auc_min": 0.329444,
+      "source_pair_auc_mean": 0.39302400000000004,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.35338,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.329444,
+        "cais/mmlu|allenai/WildChat-1M": 0.46342,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.425852
+      }
+    },
+    {
+      "name": "purpose_block_signflip_065",
+      "pooled_auc": 0.747316,
+      "benchmark_auc": 0.74586,
+      "casual_auc": 0.749664,
+      "source_pair_auc_min": 0.690824,
+      "source_pair_auc_mean": 0.7473160000000001,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.690824,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.741776,
+        "cais/mmlu|allenai/WildChat-1M": 0.759584,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.79708
+      }
+    },
+    {
+      "name": "purpose_block_signflip_066",
+      "pooled_auc": 0.743626,
+      "benchmark_auc": 0.79192,
+      "casual_auc": 0.703236,
+      "source_pair_auc_min": 0.690196,
+      "source_pair_auc_mean": 0.743626,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.690196,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.75498,
+        "cais/mmlu|allenai/WildChat-1M": 0.735636,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.793692
+      }
+    },
+    {
+      "name": "purpose_block_signflip_067",
+      "pooled_auc": 0.531551,
+      "benchmark_auc": 0.418592,
+      "casual_auc": 0.623968,
+      "source_pair_auc_min": 0.481244,
+      "source_pair_auc_mean": 0.531551,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.545936,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.578464,
+        "cais/mmlu|allenai/WildChat-1M": 0.481244,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.52056
+      }
+    },
+    {
+      "name": "purpose_block_signflip_068",
+      "pooled_auc": 0.584336,
+      "benchmark_auc": 0.488516,
+      "casual_auc": 0.708864,
+      "source_pair_auc_min": 0.561216,
+      "source_pair_auc_mean": 0.5843360000000001,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.595904,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.607404,
+        "cais/mmlu|allenai/WildChat-1M": 0.561216,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.57282
+      }
+    },
+    {
+      "name": "purpose_block_signflip_069",
+      "pooled_auc": 0.718122,
+      "benchmark_auc": 0.712236,
+      "casual_auc": 0.786288,
+      "source_pair_auc_min": 0.707852,
+      "source_pair_auc_mean": 0.718122,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.711296,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.727788,
+        "cais/mmlu|allenai/WildChat-1M": 0.707852,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.725552
+      }
+    },
+    {
+      "name": "purpose_block_signflip_070",
+      "pooled_auc": 0.420059,
+      "benchmark_auc": 0.381576,
+      "casual_auc": 0.432512,
+      "source_pair_auc_min": 0.348376,
+      "source_pair_auc_mean": 0.42005899999999996,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.348376,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.476604,
+        "cais/mmlu|allenai/WildChat-1M": 0.36244,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.492816
+      }
+    },
+    {
+      "name": "purpose_block_signflip_071",
+      "pooled_auc": 0.497874,
+      "benchmark_auc": 0.5293,
+      "casual_auc": 0.457412,
+      "source_pair_auc_min": 0.457768,
+      "source_pair_auc_mean": 0.49787400000000004,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.525124,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.457768,
+        "cais/mmlu|allenai/WildChat-1M": 0.537856,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.470748
+      }
+    },
+    {
+      "name": "purpose_block_signflip_072",
+      "pooled_auc": 0.421442,
+      "benchmark_auc": 0.521488,
+      "casual_auc": 0.343096,
+      "source_pair_auc_min": 0.3298,
+      "source_pair_auc_mean": 0.421442,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.429012,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.3298,
+        "cais/mmlu|allenai/WildChat-1M": 0.52272,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.404236
+      }
+    },
+    {
+      "name": "purpose_block_signflip_073",
+      "pooled_auc": 0.299805,
+      "benchmark_auc": 0.259768,
+      "casual_auc": 0.315084,
+      "source_pair_auc_min": 0.270296,
+      "source_pair_auc_mean": 0.299805,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.270296,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.274288,
+        "cais/mmlu|allenai/WildChat-1M": 0.328984,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.325652
+      }
+    },
+    {
+      "name": "purpose_block_signflip_074",
+      "pooled_auc": 0.457176,
+      "benchmark_auc": 0.532048,
+      "casual_auc": 0.423512,
+      "source_pair_auc_min": 0.42932,
+      "source_pair_auc_mean": 0.457176,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.482196,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.42932,
+        "cais/mmlu|allenai/WildChat-1M": 0.485608,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.43158
+      }
+    },
+    {
+      "name": "purpose_block_signflip_075",
+      "pooled_auc": 0.695792,
+      "benchmark_auc": 0.86514,
+      "casual_auc": 0.548044,
+      "source_pair_auc_min": 0.6392,
+      "source_pair_auc_mean": 0.695792,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.742544,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.753816,
+        "cais/mmlu|allenai/WildChat-1M": 0.6392,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.647608
+      }
+    },
+    {
+      "name": "purpose_block_signflip_076",
+      "pooled_auc": 0.22511,
+      "benchmark_auc": 0.132072,
+      "casual_auc": 0.279524,
+      "source_pair_auc_min": 0.194816,
+      "source_pair_auc_mean": 0.22510999999999998,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.201396,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.257068,
+        "cais/mmlu|allenai/WildChat-1M": 0.194816,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.24716
+      }
+    },
+    {
+      "name": "purpose_block_signflip_077",
+      "pooled_auc": 0.341128,
+      "benchmark_auc": 0.188484,
+      "casual_auc": 0.436772,
+      "source_pair_auc_min": 0.303028,
+      "source_pair_auc_mean": 0.341128,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.330324,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.303028,
+        "cais/mmlu|allenai/WildChat-1M": 0.38258,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.34858
+      }
+    },
+    {
+      "name": "purpose_block_signflip_078",
+      "pooled_auc": 0.267286,
+      "benchmark_auc": 0.213076,
+      "casual_auc": 0.23086,
+      "source_pair_auc_min": 0.208944,
+      "source_pair_auc_mean": 0.267286,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.263856,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.32686,
+        "cais/mmlu|allenai/WildChat-1M": 0.208944,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.269484
+      }
+    },
+    {
+      "name": "purpose_block_signflip_079",
+      "pooled_auc": 0.339015,
+      "benchmark_auc": 0.229448,
+      "casual_auc": 0.454132,
+      "source_pair_auc_min": 0.276116,
+      "source_pair_auc_mean": 0.339015,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.276116,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.303952,
+        "cais/mmlu|allenai/WildChat-1M": 0.37626,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.399732
+      }
+    },
+    {
+      "name": "purpose_block_signflip_080",
+      "pooled_auc": 0.433471,
+      "benchmark_auc": 0.523648,
+      "casual_auc": 0.342408,
+      "source_pair_auc_min": 0.423388,
+      "source_pair_auc_mean": 0.43347100000000005,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.445068,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.429484,
+        "cais/mmlu|allenai/WildChat-1M": 0.435944,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.423388
+      }
+    },
+    {
+      "name": "purpose_block_signflip_081",
+      "pooled_auc": 0.240239,
+      "benchmark_auc": 0.178808,
+      "casual_auc": 0.20672,
+      "source_pair_auc_min": 0.185748,
+      "source_pair_auc_mean": 0.240239,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.185748,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.259116,
+        "cais/mmlu|allenai/WildChat-1M": 0.21848,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.297612
+      }
+    },
+    {
+      "name": "purpose_block_signflip_082",
+      "pooled_auc": 0.339632,
+      "benchmark_auc": 0.223968,
+      "casual_auc": 0.252928,
+      "source_pair_auc_min": 0.306916,
+      "source_pair_auc_mean": 0.33963200000000004,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.323204,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.371844,
+        "cais/mmlu|allenai/WildChat-1M": 0.306916,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.356564
+      }
+    },
+    {
+      "name": "purpose_block_signflip_083",
+      "pooled_auc": 0.383255,
+      "benchmark_auc": 0.461912,
+      "casual_auc": 0.322812,
+      "source_pair_auc_min": 0.354644,
+      "source_pair_auc_mean": 0.38325500000000007,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.398872,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.354644,
+        "cais/mmlu|allenai/WildChat-1M": 0.412092,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.367412
+      }
+    },
+    {
+      "name": "purpose_block_signflip_084",
+      "pooled_auc": 0.400678,
+      "benchmark_auc": 0.300772,
+      "casual_auc": 0.427788,
+      "source_pair_auc_min": 0.386832,
+      "source_pair_auc_mean": 0.40067800000000003,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.408696,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.413712,
+        "cais/mmlu|allenai/WildChat-1M": 0.386832,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.393472
+      }
+    },
+    {
+      "name": "purpose_block_signflip_085",
+      "pooled_auc": 0.349606,
+      "benchmark_auc": 0.293444,
+      "casual_auc": 0.395432,
+      "source_pair_auc_min": 0.302092,
+      "source_pair_auc_mean": 0.349606,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.302092,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.360528,
+        "cais/mmlu|allenai/WildChat-1M": 0.342508,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.393296
+      }
+    },
+    {
+      "name": "purpose_block_signflip_086",
+      "pooled_auc": 0.515776,
+      "benchmark_auc": 0.505076,
+      "casual_auc": 0.537168,
+      "source_pair_auc_min": 0.48048,
+      "source_pair_auc_mean": 0.515776,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.552312,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.547752,
+        "cais/mmlu|allenai/WildChat-1M": 0.48048,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.48256
+      }
+    },
+    {
+      "name": "purpose_block_signflip_087",
+      "pooled_auc": 0.366426,
+      "benchmark_auc": 0.236908,
+      "casual_auc": 0.340388,
+      "source_pair_auc_min": 0.319416,
+      "source_pair_auc_mean": 0.36642600000000003,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.319416,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.396592,
+        "cais/mmlu|allenai/WildChat-1M": 0.336192,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.413504
+      }
+    },
+    {
+      "name": "purpose_block_signflip_088",
+      "pooled_auc": 0.809422,
+      "benchmark_auc": 0.944164,
+      "casual_auc": 0.825648,
+      "source_pair_auc_min": 0.792996,
+      "source_pair_auc_mean": 0.8094220000000001,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.792996,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.795228,
+        "cais/mmlu|allenai/WildChat-1M": 0.825348,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.824116
+      }
+    },
+    {
+      "name": "purpose_block_signflip_089",
+      "pooled_auc": 0.322211,
+      "benchmark_auc": 0.17672,
+      "casual_auc": 0.393748,
+      "source_pair_auc_min": 0.274496,
+      "source_pair_auc_mean": 0.322211,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.373668,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.352512,
+        "cais/mmlu|allenai/WildChat-1M": 0.288168,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.274496
+      }
+    },
+    {
+      "name": "purpose_block_signflip_090",
+      "pooled_auc": 0.740289,
+      "benchmark_auc": 0.871792,
+      "casual_auc": 0.675264,
+      "source_pair_auc_min": 0.709592,
+      "source_pair_auc_mean": 0.740289,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.755096,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.709592,
+        "cais/mmlu|allenai/WildChat-1M": 0.770956,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.725512
+      }
+    },
+    {
+      "name": "purpose_block_signflip_091",
+      "pooled_auc": 0.21175,
+      "benchmark_auc": 0.12828,
+      "casual_auc": 0.21878,
+      "source_pair_auc_min": 0.181024,
+      "source_pair_auc_mean": 0.21175,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.240344,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.238056,
+        "cais/mmlu|allenai/WildChat-1M": 0.187576,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.181024
+      }
+    },
+    {
+      "name": "purpose_block_signflip_092",
+      "pooled_auc": 0.095732,
+      "benchmark_auc": 0.020716,
+      "casual_auc": 0.070176,
+      "source_pair_auc_min": 0.074168,
+      "source_pair_auc_mean": 0.095732,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.096088,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.11936,
+        "cais/mmlu|allenai/WildChat-1M": 0.074168,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.093312
+      }
+    },
+    {
+      "name": "purpose_block_signflip_093",
+      "pooled_auc": 0.376947,
+      "benchmark_auc": 0.365452,
+      "casual_auc": 0.378908,
+      "source_pair_auc_min": 0.324844,
+      "source_pair_auc_mean": 0.37694700000000003,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.429248,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.410928,
+        "cais/mmlu|allenai/WildChat-1M": 0.342768,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.324844
+      }
+    },
+    {
+      "name": "purpose_block_signflip_094",
+      "pooled_auc": 0.241979,
+      "benchmark_auc": 0.303844,
+      "casual_auc": 0.161748,
+      "source_pair_auc_min": 0.21988,
+      "source_pair_auc_mean": 0.241979,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.21988,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.264692,
+        "cais/mmlu|allenai/WildChat-1M": 0.22184,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.261504
+      }
+    },
+    {
+      "name": "purpose_block_signflip_095",
+      "pooled_auc": 0.555971,
+      "benchmark_auc": 0.521296,
+      "casual_auc": 0.598796,
+      "source_pair_auc_min": 0.52184,
+      "source_pair_auc_mean": 0.555971,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.577636,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.52184,
+        "cais/mmlu|allenai/WildChat-1M": 0.58724,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.537168
+      }
+    },
+    {
+      "name": "purpose_block_signflip_096",
+      "pooled_auc": 0.750843,
+      "benchmark_auc": 0.889708,
+      "casual_auc": 0.739788,
+      "source_pair_auc_min": 0.716356,
+      "source_pair_auc_mean": 0.750843,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.76352,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.782912,
+        "cais/mmlu|allenai/WildChat-1M": 0.716356,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.740584
+      }
+    },
+    {
+      "name": "purpose_block_signflip_097",
+      "pooled_auc": 0.469687,
+      "benchmark_auc": 0.504516,
+      "casual_auc": 0.44198,
+      "source_pair_auc_min": 0.410024,
+      "source_pair_auc_mean": 0.46968699999999997,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.456788,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.531064,
+        "cais/mmlu|allenai/WildChat-1M": 0.410024,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.480872
+      }
+    },
+    {
+      "name": "purpose_block_signflip_098",
+      "pooled_auc": 0.731088,
+      "benchmark_auc": 0.90386,
+      "casual_auc": 0.733516,
+      "source_pair_auc_min": 0.720436,
+      "source_pair_auc_mean": 0.731088,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.729688,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.741728,
+        "cais/mmlu|allenai/WildChat-1M": 0.720436,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.7325
+      }
+    },
+    {
+      "name": "purpose_block_signflip_099",
+      "pooled_auc": 0.825106,
+      "benchmark_auc": 0.79164,
+      "casual_auc": 0.854216,
+      "source_pair_auc_min": 0.77014,
+      "source_pair_auc_mean": 0.825106,
+      "source_pair_auc": {
+        "allenai/ai2_arc|allenai/WildChat-1M": 0.876772,
+        "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.840548,
+        "cais/mmlu|allenai/WildChat-1M": 0.812964,
+        "cais/mmlu|lmsys/lmsys-chat-1m": 0.77014
+      }
+    }
+  ],
+  "null_summary": {
+    "purpose_min_pair_empirical_p_greater_equal": 0.7227722772277227,
+    "purpose_pooled_empirical_p_greater_equal": 0.7524752475247525,
+    "min_pair_auc_quantiles": {
+      "0.025": 0.1049402,
+      "0.5": 0.44354,
+      "0.975": 0.7928003
+    },
+    "pooled_auc_quantiles": {
+      "0.025": 0.132062225,
+      "0.5": 0.470954,
+      "0.975": 0.8155720249999999
+    }
+  },
+  "named_deltas": {
+    "purpose_minus_format_pooled": {
+      "point": -0.400327,
+      "ci95": [
+        -0.426057875,
+        -0.3735018500000001
+      ]
+    },
+    "purpose_minus_format_min_pair": {
+      "point": -0.36832800000000004,
+      "ci95": [
+        -0.40067899999999995,
+        -0.3384653
+      ]
+    },
+    "orth_minus_format_pooled": {
+      "point": -0.37443000000000004,
+      "ci95": [
+        -0.40210250000000003,
+        -0.345934875
+      ]
+    },
+    "orth_minus_format_min_pair": {
+      "point": -0.34778400000000004,
+      "ci95": [
+        -0.3818211,
+        -0.3123907000000001
+      ]
+    }
+  }
+}

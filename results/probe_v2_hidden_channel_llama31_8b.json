@@ -1,0 +1,318 @@
+{
+  "schema_version": 2,
+  "model_key": "llama31_8b",
+  "precision": "bfloat16",
+  "activations_sha256": "8c2ed57e35db1d11a1ec24cd26d707d98f1776c9c6d8ef08d2464e28b5bfec58",
+  "n_layers": 32,
+  "cross_fitting": "leave-episode-family-out, 4 folds",
+  "probe": {
+    "C": 0.1,
+    "max_iter": 3000,
+    "random_state": 0
+  },
+  "supersedes": "probe_hidden_channel_status.py, whose scrambled control labelled rows by channel letter and was therefore uninformative",
+  "layers": [
+    {
+      "layer": 0,
+      "status_pooled_auc": 0.5003137588500977,
+      "letter_control_auc": 0.6654148101806641,
+      "permutation_null_auc": 0.503809928894043,
+      "cross_mapping_map0_to_map1_auc": 0.310211181640625,
+      "cross_mapping_map1_to_map0_auc": 0.3224220275878906,
+      "cross_mapping_mean_auc": 0.3163166046142578
+    },
+    {
+      "layer": 1,
+      "status_pooled_auc": 0.4998178482055664,
+      "letter_control_auc": 0.7297344207763672,
+      "permutation_null_auc": 0.5013303756713867,
+      "cross_mapping_map0_to_map1_auc": 0.2525825500488281,
+      "cross_mapping_map1_to_map0_auc": 0.22967147827148438,
+      "cross_mapping_mean_auc": 0.24112701416015625
+    },
+    {
+      "layer": 2,
+      "status_pooled_auc": 0.49828338623046875,
+      "letter_control_auc": 0.6964101791381836,
+      "permutation_null_auc": 0.5007486343383789,
+      "cross_mapping_map0_to_map1_auc": 0.3089866638183594,
+      "cross_mapping_map1_to_map0_auc": 0.2877998352050781,
+      "cross_mapping_mean_auc": 0.29839324951171875
+    },
+    {
+      "layer": 3,
+      "status_pooled_auc": 0.4966106414794922,
+      "letter_control_auc": 0.7163286209106445,
+      "permutation_null_auc": 0.5046300888061523,
+      "cross_mapping_map0_to_map1_auc": 0.2729530334472656,
+      "cross_mapping_map1_to_map0_auc": 0.2847862243652344,
+      "cross_mapping_mean_auc": 0.27886962890625
+    },
+    {
+      "layer": 4,
+      "status_pooled_auc": 0.5084428787231445,
+      "letter_control_auc": 0.7874879837036133,
+      "permutation_null_auc": 0.5036954879760742,
+      "cross_mapping_map0_to_map1_auc": 0.200653076171875,
+      "cross_mapping_map1_to_map0_auc": 0.23073577880859375,
+      "cross_mapping_mean_auc": 0.21569442749023438
+    },
+    {
+      "layer": 5,
+      "status_pooled_auc": 0.5390853881835938,
+      "letter_control_auc": 0.8048372268676758,
+      "permutation_null_auc": 0.5078334808349609,
+      "cross_mapping_map0_to_map1_auc": 0.21747970581054688,
+      "cross_mapping_map1_to_map0_auc": 0.18313980102539062,
+      "cross_mapping_mean_auc": 0.20030975341796875
+    },
+    {
+      "layer": 6,
+      "status_pooled_auc": 0.5541162490844727,
+      "letter_control_auc": 0.8789892196655273,
+      "permutation_null_auc": 0.50762939453125,
+      "cross_mapping_map0_to_map1_auc": 0.19514083862304688,
+      "cross_mapping_map1_to_map0_auc": 0.2500495910644531,
+      "cross_mapping_mean_auc": 0.22259521484375
+    },
+    {
+      "layer": 7,
+      "status_pooled_auc": 0.5897817611694336,
+      "letter_control_auc": 0.8938064575195312,
+      "permutation_null_auc": 0.5091838836669922,
+      "cross_mapping_map0_to_map1_auc": 0.10608673095703125,
+      "cross_mapping_map1_to_map0_auc": 0.14583969116210938,
+      "cross_mapping_mean_auc": 0.1259632110595703
+    },
+    {
+      "layer": 8,
+      "status_pooled_auc": 0.5759925842285156,
+      "letter_control_auc": 0.9229249954223633,
+      "permutation_null_auc": 0.5036735534667969,
+      "cross_mapping_map0_to_map1_auc": 0.06908416748046875,
+      "cross_mapping_map1_to_map0_auc": 0.14519500732421875,
+      "cross_mapping_mean_auc": 0.10713958740234375
+    },
+    {
+      "layer": 9,
+      "status_pooled_auc": 0.5547447204589844,
+      "letter_control_auc": 0.8888740539550781,
+      "permutation_null_auc": 0.5049400329589844,
+      "cross_mapping_map0_to_map1_auc": 0.10438156127929688,
+      "cross_mapping_map1_to_map0_auc": 0.13808441162109375,
+      "cross_mapping_mean_auc": 0.12123298645019531
+    },
+    {
+      "layer": 10,
+      "status_pooled_auc": 0.5702981948852539,
+      "letter_control_auc": 0.9269018173217773,
+      "permutation_null_auc": 0.5094728469848633,
+      "cross_mapping_map0_to_map1_auc": 0.10033035278320312,
+      "cross_mapping_map1_to_map0_auc": 0.10183334350585938,
+      "cross_mapping_mean_auc": 0.10108184814453125
+    },
+    {
+      "layer": 11,
+      "status_pooled_auc": 0.5967302322387695,
+      "letter_control_auc": 0.9064569473266602,
+      "permutation_null_auc": 0.5004663467407227,
+      "cross_mapping_map0_to_map1_auc": 0.11400985717773438,
+      "cross_mapping_map1_to_map0_auc": 0.13128662109375,
+      "cross_mapping_mean_auc": 0.12264823913574219
+    },
+    {
+      "layer": 12,
+      "status_pooled_auc": 0.6322708129882812,
+      "letter_control_auc": 0.9321556091308594,
+      "permutation_null_auc": 0.5117731094360352,
+      "cross_mapping_map0_to_map1_auc": 0.10175323486328125,
+      "cross_mapping_map1_to_map0_auc": 0.10706329345703125,
+      "cross_mapping_mean_auc": 0.10440826416015625
+    },
+    {
+      "layer": 13,
+      "status_pooled_auc": 0.6934242248535156,
+      "letter_control_auc": 0.9454574584960938,
+      "permutation_null_auc": 0.5162038803100586,
+      "cross_mapping_map0_to_map1_auc": 0.08934402465820312,
+      "cross_mapping_map1_to_map0_auc": 0.113525390625,
+      "cross_mapping_mean_auc": 0.10143470764160156
+    },
+    {
+      "layer": 14,
+      "status_pooled_auc": 0.6954507827758789,
+      "letter_control_auc": 0.9473247528076172,
+      "permutation_null_auc": 0.5156126022338867,
+      "cross_mapping_map0_to_map1_auc": 0.110809326171875,
+      "cross_mapping_map1_to_map0_auc": 0.1293487548828125,
+      "cross_mapping_mean_auc": 0.12007904052734375
+    },
+    {
+      "layer": 15,
+      "status_pooled_auc": 0.7070035934448242,
+      "letter_control_auc": 0.9620265960693359,
+      "permutation_null_auc": 0.503697395324707,
+      "cross_mapping_map0_to_map1_auc": 0.0857696533203125,
+      "cross_mapping_map1_to_map0_auc": 0.1263580322265625,
+      "cross_mapping_mean_auc": 0.1060638427734375
+    },
+    {
+      "layer": 16,
+      "status_pooled_auc": 0.7241907119750977,
+      "letter_control_auc": 0.9595060348510742,
+      "permutation_null_auc": 0.4914407730102539,
+      "cross_mapping_map0_to_map1_auc": 0.09347915649414062,
+      "cross_mapping_map1_to_map0_auc": 0.13248825073242188,
+      "cross_mapping_mean_auc": 0.11298370361328125
+    },
+    {
+      "layer": 17,
+      "status_pooled_auc": 0.7307720184326172,
+      "letter_control_auc": 0.9667978286743164,
+      "permutation_null_auc": 0.49405384063720703,
+      "cross_mapping_map0_to_map1_auc": 0.059848785400390625,
+      "cross_mapping_map1_to_map0_auc": 0.11527633666992188,
+      "cross_mapping_mean_auc": 0.08756256103515625
+    },
+    {
+      "layer": 18,
+      "status_pooled_auc": 0.7059612274169922,
+      "letter_control_auc": 0.9585189819335938,
+      "permutation_null_auc": 0.4930391311645508,
+      "cross_mapping_map0_to_map1_auc": 0.07431411743164062,
+      "cross_mapping_map1_to_map0_auc": 0.12844085693359375,
+      "cross_mapping_mean_auc": 0.10137748718261719
+    },
+    {
+      "layer": 19,
+      "status_pooled_auc": 0.6939735412597656,
+      "letter_control_auc": 0.9561939239501953,
+      "permutation_null_auc": 0.5120840072631836,
+      "cross_mapping_map0_to_map1_auc": 0.07126998901367188,
+      "cross_mapping_map1_to_map0_auc": 0.12804412841796875,
+      "cross_mapping_mean_auc": 0.09965705871582031
+    },
+    {
+      "layer": 20,
+      "status_pooled_auc": 0.6968822479248047,
+      "letter_control_auc": 0.9591617584228516,
+      "permutation_null_auc": 0.50421142578125,
+      "cross_mapping_map0_to_map1_auc": 0.06784820556640625,
+      "cross_mapping_map1_to_map0_auc": 0.1256103515625,
+      "cross_mapping_mean_auc": 0.09672927856445312
+    },
+    {
+      "layer": 21,
+      "status_pooled_auc": 0.6778736114501953,
+      "letter_control_auc": 0.9477062225341797,
+      "permutation_null_auc": 0.4976930618286133,
+      "cross_mapping_map0_to_map1_auc": 0.0966796875,
+      "cross_mapping_map1_to_map0_auc": 0.13499832153320312,
+      "cross_mapping_mean_auc": 0.11583900451660156
+    },
+    {
+      "layer": 22,
+      "status_pooled_auc": 0.6634426116943359,
+      "letter_control_auc": 0.9256486892700195,
+      "permutation_null_auc": 0.502751350402832,
+      "cross_mapping_map0_to_map1_auc": 0.12067031860351562,
+      "cross_mapping_map1_to_map0_auc": 0.15334701538085938,
+      "cross_mapping_mean_auc": 0.1370086669921875
+    },
+    {
+      "layer": 23,
+      "status_pooled_auc": 0.6620502471923828,
+      "letter_control_auc": 0.9214935302734375,
+      "permutation_null_auc": 0.506505012512207,
+      "cross_mapping_map0_to_map1_auc": 0.12921905517578125,
+      "cross_mapping_map1_to_map0_auc": 0.15618515014648438,
+      "cross_mapping_mean_auc": 0.1427021026611328
+    },
+    {
+      "layer": 24,
+      "status_pooled_auc": 0.6661930084228516,
+      "letter_control_auc": 0.9192886352539062,
+      "permutation_null_auc": 0.5001592636108398,
+      "cross_mapping_map0_to_map1_auc": 0.12539291381835938,
+      "cross_mapping_map1_to_map0_auc": 0.15241622924804688,
+      "cross_mapping_mean_auc": 0.13890457153320312
+    },
+    {
+      "layer": 25,
+      "status_pooled_auc": 0.6587133407592773,
+      "letter_control_auc": 0.915369987487793,
+      "permutation_null_auc": 0.5095367431640625,
+      "cross_mapping_map0_to_map1_auc": 0.134796142578125,
+      "cross_mapping_map1_to_map0_auc": 0.16109085083007812,
+      "cross_mapping_mean_auc": 0.14794349670410156
+    },
+    {
+      "layer": 26,
+      "status_pooled_auc": 0.6507835388183594,
+      "letter_control_auc": 0.9057340621948242,
+      "permutation_null_auc": 0.49841880798339844,
+      "cross_mapping_map0_to_map1_auc": 0.14682388305664062,
+      "cross_mapping_map1_to_map0_auc": 0.173828125,
+      "cross_mapping_mean_auc": 0.1603260040283203
+    },
+    {
+      "layer": 27,
+      "status_pooled_auc": 0.658360481262207,
+      "letter_control_auc": 0.9087648391723633,
+      "permutation_null_auc": 0.5043630599975586,
+      "cross_mapping_map0_to_map1_auc": 0.14184188842773438,
+      "cross_mapping_map1_to_map0_auc": 0.1693115234375,
+      "cross_mapping_mean_auc": 0.1555767059326172
+    },
+    {
+      "layer": 28,
+      "status_pooled_auc": 0.6431875228881836,
+      "letter_control_auc": 0.9038581848144531,
+      "permutation_null_auc": 0.5014190673828125,
+      "cross_mapping_map0_to_map1_auc": 0.14228439331054688,
+      "cross_mapping_map1_to_map0_auc": 0.17803955078125,
+      "cross_mapping_mean_auc": 0.16016197204589844
+    },
+    {
+      "layer": 29,
+      "status_pooled_auc": 0.6265392303466797,
+      "letter_control_auc": 0.89739990234375,
+      "permutation_null_auc": 0.47942638397216797,
+      "cross_mapping_map0_to_map1_auc": 0.14832687377929688,
+      "cross_mapping_map1_to_map0_auc": 0.17504501342773438,
+      "cross_mapping_mean_auc": 0.16168594360351562
+    },
+    {
+      "layer": 30,
+      "status_pooled_auc": 0.6132688522338867,
+      "letter_control_auc": 0.9010133743286133,
+      "permutation_null_auc": 0.48103809356689453,
+      "cross_mapping_map0_to_map1_auc": 0.14210128784179688,
+      "cross_mapping_map1_to_map0_auc": 0.15913009643554688,
+      "cross_mapping_mean_auc": 0.15061569213867188
+    },
+    {
+      "layer": 31,
+      "status_pooled_auc": 0.5704307556152344,
+      "letter_control_auc": 0.875452995300293,
+      "permutation_null_auc": 0.48627281188964844,
+      "cross_mapping_map0_to_map1_auc": 0.18087005615234375,
+      "cross_mapping_map1_to_map0_auc": 0.19783782958984375,
+      "cross_mapping_mean_auc": 0.18935394287109375
+    }
+  ],
+  "best_cross_mapping_layer": 0,
+  "best_cross_mapping_auc": 0.3163166046142578,
+  "best_cross_mapping_detail": {
+    "status_pooled_auc": 0.5003137588500977,
+    "letter_control_auc": 0.6654148101806641,
+    "permutation_null_auc": 0.503809928894043,
+    "cross_mapping_map0_to_map1_auc": 0.310211181640625,
+    "cross_mapping_map1_to_map0_auc": 0.3224220275878906,
+    "cross_mapping_mean_auc": 0.3163166046142578
+  },
+  "max_status_pooled_auc": 0.7307720184326172,
+  "max_letter_control_auc": 0.9667978286743164,
+  "max_permutation_null_auc": 0.5162038803100586,
+  "mean_permutation_null_auc": 0.5020973086357117
+}

@@ -1,0 +1,21 @@
+{
+  "model_key": "llama31_8b",
+  "model": "/scratch/jppatton/langea/confirmation_work/llama31_8b_model_0e9e39f2",
+  "precision": "bfloat16",
+  "items_sha256": "0bcd4b48cb95e56ac09c74ae3fe5eaa9739d0b97ae96ebc8f843d5985740b32c",
+  "n_rows": 3072,
+  "n_layers": 32,
+  "hidden_size": 4096,
+  "dtype_stored": "float16",
+  "position": "last_prompt_token_after_chat_template_before_generation",
+  "layer_semantics": "transformer_block_outputs_1_to_n_excluding_embedding_stream",
+  "conditions": [
+    "map0_K",
+    "map0_M",
+    "map1_K",
+    "map1_M",
+    "scrambled_K",
+    "scrambled_M"
+  ],
+  "activations_sha256": "8c2ed57e35db1d11a1ec24cd26d707d98f1776c9c6d8ef08d2464e28b5bfec58"
+}

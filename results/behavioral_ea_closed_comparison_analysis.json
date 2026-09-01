@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "protocol_sha256": "fa65e1047ec320ee4005e966bdb3c6016b15a1953aa16c92145817141ec16473",
+  "n_bootstrap": 20000,
+  "inference": "two-way crossed history-family x decision-family bootstrap",
+  "models": {
+    "llama31_8b": {
+      "source": "results\\behavioral_ea_closed_comparison_llama31_8b.json",
+      "source_sha256": "f3f9204a81998819776a15e6e149f8befd353d55d4ca7739c80ee2848a57dc6c",
+      "load_in_8bit": false,
+      "coherent_logodds": -0.519775390625,
+      "coherent_logodds_two_way_ci95": [
+        -0.816162109375,
+        -0.221435546875
+      ],
+      "specificity_interaction_logodds": 0.771240234375,
+      "specificity_interaction_logodds_two_way_ci95": [
+        0.48486328125,
+        1.0905822753906245
+      ],
+      "coherent_probability_difference": -0.007472791491910158,
+      "direction_consistency": 0.22265625,
+      "model_gate_pass": false
+    }
+  },
+  "pooled_history_family_means": {
+    "agriculture": 0.0390625,
+    "architecture": -0.203125,
+    "aviation": -0.5234375,
+    "chemistry": -0.34375,
+    "education": -0.90625,
+    "energy": -0.7890625,
+    "finance": -0.625,
+    "forestry": -0.6953125,
+    "geology": -0.3203125,
+    "healthcare": -0.2421875,
+    "hospitality": -0.359375,
+    "insurance": -0.375,
+    "law": -0.46875,
+    "logistics": -0.6953125,
+    "manufacturing": -0.625,
+    "marine": -0.640625,
+    "meteorology": -0.28125,
+    "museum": -0.4765625,
+    "networking": -0.828125,
+    "nutrition": -0.03125,
+    "publishing": -0.6484375,
+    "real_estate": -0.8046875,
+    "retail": -0.4296875,
+    "robotics": -0.5625,
+    "social_work": -0.59375,
+    "software": -0.921875,
+    "sports": -0.6171875,
+    "telecom": -0.46875,
+    "transport": -0.546875,
+    "utilities": -0.9296875,
+    "veterinary": -0.484375,
+    "water": -0.234375
+  },
+  "pooled_decision_family_means": {
+    "citation": -0.37890625,
+    "classification": -0.26171875,
+    "code": -0.16796875,
+    "confidence": -1.6640625,
+    "date": -0.203125,
+    "forecast": -0.65625,
+    "json": -0.76953125,
+    "medical": -0.6171875,
+    "numeric": -1.046875,
+    "policy": 0.62890625,
+    "ranking": -1.44140625,
+    "regex": -0.625,
+    "rounding": -0.625,
+    "security": -0.69140625,
+    "summary": 0.41796875,
+    "translation": -0.21484375
+  },
+  "pooled_positive_history_families": 1,
+  "pooled_positive_decision_families": 2,
+  "confirmation_gate_pass": false
+}

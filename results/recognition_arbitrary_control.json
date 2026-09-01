@@ -1,0 +1,141 @@
+{
+  "schema_version": 1,
+  "label": "arbitrary_control",
+  "n_bootstrap": 20000,
+  "seed": 20260908,
+  "inference": "two-way crossed episode-family x question-family bootstrap, shared indices",
+  "models": {
+    "llama31_8b": {
+      "source": "results\\behavioral_ea_arbitrary_llama31_8b.json",
+      "source_sha256": "6a307d0bbb08ef7c73813dc76f37f672b530f9f78b626868f90a5ed1ca106679",
+      "precision": "bfloat16",
+      "load_in_8bit": false,
+      "n_recognition_rows": 1024,
+      "n_episode_families": 32,
+      "n_question_families": 8,
+      "conditions": [
+        "map0_K",
+        "map0_M",
+        "map1_K",
+        "map1_M"
+      ],
+      "accuracy": 0.677734375,
+      "accuracy_crossed_ci95": [
+        0.5693359375,
+        0.787109375
+      ],
+      "above_chance": true,
+      "accuracy_by_condition": {
+        "map0_K": 0.74609375,
+        "map0_M": 0.58984375,
+        "map1_K": 0.6171875,
+        "map1_M": 0.7578125
+      },
+      "accuracy_by_mapping_group": {
+        "map0": 0.66796875,
+        "map1": 0.6875
+      },
+      "recency_split": {},
+      "accuracy_by_question": {
+        "criterion_name": 0.890625,
+        "decides_colour": 0.6953125,
+        "how_sorted": 0.640625,
+        "test_style": 0.90625,
+        "what_checked": 0.6796875,
+        "what_consulted": 0.5546875,
+        "what_ignored": 0.421875,
+        "which_test": 0.6328125
+      },
+      "families_above_chance": 31,
+      "questions_above_chance": 7
+    },
+    "llama31_70b": {
+      "source": "results\\behavioral_ea_arbitrary_llama31_70b.json",
+      "source_sha256": "5a2794d5bb0d216b0ae396b35b65fba7953c3c186661d6fab25bd3073a5b1ad5",
+      "precision": "bfloat16",
+      "load_in_8bit": false,
+      "n_recognition_rows": 1024,
+      "n_episode_families": 32,
+      "n_question_families": 8,
+      "conditions": [
+        "map0_K",
+        "map0_M",
+        "map1_K",
+        "map1_M"
+      ],
+      "accuracy": 0.8447265625,
+      "accuracy_crossed_ci95": [
+        0.6875,
+        0.958984375
+      ],
+      "above_chance": true,
+      "accuracy_by_condition": {
+        "map0_K": 0.80078125,
+        "map0_M": 0.890625,
+        "map1_K": 0.8984375,
+        "map1_M": 0.7890625
+      },
+      "accuracy_by_mapping_group": {
+        "map0": 0.845703125,
+        "map1": 0.84375
+      },
+      "recency_split": {},
+      "accuracy_by_question": {
+        "criterion_name": 1.0,
+        "decides_colour": 0.7421875,
+        "how_sorted": 0.8984375,
+        "test_style": 1.0,
+        "what_checked": 0.9453125,
+        "what_consulted": 0.8515625,
+        "what_ignored": 0.375,
+        "which_test": 0.9453125
+      },
+      "families_above_chance": 32,
+      "questions_above_chance": 7
+    },
+    "llama33_70b": {
+      "source": "results\\behavioral_ea_arbitrary_llama33_70b.json",
+      "source_sha256": "9ddb688a4220b366e097ecbc89bdef29e81033c95ba54cab460558cfc9de9439",
+      "precision": "bfloat16",
+      "load_in_8bit": false,
+      "n_recognition_rows": 1024,
+      "n_episode_families": 32,
+      "n_question_families": 8,
+      "conditions": [
+        "map0_K",
+        "map0_M",
+        "map1_K",
+        "map1_M"
+      ],
+      "accuracy": 0.8603515625,
+      "accuracy_crossed_ci95": [
+        0.716796875,
+        0.970703125
+      ],
+      "above_chance": true,
+      "accuracy_by_condition": {
+        "map0_K": 0.8046875,
+        "map0_M": 0.921875,
+        "map1_K": 0.92578125,
+        "map1_M": 0.7890625
+      },
+      "accuracy_by_mapping_group": {
+        "map0": 0.86328125,
+        "map1": 0.857421875
+      },
+      "recency_split": {},
+      "accuracy_by_question": {
+        "criterion_name": 1.0,
+        "decides_colour": 0.7265625,
+        "how_sorted": 0.9609375,
+        "test_style": 1.0,
+        "what_checked": 0.953125,
+        "what_consulted": 0.796875,
+        "what_ignored": 0.453125,
+        "which_test": 0.9921875
+      },
+      "families_above_chance": 32,
+      "questions_above_chance": 7
+    }
+  }
+}
