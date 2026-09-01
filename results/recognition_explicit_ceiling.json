@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "label": "explicit_ceiling",
+  "n_bootstrap": 20000,
+  "seed": 20260908,
+  "inference": "two-way crossed episode-family x question-family bootstrap, shared indices",
+  "models": {
+    "llama31_8b": {
+      "source": "results\\behavioral_ea_hidden_channel_check_llama31_8b.json",
+      "source_sha256": "81c77727ccbeb9822f703b2ac335021a54cb0067c2906ecd3071ed0ea29c6f3f",
+      "precision": "bfloat16",
+      "load_in_8bit": false,
+      "n_recognition_rows": 512,
+      "n_episode_families": 32,
+      "n_question_families": 8,
+      "conditions": [
+        "explicit_active",
+        "explicit_closed"
+      ],
+      "accuracy": 0.908203125,
+      "accuracy_crossed_ci95": [
+        0.814453125,
+        0.98046875
+      ],
+      "above_chance": true,
+      "accuracy_by_condition": {
+        "explicit_active": 0.8515625,
+        "explicit_closed": 0.96484375
+      },
+      "accuracy_by_mapping_group": {
+        "explicit": 0.908203125
+      },
+      "recency_split": {},
+      "accuracy_by_question": {
+        "audience_size": 1.0,
+        "destination": 1.0,
+        "effect_outside": 0.921875,
+        "reversibility": 0.671875,
+        "stakes": 0.953125,
+        "survival": 0.765625,
+        "timing": 0.953125,
+        "who_reads": 1.0
+      },
+      "families_above_chance": 32,
+      "questions_above_chance": 8
+    },
+    "llama31_70b": {
+      "source": "results\\behavioral_ea_hidden_channel_recogchk_llama31_70b.json",
+      "source_sha256": "69de873e7e63e22835d1b4574283507e918b908b13ee91a6ad24fac044a497f1",
+      "precision": "bfloat16",
+      "load_in_8bit": false,
+      "n_recognition_rows": 512,
+      "n_episode_families": 32,
+      "n_question_families": 8,
+      "conditions": [
+        "explicit_active",
+        "explicit_closed"
+      ],
+      "accuracy": 0.9609375,
+      "accuracy_crossed_ci95": [
+        0.8984375,
+        1.0
+      ],
+      "above_chance": true,
+      "accuracy_by_condition": {
+        "explicit_active": 0.96875,
+        "explicit_closed": 0.953125
+      },
+      "accuracy_by_mapping_group": {
+        "explicit": 0.9609375
+      },
+      "recency_split": {},
+      "accuracy_by_question": {
+        "audience_size": 1.0,
+        "destination": 1.0,
+        "effect_outside": 0.8125,
+        "reversibility": 1.0,
+        "stakes": 1.0,
+        "survival": 0.875,
+        "timing": 1.0,
+        "who_reads": 1.0
+      },
+      "families_above_chance": 32,
+      "questions_above_chance": 8
+    },
+    "llama33_70b": {
+      "source": "results\\behavioral_ea_hidden_channel_recogchk_llama33_70b.json",
+      "source_sha256": "abe5883eb1f94e4abcd4debadf1a6b049af0c19ed1dfadbf51d3153a48d785c1",
+      "precision": "bfloat16",
+      "load_in_8bit": false,
+      "n_recognition_rows": 512,
+      "n_episode_families": 32,
+      "n_question_families": 8,
+      "conditions": [
+        "explicit_active",
+        "explicit_closed"
+      ],
+      "accuracy": 0.97265625,
+      "accuracy_crossed_ci95": [
+        0.921875,
+        1.0
+      ],
+      "above_chance": true,
+      "accuracy_by_condition": {
+        "explicit_active": 0.98828125,
+        "explicit_closed": 0.95703125
+      },
+      "accuracy_by_mapping_group": {
+        "explicit": 0.97265625
+      },
+      "recency_split": {},
+      "accuracy_by_question": {
+        "audience_size": 1.0,
+        "destination": 1.0,
+        "effect_outside": 0.828125,
+        "reversibility": 1.0,
+        "stakes": 1.0,
+        "survival": 0.953125,
+        "timing": 1.0,
+        "who_reads": 1.0
+      },
+      "families_above_chance": 32,
+      "questions_above_chance": 8
+    }
+  }
+}

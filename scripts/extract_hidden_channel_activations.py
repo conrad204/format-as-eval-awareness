@@ -57,18 +57,39 @@ def main() -> None:
     n_layers = model.config.num_hidden_layers
     hidden = model.config.hidden_size
 
+    # `output_hidden_states=True` materialises every layer for every position, which
+    # is ~7 GB per batch of 8 at 80 layers x 8192 hidden and OOMs an 80 GB card once
+    # offloaded weights are resident. Forward hooks keep only the final position.
     store = np.empty((len(subset), n_layers, hidden), dtype=np.float16)
-    for start in range(0, len(subset), args.batch_size):
-        batch = subset[start:start + args.batch_size]
-        texts = [tok.apply_chat_template(r["messages"], tokenize=False, add_generation_prompt=True) for r in batch]
-        enc = tok(texts, return_tensors="pt", padding=True, add_special_tokens=False)
-        enc = {k: v.to(device) for k, v in enc.items()}
-        with torch.inference_mode():
-            out = model(**enc, output_hidden_states=True)
-        # hidden_states[0] is the embedding stream; take transformer block outputs 1..n
-        stack = torch.stack([out.hidden_states[i + 1][:, -1, :] for i in range(n_layers)], dim=1)
-        store[start:start + len(batch)] = stack.float().cpu().numpy().astype(np.float16)
-        print(f"extracted {min(start + args.batch_size, len(subset))}/{len(subset)}", flush=True)
+    blocks = model.model.layers
+    if len(blocks) != n_layers:
+        raise RuntimeError(f"expected {n_layers} decoder blocks, found {len(blocks)}")
+    captured: dict[int, torch.Tensor] = {}
+
+    def make_hook(index: int):
+        def hook(_module, _inputs, output):
+            tensor = output[0] if isinstance(output, tuple) else output
+            captured[index] = tensor[:, -1, :].detach().to("cpu", torch.float32)
+        return hook
+
+    handles = [block.register_forward_hook(make_hook(i)) for i, block in enumerate(blocks)]
+    try:
+        for start in range(0, len(subset), args.batch_size):
+            batch = subset[start:start + args.batch_size]
+            texts = [tok.apply_chat_template(r["messages"], tokenize=False, add_generation_prompt=True) for r in batch]
+            enc = tok(texts, return_tensors="pt", padding=True, add_special_tokens=False)
+            enc = {k: v.to(device) for k, v in enc.items()}
+            captured.clear()
+            with torch.inference_mode():
+                model(**enc, use_cache=False)
+            if len(captured) != n_layers:
+                raise RuntimeError(f"captured {len(captured)} of {n_layers} layers")
+            stack = torch.stack([captured[i] for i in range(n_layers)], dim=1)
+            store[start:start + len(batch)] = stack.numpy().astype(np.float16)
+            print(f"extracted {min(start + args.batch_size, len(subset))}/{len(subset)}", flush=True)
+    finally:
+        for handle in handles:
+            handle.remove()
 
     args.out_dir.mkdir(parents=True, exist_ok=True)
     npz = args.out_dir / f"hidden_channel_activations_{args.model_key}.npz"

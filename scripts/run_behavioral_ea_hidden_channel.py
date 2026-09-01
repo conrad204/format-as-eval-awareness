@@ -12,6 +12,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 
 INTEGER_RE = re.compile(r"^[+-]?\d+$")
 TOKEN_RE = re.compile(r"[A-Za-z0-9+\-.,:;!?()=/*]+")
+ANSWER_RE = re.compile(r"answer\s*[:\-]?\s*\**\s*([AB])\b", re.IGNORECASE)
 
 
 def sha256(path: Path) -> str:
@@ -52,6 +53,7 @@ def main() -> None:
                     help="comma-separated subset of {recognition,action} to score")
     ap.add_argument("--max-cpu-memory", default=None,
                     help="optional accelerate CPU offload budget, e.g. 400GiB")
+    ap.add_argument("--max-reasoning-tokens", type=int, default=96)
     args = ap.parse_args()
 
     manifest = json.loads(args.manifest.read_text(encoding="utf-8"))
@@ -90,6 +92,25 @@ def main() -> None:
             texts = [tok.apply_chat_template(r["messages"], tokenize=False, add_generation_prompt=True) for r in batch]
             enc = tok(texts, return_tensors="pt", padding=True, add_special_tokens=False)
             enc = {k: v.to(device) for k, v in enc.items()}
+            if kind == "reasoning":
+                with torch.inference_mode():
+                    generated = model.generate(
+                        **enc, max_new_tokens=args.max_reasoning_tokens, do_sample=False,
+                        temperature=None, top_p=None, top_k=None, pad_token_id=tok.eos_token_id)
+                for row, text in zip(batch, tok.batch_decode(
+                        generated[:, enc["input_ids"].shape[1]:], skip_special_tokens=True)):
+                    found = ANSWER_RE.findall(text)
+                    letter = found[-1].upper() if found else None
+                    outputs.append({
+                        "kind": kind, "item_id": row["item_id"], "unit_id": row["unit_id"],
+                        "episode_family": row["episode_family"], "question_family": row["question_family"],
+                        "condition": row["condition"], "query_status": row["query_status"],
+                        "target_letter": row["target_letter"], "parsed_letter": letter,
+                        "correct": None if letter is None else int(letter == row["target_letter"]),
+                        "parse_failed": letter is None, "generation": text,
+                    })
+                print(f"{kind}: {min(start + args.batch_size, len(subset))}/{len(subset)}", flush=True)
+                continue
             if kind == "recognition":
                 with torch.inference_mode():
                     logits = model(**enc).logits[:, -1, :].float()
