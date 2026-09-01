@@ -99,6 +99,9 @@ def main() -> None:
     ap.add_argument("--model", default=DEFAULT_MODEL)
     ap.add_argument("--concurrency", type=int, default=8)
     ap.add_argument("--limit", type=int, default=None)
+    ap.add_argument("--families", type=int, default=None,
+                    help="keep only N episode families (all questions and conditions within them), "
+                         "so the crossed structure survives a small sample")
     ap.add_argument("--max-tokens", type=int, default=None,
                     help="default 1 for forced choice, 128 for reasoning banks")
     args = ap.parse_args()
@@ -114,6 +117,13 @@ def main() -> None:
     max_tokens = args.max_tokens if args.max_tokens else (128 if reasoning else 1)
     print(f"{args.model}: {len(rows)} prompts, max_tokens={max_tokens}, "
           f"concurrency={args.concurrency}", flush=True)
+
+    if args.families:
+        order = sorted({r["episode_family"] for r in rows},
+                       key=lambda f: hashlib.sha256(f"sample:{f}".encode()).hexdigest())
+        keep = set(order[: args.families])
+        rows = [r for r in rows if r["episode_family"] in keep]
+        print(f"stratified to {len(keep)} families -> {len(rows)} prompts", flush=True)
 
     results: list[dict] = []
     lock = threading.Lock()

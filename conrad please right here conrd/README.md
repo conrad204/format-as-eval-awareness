@@ -1,5 +1,13 @@
 # 405B handoff
 
+> **START WITH `RUN_THIS.md`.** It is current (2026-09-01) and has the exact
+> commands. This README is the older behavioural-only brief, kept for background;
+> where the two disagree, `RUN_THIS.md` wins. The short version of what changed:
+> the behavioural numbers are largely settled, and what we now need is
+> **activations** on `banks/latent_action.jsonl` and the action rows of
+> `banks/explicit_ceiling.jsonl`.
+
+
 Everything needed to add Llama-3.1-405B to the hidden-channel experiment. Written
 2026-08-31. Nothing here needs the cluster.
 
