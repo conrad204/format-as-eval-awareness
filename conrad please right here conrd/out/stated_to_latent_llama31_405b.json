@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "experiment": "stated-status probe scored on the INFERRED-status action rows of held-out episode families, same hidden-channel environment",
+  "direction": "stated_to_latent",
+  "model": "meta-llama/Llama-3.1-405B-Instruct",
+  "model_key": "llama31_405b",
+  "layer": 28,
+  "layer_selected_from_latent_outcomes": false,
+  "position": "last_prompt_token_after_chat_template_before_generation",
+  "layer_semantics": "transformer_block_outputs_1_to_n_excluding_embedding_stream",
+  "stated": {
+    "activations": "../out/acts/hidden_channel_activations_llama31_405b_stated.npz",
+    "sha256": "b3c36c9dfd3db1c2727b458531699eb5e65ad888e63dd0996dc8643da3f38c06",
+    "items_sha256": "aac0ee10dcb1443ddb66272411ef41991847eee75dc41bb858411fd28c6caa33",
+    "conditions": [
+      "explicit_closed",
+      "explicit_active"
+    ],
+    "n_rows": 1024
+  },
+  "latent": {
+    "activations": "../out/acts/hidden_channel_activations_llama31_405b.npz",
+    "items_sha256": "4b938f8ebf00add348ae723479c9dd917f7a5323d619009a297251b01ea4b8fa",
+    "conditions": [
+      "map0_K",
+      "map0_M",
+      "map1_K",
+      "map1_M"
+    ],
+    "n_rows": 2048
+  },
+  "environment_controls": "same 32 episode families, same 16 arithmetic items, same task world, same action prompt type; only stated vs inferred differs",
+  "probe": {
+    "C": 0.1,
+    "max_iter": 3000,
+    "random_state": 0
+  },
+  "cross_validation": "leave-one-episode-family-out, 32 folds",
+  "within_domain_source": {
+    "pooled_auc": 1.0,
+    "family_mean_auc": 1.0,
+    "family_ci95": [
+      1.0,
+      1.0
+    ],
+    "families_above_half": 32
+  },
+  "transfer": {
+    "pooled_auc": 0.5108404159545898,
+    "family_mean_auc": 0.5484619140625,
+    "family_ci95": [
+      0.4796730041503906,
+      0.6173103332519532
+    ],
+    "families_above_half": 20,
+    "n_families": 32,
+    "auc_map0": 0.496612548828125,
+    "auc_map1": 0.5250473022460938,
+    "matched_closed_minus_active": 0.11497107334434986,
+    "matched_family_ci95": [
+      -0.05142620066180825,
+      0.27843602448701843
+    ],
+    "per_family_auc": {
+      "archive_desk": 0.626953125,
+      "bakery_line": 0.8603515625,
+      "boat_yard": 0.115234375,
+      "book_bindery": 0.490234375,
+      "brewery": 0.5078125,
+      "cable_gang": 0.4296875,
+      "call_centre": 0.5029296875,
+      "clinic_records": 0.55859375,
+      "field_survey": 0.3779296875,
+      "glass_studio": 0.3095703125,
+      "grain_dryer": 0.7177734375,
+      "greenhouse": 0.5556640625,
+      "harbour_office": 0.6552734375,
+      "ice_rink": 0.74609375,
+      "kitchen_pass": 0.33203125,
+      "mill_floor": 0.6650390625,
+      "museum_store": 0.474609375,
+      "night_lab": 0.689453125,
+      "paper_mill": 0.1806640625,
+      "print_shop": 0.2607421875,
+      "pump_station": 0.845703125,
+      "quarry_scale": 0.2890625,
+      "radio_room": 0.3798828125,
+      "salt_works": 0.35546875,
+      "school_office": 0.640625,
+      "seed_store": 0.546875,
+      "signal_box": 0.6494140625,
+      "tailor_shop": 0.611328125,
+      "toll_plaza": 0.80859375,
+      "vet_practice": 0.8193359375,
+      "warehouse_bay": 0.857421875,
+      "watch_repair": 0.6904296875
+    }
+  },
+  "bootstrap": {
+    "unit": "episode family",
+    "n_bootstrap": 10000,
+    "seed": 20260901
+  },
+  "evidence_class": "exploratory; environment held fixed, no selection on latent outcomes"
+}

@@ -135,6 +135,7 @@ def run_local(rows: list[dict], model_path: str, layers_arg: str, batch_size: in
 
 def run_ndif(rows: list[dict], model_id: str, layers_arg: str, batch_size: int):
     import time
+    import torch
     from nnsight import CONFIG, LanguageModel
 
     key = os.environ.get("NDIF_API_KEY")
@@ -152,14 +153,20 @@ def run_ndif(rows: list[dict], model_id: str, layers_arg: str, batch_size: int):
                                                      add_generation_prompt=True) for r in batch]
         for attempt in range(4):
             try:
+                # nnsight 0.7 runs the session body remotely; per-tensor .save()s
+                # collected in a plain dict never reach this frame (UnboundLocalError
+                # on Python <3.13). Only a session-level container created via
+                # list().save() survives the round trip, so results are appended to
+                # it in trace order: one (len(layers), hidden) stack per prompt.
                 with model.session(remote=True):
-                    saved = {}
-                    for j, text in enumerate(texts):
+                    acts = list().save()
+                    for text in texts:
                         with model.trace(text):
-                            for L in layers:
-                                block = model.model.layers[L].output
-                                tensor = block[0] if isinstance(block, tuple) else block
-                                saved[(j, L)] = tensor[0, -1, :].save()
+                            outs = [model.model.layers[L].output for L in layers]
+                            h = torch.stack(
+                                [(o[0] if isinstance(o, (tuple, list)) else o)[0, -1, :].detach().cpu()
+                                 for o in outs])
+                            acts.append(h)
                 break
             except Exception as exc:
                 if attempt == 3:
@@ -168,10 +175,10 @@ def run_ndif(rows: list[dict], model_id: str, layers_arg: str, batch_size: int):
                 print(f"  retry {attempt + 1} after {type(exc).__name__}: "
                       f"{str(exc)[:120]} (sleeping {wait}s)", flush=True)
                 time.sleep(wait)
+        if len(acts) != len(batch):
+            raise RuntimeError(f"session returned {len(acts)} traces for a batch of {len(batch)}")
         for j in range(len(batch)):
-            store[start + j] = np.stack(
-                [np.asarray(saved[(j, L)].float().cpu()) for L in layers]
-            ).astype(np.float16)
+            store[start + j] = np.asarray(acts[j].float()).astype(np.float16)
         print(f"extracted {min(start + batch_size, len(rows))}/{len(rows)}", flush=True)
     return store, layers, n_layers, hidden, model_id
 
