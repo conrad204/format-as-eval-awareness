@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "status": "FROZEN_BEFORE_IMPLICIT_SCORING",
+  "source": "original full320 stated explicit-purpose rows only",
+  "implicit_data_used": false,
+  "items": "v3-activations/rendered_items_v3_full320_8-17-2026.jsonl",
+  "items_sha256": "5528819d74e696d1a595062047a829836dfde1d2a45287b06a5ac1ba5d1b6c67",
+  "activations": "v3-activations/activations/llama31_8b/activations_all_layers.npz",
+  "activations_sha256": "e6a71be599e27fd846211e8e6ef215e4fb695a76c3415dc157c1450a134cd1b4",
+  "probe": {
+    "C": 0.1,
+    "max_iter": 3000,
+    "random_state": 0
+  },
+  "folds": [
+    "fg1",
+    "fg2",
+    "fg3",
+    "fg4",
+    "fg5"
+  ],
+  "regimes": [
+    "joint",
+    "benchmark",
+    "casual"
+  ],
+  "n_layers": 32,
+  "n_explicit_rows": 7680,
+  "bank_sha256": "34cefeb00518db23ff1202879f5ce635642c9ce4409e6baaf7ab2b0b92fcbae9"
+}

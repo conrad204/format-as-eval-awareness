@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "model": "/scratch/jppatton/langea/confirmation_work/llama31_8b_model_0e9e39f2",
+  "model_revision": "default_resolved_by_hub",
+  "n_transformer_layers": 32,
+  "layer": 8,
+  "primary_layer": 8,
+  "layers": [
+    8
+  ],
+  "device_map": "single_device",
+  "layer_semantics": "zero_based_transformer_block_output_before_final_model_norm",
+  "position": "last_prompt_token_after_chat_template_before_generation",
+  "chat_template": "tokenizer.apply_chat_template(user_message, add_generation_prompt=True)",
+  "add_special_tokens": false,
+  "npz_compression": "zip_deflate_level1",
+  "max_length": 2048,
+  "max_prompt_tokens": 350,
+  "dtype_stored": "float32",
+  "n_items": 240,
+  "hidden_size": 4096,
+  "items_path": "results/implicit_purpose_fixed_probe/items.jsonl",
+  "items_sha256": "fe3e2fe6e5ce89b982115e1aee03eeaa7a863cce656ae299846538f2af531cb0",
+  "activations_sha256": "647ff40bd20396f280783a163b2b24750dadc6c5f84db1d99f3c852e56a0046e",
+  "activations_all_layers_sha256": null
+}
