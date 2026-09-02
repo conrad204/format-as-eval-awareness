@@ -183,11 +183,17 @@ def figure2() -> None:
                   loc="left", fontsize=10, fontweight="bold")
     axA.legend(loc="upper left", fontsize=6.8, framealpha=0.9)
 
+    rows = []
     for i, m in enumerate(MODELS):
         v = integ[m]["integrated_format_iia_gap"]
         lo, hi = integ[m]["integrated_format_iia_gap_ci95"]
         strip.errorbar([i], [v], yerr=[[v - lo], [hi - v]], color=COLOR[m], marker=MARKER[m],
                        markersize=6, capsize=3, linewidth=1.6, zorder=3)
+        rows.append(f"{LABEL[m]:<14s} {v:.3f}  [{lo:.3f}, {hi:.3f}]")
+    axA.annotate("depth-integrated effect (95% CI)\n" + "\n".join(rows),
+                 xy=(0.985, 0.07), xycoords="axes fraction", ha="right", va="bottom",
+                 fontsize=6.3, color=INK, alpha=0.95, family="monospace",
+                 bbox={"facecolor": "white", "edgecolor": "none", "alpha": 0.88, "pad": 2.0})
     strip.set_ylim(axA.get_ylim())
     strip.set_xlim(-0.7, len(MODELS) - 0.3)
     strip.axhline(0, color=INK, linewidth=1.0, zorder=2)
@@ -201,7 +207,7 @@ def figure2() -> None:
     axB.axvline(0, color=INK, linewidth=1.0, zorder=2)
     axB.set_xlabel("format moved toward donor, above control")
     axB.set_ylabel("purpose preservation vs control\n(baseline purpose-score SD units)")
-    axB.set_title("B. Format is carried, purpose is not spared",
+    axB.set_title("B. Format is carried, and purpose is also perturbed",
                   loc="left", fontsize=10, fontweight="bold")
     axB.legend(loc="upper left", fontsize=6.8, framealpha=0.9)
     axB.annotate("purpose protected\n(late depth)", xy=(0.72, 0.90), xycoords="axes fraction",
