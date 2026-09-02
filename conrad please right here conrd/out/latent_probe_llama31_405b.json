@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "experiment": "fresh leave-one-episode-family-out latent-status probe, fixed layer",
+  "model_key": "llama31_405b",
+  "model": "meta-llama/Llama-3.1-405B-Instruct",
+  "precision": "bfloat16 forward, float16 stored",
+  "layer": 28,
+  "layer_selected_from_performance": false,
+  "position": "last_prompt_token_after_chat_template_before_generation",
+  "layer_semantics": "transformer_block_outputs_1_to_n_excluding_embedding_stream",
+  "activations": "../out/acts/hidden_channel_activations_llama31_405b.npz",
+  "activations_sha256": "a87ac97a5d1a6ecb7ce58b13bf92dd4b24c9c2378244c21f251ff328b1c0eb90",
+  "meta_activations_sha256": "a87ac97a5d1a6ecb7ce58b13bf92dd4b24c9c2378244c21f251ff328b1c0eb90",
+  "items_sha256": "4b938f8ebf00add348ae723479c9dd917f7a5323d619009a297251b01ea4b8fa",
+  "n_rows": 2048,
+  "conditions": [
+    "map0_K",
+    "map0_M",
+    "map1_K",
+    "map1_M"
+  ],
+  "probe": {
+    "C": 0.1,
+    "max_iter": 3000,
+    "random_state": 0
+  },
+  "cross_validation": "leave-one-episode-family-out, 32 folds",
+  "positive_class": "closed",
+  "negative_class": "active",
+  "status": {
+    "pooled_auc": 0.6620969772338867,
+    "family_mean_auc": 0.9071044921875,
+    "family_ci95": [
+      0.8424964904785156,
+      0.9587120056152343
+    ],
+    "families_above_half": 31,
+    "n_families": 32,
+    "auc_map0": 0.6611595153808594,
+    "auc_map1": 0.6626663208007812,
+    "matched_closed_minus_active": 5.339779228372208,
+    "matched_family_ci95": [
+      4.048735765439505,
+      6.687687842748616
+    ],
+    "per_family_auc": {
+      "archive_desk": 0.923828125,
+      "bakery_line": 1.0,
+      "boat_yard": 0.9775390625,
+      "book_bindery": 0.9970703125,
+      "brewery": 0.83984375,
+      "cable_gang": 0.2373046875,
+      "call_centre": 0.5234375,
+      "clinic_records": 0.994140625,
+      "field_survey": 1.0,
+      "glass_studio": 0.9873046875,
+      "grain_dryer": 0.9453125,
+      "greenhouse": 0.990234375,
+      "harbour_office": 0.6015625,
+      "ice_rink": 0.9765625,
+      "kitchen_pass": 0.8046875,
+      "mill_floor": 1.0,
+      "museum_store": 0.9580078125,
+      "night_lab": 0.990234375,
+      "paper_mill": 0.98828125,
+      "print_shop": 0.982421875,
+      "pump_station": 1.0,
+      "quarry_scale": 0.7099609375,
+      "radio_room": 1.0,
+      "salt_works": 0.998046875,
+      "school_office": 1.0,
+      "seed_store": 1.0,
+      "signal_box": 0.92578125,
+      "tailor_shop": 0.9951171875,
+      "toll_plaza": 0.7109375,
+      "vet_practice": 0.9697265625,
+      "warehouse_bay": 1.0,
+      "watch_repair": 1.0
+    }
+  },
+  "letter_control": {
+    "pooled_auc": 0.8255596160888672,
+    "family_mean_auc": 1.0
+  },
+  "permutation_null": {
+    "n_repeats": 5,
+    "pooled_auc": [
+      0.4993906021118164,
+      0.4989652633666992,
+      0.4994058609008789,
+      0.501399040222168,
+      0.4974203109741211
+    ],
+    "family_mean_auc": [
+      0.49420166015625,
+      0.498504638671875,
+      0.500640869140625,
+      0.49517822265625,
+      0.48492431640625
+    ],
+    "mean_family_mean_auc": 0.49468994140625,
+    "convention": "status permuted within family x mapping block; letter and mapping marginals preserved"
+  },
+  "bootstrap": {
+    "n_bootstrap": 10000,
+    "unit": "episode family",
+    "seed": 20260901
+  },
+  "evidence_class": "exploratory; fixed pre-specified layer, no selection"
+}

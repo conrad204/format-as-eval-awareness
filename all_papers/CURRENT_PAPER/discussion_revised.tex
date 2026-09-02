@@ -1,0 +1,99 @@
+% Revised Discussion paragraphs (2026-09-02). Every number below was checked
+% against results/ ; see comments for the source file of each figure.
+
+\paragraph{The format trap is a property of the training set, not of the data source.}
+Devbunova's probes could have followed format because her evaluation and
+deployment prompts came from different corpora. Our design removes that
+explanation: the same payload appears in every cell, and the confounded probe
+still classifies by format at every layer of every checkpoint. The depth
+profiles show why. Format is decodable at layer 0 (AUC $\geq$ .999), before
+any computation has occurred, whereas purpose only forms by 10--20\% depth. A
+probe whose labels co-vary with format is offered a strong, early, trivially
+separable feature and a weaker, later one, and it takes the former. Any
+evaluation-awareness probe trained on natural data, where evaluation prompts
+are overwhelmingly benchmark-shaped, faces the same choice.
+
+% Sources: results/layer_sweep_full320-v3_*.json (format AUC >= .9998 at L0;
+% decorrelated AUC crosses .98 at L6/32, L8/80, L8/80);
+% results/full320_v3_matched_format_projection_diagnostic.json
+% (rescue_fraction_median_excl_near_zero = .720/.549/.743;
+%  mean_abs_delta_joint_auc = .0013/.0006/.0007; per-layer max .0029).
+\paragraph{Stated purpose is largely, but not entirely, format-general.}
+With format balanced, purpose is decodable at .989--.998 AUC, and a probe that
+has seen only one format loses at most .05 AUC on the other, so the purpose
+direction is mostly shared across formats. The residual gap is itself
+informative. In a preliminary analysis, we estimate a rank-64 format subspace
+from the matched benchmark--casual contrast, project it out, and retrain the
+probes. Across layers where purpose has formed (all-format AUC $\geq$ .95),
+this removes a median 55--74\% of the cross-format gap in all three checkpoints
+while changing the all-format AUC by a mean absolute .0006--.0013 (never more
+than .003 at any layer). Format and purpose therefore occupy largely separable
+subspaces, and most of the transfer penalty lives in the format subspace rather
+than in a format-specific encoding of purpose.
+
+% Sources: results/nocue_sweep_full320-v3_*.json at L8/L18/L18/L37
+% (format AUC .469/.731/.697/.672; 405B pct_eval 10.91 / 6.25; 405B
+% decorrelated AUC .9980). 405B is an unpinned NDIF revision (README).
+\paragraph{Balanced training does not yield a format-blind probe.}
+Decorrelation removes the confound from the training set without removing
+format from the probe: at 70B, benchmark formatting alone moves a purpose-free
+prompt toward ``evaluation'' (format AUC .70--.73), and the residual varies
+with depth, so a single layer can under- or overstate it. We have also run the
+sweep on Llama-3.1-405B-Instruct (an unpinned revision, reported as
+development-tier evidence); at its selected layer (37 of 126) the decorrelated
+probe reaches .998 AUC yet calls 10.9\% of no-cue benchmark and 6.2\% of casual
+prompts ``evaluation'' (format AUC .67). We therefore suggest reporting no-cue
+format AUC as a standard diagnostic alongside probe accuracy: a probe can be
+near-perfect on labelled data and still respond to format on prompts that say
+nothing about purpose.
+
+% Sources: results/steering/analysis_{8b,70b,405b}_logit.json, strength_z vs
+% five random directions (>=2 strong, >=1 suggestive, else null):
+%   fmt      .31 null | 2.21 strong | 1.57 suggestive
+%   pur_dec  .19 null |  .62 null   | 1.31 suggestive
+%   pur_conf .28 null | 2.02 strong | 1.74 suggestive
+% Models steered: Llama-3.1-8B L8, Llama-3.1-70B L18, Llama-3.1-405B L37.
+% Llama-3.3-70B was never steered. Readout is eval log-odds, not a rate.
+\paragraph{Decodability is not used.}
+The results above are observational. In preliminary steering experiments on
+the Llama-3.1 checkpoints (8B, 70B, and 405B), we add each probe direction to
+the residual stream at the selected layer, at a matched norm, on no-cue
+prompts, and compare the resulting shift in a verbalized evaluation/deployment
+log-odds readout against random directions of the same norm. At Llama-3.1-70B
+the format direction and the format-aligned (confounded) purpose direction both
+move the readout well outside the random band, whereas the format-orthogonal
+purpose direction stays inside it. At 8B no direction, including format, leaves
+the band. At 405B every direction, including the format-orthogonal one, falls
+between one and two random-direction standard deviations, so the null for the
+orthogonal component is established only at 70B. Llama-3.3-70B was not steered.
+So far the only clearly active component is the format-aligned one;
+decodability of purpose should not be read as evidence that the model uses it.
+
+% Sources: results/devbunova_decomp/decomp_{8b,70b,405b}.json (template regime,
+% L8/L18/L37): confounded pct_eval 92.2/94.6/95.2; decorrelated 6.5/4.1/13.2;
+% decorrelated within_bench AUC .589/.638/.583; overall AUC .580/.269/.354.
+% Llama-3.3-70B has no Devbunova extraction (docs/devbunova_decomposition_plan.md).
+% results/implicit_v2_{8b,llama31_70b_l18,llama33_70b_l18}_analysis.json:
+% joint_format_auc .598 [.527,.670] / .638 / .660.
+\paragraph{What is decoded is the stated purpose.}
+Our labels are explicit statements, so a positive result shows that the model
+represents what it was told, not that it infers evaluation status. Two
+preliminary checks make the scope concrete. Applying our decorrelated probe to
+Devbunova's items on the Llama-3.1 checkpoints largely dissolves her trap
+(4.1\%, 6.5\%, and 13.2\% of benchmark-format deployment prompts called
+``evaluation'' at 70B, 8B, and 405B, versus 92--95\% for the confounded probe),
+yet within the benchmark format its AUC on her evaluation/deployment labels is
+only .58--.64, and pooled across her formats it is at or below chance, since
+those labels are never stated in her text. On scenarios where evaluative
+structure is described indirectly rather than announced, the frozen probes
+transfer at .598--.660 AUC, with the 8B interval reaching down to .53. The
+stated-purpose signal is clean and format-general, but it decays quickly as
+purpose becomes implicit.
+
+\paragraph{Limitations.}
+Results cover one model family, 16 topics, and synthetic payloads; layers are
+chosen by held-out AUC, which flatters selected-layer values but not the depth
+curves; and no behavioural consequence of the probed signal is established. The
+preliminary analyses are development-tier and have not been run under sealed
+protocols; the steering and Devbunova analyses cover the Llama-3.1 checkpoints
+only, and the 405B checkpoint is an unpinned revision.

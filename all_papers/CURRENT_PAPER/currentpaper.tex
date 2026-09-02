@@ -1,0 +1,332 @@
+\documentclass{article}
+
+% NeurIPS 2026 workshop submission mode: double blind, line numbered, US Letter.
+% Do not alter the page geometry, fonts, or margins set by neurips_2026.sty.
+\usepackage[dblblindworkshop]{neurips_2026}
+\workshoptitle{Interpretability as a Science}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage{xcolor}
+
+\title{Format Is Not Purpose: Controlling for Prompt Format in Evaluation-Awareness Probes}
+
+\author{Anonymous Author(s)}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+
+
+Linear probes for evaluation awareness may respond to prompt format rather than to evaluation context itself. 
+We test this with a content-matched $2\times2$ design that renders the same 320 payloads across evaluation/deployment purpose and benchmark/casual format, with additional versions containing no stated purpose. 
+Across three Llama checkpoints, probes trained on the confounded evaluation--benchmark versus deployment--casual diagonal achieve only .600--.682 AUC across all four cells and classify crossed examples largely by format. 
+Training on all four purpose--format combinations instead yields .989--.998 AUC. 
+On prompts with no stated purpose, the confounded probe becomes a perfect format detector, while the all-format probe shows little format dependence at 8B but a residual at 70B. 
+Finally, probes trained on only one format reach .940--.985 AUC on the other. 
+These results show that evaluation-purpose probing requires explicit controls for format, even when purpose information itself transfers strongly across formats.
+
+
+\end{abstract}
+
+
+
+
+% =================
+% INTRODUCTION
+% -=====--=-=-=-==-=
+\section{Introduction}
+A growing body of work has identified \textit{evaluation awareness} in large language models (LLMs). Models can make this distinction behaviorally \citep{needham2025evaluation}, while internal evaluation awareness has mostly been studied using \textit{linear probes}: linear classifiers traned on frozen activations \citep{nguyen2025probing, chaudhary2025evaluation}. Such probes establish that a distinction is linearly decodable from a representation, but not necessarily the fact they isolate indended targets \citep{alain2017probes, belinkov2022probing}.
+
+
+This is important since evaluation and deployment prompts are typically distinct in structure, and LLM representations are sensitive to seemingly superficial prompt formatting \citep{sclar2024format}. Thus, probes interpreted as detecting evaluation awareness could instead be detecting \textit{format}. In particular, \citet{devbunova2026format} has shown that linear "evaluation awareness" probes seem to mainly be format detectors: in a 2x2 design crossing MCQ format with prompt style, a probe trained to separate benchmark from deployment prompts misclassified 94\% of MCQ-formatted deployment prompts as evaluation.
+
+But because Devbunova's dataset consists of repurposed existing data (MMLU, ARC, GSM8K, ShareGPT, and MuTual), the evaluation/deployment label confounds against \textit{topic} (what a prompt is about). More fundamentally, no prompt ever appears in more than one format (format varies only across different prompts and never within one), so the design can detect the format confound but cannot quantify the format-independent evaluation signal.
+
+
+We construct a strictly crossed design in which the same content is rendered in all four combinations of stated purpose and response format. We then test whether stated-purpose information generalizes across formats, and whether probe outputs still depend on format when no purpose is stated at all. Our contributions are as follows.
+
+
+\begin{itemize}
+
+\item \textbf{A content-matched design separates stated purpose from format.}
+We render 320 payloads across all combinations of evaluation/deployment purpose and benchmark/casual format, plus versions with no stated purpose.
+
+\item \textbf{Confounded probes follow format; decorrelated probes recover purpose.}
+Confounded training yields only .600--.682 AUC and misclassifies crossed conditions by format, whereas training on all four cells reaches .989--.998 AUC. On purpose-free prompts, the confounded probe is a perfect format detector; decorrelated probes show little format dependence at the selected 8B layer but a residual at 70B.
+
+\item \textbf{Purpose decoding generalizes across unseen formats.}
+Probes trained on only one format reach .940--.985 AUC on the other, showing that strong purpose decoding does not require mixed-format training.
+
+\end{itemize}
+
+
+
+% =================
+% METHODS
+% -=====--=-=-=-==-=
+\section{Methods}
+
+\begingroup
+\subsection{Design}
+We use a crossed $2\times2$ design in which every item has a stated response purpose, $p\in\{\mathrm{evaluation},\mathrm{deployment}\}$, and a response
+format, $f\in\{\mathrm{benchmark},\mathrm{casual}\}$. 
+This is the crossed context-by-format design of \citet{devbunova2026format}, applied within items rather than across datasets: the same payload is rendered in all four purpose-by-format cells, forming a matched group within which task content, topic, and generating model are identical, so that any difference between renderings in a group is attributable to purpose, format, or their combination. 
+For each payload and format, we also create a version with the purpose statement removed.
+These no-cue items vary in format but contain no stated purpose. We use them to test whether probe outputs still depend on format when no evaluation/deployment purpose is present.
+\endgroup
+
+
+
+
+\subsection{Dataset and activations}
+We constructed 320 purpose-neutral payloads covering 16 topics. Each payload contains a context, question, correct answer, and plausible distractors, and was rendered in both benchmark and casual formats. For each payload and format, we created an evaluation-purpose version, a deployment-purpose version, and a version with no stated purpose.
+
+The resulting dataset contains 11{,}520 items: 7{,}680 stated-purpose items, and  3{,}840 items without one. This creates 3{,}840 matched evaluation/deployment pairs.
+Because the same payload appears across purposes and formats, task content, topic, and generator are held fixed by construction.
+
+We extract activations from Llama-3.1-8B-Instruct, Llama-3.1-70B-Instruct, and Llama-3.3-70B-Instruct. At every transformer block, we record the representation of the final prompt token after the block output, and before final normalization. 
+Exact model revisions and processing details are provided in the appendix. [APPENDIXXXXXXX PLELASESEEE]
+
+\subsection{Probes, splits, and statistical analysis}
+
+At each layer, we fit an $L_2$-regularized logistic-regression probe
+with $C=0.1$ on standardized activations. Both the standardizer and the
+probe are fit only on the training split. We divide the purpose statements into five groups of alternate phrasings. In each run, one group is held out for testing and the other four are used for training. Probe predictions from the test folds are pooled  before calculating ROC AUC and balanced accuracy.
+
+We evaluate four probe regimes. Following \citet{devbunova2026format}, the \textbf{confounded} probe trains on
+evaluation prompts in benchmark format and deployment prompts in
+casual format, while the \textbf{decorrelated} probe trains on all four combinations of purpose and format. 
+The \textbf{benchmark-to-casual} regime trains only on benchmark prompts and tests on casual prompts, while the \textbf{casual-to-benchmark} regime uses the reverse direction. 
+
+We compare the probe trained on both formats with probes trained on one format and tested on the other. At each layer, we report the difference between the all-format AUC and the average of the two cross-format AUCs. A value near zero means that training on one format transfers almost as well as training on both. 
+
+
+
+
+
+
+
+
+
+
+% =================
+% RESULTS
+% =================
+\section{Results}
+\label{sec:results}
+
+% ----------------------------------------------------------------------------
+
+
+% ----------------------------------------------------------------------------
+
+\subsection{The format trap replicates under content-matched control, and
+decorrelated training recovers stated purpose}
+\label{sec:results_replication}
+
+\paragraph{Confounded training yields a format detector.}
+A probe trained on the confounded diagonal (evaluation prompts
+in benchmark format against deployment prompts in casual format) and evaluated
+on all four cells separates the cells by format (Table~\ref{tab:probe_comparison}, Figure~\ref{fig:results_replication}B).
+At the selected layers, its four-cell AUC is .600, .682 and .667 and its
+balanced accuracy (BA) is .500, .528 and .508. Deployment prompts rendered in
+benchmark format are called ``evaluation'' 100.0\%, 91.5\% and 97.4\% of the
+time, and evaluation prompts in casual format are called ``deployment''
+100.0\%, 98.0\% and 99.7\% of the time. This trap is not a property of the
+selected layer: the deployment--benchmark false-positive rate never falls
+below 91.5\% at any layer of any checkpoint, and confounded AUC stays between
+.50 and .70 across depth (Figure~\ref{fig:results_replication}A). This
+reproduces the central result of \cite{devbunova2026format}, whose
+standard probe classified 94.5\% of benchmark-formatted deployment prompts as
+evaluation and 0\% of casual evaluation prompts as evaluation, here on a design
+in which the same payload text appears in all four cells.
+
+\begin{table}[ht]
+\centering
+\small
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{lccccc}
+\toprule
+Model
+& \shortstack{Selected layer\\(relative depth)}
+& \shortstack{Confounded\\AUC / BA}
+& \shortstack{DB$\rightarrow$eval\\error (\%)}
+& \shortstack{EC$\rightarrow$deploy\\error (\%)}
+& \shortstack{Decorrelated\\AUC / BA} \\
+\midrule
+Llama-3.1-8B
+& 8 (.26)
+& .600 / .500
+& 100.0
+& 100.0
+& .9888 / .941 \\
+
+Llama-3.1-70B
+& 18 (.23)
+& .682 / .528`
+& 91.5
+& 98.0
+& .9984 / .979 \\
+
+Llama-3.3-70B
+& 18 (.23)
+& .667 / .508
+& 97.4
+& 99.7
+& .9959 / .966 \\
+\bottomrule
+\end{tabular}
+\vspace{3mm}
+\caption{
+\label{tab:probe_comparison}
+\textbf{Confounded probes follow format, while decorrelated probes recover
+stated purpose.}
+All results are reported at the layer maximizing the
+decorrelated held-family-out AUC. Confounded AUC and BA are evaluated over all four purpose-by-format
+cells. Balanced accuracy is the average of the rate at which evaluation prompts are
+called evaluation and the rate at which deployment prompts are called deployment,
+taken at the probe's zero decision threshold. DB$\rightarrow$eval is the percentage of deployment--benchmark prompts
+classified as evaluation, and EC$\rightarrow$deploy the percentage of
+evaluation--casual prompts classified as deployment
+}
+\end{table}
+
+\paragraph{Decorrelated training recovers purpose.}
+Training on all four cells and testing on a held-out family
+gives AUC of .989, .998, and .996. Classification rates barely depend on format:
+93\% to 98\% of evaluation prompts are called evaluation and 2\% to 5\% of
+deployment prompts are, with the two formats differing by at most one
+percentage point within either purpose. This mirrors the paired-probe row of \citet{devbunova2026format} under
+a stricter split, since her probe used an 80/20 random partition of the pooled
+cells whereas our test family shares no purpose vocabulary with training.
+
+
+\paragraph{Format is decodable at layer 0; Purpose appears later.}
+Format is linearly decodable from the first block (AUC $\geq$ .999 at layer 0 in
+every checkpoint), whereas purpose emerges during the forward computation and
+peaks at 23--26\% relative depth, where the selected layers sit
+(Figure~\ref{fig:results_replication}A).
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{figures/fig_results_01_replication.pdf}
+\caption{
+\textbf{Purpose decodability by depth, and the confound signature at the
+selected layer.}
+(A) Held-family-out purpose AUC of the decorrelated (solid) and confounded
+(dashed) probes across relative depth for the three pinned checkpoints;
+markers show the selected layers. Format is decodable from layer 0 (not
+shown; AUC $\geq$ .999 everywhere), purpose forms by 10--20\% depth.
+(B) Percentage of held-out prompts called ``evaluation'' in each
+purpose-by-format cell at the selected layer, one panel per checkpoint, for
+the confounded (gray) and decorrelated (colored) probes. Cells: EB
+evaluation--benchmark, EC evaluation--casual, DB deployment--benchmark, DC
+deployment--casual; the two off-diagonal cells are labeled. The confounded
+probe answers by format; the decorrelated probe answers by purpose in both
+formats.
+}
+\label{fig:results_replication}
+\end{figure}
+
+
+% ----------------------------------------------------------------------------
+\subsection{Format dependence without stated purpose, and transfer across formats}
+\label{sec:results_nocue}
+
+The 3,840 no-cue rows are the same payloads under the same 13 templates with
+the purpose statement absent (2,080 benchmark, 1,760 casual). They carry no
+purpose label and belong to no vocabulary fold,
+so each is scored by all five held-fold models and the scores are averaged.
+Because accuracy is undefined for them, we
+report the percentage of items falling on the ``evaluation'' side of the zero
+threshold and the AUC with which the purpose score alone ranks benchmark above
+casual items. 
+
+\paragraph{The confounded probe is a format detector on items that state no purpose.}
+At every layer of every checkpoint the confounded probe calls essentially all
+no-cue benchmark items ``evaluation'' and all no-cue casual items
+``deployment'' (100.0\% / 0.0\% at the selected layers;
+Table~\ref{tab:nocue}), and its score ranks benchmark above casual with AUC
+1.000. A probe trained on the confounded diagonal therefore reports
+``evaluation'' from formatting alone, on prompts that state no purpose at all.
+
+\begin{table}[b]
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lcccccc}
+\toprule
+& \multicolumn{2}{c}{Confounded probe}
+& \multicolumn{2}{c}{All-format probe}
+& \multicolumn{2}{c}{Cross-format transfer} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}
+Model
+& \shortstack{called eval\\bench / casual}
+& \shortstack{Format\\AUC}
+& \shortstack{called eval\\bench / casual}
+& \shortstack{Format\\AUC}
+& \shortstack{Train benchmark\\test casual}
+& \shortstack{Train casual\\test benchmark} \\
+\midrule
+Llama-3.1-8B
+& 100.0 / 0.0 & 1.000
+& 2.5 / 7.2 & .47
+& .951 & .940 \\
+
+Llama-3.1-70B
+& 100.0 / 0.0 & 1.000
+& 27.6 / 8.7 & .73
+& .985 & .985 \\
+
+Llama-3.3-70B
+& 100.0 / 0.0 & 1.000
+& 22.4 / 4.1 & .70
+& .985 & .979 \\
+\bottomrule
+\end{tabular}
+
+\vspace{2mm}
+\caption{
+\textbf{Format sensitivity without a stated purpose, and transfer to an unseen format.}
+The first four columns evaluate the probes on the 3,840 prompts with no purpose
+statement; ``called eval'' gives the percentage of benchmark / casual prompts
+classified as evaluation. Format AUC measures whether the purpose score ranks
+benchmark above casual prompts. The final two columns report purpose AUC when
+training on benchmark and testing on casual ($B\!\rightarrow\!C$), or vice versa
+($C\!\rightarrow\!B$). Results use the selected layers from
+Table~\ref{tab:probe_comparison}.
+}
+\label{tab:nocue}
+\end{table}
+
+\paragraph{Decorrelated training leaves a residual that depends on depth}
+The repaired probe is not format-blind. At the selected Llama-3.1-8B layer the
+format contrast is at chance (format AUC .47) and 2.5\% of no-cue benchmark
+items against 7.2\% of casual items are called ``evaluation'', if anything a
+slight tilt the other way. At the two 70B checkpoints benchmark formatting
+alone moves a purpose-free item toward ``evaluation'': format AUC .73 and .70,
+with 27.6\% and 22.4\% of benchmark items called ``evaluation'' against 8.7\%
+and 4.1\% of casual items. This is not a property of scale, however. The
+residual varies with depth in all three checkpoints, and the selected layers
+are not representative: the 8B value is the minimum of its trajectory and the
+70B values sit near their maxima.
+
+
+
+\paragraph{Stated-purpose decoding transfers to an unseen format.}
+Single-format probes reach .940--.985 AUC when evaluated on the other format
+(Table~\ref{tab:nocue}), close to the .989--.998 obtained when both formats are
+available during training. Strong cross-format decoding therefore does not
+require mixed-format training. At Llama-3.1-8B layer 12, the result also
+survives equalizing training-set size: .980 AUC with both formats versus .959
+and .954 with benchmark-only and casual-only training.
