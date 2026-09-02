@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "mode": "development",
+  "statistic": "depth-integrated interchange gap (real_swap - matched_control), mean over normalized depth; POST HOC, complements the pre-specified joint worst-layer statistic",
+  "model": "llama33_70b",
+  "n_layers_tested": 80,
+  "n_layers_total": 80,
+  "even_layer_grid": false,
+  "n_payload_blocks": 280,
+  "n_boot": 2000,
+  "seed": 0,
+  "integrated_format_iia_gap": 0.22266323392691126,
+  "integrated_format_iia_gap_ci95": [
+    0.2120340232050353,
+    0.23333974932311097
+  ],
+  "inputs": [
+    "results\\tae_ixpatch_full_llama33_70b.jsonl",
+    "results\\tae_ixpatch_matched_llama33_70b.jsonl"
+  ]
+}
