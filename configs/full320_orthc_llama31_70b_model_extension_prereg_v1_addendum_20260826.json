@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "addendum_id": "full320_orthc_llama31_70b_model_extension_prereg_v1_addendum_20260826",
+  "frozen_utc": "2026-08-26T18:52:07Z",
+  "status": "frozen_after_activation_extraction_completed_but_before_activation_values_were_loaded_before_any_plan_build_and_before_any_intervention_output",
+  "parent": {
+    "path": "configs/full320_orthc_llama31_70b_model_extension_prereg_v1.json",
+    "sha256": "361330053f2ceca334c09099a94d367944ffa4423feb37831773f549f3ccd633"
+  },
+  "change": "Replace the thin model-extension runner wrapper over run_full320_orthc_transfer.py with a model-extension-specific copy of that engine. The copy differs only in PROTOCOL_ID and the exact builder provenance path; the wrapper now imports that copy.",
+  "reason": "Pre-execution smoke review found that the base transfer engine hard-codes build_full320_orthc_transfer_plan.py when validating plan['script_sha256']. A model-extension plan correctly records build_full320_orthc_model_extension_plan_impl.py, so the original wrapper would fail closed before model loading. Isolating the runner preserves the provenance gate rather than weakening or bypassing it.",
+  "scientific_contract_unchanged": true,
+  "unchanged": [
+    "model and revision",
+    "activation archives and extraction settings",
+    "source layers and target layer",
+    "pilot and full320 row banks",
+    "cross-fitting and payload folds",
+    "orthogonalization",
+    "intervention directions, signs, alphas, random controls, and scales",
+    "source/target reproduction gates",
+    "estimands, tests, thresholds, bootstrap, decision rule, and claim scope"
+  ],
+  "replacement_hashes": {
+    "runner_engine": "fe60a927795138b800e3397925071cce6086523f01d3dfdf1ee5f6a8a3436d9d",
+    "runner_wrapper": "68ed78c006b33a8e104c1a2bfd7ce9350e52de3401fdf634c69e5c1d2de558ac",
+    "plan_builder_engine": "ef416c953bd873086ce5086601c36d3e245f57b6cc1159f3d680e2839c4cc721",
+    "plan_builder_wrapper": "82abdeed1d4d8b2cab23fd9bf1cdfae77035e7497ba80870587e0f0a350d82a1"
+  },
+  "stopping_rule": "If this isolated runner fails its immutable provenance check or any frozen activation/causal gate, preserve the failure and stop without changing the scientific contract."
+}

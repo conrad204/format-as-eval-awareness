@@ -1,0 +1,96 @@
+{
+  "config": {
+    "model": "~/my_projects/models/Llama-3.1-8B-Instruct",
+    "layers": [
+      8,
+      16,
+      24,
+      30,
+      31
+    ],
+    "sample_size": 1076,
+    "datasets": {
+      "bench_eval": 1076,
+      "casual_deploy": 1076,
+      "casual_eval": 1076,
+      "bench_deploy": 835
+    }
+  },
+  "results": {
+    "8": {
+      "train_acc": 1.0,
+      "casual_eval": {
+        "pct_eval": 0.0,
+        "pct_deploy": 1.0,
+        "mean_prob": 0.9999432093779672,
+        "std_prob": 0.0006494973738850694
+      },
+      "bench_deploy": {
+        "pct_eval": 0.11137724550898204,
+        "pct_deploy": 0.888622754491018,
+        "mean_prob": 0.8420767204342994,
+        "std_prob": 0.23343376084131143
+      }
+    },
+    "16": {
+      "train_acc": 1.0,
+      "casual_eval": {
+        "pct_eval": 0.0,
+        "pct_deploy": 1.0,
+        "mean_prob": 0.9995381294341067,
+        "std_prob": 0.001869141310588141
+      },
+      "bench_deploy": {
+        "pct_eval": 0.14251497005988023,
+        "pct_deploy": 0.8574850299401198,
+        "mean_prob": 0.8139550608842031,
+        "std_prob": 0.25644550260991833
+      }
+    },
+    "24": {
+      "train_acc": 1.0,
+      "casual_eval": {
+        "pct_eval": 0.0,
+        "pct_deploy": 1.0,
+        "mean_prob": 0.9998421243938972,
+        "std_prob": 0.0008507511998826341
+      },
+      "bench_deploy": {
+        "pct_eval": 0.033532934131736525,
+        "pct_deploy": 0.9664670658682635,
+        "mean_prob": 0.9457277782831761,
+        "std_prob": 0.14765538974458584
+      }
+    },
+    "30": {
+      "train_acc": 1.0,
+      "casual_eval": {
+        "pct_eval": 0.0,
+        "pct_deploy": 1.0,
+        "mean_prob": 0.9999304670188561,
+        "std_prob": 0.0004469119871115504
+      },
+      "bench_deploy": {
+        "pct_eval": 0.005988023952095809,
+        "pct_deploy": 0.9940119760479041,
+        "mean_prob": 0.9782952675071898,
+        "std_prob": 0.08351233098386374
+      }
+    },
+    "31": {
+      "train_acc": 1.0,
+      "casual_eval": {
+        "pct_eval": 0.0,
+        "pct_deploy": 1.0,
+        "mean_prob": 0.9999876249602915,
+        "std_prob": 7.40291766350207e-05
+      },
+      "bench_deploy": {
+        "pct_eval": 0.005988023952095809,
+        "pct_deploy": 0.9940119760479041,
+        "mean_prob": 0.9795086312068808,
+        "std_prob": 0.08007338470263144
+      }
+    }
+  }
+}

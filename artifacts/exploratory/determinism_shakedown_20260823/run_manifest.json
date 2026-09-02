@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "artifact_kind": "engineering_determinism_shakedown",
+  "status": "shakedown_passed",
+  "use_for_scientific_inference": false,
+  "recorded_utc": "2026-08-23T20:41:00Z",
+  "purpose": "Engineering check only: does the deterministic-execution patch make two independent GPU extraction runs of the same rows agree numerically? No purpose/format/causal readout score was inspected at any point in this artifact's production.",
+  "motivating_failure": {
+    "manifest": "artifacts/exploratory/pilot80_factorial_causal_v2_invalid_20260823/run_manifest.json",
+    "gate": "source_activation_reproduction",
+    "frozen_gate": {"max_abs_lte": 0.125, "cosine_gte": 0.999},
+    "observed": {
+      "meta-llama/Llama-3.1-8B-Instruct": {"source_layer": 29, "row_index": 419, "max_abs": 0.25, "cosine": 0.9994099140167236},
+      "meta-llama/Llama-3.3-70B-Instruct": {"source_layer": 74, "row_index": 312, "max_abs": 0.15625, "cosine": 0.9994453191757202}
+    }
+  },
+  "code_under_test": {
+    "repo_commit": "88b8110",
+    "patched_files": [
+      "src/eval_format_mvp/extract.py",
+      "scripts/run_pilot80_factorial_causal.py",
+      "scripts/cluster_extract_pilot80_causal_recovery.sbatch",
+      "scripts/cluster_run_pilot80_factorial_causal.sbatch"
+    ],
+    "determinism_settings_added": [
+      "torch.backends.cuda.matmul.allow_tf32 = False",
+      "torch.backends.cudnn.allow_tf32 = False",
+      "torch.use_deterministic_algorithms(True, warn_only=True)",
+      "CUBLAS_WORKSPACE_CONFIG=:4096:8 (set before any CUDA op, both in-process and at the sbatch process-env level)",
+      "attn_implementation pinned to 'eager' (was left on transformers auto-select)"
+    ],
+    "unrelated_bug_fixed_in_scope": {
+      "file": "scripts/cluster_extract_pilot80_causal_recovery.sbatch",
+      "issue": "invoked '-m eval_format_mvp extract', which unconditionally loads catalogs/topics.yaml via cli.py main() regardless of subcommand; the scoped hash-pinned source snapshots this launcher runs from never carry catalogs/. Reproduced directly against the historical pilot80_reextract_src_6c572e15 snapshot (same FileNotFoundError).",
+      "fix": "invoke scripts/extract_activations.py directly, its documented catalog-free purpose per its own module docstring",
+      "scientific_parameters_changed": "none"
+    },
+    "other_nondeterminism_sources_checked": "grepped extraction and causal-intervention code paths for torch.manual_seed/rand, DataLoader num_workers, autocast, cudnn.benchmark; found none beyond the four settings above"
+  },
+  "cluster_source_snapshot": {
+    "path": "/scratch/jppatton/langea/runs/tae_2026/determinism_patch_src_3fc3bb36",
+    "note": "isolated copy of src/, scripts/, pyproject.toml at repo commit 3fc3bb3 (superseded by 88b8110 after the sbatch invocation fix); does not overwrite any prior _src_* provenance snapshot"
+  },
+  "shakedown_items": {
+    "path": "/scratch/jppatton/langea/runs/tae_2026/determinism_shakedown_20260823/shakedown_items.jsonl",
+    "sha256": "c960a7da2e46597bb12af897580c77edfe49a929cb231922e7108d8bac4d8943",
+    "derivation": "sed -n '410,429p;303,322p' of the frozen pilot80 meta.jsonl (0-indexed rows 409-428 and 302-321), a 40-row window bracketing the two failing row indices (419, 312); read-only extract from the frozen items file, nothing else touched",
+    "source_items_file": "/scratch/jppatton/langea/runs/tae_2026/pilot_activation_import_dff7791d/activations/llama31_8b_pilot80/meta.jsonl",
+    "source_items_sha256": "0dbcb9802924d3c2063fce87e24250d1a3430fd24856ea83b132e606843f6638"
+  },
+  "runs": {
+    "meta-llama/Llama-3.1-8B-Instruct": {
+      "slurm_job_id": 53281846,
+      "node": "uahpc-gpu008",
+      "state": "COMPLETED",
+      "elapsed": "00:02:20",
+      "checkpoint_path": "/scratch/jppatton/langea/confirmation_work/llama31_8b_model_0e9e39f2",
+      "primary_layer_tested": 29,
+      "n_items": 40,
+      "out_dir": "/scratch/jppatton/langea/runs/tae_2026/determinism_shakedown_20260823/8b",
+      "run_a_activations_all_layers_sha256": "2300b96b4bd13db99d4cec9bf000d116b9f4941b09ab532884e93ed05fe08787",
+      "run_b_activations_all_layers_sha256": "2300b96b4bd13db99d4cec9bf000d116b9f4941b09ab532884e93ed05fe08787",
+      "run_a_run_b_files_byte_identical": true,
+      "global_max_abs_diff": 0.0,
+      "global_mean_abs_diff": 0.0,
+      "primary_layer_max_abs_diff": 0.0,
+      "primary_layer_min_cosine": 0.9999998807907104,
+      "primary_layer_mean_cosine": 1.0,
+      "report_path": "/scratch/jppatton/langea/runs/tae_2026/determinism_shakedown_20260823/8b/shakedown_report.json",
+      "report_sha256": "c5c12a6a2e4cdd59ec7ef70123735cc96fc30073c8df3c9c2fa2be550461912d"
+    },
+    "meta-llama/Llama-3.3-70B-Instruct": {
+      "slurm_job_id": 53281849,
+      "node": "uahpc-gpu008",
+      "state": "COMPLETED",
+      "elapsed": "00:11:41",
+      "checkpoint_path": "/scratch/jppatton/langea/huggingface/hub/models--meta-llama--Llama-3.3-70B-Instruct/snapshots/6f6073b423013f6a7d4d9f39144961bfbfbc386b",
+      "primary_layer_tested": 74,
+      "n_items": 40,
+      "out_dir": "/scratch/jppatton/langea/runs/tae_2026/determinism_shakedown_20260823/70b",
+      "run_a_activations_all_layers_sha256": "2c6f0c73145dc340ccccb65329531c79e401af9fe3ef1043b43d37ac1e495b72",
+      "run_b_activations_all_layers_sha256": "2c6f0c73145dc340ccccb65329531c79e401af9fe3ef1043b43d37ac1e495b72",
+      "run_a_run_b_files_byte_identical": true,
+      "global_max_abs_diff": 0.0,
+      "global_mean_abs_diff": 0.0,
+      "primary_layer_max_abs_diff": 0.0,
+      "primary_layer_min_cosine": 0.9999998807907104,
+      "primary_layer_mean_cosine": 1.0,
+      "report_path": "/scratch/jppatton/langea/runs/tae_2026/determinism_shakedown_20260823/70b/shakedown_report.json",
+      "report_sha256": "16fb2dde3fd2159b00c173cc98b6986d0dba902b9120cca62c9accba54081237"
+    }
+  },
+  "frozen_gate_for_reference": {"max_abs_lte": 0.125, "cosine_gte": 0.999},
+  "conclusion": "Both models pass with enormous margin (bit-identical run_a/run_b activation archives; observed max_abs is exactly 0.0, versus the 0.25 and 0.15625 originally observed). This isolates the source_activation_reproduction gate failure to non-deterministic GPU kernel execution (unpinned TF32/cuBLAS reduction order and auto-selected attention kernel), not a data or logic bug, and confirms the patch resolves it at the shakedown scale.",
+  "next_step": "Per task instructions, proceed to a full prospectively-declared re-run of the pilot80_factorial_causal_mediation_v2 protocol under the patched code, new run_id, same gate thresholds/folds/everything else, evaluated only after complete run finishes."
+}

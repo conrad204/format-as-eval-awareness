@@ -1,0 +1,8 @@
+{
+  "status": "invalid_code_defect",
+  "run_id": "full320_exact_logistic_estimator_reversal_v1_20260823",
+  "reason": "The first implementation selected logistic rows using protocol_id full320_strict_equal_rows_v1 for every model. The 8B diagonal-LDA source used full320_strict_equal_rows_8b_scale_v1; protocol_id enters the stable pair-selection hash, so the 8B estimator contrast was not row-paired. The 70B contrasts were paired.",
+  "detected_from": "Mandatory post-result split-provenance audit",
+  "invalidated_utc": "2026-08-23T10:43:52Z",
+  "use_for_inference": false
+}

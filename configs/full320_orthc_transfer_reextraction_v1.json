@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "protocol_id": "full320_orthc_transfer_reextraction_v1",
+  "frozen_utc": "2026-08-26T01:11:17Z",
+  "status": "preregistered_before_transfer_bank_extraction_and_before_any_transfer_causal_outcome",
+  "scientific_role": "Deterministic baseline capture for a prospectively selected 80-block, pilot80-payload-disjoint causal transfer test. Extraction is engineering infrastructure and cannot select layers, directions, readouts, thresholds, blocks, models, or claims.",
+  "dataset": {
+    "items_path": "artifacts/exploratory/full320_orthc_transfer_v1_bank/items.jsonl",
+    "items_path_cluster": "/scratch/jppatton/langea/runs/tae_2026/full320_orthc_transfer_v1/bank/items.jsonl",
+    "items_sha256": "4c7d7a5b51d771982be01285d3be9b2b99b3fd6c79b7cbbf44e9b94c941f857d",
+    "n_items": 2880,
+    "n_stated_items": 1920,
+    "n_payload_blocks": 80,
+    "canonical_item_order_required": true,
+    "selection_manifest": "artifacts/exploratory/full320_orthc_transfer_v1_bank/run_manifest.json",
+    "selection_manifest_sha256": "dbbb88b3d58143d5a199ee629af0a283a55a8b3fe815c325c9099e32d0aa485f"
+  },
+  "extraction_contract": {
+    "dtype_compute": "bfloat16",
+    "dtype_stored": "float32",
+    "position": "last_prompt_token_after_chat_template_before_generation",
+    "layer_semantics": "zero_based_transformer_block_output_before_final_model_norm",
+    "chat_template": "tokenizer.apply_chat_template([{role:user,content:text}], tokenize=False, add_generation_prompt=True)",
+    "add_special_tokens": false,
+    "padding_side": "left",
+    "batch_size": 1,
+    "max_length": 2048,
+    "device_map": "auto",
+    "all_transformer_layers": true,
+    "hardware": "NVIDIA H100 80GB; causal baselines and interventions must use the same GPU family and count per model",
+    "determinism": {
+      "torch_backends_cuda_matmul_allow_tf32": false,
+      "torch_backends_cudnn_allow_tf32": false,
+      "torch_use_deterministic_algorithms": "True, warn_only=True",
+      "cublas_workspace_config": ":4096:8",
+      "attn_implementation": "eager"
+    },
+    "source_files": {
+      "scripts/extract_activations.py": "ee764fd1dc62687048e5746a8150adc195ce8891272a59b803211012a9bbf8d2",
+      "src/eval_format_mvp/extract.py": "09c5b7872f3932ef2ab099b59b2f6d54a9e281f4ffbef1eb5df2e3d07d359988",
+      "src/eval_format_mvp/io.py": "b32d10a8d299ea02f195d68915ad94385151f583f874c5125b4cc16d4796fb7a"
+    }
+  },
+  "models": [
+    {
+      "model_id": "meta-llama/Llama-3.1-8B-Instruct",
+      "revision": "0e9e39f249a16976918f6564b8830bc894c89659",
+      "checkpoint_path_cluster": "/scratch/jppatton/langea/confirmation_work/llama31_8b_model_0e9e39f2",
+      "tokenizer_path_cluster": "/scratch/jppatton/langea/confirmation_work/llama31_8b_tokenizer_0e9e39f2",
+      "gpu_count": 1,
+      "n_layers": 32,
+      "hidden_size": 4096,
+      "primary_layer_for_compatibility_archive": 12,
+      "output_dir_cluster": "/scratch/jppatton/langea/runs/tae_2026/full320_orthc_transfer_v1/extract_8b"
+    },
+    {
+      "model_id": "meta-llama/Llama-3.3-70B-Instruct",
+      "revision": "6f6073b423013f6a7d4d9f39144961bfbfbc386b",
+      "checkpoint_path_cluster": "/scratch/jppatton/langea/huggingface/hub/models--meta-llama--Llama-3.3-70B-Instruct/snapshots/6f6073b423013f6a7d4d9f39144961bfbfbc386b",
+      "tokenizer_path_cluster": "/scratch/jppatton/langea/huggingface/hub/models--meta-llama--Llama-3.3-70B-Instruct/snapshots/6f6073b423013f6a7d4d9f39144961bfbfbc386b",
+      "gpu_count": 4,
+      "n_layers": 80,
+      "hidden_size": 8192,
+      "primary_layer_for_compatibility_archive": 24,
+      "output_dir_cluster": "/scratch/jppatton/langea/runs/tae_2026/full320_orthc_transfer_v1/extract_70b"
+    }
+  ],
+  "post_extraction_binding": {
+    "allowed_before_causal_execution": [
+      "Bind exact activation output paths and SHA-256 hashes.",
+      "Verify item order, tensor shape, layers, token lengths, finite float32 values, model revisions, GPU inventory, and source hashes.",
+      "Copy the already-computed pilot80 orthogonalized-C directions, random controls, normalization scales, and readouts without refitting or selecting.",
+      "Create and hash the transfer causal plans and causal config before any nonzero transfer intervention output exists."
+    ],
+    "forbidden": [
+      "Inspect or generate any nonzero transfer intervention output before the causal config and plans are frozen.",
+      "Refit directions or readouts on the transfer bank.",
+      "Change blocks, layers, models, endpoints, thresholds, seeds, or decision rules after extraction.",
+      "Call the pre-existing full320 item bank an independent item-bank confirmation.",
+      "Analyze excluded partial data if any fail-closed gate trips."
+    ]
+  },
+  "stopping_rule": "If either extraction violates the immutable contract or the later same-environment batch-one baseline reproduction gate fails, retain the failure and stop without relaxing gates or using partial outcomes."
+}

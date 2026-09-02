@@ -1,0 +1,126 @@
+{
+  "audited_before_activations": true,
+  "checks": {
+    "counts": {
+      "every_pair_has_two_formats": true,
+      "n_pairs": 1000,
+      "n_rows": 2000,
+      "provenance_mean_by_format": {
+        "benchmark": 0.5,
+        "casual": 0.5
+      },
+      "provenance_mean_by_template": {
+        "prov_bench_imperative": 0.5,
+        "prov_bench_preamble": 0.5,
+        "prov_bench_sectioned": 0.5,
+        "prov_bench_tagged": 0.5,
+        "prov_casual_bare": 0.5,
+        "prov_casual_lead_in": 0.5,
+        "prov_casual_markdown": 0.5
+      },
+      "source_x_format": {
+        "allenai/WildChat-1M|benchmark": 250,
+        "allenai/WildChat-1M|casual": 250,
+        "allenai/ai2_arc|benchmark": 250,
+        "allenai/ai2_arc|casual": 250,
+        "cais/mmlu|benchmark": 250,
+        "cais/mmlu|casual": 250,
+        "lmsys/lmsys-chat-1m|benchmark": 250,
+        "lmsys/lmsys-chat-1m|casual": 250
+      }
+    },
+    "length_match": {
+      "deployment_mean": 149.202,
+      "eval_mean": 149.202,
+      "log_corpus_mean_difference": -1.3079999999999927,
+      "max_absolute_sorted_difference": 0.0,
+      "mean_difference": 0.0,
+      "per_source_mean": {
+        "allenai/WildChat-1M": 148.548,
+        "allenai/ai2_arc": 147.04,
+        "cais/mmlu": 151.364,
+        "lmsys/lmsys-chat-1m": 149.856
+      }
+    },
+    "length_only_grouped_five_fold": {
+      "mean_auc": 0.4557957756352636,
+      "per_fold_auc": {
+        "0": 0.4710943396226415,
+        "1": 0.47108433734939764,
+        "2": 0.4744306418219461,
+        "3": 0.4507049554219366,
+        "4": 0.411664603960396
+      }
+    },
+    "log_corpus_separability": {
+      "interpretation": "WildChat vs LMSYS separability. Well above 0.5 means the two log corpora are not two samples of one deployment population, so they are reported separately downstream.",
+      "mean_auc": 0.96071747772158,
+      "per_fold_auc": {
+        "0": 0.9652531290864935,
+        "1": 0.9635241301907969,
+        "2": 0.9734132184984086,
+        "3": 0.9586859133897462,
+        "4": 0.9427109974424552
+      }
+    },
+    "surface_predicts_provenance": {
+      "char_3_5gram_grouped_five_fold": {
+        "max_auc": 0.9774907178217822,
+        "mean_auc": 0.9651659188498248,
+        "min_auc": 0.9483464648558988,
+        "per_fold_auc": {
+          "0": 0.9686415094339622,
+          "1": 0.9568167406467978,
+          "2": 0.9745341614906833,
+          "3": 0.9483464648558988,
+          "4": 0.9774907178217822
+        }
+      },
+      "interpretation": "ceiling on content confounding; not evidence about the model",
+      "word_1_2gram_grouped_five_fold": {
+        "max_auc": 0.9733137376237624,
+        "mean_auc": 0.9585604441420255,
+        "min_auc": 0.9340400165871864,
+        "per_fold_auc": {
+          "0": 0.9542641509433961,
+          "1": 0.9605580215599239,
+          "2": 0.9706262939958592,
+          "3": 0.9340400165871864,
+          "4": 0.9733137376237624
+        }
+      },
+      "word_1_2gram_leave_one_log_corpus_out": {
+        "mean_auc": 0.9424395727532127,
+        "min_auc": 0.939549902152642,
+        "note": "the held deployment-log corpus is entirely unseen in training",
+        "per_held_log_corpus_auc": {
+          "allenai/WildChat-1M": 0.9453292433537832,
+          "lmsys/lmsys-chat-1m": 0.939549902152642
+        }
+      },
+      "word_1_2gram_source_pair_holdout": {
+        "max_auc": 0.9311600000000001,
+        "mean_auc": 0.922272,
+        "min_auc": 0.913608,
+        "note": "each fold holds out one whole evaluation source and one whole deployment-log corpus simultaneously",
+        "per_source_pair_auc": {
+          "allenai/ai2_arc|allenai/WildChat-1M": 0.9311600000000001,
+          "allenai/ai2_arc|lmsys/lmsys-chat-1m": 0.9195960000000001,
+          "cais/mmlu|allenai/WildChat-1M": 0.924724,
+          "cais/mmlu|lmsys/lmsys-chat-1m": 0.913608
+        }
+      }
+    }
+  },
+  "experiment": "provenance_v3",
+  "freeze_manifest_sha256_of_spec": "9e815806dd686cfe18efbde20bad30195825f974dba9d3fe92dfcd7699455fc2",
+  "items_sha256": "2a574bf1bf0cd5cc8ec53c97e2bf69e9246316b1a3d5364e370acc0f8fcddc7e",
+  "known_limitations": [
+    "natural topic and lexical content remain inseparable from provenance; the audit reports the surface ceiling that bounds every interpretation",
+    "corpus origin is not the model's own judgment about being evaluated",
+    "frozen-activation probe scoring is not behavior and not a causal intervention",
+    "both log corpora are public research releases, not private production traffic"
+  ],
+  "log_corpora_are_not_interchangeable": "LMSYS is Chatbot Arena traffic, where users deliberately compare models, so it is arguably a mild evaluation context; WildChat is general free ChatGPT use. Any consistent difference between them in the frozen eval-ness score is reported separately rather than averaged away.",
+  "schema_version": 1
+}

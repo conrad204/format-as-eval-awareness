@@ -1,0 +1,127 @@
+{
+  "schema_version": 1,
+  "protocol_id": "pilot80_matched_equal_rows_v1",
+  "frozen_utc": "2026-08-23T07:33:00Z",
+  "status": "preregistered_external_bank_replication_before_exact_equal_row_outcomes",
+  "scientific_question": "On a distinct exactly matched 2x2 item bank, does mixed renderer-format training improve held-out-family stated-purpose decoding over either single renderer-format when content pairs, payload blocks, classes, and row count are identical?",
+  "prior_observations": {
+    "known": [
+      "Unequal-training-size pilot80 decorrelated and cross-format probe sweeps were inspected previously.",
+      "Development 8B factorial geometry and one selected layer from each 70B checkpoint were inspected previously.",
+      "A block-balanced but row-unequal full320 8B layer-12 mixed-format result was inspected previously."
+    ],
+    "not_inspected": "No exact-row matched-pair mixed-versus-single result on pilot80 was computed or inspected before this freeze.",
+    "role": "External item-bank replication of full320_strict_equal_rows_v1, not independent confirmation because the broad phenomenon and model activations are development evidence."
+  },
+  "dataset": {
+    "items_path": "activations_dataset/activations/llama31_8b_pilot80/meta.jsonl",
+    "items_sha256": "0dbcb9802924d3c2063fce87e24250d1a3430fd24856ea83b132e606843f6638",
+    "n_rows": 1760,
+    "n_stated_rows": 960,
+    "n_payload_blocks": 80,
+    "n_complete_matched_groups": 240,
+    "purpose_families": ["fg1", "fg2", "fg3", "fg4", "fg5"],
+    "matched_group": "payload_block_id plus purpose_pair_id; every group must contain exactly evaluation/deployment crossed with benchmark/casual",
+    "training_rows": "render_slot == stated and purpose_family_id != held_out_family",
+    "test_rows": "render_slot == stated and purpose_family_id == held_out_family",
+    "single_environment_controls": "Use the same matched group IDs under benchmark-only or casual-only.",
+    "mixed_assignment": "Assign one environment per matched group. Within each held-out family, stable SHA256 ranks keep benchmark/casual counts within one globally and within each topic whenever parity permits.",
+    "exact_balance": "All regimes use the identical matched group IDs, payload blocks, one evaluation and one deployment row per group, and identical total rows."
+  },
+  "models": [
+    {
+      "model_id": "meta-llama/Llama-3.1-8B-Instruct",
+      "recorded_revision": "default_resolved_by_hub",
+      "activation_path": "activations_dataset/activations/llama31_8b_pilot80/activations_all_layers.npz",
+      "activation_sha256": "983fca52b5d96a3c697a3533fca9ff13625c4789f17277d5f8edcdfa3b66eba7",
+      "n_layers": 32,
+      "hidden_size": 4096
+    },
+    {
+      "model_id": "meta-llama/Llama-3.1-70B-Instruct",
+      "recorded_revision": "default_resolved_by_hub",
+      "activation_path": "activations_dataset/activations/llama31_70b_pilot80/activations_all_layers.npz",
+      "activation_sha256": "5d09f6806ac83308a93b37ebf144ed6ed90bd49f67be9267d378f4797aa0b038",
+      "n_layers": 80,
+      "hidden_size": 8192
+    },
+    {
+      "model_id": "meta-llama/Llama-3.3-70B-Instruct",
+      "recorded_revision": "6f6073b423013f6a7d4d9f39144961bfbfbc386b",
+      "activation_path": "activations_dataset/activations/llama33_70b_pilot80/activations_all_layers.npz",
+      "activation_sha256": "2d0733a24bf56746e9f1b78ae71526df2e0516a4478e235060bf45e3d25e9650",
+      "n_layers": 80,
+      "hidden_size": 8192
+    }
+  ],
+  "activation_contract": {
+    "dtype": "float32",
+    "layer_semantics": "zero_based_transformer_block_output_before_final_model_norm",
+    "token_position": "last_prompt_token_after_chat_template_before_generation",
+    "chat_template": "tokenizer.apply_chat_template(user_message, add_generation_prompt=True)",
+    "add_special_tokens": false
+  },
+  "depths": {
+    "normalized": [0.25, 0.375, 0.5, 0.625, 0.75],
+    "mapping": "floor(q * (n_layers - 1) + 0.5)",
+    "summary": "unweighted mean over all five fixed depth points; report full trajectory"
+  },
+  "probe": {
+    "primary": "diagonal_lda",
+    "standardization": "training-row StandardScaler per fold and regime",
+    "ridge_fraction": 0.1,
+    "ridge_definition": "ridge_fraction times median finite positive pooled within-class variance",
+    "threshold": 0.0,
+    "assignment_seeds": [20261011, 20261012, 20261013, 20261014, 20261015, 20261016, 20261017, 20261018]
+  },
+  "metrics": {
+    "per_format": ["roc_auc", "balanced_accuracy"],
+    "macro_format": "unweighted benchmark/casual mean",
+    "worst_format": "minimum benchmark/casual",
+    "primary_contrast": "mixed macro metric minus max of the two single-environment macro metrics, with max inside each resample",
+    "co_primary_endpoints": ["macro_format_roc_auc", "macro_format_balanced_accuracy"]
+  },
+  "uncertainty": {
+    "unit": "complete payload_block_id retaining every matched 2x2 group",
+    "bootstrap_resamples": 2000,
+    "bootstrap_seed": 20261019,
+    "same_resamples_across": "models, depths, families, regimes, assignment seeds, formats, metrics"
+  },
+  "falsification": {
+    "training_pair_label_swap_draws": 32,
+    "training_pair_label_swap_seeds": [20261101, 20261102, 20261103, 20261104, 20261105, 20261106, 20261107, 20261108, 20261109, 20261110, 20261111, 20261112, 20261113, 20261114, 20261115, 20261116, 20261117, 20261118, 20261119, 20261120, 20261121, 20261122, 20261123, 20261124, 20261125, 20261126, 20261127, 20261128, 20261129, 20261130, 20261131, 20261132],
+    "method_robustness": [
+      {"row_l2_normalize": false, "ridge_fraction": 0.01},
+      {"row_l2_normalize": false, "ridge_fraction": 1.0},
+      {"row_l2_normalize": true, "ridge_fraction": 0.1}
+    ],
+    "double_heldout_payload": {
+      "depth": 0.375,
+      "block_folds": 5,
+      "rule": "Stable topic-stratified payload-block folds; train excludes held family and held blocks; test is their intersection."
+    }
+  },
+  "success_criteria": {
+    "aggregate_auc": "common-block bootstrap 95 percent lower bound greater than 0",
+    "aggregate_balanced_accuracy": "common-block bootstrap 95 percent lower bound greater than 0",
+    "checkpoint_replication": "all three checkpoint point estimates greater than 0 for both endpoints",
+    "exact_revision_replication": "Llama-3.3-70B bootstrap lower bound greater than 0 for AUC",
+    "assignment_stability": "all eight assignment-seed aggregate AUC estimates greater than 0",
+    "label_null": "finite-null p at most 0.05",
+    "robustness": "all method variants and double-heldout endpoints greater than 0",
+    "decision_positive": "all seven criteria pass",
+    "decision_mixed": "otherwise report full matrix without a positive matched-bank headline"
+  },
+  "required_outputs": {
+    "result_json": "matched_equal_rows_results.json",
+    "metrics_tsv": "matched_equal_rows_metrics.tsv",
+    "figure": "matched_equal_rows_matrix.png",
+    "manifest_json": "run_manifest.json"
+  },
+  "evidence_boundary": {
+    "grade": "preregistered_external_bank_replication_development_activations",
+    "allowed_claim": "Changing probe-training coverage across the two matched renderer-format environments improves or does not improve held-out stated-purpose decoding on these fixed activation sets under exact content, row, class, and block balance.",
+    "prohibited_claims": ["evaluation awareness", "behavioral steering", "model causal mechanism", "training-time model causality", "universal scale law", "confirmation-grade evidence"],
+    "limitations": ["The pilot80 bank and unequal-N probe phenomenon were inspected previously.", "Llama-3.1 pilot activation revisions were recorded only as default_resolved_by_hub; hashes and extraction contracts are exact but revisions are not independently recoverable.", "Primary family folds share payload blocks; double-heldout payload robustness is required.", "The endpoint is stated-purpose probe decoding, not model behavior."]
+  }
+}

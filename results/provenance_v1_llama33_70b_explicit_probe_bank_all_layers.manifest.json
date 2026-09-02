@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "status": "FROZEN_BEFORE_IMPLICIT_SCORING",
+  "source": "original full320 stated explicit-purpose rows only",
+  "implicit_data_used": false,
+  "items": "/scratch/jppatton/langea/deploy/full320_v3_erasure_bootstrap/v3-activations/rendered_items_v3_full320_8-17-2026.jsonl",
+  "items_sha256": "5528819d74e696d1a595062047a829836dfde1d2a45287b06a5ac1ba5d1b6c67",
+  "activations": "/scratch/jppatton/langea/deploy/full320_v3_erasure_bootstrap/v3-activations/activations/llama33_70b/activations_all_layers.npz",
+  "activations_sha256": "d455140f2dce01e1bd4e1a8333454a494b1e5de0df0428779a2faa43bc80c031",
+  "probe": {
+    "C": 0.1,
+    "max_iter": 3000,
+    "random_state": 0
+  },
+  "folds": [
+    "fg1",
+    "fg2",
+    "fg3",
+    "fg4",
+    "fg5"
+  ],
+  "regimes": [
+    "joint",
+    "benchmark",
+    "casual"
+  ],
+  "n_layers": 80,
+  "n_explicit_rows": 7680,
+  "bank_sha256": "37bb2e2d828d2a209e65fbf73064a5bb13541e0226194887d715d2777dadb0ac"
+}

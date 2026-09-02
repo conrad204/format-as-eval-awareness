@@ -1,0 +1,2432 @@
+{
+  "schema_version": 1,
+  "items_sha256": "ecdc9f715f86bab0a58ad4e472e1bfe43731ca2b355bbed2fc9babc4f01da096",
+  "rows": 1760,
+  "stated_rows": 960,
+  "folds": [
+    "fg1",
+    "fg2",
+    "fg3",
+    "fg4",
+    "fg5"
+  ],
+  "threshold": {
+    "mean_auc_max": 0.6,
+    "max_fold_auc_max": 0.7
+  },
+  "scopes": [
+    "full_text",
+    "cue_sentence_only",
+    "cue_span_only",
+    "scaffold_without_cue",
+    "first_sentence",
+    "second_sentence"
+  ],
+  "reports": [
+    {
+      "scope": "full_text",
+      "kind": "char_3_5gram",
+      "stratum": "all",
+      "held_out_fold": "fg1",
+      "n": 192,
+      "auc": 0.8719618055555555
+    },
+    {
+      "scope": "full_text",
+      "kind": "char_3_5gram",
+      "stratum": "all",
+      "held_out_fold": "fg2",
+      "n": 192,
+      "auc": 0.859375
+    },
+    {
+      "scope": "full_text",
+      "kind": "char_3_5gram",
+      "stratum": "all",
+      "held_out_fold": "fg3",
+      "n": 192,
+      "auc": 0.9141710069444444
+    },
+    {
+      "scope": "full_text",
+      "kind": "char_3_5gram",
+      "stratum": "all",
+      "held_out_fold": "fg4",
+      "n": 192,
+      "auc": 0.7856987847222221
+    },
+    {
+      "scope": "full_text",
+      "kind": "char_3_5gram",
+      "stratum": "all",
+      "held_out_fold": "fg5",
+      "n": 192,
+      "auc": 0.998046875
+    },
+    {
+      "scope": "full_text",
+      "kind": "char_3_5gram",
+      "stratum": "stated",
+      "held_out_fold": "fg1",
+      "n": 192,
+      "auc": 0.8719618055555555
+    },
+    {
+      "scope": "full_text",
+      "kind": "char_3_5gram",
+      "stratum": "stated",
+      "held_out_fold": "fg2",
+      "n": 192,
+      "auc": 0.859375
+    },
+    {
+      "scope": "full_text",
+      "kind": "char_3_5gram",
+      "stratum": "stated",
+      "held_out_fold": "fg3",
+      "n": 192,
+      "auc": 0.9141710069444444
+    },
+    {
+      "scope": "full_text",
+      "kind": "char_3_5gram",
+      "stratum": "stated",
+      "held_out_fold": "fg4",
+      "n": 192,
+      "auc": 0.7856987847222221
+    },
+    {
+      "scope": "full_text",
+      "kind": "char_3_5gram",
+      "stratum": "stated",
+      "held_out_fold": "fg5",
+      "n": 192,
+      "auc": 0.998046875
+    },
+    {
+      "scope": "full_text",
+      "kind": "char_3_5gram",
+      "stratum": "stated_noun_only",
+      "held_out_fold": "fg1",
+      "n": 64,
+      "auc": 0.88671875
+    },
+    {
+      "scope": "full_text",
+      "kind": "char_3_5gram",
+      "stratum": "stated_noun_only",
+      "held_out_fold": "fg2",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "full_text",
+      "kind": "char_3_5gram",
+      "stratum": "stated_noun_only",
+      "held_out_fold": "fg3",
+      "n": 64,
+      "auc": 0.5673828125
+    },
+    {
+      "scope": "full_text",
+      "kind": "char_3_5gram",
+      "stratum": "stated_noun_only",
+      "held_out_fold": "fg4",
+      "n": 64,
+      "auc": 0.6181640625
+    },
+    {
+      "scope": "full_text",
+      "kind": "char_3_5gram",
+      "stratum": "stated_noun_only",
+      "held_out_fold": "fg5",
+      "n": 64,
+      "auc": 0.982421875
+    },
+    {
+      "scope": "full_text",
+      "kind": "char_3_5gram",
+      "stratum": "stated_verb_only",
+      "held_out_fold": "fg1",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "full_text",
+      "kind": "char_3_5gram",
+      "stratum": "stated_verb_only",
+      "held_out_fold": "fg2",
+      "n": 64,
+      "auc": 0.7060546875
+    },
+    {
+      "scope": "full_text",
+      "kind": "char_3_5gram",
+      "stratum": "stated_verb_only",
+      "held_out_fold": "fg3",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "full_text",
+      "kind": "char_3_5gram",
+      "stratum": "stated_verb_only",
+      "held_out_fold": "fg4",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "full_text",
+      "kind": "char_3_5gram",
+      "stratum": "stated_verb_only",
+      "held_out_fold": "fg5",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "full_text",
+      "kind": "char_3_5gram",
+      "stratum": "stated_both",
+      "held_out_fold": "fg1",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "full_text",
+      "kind": "char_3_5gram",
+      "stratum": "stated_both",
+      "held_out_fold": "fg2",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "full_text",
+      "kind": "char_3_5gram",
+      "stratum": "stated_both",
+      "held_out_fold": "fg3",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "full_text",
+      "kind": "char_3_5gram",
+      "stratum": "stated_both",
+      "held_out_fold": "fg4",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "full_text",
+      "kind": "char_3_5gram",
+      "stratum": "stated_both",
+      "held_out_fold": "fg5",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "full_text",
+      "kind": "char_3_6gram",
+      "stratum": "all",
+      "held_out_fold": "fg1",
+      "n": 192,
+      "auc": 0.8791232638888888
+    },
+    {
+      "scope": "full_text",
+      "kind": "char_3_6gram",
+      "stratum": "all",
+      "held_out_fold": "fg2",
+      "n": 192,
+      "auc": 0.8156467013888888
+    },
+    {
+      "scope": "full_text",
+      "kind": "char_3_6gram",
+      "stratum": "all",
+      "held_out_fold": "fg3",
+      "n": 192,
+      "auc": 0.9262152777777779
+    },
+    {
+      "scope": "full_text",
+      "kind": "char_3_6gram",
+      "stratum": "all",
+      "held_out_fold": "fg4",
+      "n": 192,
+      "auc": 0.7735460069444445
+    },
+    {
+      "scope": "full_text",
+      "kind": "char_3_6gram",
+      "stratum": "all",
+      "held_out_fold": "fg5",
+      "n": 192,
+      "auc": 0.9962022569444444
+    },
+    {
+      "scope": "full_text",
+      "kind": "char_3_6gram",
+      "stratum": "stated",
+      "held_out_fold": "fg1",
+      "n": 192,
+      "auc": 0.8791232638888888
+    },
+    {
+      "scope": "full_text",
+      "kind": "char_3_6gram",
+      "stratum": "stated",
+      "held_out_fold": "fg2",
+      "n": 192,
+      "auc": 0.8156467013888888
+    },
+    {
+      "scope": "full_text",
+      "kind": "char_3_6gram",
+      "stratum": "stated",
+      "held_out_fold": "fg3",
+      "n": 192,
+      "auc": 0.9262152777777779
+    },
+    {
+      "scope": "full_text",
+      "kind": "char_3_6gram",
+      "stratum": "stated",
+      "held_out_fold": "fg4",
+      "n": 192,
+      "auc": 0.7735460069444445
+    },
+    {
+      "scope": "full_text",
+      "kind": "char_3_6gram",
+      "stratum": "stated",
+      "held_out_fold": "fg5",
+      "n": 192,
+      "auc": 0.9962022569444444
+    },
+    {
+      "scope": "full_text",
+      "kind": "char_3_6gram",
+      "stratum": "stated_noun_only",
+      "held_out_fold": "fg1",
+      "n": 64,
+      "auc": 0.93359375
+    },
+    {
+      "scope": "full_text",
+      "kind": "char_3_6gram",
+      "stratum": "stated_noun_only",
+      "held_out_fold": "fg2",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "full_text",
+      "kind": "char_3_6gram",
+      "stratum": "stated_noun_only",
+      "held_out_fold": "fg3",
+      "n": 64,
+      "auc": 0.5517578125
+    },
+    {
+      "scope": "full_text",
+      "kind": "char_3_6gram",
+      "stratum": "stated_noun_only",
+      "held_out_fold": "fg4",
+      "n": 64,
+      "auc": 0.6240234375
+    },
+    {
+      "scope": "full_text",
+      "kind": "char_3_6gram",
+      "stratum": "stated_noun_only",
+      "held_out_fold": "fg5",
+      "n": 64,
+      "auc": 0.9658203125
+    },
+    {
+      "scope": "full_text",
+      "kind": "char_3_6gram",
+      "stratum": "stated_verb_only",
+      "held_out_fold": "fg1",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "full_text",
+      "kind": "char_3_6gram",
+      "stratum": "stated_verb_only",
+      "held_out_fold": "fg2",
+      "n": 64,
+      "auc": 0.34765625
+    },
+    {
+      "scope": "full_text",
+      "kind": "char_3_6gram",
+      "stratum": "stated_verb_only",
+      "held_out_fold": "fg3",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "full_text",
+      "kind": "char_3_6gram",
+      "stratum": "stated_verb_only",
+      "held_out_fold": "fg4",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "full_text",
+      "kind": "char_3_6gram",
+      "stratum": "stated_verb_only",
+      "held_out_fold": "fg5",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "full_text",
+      "kind": "char_3_6gram",
+      "stratum": "stated_both",
+      "held_out_fold": "fg1",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "full_text",
+      "kind": "char_3_6gram",
+      "stratum": "stated_both",
+      "held_out_fold": "fg2",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "full_text",
+      "kind": "char_3_6gram",
+      "stratum": "stated_both",
+      "held_out_fold": "fg3",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "full_text",
+      "kind": "char_3_6gram",
+      "stratum": "stated_both",
+      "held_out_fold": "fg4",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "full_text",
+      "kind": "char_3_6gram",
+      "stratum": "stated_both",
+      "held_out_fold": "fg5",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_sentence_only",
+      "kind": "char_3_5gram",
+      "stratum": "all",
+      "held_out_fold": "fg1",
+      "n": 192,
+      "auc": 0.888888888888889
+    },
+    {
+      "scope": "cue_sentence_only",
+      "kind": "char_3_5gram",
+      "stratum": "all",
+      "held_out_fold": "fg2",
+      "n": 192,
+      "auc": 0.888888888888889
+    },
+    {
+      "scope": "cue_sentence_only",
+      "kind": "char_3_5gram",
+      "stratum": "all",
+      "held_out_fold": "fg3",
+      "n": 192,
+      "auc": 0.6666666666666667
+    },
+    {
+      "scope": "cue_sentence_only",
+      "kind": "char_3_5gram",
+      "stratum": "all",
+      "held_out_fold": "fg4",
+      "n": 192,
+      "auc": 0.888888888888889
+    },
+    {
+      "scope": "cue_sentence_only",
+      "kind": "char_3_5gram",
+      "stratum": "all",
+      "held_out_fold": "fg5",
+      "n": 192,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_sentence_only",
+      "kind": "char_3_5gram",
+      "stratum": "stated",
+      "held_out_fold": "fg1",
+      "n": 192,
+      "auc": 0.888888888888889
+    },
+    {
+      "scope": "cue_sentence_only",
+      "kind": "char_3_5gram",
+      "stratum": "stated",
+      "held_out_fold": "fg2",
+      "n": 192,
+      "auc": 0.888888888888889
+    },
+    {
+      "scope": "cue_sentence_only",
+      "kind": "char_3_5gram",
+      "stratum": "stated",
+      "held_out_fold": "fg3",
+      "n": 192,
+      "auc": 0.6666666666666667
+    },
+    {
+      "scope": "cue_sentence_only",
+      "kind": "char_3_5gram",
+      "stratum": "stated",
+      "held_out_fold": "fg4",
+      "n": 192,
+      "auc": 0.888888888888889
+    },
+    {
+      "scope": "cue_sentence_only",
+      "kind": "char_3_5gram",
+      "stratum": "stated",
+      "held_out_fold": "fg5",
+      "n": 192,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_sentence_only",
+      "kind": "char_3_5gram",
+      "stratum": "stated_noun_only",
+      "held_out_fold": "fg1",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_sentence_only",
+      "kind": "char_3_5gram",
+      "stratum": "stated_noun_only",
+      "held_out_fold": "fg2",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_sentence_only",
+      "kind": "char_3_5gram",
+      "stratum": "stated_noun_only",
+      "held_out_fold": "fg3",
+      "n": 64,
+      "auc": 0.0
+    },
+    {
+      "scope": "cue_sentence_only",
+      "kind": "char_3_5gram",
+      "stratum": "stated_noun_only",
+      "held_out_fold": "fg4",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_sentence_only",
+      "kind": "char_3_5gram",
+      "stratum": "stated_noun_only",
+      "held_out_fold": "fg5",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_sentence_only",
+      "kind": "char_3_5gram",
+      "stratum": "stated_verb_only",
+      "held_out_fold": "fg1",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_sentence_only",
+      "kind": "char_3_5gram",
+      "stratum": "stated_verb_only",
+      "held_out_fold": "fg2",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_sentence_only",
+      "kind": "char_3_5gram",
+      "stratum": "stated_verb_only",
+      "held_out_fold": "fg3",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_sentence_only",
+      "kind": "char_3_5gram",
+      "stratum": "stated_verb_only",
+      "held_out_fold": "fg4",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_sentence_only",
+      "kind": "char_3_5gram",
+      "stratum": "stated_verb_only",
+      "held_out_fold": "fg5",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_sentence_only",
+      "kind": "char_3_5gram",
+      "stratum": "stated_both",
+      "held_out_fold": "fg1",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_sentence_only",
+      "kind": "char_3_5gram",
+      "stratum": "stated_both",
+      "held_out_fold": "fg2",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_sentence_only",
+      "kind": "char_3_5gram",
+      "stratum": "stated_both",
+      "held_out_fold": "fg3",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_sentence_only",
+      "kind": "char_3_5gram",
+      "stratum": "stated_both",
+      "held_out_fold": "fg4",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_sentence_only",
+      "kind": "char_3_5gram",
+      "stratum": "stated_both",
+      "held_out_fold": "fg5",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_sentence_only",
+      "kind": "char_3_6gram",
+      "stratum": "all",
+      "held_out_fold": "fg1",
+      "n": 192,
+      "auc": 0.888888888888889
+    },
+    {
+      "scope": "cue_sentence_only",
+      "kind": "char_3_6gram",
+      "stratum": "all",
+      "held_out_fold": "fg2",
+      "n": 192,
+      "auc": 0.888888888888889
+    },
+    {
+      "scope": "cue_sentence_only",
+      "kind": "char_3_6gram",
+      "stratum": "all",
+      "held_out_fold": "fg3",
+      "n": 192,
+      "auc": 0.6666666666666667
+    },
+    {
+      "scope": "cue_sentence_only",
+      "kind": "char_3_6gram",
+      "stratum": "all",
+      "held_out_fold": "fg4",
+      "n": 192,
+      "auc": 0.888888888888889
+    },
+    {
+      "scope": "cue_sentence_only",
+      "kind": "char_3_6gram",
+      "stratum": "all",
+      "held_out_fold": "fg5",
+      "n": 192,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_sentence_only",
+      "kind": "char_3_6gram",
+      "stratum": "stated",
+      "held_out_fold": "fg1",
+      "n": 192,
+      "auc": 0.888888888888889
+    },
+    {
+      "scope": "cue_sentence_only",
+      "kind": "char_3_6gram",
+      "stratum": "stated",
+      "held_out_fold": "fg2",
+      "n": 192,
+      "auc": 0.888888888888889
+    },
+    {
+      "scope": "cue_sentence_only",
+      "kind": "char_3_6gram",
+      "stratum": "stated",
+      "held_out_fold": "fg3",
+      "n": 192,
+      "auc": 0.6666666666666667
+    },
+    {
+      "scope": "cue_sentence_only",
+      "kind": "char_3_6gram",
+      "stratum": "stated",
+      "held_out_fold": "fg4",
+      "n": 192,
+      "auc": 0.888888888888889
+    },
+    {
+      "scope": "cue_sentence_only",
+      "kind": "char_3_6gram",
+      "stratum": "stated",
+      "held_out_fold": "fg5",
+      "n": 192,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_sentence_only",
+      "kind": "char_3_6gram",
+      "stratum": "stated_noun_only",
+      "held_out_fold": "fg1",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_sentence_only",
+      "kind": "char_3_6gram",
+      "stratum": "stated_noun_only",
+      "held_out_fold": "fg2",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_sentence_only",
+      "kind": "char_3_6gram",
+      "stratum": "stated_noun_only",
+      "held_out_fold": "fg3",
+      "n": 64,
+      "auc": 0.0
+    },
+    {
+      "scope": "cue_sentence_only",
+      "kind": "char_3_6gram",
+      "stratum": "stated_noun_only",
+      "held_out_fold": "fg4",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_sentence_only",
+      "kind": "char_3_6gram",
+      "stratum": "stated_noun_only",
+      "held_out_fold": "fg5",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_sentence_only",
+      "kind": "char_3_6gram",
+      "stratum": "stated_verb_only",
+      "held_out_fold": "fg1",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_sentence_only",
+      "kind": "char_3_6gram",
+      "stratum": "stated_verb_only",
+      "held_out_fold": "fg2",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_sentence_only",
+      "kind": "char_3_6gram",
+      "stratum": "stated_verb_only",
+      "held_out_fold": "fg3",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_sentence_only",
+      "kind": "char_3_6gram",
+      "stratum": "stated_verb_only",
+      "held_out_fold": "fg4",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_sentence_only",
+      "kind": "char_3_6gram",
+      "stratum": "stated_verb_only",
+      "held_out_fold": "fg5",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_sentence_only",
+      "kind": "char_3_6gram",
+      "stratum": "stated_both",
+      "held_out_fold": "fg1",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_sentence_only",
+      "kind": "char_3_6gram",
+      "stratum": "stated_both",
+      "held_out_fold": "fg2",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_sentence_only",
+      "kind": "char_3_6gram",
+      "stratum": "stated_both",
+      "held_out_fold": "fg3",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_sentence_only",
+      "kind": "char_3_6gram",
+      "stratum": "stated_both",
+      "held_out_fold": "fg4",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_sentence_only",
+      "kind": "char_3_6gram",
+      "stratum": "stated_both",
+      "held_out_fold": "fg5",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_span_only",
+      "kind": "char_3_5gram",
+      "stratum": "all",
+      "held_out_fold": "fg1",
+      "n": 192,
+      "auc": 0.888888888888889
+    },
+    {
+      "scope": "cue_span_only",
+      "kind": "char_3_5gram",
+      "stratum": "all",
+      "held_out_fold": "fg2",
+      "n": 192,
+      "auc": 0.888888888888889
+    },
+    {
+      "scope": "cue_span_only",
+      "kind": "char_3_5gram",
+      "stratum": "all",
+      "held_out_fold": "fg3",
+      "n": 192,
+      "auc": 0.6666666666666667
+    },
+    {
+      "scope": "cue_span_only",
+      "kind": "char_3_5gram",
+      "stratum": "all",
+      "held_out_fold": "fg4",
+      "n": 192,
+      "auc": 0.888888888888889
+    },
+    {
+      "scope": "cue_span_only",
+      "kind": "char_3_5gram",
+      "stratum": "all",
+      "held_out_fold": "fg5",
+      "n": 192,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_span_only",
+      "kind": "char_3_5gram",
+      "stratum": "stated",
+      "held_out_fold": "fg1",
+      "n": 192,
+      "auc": 0.888888888888889
+    },
+    {
+      "scope": "cue_span_only",
+      "kind": "char_3_5gram",
+      "stratum": "stated",
+      "held_out_fold": "fg2",
+      "n": 192,
+      "auc": 0.888888888888889
+    },
+    {
+      "scope": "cue_span_only",
+      "kind": "char_3_5gram",
+      "stratum": "stated",
+      "held_out_fold": "fg3",
+      "n": 192,
+      "auc": 0.6666666666666667
+    },
+    {
+      "scope": "cue_span_only",
+      "kind": "char_3_5gram",
+      "stratum": "stated",
+      "held_out_fold": "fg4",
+      "n": 192,
+      "auc": 0.888888888888889
+    },
+    {
+      "scope": "cue_span_only",
+      "kind": "char_3_5gram",
+      "stratum": "stated",
+      "held_out_fold": "fg5",
+      "n": 192,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_span_only",
+      "kind": "char_3_5gram",
+      "stratum": "stated_noun_only",
+      "held_out_fold": "fg1",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_span_only",
+      "kind": "char_3_5gram",
+      "stratum": "stated_noun_only",
+      "held_out_fold": "fg2",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_span_only",
+      "kind": "char_3_5gram",
+      "stratum": "stated_noun_only",
+      "held_out_fold": "fg3",
+      "n": 64,
+      "auc": 0.0
+    },
+    {
+      "scope": "cue_span_only",
+      "kind": "char_3_5gram",
+      "stratum": "stated_noun_only",
+      "held_out_fold": "fg4",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_span_only",
+      "kind": "char_3_5gram",
+      "stratum": "stated_noun_only",
+      "held_out_fold": "fg5",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_span_only",
+      "kind": "char_3_5gram",
+      "stratum": "stated_verb_only",
+      "held_out_fold": "fg1",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_span_only",
+      "kind": "char_3_5gram",
+      "stratum": "stated_verb_only",
+      "held_out_fold": "fg2",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_span_only",
+      "kind": "char_3_5gram",
+      "stratum": "stated_verb_only",
+      "held_out_fold": "fg3",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_span_only",
+      "kind": "char_3_5gram",
+      "stratum": "stated_verb_only",
+      "held_out_fold": "fg4",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_span_only",
+      "kind": "char_3_5gram",
+      "stratum": "stated_verb_only",
+      "held_out_fold": "fg5",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_span_only",
+      "kind": "char_3_5gram",
+      "stratum": "stated_both",
+      "held_out_fold": "fg1",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_span_only",
+      "kind": "char_3_5gram",
+      "stratum": "stated_both",
+      "held_out_fold": "fg2",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_span_only",
+      "kind": "char_3_5gram",
+      "stratum": "stated_both",
+      "held_out_fold": "fg3",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_span_only",
+      "kind": "char_3_5gram",
+      "stratum": "stated_both",
+      "held_out_fold": "fg4",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_span_only",
+      "kind": "char_3_5gram",
+      "stratum": "stated_both",
+      "held_out_fold": "fg5",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_span_only",
+      "kind": "char_3_6gram",
+      "stratum": "all",
+      "held_out_fold": "fg1",
+      "n": 192,
+      "auc": 0.888888888888889
+    },
+    {
+      "scope": "cue_span_only",
+      "kind": "char_3_6gram",
+      "stratum": "all",
+      "held_out_fold": "fg2",
+      "n": 192,
+      "auc": 0.888888888888889
+    },
+    {
+      "scope": "cue_span_only",
+      "kind": "char_3_6gram",
+      "stratum": "all",
+      "held_out_fold": "fg3",
+      "n": 192,
+      "auc": 0.6666666666666667
+    },
+    {
+      "scope": "cue_span_only",
+      "kind": "char_3_6gram",
+      "stratum": "all",
+      "held_out_fold": "fg4",
+      "n": 192,
+      "auc": 0.888888888888889
+    },
+    {
+      "scope": "cue_span_only",
+      "kind": "char_3_6gram",
+      "stratum": "all",
+      "held_out_fold": "fg5",
+      "n": 192,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_span_only",
+      "kind": "char_3_6gram",
+      "stratum": "stated",
+      "held_out_fold": "fg1",
+      "n": 192,
+      "auc": 0.888888888888889
+    },
+    {
+      "scope": "cue_span_only",
+      "kind": "char_3_6gram",
+      "stratum": "stated",
+      "held_out_fold": "fg2",
+      "n": 192,
+      "auc": 0.888888888888889
+    },
+    {
+      "scope": "cue_span_only",
+      "kind": "char_3_6gram",
+      "stratum": "stated",
+      "held_out_fold": "fg3",
+      "n": 192,
+      "auc": 0.6666666666666667
+    },
+    {
+      "scope": "cue_span_only",
+      "kind": "char_3_6gram",
+      "stratum": "stated",
+      "held_out_fold": "fg4",
+      "n": 192,
+      "auc": 0.888888888888889
+    },
+    {
+      "scope": "cue_span_only",
+      "kind": "char_3_6gram",
+      "stratum": "stated",
+      "held_out_fold": "fg5",
+      "n": 192,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_span_only",
+      "kind": "char_3_6gram",
+      "stratum": "stated_noun_only",
+      "held_out_fold": "fg1",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_span_only",
+      "kind": "char_3_6gram",
+      "stratum": "stated_noun_only",
+      "held_out_fold": "fg2",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_span_only",
+      "kind": "char_3_6gram",
+      "stratum": "stated_noun_only",
+      "held_out_fold": "fg3",
+      "n": 64,
+      "auc": 0.0
+    },
+    {
+      "scope": "cue_span_only",
+      "kind": "char_3_6gram",
+      "stratum": "stated_noun_only",
+      "held_out_fold": "fg4",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_span_only",
+      "kind": "char_3_6gram",
+      "stratum": "stated_noun_only",
+      "held_out_fold": "fg5",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_span_only",
+      "kind": "char_3_6gram",
+      "stratum": "stated_verb_only",
+      "held_out_fold": "fg1",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_span_only",
+      "kind": "char_3_6gram",
+      "stratum": "stated_verb_only",
+      "held_out_fold": "fg2",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_span_only",
+      "kind": "char_3_6gram",
+      "stratum": "stated_verb_only",
+      "held_out_fold": "fg3",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_span_only",
+      "kind": "char_3_6gram",
+      "stratum": "stated_verb_only",
+      "held_out_fold": "fg4",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_span_only",
+      "kind": "char_3_6gram",
+      "stratum": "stated_verb_only",
+      "held_out_fold": "fg5",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_span_only",
+      "kind": "char_3_6gram",
+      "stratum": "stated_both",
+      "held_out_fold": "fg1",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_span_only",
+      "kind": "char_3_6gram",
+      "stratum": "stated_both",
+      "held_out_fold": "fg2",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_span_only",
+      "kind": "char_3_6gram",
+      "stratum": "stated_both",
+      "held_out_fold": "fg3",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_span_only",
+      "kind": "char_3_6gram",
+      "stratum": "stated_both",
+      "held_out_fold": "fg4",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "cue_span_only",
+      "kind": "char_3_6gram",
+      "stratum": "stated_both",
+      "held_out_fold": "fg5",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "scaffold_without_cue",
+      "kind": "char_3_5gram",
+      "stratum": "all",
+      "held_out_fold": "fg1",
+      "n": 192,
+      "auc": 0.5
+    },
+    {
+      "scope": "scaffold_without_cue",
+      "kind": "char_3_5gram",
+      "stratum": "all",
+      "held_out_fold": "fg2",
+      "n": 192,
+      "auc": 0.5
+    },
+    {
+      "scope": "scaffold_without_cue",
+      "kind": "char_3_5gram",
+      "stratum": "all",
+      "held_out_fold": "fg3",
+      "n": 192,
+      "auc": 0.5
+    },
+    {
+      "scope": "scaffold_without_cue",
+      "kind": "char_3_5gram",
+      "stratum": "all",
+      "held_out_fold": "fg4",
+      "n": 192,
+      "auc": 0.5
+    },
+    {
+      "scope": "scaffold_without_cue",
+      "kind": "char_3_5gram",
+      "stratum": "all",
+      "held_out_fold": "fg5",
+      "n": 192,
+      "auc": 0.5
+    },
+    {
+      "scope": "scaffold_without_cue",
+      "kind": "char_3_5gram",
+      "stratum": "stated",
+      "held_out_fold": "fg1",
+      "n": 192,
+      "auc": 0.5
+    },
+    {
+      "scope": "scaffold_without_cue",
+      "kind": "char_3_5gram",
+      "stratum": "stated",
+      "held_out_fold": "fg2",
+      "n": 192,
+      "auc": 0.5
+    },
+    {
+      "scope": "scaffold_without_cue",
+      "kind": "char_3_5gram",
+      "stratum": "stated",
+      "held_out_fold": "fg3",
+      "n": 192,
+      "auc": 0.5
+    },
+    {
+      "scope": "scaffold_without_cue",
+      "kind": "char_3_5gram",
+      "stratum": "stated",
+      "held_out_fold": "fg4",
+      "n": 192,
+      "auc": 0.5
+    },
+    {
+      "scope": "scaffold_without_cue",
+      "kind": "char_3_5gram",
+      "stratum": "stated",
+      "held_out_fold": "fg5",
+      "n": 192,
+      "auc": 0.5
+    },
+    {
+      "scope": "scaffold_without_cue",
+      "kind": "char_3_5gram",
+      "stratum": "stated_noun_only",
+      "held_out_fold": "fg1",
+      "n": 64,
+      "auc": 0.5
+    },
+    {
+      "scope": "scaffold_without_cue",
+      "kind": "char_3_5gram",
+      "stratum": "stated_noun_only",
+      "held_out_fold": "fg2",
+      "n": 64,
+      "auc": 0.5
+    },
+    {
+      "scope": "scaffold_without_cue",
+      "kind": "char_3_5gram",
+      "stratum": "stated_noun_only",
+      "held_out_fold": "fg3",
+      "n": 64,
+      "auc": 0.5
+    },
+    {
+      "scope": "scaffold_without_cue",
+      "kind": "char_3_5gram",
+      "stratum": "stated_noun_only",
+      "held_out_fold": "fg4",
+      "n": 64,
+      "auc": 0.5
+    },
+    {
+      "scope": "scaffold_without_cue",
+      "kind": "char_3_5gram",
+      "stratum": "stated_noun_only",
+      "held_out_fold": "fg5",
+      "n": 64,
+      "auc": 0.5
+    },
+    {
+      "scope": "scaffold_without_cue",
+      "kind": "char_3_5gram",
+      "stratum": "stated_verb_only",
+      "held_out_fold": "fg1",
+      "n": 64,
+      "auc": 0.5
+    },
+    {
+      "scope": "scaffold_without_cue",
+      "kind": "char_3_5gram",
+      "stratum": "stated_verb_only",
+      "held_out_fold": "fg2",
+      "n": 64,
+      "auc": 0.5
+    },
+    {
+      "scope": "scaffold_without_cue",
+      "kind": "char_3_5gram",
+      "stratum": "stated_verb_only",
+      "held_out_fold": "fg3",
+      "n": 64,
+      "auc": 0.5
+    },
+    {
+      "scope": "scaffold_without_cue",
+      "kind": "char_3_5gram",
+      "stratum": "stated_verb_only",
+      "held_out_fold": "fg4",
+      "n": 64,
+      "auc": 0.5
+    },
+    {
+      "scope": "scaffold_without_cue",
+      "kind": "char_3_5gram",
+      "stratum": "stated_verb_only",
+      "held_out_fold": "fg5",
+      "n": 64,
+      "auc": 0.5
+    },
+    {
+      "scope": "scaffold_without_cue",
+      "kind": "char_3_5gram",
+      "stratum": "stated_both",
+      "held_out_fold": "fg1",
+      "n": 64,
+      "auc": 0.5
+    },
+    {
+      "scope": "scaffold_without_cue",
+      "kind": "char_3_5gram",
+      "stratum": "stated_both",
+      "held_out_fold": "fg2",
+      "n": 64,
+      "auc": 0.5
+    },
+    {
+      "scope": "scaffold_without_cue",
+      "kind": "char_3_5gram",
+      "stratum": "stated_both",
+      "held_out_fold": "fg3",
+      "n": 64,
+      "auc": 0.5
+    },
+    {
+      "scope": "scaffold_without_cue",
+      "kind": "char_3_5gram",
+      "stratum": "stated_both",
+      "held_out_fold": "fg4",
+      "n": 64,
+      "auc": 0.5
+    },
+    {
+      "scope": "scaffold_without_cue",
+      "kind": "char_3_5gram",
+      "stratum": "stated_both",
+      "held_out_fold": "fg5",
+      "n": 64,
+      "auc": 0.5
+    },
+    {
+      "scope": "scaffold_without_cue",
+      "kind": "char_3_6gram",
+      "stratum": "all",
+      "held_out_fold": "fg1",
+      "n": 192,
+      "auc": 0.5
+    },
+    {
+      "scope": "scaffold_without_cue",
+      "kind": "char_3_6gram",
+      "stratum": "all",
+      "held_out_fold": "fg2",
+      "n": 192,
+      "auc": 0.5
+    },
+    {
+      "scope": "scaffold_without_cue",
+      "kind": "char_3_6gram",
+      "stratum": "all",
+      "held_out_fold": "fg3",
+      "n": 192,
+      "auc": 0.5
+    },
+    {
+      "scope": "scaffold_without_cue",
+      "kind": "char_3_6gram",
+      "stratum": "all",
+      "held_out_fold": "fg4",
+      "n": 192,
+      "auc": 0.5
+    },
+    {
+      "scope": "scaffold_without_cue",
+      "kind": "char_3_6gram",
+      "stratum": "all",
+      "held_out_fold": "fg5",
+      "n": 192,
+      "auc": 0.5
+    },
+    {
+      "scope": "scaffold_without_cue",
+      "kind": "char_3_6gram",
+      "stratum": "stated",
+      "held_out_fold": "fg1",
+      "n": 192,
+      "auc": 0.5
+    },
+    {
+      "scope": "scaffold_without_cue",
+      "kind": "char_3_6gram",
+      "stratum": "stated",
+      "held_out_fold": "fg2",
+      "n": 192,
+      "auc": 0.5
+    },
+    {
+      "scope": "scaffold_without_cue",
+      "kind": "char_3_6gram",
+      "stratum": "stated",
+      "held_out_fold": "fg3",
+      "n": 192,
+      "auc": 0.5
+    },
+    {
+      "scope": "scaffold_without_cue",
+      "kind": "char_3_6gram",
+      "stratum": "stated",
+      "held_out_fold": "fg4",
+      "n": 192,
+      "auc": 0.5
+    },
+    {
+      "scope": "scaffold_without_cue",
+      "kind": "char_3_6gram",
+      "stratum": "stated",
+      "held_out_fold": "fg5",
+      "n": 192,
+      "auc": 0.5
+    },
+    {
+      "scope": "scaffold_without_cue",
+      "kind": "char_3_6gram",
+      "stratum": "stated_noun_only",
+      "held_out_fold": "fg1",
+      "n": 64,
+      "auc": 0.5
+    },
+    {
+      "scope": "scaffold_without_cue",
+      "kind": "char_3_6gram",
+      "stratum": "stated_noun_only",
+      "held_out_fold": "fg2",
+      "n": 64,
+      "auc": 0.5
+    },
+    {
+      "scope": "scaffold_without_cue",
+      "kind": "char_3_6gram",
+      "stratum": "stated_noun_only",
+      "held_out_fold": "fg3",
+      "n": 64,
+      "auc": 0.5
+    },
+    {
+      "scope": "scaffold_without_cue",
+      "kind": "char_3_6gram",
+      "stratum": "stated_noun_only",
+      "held_out_fold": "fg4",
+      "n": 64,
+      "auc": 0.5
+    },
+    {
+      "scope": "scaffold_without_cue",
+      "kind": "char_3_6gram",
+      "stratum": "stated_noun_only",
+      "held_out_fold": "fg5",
+      "n": 64,
+      "auc": 0.5
+    },
+    {
+      "scope": "scaffold_without_cue",
+      "kind": "char_3_6gram",
+      "stratum": "stated_verb_only",
+      "held_out_fold": "fg1",
+      "n": 64,
+      "auc": 0.5
+    },
+    {
+      "scope": "scaffold_without_cue",
+      "kind": "char_3_6gram",
+      "stratum": "stated_verb_only",
+      "held_out_fold": "fg2",
+      "n": 64,
+      "auc": 0.5
+    },
+    {
+      "scope": "scaffold_without_cue",
+      "kind": "char_3_6gram",
+      "stratum": "stated_verb_only",
+      "held_out_fold": "fg3",
+      "n": 64,
+      "auc": 0.5
+    },
+    {
+      "scope": "scaffold_without_cue",
+      "kind": "char_3_6gram",
+      "stratum": "stated_verb_only",
+      "held_out_fold": "fg4",
+      "n": 64,
+      "auc": 0.5
+    },
+    {
+      "scope": "scaffold_without_cue",
+      "kind": "char_3_6gram",
+      "stratum": "stated_verb_only",
+      "held_out_fold": "fg5",
+      "n": 64,
+      "auc": 0.5
+    },
+    {
+      "scope": "scaffold_without_cue",
+      "kind": "char_3_6gram",
+      "stratum": "stated_both",
+      "held_out_fold": "fg1",
+      "n": 64,
+      "auc": 0.5
+    },
+    {
+      "scope": "scaffold_without_cue",
+      "kind": "char_3_6gram",
+      "stratum": "stated_both",
+      "held_out_fold": "fg2",
+      "n": 64,
+      "auc": 0.5
+    },
+    {
+      "scope": "scaffold_without_cue",
+      "kind": "char_3_6gram",
+      "stratum": "stated_both",
+      "held_out_fold": "fg3",
+      "n": 64,
+      "auc": 0.5
+    },
+    {
+      "scope": "scaffold_without_cue",
+      "kind": "char_3_6gram",
+      "stratum": "stated_both",
+      "held_out_fold": "fg4",
+      "n": 64,
+      "auc": 0.5
+    },
+    {
+      "scope": "scaffold_without_cue",
+      "kind": "char_3_6gram",
+      "stratum": "stated_both",
+      "held_out_fold": "fg5",
+      "n": 64,
+      "auc": 0.5
+    },
+    {
+      "scope": "first_sentence",
+      "kind": "char_3_5gram",
+      "stratum": "all",
+      "held_out_fold": "fg1",
+      "n": 192,
+      "auc": 0.888888888888889
+    },
+    {
+      "scope": "first_sentence",
+      "kind": "char_3_5gram",
+      "stratum": "all",
+      "held_out_fold": "fg2",
+      "n": 192,
+      "auc": 0.888888888888889
+    },
+    {
+      "scope": "first_sentence",
+      "kind": "char_3_5gram",
+      "stratum": "all",
+      "held_out_fold": "fg3",
+      "n": 192,
+      "auc": 0.6666666666666667
+    },
+    {
+      "scope": "first_sentence",
+      "kind": "char_3_5gram",
+      "stratum": "all",
+      "held_out_fold": "fg4",
+      "n": 192,
+      "auc": 0.888888888888889
+    },
+    {
+      "scope": "first_sentence",
+      "kind": "char_3_5gram",
+      "stratum": "all",
+      "held_out_fold": "fg5",
+      "n": 192,
+      "auc": 1.0
+    },
+    {
+      "scope": "first_sentence",
+      "kind": "char_3_5gram",
+      "stratum": "stated",
+      "held_out_fold": "fg1",
+      "n": 192,
+      "auc": 0.888888888888889
+    },
+    {
+      "scope": "first_sentence",
+      "kind": "char_3_5gram",
+      "stratum": "stated",
+      "held_out_fold": "fg2",
+      "n": 192,
+      "auc": 0.888888888888889
+    },
+    {
+      "scope": "first_sentence",
+      "kind": "char_3_5gram",
+      "stratum": "stated",
+      "held_out_fold": "fg3",
+      "n": 192,
+      "auc": 0.6666666666666667
+    },
+    {
+      "scope": "first_sentence",
+      "kind": "char_3_5gram",
+      "stratum": "stated",
+      "held_out_fold": "fg4",
+      "n": 192,
+      "auc": 0.888888888888889
+    },
+    {
+      "scope": "first_sentence",
+      "kind": "char_3_5gram",
+      "stratum": "stated",
+      "held_out_fold": "fg5",
+      "n": 192,
+      "auc": 1.0
+    },
+    {
+      "scope": "first_sentence",
+      "kind": "char_3_5gram",
+      "stratum": "stated_noun_only",
+      "held_out_fold": "fg1",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "first_sentence",
+      "kind": "char_3_5gram",
+      "stratum": "stated_noun_only",
+      "held_out_fold": "fg2",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "first_sentence",
+      "kind": "char_3_5gram",
+      "stratum": "stated_noun_only",
+      "held_out_fold": "fg3",
+      "n": 64,
+      "auc": 0.0
+    },
+    {
+      "scope": "first_sentence",
+      "kind": "char_3_5gram",
+      "stratum": "stated_noun_only",
+      "held_out_fold": "fg4",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "first_sentence",
+      "kind": "char_3_5gram",
+      "stratum": "stated_noun_only",
+      "held_out_fold": "fg5",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "first_sentence",
+      "kind": "char_3_5gram",
+      "stratum": "stated_verb_only",
+      "held_out_fold": "fg1",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "first_sentence",
+      "kind": "char_3_5gram",
+      "stratum": "stated_verb_only",
+      "held_out_fold": "fg2",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "first_sentence",
+      "kind": "char_3_5gram",
+      "stratum": "stated_verb_only",
+      "held_out_fold": "fg3",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "first_sentence",
+      "kind": "char_3_5gram",
+      "stratum": "stated_verb_only",
+      "held_out_fold": "fg4",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "first_sentence",
+      "kind": "char_3_5gram",
+      "stratum": "stated_verb_only",
+      "held_out_fold": "fg5",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "first_sentence",
+      "kind": "char_3_5gram",
+      "stratum": "stated_both",
+      "held_out_fold": "fg1",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "first_sentence",
+      "kind": "char_3_5gram",
+      "stratum": "stated_both",
+      "held_out_fold": "fg2",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "first_sentence",
+      "kind": "char_3_5gram",
+      "stratum": "stated_both",
+      "held_out_fold": "fg3",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "first_sentence",
+      "kind": "char_3_5gram",
+      "stratum": "stated_both",
+      "held_out_fold": "fg4",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "first_sentence",
+      "kind": "char_3_5gram",
+      "stratum": "stated_both",
+      "held_out_fold": "fg5",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "first_sentence",
+      "kind": "char_3_6gram",
+      "stratum": "all",
+      "held_out_fold": "fg1",
+      "n": 192,
+      "auc": 0.888888888888889
+    },
+    {
+      "scope": "first_sentence",
+      "kind": "char_3_6gram",
+      "stratum": "all",
+      "held_out_fold": "fg2",
+      "n": 192,
+      "auc": 0.888888888888889
+    },
+    {
+      "scope": "first_sentence",
+      "kind": "char_3_6gram",
+      "stratum": "all",
+      "held_out_fold": "fg3",
+      "n": 192,
+      "auc": 0.6666666666666667
+    },
+    {
+      "scope": "first_sentence",
+      "kind": "char_3_6gram",
+      "stratum": "all",
+      "held_out_fold": "fg4",
+      "n": 192,
+      "auc": 0.888888888888889
+    },
+    {
+      "scope": "first_sentence",
+      "kind": "char_3_6gram",
+      "stratum": "all",
+      "held_out_fold": "fg5",
+      "n": 192,
+      "auc": 1.0
+    },
+    {
+      "scope": "first_sentence",
+      "kind": "char_3_6gram",
+      "stratum": "stated",
+      "held_out_fold": "fg1",
+      "n": 192,
+      "auc": 0.888888888888889
+    },
+    {
+      "scope": "first_sentence",
+      "kind": "char_3_6gram",
+      "stratum": "stated",
+      "held_out_fold": "fg2",
+      "n": 192,
+      "auc": 0.888888888888889
+    },
+    {
+      "scope": "first_sentence",
+      "kind": "char_3_6gram",
+      "stratum": "stated",
+      "held_out_fold": "fg3",
+      "n": 192,
+      "auc": 0.6666666666666667
+    },
+    {
+      "scope": "first_sentence",
+      "kind": "char_3_6gram",
+      "stratum": "stated",
+      "held_out_fold": "fg4",
+      "n": 192,
+      "auc": 0.888888888888889
+    },
+    {
+      "scope": "first_sentence",
+      "kind": "char_3_6gram",
+      "stratum": "stated",
+      "held_out_fold": "fg5",
+      "n": 192,
+      "auc": 1.0
+    },
+    {
+      "scope": "first_sentence",
+      "kind": "char_3_6gram",
+      "stratum": "stated_noun_only",
+      "held_out_fold": "fg1",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "first_sentence",
+      "kind": "char_3_6gram",
+      "stratum": "stated_noun_only",
+      "held_out_fold": "fg2",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "first_sentence",
+      "kind": "char_3_6gram",
+      "stratum": "stated_noun_only",
+      "held_out_fold": "fg3",
+      "n": 64,
+      "auc": 0.0
+    },
+    {
+      "scope": "first_sentence",
+      "kind": "char_3_6gram",
+      "stratum": "stated_noun_only",
+      "held_out_fold": "fg4",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "first_sentence",
+      "kind": "char_3_6gram",
+      "stratum": "stated_noun_only",
+      "held_out_fold": "fg5",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "first_sentence",
+      "kind": "char_3_6gram",
+      "stratum": "stated_verb_only",
+      "held_out_fold": "fg1",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "first_sentence",
+      "kind": "char_3_6gram",
+      "stratum": "stated_verb_only",
+      "held_out_fold": "fg2",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "first_sentence",
+      "kind": "char_3_6gram",
+      "stratum": "stated_verb_only",
+      "held_out_fold": "fg3",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "first_sentence",
+      "kind": "char_3_6gram",
+      "stratum": "stated_verb_only",
+      "held_out_fold": "fg4",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "first_sentence",
+      "kind": "char_3_6gram",
+      "stratum": "stated_verb_only",
+      "held_out_fold": "fg5",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "first_sentence",
+      "kind": "char_3_6gram",
+      "stratum": "stated_both",
+      "held_out_fold": "fg1",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "first_sentence",
+      "kind": "char_3_6gram",
+      "stratum": "stated_both",
+      "held_out_fold": "fg2",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "first_sentence",
+      "kind": "char_3_6gram",
+      "stratum": "stated_both",
+      "held_out_fold": "fg3",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "first_sentence",
+      "kind": "char_3_6gram",
+      "stratum": "stated_both",
+      "held_out_fold": "fg4",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "first_sentence",
+      "kind": "char_3_6gram",
+      "stratum": "stated_both",
+      "held_out_fold": "fg5",
+      "n": 64,
+      "auc": 1.0
+    },
+    {
+      "scope": "second_sentence",
+      "kind": "char_3_5gram",
+      "stratum": "all",
+      "held_out_fold": "fg1",
+      "n": 192,
+      "auc": 0.5
+    },
+    {
+      "scope": "second_sentence",
+      "kind": "char_3_5gram",
+      "stratum": "all",
+      "held_out_fold": "fg2",
+      "n": 192,
+      "auc": 0.5
+    },
+    {
+      "scope": "second_sentence",
+      "kind": "char_3_5gram",
+      "stratum": "all",
+      "held_out_fold": "fg3",
+      "n": 192,
+      "auc": 0.5
+    },
+    {
+      "scope": "second_sentence",
+      "kind": "char_3_5gram",
+      "stratum": "all",
+      "held_out_fold": "fg4",
+      "n": 192,
+      "auc": 0.5
+    },
+    {
+      "scope": "second_sentence",
+      "kind": "char_3_5gram",
+      "stratum": "all",
+      "held_out_fold": "fg5",
+      "n": 192,
+      "auc": 0.5
+    },
+    {
+      "scope": "second_sentence",
+      "kind": "char_3_5gram",
+      "stratum": "stated",
+      "held_out_fold": "fg1",
+      "n": 192,
+      "auc": 0.5
+    },
+    {
+      "scope": "second_sentence",
+      "kind": "char_3_5gram",
+      "stratum": "stated",
+      "held_out_fold": "fg2",
+      "n": 192,
+      "auc": 0.5
+    },
+    {
+      "scope": "second_sentence",
+      "kind": "char_3_5gram",
+      "stratum": "stated",
+      "held_out_fold": "fg3",
+      "n": 192,
+      "auc": 0.5
+    },
+    {
+      "scope": "second_sentence",
+      "kind": "char_3_5gram",
+      "stratum": "stated",
+      "held_out_fold": "fg4",
+      "n": 192,
+      "auc": 0.5
+    },
+    {
+      "scope": "second_sentence",
+      "kind": "char_3_5gram",
+      "stratum": "stated",
+      "held_out_fold": "fg5",
+      "n": 192,
+      "auc": 0.5
+    },
+    {
+      "scope": "second_sentence",
+      "kind": "char_3_5gram",
+      "stratum": "stated_noun_only",
+      "held_out_fold": "fg1",
+      "n": 64,
+      "auc": 0.5
+    },
+    {
+      "scope": "second_sentence",
+      "kind": "char_3_5gram",
+      "stratum": "stated_noun_only",
+      "held_out_fold": "fg2",
+      "n": 64,
+      "auc": 0.5
+    },
+    {
+      "scope": "second_sentence",
+      "kind": "char_3_5gram",
+      "stratum": "stated_noun_only",
+      "held_out_fold": "fg3",
+      "n": 64,
+      "auc": 0.5
+    },
+    {
+      "scope": "second_sentence",
+      "kind": "char_3_5gram",
+      "stratum": "stated_noun_only",
+      "held_out_fold": "fg4",
+      "n": 64,
+      "auc": 0.5
+    },
+    {
+      "scope": "second_sentence",
+      "kind": "char_3_5gram",
+      "stratum": "stated_noun_only",
+      "held_out_fold": "fg5",
+      "n": 64,
+      "auc": 0.5
+    },
+    {
+      "scope": "second_sentence",
+      "kind": "char_3_5gram",
+      "stratum": "stated_verb_only",
+      "held_out_fold": "fg1",
+      "n": 64,
+      "auc": 0.5
+    },
+    {
+      "scope": "second_sentence",
+      "kind": "char_3_5gram",
+      "stratum": "stated_verb_only",
+      "held_out_fold": "fg2",
+      "n": 64,
+      "auc": 0.5
+    },
+    {
+      "scope": "second_sentence",
+      "kind": "char_3_5gram",
+      "stratum": "stated_verb_only",
+      "held_out_fold": "fg3",
+      "n": 64,
+      "auc": 0.5
+    },
+    {
+      "scope": "second_sentence",
+      "kind": "char_3_5gram",
+      "stratum": "stated_verb_only",
+      "held_out_fold": "fg4",
+      "n": 64,
+      "auc": 0.5
+    },
+    {
+      "scope": "second_sentence",
+      "kind": "char_3_5gram",
+      "stratum": "stated_verb_only",
+      "held_out_fold": "fg5",
+      "n": 64,
+      "auc": 0.5
+    },
+    {
+      "scope": "second_sentence",
+      "kind": "char_3_5gram",
+      "stratum": "stated_both",
+      "held_out_fold": "fg1",
+      "n": 64,
+      "auc": 0.5
+    },
+    {
+      "scope": "second_sentence",
+      "kind": "char_3_5gram",
+      "stratum": "stated_both",
+      "held_out_fold": "fg2",
+      "n": 64,
+      "auc": 0.5
+    },
+    {
+      "scope": "second_sentence",
+      "kind": "char_3_5gram",
+      "stratum": "stated_both",
+      "held_out_fold": "fg3",
+      "n": 64,
+      "auc": 0.5
+    },
+    {
+      "scope": "second_sentence",
+      "kind": "char_3_5gram",
+      "stratum": "stated_both",
+      "held_out_fold": "fg4",
+      "n": 64,
+      "auc": 0.5
+    },
+    {
+      "scope": "second_sentence",
+      "kind": "char_3_5gram",
+      "stratum": "stated_both",
+      "held_out_fold": "fg5",
+      "n": 64,
+      "auc": 0.5
+    },
+    {
+      "scope": "second_sentence",
+      "kind": "char_3_6gram",
+      "stratum": "all",
+      "held_out_fold": "fg1",
+      "n": 192,
+      "auc": 0.5
+    },
+    {
+      "scope": "second_sentence",
+      "kind": "char_3_6gram",
+      "stratum": "all",
+      "held_out_fold": "fg2",
+      "n": 192,
+      "auc": 0.5
+    },
+    {
+      "scope": "second_sentence",
+      "kind": "char_3_6gram",
+      "stratum": "all",
+      "held_out_fold": "fg3",
+      "n": 192,
+      "auc": 0.5
+    },
+    {
+      "scope": "second_sentence",
+      "kind": "char_3_6gram",
+      "stratum": "all",
+      "held_out_fold": "fg4",
+      "n": 192,
+      "auc": 0.5
+    },
+    {
+      "scope": "second_sentence",
+      "kind": "char_3_6gram",
+      "stratum": "all",
+      "held_out_fold": "fg5",
+      "n": 192,
+      "auc": 0.5
+    },
+    {
+      "scope": "second_sentence",
+      "kind": "char_3_6gram",
+      "stratum": "stated",
+      "held_out_fold": "fg1",
+      "n": 192,
+      "auc": 0.5
+    },
+    {
+      "scope": "second_sentence",
+      "kind": "char_3_6gram",
+      "stratum": "stated",
+      "held_out_fold": "fg2",
+      "n": 192,
+      "auc": 0.5
+    },
+    {
+      "scope": "second_sentence",
+      "kind": "char_3_6gram",
+      "stratum": "stated",
+      "held_out_fold": "fg3",
+      "n": 192,
+      "auc": 0.5
+    },
+    {
+      "scope": "second_sentence",
+      "kind": "char_3_6gram",
+      "stratum": "stated",
+      "held_out_fold": "fg4",
+      "n": 192,
+      "auc": 0.5
+    },
+    {
+      "scope": "second_sentence",
+      "kind": "char_3_6gram",
+      "stratum": "stated",
+      "held_out_fold": "fg5",
+      "n": 192,
+      "auc": 0.5
+    },
+    {
+      "scope": "second_sentence",
+      "kind": "char_3_6gram",
+      "stratum": "stated_noun_only",
+      "held_out_fold": "fg1",
+      "n": 64,
+      "auc": 0.5
+    },
+    {
+      "scope": "second_sentence",
+      "kind": "char_3_6gram",
+      "stratum": "stated_noun_only",
+      "held_out_fold": "fg2",
+      "n": 64,
+      "auc": 0.5
+    },
+    {
+      "scope": "second_sentence",
+      "kind": "char_3_6gram",
+      "stratum": "stated_noun_only",
+      "held_out_fold": "fg3",
+      "n": 64,
+      "auc": 0.5
+    },
+    {
+      "scope": "second_sentence",
+      "kind": "char_3_6gram",
+      "stratum": "stated_noun_only",
+      "held_out_fold": "fg4",
+      "n": 64,
+      "auc": 0.5
+    },
+    {
+      "scope": "second_sentence",
+      "kind": "char_3_6gram",
+      "stratum": "stated_noun_only",
+      "held_out_fold": "fg5",
+      "n": 64,
+      "auc": 0.5
+    },
+    {
+      "scope": "second_sentence",
+      "kind": "char_3_6gram",
+      "stratum": "stated_verb_only",
+      "held_out_fold": "fg1",
+      "n": 64,
+      "auc": 0.5
+    },
+    {
+      "scope": "second_sentence",
+      "kind": "char_3_6gram",
+      "stratum": "stated_verb_only",
+      "held_out_fold": "fg2",
+      "n": 64,
+      "auc": 0.5
+    },
+    {
+      "scope": "second_sentence",
+      "kind": "char_3_6gram",
+      "stratum": "stated_verb_only",
+      "held_out_fold": "fg3",
+      "n": 64,
+      "auc": 0.5
+    },
+    {
+      "scope": "second_sentence",
+      "kind": "char_3_6gram",
+      "stratum": "stated_verb_only",
+      "held_out_fold": "fg4",
+      "n": 64,
+      "auc": 0.5
+    },
+    {
+      "scope": "second_sentence",
+      "kind": "char_3_6gram",
+      "stratum": "stated_verb_only",
+      "held_out_fold": "fg5",
+      "n": 64,
+      "auc": 0.5
+    },
+    {
+      "scope": "second_sentence",
+      "kind": "char_3_6gram",
+      "stratum": "stated_both",
+      "held_out_fold": "fg1",
+      "n": 64,
+      "auc": 0.5
+    },
+    {
+      "scope": "second_sentence",
+      "kind": "char_3_6gram",
+      "stratum": "stated_both",
+      "held_out_fold": "fg2",
+      "n": 64,
+      "auc": 0.5
+    },
+    {
+      "scope": "second_sentence",
+      "kind": "char_3_6gram",
+      "stratum": "stated_both",
+      "held_out_fold": "fg3",
+      "n": 64,
+      "auc": 0.5
+    },
+    {
+      "scope": "second_sentence",
+      "kind": "char_3_6gram",
+      "stratum": "stated_both",
+      "held_out_fold": "fg4",
+      "n": 64,
+      "auc": 0.5
+    },
+    {
+      "scope": "second_sentence",
+      "kind": "char_3_6gram",
+      "stratum": "stated_both",
+      "held_out_fold": "fg5",
+      "n": 64,
+      "auc": 0.5
+    }
+  ],
+  "interpretation": {
+    "positive_coefficient": "feature increases held-fold evaluation score",
+    "train_asymmetry": "presence rate in evaluation training rows minus deployment training rows",
+    "diagnostic_only": true
+  }
+}

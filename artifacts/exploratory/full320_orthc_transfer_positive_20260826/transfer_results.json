@@ -1,0 +1,274 @@
+{
+  "analysis_script_sha256": "73f75d704c5279ebe355455b0bb59ca09c2cc5135e52241ed9910eb1855536cd",
+  "claim_scope": {
+    "allowed_if_positive": "On 80 pilot80-payload-disjoint full320 blocks, the fixed pilot80-trained A/B-orthogonalized C direction reproduced a positive, random-calibrated, high-minus-low purpose-interaction response in both frozen Llama models under copied pilot80 readouts.",
+    "prohibited": [
+      "latent evaluation awareness",
+      "pure semantic or format-independent mechanism",
+      "independent new-item-bank confirmation",
+      "full A/B/C factorial replication",
+      "behavioral steering",
+      "generalization beyond the two frozen models, selected blocks, layers, and copied readouts"
+    ]
+  },
+  "config_path": "/scratch/jppatton/langea/runs/tae_2026/full320_orthc_transfer_src_f5817122/configs/full320_orthogonalized_c_transfer_v1.json",
+  "config_sha256": "f58171224a631f26121451578b43659391f4c375cfbd0dbd1669b4d8389e2e15",
+  "cross_model": {
+    "n_paired_payload_blocks": 80,
+    "primary_effect_pearson_p_two_sided": 0.5735073264060975,
+    "primary_effect_pearson_r": 0.06387438753022723,
+    "primary_effect_spearman_p_two_sided": 0.5785756056223282,
+    "primary_effect_spearman_r": 0.06303328645100799
+  },
+  "decision": "positive_replication",
+  "decision_rule": "POSITIVE_REPLICATION only if, in both models: primary high-minus-low mean>0 and Holm p<=0.05; high-layer C interaction mean>0 and Holm p<=0.05; alpha=0.5 high-minus-low mean>0; and alpha=1 primary mean exceeds the 97.5th percentile of absolute copied-random-direction high-minus-low means. Otherwise CLEAN_NEGATIVE_OR_MIXED_REPLICATION, unless an integrity or activation gate fails, which is TECHNICALLY_INVALID.",
+  "models": {
+    "meta-llama/Llama-3.1-8B-Instruct": {
+      "collateral_endpoints_descriptive": {
+        "format": {
+          "high_mean": 0.003112706512990215,
+          "high_minus_low_mean": 0.002716344508565627,
+          "high_minus_low_sd": 0.002277213044794177,
+          "low_mean": 0.00039636200442458807
+        },
+        "shared": {
+          "high_mean": 0.5294590568276594,
+          "high_minus_low_mean": 0.5302399656300123,
+          "high_minus_low_sd": 0.037241051853946085,
+          "low_mean": -0.0007809088023531011
+        }
+      },
+      "half_alpha_high_minus_low": {
+        "mean": 0.37427408170770526,
+        "ratio_to_alpha1": 0.5000081550450794,
+        "sd": 0.022201604346229545
+      },
+      "high_layer_C_interaction": {
+        "ci95_payload_bootstrap": [
+          0.7397449506807396,
+          0.7593125241560076
+        ],
+        "holm_p_two_models": 2.228892082151574e-99,
+        "mean": 0.7495790735854742,
+        "one_sided_t_p_unadjusted": 2.228892082151574e-99,
+        "sd": 0.0443209589688338
+      },
+      "low_layer_C_interaction": {
+        "ci95_payload_bootstrap": [
+          0.00043731857548686846,
+          0.001637189114905366
+        ],
+        "mean": 0.0010431188589722614,
+        "sd": 0.002754579101523425
+      },
+      "n_payload_blocks": 80,
+      "primary_high_minus_low": {
+        "all_blocks_positive": true,
+        "ci95_payload_bootstrap": [
+          0.7387664155215603,
+          0.7582281120983998
+        ],
+        "holm_p_two_models": 7.0828099017135306e-99,
+        "mean": 0.7485359547265018,
+        "one_sided_t_p_unadjusted": 7.0828099017135306e-99,
+        "sd": 0.044914054239243384
+      },
+      "random_control_calibration": {
+        "C_exceeds_absolute_random_97_5_percentile": true,
+        "absolute_mean_97_5_percentile": 0.06337662999994695,
+        "high_minus_low_means": [
+          -0.008418851349987266,
+          -0.01680216259036949,
+          0.005017384239222586,
+          -0.03358492571846657,
+          0.018093617512834358,
+          -0.012430409900741412,
+          0.007735874795376041,
+          0.013855965415859395,
+          0.013529446949740304,
+          -0.0176740497089451,
+          -0.046999145594723866,
+          -0.03448199946784615,
+          -0.018869694563357818,
+          -0.030808734338049946,
+          -0.041970647751316134,
+          0.06936622175788157,
+          0.04621255413934416,
+          0.025645365693868227,
+          0.006396421058838213,
+          0.0616377162637724,
+          -0.030337699538441176,
+          0.02021142223132762,
+          -0.03298028518898456,
+          0.03521166300075257,
+          0.025972407127853713,
+          -0.024478041781044475,
+          -0.008995380721678367,
+          -0.025440251845056973,
+          -0.001131642739169787,
+          0.0027884078582702775,
+          0.025070224376164497,
+          0.008933427971818057
+        ],
+        "n_directions": 32
+      }
+    },
+    "meta-llama/Llama-3.3-70B-Instruct": {
+      "collateral_endpoints_descriptive": {
+        "format": {
+          "high_mean": -0.01927643000608051,
+          "high_minus_low_mean": -0.01921707050802751,
+          "high_minus_low_sd": 0.0016302138218107153,
+          "low_mean": -5.9359498052997355e-05
+        },
+        "shared": {
+          "high_mean": 0.2459222333333429,
+          "high_minus_low_mean": 0.24643268756005404,
+          "high_minus_low_sd": 0.04674607621459199,
+          "low_mean": -0.0005104542267111171
+        }
+      },
+      "half_alpha_high_minus_low": {
+        "mean": 0.34072264094561655,
+        "ratio_to_alpha1": 0.49981968026386625,
+        "sd": 0.017501831067946054
+      },
+      "high_layer_C_interaction": {
+        "ci95_payload_bootstrap": [
+          0.6743928327859678,
+          0.6893404905182589
+        ],
+        "holm_p_two_models": 2.568439615528562e-104,
+        "mean": 0.6818594239267481,
+        "one_sided_t_p_unadjusted": 1.284219807764281e-104,
+        "sd": 0.03459151771107346
+      },
+      "low_layer_C_interaction": {
+        "ci95_payload_bootstrap": [
+          -0.0002260731168473438,
+          0.0005625816124079413
+        ],
+        "mean": 0.00016829730736139722,
+        "sd": 0.0018055684619499286
+      },
+      "n_payload_blocks": 80,
+      "primary_high_minus_low": {
+        "all_blocks_positive": true,
+        "ci95_payload_bootstrap": [
+          0.6741727643302357,
+          0.6889652198637805
+        ],
+        "holm_p_two_models": 2.057176459848571e-104,
+        "mean": 0.6816911266193866,
+        "one_sided_t_p_unadjusted": 1.0285882299242854e-104,
+        "sd": 0.03448570678172145
+      },
+      "random_control_calibration": {
+        "C_exceeds_absolute_random_97_5_percentile": true,
+        "absolute_mean_97_5_percentile": 0.034570650595943844,
+        "high_minus_low_means": [
+          0.014359247498602979,
+          0.035871341065628684,
+          0.019500139595188697,
+          0.00718579328614726,
+          -0.024005577669204692,
+          0.01446895088787382,
+          0.005435840722153572,
+          0.021271323698910133,
+          0.023051149301499832,
+          0.00715822900902546,
+          -0.006991395908099512,
+          -0.012102418693778438,
+          0.00039710442415602195,
+          -0.012920113291057156,
+          -0.033982839840836575,
+          -0.017672734795474824,
+          -0.018044723149749718,
+          -0.007152956011119487,
+          0.01777481839064692,
+          -0.03419303078216438,
+          0.020691307116448312,
+          -0.01880899588698587,
+          -0.01775502440162427,
+          -0.014859635559244933,
+          -0.013594067078297436,
+          0.010601654403737433,
+          0.011770217028793006,
+          -0.0119625784353086,
+          -0.014493433973835937,
+          -0.0029518188427683904,
+          0.03081242944396555,
+          0.0029263323682776243
+        ],
+        "n_directions": 32
+      }
+    }
+  },
+  "protocol_id": "full320_orthogonalized_c_transfer_v1",
+  "run_manifests": {
+    "meta-llama/Llama-3.1-8B-Instruct": {
+      "activation_sha256": "5822e7a3a436c3106a82259f307b3dd08d06b7c34f95d0bf924d0e7ede9b810c",
+      "config_sha256": "f58171224a631f26121451578b43659391f4c375cfbd0dbd1669b4d8389e2e15",
+      "elapsed_seconds": 10660.45817732811,
+      "engine_sha256": "c3f7f0f7711f678d289c19b56795277effc6d77259d4c5a6c382485b1354efef",
+      "expected_records": 264960,
+      "items_sha256": "4c7d7a5b51d771982be01285d3be9b2b99b3fd6c79b7cbbf44e9b94c941f857d",
+      "model_file_hashes": {
+        "checkpoint/config.json": "29e4c210b0d6ac178b16b2a255a568bdb23b581e50ca1ef6a6d071dd85704e6e",
+        "checkpoint/model.safetensors.index.json": "146776fce3f6db1103aa6f249e65ee5544c5923ce6f971b092eee79aa6e5d37b",
+        "checkpoint/special_tokens_map.json": "6f38c73729248f6c127296386e3cdde96e254636cc58b4169d3fd32328d9a8ec",
+        "checkpoint/tokenizer.json": "79e3e522635f3171300913bb421464a87de6222182a0570b9b2ccba2a964b2b4",
+        "checkpoint/tokenizer_config.json": "177c7b61e616fecb84c17ce0591acb92c6c4d60e9ac5ababfb940ff23bbcd424",
+        "tokenizer/special_tokens_map.json": "6f38c73729248f6c127296386e3cdde96e254636cc58b4169d3fd32328d9a8ec",
+        "tokenizer/tokenizer.json": "79e3e522635f3171300913bb421464a87de6222182a0570b9b2ccba2a964b2b4",
+        "tokenizer/tokenizer_config.json": "177c7b61e616fecb84c17ce0591acb92c6c4d60e9ac5ababfb940ff23bbcd424"
+      },
+      "model_id": "meta-llama/Llama-3.1-8B-Instruct",
+      "plan_json_sha256": "5af1ca53e573e243d089684cb21d2e0313251894c7c63b8edc68604e09774cd9",
+      "plan_npz_sha256": "c0368f2fd275c968187ec377f24fd76f89a2b8cb8a74ebbbb3f79193a63a9a35",
+      "protocol_id": "full320_orthogonalized_c_transfer_v1",
+      "raw_path": "causal_raw.jsonl",
+      "raw_sha256": "aaffc86f43535a2cb081c005e16533d70d9f60c84f4eef7ba35496a7d03bd6e2",
+      "records": 264960,
+      "records_written_this_invocation": 264960,
+      "revision": "0e9e39f249a16976918f6564b8830bc894c89659",
+      "schema_version": 1,
+      "script_sha256": "68b5307eaeed3f400f9778cc0a75b3cf6b54545c59f704cf12fd1495ec03cefa",
+      "status": "completed_uninspected_full320_orthc_transfer_raw"
+    },
+    "meta-llama/Llama-3.3-70B-Instruct": {
+      "activation_sha256": "f368fee4059f1b5472a6fca8a53efa243ced8b77bb36212bd407667faf7addc7",
+      "config_sha256": "f58171224a631f26121451578b43659391f4c375cfbd0dbd1669b4d8389e2e15",
+      "elapsed_seconds": 31667.744333267212,
+      "engine_sha256": "c3f7f0f7711f678d289c19b56795277effc6d77259d4c5a6c382485b1354efef",
+      "expected_records": 264960,
+      "items_sha256": "4c7d7a5b51d771982be01285d3be9b2b99b3fd6c79b7cbbf44e9b94c941f857d",
+      "model_file_hashes": {
+        "checkpoint/config.json": "95ef9768e4741543dbfaf0c274f101855883ff338b235c99eca2b6a4f4abee12",
+        "checkpoint/model.safetensors.index.json": "2abe0910e23770a30ccf9b1b91804c64831c47f9c98defaa5293aa999433fc2b",
+        "checkpoint/special_tokens_map.json": "b7455f0e8f00539108837bfa586c4fbf424e31f8717819a6798be74bef813d05",
+        "checkpoint/tokenizer.json": "6b9e4e7fb171f92fd137b777cc2714bf87d11576700a1dcd7a399e7bbe39537b",
+        "checkpoint/tokenizer_config.json": "5c756ad6048c884974a331963ae3c3e1624b548a11174dadda02a69041c87352",
+        "tokenizer/config.json": "95ef9768e4741543dbfaf0c274f101855883ff338b235c99eca2b6a4f4abee12",
+        "tokenizer/model.safetensors.index.json": "2abe0910e23770a30ccf9b1b91804c64831c47f9c98defaa5293aa999433fc2b",
+        "tokenizer/special_tokens_map.json": "b7455f0e8f00539108837bfa586c4fbf424e31f8717819a6798be74bef813d05",
+        "tokenizer/tokenizer.json": "6b9e4e7fb171f92fd137b777cc2714bf87d11576700a1dcd7a399e7bbe39537b",
+        "tokenizer/tokenizer_config.json": "5c756ad6048c884974a331963ae3c3e1624b548a11174dadda02a69041c87352"
+      },
+      "model_id": "meta-llama/Llama-3.3-70B-Instruct",
+      "plan_json_sha256": "275aecb13b2565ebf470766f3d1a0ddd987062b8441d3f13194dc76615cb25f2",
+      "plan_npz_sha256": "4abf2e70c6a89e3d60879d23791cb9931a8f2f532e82deafe5b94178fd780a3c",
+      "protocol_id": "full320_orthogonalized_c_transfer_v1",
+      "raw_path": "causal_raw.jsonl",
+      "raw_sha256": "990b5127938be00e49a67145d3404ccae952dab7fe17655e5fc9f3dddd8a6a94",
+      "records": 264960,
+      "records_written_this_invocation": 264960,
+      "revision": "6f6073b423013f6a7d4d9f39144961bfbfbc386b",
+      "schema_version": 1,
+      "script_sha256": "68b5307eaeed3f400f9778cc0a75b3cf6b54545c59f704cf12fd1495ec03cefa",
+      "status": "completed_uninspected_full320_orthc_transfer_raw"
+    }
+  },
+  "schema_version": 1,
+  "status": "complete_frozen_transfer_analysis"
+}

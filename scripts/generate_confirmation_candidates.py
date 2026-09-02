@@ -1,0 +1,169 @@
+"""Call an approved local completion endpoint and preserve raw generation provenance.
+
+The endpoint is local cluster compute, not a remote API. This script never
+accepts a candidate as valid; parsing and semantic validation are separate.
+"""
+from __future__ import annotations
+
+import argparse
+import re
+FRAME_BANNED_STEMS = frozenset({
+    "accuracy", "act", "adjudicator", "adopt", "apply", "appraise", "asses",
+    "auditor", "buy", "call", "carry", "check", "client", "combine", "crew",
+    "critique", "custom", "dispatch", "employ", "forward", "frontline", "go",
+    "grade", "grocery", "heed", "inspect", "invoice", "item", "judge", "mark",
+    "operation", "order", "outside", "panel", "point", "practice", "purchase",
+    "qa", "quality", "queue", "rate", "recipient", "referee", "repair", "review",
+    "rubric", "score", "service", "shopping", "spot", "standard", "support",
+    "table", "tenant", "ticket", "test", "user", "verdict", "vet", "wait", "work",
+})
+FRAME_FUNCTION_STEMS = frozenset({
+    "a", "an", "and", "are", "as", "at", "be", "been", "being", "before", "by",
+    "during", "for", "from", "he", "her", "him", "his", "i", "in", "into", "is",
+    "it", "its", "me", "my", "now", "of", "on", "or", "our", "she", "that",
+    "the", "their", "them", "they", "this", "those", "through", "to",
+    "was", "we", "were", "with", "you", "your", "after", "already",
+})
+
+import hashlib
+import json
+import time
+import urllib.request
+from pathlib import Path
+
+SCHEMA = {
+    "payloads": {
+        "name": "payloads",
+        "prompt": """Generate exactly 8 independent, objectively answerable English task payloads as a JSON array. Each object must have payload_block_id, topic_id, task_family, context, question, correct_answer, distractors (exactly three), and answer_explanation. Use diverse topics, no purpose/evaluation/deployment language, and no benchmark-format language. Every question must be self-contained with one unique answer. Return JSON only.""",
+    },
+    "frames": {
+        "name": "frames",
+        "prompt": """Generate exactly 10 purpose frame pairs as a JSON array for one vocabulary fold. The required object fields are pair_id, cue_locus, cue_perspective, evaluation, deployment, and semantic_rationale. cue_locus MUST be exactly one of noun_only, verb_only, both, or context; cue_perspective MUST be exactly third, indirect, or second. Emit pairs in this exact order: positions 1-2 noun_only/third, 3-4 verb_only/third, 5-6 both/third, 7-8 context/indirect with an indirect workflow cue, and 9-10 context/second with a second-person cue. The evaluation member must describe a response being gathered as evidence before deciding whether a system should enter or remain in live use. The deployment member must describe a response serving an already-established live system request. Use matched natural syntax and make the purpose relation explicit through workflow context, not generic employee performance. Include concrete operational cues such as approval before release versus serving current users, but do not use the words evaluation, evaluate, deployment, deploy, benchmark, test, exam, grading, assessment, live-use, or explicit purpose labels in either member. Do not use generic performance praise, promotion, or hiring as the purpose contrast. Do not use these development purpose-asymmetric stems or morphological variants: accuracy, act, adjudicator, adopt, apply, appraise, asses, auditor, buy, call, carry, check, client, combine, crew, critique, custom, dispatch, employ, forward, frontline, go, grade, grocery, heed, inspect, invoice, item, judge, mark, operation, order, outside, panel, point, practice, purchase, qa, quality, queue, rate, recipient, referee, repair, review, rubric, score, service, shopping, spot, standard, support, table, tenant, ticket, user, verdict, vet, wait, work. Vary vocabulary, clause order, tense, voice, sentence count, subject type, punctuation, and cue position. Return JSON only.""",
+    },
+}
+
+TOPIC_IDS = (
+    "lichen_growth", "river_gauges", "ceramic_glazes", "orbital_windows",
+    "maple_syrup", "wind_turbines", "beehive_cells", "granite_samples",
+    "tidal_basins", "copper_spools", "garden_compost", "paper_lanterns",
+    "signal_beacons", "rainfall_bins", "mosaic_tiles", "seed_batches",
+)
+PAYLOAD_TOPIC_SCHEDULE = tuple(topic for topic in TOPIC_IDS for _ in range(5))
+FRAME_VOCABULARY = (
+    {"evaluation": ("screening", "weigh", "prospect", "admissible"), "deployment": ("routine", "serve", "steady", "current")},
+    {"evaluation": ("probe", "measure", "candidate", "preflight"), "deployment": ("operate", "ongoing", "established", "request")},
+    {"evaluation": ("inquiry", "scrutiny", "forecast", "readiness"), "deployment": ("traffic", "regular", "running", "stream")},
+    {"evaluation": ("trial", "sample", "compare", "provisional"), "deployment": ("active", "settled", "daily", "serving")},
+    {"evaluation": ("preview", "qualify", "prospective", "envision"), "deployment": ("stable", "fulfill", "present", "available")},
+)
+
+
+
+def request_json(url: str, prompt: str, model: str, max_tokens: int, temperature: float, seed: int) -> tuple[str, dict]:
+    body = {
+        "model": model,
+        "messages": [{"role": "user", "content": prompt}],
+        "temperature": temperature,
+        "top_p": 0.9,
+        "max_tokens": max_tokens,
+        "seed": seed,
+    }
+    data = json.dumps(body).encode("utf-8")
+    req = urllib.request.Request(url, data=data, headers={"Content-Type": "application/json"})
+    with urllib.request.urlopen(req, timeout=900) as response:
+        raw = response.read().decode("utf-8")
+    parsed = json.loads(raw)
+    text = parsed["choices"][0]["message"]["content"]
+    return text, parsed
+
+
+def extract_json(text: str):
+    start = text.find("[")
+    end = text.rfind("]")
+    if start < 0 or end <= start:
+        raise ValueError("completion did not contain a JSON array")
+    return json.loads(text[start : end + 1])
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--url", required=True)
+    parser.add_argument("--model", required=True)
+    parser.add_argument("--model-revision", default=None)
+    parser.add_argument("--kind", choices=sorted(SCHEMA), required=True)
+    parser.add_argument("--batches", type=int, required=True)
+    parser.add_argument("--start-batch", type=int, default=0)
+    parser.add_argument("--seed", type=int, default=0)
+    parser.add_argument("--temperature", type=float, default=0.2)
+    parser.add_argument("--max-tokens", type=int, default=4096)
+    parser.add_argument("--out-dir", type=Path, required=True)
+    args = parser.parse_args()
+    args.out_dir.mkdir(parents=True, exist_ok=True)
+    records = []
+    accepted = []
+    for batch in range(args.start_batch, args.start_batch + args.batches):
+        seed = args.seed + batch
+        prompt = SCHEMA[args.kind]["prompt"] + f"\nThis is batch {batch}; use fresh content."
+        if args.kind == "payloads":
+            topics = PAYLOAD_TOPIC_SCHEDULE[batch * 8 : (batch + 1) * 8]
+            prompt += "\nUse these topic_id values in this exact order, matching the content topics; do not invent other topic_id values: " + json.dumps(topics)
+            prompt += "\nHard positional constraint: emit exactly 8 objects; object positions 1-8 must use the listed topic_id values in order, including repeated values. Do not reorder, omit, or substitute any position."
+        else:
+            vocab = FRAME_VOCABULARY[batch % len(FRAME_VOCABULARY)]
+            prompt += "\nThis fold has a predeclared disjoint lexical bank. Use the evaluation-side content stems only in evaluation members and deployment-side content stems only in deployment members. Use these stems repeatedly where natural and do not introduce any other purpose-asymmetric content stems: " + json.dumps(vocab, sort_keys=True)
+            prompt += "\nThe bank is machine-checked for cross-fold lexical disjointness; do not use synonyms or morphological variants from another fold."
+            prompt += "\nUse only the bank stems plus these neutral words: system, response, record, signal, stage, release, decision, request, workflow, phase, context, result, state, before, after, during, already, now, and, the, a, an, is, was, are, will, can, to, from, for, in, on, with. Do not add any other content word. Every neutral content word must occur symmetrically in both members of a pair; only the BANK stem and the predeclared before/after context may differ. Use one of these exact sentence skeletons for each pair, changing only the BANK stem and the before/after context: 'Before release, the system records a BANK response.' versus 'After release, the system records a BANK response.'; 'The workflow holds a BANK record before release.' versus 'The workflow holds a BANK record after release.'; 'During the release phase, a BANK signal informs the decision.' versus 'After the release phase, a BANK signal informs the decision.'"
+        started = time.time()
+        try:
+            text, response = request_json(args.url, prompt, args.model, args.max_tokens, args.temperature, seed)
+            parsed = extract_json(text)
+            if not isinstance(parsed, list) or len(parsed) != (8 if args.kind == "payloads" else 10):
+                raise ValueError("wrong candidate count")
+            if args.kind == "frames":
+                expected = (
+                    [("noun_only", "third")] * 2
+                    + [("verb_only", "third")] * 2
+                    + [("both", "third")] * 2
+                    + [("context", "indirect")] * 2
+                    + [("context", "second")] * 2
+                )
+                for index, candidate in enumerate(parsed):
+                    text_tokens = set(re.findall(r"[a-z]+", f"{candidate.get('evaluation', '')} {candidate.get('deployment', '')}".lower()))
+                    if text_tokens & FRAME_BANNED_STEMS:
+                        raise ValueError(f"frame contains forbidden stems: {sorted(text_tokens & FRAME_BANNED_STEMS)}")
+                    vocab = FRAME_VOCABULARY[batch % len(FRAME_VOCABULARY)]
+                    allowed_asymmetric = set(vocab["evaluation"]) | set(vocab["deployment"]) | FRAME_FUNCTION_STEMS
+                    evaluation_tokens = set(re.findall(r"[a-z]+", str(candidate.get("evaluation", "")).lower()))
+                    deployment_tokens = set(re.findall(r"[a-z]+", str(candidate.get("deployment", "")).lower()))
+                    asymmetric = (evaluation_tokens - deployment_tokens) | (deployment_tokens - evaluation_tokens)
+                    if asymmetric - allowed_asymmetric:
+                        raise ValueError(f"frame has unbanked asymmetric stems: {sorted(asymmetric - allowed_asymmetric)}")
+            accepted.extend(parsed)
+            status = "parsed"
+            error = None
+        except Exception as exc:
+            text, response, parsed = "", {}, None
+            status = "rejected_parse"
+            error = repr(exc)
+        records.append({
+            "kind": args.kind,
+            "batch": batch,
+            "seed": seed,
+            "model": args.model,
+            "model_revision": args.model_revision,
+            "temperature": args.temperature,
+            "max_tokens": args.max_tokens,
+            "prompt": prompt,
+            "raw_completion": text,
+            "raw_response_sha256": hashlib.sha256(json.dumps(response, sort_keys=True).encode()).hexdigest(),
+            "status": status,
+            "error": error,
+            "elapsed_seconds": time.time() - started,
+        })
+    (args.out_dir / f"{args.kind}_candidates.json").write_text(json.dumps(accepted, indent=2) + "\n", encoding="utf-8")
+    (args.out_dir / f"{args.kind}_generation_log.jsonl").write_text("".join(json.dumps(r, sort_keys=True) + "\n" for r in records), encoding="utf-8")
+    print(json.dumps({"kind": args.kind, "batches": args.batches, "parsed_candidates": len(accepted), "log": str(args.out_dir)}))
+
+
+if __name__ == "__main__":
+    main()

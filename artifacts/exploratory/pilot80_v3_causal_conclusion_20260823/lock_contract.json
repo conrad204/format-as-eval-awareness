@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "status": "locked_exploratory_and_frozen_result_package",
+  "primary_inference": {
+    "source": "artifacts/exploratory/pilot80_v3_causal_conclusion_20260823/conclusion.json",
+    "decision": "negative",
+    "do_not_rerun_or_modify": true,
+    "allowed_claims": [
+      "high-layer C purpose-by-format interaction passes in both models",
+      "C dose-response and factorial additivity pass",
+      "A and B frozen main-effect criteria fail",
+      "prior technical gate failure is resolved by deterministic execution and batch-one intervention execution"
+    ],
+    "prohibited_claims": [
+      "evaluation awareness",
+      "clean positive A/B/C mechanism",
+      "behavioral steering",
+      "universal mechanism or causal scaling law"
+    ]
+  },
+  "sensitivity_analysis": {
+    "source": "private orthogonalized-C complete runs",
+    "role": "exploratory only; cannot alter primary decision",
+    "sampling_unit": "payload block",
+    "cells": "all four purpose-by-format cells",
+    "layers": "frozen low-interaction control and frozen high-interaction layer",
+    "interval": "10,000-seed percentile bootstrap over payload-block means",
+    "reported_outputs": ["point estimate", "95% percentile CI", "block count", "all-block sign check"],
+    "multiplicity": "no confirmatory p-value claim; complete prespecified grid reported",
+    "no_post_outcome_selection": true
+  },
+  "integrity_checks": [
+    "completed runner manifest precedes analysis",
+    "163200 records per model",
+    "source baseline max_abs <= 0.125",
+    "source baseline cosine >= 0.999",
+    "all four cells and 80 payload blocks per cell retained",
+    "raw SHA-256 hashes retained"
+  ],
+  "frozen_decision_boundary": "Do not add GPU data, retune thresholds, select favorable layers, or promote the sensitivity result into confirmation after observing outcomes."
+}

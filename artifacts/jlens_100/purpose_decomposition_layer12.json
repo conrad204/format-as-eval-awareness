@@ -1,0 +1,254 @@
+{
+  "schema_version": 1,
+  "status": "development_only",
+  "purpose_direction": "held-vocabulary-fold logistic probe raw coefficient, averaged only for reporting; decomposition uses each held-out fold direction",
+  "j_space_definition": "right-singular-vector input subspace of the fitted source-to-target Jacobian",
+  "energy_thresholds": [
+    0.9,
+    0.95,
+    0.99
+  ],
+  "items": {
+    "path": "data\\rendered_items_v2_pilot80_8-16-2026.jsonl",
+    "sha256": "d312b59130d4ca9a655391ea28ea8f7b42363eb1d35e0ad9763fedc051a6dbf7"
+  },
+  "activations": {
+    "path": "activations_dataset\\activations\\llama31_8b_pilot80\\activations_all_layers.npz",
+    "sha256": "983fca52b5d96a3c697a3533fca9ff13625c4789f17277d5f8edcdfa3b66eba7"
+  },
+  "lens": {
+    "path": "artifacts\\jlens_100\\lens.pt",
+    "sha256": "7649602a423ac7c40704116d30daad1e88d8821651ce509948d0df97f95f4fd8",
+    "n_prompts": 100,
+    "source_layers": [
+      4,
+      9,
+      12,
+      15,
+      20,
+      24
+    ]
+  },
+  "layers": [
+    {
+      "layer": 12,
+      "jacobian_shape": [
+        4096,
+        4096
+      ],
+      "numerical_rank": 4096,
+      "singular_max": 18.54039597994032,
+      "singular_min": 4.867948283183255e-05,
+      "condition_number": 380866.74100441264,
+      "thresholds": {
+        "0.9": {
+          "rank": 538,
+          "captured_frobenius_energy": 0.9001715003565381,
+          "folds": {}
+        },
+        "0.95": {
+          "rank": 887,
+          "captured_frobenius_energy": 0.9500381033887743,
+          "folds": {}
+        },
+        "0.99": {
+          "rank": 1777,
+          "captured_frobenius_energy": 0.9900009594980348,
+          "folds": {}
+        }
+      },
+      "folds": {
+        "fg1": {
+          "n_train": 768,
+          "n_test": 192,
+          "original_auc": 0.9930555555555556,
+          "original_norm": 71.74524246354099,
+          "thresholds": {
+            "0.9": {
+              "rank": 538,
+              "j_norm_fraction": 0.33348773407337595,
+              "orth_norm_fraction": 0.9427544384528799,
+              "j_cosine": 0.33348773407337584,
+              "j_auc": 0.7569444444444444,
+              "orth_auc": 0.9796006944444445
+            },
+            "0.95": {
+              "rank": 887,
+              "j_norm_fraction": 0.4282764835296966,
+              "orth_norm_fraction": 0.9036477486584232,
+              "j_cosine": 0.42827648352969655,
+              "j_auc": 0.7923177083333333,
+              "orth_auc": 0.9691840277777778
+            },
+            "0.99": {
+              "rank": 1777,
+              "j_norm_fraction": 0.619207401203515,
+              "orth_norm_fraction": 0.7852274793299001,
+              "j_cosine": 0.6192074012035153,
+              "j_auc": 0.8490668402777777,
+              "orth_auc": 0.9153645833333334
+            }
+          },
+          "exact_row_space": {
+            "j_norm_fraction": 1.0,
+            "orth_norm_fraction": 0.0,
+            "j_auc": 0.9930555555555556,
+            "orth_auc": null
+          }
+        },
+        "fg2": {
+          "n_train": 768,
+          "n_test": 192,
+          "original_auc": 0.9796006944444444,
+          "original_norm": 72.59218470065211,
+          "thresholds": {
+            "0.9": {
+              "rank": 538,
+              "j_norm_fraction": 0.3283520796729067,
+              "orth_norm_fraction": 0.9445554042905462,
+              "j_cosine": 0.32835207967290664,
+              "j_auc": 0.6968315972222222,
+              "orth_auc": 0.9754774305555556
+            },
+            "0.95": {
+              "rank": 887,
+              "j_norm_fraction": 0.4212277087829301,
+              "orth_norm_fraction": 0.9069549147303207,
+              "j_cosine": 0.42122770878293003,
+              "j_auc": 0.737521701388889,
+              "orth_auc": 0.9741753472222223
+            },
+            "0.99": {
+              "rank": 1777,
+              "j_norm_fraction": 0.6195739760046248,
+              "orth_norm_fraction": 0.7849382703485801,
+              "j_cosine": 0.6195739760046248,
+              "j_auc": 0.8000217013888888,
+              "orth_auc": 0.9486762152777778
+            }
+          },
+          "exact_row_space": {
+            "j_norm_fraction": 1.0,
+            "orth_norm_fraction": 0.0,
+            "j_auc": 0.9796006944444444,
+            "orth_auc": null
+          }
+        },
+        "fg3": {
+          "n_train": 768,
+          "n_test": 192,
+          "original_auc": 0.9991319444444444,
+          "original_norm": 72.79399162774361,
+          "thresholds": {
+            "0.9": {
+              "rank": 538,
+              "j_norm_fraction": 0.3340429403131957,
+              "orth_norm_fraction": 0.9425578571243863,
+              "j_cosine": 0.3340429403131958,
+              "j_auc": 0.6797960069444444,
+              "orth_auc": 0.9986979166666666
+            },
+            "0.95": {
+              "rank": 887,
+              "j_norm_fraction": 0.42524046237614277,
+              "orth_norm_fraction": 0.9050804103272396,
+              "j_cosine": 0.42524046237614294,
+              "j_auc": 0.7122395833333334,
+              "orth_auc": 0.9826388888888888
+            },
+            "0.99": {
+              "rank": 1777,
+              "j_norm_fraction": 0.6241412138155589,
+              "orth_norm_fraction": 0.7813115545138452,
+              "j_cosine": 0.6241412138155588,
+              "j_auc": 0.7546657986111112,
+              "orth_auc": 0.8637152777777779
+            }
+          },
+          "exact_row_space": {
+            "j_norm_fraction": 1.0,
+            "orth_norm_fraction": 0.0,
+            "j_auc": 0.9991319444444444,
+            "orth_auc": null
+          }
+        },
+        "fg4": {
+          "n_train": 768,
+          "n_test": 192,
+          "original_auc": 0.9997829861111112,
+          "original_norm": 72.91447665465013,
+          "thresholds": {
+            "0.9": {
+              "rank": 538,
+              "j_norm_fraction": 0.3346974477380816,
+              "orth_norm_fraction": 0.9423256435424086,
+              "j_cosine": 0.3346974477380815,
+              "j_auc": 0.6959635416666667,
+              "orth_auc": 0.9954427083333334
+            },
+            "0.95": {
+              "rank": 887,
+              "j_norm_fraction": 0.42796001229868197,
+              "orth_norm_fraction": 0.9037976697653696,
+              "j_cosine": 0.42796001229868186,
+              "j_auc": 0.7426215277777778,
+              "orth_auc": 0.9813368055555556
+            },
+            "0.99": {
+              "rank": 1777,
+              "j_norm_fraction": 0.6296331229669205,
+              "orth_norm_fraction": 0.776892611924533,
+              "j_cosine": 0.6296331229669203,
+              "j_auc": 0.788302951388889,
+              "orth_auc": 0.9174262152777777
+            }
+          },
+          "exact_row_space": {
+            "j_norm_fraction": 1.0,
+            "orth_norm_fraction": 0.0,
+            "j_auc": 0.9997829861111112,
+            "orth_auc": null
+          }
+        },
+        "fg5": {
+          "n_train": 768,
+          "n_test": 192,
+          "original_auc": 0.9940321180555556,
+          "original_norm": 73.28203793264142,
+          "thresholds": {
+            "0.9": {
+              "rank": 538,
+              "j_norm_fraction": 0.32005526283745844,
+              "orth_norm_fraction": 0.9473988751999052,
+              "j_cosine": 0.3200552628374584,
+              "j_auc": 0.7189670138888888,
+              "orth_auc": 0.9874131944444444
+            },
+            "0.95": {
+              "rank": 887,
+              "j_norm_fraction": 0.4176481073735977,
+              "orth_norm_fraction": 0.9086088588646115,
+              "j_cosine": 0.4176481073735978,
+              "j_auc": 0.751953125,
+              "orth_auc": 0.9754774305555556
+            },
+            "0.99": {
+              "rank": 1777,
+              "j_norm_fraction": 0.6141298352265628,
+              "orth_norm_fraction": 0.789205008527312,
+              "j_cosine": 0.6141298352265631,
+              "j_auc": 0.8318142361111112,
+              "orth_auc": 0.9360894097222222
+            }
+          },
+          "exact_row_space": {
+            "j_norm_fraction": 1.0,
+            "orth_norm_fraction": 0.0,
+            "j_auc": 0.9940321180555556,
+            "orth_auc": null
+          }
+        }
+      }
+    }
+  ]
+}

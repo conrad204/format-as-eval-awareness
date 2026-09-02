@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "manifest_id": "full320_orthc_transfer_positive_20260826",
+  "status": "complete_compact_evidence_manifest",
+  "scientific_decision": "POSITIVE_REPLICATION",
+  "files": {
+    "artifacts/exploratory/full320_orthc_transfer_positive_20260826/conclusion.json": "dc0bac2fce42020133727d7a1d9ac46d2530c3e5bae97656a1a449e4ae0db4bc",
+    "artifacts/exploratory/full320_orthc_transfer_positive_20260826/transfer_results.json": "c178a95939ee5b1e6bcbc879061ace26ae9bf7dee9d3f19436aff9e9bd734055",
+    "artifacts/exploratory/full320_orthc_transfer_positive_20260826/analysis_manifest.json": "055af53bdea59fea91decf8cf7207bcbb77fdea2a36b8c746c91ffd3d092c79f",
+    "artifacts/exploratory/full320_orthc_transfer_positive_20260826/payload_block_effects.csv": "f1e2670672244773e4deae79e831f2b084dfda990a07abbaae6762cd83761fc7",
+    "artifacts/exploratory/full320_orthc_transfer_positive_20260826/runner_manifest_8b.json": "717646d69996c63c8dc82598550bbc390fa4f13e0c313f66d5feae15fbdfb446",
+    "artifacts/exploratory/full320_orthc_transfer_positive_20260826/runner_manifest_70b.json": "36f7eb897303a27cea243ee59150be6f29ea5c818bd2c8f7cec69bf63a66497b",
+    "artifacts/exploratory/full320_orthc_transfer_positive_20260826/shakedown_8b.json": "3378a2b2062ebc07355c44e06fd2d6404702381f5c415f3bde6cd17816986945",
+    "artifacts/exploratory/full320_orthc_transfer_positive_20260826/shakedown_70b.json": "46e8b13f06c6996cf99488c60ef5096fa07606add7e4c25b06259695ece3bda3",
+    "artifacts/exploratory/full320_orthc_transfer_positive_20260826/causal_plan_8b.json": "5af1ca53e573e243d089684cb21d2e0313251894c7c63b8edc68604e09774cd9",
+    "artifacts/exploratory/full320_orthc_transfer_positive_20260826/causal_plan_70b.json": "275aecb13b2565ebf470766f3d1a0ddd987062b8441d3f13194dc76615cb25f2",
+    "artifacts/exploratory/full320_orthc_transfer_v1_bank/items.jsonl": "4c7d7a5b51d771982be01285d3be9b2b99b3fd6c79b7cbbf44e9b94c941f857d",
+    "artifacts/exploratory/full320_orthc_transfer_v1_bank/run_manifest.json": "dbbb88b3d58143d5a199ee629af0a283a55a8b3fe815c325c9099e32d0aa485f",
+    "configs/full320_orthc_transfer_reextraction_v1.json": "947f0b8102c094ee3390150dd40d0516191d482ce5b16e8bacc74b1a0fdd8d24",
+    "configs/full320_orthc_transfer_analysis_prereg_v1.json": "4a73be0215016556fcb39b7fa120f35357d0513d64efc52e6ad727764ec05119",
+    "configs/full320_orthc_transfer_analysis_prereg_v1_addendum_20260826.json": "f9e2c5e9fc17e07f03283016c15aaefe6fe990bcfac0ec5823426637a89f99b8",
+    "configs/full320_orthogonalized_c_transfer_v1.json": "f58171224a631f26121451578b43659391f4c375cfbd0dbd1669b4d8389e2e15",
+    "scripts/build_full320_orthc_transfer_bank.py": "dda502ac916ffcec1f5777f11e55b31688e2970f230801aacae767a742364e87",
+    "scripts/build_full320_orthc_transfer_plan.py": "691b8fb5b2d737a9ed4d753f90146a8afbf3fd4eb6748fbba04772842c9d00e8",
+    "scripts/run_full320_orthc_transfer.py": "68b5307eaeed3f400f9778cc0a75b3cf6b54545c59f704cf12fd1495ec03cefa",
+    "scripts/validate_full320_transfer_baselines.py": "4cb97c46a0d8f1e2e410910c9e1c2962b3a9e8f415d72da1e683e705ffcb29e2",
+    "scripts/analyze_full320_orthc_transfer.py": "73f75d704c5279ebe355455b0bb59ca09c2cc5135e52241ed9910eb1855536cd",
+    "scripts/cluster_extract_full320_orthc_transfer.sbatch": "560f60a3e541c7ad6364f4e00a767cd069a6bc95fc2f74950e952a3f872bce87",
+    "scripts/cluster_validate_full320_transfer_baselines.sbatch": "39b72da8f80675d03239763c8c873ba63bcfaf7d86f59987235bff5521be074c",
+    "scripts/cluster_run_full320_orthc_transfer.sbatch": "ae5a962bbb63832dd641159f49cfe320f4f36440052cecaa4b86b2404bfb6cdf"
+  },
+  "large_external_artifacts": {
+    "8b_raw": {
+      "path_cluster": "/scratch/jppatton/langea/runs/tae_2026/full320_orthc_transfer_v1/run_8b/causal_raw.jsonl",
+      "sha256": "aaffc86f43535a2cb081c005e16533d70d9f60c84f4eef7ba35496a7d03bd6e2",
+      "records": 264960
+    },
+    "70b_raw": {
+      "path_cluster": "/scratch/jppatton/langea/runs/tae_2026/full320_orthc_transfer_v1/run_70b/causal_raw.jsonl",
+      "sha256": "990b5127938be00e49a67145d3404ccae952dab7fe17655e5fc9f3dddd8a6a94",
+      "records": 264960
+    },
+    "8b_activation": {
+      "path_cluster": "/scratch/jppatton/langea/runs/tae_2026/full320_orthc_transfer_v1/extract_8b/activations_all_layers.npz",
+      "sha256": "5822e7a3a436c3106a82259f307b3dd08d06b7c34f95d0bf924d0e7ede9b810c"
+    },
+    "70b_activation": {
+      "path_cluster": "/scratch/jppatton/langea/runs/tae_2026/full320_orthc_transfer_v1/extract_70b/activations_all_layers.npz",
+      "sha256": "f368fee4059f1b5472a6fca8a53efa243ced8b77bb36212bd407667faf7addc7"
+    },
+    "8b_plan_npz": {
+      "path_cluster": "/scratch/jppatton/langea/runs/tae_2026/full320_orthc_transfer_v1/plan_8b/causal_plan.npz",
+      "sha256": "c0368f2fd275c968187ec377f24fd76f89a2b8cb8a74ebbbb3f79193a63a9a35"
+    },
+    "70b_plan_npz": {
+      "path_cluster": "/scratch/jppatton/langea/runs/tae_2026/full320_orthc_transfer_v1/plan_70b/causal_plan.npz",
+      "sha256": "4abf2e70c6a89e3d60879d23791cb9931a8f2f532e82deafe5b94178fd780a3c"
+    }
+  }
+}

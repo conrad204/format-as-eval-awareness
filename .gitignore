@@ -1,0 +1,30 @@
+# Secrets and local credentials
+.env
+.env.local
+.env.*
+!.env.example
+*.pem
+id_rsa*
+id_ed25519*
+langea
+langea.pub
+
+# Python/build/cache output
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+.pytest-tmp*/
+.tmp_pytest*/
+tmp_joblib/
+
+# Regenerable or externally hosted activation tensors
+activations/
+activations_dataset/
+*_activations/
+external/devbunova-2x2-activations/
+results/emergency/*.shards/
+results/emergency/*.partial/
+results/*_local.log
+*.pt
+*.npz

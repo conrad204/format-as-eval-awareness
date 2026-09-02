@@ -1,0 +1,9 @@
+{
+  "status": "invalid_code_defect",
+  "run_id": "full320_payload_overlap_matched_n_v1_20260823",
+  "reason": "scripts/full320_payload_overlap_matched_n.py called rounded_layer with reversed arguments, producing negative layer indices (-60, -50, -40, -30, -20) rather than the preregistered layers (20, 30, 40, 49, 59).",
+  "detected_from": "model_audits.layer_map during mandatory result audit",
+  "invalidated_utc": "2026-08-23T09:50:51Z",
+  "fix_commit": "c210149",
+  "use_for_inference": false
+}

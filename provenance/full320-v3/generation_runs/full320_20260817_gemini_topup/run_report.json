@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "status": "completed_with_exhausted",
+  "generators": [
+    "google/gemini-3.1-pro-preview"
+  ],
+  "generator_assignment_policy": "single_generator",
+  "accepted_by_generator": {
+    "gemini31_pro_generator": 159,
+    "grok43_generator": 159
+  },
+  "validator": "openai/gpt-5.4",
+  "targeted_payloads": 1,
+  "accepted_payloads": 0,
+  "exhausted_payloads": [
+    "pb_t035_21"
+  ],
+  "exhaustion_reasons": {
+    "pb_t035_21": "generation_budget"
+  },
+  "attempt_records": 6,
+  "output_path": "/home/cfeng/Projects/algoverse/plot-pipeline/data/payloads.grok43gemini31_gpt54.full320_8-17-2026.jsonl",
+  "output_sha256": "6679df4056a410aa36cdb608b2c8e82462da1aec81e4cb52cc2ff2c4b271c541",
+  "run_config_sha256": "6b8679ee1e69f61fb5988e59facdb546ea8a3fc28f704696b3b292671dbf6239",
+  "completed_at": "2026-08-17T19:37:22.748411+00:00"
+}

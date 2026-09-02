@@ -1,0 +1,15 @@
+{
+  "source": "artifacts/exploratory/pilot80_v3_causal_conclusion_20260823/conclusion.json",
+  "status": "pass",
+  "claims": {
+    "technical_gate_resolved": {"status": "allowed", "evidence": "both complete frozen model runs have max_abs=0.0 and min_cosine=0.9999998807907104"},
+    "C_high_layer_interaction": {"status": "allowed", "evidence": "frozen conclusion criteria_detail.C_interaction passes in both models"},
+    "C_dose_response": {"status": "allowed", "evidence": "frozen conclusion criteria_detail.dose_response passes"},
+    "factorial_additivity": {"status": "allowed", "evidence": "frozen conclusion criteria_detail.factorial_cube_agreement passes"},
+    "A_and_B_full_positive_mechanism": {"status": "prohibited", "evidence": "frozen decision negative; A_shared and B_format criteria false"},
+    "evaluation_awareness": {"status": "prohibited", "evidence": "required_claim_boundary.prohibited"},
+    "behavioral_steering": {"status": "prohibited", "evidence": "behavioral endpoint not run"},
+    "orthogonalized_C_as_confirmation": {"status": "prohibited", "evidence": "private sensitivity manifest explicitly exploratory"}
+  },
+  "paper_rewrite_performed": false
+}

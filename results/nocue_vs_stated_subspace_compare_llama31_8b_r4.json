@@ -1,0 +1,27 @@
+{
+  "model": "llama31_8b",
+  "rank": 4,
+  "n_layers": 32,
+  "n_payload_blocks": 320,
+  "n_bootstrap": 1000,
+  "seed": 0,
+  "raw_integrated_gap": 0.07934167189403186,
+  "stated_qb_integrated_gap": 0.059814682164725456,
+  "nocue_integrated_gap": 0.07125220971651566,
+  "stated_qb_fraction_removed": 0.2461126576130953,
+  "stated_qb_fraction_removed_ci95": [
+    0.23510102482763973,
+    0.2571048613476279
+  ],
+  "nocue_fraction_removed": 0.10195729412307353,
+  "nocue_fraction_removed_ci95": [
+    0.09243136362001246,
+    0.11225735348890381
+  ],
+  "nocue_minus_stated_fraction_removed": -0.14415536349002178,
+  "nocue_minus_stated_fraction_removed_ci95": [
+    -0.15347220101343892,
+    -0.133966468135816
+  ],
+  "nocue_relative_to_stated": 0.4142708266689674
+}

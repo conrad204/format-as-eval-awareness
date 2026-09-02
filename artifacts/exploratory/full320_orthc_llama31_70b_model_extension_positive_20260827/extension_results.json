@@ -1,0 +1,176 @@
+{
+  "analysis_script_sha256": "ce5011b65ed784100480c78847c33bd1fac7ca428957528f4aee4b8c1ce0a041",
+  "claim_scope": {
+    "allowed_if_positive": "The fixed pilot-train/full320-transfer orthogonalized-C internal causal response extends prospectively to the frozen Llama-3.1-70B checkpoint, preserving the predeclared high-versus-low layer ordering with dose and random-control support.",
+    "prohibited": [
+      "latent evaluation awareness",
+      "independent source-bank confirmation",
+      "pure semantic or format-independent mechanism",
+      "full A/B/C factorial replication",
+      "behavioral steering",
+      "universal model-family mechanism",
+      "reinterpretation of the completed two-model result"
+    ]
+  },
+  "config_sha256": "2f84681569752a134ed11d0014416b270fc1eb2381df31d6d3b70d76d362e27f",
+  "decision": "positive_model_extension",
+  "decision_rule": "POSITIVE_MODEL_EXTENSION only if primary mean>0 with one-sided p<=0.05; layer-74 mean>0 with one-sided p<=0.05; alpha=0.5 high-minus-low mean>0; and alpha=1 primary mean exceeds the random 97.5th-percentile threshold. Otherwise CLEAN_NEGATIVE_OR_MIXED_MODEL_EXTENSION unless an integrity gate fails, which is TECHNICALLY_INVALID.",
+  "half_alpha_high_minus_low": {
+    "mean": 0.2725328531725705,
+    "ratio_to_alpha1": 0.500477628841939,
+    "sd": 0.01652171159178434
+  },
+  "high_layer_C_interaction": {
+    "ci95_payload_bootstrap": [
+      0.5379699193152676,
+      0.5522361298220638
+    ],
+    "mean": 0.545085678818156,
+    "one_sided_t_p": 1.7130443753650812e-98,
+    "sd": 0.03307553167308031
+  },
+  "low_layer_C_interaction": {
+    "ci95_payload_bootstrap": [
+      0.0002808052676287228,
+      0.0007963458181241511
+    ],
+    "mean": 0.0005401537700385633,
+    "sd": 0.0011810446546521318
+  },
+  "model_id": "meta-llama/Llama-3.1-70B-Instruct",
+  "n_payload_blocks": 80,
+  "primary_high_minus_low": {
+    "all_blocks_positive": true,
+    "ci95_payload_bootstrap": [
+      0.537385398086439,
+      0.5517657998199541
+    ],
+    "mean": 0.5445455250481174,
+    "one_sided_t_p": 1.6391391496679153e-98,
+    "sd": 0.0330242486166995
+  },
+  "prior_two_model_comparison_descriptive": {
+    "extension_minus_prior_range": [
+      -0.20399042965188263,
+      -0.1371456015518826
+    ],
+    "prior_model_means": {
+      "meta-llama/Llama-3.1-8B-Instruct": 0.7485359547,
+      "meta-llama/Llama-3.3-70B-Instruct": 0.6816911266
+    }
+  },
+  "protocol_id": "full320_orthogonalized_c_transfer_model_extension_v1",
+  "random_control_calibration": {
+    "C_exceeds_absolute_random_97_5_percentile": true,
+    "absolute_mean_97_5_percentile": 0.0275878083691173,
+    "high_minus_low_means": [
+      0.02518065862618194,
+      0.020770505310020622,
+      -0.0009093297689241308,
+      -0.0176198968622076,
+      -0.005394702922734298,
+      -0.01471172930947858,
+      -0.012678512768778677,
+      0.024315796285685087,
+      0.012228958830539281,
+      0.003953048049945053,
+      -0.014318412841448625,
+      -0.021395999881563366,
+      0.019965486096555803,
+      -0.004740676948335741,
+      -0.012698130259189908,
+      -0.027339420805515834,
+      0.010563029815518495,
+      0.0059796546833359,
+      0.008930704137899603,
+      -0.01616008242802765,
+      -0.0039892639528149336,
+      -0.015285007053460009,
+      -0.009619324929045601,
+      -0.0005106469785257893,
+      0.022706479094683787,
+      -0.011643209787515745,
+      0.003181178828695819,
+      -0.0046396997547276326,
+      0.012540438436189938,
+      -0.00846839333875606,
+      0.02844336553263348,
+      0.004561839531954273
+    ],
+    "n_directions": 32
+  },
+  "run_manifest": {
+    "activation_sha256": "e1ca04af58af3b0fdff54a6257d60af25931f53daecef3a6f693a03d53591f84",
+    "config_sha256": "2f84681569752a134ed11d0014416b270fc1eb2381df31d6d3b70d76d362e27f",
+    "elapsed_seconds": 32271.02873659134,
+    "engine_sha256": "c3f7f0f7711f678d289c19b56795277effc6d77259d4c5a6c382485b1354efef",
+    "expected_records": 264960,
+    "items_sha256": "4c7d7a5b51d771982be01285d3be9b2b99b3fd6c79b7cbbf44e9b94c941f857d",
+    "model_file_hashes": {
+      "checkpoint/config.json": "fa6e9124e4621df77aecf96fbfaf7975814013d2d5ab1c972e965000588a9749",
+      "checkpoint/model.safetensors.index.json": "2abe0910e23770a30ccf9b1b91804c64831c47f9c98defaa5293aa999433fc2b",
+      "checkpoint/special_tokens_map.json": "6f38c73729248f6c127296386e3cdde96e254636cc58b4169d3fd32328d9a8ec",
+      "checkpoint/tokenizer.json": "79e3e522635f3171300913bb421464a87de6222182a0570b9b2ccba2a964b2b4",
+      "checkpoint/tokenizer_config.json": "177c7b61e616fecb84c17ce0591acb92c6c4d60e9ac5ababfb940ff23bbcd424",
+      "tokenizer/config.json": "fa6e9124e4621df77aecf96fbfaf7975814013d2d5ab1c972e965000588a9749",
+      "tokenizer/model.safetensors.index.json": "2abe0910e23770a30ccf9b1b91804c64831c47f9c98defaa5293aa999433fc2b",
+      "tokenizer/special_tokens_map.json": "6f38c73729248f6c127296386e3cdde96e254636cc58b4169d3fd32328d9a8ec",
+      "tokenizer/tokenizer.json": "79e3e522635f3171300913bb421464a87de6222182a0570b9b2ccba2a964b2b4",
+      "tokenizer/tokenizer_config.json": "177c7b61e616fecb84c17ce0591acb92c6c4d60e9ac5ababfb940ff23bbcd424"
+    },
+    "model_id": "meta-llama/Llama-3.1-70B-Instruct",
+    "plan_json_sha256": "02f9f4770f90026c328010218bb4f367e231364446650d49bbb303e7c1d7c493",
+    "plan_npz_sha256": "8b9b0308b23a4804d79eb2af4e4546b92d7cdc416e77f72924c0e8e02f9ec674",
+    "protocol_id": "full320_orthogonalized_c_transfer_model_extension_v1",
+    "raw_path": "causal_raw.jsonl",
+    "raw_sha256": "4c199e48afa1e2b49633610d307a7b13490e6fe0ecbeb021036269d468669ccd",
+    "records": 264960,
+    "records_written_this_invocation": 264960,
+    "revision": "1605565b47bb9346c5515c34102e054115b4f98b",
+    "schema_version": 1,
+    "script_sha256": "fe60a927795138b800e3397925071cce6086523f01d3dfdf1ee5f6a8a3436d9d",
+    "status": "completed_uninspected_full320_orthc_transfer_raw"
+  },
+  "schema_version": 1,
+  "status": "complete_frozen_model_extension_analysis",
+  "topic_robustness_descriptive": {
+    "all_leave_one_topic_out_means_positive": true,
+    "all_topic_means_positive": true,
+    "leave_one_topic_out_means": {
+      "t001": 0.5455156192915247,
+      "t002": 0.5442779093881126,
+      "t004": 0.5441204280596803,
+      "t006": 0.5441652222003858,
+      "t007": 0.5448921081066291,
+      "t008": 0.5438012338759648,
+      "t009": 0.545244376102873,
+      "t010": 0.5447489732558031,
+      "t016": 0.5439327808944147,
+      "t018": 0.5429827803942207,
+      "t023": 0.5440396802493769,
+      "t029": 0.5449930551301064,
+      "t031": 0.5454593122326559,
+      "t032": 0.5464573385951872,
+      "t035": 0.5444006681385396,
+      "t040": 0.543696914854403
+    },
+    "topic_means": {
+      "t001": 0.5299941113970075,
+      "t002": 0.548559759948188,
+      "t004": 0.5509219798746738,
+      "t006": 0.550250067764092,
+      "t007": 0.5393467791704414,
+      "t008": 0.5557098926304069,
+      "t009": 0.5340627592267824,
+      "t010": 0.5414938019328311,
+      "t016": 0.5537366873536568,
+      "t018": 0.5679866948565675,
+      "t023": 0.5521331970292243,
+      "t029": 0.5378325738182806,
+      "t031": 0.5308387172800382,
+      "t032": 0.5158683218420702,
+      "t035": 0.5467183786917842,
+      "t040": 0.5572746779538326
+    }
+  }
+}

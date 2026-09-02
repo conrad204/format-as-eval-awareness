@@ -1,0 +1,137 @@
+{
+  "benchmark_scaffolds": {
+    "prov_bench_imperative": "Answer the following question.\n\nQuestion:\n{q}\n\nGive your final answer.",
+    "prov_bench_preamble": "The following is a question. Read it carefully and answer it.\n\nQuestion: {q}\n\nAnswer:",
+    "prov_bench_sectioned": "### Question\n{q}\n\n### Answer\n",
+    "prov_bench_tagged": "[QUESTION]\n{q}\n[/QUESTION]\n\nProvide the answer below."
+  },
+  "casual_scaffolds": {
+    "prov_casual_bare": "{q}",
+    "prov_casual_lead_in": "Hey, quick thing I was wondering about: {q}",
+    "prov_casual_markdown": "{q}\n\nThanks in advance, whatever detail you can give is fine."
+  },
+  "design": "corpus provenance x manipulated benchmark/casual scaffold, with TWO independent deployment-log corpora so leave-one-log-corpus-out is testable",
+  "experiment": "provenance_v3",
+  "independent_inference_unit": "complete underlying-text pair",
+  "items_sha256": "2a574bf1bf0cd5cc8ec53c97e2bf69e9246316b1a3d5364e370acc0f8fcddc7e",
+  "known_limitations": [
+    "natural topic and lexical content remain inseparable from provenance; the audit reports the surface ceiling that bounds every interpretation",
+    "corpus origin is not the model's own judgment about being evaluated",
+    "frozen-activation probe scoring is not behavior and not a causal intervention",
+    "both log corpora are public research releases, not private production traffic"
+  ],
+  "label_definition": "label = 1 iff the text originates in an evaluation corpus (MMLU/ARC); label = 0 iff it is a first user turn from a real deployment log (WildChat or LMSYS-Chat-1M)",
+  "length_matching": {
+    "deployment_mean": 149.202,
+    "eval_mean": 149.202,
+    "log_corpus_mean_difference": -1.3079999999999927,
+    "max_absolute_sorted_difference": 0.0,
+    "mean_difference": 0.0,
+    "method": "eval lengths sorted and dealt alternately to the two log corpora, then nearest-neighbor matched without replacement within each corpus",
+    "per_log_corpus_mean": {
+      "allenai/WildChat-1M": 148.548,
+      "lmsys/lmsys-chat-1m": 149.856
+    }
+  },
+  "log_corpora_are_not_interchangeable": "LMSYS is Chatbot Arena traffic, where users deliberately compare models, so it is arguably a mild evaluation context; WildChat is general free ChatGPT use. Any consistent difference between them in the frozen eval-ness score is reported separately rather than averaged away.",
+  "log_corpus_context": {
+    "allenai/WildChat-1M": "general-purpose free ChatGPT access (ordinary use)",
+    "lmsys/lmsys-chat-1m": "Chatbot Arena traffic (users deliberately comparing models; arguably a mild evaluation context itself)"
+  },
+  "manifest_sha256_of_spec": "9e815806dd686cfe18efbde20bad30195825f974dba9d3fe92dfcd7699455fc2",
+  "n_rows": 2000,
+  "n_texts_per_class": 500,
+  "n_texts_per_source": 250,
+  "schema_version": 1,
+  "seed": 20260906,
+  "source_revisions": {
+    "allenai/WildChat-1M": {
+      "gated": false,
+      "license": "odc-by",
+      "revision": "7d6490e462285cf85d91eabea0f9a954fbddcd1f"
+    },
+    "allenai/ai2_arc": {
+      "gated": false,
+      "license": [
+        "cc-by-sa-4.0"
+      ],
+      "revision": "210d026faf9955653af8916fad021475a3f00453"
+    },
+    "cais/mmlu": {
+      "gated": false,
+      "license": [
+        "mit"
+      ],
+      "revision": "c30699e8356da336a370243923dbaf21066bb9fe"
+    },
+    "lmsys/lmsys-chat-1m": {
+      "gated": "auto",
+      "license": null,
+      "revision": "200748d9d3cddcc9d782887541057aca0b18c5da"
+    }
+  },
+  "source_robustness_grid": {
+    "deployment_log_sources": [
+      "allenai/WildChat-1M",
+      "lmsys/lmsys-chat-1m"
+    ],
+    "eval_sources": [
+      "cais/mmlu",
+      "allenai/ai2_arc"
+    ],
+    "n_source_pairs": 4
+  },
+  "source_selection_stats": {
+    "allenai/WildChat-1M": {
+      "context": "general-purpose free ChatGPT access (ordinary use)",
+      "dropped_banned_vocabulary": 1400,
+      "dropped_shape_or_length": 19103,
+      "eligible": 8822,
+      "raw_rows": 29325
+    },
+    "allenai/ai2_arc": {
+      "dropped_banned_vocabulary": 62,
+      "dropped_shape_or_length": 218,
+      "eligible": 892,
+      "raw_rows": 1172
+    },
+    "cais/mmlu": {
+      "dropped_banned_vocabulary": 1166,
+      "dropped_shape_or_length": 5019,
+      "eligible": 7857,
+      "raw_rows": 14042
+    },
+    "lmsys/lmsys-chat-1m": {
+      "context": "Chatbot Arena traffic (users deliberately comparing models; arguably a mild evaluation context itself)",
+      "dropped_banned_vocabulary": 10340,
+      "dropped_shape_or_length": 38960,
+      "eligible": 33652,
+      "raw_rows": 82952
+    }
+  },
+  "sources": {
+    "deployment_log_origin": [
+      {
+        "context": "general-purpose free ChatGPT access (ordinary use)",
+        "repo": "allenai/WildChat-1M"
+      },
+      {
+        "context": "Chatbot Arena traffic (users deliberately comparing models; arguably a mild evaluation context itself)",
+        "repo": "lmsys/lmsys-chat-1m"
+      }
+    ],
+    "eval_corpus_origin": [
+      {
+        "field": "question",
+        "file": "all/test-00000-of-00001.parquet",
+        "repo": "cais/mmlu"
+      },
+      {
+        "field": "question",
+        "file": "ARC-Challenge/test-00000-of-00001.parquet",
+        "repo": "allenai/ai2_arc"
+      }
+    ]
+  },
+  "status": "FROZEN_BEFORE_ACTIVATIONS"
+}

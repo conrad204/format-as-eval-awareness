@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "mode": "development_unlocked",
+  "hash_policy": "observational_with_internal_consistency",
+  "request_order_policy": "sample_round_robin_by_topic_v1",
+  "validator_consistency_policy": "issue_check_alignment_v1",
+  "validator_rejection_memory_policy": "cumulative_semantic_concerns_v1",
+  "validator_distractor_equivalence_policy": "pairwise_contextual_v1",
+  "validator_option_normalization_policy": "direct_answer_nfkc_casefold_v1",
+  "validator_adversarial_audit_policy": "assumption_counterexample_option_removal_v1",
+  "validator_truncation_retry_policy": "same_candidate_within_budget_v1",
+  "generator_truncation_retry_policy": "new_attempt_within_budget_v1",
+  "near_duplicate_policy": {
+    "method": "tfidf_cosine_word_1_2gram_v1",
+    "threshold": 0.42
+  },
+  "request_source": {
+    "path": "/home/cfeng/Projects/algoverse/plot-pipeline/provenance/generation_runs/refill_requests_full320_gemini_topup.jsonl",
+    "sha256": "15b566f2cb8d55aefc2c7f9b21d6eb3293279f72bb91cc09ca0c8dd04410cd36"
+  },
+  "generator": {
+    "schema_version": 1,
+    "profile_id": "gemini31_pro_generator",
+    "role": "generator",
+    "provider": "vertex",
+    "model": "google/gemini-3.1-pro-preview",
+    "canonical_slug": "google/gemini-3.1-pro-preview@default",
+    "base_url": "https://aiplatform.googleapis.com/v1/projects/lang-ea/locations/global/endpoints/openapi/chat/completions",
+    "project": "lang-ea",
+    "location": "global",
+    "timeout_seconds": 300,
+    "transport_attempts": 3,
+    "temperature": 0.6,
+    "top_p": 0.9,
+    "max_output_tokens": 24576
+  },
+  "validator": {
+    "schema_version": 1,
+    "profile_id": "gpt54_validator",
+    "role": "validator",
+    "provider": "openrouter",
+    "model": "openai/gpt-5.4",
+    "canonical_slug": "openai/gpt-5.4-20260305",
+    "base_url": "https://openrouter.ai/api/v1/chat/completions",
+    "api_key_env": "OPENROUTER_API_KEY",
+    "timeout_seconds": 120,
+    "transport_attempts": 3,
+    "max_output_tokens": 4096,
+    "reasoning_effort": "medium",
+    "require_parameters": true,
+    "allow_fallbacks": false,
+    "data_collection": "deny",
+    "app_title": "eval-format-mvp"
+  },
+  "per_topic": 5,
+  "max_generation_attempts_per_payload": 6,
+  "max_semantic_attempts_per_payload": 3,
+  "max_validator_attempts_per_candidate": 2,
+  "accepted_output_path": "/home/cfeng/Projects/algoverse/plot-pipeline/data/payloads.grok43gemini31_gpt54.full320_8-17-2026.jsonl",
+  "source_hashes": {
+    "generation_prompt": "e12522e2b1f4b9f2d36a5e4269f80e378d279d774c341dc95de5d3f8b8f399ae",
+    "validation_prompt": "c774eb84928dc65c384b69d19d8620f8dcb9f140439059789a75307dc8372a6e",
+    "generation_schema": "e5ae3c09f419c0a3b1638fe29e6b935ec1fede5263bf220a43f5e3ceea163f06",
+    "validation_schema": "35c90ed0093f24d9ba90bfe09c0f56c9ac2142f40c75395aabc5929c5e700ceb",
+    "topics": "80c700770907f275b9b8bc3c229ae97052d77587e386aa1cdc5d078606408ecf"
+  }
+}

@@ -1,0 +1,1634 @@
+[
+ {
+  "layer": 0,
+  "confounded": {
+   "auc": 0.4996551513671875,
+   "bal_acc": 0.5001302083333333,
+   "paired_pos": 0.4526106696935301,
+   "paired_mean": -0.009326715424031053,
+   "cells": {
+    "evaluation::benchmark": 99.90384615384616,
+    "evaluation::casual": 0.056818181818181816,
+    "deployment::benchmark": 99.90384615384616,
+    "deployment::casual": 0.0
+   }
+  },
+  "decorrelated": {
+   "auc": 0.5601285129123263,
+   "bal_acc": 0.5436197916666667,
+   "paired_pos": 0.7343927355278093,
+   "paired_mean": 0.2069424474434976,
+   "cells": {
+    "evaluation::benchmark": 50.14423076923077,
+    "evaluation::casual": 51.590909090909086,
+    "deployment::benchmark": 41.82692307692308,
+    "deployment::casual": 42.38636363636364
+   }
+  },
+  "b2c": {
+   "auc": 0.5143759684917355,
+   "bal_acc": 0.5164772727272727,
+   "paired_pos": 0.691743119266055,
+   "paired_mean": 0.1900864109625849,
+   "cells": {
+    "evaluation::casual": 49.43181818181818,
+    "deployment::casual": 46.13636363636363
+   }
+  },
+  "c2b": {
+   "auc": 0.5127788692677515,
+   "bal_acc": 0.5076923076923077,
+   "paired_pos": 0.7443091582848068,
+   "paired_mean": 0.1510847756171243,
+   "cells": {
+    "evaluation::benchmark": 63.653846153846146,
+    "deployment::benchmark": 62.11538461538461
+   }
+  },
+  "format": {
+   "auc": 0.9999998634178322,
+   "bal_acc": 0.9997596153846153
+  }
+ },
+ {
+  "layer": 1,
+  "confounded": {
+   "auc": 0.5000044420030382,
+   "bal_acc": 0.5,
+   "paired_pos": 0.47219069239500566,
+   "paired_mean": -0.004404890939813196,
+   "cells": {
+    "evaluation::benchmark": 100.0,
+    "evaluation::casual": 0.0,
+    "deployment::benchmark": 100.0,
+    "deployment::casual": 0.0
+   }
+  },
+  "decorrelated": {
+   "auc": 0.7403096177842883,
+   "bal_acc": 0.680859375,
+   "paired_pos": 0.9035187287173666,
+   "paired_mean": 1.5066693034530465,
+   "cells": {
+    "evaluation::benchmark": 64.71153846153847,
+    "evaluation::casual": 62.61363636363636,
+    "deployment::benchmark": 26.682692307692307,
+    "deployment::casual": 28.636363636363637
+   }
+  },
+  "b2c": {
+   "auc": 0.5663946280991735,
+   "bal_acc": 0.5230113636363636,
+   "paired_pos": 0.9100917431192661,
+   "paired_mean": 1.6365364226167993,
+   "cells": {
+    "evaluation::casual": 83.52272727272727,
+    "deployment::casual": 78.92045454545455
+   }
+  },
+  "c2b": {
+   "auc": 0.5412696468195266,
+   "bal_acc": 0.5237980769230769,
+   "paired_pos": 0.8893594494441504,
+   "paired_mean": 1.0538585968103602,
+   "cells": {
+    "evaluation::benchmark": 59.13461538461539,
+    "deployment::benchmark": 54.37499999999999
+   }
+  },
+  "format": {
+   "auc": 0.9999999317089161,
+   "bal_acc": 0.9997596153846153
+  }
+ },
+ {
+  "layer": 2,
+  "confounded": {
+   "auc": 0.5021257188585069,
+   "bal_acc": 0.5,
+   "paired_pos": 0.5400113507377979,
+   "paired_mean": 0.030660109643091814,
+   "cells": {
+    "evaluation::benchmark": 100.0,
+    "evaluation::casual": 0.0,
+    "deployment::benchmark": 100.0,
+    "deployment::casual": 0.0
+   }
+  },
+  "decorrelated": {
+   "auc": 0.7544052463107639,
+   "bal_acc": 0.6842447916666667,
+   "paired_pos": 0.9656640181611805,
+   "paired_mean": 2.032073293185701,
+   "cells": {
+    "evaluation::benchmark": 62.019230769230774,
+    "evaluation::casual": 59.88636363636364,
+    "deployment::benchmark": 24.182692307692307,
+    "deployment::casual": 24.204545454545453
+   }
+  },
+  "b2c": {
+   "auc": 0.5859155475206612,
+   "bal_acc": 0.5497159090909091,
+   "paired_pos": 0.9504587155963303,
+   "paired_mean": 2.1487797644980455,
+   "cells": {
+    "evaluation::casual": 77.1590909090909,
+    "deployment::casual": 67.2159090909091
+   }
+  },
+  "c2b": {
+   "auc": 0.5841117326183431,
+   "bal_acc": 0.5632211538461538,
+   "paired_pos": 0.9221810481736369,
+   "paired_mean": 1.4995851485525067,
+   "cells": {
+    "evaluation::benchmark": 58.75,
+    "deployment::benchmark": 46.10576923076923
+   }
+  },
+  "format": {
+   "auc": 1.0,
+   "bal_acc": 1.0
+  }
+ },
+ {
+  "layer": 3,
+  "confounded": {
+   "auc": 0.5041264512803819,
+   "bal_acc": 0.5,
+   "paired_pos": 0.6118047673098751,
+   "paired_mean": 0.09556716721120136,
+   "cells": {
+    "evaluation::benchmark": 100.0,
+    "evaluation::casual": 0.0,
+    "deployment::benchmark": 100.0,
+    "deployment::casual": 0.0
+   }
+  },
+  "decorrelated": {
+   "auc": 0.8653699408637152,
+   "bal_acc": 0.7755208333333333,
+   "paired_pos": 0.9685017026106697,
+   "paired_mean": 4.196175806781118,
+   "cells": {
+    "evaluation::benchmark": 72.88461538461539,
+    "evaluation::casual": 71.64772727272727,
+    "deployment::benchmark": 16.923076923076923,
+    "deployment::casual": 17.556818181818183
+   }
+  },
+  "b2c": {
+   "auc": 0.6414380488119835,
+   "bal_acc": 0.6107954545454546,
+   "paired_pos": 0.9694189602446484,
+   "paired_mean": 4.6841760906969006,
+   "cells": {
+    "evaluation::casual": 73.125,
+    "deployment::casual": 50.965909090909086
+   }
+  },
+  "c2b": {
+   "auc": 0.6740260955991124,
+   "bal_acc": 0.6055288461538462,
+   "paired_pos": 0.9417681312863949,
+   "paired_mean": 2.966896162200236,
+   "cells": {
+    "evaluation::benchmark": 79.71153846153847,
+    "deployment::benchmark": 58.60576923076923
+   }
+  },
+  "format": {
+   "auc": 1.0,
+   "bal_acc": 0.9997596153846153
+  }
+ },
+ {
+  "layer": 4,
+  "confounded": {
+   "auc": 0.5101777140299478,
+   "bal_acc": 0.5,
+   "paired_pos": 0.6538024971623155,
+   "paired_mean": 0.19369089589892938,
+   "cells": {
+    "evaluation::benchmark": 100.0,
+    "evaluation::casual": 0.0,
+    "deployment::benchmark": 100.0,
+    "deployment::casual": 0.0
+   }
+  },
+  "decorrelated": {
+   "auc": 0.9573063829210071,
+   "bal_acc": 0.8856770833333334,
+   "paired_pos": 1.0,
+   "paired_mean": 7.477536078208421,
+   "cells": {
+    "evaluation::benchmark": 84.03846153846153,
+    "evaluation::casual": 85.51136363636364,
+    "deployment::benchmark": 7.0673076923076925,
+    "deployment::casual": 8.181818181818182
+   }
+  },
+  "b2c": {
+   "auc": 0.8770399664256199,
+   "bal_acc": 0.7673295454545455,
+   "paired_pos": 1.0,
+   "paired_mean": 7.677476746910209,
+   "cells": {
+    "evaluation::casual": 90.68181818181819,
+    "deployment::casual": 37.215909090909086
+   }
+  },
+  "c2b": {
+   "auc": 0.8179710613905324,
+   "bal_acc": 0.7117788461538461,
+   "paired_pos": 1.0,
+   "paired_mean": 5.596505408669793,
+   "cells": {
+    "evaluation::benchmark": 58.02884615384616,
+    "deployment::benchmark": 15.673076923076923
+   }
+  },
+  "format": {
+   "auc": 1.0,
+   "bal_acc": 0.9997596153846153
+  }
+ },
+ {
+  "layer": 5,
+  "confounded": {
+   "auc": 0.539535895453559,
+   "bal_acc": 0.5,
+   "paired_pos": 0.7709988649262202,
+   "paired_mean": 0.7142516719631927,
+   "cells": {
+    "evaluation::benchmark": 100.0,
+    "evaluation::casual": 0.0,
+    "deployment::benchmark": 100.0,
+    "deployment::casual": 0.0
+   }
+  },
+  "decorrelated": {
+   "auc": 0.9693223741319443,
+   "bal_acc": 0.9002604166666667,
+   "paired_pos": 1.0,
+   "paired_mean": 9.412942265713255,
+   "cells": {
+    "evaluation::benchmark": 87.16346153846153,
+    "evaluation::casual": 86.875,
+    "deployment::benchmark": 7.0673076923076925,
+    "deployment::casual": 6.875000000000001
+   }
+  },
+  "b2c": {
+   "auc": 0.8936512138429753,
+   "bal_acc": 0.8079545454545455,
+   "paired_pos": 1.0,
+   "paired_mean": 9.330590009197183,
+   "cells": {
+    "evaluation::casual": 83.29545454545455,
+    "deployment::casual": 21.704545454545453
+   }
+  },
+  "c2b": {
+   "auc": 0.881617048816568,
+   "bal_acc": 0.7992788461538461,
+   "paired_pos": 1.0,
+   "paired_mean": 7.252416428543387,
+   "cells": {
+    "evaluation::benchmark": 82.35576923076923,
+    "deployment::benchmark": 22.5
+   }
+  },
+  "format": {
+   "auc": 1.0,
+   "bal_acc": 1.0
+  }
+ },
+ {
+  "layer": 6,
+  "confounded": {
+   "auc": 0.5642894490559895,
+   "bal_acc": 0.5,
+   "paired_pos": 0.8192395005675369,
+   "paired_mean": 1.0798241131422062,
+   "cells": {
+    "evaluation::benchmark": 100.0,
+    "evaluation::casual": 0.0,
+    "deployment::benchmark": 100.0,
+    "deployment::casual": 0.0
+   }
+  },
+  "decorrelated": {
+   "auc": 0.9864817979600694,
+   "bal_acc": 0.9350260416666667,
+   "paired_pos": 1.0,
+   "paired_mean": 10.839239145139661,
+   "cells": {
+    "evaluation::benchmark": 91.875,
+    "evaluation::casual": 90.9090909090909,
+    "deployment::benchmark": 4.567307692307692,
+    "deployment::casual": 4.261363636363636
+   }
+  },
+  "b2c": {
+   "auc": 0.9234416967975206,
+   "bal_acc": 0.8556818181818182,
+   "paired_pos": 1.0,
+   "paired_mean": 10.443489584408768,
+   "cells": {
+    "evaluation::casual": 86.5909090909091,
+    "deployment::casual": 15.454545454545453
+   }
+  },
+  "c2b": {
+   "auc": 0.948556536612426,
+   "bal_acc": 0.8692307692307693,
+   "paired_pos": 1.0,
+   "paired_mean": 8.610941798812249,
+   "cells": {
+    "evaluation::benchmark": 79.47115384615384,
+    "deployment::benchmark": 5.625
+   }
+  },
+  "format": {
+   "auc": 1.0,
+   "bal_acc": 1.0
+  }
+ },
+ {
+  "layer": 7,
+  "confounded": {
+   "auc": 0.5896199205186632,
+   "bal_acc": 0.5,
+   "paired_pos": 0.8762769580022701,
+   "paired_mean": 1.5357360247941212,
+   "cells": {
+    "evaluation::benchmark": 100.0,
+    "evaluation::casual": 0.0,
+    "deployment::benchmark": 100.0,
+    "deployment::casual": 0.0
+   }
+  },
+  "decorrelated": {
+   "auc": 0.9868747965494793,
+   "bal_acc": 0.940234375,
+   "paired_pos": 0.9997162315550511,
+   "paired_mean": 11.733322958192375,
+   "cells": {
+    "evaluation::benchmark": 93.36538461538461,
+    "evaluation::casual": 91.81818181818183,
+    "deployment::benchmark": 4.471153846153846,
+    "deployment::casual": 4.772727272727273
+   }
+  },
+  "b2c": {
+   "auc": 0.9402120996900827,
+   "bal_acc": 0.865909090909091,
+   "paired_pos": 0.999388379204893,
+   "paired_mean": 11.322168029482485,
+   "cells": {
+    "evaluation::casual": 87.55681818181819,
+    "deployment::casual": 14.374999999999998
+   }
+  },
+  "c2b": {
+   "auc": 0.9496322577662722,
+   "bal_acc": 0.8608173076923077,
+   "paired_pos": 1.0,
+   "paired_mean": 9.077287187915179,
+   "cells": {
+    "evaluation::benchmark": 91.58653846153845,
+    "deployment::benchmark": 19.423076923076923
+   }
+  },
+  "format": {
+   "auc": 1.0,
+   "bal_acc": 1.0
+  }
+ },
+ {
+  "layer": 8,
+  "confounded": {
+   "auc": 0.6001902601453992,
+   "bal_acc": 0.5,
+   "paired_pos": 0.9179909194097616,
+   "paired_mean": 1.745494659114777,
+   "cells": {
+    "evaluation::benchmark": 100.0,
+    "evaluation::casual": 0.0,
+    "deployment::benchmark": 100.0,
+    "deployment::casual": 0.0
+   }
+  },
+  "decorrelated": {
+   "auc": 0.9887513563368056,
+   "bal_acc": 0.9408854166666667,
+   "paired_pos": 1.0,
+   "paired_mean": 12.910390749446853,
+   "cells": {
+    "evaluation::benchmark": 92.98076923076923,
+    "evaluation::casual": 92.89772727272727,
+    "deployment::benchmark": 4.278846153846154,
+    "deployment::casual": 5.340909090909091
+   }
+  },
+  "b2c": {
+   "auc": 0.9513271565082644,
+   "bal_acc": 0.8823863636363636,
+   "paired_pos": 1.0,
+   "paired_mean": 11.933554799184886,
+   "cells": {
+    "evaluation::casual": 89.82954545454545,
+    "deployment::casual": 13.352272727272727
+   }
+  },
+  "c2b": {
+   "auc": 0.9401359097633137,
+   "bal_acc": 0.8524038461538461,
+   "paired_pos": 1.0,
+   "paired_mean": 10.375573070355987,
+   "cells": {
+    "evaluation::benchmark": 90.91346153846153,
+    "deployment::benchmark": 20.432692307692307
+   }
+  },
+  "format": {
+   "auc": 1.0,
+   "bal_acc": 1.0
+  }
+ },
+ {
+  "layer": 9,
+  "confounded": {
+   "auc": 0.6048101128472222,
+   "bal_acc": 0.5,
+   "paired_pos": 0.9143019296254257,
+   "paired_mean": 1.7629658556485148,
+   "cells": {
+    "evaluation::benchmark": 100.0,
+    "evaluation::casual": 0.0,
+    "deployment::benchmark": 100.0,
+    "deployment::casual": 0.0
+   }
+  },
+  "decorrelated": {
+   "auc": 0.9850789388020833,
+   "bal_acc": 0.9329427083333334,
+   "paired_pos": 0.9988649262202043,
+   "paired_mean": 12.357676460121194,
+   "cells": {
+    "evaluation::benchmark": 92.01923076923076,
+    "evaluation::casual": 91.81818181818183,
+    "deployment::benchmark": 4.567307692307692,
+    "deployment::casual": 6.25
+   }
+  },
+  "b2c": {
+   "auc": 0.9275048424586777,
+   "bal_acc": 0.8508522727272727,
+   "paired_pos": 0.9969418960244648,
+   "paired_mean": 11.680091244911928,
+   "cells": {
+    "evaluation::casual": 80.0,
+    "deployment::casual": 9.829545454545455
+   }
+  },
+  "c2b": {
+   "auc": 0.9292064996301775,
+   "bal_acc": 0.8454326923076922,
+   "paired_pos": 0.9973530968766543,
+   "paired_mean": 9.751840740978686,
+   "cells": {
+    "evaluation::benchmark": 89.95192307692308,
+    "deployment::benchmark": 20.865384615384617
+   }
+  },
+  "format": {
+   "auc": 1.0,
+   "bal_acc": 1.0
+  }
+ },
+ {
+  "layer": 10,
+  "confounded": {
+   "auc": 0.6137821451822916,
+   "bal_acc": 0.500390625,
+   "paired_pos": 0.934449489216799,
+   "paired_mean": 1.9374387268649327,
+   "cells": {
+    "evaluation::benchmark": 100.0,
+    "evaluation::casual": 0.17045454545454544,
+    "deployment::benchmark": 100.0,
+    "deployment::casual": 0.0
+   }
+  },
+  "decorrelated": {
+   "auc": 0.9851166449652777,
+   "bal_acc": 0.931640625,
+   "paired_pos": 0.9982973893303064,
+   "paired_mean": 12.664217053253994,
+   "cells": {
+    "evaluation::benchmark": 91.92307692307692,
+    "evaluation::casual": 91.70454545454545,
+    "deployment::benchmark": 5.625,
+    "deployment::casual": 5.340909090909091
+   }
+  },
+  "b2c": {
+   "auc": 0.9293097882231405,
+   "bal_acc": 0.8440340909090909,
+   "paired_pos": 0.9963302752293578,
+   "paired_mean": 11.74035827601357,
+   "cells": {
+    "evaluation::casual": 77.44318181818181,
+    "deployment::casual": 8.636363636363637
+   }
+  },
+  "c2b": {
+   "auc": 0.9185685558431953,
+   "bal_acc": 0.835576923076923,
+   "paired_pos": 0.9962943356273161,
+   "paired_mean": 10.01351407070902,
+   "cells": {
+    "evaluation::benchmark": 84.32692307692308,
+    "deployment::benchmark": 17.21153846153846
+   }
+  },
+  "format": {
+   "auc": 1.0,
+   "bal_acc": 1.0
+  }
+ },
+ {
+  "layer": 11,
+  "confounded": {
+   "auc": 0.6215140787760417,
+   "bal_acc": 0.5009114583333333,
+   "paired_pos": 0.9233825198637912,
+   "paired_mean": 2.029097220345604,
+   "cells": {
+    "evaluation::benchmark": 100.0,
+    "evaluation::casual": 0.3977272727272727,
+    "deployment::benchmark": 100.0,
+    "deployment::casual": 0.0
+   }
+  },
+  "decorrelated": {
+   "auc": 0.9852652994791666,
+   "bal_acc": 0.9364583333333334,
+   "paired_pos": 0.9985811577752554,
+   "paired_mean": 12.7008327743658,
+   "cells": {
+    "evaluation::benchmark": 93.02884615384616,
+    "evaluation::casual": 92.04545454545455,
+    "deployment::benchmark": 5.048076923076923,
+    "deployment::casual": 5.568181818181818
+   }
+  },
+  "b2c": {
+   "auc": 0.9326075025826446,
+   "bal_acc": 0.8519886363636364,
+   "paired_pos": 0.9951070336391438,
+   "paired_mean": 11.594238195105795,
+   "cells": {
+    "evaluation::casual": 78.69318181818183,
+    "deployment::casual": 8.295454545454547
+   }
+  },
+  "c2b": {
+   "auc": 0.9054846985946746,
+   "bal_acc": 0.8254807692307693,
+   "paired_pos": 0.9978824775013234,
+   "paired_mean": 9.999513006986545,
+   "cells": {
+    "evaluation::benchmark": 86.92307692307692,
+    "deployment::benchmark": 21.826923076923077
+   }
+  },
+  "format": {
+   "auc": 1.0,
+   "bal_acc": 1.0
+  }
+ },
+ {
+  "layer": 12,
+  "confounded": {
+   "auc": 0.6296171061197917,
+   "bal_acc": 0.5018229166666667,
+   "paired_pos": 0.9296254256526674,
+   "paired_mean": 2.2455415081287757,
+   "cells": {
+    "evaluation::benchmark": 100.0,
+    "evaluation::casual": 0.6818181818181818,
+    "deployment::benchmark": 99.90384615384616,
+    "deployment::casual": 0.0
+   }
+  },
+  "decorrelated": {
+   "auc": 0.9853578016493058,
+   "bal_acc": 0.9348958333333333,
+   "paired_pos": 0.9988649262202043,
+   "paired_mean": 13.417679224277462,
+   "cells": {
+    "evaluation::benchmark": 93.36538461538461,
+    "evaluation::casual": 91.81818181818183,
+    "deployment::benchmark": 5.721153846153846,
+    "deployment::casual": 5.625
+   }
+  },
+  "b2c": {
+   "auc": 0.9402618155991737,
+   "bal_acc": 0.8539772727272728,
+   "paired_pos": 0.9975535168195718,
+   "paired_mean": 11.819146395130623,
+   "cells": {
+    "evaluation::casual": 75.9090909090909,
+    "deployment::casual": 5.113636363636364
+   }
+  },
+  "c2b": {
+   "auc": 0.9342219859467457,
+   "bal_acc": 0.8343750000000001,
+   "paired_pos": 0.9931180518793012,
+   "paired_mean": 10.435862157065884,
+   "cells": {
+    "evaluation::benchmark": 92.35576923076924,
+    "deployment::benchmark": 25.48076923076923
+   }
+  },
+  "format": {
+   "auc": 1.0,
+   "bal_acc": 1.0
+  }
+ },
+ {
+  "layer": 13,
+  "confounded": {
+   "auc": 0.6512210083007812,
+   "bal_acc": 0.5178385416666667,
+   "paired_pos": 0.9378547105561862,
+   "paired_mean": 2.9335944815269257,
+   "cells": {
+    "evaluation::benchmark": 99.95192307692308,
+    "evaluation::casual": 6.875000000000001,
+    "deployment::benchmark": 99.1826923076923,
+    "deployment::casual": 0.0
+   }
+  },
+  "decorrelated": {
+   "auc": 0.9866854519314235,
+   "bal_acc": 0.9381510416666666,
+   "paired_pos": 0.9982973893303064,
+   "paired_mean": 15.341243232605677,
+   "cells": {
+    "evaluation::benchmark": 93.41346153846153,
+    "evaluation::casual": 93.86363636363636,
+    "deployment::benchmark": 6.490384615384616,
+    "deployment::casual": 5.3977272727272725
+   }
+  },
+  "b2c": {
+   "auc": 0.9470554622933884,
+   "bal_acc": 0.8698863636363636,
+   "paired_pos": 0.9963302752293578,
+   "paired_mean": 15.049362785444346,
+   "cells": {
+    "evaluation::casual": 82.44318181818183,
+    "deployment::casual": 8.46590909090909
+   }
+  },
+  "c2b": {
+   "auc": 0.9451601793639053,
+   "bal_acc": 0.8639423076923077,
+   "paired_pos": 0.995764955002647,
+   "paired_mean": 11.573519836537354,
+   "cells": {
+    "evaluation::benchmark": 83.02884615384616,
+    "deployment::benchmark": 10.240384615384615
+   }
+  },
+  "format": {
+   "auc": 1.0,
+   "bal_acc": 1.0
+  }
+ },
+ {
+  "layer": 14,
+  "confounded": {
+   "auc": 0.6527733018663195,
+   "bal_acc": 0.5220052083333333,
+   "paired_pos": 0.9548808172531215,
+   "paired_mean": 3.13181432032964,
+   "cells": {
+    "evaluation::benchmark": 100.0,
+    "evaluation::casual": 8.238636363636363,
+    "deployment::benchmark": 98.84615384615385,
+    "deployment::casual": 0.0
+   }
+  },
+  "decorrelated": {
+   "auc": 0.9852487521701389,
+   "bal_acc": 0.935546875,
+   "paired_pos": 0.9977298524404086,
+   "paired_mean": 15.524003658490203,
+   "cells": {
+    "evaluation::benchmark": 93.07692307692308,
+    "evaluation::casual": 93.18181818181817,
+    "deployment::benchmark": 6.490384615384616,
+    "deployment::casual": 5.454545454545454
+   }
+  },
+  "b2c": {
+   "auc": 0.9517671745867768,
+   "bal_acc": 0.8818181818181818,
+   "paired_pos": 0.9963302752293578,
+   "paired_mean": 14.550657168659596,
+   "cells": {
+    "evaluation::casual": 84.77272727272728,
+    "deployment::casual": 8.409090909090908
+   }
+  },
+  "c2b": {
+   "auc": 0.946732387204142,
+   "bal_acc": 0.8713942307692308,
+   "paired_pos": 0.9978824775013234,
+   "paired_mean": 11.704359176109682,
+   "cells": {
+    "evaluation::benchmark": 85.04807692307692,
+    "deployment::benchmark": 10.76923076923077
+   }
+  },
+  "format": {
+   "auc": 1.0,
+   "bal_acc": 0.9997596153846153
+  }
+ },
+ {
+  "layer": 15,
+  "confounded": {
+   "auc": 0.6561555989583334,
+   "bal_acc": 0.5361979166666666,
+   "paired_pos": 0.952894438138479,
+   "paired_mean": 3.4423551422107233,
+   "cells": {
+    "evaluation::benchmark": 99.75961538461539,
+    "evaluation::casual": 13.750000000000002,
+    "deployment::benchmark": 98.02884615384615,
+    "deployment::casual": 0.0
+   }
+  },
+  "decorrelated": {
+   "auc": 0.982376437717014,
+   "bal_acc": 0.9255208333333333,
+   "paired_pos": 0.9991486946651532,
+   "paired_mean": 15.674653677627123,
+   "cells": {
+    "evaluation::benchmark": 91.97115384615384,
+    "evaluation::casual": 91.93181818181819,
+    "deployment::benchmark": 6.923076923076923,
+    "deployment::casual": 6.761363636363636
+   }
+  },
+  "b2c": {
+   "auc": 0.930349625516529,
+   "bal_acc": 0.85625,
+   "paired_pos": 0.9957186544342508,
+   "paired_mean": 15.436745669717817,
+   "cells": {
+    "evaluation::casual": 83.06818181818181,
+    "deployment::casual": 11.818181818181818
+   }
+  },
+  "c2b": {
+   "auc": 0.9250233450443787,
+   "bal_acc": 0.8334134615384615,
+   "paired_pos": 0.9978824775013234,
+   "paired_mean": 11.401917492447232,
+   "cells": {
+    "evaluation::benchmark": 88.84615384615384,
+    "deployment::benchmark": 22.163461538461537
+   }
+  },
+  "format": {
+   "auc": 0.999999180506993,
+   "bal_acc": 0.9990384615384615
+  }
+ },
+ {
+  "layer": 16,
+  "confounded": {
+   "auc": 0.6497990247938368,
+   "bal_acc": 0.5296875,
+   "paired_pos": 0.9406923950056754,
+   "paired_mean": 3.188143539239275,
+   "cells": {
+    "evaluation::benchmark": 99.71153846153847,
+    "evaluation::casual": 10.0,
+    "deployment::benchmark": 97.21153846153847,
+    "deployment::casual": 0.0
+   }
+  },
+  "decorrelated": {
+   "auc": 0.9735961235894095,
+   "bal_acc": 0.910546875,
+   "paired_pos": 0.9977298524404086,
+   "paired_mean": 14.690308744229469,
+   "cells": {
+    "evaluation::benchmark": 90.52884615384616,
+    "evaluation::casual": 89.88636363636363,
+    "deployment::benchmark": 7.98076923076923,
+    "deployment::casual": 8.295454545454547
+   }
+  },
+  "b2c": {
+   "auc": 0.908135007747934,
+   "bal_acc": 0.8335227272727272,
+   "paired_pos": 0.9944954128440368,
+   "paired_mean": 14.557973038530495,
+   "cells": {
+    "evaluation::casual": 82.10227272727273,
+    "deployment::casual": 15.397727272727273
+   }
+  },
+  "c2b": {
+   "auc": 0.9229495654585799,
+   "bal_acc": 0.8302884615384616,
+   "paired_pos": 0.9973530968766543,
+   "paired_mean": 10.575389953313396,
+   "cells": {
+    "evaluation::benchmark": 89.13461538461539,
+    "deployment::benchmark": 23.076923076923077
+   }
+  },
+  "format": {
+   "auc": 0.9999882539335665,
+   "bal_acc": 0.9985576923076923
+  }
+ },
+ {
+  "layer": 17,
+  "confounded": {
+   "auc": 0.6407733493381077,
+   "bal_acc": 0.532421875,
+   "paired_pos": 0.9353007945516458,
+   "paired_mean": 3.1592072865985985,
+   "cells": {
+    "evaluation::benchmark": 99.61538461538461,
+    "evaluation::casual": 11.477272727272728,
+    "deployment::benchmark": 97.35576923076923,
+    "deployment::casual": 0.0
+   }
+  },
+  "decorrelated": {
+   "auc": 0.9677786593967013,
+   "bal_acc": 0.9015625,
+   "paired_pos": 0.9951759364358683,
+   "paired_mean": 13.910156591542734,
+   "cells": {
+    "evaluation::benchmark": 88.84615384615384,
+    "evaluation::casual": 88.92045454545455,
+    "deployment::benchmark": 8.60576923076923,
+    "deployment::casual": 8.522727272727272
+   }
+  },
+  "b2c": {
+   "auc": 0.9041561208677686,
+   "bal_acc": 0.8329545454545455,
+   "paired_pos": 0.9908256880733946,
+   "paired_mean": 13.391193932714083,
+   "cells": {
+    "evaluation::casual": 80.39772727272727,
+    "deployment::casual": 13.806818181818182
+   }
+  },
+  "c2b": {
+   "auc": 0.915243389423077,
+   "bal_acc": 0.8216346153846155,
+   "paired_pos": 0.9915299100052938,
+   "paired_mean": 10.00386684943659,
+   "cells": {
+    "evaluation::benchmark": 87.64423076923077,
+    "deployment::benchmark": 23.317307692307693
+   }
+  },
+  "format": {
+   "auc": 0.9999755517919581,
+   "bal_acc": 0.9975961538461539
+  }
+ },
+ {
+  "layer": 18,
+  "confounded": {
+   "auc": 0.6275956556532118,
+   "bal_acc": 0.5259114583333333,
+   "paired_pos": 0.9219636776390465,
+   "paired_mean": 2.9224574328416053,
+   "cells": {
+    "evaluation::benchmark": 99.42307692307692,
+    "evaluation::casual": 8.806818181818182,
+    "deployment::benchmark": 97.3076923076923,
+    "deployment::casual": 0.0
+   }
+  },
+  "decorrelated": {
+   "auc": 0.9642806667751735,
+   "bal_acc": 0.8980468749999999,
+   "paired_pos": 0.9926220204313281,
+   "paired_mean": 13.32121808747428,
+   "cells": {
+    "evaluation::benchmark": 88.22115384615384,
+    "evaluation::casual": 87.2159090909091,
+    "deployment::benchmark": 8.173076923076923,
+    "deployment::casual": 8.125
+   }
+  },
+  "b2c": {
+   "auc": 0.8848740960743801,
+   "bal_acc": 0.8056818181818182,
+   "paired_pos": 0.9877675840978594,
+   "paired_mean": 12.879101179790789,
+   "cells": {
+    "evaluation::casual": 80.11363636363636,
+    "deployment::casual": 18.977272727272727
+   }
+  },
+  "c2b": {
+   "auc": 0.9033960105399408,
+   "bal_acc": 0.8098557692307692,
+   "paired_pos": 0.9894123875066173,
+   "paired_mean": 9.503258868649626,
+   "cells": {
+    "evaluation::benchmark": 85.67307692307692,
+    "deployment::benchmark": 23.701923076923077
+   }
+  },
+  "format": {
+   "auc": 0.9999642837631119,
+   "bal_acc": 0.9967329545454546
+  }
+ },
+ {
+  "layer": 19,
+  "confounded": {
+   "auc": 0.6203354220920139,
+   "bal_acc": 0.5282552083333333,
+   "paired_pos": 0.9160045402951191,
+   "paired_mean": 2.8585303469426786,
+   "cells": {
+    "evaluation::benchmark": 99.42307692307692,
+    "evaluation::casual": 9.659090909090908,
+    "deployment::benchmark": 97.16346153846153,
+    "deployment::casual": 0.0
+   }
+  },
+  "decorrelated": {
+   "auc": 0.9591116672092014,
+   "bal_acc": 0.8959635416666667,
+   "paired_pos": 0.9917707150964813,
+   "paired_mean": 12.763833809504444,
+   "cells": {
+    "evaluation::benchmark": 88.60576923076923,
+    "evaluation::casual": 87.04545454545455,
+    "deployment::benchmark": 8.75,
+    "deployment::casual": 8.636363636363637
+   }
+  },
+  "b2c": {
+   "auc": 0.8762935821280992,
+   "bal_acc": 0.8022727272727272,
+   "paired_pos": 0.9883792048929664,
+   "paired_mean": 12.293256978704296,
+   "cells": {
+    "evaluation::casual": 76.13636363636364,
+    "deployment::casual": 15.681818181818183
+   }
+  },
+  "c2b": {
+   "auc": 0.9047573039940828,
+   "bal_acc": 0.8180288461538461,
+   "paired_pos": 0.9862361037586025,
+   "paired_mean": 9.156271161479001,
+   "cells": {
+    "evaluation::benchmark": 82.3076923076923,
+    "deployment::benchmark": 18.701923076923077
+   }
+  },
+  "format": {
+   "auc": 0.999930821131993,
+   "bal_acc": 0.9959243881118881
+  }
+ },
+ {
+  "layer": 20,
+  "confounded": {
+   "auc": 0.6145348782009549,
+   "bal_acc": 0.5287760416666667,
+   "paired_pos": 0.9137343927355278,
+   "paired_mean": 2.7748883079048183,
+   "cells": {
+    "evaluation::benchmark": 99.5673076923077,
+    "evaluation::casual": 9.886363636363637,
+    "deployment::benchmark": 97.11538461538461,
+    "deployment::casual": 0.22727272727272727
+   }
+  },
+  "decorrelated": {
+   "auc": 0.9547969563802085,
+   "bal_acc": 0.8830729166666667,
+   "paired_pos": 0.9892167990919409,
+   "paired_mean": 12.309757178558394,
+   "cells": {
+    "evaluation::benchmark": 87.35576923076923,
+    "evaluation::casual": 85.73863636363637,
+    "deployment::benchmark": 9.615384615384617,
+    "deployment::casual": 10.454545454545453
+   }
+  },
+  "b2c": {
+   "auc": 0.8724438274793388,
+   "bal_acc": 0.8008522727272727,
+   "paired_pos": 0.9840978593272172,
+   "paired_mean": 11.664836267593804,
+   "cells": {
+    "evaluation::casual": 76.07954545454545,
+    "deployment::casual": 15.909090909090908
+   }
+  },
+  "c2b": {
+   "auc": 0.8892101978550295,
+   "bal_acc": 0.7927884615384615,
+   "paired_pos": 0.9862361037586025,
+   "paired_mean": 8.73776600233394,
+   "cells": {
+    "evaluation::benchmark": 88.02884615384615,
+    "deployment::benchmark": 29.471153846153847
+   }
+  },
+  "format": {
+   "auc": 0.9998383550043707,
+   "bal_acc": 0.9946022727272728
+  }
+ },
+ {
+  "layer": 21,
+  "confounded": {
+   "auc": 0.6079354180230034,
+   "bal_acc": 0.5239583333333333,
+   "paired_pos": 0.9035187287173666,
+   "paired_mean": 2.6075376168180946,
+   "cells": {
+    "evaluation::benchmark": 99.47115384615385,
+    "evaluation::casual": 8.181818181818182,
+    "deployment::benchmark": 97.35576923076923,
+    "deployment::casual": 0.22727272727272727
+   }
+  },
+  "decorrelated": {
+   "auc": 0.949010281032986,
+   "bal_acc": 0.878515625,
+   "paired_pos": 0.9880817253121453,
+   "paired_mean": 11.881165666930656,
+   "cells": {
+    "evaluation::benchmark": 87.16346153846153,
+    "evaluation::casual": 84.94318181818183,
+    "deployment::benchmark": 10.14423076923077,
+    "deployment::casual": 10.795454545454545
+   }
+  },
+  "b2c": {
+   "auc": 0.8666357825413222,
+   "bal_acc": 0.7928977272727273,
+   "paired_pos": 0.981651376146789,
+   "paired_mean": 11.42935666006275,
+   "cells": {
+    "evaluation::casual": 75.51136363636364,
+    "deployment::casual": 16.93181818181818
+   }
+  },
+  "c2b": {
+   "auc": 0.8835743343195267,
+   "bal_acc": 0.7829326923076922,
+   "paired_pos": 0.9835892006352568,
+   "paired_mean": 8.39160597232866,
+   "cells": {
+    "evaluation::benchmark": 88.46153846153845,
+    "deployment::benchmark": 31.874999999999996
+   }
+  },
+  "format": {
+   "auc": 0.9998141799606644,
+   "bal_acc": 0.9942744755244755
+  }
+ },
+ {
+  "layer": 22,
+  "confounded": {
+   "auc": 0.5963301255967881,
+   "bal_acc": 0.5134114583333333,
+   "paired_pos": 0.8796821793416572,
+   "paired_mean": 2.2324205652031535,
+   "cells": {
+    "evaluation::benchmark": 99.42307692307692,
+    "evaluation::casual": 4.204545454545454,
+    "deployment::benchmark": 97.9326923076923,
+    "deployment::casual": 0.11363636363636363
+   }
+  },
+  "decorrelated": {
+   "auc": 0.944933369954427,
+   "bal_acc": 0.8695312500000001,
+   "paired_pos": 0.9880817253121453,
+   "paired_mean": 11.575148661564887,
+   "cells": {
+    "evaluation::benchmark": 85.86538461538461,
+    "evaluation::casual": 85.05681818181819,
+    "deployment::benchmark": 11.201923076923077,
+    "deployment::casual": 12.045454545454545
+   }
+  },
+  "b2c": {
+   "auc": 0.8656969912190082,
+   "bal_acc": 0.7931818181818182,
+   "paired_pos": 0.982874617737003,
+   "paired_mean": 11.142135736410042,
+   "cells": {
+    "evaluation::casual": 75.9659090909091,
+    "deployment::casual": 17.329545454545457
+   }
+  },
+  "c2b": {
+   "auc": 0.8723063054733727,
+   "bal_acc": 0.7728365384615384,
+   "paired_pos": 0.9751191106405506,
+   "paired_mean": 8.052522664855182,
+   "cells": {
+    "evaluation::benchmark": 87.9326923076923,
+    "deployment::benchmark": 33.36538461538461
+   }
+  },
+  "format": {
+   "auc": 0.9998174579326923,
+   "bal_acc": 0.9953015734265734
+  }
+ },
+ {
+  "layer": 23,
+  "confounded": {
+   "auc": 0.5908882649739583,
+   "bal_acc": 0.5130208333333334,
+   "paired_pos": 0.8711691259931895,
+   "paired_mean": 2.1134404438747585,
+   "cells": {
+    "evaluation::benchmark": 99.42307692307692,
+    "evaluation::casual": 3.977272727272727,
+    "deployment::benchmark": 97.88461538461539,
+    "deployment::casual": 0.11363636363636363
+   }
+  },
+  "decorrelated": {
+   "auc": 0.9413075764973958,
+   "bal_acc": 0.864453125,
+   "paired_pos": 0.9877979568671964,
+   "paired_mean": 11.140891354061688,
+   "cells": {
+    "evaluation::benchmark": 85.48076923076923,
+    "evaluation::casual": 83.29545454545455,
+    "deployment::benchmark": 11.538461538461538,
+    "deployment::casual": 11.647727272727272
+   }
+  },
+  "b2c": {
+   "auc": 0.8477831224173553,
+   "bal_acc": 0.7670454545454546,
+   "paired_pos": 0.982874617737003,
+   "paired_mean": 10.602727285875092,
+   "cells": {
+    "evaluation::casual": 78.92045454545455,
+    "deployment::casual": 25.511363636363637
+   }
+  },
+  "c2b": {
+   "auc": 0.8710870469674555,
+   "bal_acc": 0.7689903846153846,
+   "paired_pos": 0.9761778718898888,
+   "paired_mean": 8.021043118375392,
+   "cells": {
+    "evaluation::benchmark": 85.0,
+    "deployment::benchmark": 31.201923076923077
+   }
+  },
+  "format": {
+   "auc": 0.9994387155812937,
+   "bal_acc": 0.9948208041958042
+  }
+ },
+ {
+  "layer": 24,
+  "confounded": {
+   "auc": 0.588502468532986,
+   "bal_acc": 0.514453125,
+   "paired_pos": 0.8740068104426788,
+   "paired_mean": 2.12016690281409,
+   "cells": {
+    "evaluation::benchmark": 99.375,
+    "evaluation::casual": 4.147727272727273,
+    "deployment::benchmark": 97.35576923076923,
+    "deployment::casual": 0.22727272727272727
+   }
+  },
+  "decorrelated": {
+   "auc": 0.9336935085720486,
+   "bal_acc": 0.85859375,
+   "paired_pos": 0.9826901248581158,
+   "paired_mean": 10.657650009034441,
+   "cells": {
+    "evaluation::benchmark": 85.1923076923077,
+    "evaluation::casual": 83.75,
+    "deployment::benchmark": 12.355769230769232,
+    "deployment::casual": 13.352272727272727
+   }
+  },
+  "b2c": {
+   "auc": 0.8481537319214876,
+   "bal_acc": 0.7735795454545454,
+   "paired_pos": 0.981039755351682,
+   "paired_mean": 10.039189654205916,
+   "cells": {
+    "evaluation::casual": 75.3409090909091,
+    "deployment::casual": 20.625
+   }
+  },
+  "c2b": {
+   "auc": 0.8581721523668637,
+   "bal_acc": 0.75625,
+   "paired_pos": 0.9724722075172049,
+   "paired_mean": 7.6370151315876385,
+   "cells": {
+    "evaluation::benchmark": 85.04807692307692,
+    "deployment::benchmark": 33.79807692307693
+   }
+  },
+  "format": {
+   "auc": 0.9993813510708042,
+   "bal_acc": 0.9947443181818182
+  }
+ },
+ {
+  "layer": 25,
+  "confounded": {
+   "auc": 0.5837136501736111,
+   "bal_acc": 0.5139322916666667,
+   "paired_pos": 0.8569807037457434,
+   "paired_mean": 2.0182872161725864,
+   "cells": {
+    "evaluation::benchmark": 99.375,
+    "evaluation::casual": 3.8636363636363633,
+    "deployment::benchmark": 97.35576923076923,
+    "deployment::casual": 0.17045454545454544
+   }
+  },
+  "decorrelated": {
+   "auc": 0.9314270697699653,
+   "bal_acc": 0.8553385416666667,
+   "paired_pos": 0.9838251986379115,
+   "paired_mean": 10.746389643220436,
+   "cells": {
+    "evaluation::benchmark": 83.9423076923077,
+    "evaluation::casual": 83.01136363636363,
+    "deployment::benchmark": 12.307692307692308,
+    "deployment::casual": 12.613636363636363
+   }
+  },
+  "b2c": {
+   "auc": 0.8440699251033058,
+   "bal_acc": 0.7684659090909092,
+   "paired_pos": 0.981651376146789,
+   "paired_mean": 10.180526288313967,
+   "cells": {
+    "evaluation::casual": 74.82954545454545,
+    "deployment::casual": 21.136363636363637
+   }
+  },
+  "c2b": {
+   "auc": 0.8543375554733728,
+   "bal_acc": 0.7456730769230769,
+   "paired_pos": 0.9714134462678666,
+   "paired_mean": 7.3527864592929815,
+   "cells": {
+    "evaluation::benchmark": 87.35576923076923,
+    "deployment::benchmark": 38.22115384615385
+   }
+  },
+  "format": {
+   "auc": 0.9996832659527972,
+   "bal_acc": 0.9942416958041957
+  }
+ },
+ {
+  "layer": 26,
+  "confounded": {
+   "auc": 0.5843504163953993,
+   "bal_acc": 0.5157552083333333,
+   "paired_pos": 0.8674801362088536,
+   "paired_mean": 2.09105370727354,
+   "cells": {
+    "evaluation::benchmark": 99.27884615384616,
+    "evaluation::casual": 4.318181818181818,
+    "deployment::benchmark": 97.0673076923077,
+    "deployment::casual": 0.056818181818181816
+   }
+  },
+  "decorrelated": {
+   "auc": 0.9336035156250001,
+   "bal_acc": 0.8565104166666666,
+   "paired_pos": 0.9863791146424518,
+   "paired_mean": 10.837857607578718,
+   "cells": {
+    "evaluation::benchmark": 84.51923076923077,
+    "evaluation::casual": 83.80681818181817,
+    "deployment::benchmark": 12.307692307692308,
+    "deployment::casual": 13.579545454545455
+   }
+  },
+  "b2c": {
+   "auc": 0.8616577350206611,
+   "bal_acc": 0.7789772727272728,
+   "paired_pos": 0.9792048929663608,
+   "paired_mean": 10.05377166748776,
+   "cells": {
+    "evaluation::casual": 73.92045454545455,
+    "deployment::casual": 18.125
+   }
+  },
+  "c2b": {
+   "auc": 0.8550550110946744,
+   "bal_acc": 0.7598557692307693,
+   "paired_pos": 0.9751191106405506,
+   "paired_mean": 7.528031301504724,
+   "cells": {
+    "evaluation::benchmark": 82.88461538461539,
+    "deployment::benchmark": 30.91346153846154
+   }
+  },
+  "format": {
+   "auc": 0.9996270623907343,
+   "bal_acc": 0.9938374125874125
+  }
+ },
+ {
+  "layer": 27,
+  "confounded": {
+   "auc": 0.5835323079427083,
+   "bal_acc": 0.5143229166666666,
+   "paired_pos": 0.8691827468785471,
+   "paired_mean": 2.0645693748614304,
+   "cells": {
+    "evaluation::benchmark": 98.99038461538461,
+    "evaluation::casual": 4.204545454545454,
+    "deployment::benchmark": 97.16346153846153,
+    "deployment::casual": 0.11363636363636363
+   }
+  },
+  "decorrelated": {
+   "auc": 0.9298550075954861,
+   "bal_acc": 0.8552083333333333,
+   "paired_pos": 0.9863791146424518,
+   "paired_mean": 10.709274611766709,
+   "cells": {
+    "evaluation::benchmark": 84.375,
+    "evaluation::casual": 83.29545454545455,
+    "deployment::benchmark": 12.451923076923077,
+    "deployment::casual": 13.295454545454547
+   }
+  },
+  "b2c": {
+   "auc": 0.8562467716942148,
+   "bal_acc": 0.7789772727272728,
+   "paired_pos": 0.9798165137614679,
+   "paired_mean": 10.06496968885445,
+   "cells": {
+    "evaluation::casual": 75.0,
+    "deployment::casual": 19.204545454545453
+   }
+  },
+  "c2b": {
+   "auc": 0.8403125,
+   "bal_acc": 0.753125,
+   "paired_pos": 0.9767072525145579,
+   "paired_mean": 7.324799087736706,
+   "cells": {
+    "evaluation::benchmark": 80.0,
+    "deployment::benchmark": 29.375
+   }
+  },
+  "format": {
+   "auc": 0.9996416766826923,
+   "bal_acc": 0.9938920454545455
+  }
+ },
+ {
+  "layer": 28,
+  "confounded": {
+   "auc": 0.5851613023546007,
+   "bal_acc": 0.5147135416666666,
+   "paired_pos": 0.8728717366628831,
+   "paired_mean": 2.0586106858208826,
+   "cells": {
+    "evaluation::benchmark": 98.9423076923077,
+    "evaluation::casual": 4.204545454545454,
+    "deployment::benchmark": 96.97115384615384,
+    "deployment::casual": 0.11363636363636363
+   }
+  },
+  "decorrelated": {
+   "auc": 0.928008287217882,
+   "bal_acc": 0.8510416666666667,
+   "paired_pos": 0.9846765039727582,
+   "paired_mean": 10.51626150475796,
+   "cells": {
+    "evaluation::benchmark": 84.27884615384616,
+    "evaluation::casual": 83.92045454545455,
+    "deployment::benchmark": 13.990384615384615,
+    "deployment::casual": 13.806818181818182
+   }
+  },
+  "b2c": {
+   "auc": 0.8572549715909092,
+   "bal_acc": 0.772159090909091,
+   "paired_pos": 0.9749235474006116,
+   "paired_mean": 9.910785852568594,
+   "cells": {
+    "evaluation::casual": 76.64772727272727,
+    "deployment::casual": 22.215909090909093
+   }
+  },
+  "c2b": {
+   "auc": 0.8484591115014792,
+   "bal_acc": 0.7442307692307693,
+   "paired_pos": 0.9798835362625727,
+   "paired_mean": 7.151573554777859,
+   "cells": {
+    "evaluation::benchmark": 86.4423076923077,
+    "deployment::benchmark": 37.59615384615385
+   }
+  },
+  "format": {
+   "auc": 0.9995869755244755,
+   "bal_acc": 0.992263986013986
+  }
+ },
+ {
+  "layer": 29,
+  "confounded": {
+   "auc": 0.5846028984917535,
+   "bal_acc": 0.5139322916666667,
+   "paired_pos": 0.869750283768445,
+   "paired_mean": 2.0297334052444724,
+   "cells": {
+    "evaluation::benchmark": 98.70192307692308,
+    "evaluation::casual": 4.375,
+    "deployment::benchmark": 97.11538461538461,
+    "deployment::casual": 0.17045454545454544
+   }
+  },
+  "decorrelated": {
+   "auc": 0.9282061767578124,
+   "bal_acc": 0.8522135416666667,
+   "paired_pos": 0.9858115777525539,
+   "paired_mean": 10.17492617795267,
+   "cells": {
+    "evaluation::benchmark": 84.71153846153847,
+    "evaluation::casual": 83.80681818181817,
+    "deployment::benchmark": 13.798076923076923,
+    "deployment::casual": 13.920454545454545
+   }
+  },
+  "b2c": {
+   "auc": 0.8622827350206612,
+   "bal_acc": 0.7784090909090908,
+   "paired_pos": 0.981039755351682,
+   "paired_mean": 9.757820476195134,
+   "cells": {
+    "evaluation::casual": 76.64772727272727,
+    "deployment::casual": 20.96590909090909
+   }
+  },
+  "c2b": {
+   "auc": 0.8248421320266273,
+   "bal_acc": 0.7432692307692308,
+   "paired_pos": 0.9809422975119111,
+   "paired_mean": 6.924813427374185,
+   "cells": {
+    "evaluation::benchmark": 77.83653846153847,
+    "deployment::benchmark": 29.18269230769231
+   }
+  },
+  "format": {
+   "auc": 0.9995556982080419,
+   "bal_acc": 0.992263986013986
+  }
+ },
+ {
+  "layer": 30,
+  "confounded": {
+   "auc": 0.5789284261067709,
+   "bal_acc": 0.5118489583333333,
+   "paired_pos": 0.862088535754824,
+   "paired_mean": 1.9002143409817769,
+   "cells": {
+    "evaluation::benchmark": 99.03846153846155,
+    "evaluation::casual": 3.295454545454545,
+    "deployment::benchmark": 97.21153846153847,
+    "deployment::casual": 0.2840909090909091
+   }
+  },
+  "decorrelated": {
+   "auc": 0.9240249294704861,
+   "bal_acc": 0.847265625,
+   "paired_pos": 0.9872304199772985,
+   "paired_mean": 9.956157189797056,
+   "cells": {
+    "evaluation::benchmark": 82.9326923076923,
+    "evaluation::casual": 82.67045454545455,
+    "deployment::benchmark": 13.653846153846153,
+    "deployment::casual": 13.011363636363637
+   }
+  },
+  "b2c": {
+   "auc": 0.8734236182851238,
+   "bal_acc": 0.7911931818181819,
+   "paired_pos": 0.9853211009174312,
+   "paired_mean": 9.58580078593817,
+   "cells": {
+    "evaluation::casual": 74.88636363636364,
+    "deployment::casual": 16.647727272727273
+   }
+  },
+  "c2b": {
+   "auc": 0.7842682137573964,
+   "bal_acc": 0.7300480769230769,
+   "paired_pos": 0.9798835362625727,
+   "paired_mean": 6.781118109561956,
+   "cells": {
+    "evaluation::benchmark": 67.21153846153847,
+    "deployment::benchmark": 21.201923076923077
+   }
+  },
+  "format": {
+   "auc": 0.999652534965035,
+   "bal_acc": 0.9929195804195805
+  }
+ },
+ {
+  "layer": 31,
+  "confounded": {
+   "auc": 0.5782335069444444,
+   "bal_acc": 0.5145833333333334,
+   "paired_pos": 0.8589670828603859,
+   "paired_mean": 1.9964625507626983,
+   "cells": {
+    "evaluation::benchmark": 98.99038461538461,
+    "evaluation::casual": 4.829545454545454,
+    "deployment::benchmark": 97.16346153846153,
+    "deployment::casual": 0.625
+   }
+  },
+  "decorrelated": {
+   "auc": 0.9127680799696181,
+   "bal_acc": 0.834765625,
+   "paired_pos": 0.985244040862656,
+   "paired_mean": 9.492860732128618,
+   "cells": {
+    "evaluation::benchmark": 81.6826923076923,
+    "evaluation::casual": 80.17045454545455,
+    "deployment::benchmark": 14.038461538461538,
+    "deployment::casual": 14.03409090909091
+   }
+  },
+  "b2c": {
+   "auc": 0.8560253099173554,
+   "bal_acc": 0.7727272727272727,
+   "paired_pos": 0.9798165137614679,
+   "paired_mean": 9.4122365595733,
+   "cells": {
+    "evaluation::casual": 73.92045454545455,
+    "deployment::casual": 19.375
+   }
+  },
+  "c2b": {
+   "auc": 0.7804375462278107,
+   "bal_acc": 0.7298076923076923,
+   "paired_pos": 0.9793541556379036,
+   "paired_mean": 6.641315533093765,
+   "cells": {
+    "evaluation::benchmark": 63.99038461538461,
+    "deployment::benchmark": 18.028846153846153
+   }
+  },
+  "format": {
+   "auc": 0.9993744536713287,
+   "bal_acc": 0.991652097902098
+  }
+ }
+]

@@ -1,0 +1,217 @@
+{
+  "archive_id": "full320_orthc_transfer_v1_local_20260826",
+  "excluded_reconstructible_dependencies": [
+    "Pinned model checkpoint weights and tokenizer snapshots remain in their existing local/cluster stores; their file hashes are in runner manifests."
+  ],
+  "files": {
+    "logs/tae_cxfer-53713041.err": {
+      "bytes": 503,
+      "sha256": "35400d6e831270ab04b2d3092db8b18b7f2c8a9581faa38cc01d5e03d46eae54"
+    },
+    "logs/tae_cxfer-53713041.out": {
+      "bytes": 2317,
+      "sha256": "8503c158f6733e6765075d4182dbbb4a4b5305edef34fa93f3625991f223fff7"
+    },
+    "logs/tae_cxfer-53713042.err": {
+      "bytes": 2733,
+      "sha256": "0ce76febf91918fe259e769afe2fa598a27f503dcdf78612ee4d20ac8348d28f"
+    },
+    "logs/tae_cxfer-53713042.out": {
+      "bytes": 2752,
+      "sha256": "591755564d34ee9b3e00418fb042d82c19f4de39aaa3b9686ca0bf8407e75f2e"
+    },
+    "logs/tae_cxfer_extract-53698538.err": {
+      "bytes": 503,
+      "sha256": "551e33abcfee924b25ffbc7bb238cf5a9a2ad4e5a78232b5cf8bbe3a01585add"
+    },
+    "logs/tae_cxfer_extract-53698538.out": {
+      "bytes": 2067,
+      "sha256": "3e913674251d4f07ba932ffcb8c4c833d2cb605d0ac36c1862e5413eeba30619"
+    },
+    "logs/tae_cxfer_extract-53698539.err": {
+      "bytes": 2733,
+      "sha256": "c7b379b82f00bded929d479a42f4ded64dfce80659b340ab650cfa724fed7d33"
+    },
+    "logs/tae_cxfer_extract-53698539.out": {
+      "bytes": 2758,
+      "sha256": "30e346fb5c36d7c1738dbd29bac0f6b80a554cfaba085ba9728b27d672ae8dea"
+    },
+    "logs/tae_cxfer_gate-53712735.err": {
+      "bytes": 503,
+      "sha256": "142bf98f8cc332294d09e6817b4e31e4ba017fdd7e23ca7fdde043d726ffa274"
+    },
+    "logs/tae_cxfer_gate-53712735.out": {
+      "bytes": 452,
+      "sha256": "13a5dab597bf07c8cd0b66ea8db5fa95d12e0e33fc3fc52ff4b330de77a7af41"
+    },
+    "logs/tae_cxfer_gate-53712736.err": {
+      "bytes": 2733,
+      "sha256": "39955af4b90a3f5c295993426e768a4ccc7c815d6c7166e45c4137101e83ab00"
+    },
+    "logs/tae_cxfer_gate-53712736.out": {
+      "bytes": 697,
+      "sha256": "fc6f7b3c351cb5b324783345d57f0749e3581901dbc75ecd54be302d18dbde15"
+    },
+    "run/analysis/analysis_manifest.json": {
+      "bytes": 575,
+      "sha256": "055af53bdea59fea91decf8cf7207bcbb77fdea2a36b8c746c91ffd3d092c79f"
+    },
+    "run/analysis/payload_block_effects.csv": {
+      "bytes": 825571,
+      "sha256": "f1e2670672244773e4deae79e831f2b084dfda990a07abbaae6762cd83761fc7"
+    },
+    "run/analysis/transfer_results.json": {
+      "bytes": 12358,
+      "sha256": "c178a95939ee5b1e6bcbc879061ace26ae9bf7dee9d3f19436aff9e9bd734055"
+    },
+    "run/bank/cluster_extract_full320_orthc_transfer.sbatch": {
+      "bytes": 2330,
+      "sha256": "560f60a3e541c7ad6364f4e00a767cd069a6bc95fc2f74950e952a3f872bce87"
+    },
+    "run/bank/items.jsonl": {
+      "bytes": 5336772,
+      "sha256": "4c7d7a5b51d771982be01285d3be9b2b99b3fd6c79b7cbbf44e9b94c941f857d"
+    },
+    "run/extract_70b/activations.npz": {
+      "bytes": 48663403,
+      "sha256": "8ed05e6232fe00e85c05a9c8385e1d957d4de4fb151dc5d31b5ec63e4f67f607"
+    },
+    "run/extract_70b/activations_all_layers.npz": {
+      "bytes": 3901230608,
+      "sha256": "f368fee4059f1b5472a6fca8a53efa243ced8b77bb36212bd407667faf7addc7"
+    },
+    "run/extract_70b/config.json": {
+      "bytes": 1816,
+      "sha256": "3740499252fa00fed811313a49d1db68ce2302827fe7b3e967a50f8903ed56a7"
+    },
+    "run/extract_70b/meta.jsonl": {
+      "bytes": 5535096,
+      "sha256": "def3a6c7c74d76aec577cd864a3fdccf9f8aaba161bbac06c4190d2a95c708b0"
+    },
+    "run/extract_8b/activations.npz": {
+      "bytes": 24275646,
+      "sha256": "48cb40c7107965cbc9b954483ebc6aa80b0e0c618d872bef3c6d00081e8806ad"
+    },
+    "run/extract_8b/activations_all_layers.npz": {
+      "bytes": 778229553,
+      "sha256": "5822e7a3a436c3106a82259f307b3dd08d06b7c34f95d0bf924d0e7ede9b810c"
+    },
+    "run/extract_8b/config.json": {
+      "bytes": 1357,
+      "sha256": "9a625ecfcd8f4b0804f4cef1edc5f4ec2a553a65d6cf4de7123c39a75d03d4db"
+    },
+    "run/extract_8b/meta.jsonl": {
+      "bytes": 5535096,
+      "sha256": "def3a6c7c74d76aec577cd864a3fdccf9f8aaba161bbac06c4190d2a95c708b0"
+    },
+    "run/full320_orthc_transfer_analysis_prereg_v1.json": {
+      "bytes": 9906,
+      "sha256": "4a73be0215016556fcb39b7fa120f35357d0513d64efc52e6ad727764ec05119"
+    },
+    "run/full320_orthc_transfer_analysis_prereg_v1_addendum_20260826.json": {
+      "bytes": 1440,
+      "sha256": "f9e2c5e9fc17e07f03283016c15aaefe6fe990bcfac0ec5823426637a89f99b8"
+    },
+    "run/full320_orthc_transfer_reextraction_v1.json": {
+      "bytes": 4967,
+      "sha256": "947f0b8102c094ee3390150dd40d0516191d482ce5b16e8bacc74b1a0fdd8d24"
+    },
+    "run/plan_70b/causal_plan.json": {
+      "bytes": 237880,
+      "sha256": "275aecb13b2565ebf470766f3d1a0ddd987062b8441d3f13194dc76615cb25f2"
+    },
+    "run/plan_70b/causal_plan.npz": {
+      "bytes": 61586772,
+      "sha256": "4abf2e70c6a89e3d60879d23791cb9931a8f2f532e82deafe5b94178fd780a3c"
+    },
+    "run/plan_8b/causal_plan.json": {
+      "bytes": 237763,
+      "sha256": "5af1ca53e573e243d089684cb21d2e0313251894c7c63b8edc68604e09774cd9"
+    },
+    "run/plan_8b/causal_plan.npz": {
+      "bytes": 30866672,
+      "sha256": "c0368f2fd275c968187ec377f24fd76f89a2b8cb8a74ebbbb3f79193a63a9a35"
+    },
+    "run/run_70b/causal_raw.jsonl": {
+      "bytes": 412744034,
+      "sha256": "990b5127938be00e49a67145d3404ccae952dab7fe17655e5fc9f3dddd8a6a94"
+    },
+    "run/run_70b/runner_manifest.json": {
+      "bytes": 2216,
+      "sha256": "36f7eb897303a27cea243ee59150be6f29ea5c818bd2c8f7cec69bf63a66497b"
+    },
+    "run/run_8b/causal_raw.jsonl": {
+      "bytes": 413055191,
+      "sha256": "aaffc86f43535a2cb081c005e16533d70d9f60c84f4eef7ba35496a7d03bd6e2"
+    },
+    "run/run_8b/runner_manifest.json": {
+      "bytes": 2003,
+      "sha256": "717646d69996c63c8dc82598550bbc390fa4f13e0c313f66d5feae15fbdfb446"
+    },
+    "run/shakedown_70b.json": {
+      "bytes": 5470,
+      "sha256": "46e8b13f06c6996cf99488c60ef5096fa07606add7e4c25b06259695ece3bda3"
+    },
+    "run/shakedown_8b.json": {
+      "bytes": 5461,
+      "sha256": "3378a2b2062ebc07355c44e06fd2d6404702381f5c415f3bde6cd17816986945"
+    },
+    "source/configs/full320_orthc_transfer_analysis_prereg_v1.json": {
+      "bytes": 9906,
+      "sha256": "4a73be0215016556fcb39b7fa120f35357d0513d64efc52e6ad727764ec05119"
+    },
+    "source/configs/full320_orthc_transfer_analysis_prereg_v1_addendum_20260826.json": {
+      "bytes": 1440,
+      "sha256": "f9e2c5e9fc17e07f03283016c15aaefe6fe990bcfac0ec5823426637a89f99b8"
+    },
+    "source/configs/full320_orthogonalized_c_transfer_v1.json": {
+      "bytes": 9477,
+      "sha256": "f58171224a631f26121451578b43659391f4c375cfbd0dbd1669b4d8389e2e15"
+    },
+    "source/scripts/__pycache__/run_pilot80_factorial_causal.cpython-311.pyc": {
+      "bytes": 66831,
+      "sha256": "9971f66b6fc2f7e28a62359ac61484d7133a29c0253c3431545650f6160f4513"
+    },
+    "source/scripts/analyze_full320_orthc_transfer.py": {
+      "bytes": 18889,
+      "sha256": "73f75d704c5279ebe355455b0bb59ca09c2cc5135e52241ed9910eb1855536cd"
+    },
+    "source/scripts/build_full320_orthc_transfer_plan.py": {
+      "bytes": 9496,
+      "sha256": "691b8fb5b2d737a9ed4d753f90146a8afbf3fd4eb6748fbba04772842c9d00e8"
+    },
+    "source/scripts/cluster_run_full320_orthc_transfer.sbatch": {
+      "bytes": 2184,
+      "sha256": "ae5a962bbb63832dd641159f49cfe320f4f36440052cecaa4b86b2404bfb6cdf"
+    },
+    "source/scripts/cluster_validate_full320_transfer_baselines.sbatch": {
+      "bytes": 1439,
+      "sha256": "39b72da8f80675d03239763c8c873ba63bcfaf7d86f59987235bff5521be074c"
+    },
+    "source/scripts/run_full320_orthc_transfer.py": {
+      "bytes": 22798,
+      "sha256": "68b5307eaeed3f400f9778cc0a75b3cf6b54545c59f704cf12fd1495ec03cefa"
+    },
+    "source/scripts/run_pilot80_factorial_causal.py": {
+      "bytes": 43145,
+      "sha256": "c3f7f0f7711f678d289c19b56795277effc6d77259d4c5a6c382485b1354efef"
+    },
+    "source/scripts/validate_full320_transfer_baselines.py": {
+      "bytes": 9100,
+      "sha256": "4cb97c46a0d8f1e2e410910c9e1c2962b3a9e8f415d72da1e683e705ffcb29e2"
+    }
+  },
+  "local_roots": {
+    "run": "C:/format-EA-data/full320_orthc_transfer_v1",
+    "source": "C:/format-EA-data/full320_orthc_transfer_src_f5817122"
+  },
+  "schema_version": 1,
+  "source_cluster_root": "/scratch/jppatton/langea/runs/tae_2026/full320_orthc_transfer_v1",
+  "status": "complete_verified_local_copy",
+  "verification": {
+    "all_size_and_sha256_pairs_match": true,
+    "files_verified": 49,
+    "method": "independent SHA-256 of every remote and local file",
+    "total_bytes": 5688625412
+  }
+}

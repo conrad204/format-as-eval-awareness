@@ -1,0 +1,426 @@
+{
+  "audited_before_activations": true,
+  "bank": "results/binding_v2_frozen",
+  "checks": {
+    "1_counts": {
+      "label_counts": {
+        "0": 3840,
+        "1": 3840
+      },
+      "n_blocks": 960,
+      "n_families": 8,
+      "n_items": 7680,
+      "n_templates": 11,
+      "unique_item_ids": 7680
+    },
+    "2_label_is_the_interaction": {
+      "holds_for_all_items": true,
+      "mapping_alone_label_mean": {
+        "-1": 0.5,
+        "1": 0.5
+      },
+      "selected_alone_label_mean": {
+        "-1": 0.5,
+        "1": 0.5
+      }
+    },
+    "3_nuisance_label_balance": {
+      "arm": {
+        "consequence": {
+          "label_mean": 0.5,
+          "n": 3840
+        },
+        "neutral": {
+          "label_mean": 0.5,
+          "n": 3840
+        }
+      },
+      "attr_flip": {
+        "False": {
+          "label_mean": 0.5,
+          "n": 3840
+        },
+        "True": {
+          "label_mean": 0.5,
+          "n": 3840
+        }
+      },
+      "bind_order": {
+        "False": {
+          "label_mean": 0.5,
+          "n": 3840
+        },
+        "True": {
+          "label_mean": 0.5,
+          "n": 3840
+        }
+      },
+      "current_route_is_a": {
+        "False": {
+          "label_mean": 0.5,
+          "n": 3840
+        },
+        "True": {
+          "label_mean": 0.5,
+          "n": 3840
+        }
+      },
+      "family": {
+        "branch": {
+          "label_mean": 0.5,
+          "n": 960
+        },
+        "channel": {
+          "label_mean": 0.5,
+          "n": 960
+        },
+        "pipeline": {
+          "label_mean": 0.5,
+          "n": 960
+        },
+        "queue": {
+          "label_mean": 0.5,
+          "n": 960
+        },
+        "record": {
+          "label_mean": 0.5,
+          "n": 960
+        },
+        "service": {
+          "label_mean": 0.5,
+          "n": 960
+        },
+        "station": {
+          "label_mean": 0.5,
+          "n": 960
+        },
+        "workspace": {
+          "label_mean": 0.5,
+          "n": 960
+        }
+      },
+      "format": {
+        "benchmark": {
+          "label_mean": 0.5,
+          "n": 3840
+        },
+        "casual": {
+          "label_mean": 0.5,
+          "n": 3840
+        }
+      },
+      "hop": {
+        "0": {
+          "label_mean": 0.5,
+          "n": 2560
+        },
+        "1": {
+          "label_mean": 0.5,
+          "n": 2560
+        },
+        "2": {
+          "label_mean": 0.5,
+          "n": 2560
+        }
+      },
+      "target_first": {
+        "False": {
+          "label_mean": 0.5,
+          "n": 3840
+        },
+        "True": {
+          "label_mean": 0.5,
+          "n": 3840
+        }
+      },
+      "template": {
+        "bench_imperative_v2": {
+          "label_mean": 0.5,
+          "n": 640
+        },
+        "bench_mmlu_bare_v2": {
+          "label_mean": 0.5,
+          "n": 640
+        },
+        "bench_preamble_v2": {
+          "label_mean": 0.5,
+          "n": 640
+        },
+        "bench_qa_record_v2": {
+          "label_mean": 0.5,
+          "n": 640
+        },
+        "bench_sectioned_v2": {
+          "label_mean": 0.5,
+          "n": 640
+        },
+        "bench_tagged_v2": {
+          "label_mean": 0.5,
+          "n": 640
+        },
+        "deploy_bare_v2": {
+          "label_mean": 0.5,
+          "n": 768
+        },
+        "deploy_json_v2": {
+          "label_mean": 0.5,
+          "n": 768
+        },
+        "deploy_lead_in_v2": {
+          "label_mean": 0.5,
+          "n": 768
+        },
+        "deploy_markdown_v2": {
+          "label_mean": 0.5,
+          "n": 768
+        },
+        "deploy_mcq_bullets_v2": {
+          "label_mean": 0.5,
+          "n": 768
+        }
+      }
+    },
+    "4_template_balance": {
+      "blocks_per_template_combination": [
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32
+      ],
+      "items_per_template": {
+        "bench_imperative_v2": 640,
+        "bench_mmlu_bare_v2": 640,
+        "bench_preamble_v2": 640,
+        "bench_qa_record_v2": 640,
+        "bench_sectioned_v2": 640,
+        "bench_tagged_v2": 640,
+        "deploy_bare_v2": 768,
+        "deploy_json_v2": 768,
+        "deploy_lead_in_v2": 768,
+        "deploy_markdown_v2": 768,
+        "deploy_mcq_bullets_v2": 768
+      },
+      "template_orthogonal_to_label": true
+    },
+    "5_within_block_invariance": {
+      "blocks_checked": 1920,
+      "blocks_with_bagofwords_label_difference": 0,
+      "blocks_with_length_label_difference": 0,
+      "mean_length_by_arm": {
+        "consequence": 1058.05625,
+        "neutral": 1063.4677083333333
+      },
+      "mean_length_by_hop": {
+        "0": 987.8171875,
+        "1": 1058.0734375,
+        "2": 1136.3953125
+      },
+      "mean_length_label0": 1060.7619791666666,
+      "mean_length_label1": 1060.7619791666666
+    },
+    "6_text_leakage_baselines": {
+      "char_3_5gram_leave_one_family_out": {
+        "max_auc": 0.5,
+        "mean_auc": 0.5,
+        "min_auc": 0.5,
+        "per_group_auc": {
+          "branch": 0.5,
+          "channel": 0.5,
+          "pipeline": 0.5,
+          "queue": 0.5,
+          "record": 0.5,
+          "service": 0.5,
+          "station": 0.5,
+          "workspace": 0.5
+        }
+      },
+      "word_1_2gram_leave_one_family_out": {
+        "max_auc": 0.5,
+        "mean_auc": 0.5,
+        "min_auc": 0.5,
+        "per_group_auc": {
+          "branch": 0.5,
+          "channel": 0.5,
+          "pipeline": 0.5,
+          "queue": 0.5,
+          "record": 0.5,
+          "service": 0.5,
+          "station": 0.5,
+          "workspace": 0.5
+        }
+      },
+      "word_1_2gram_leave_one_family_out_arm_consequence": {
+        "max_auc": 0.5,
+        "mean_auc": 0.5,
+        "min_auc": 0.5,
+        "per_group_auc": {
+          "branch": 0.5,
+          "channel": 0.5,
+          "pipeline": 0.5,
+          "queue": 0.5,
+          "record": 0.5,
+          "service": 0.5,
+          "station": 0.5,
+          "workspace": 0.5
+        }
+      },
+      "word_1_2gram_leave_one_family_out_arm_neutral": {
+        "max_auc": 0.5,
+        "mean_auc": 0.5,
+        "min_auc": 0.5,
+        "per_group_auc": {
+          "branch": 0.5,
+          "channel": 0.5,
+          "pipeline": 0.5,
+          "queue": 0.5,
+          "record": 0.5,
+          "service": 0.5,
+          "station": 0.5,
+          "workspace": 0.5
+        }
+      },
+      "word_1_2gram_leave_one_family_out_hop0": {
+        "max_auc": 0.5,
+        "mean_auc": 0.5,
+        "min_auc": 0.5,
+        "per_group_auc": {
+          "branch": 0.5,
+          "channel": 0.5,
+          "pipeline": 0.5,
+          "queue": 0.5,
+          "record": 0.5,
+          "service": 0.5,
+          "station": 0.5,
+          "workspace": 0.5
+        }
+      },
+      "word_1_2gram_leave_one_family_out_hop1": {
+        "max_auc": 0.5,
+        "mean_auc": 0.5,
+        "min_auc": 0.5,
+        "per_group_auc": {
+          "branch": 0.5,
+          "channel": 0.5,
+          "pipeline": 0.5,
+          "queue": 0.5,
+          "record": 0.5,
+          "service": 0.5,
+          "station": 0.5,
+          "workspace": 0.5
+        }
+      },
+      "word_1_2gram_leave_one_family_out_hop2": {
+        "max_auc": 0.5,
+        "mean_auc": 0.5,
+        "min_auc": 0.5,
+        "per_group_auc": {
+          "branch": 0.5,
+          "channel": 0.5,
+          "pipeline": 0.5,
+          "queue": 0.5,
+          "record": 0.5,
+          "service": 0.5,
+          "station": 0.5,
+          "workspace": 0.5
+        }
+      },
+      "word_1_2gram_leave_one_template_out": {
+        "max_auc": 0.5,
+        "mean_auc": 0.5,
+        "min_auc": 0.5,
+        "per_group_auc": {
+          "bench_imperative_v2": 0.5,
+          "bench_mmlu_bare_v2": 0.5,
+          "bench_preamble_v2": 0.5,
+          "bench_qa_record_v2": 0.5,
+          "bench_sectioned_v2": 0.5,
+          "bench_tagged_v2": 0.5,
+          "deploy_bare_v2": 0.5,
+          "deploy_json_v2": 0.5,
+          "deploy_lead_in_v2": 0.5,
+          "deploy_markdown_v2": 0.5,
+          "deploy_mcq_bullets_v2": 0.5
+        }
+      }
+    },
+    "7_metadata_only_baselines": {
+      "arm_only": {
+        "max_auc": 0.5,
+        "mean_auc": 0.5,
+        "min_auc": 0.5
+      },
+      "current_route_identity": {
+        "max_auc": 0.5,
+        "mean_auc": 0.5,
+        "min_auc": 0.5
+      },
+      "format_only": {
+        "max_auc": 0.5,
+        "mean_auc": 0.5,
+        "min_auc": 0.5
+      },
+      "hop_only": {
+        "max_auc": 0.5,
+        "mean_auc": 0.5,
+        "min_auc": 0.5
+      },
+      "mapping_only": {
+        "max_auc": 0.5,
+        "mean_auc": 0.5,
+        "min_auc": 0.5
+      },
+      "payload_identity": {
+        "max_auc": 0.5,
+        "mean_auc": 0.5,
+        "min_auc": 0.5
+      },
+      "selection_only": {
+        "max_auc": 0.5,
+        "mean_auc": 0.5,
+        "min_auc": 0.5
+      },
+      "template_only": {
+        "max_auc": 0.5,
+        "mean_auc": 0.5,
+        "min_auc": 0.5
+      }
+    },
+    "8_neutral_arm_consequence_vocabulary": {
+      "hits": {},
+      "note": "counted over the Setup scaffolding only; the shared payload text is identical across arms and carries no role semantics",
+      "total_hits": 0
+    }
+  },
+  "experiment": "binding_v2",
+  "freeze_manifest_sha256_of_spec": "1851020bd4abc9c0309bf59e014806c7c0441e58d78973e1f15fd17560042976",
+  "inference_unit": "binding_family",
+  "items_sha256": "d7ad085991345750384f8877a380e6ca5c23e93dccffa1cf0712137063824cc2",
+  "schema_version": 1,
+  "text_baseline_cv": "leave-one-entire-relational-family-out and leave-one-entire-template-out"
+}

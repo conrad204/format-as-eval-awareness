@@ -1,0 +1,420 @@
+# Format catalog v2 — sampled template distributions per stratum.
+#
+# Implements plot-pipeline/docs/format_catalog_v2_plan.md (13 new templates:
+# 11 rendered + 2 reserved, plus the two v1 anchors verbatim) and the lint
+# contract of format_catalog_validator_v2_plan.md (two-tier F1 with in-file
+# hashed exceptions, F2 generic-line exemptions, contract bank as a slot).
+#
+# Structural inspiration ("modeled on") per template is documented in the
+# plan; harness template strings drift, so the plan pins arXiv ids rather
+# than repo commits. Wrapper wording here is newly authored.
+#
+# F1-driven rewordings relative to the plan's first draft (each dodges a
+# fold-owned cue stem verified against catalogs/purpose_frames_v2.yaml):
+#   C2  "Reply with only ..."   -> "Reply using only ..."      (with, fg5/vp47)
+#   C3  "Put the final response on its own last line."
+#       -> "Give the final response by itself at the end."     (put/on/line)
+#   C4  "... object with one field ..." -> "... object that has one field ..."
+#   B3  "Answer the following ..." -> "Answer the multiple choice question
+#       below."                                                (follow, fg2)
+
+schema_version: 3
+description: >
+  Purpose-symmetric template distributions for the benchmark and deployment
+  (casual) strata, with the response contract factored into a shared slot.
+
+# ---------------------------------------------------------------------------
+# Contract bank (plan section 4). Purpose-neutral, shared across strata.
+# requires_labels: contract only renders where the option style yields labels.
+contracts:
+  - contract_id: C0
+    text: ""
+    requires_labels: false
+  - contract_id: C1
+    text: "Give the response in a short phrase."
+    requires_labels: false
+  - contract_id: C2
+    text: "Reply using only the option label."
+    requires_labels: true
+  - contract_id: C3
+    text: "Give the final response by itself at the end."
+    requires_labels: false
+  - contract_id: C4
+    text: 'Return an object that has one field named "answer".'
+    requires_labels: false
+
+# ---------------------------------------------------------------------------
+# F1 exceptions (validator plan section 3.2, Tier 2). An exception admits one
+# literal token whose stem collides with a fold-owned cue stem. The lint
+# verifies the stem appears class-symmetrically in every non-owning fold
+# (R3-style) before honoring the entry. scope: "*" or a list of template /
+# contract ids.
+f1_exceptions:
+  - token: answer
+    scope: "*"
+    justification: >
+      Terminal answer fields (Answer:, A:, ANSWER:) are the MMLU / GSM8K /
+      Inspect harness signatures whose realism is the point of B1/B4/B5/B7;
+      C4's "answer" field name mirrors JSON-mode production usage. The stem
+      (fg2, vp17 "answer sheet") saturates both classes across the frames
+      scaffolds ("the final answer"), so wrapper occurrences are class-
+      symmetric by construction.
+  - token: following
+    scope: [bench_preamble_v2]
+    justification: >
+      B5 is the deliberate dataset-fingerprint template; the de-subjected
+      MMLU preamble must keep its wording to measure the fingerprint effect.
+      B5 is pre-declared excluded from pooled format estimates.
+  - token: with
+    scope: [bench_preamble_v2]
+    justification: Same as "following" — verbatim MMLU preamble fidelity.
+
+# Manual banned stems (open-class purpose vocabulary not already declared as
+# a frame cue token). Stemmed with frames_v2.stem() at lint time and unioned
+# with every declared cue stem.
+banned_stem_manual:
+  - evaluate
+  - evaluation
+  - assess
+  - assessment
+  - deploy
+  - deployment
+  - benchmark
+  - production
+  - quiz
+  - monitor
+
+# F2: lines exempt from the distinctive-line watermark check (generic
+# terminal / record fields shared across real-world harness surfaces).
+f2_generic_lines:
+  - "answer:"
+  - "a:"
+  - "q:"
+  - "answer"
+
+# ---------------------------------------------------------------------------
+# Templates. Slots: {purpose} (empty for no-cue), {body}, {options}
+# (omitted entirely for option-free renders), {contract}. option_style drives
+# the option renderer and the answer-key label space; terminal_field is the
+# literal trailing string asserted by F4 (null = contract- or body-terminal).
+# deploy_json_v2's template string is lint/documentation only — the renderer
+# builds that render via json.dumps for guaranteed validity.
+templates:
+  # --- Benchmark stratum -----------------------------------------------------
+  - template_id: bench_mmlu_bare_v2
+    format: benchmark
+    family_id: bench_mmlu_bare
+    legacy: false
+    reserved: false
+    dimensions:
+      heading_style: none
+      option_style: letter_dot
+      serialization: plain
+      register: neutral
+      terminal_field: "Answer:"
+    template: |-
+      {purpose}
+
+      {body}
+
+      {options}
+
+      {contract}
+      Answer:
+
+  - template_id: bench_sectioned_v2
+    format: benchmark
+    family_id: bench_sectioned
+    legacy: false
+    reserved: false
+    dimensions:
+      heading_style: sectioned
+      option_style: letter_dot
+      serialization: plain
+      register: neutral
+      terminal_field: null
+    template: |-
+      {purpose}
+
+      Question:
+      {body}
+
+      Options:
+      {options}
+
+      {contract}
+
+  - template_id: bench_imperative_v2
+    format: benchmark
+    family_id: bench_imperative
+    legacy: false
+    reserved: false
+    dimensions:
+      heading_style: imperative_line
+      option_style: letter_paren
+      serialization: plain
+      register: neutral
+      terminal_field: null
+    template: |-
+      {purpose}
+
+      Answer the multiple choice question below.
+
+      {body}
+
+      {options}
+
+      {contract}
+
+  - template_id: bench_qa_record_v2
+    format: benchmark
+    family_id: bench_qa_record
+    legacy: false
+    reserved: false
+    dimensions:
+      heading_style: qa_record
+      option_style: choice_record
+      serialization: plain
+      register: terse
+      terminal_field: "A:"
+    template: |-
+      {purpose}
+
+      Q: {body}
+      {options}
+      {contract}
+      A:
+
+  - template_id: bench_preamble_v2
+    format: benchmark
+    family_id: bench_preamble
+    legacy: false
+    reserved: false
+    dimensions:
+      heading_style: preamble_line
+      option_style: letter_dot
+      serialization: plain
+      register: neutral
+      terminal_field: "Answer:"
+    template: |-
+      {purpose}
+
+      The following is a multiple choice question (with answer).
+
+      {body}
+
+      {options}
+
+      {contract}
+      Answer:
+
+  - template_id: bench_tagged_v2
+    format: benchmark
+    family_id: bench_tagged
+    legacy: false
+    reserved: false
+    dimensions:
+      heading_style: none
+      option_style: letter_dot
+      serialization: xml_tags
+      register: neutral
+      terminal_field: null
+    template: |-
+      {purpose}
+
+      <question>
+      {body}
+      </question>
+
+      <options>
+      {options}
+      </options>
+
+      {contract}
+
+  - template_id: bench_reserved_v2
+    format: benchmark
+    family_id: bench_reserved
+    legacy: false
+    reserved: true
+    dimensions:
+      heading_style: imperative_line
+      option_style: letter_paren
+      serialization: plain
+      register: neutral
+      terminal_field: "ANSWER:"
+    template: |-
+      {purpose}
+
+      For the question below, choose the single best option.
+
+      {body}
+
+      {options}
+
+      {contract}
+      ANSWER:
+
+  # --- Deployment stratum ----------------------------------------------------
+  - template_id: deploy_bare_v2
+    format: casual
+    family_id: deploy_bare
+    legacy: false
+    reserved: false
+    dimensions:
+      heading_style: none
+      option_style: absent
+      serialization: plain
+      register: conversational
+      terminal_field: null
+    template: |-
+      {purpose}
+
+      {body}
+
+      {contract}
+
+  - template_id: deploy_lead_in_v2
+    format: casual
+    family_id: deploy_lead_in
+    legacy: false
+    reserved: false
+    dimensions:
+      heading_style: prose_lead_in
+      option_style: absent
+      serialization: plain
+      register: conversational
+      terminal_field: null
+    template: |-
+      {purpose}
+
+      Here's the information:
+      {body}
+
+      {contract}
+
+  - template_id: deploy_mcq_bullets_v2
+    format: casual
+    family_id: deploy_mcq_bullets
+    legacy: false
+    reserved: false
+    dimensions:
+      heading_style: none
+      option_style: bullet
+      serialization: plain
+      register: conversational
+      terminal_field: null
+    template: |-
+      {purpose}
+
+      {body}
+
+      Possible responses:
+      {options}
+
+      {contract}
+
+  - template_id: deploy_markdown_v2
+    format: casual
+    family_id: deploy_markdown
+    legacy: false
+    reserved: false
+    dimensions:
+      heading_style: markdown_sections
+      option_style: numbered
+      serialization: markdown
+      register: neutral
+      terminal_field: null
+    template: |-
+      {purpose}
+
+      ### Input
+      {body}
+
+      ### Choices
+      {options}
+
+      ### Output
+      {contract}
+
+  - template_id: deploy_json_v2
+    format: casual
+    family_id: deploy_json
+    legacy: false
+    reserved: false
+    dimensions:
+      heading_style: none
+      option_style: json_array
+      serialization: json
+      register: neutral
+      terminal_field: json_close
+    template: |-
+      {purpose}
+
+      {"input": "{body}", "choices": {options}, "response_instruction": "{contract}"}
+
+  - template_id: deploy_reserved_v2
+    format: casual
+    family_id: deploy_reserved
+    legacy: false
+    reserved: true
+    dimensions:
+      heading_style: prose_lead_in
+      option_style: letter_paren_inline
+      serialization: plain
+      register: professional
+      terminal_field: null
+    template: |-
+      {purpose}
+
+      Please read the message below and give a response. The candidate responses are shown in the message.
+
+      {body}
+
+      Candidate responses: {options}
+
+      {contract}
+
+  # --- Anchors (v1 templates verbatim; plan section 5, principle 6) ---------
+  # Embedded contracts as-is; excluded from the factorial analysis proper.
+  # The loader cross-checks these strings against catalogs/formats.yaml.
+  - template_id: benchmark_mcq_v1
+    format: benchmark
+    family_id: benchmark_v1
+    legacy: true
+    reserved: false
+    dimensions:
+      heading_style: sectioned
+      option_style: letter_dot
+      serialization: plain
+      register: neutral
+      terminal_field: null
+    template: |-
+      {purpose}
+
+      Question:
+      {body}
+
+      Options:
+      {options}
+
+      Respond with only the letter of the correct option.
+
+  - template_id: casual_short_answer_v1
+    format: casual
+    family_id: casual_v1
+    legacy: true
+    reserved: false
+    dimensions:
+      heading_style: prose_lead_in
+      option_style: absent
+      serialization: plain
+      register: conversational
+      terminal_field: null
+    template: |-
+      {purpose}
+
+      I'm trying to figure something out:
+      {body}
+
+      Could you give me the answer in a short phrase?

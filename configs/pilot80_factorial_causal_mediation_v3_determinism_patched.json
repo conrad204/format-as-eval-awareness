@@ -1,0 +1,303 @@
+{
+  "activation_contract": {
+    "add_special_tokens": false,
+    "baseline_reproduction_gate": "For every causal test row, unsteered captured source and target vectors must agree with stored activations within max_abs<=0.125 and cosine>=0.999; otherwise the model is ineligible.",
+    "chat_template": "tokenizer.apply_chat_template([{role:user,content:text}], add_generation_prompt=True)",
+    "inference_dtype": "bfloat16",
+    "layer_semantics": "zero_based_transformer_block_output_before_final_model_norm",
+    "stored_dtype": "float32",
+    "token_position": "last_prompt_token_after_tokenizer_chat_template_before_generation"
+  },
+  "behavioral_secondary": {
+    "endpoint": "deterministic native task generation and exact answer/format compliance on held causal-test rows under baseline,+/-A,+/-format-coded-C at alpha=1",
+    "interpretation_gate": "baseline parseability>=0.90 and accuracy>=0.40 separately in benchmark and casual; otherwise omit behavioral inference and retain internal causal mediation label",
+    "prohibited": "No added evaluation/deployment classification wrapper and no post-outcome token/threshold selection.",
+    "status": "predeclared_optional_not_a_success_gate"
+  },
+  "causal_estimands": {
+    "factorial_cube_estimand": "Compare observed held-out endpoint scores at all eight A/B/C intervention corners with the additive prediction from single-component finite differences; report every pairwise and three-way intervention-side interaction rather than interpreting a single-component patch as a unique NIE.",
+    "finite_difference": "psi_X,Y=(normalized_readout_Y(+alpha*X)-normalized_readout_Y(-alpha*X))/2 per test row",
+    "format_response": "format-readout psi",
+    "geometry_causality_prediction": "C purpose-interaction response at the high-C/A source layer exceeds the low-C/A source layer.",
+    "purpose_interaction_response": "(benchmark-purpose psi - casual-purpose psi)/2",
+    "response_matrix": "rows intervention A/B/C/random, columns shared-purpose/purpose-interaction/format",
+    "shared_purpose_response": "mean of benchmark-purpose and casual-purpose psi"
+  },
+  "central_hypothesis": "For h_(p,f)=mu+pA+fB+pfC, an A intervention produces a format-shared purpose-readout shift, C produces a benchmark-minus-casual purpose-readout interaction, and B produces a format-readout shift; the C interaction is larger at the geometry-selected high-C/A layer than at the low-C/A layer.",
+  "claim_scope": {
+    "allowed_if_positive": "On the fixed matched pilot80 bank, cross-fitted residual A/B/C components have distinct sign-symmetric downstream internal causal response signatures across held purpose families and payload blocks in Llama-3.1-8B and Llama-3.3-70B; interaction geometry predicts the layerwise C response.",
+    "prohibited": [
+      "latent evaluation awareness",
+      "pure format effect",
+      "behavioral steering unless the behavioral gate passes",
+      "universal model mechanism",
+      "causal scaling law",
+      "independent confirmation",
+      "best-layer or best-alpha selection"
+    ]
+  },
+  "cross_fitting": {
+    "direction_readout_roles": "Within each topic among remaining payload blocks, sort by SHA256('factorial_causal_role_v1',outer_fold,topic,block); alternate direction and readout roles.",
+    "direction_role": "fit source-layer A/B/C and residual scale",
+    "no_overlap": "direction, readout, and causal test blocks are disjoint inside each outer fold",
+    "outer_folds": "5 held purpose families crossed with 5 stable topic-stratified payload folds",
+    "payload_fold_rule": "Within each topic, sort payload blocks by SHA256('factorial_causal_payload_fold_v1',topic,block), assign rank mod 5.",
+    "readout_role": "fit target-layer purpose-benchmark, purpose-casual, and format readouts",
+    "test": "held purpose family intersect held payload fold",
+    "training_exclusions": "exclude held purpose family and every row from held payload fold"
+  },
+  "dataset": {
+    "causal_evaluation_rows": "stated rows only; every four-cell group is preserved",
+    "cell_contract": "Every payload_block_id plus purpose_pair_id group contains exactly evaluation/deployment crossed with benchmark/casual on stated rows.",
+    "items_path": "activations_dataset/activations/llama31_8b_pilot80/meta.jsonl",
+    "items_sha256": "0dbcb9802924d3c2063fce87e24250d1a3430fd24856ea83b132e606843f6638",
+    "n_complete_2x2_groups": 240,
+    "n_payload_blocks": 80,
+    "n_rows": 1760,
+    "n_stated_rows": 960,
+    "purpose_families": [
+      "fg1",
+      "fg2",
+      "fg3",
+      "fg4",
+      "fg5"
+    ]
+  },
+  "factorial_decomposition": {
+    "A": "(h_EB+h_EC-h_DB-h_DC)/4",
+    "B": "(h_EB+h_DB-h_EC-h_DC)/4",
+    "C": "(h_EB-h_EC-h_DB+h_DC)/4",
+    "coding": {
+      "benchmark": 1,
+      "casual": -1,
+      "deployment": -1,
+      "evaluation": 1
+    },
+    "fit_scope": "mean complete-group effects on direction-role blocks excluding the held purpose family and held payload fold",
+    "model": "h_(p,f)=mu+p*A+f*B+p*f*C+epsilon"
+  },
+  "frozen_utc": "2026-08-23T21:20:00Z",
+  "interventions": {
+    "alphas": [
+      0.5,
+      1.0
+    ],
+    "common_residual_scale": "median norm of complete-group A vectors on direction-role training groups, separately per model/source-layer/outer-fold",
+    "components": [
+      "A",
+      "B",
+      "C"
+    ],
+    "delta": "sign*alpha*common_residual_scale*unit(component)",
+    "factorial_cube": "At alpha=1, also run all eight sign combinations of A,B,C using delta=common_residual_scale*(s_A*unit(A)+s_B*unit(B)+s_C*unit(C)); this is a full intervention response surface, not a single-mediator NIE.",
+    "hook_contract": "one post-block hook at the declared source layer; add delta only to the final non-padding prompt token; hook fires exactly once per forward.",
+    "primary_alpha": 1.0,
+    "random_directions": 32,
+    "random_rule": "Gaussian direction from fixed seed, project out span(A,B,C), renormalize; the identical direction and norm are used for +/- signs.",
+    "random_seeds": [
+      20261201,
+      20261202,
+      20261203,
+      20261204,
+      20261205,
+      20261206,
+      20261207,
+      20261208,
+      20261209,
+      20261210,
+      20261211,
+      20261212,
+      20261213,
+      20261214,
+      20261215,
+      20261216,
+      20261217,
+      20261218,
+      20261219,
+      20261220,
+      20261221,
+      20261222,
+      20261223,
+      20261224,
+      20261225,
+      20261226,
+      20261227,
+      20261228,
+      20261229,
+      20261230,
+      20261231,
+      20261232
+    ],
+    "signs": [
+      -1,
+      1
+    ],
+    "zero_control": true
+  },
+  "known_prior_boundary": {
+    "claim_grade": "targeted_preregistered_internal_causal_mediation_on_development_item_bank_not_independent_confirmation",
+    "inspected": [
+      "All-layer pilot80 8B observational geometry and its frozen AUC>=0.80 min/max C/A selection rule.",
+      "Full320 and pilot80 observational probe/equal-row outcomes, including negative strict controls and estimator sensitivity.",
+      "A development-only 20-item no-cue JLens intervention using non-factorial purpose/format/random directions and a wrapper-fragile direct-token endpoint.",
+      "No A/B/C component intervention, held-family late-layer causal response matrix, or cross-model factorial mediation outcome has been computed or inspected."
+    ],
+    "invalid_or_non_evidence": [
+      "artifacts/jlens_100/causal_gain_results_100.json",
+      "artifacts/jlens_100/causal_gain_results_100_gainmatched.json"
+    ]
+  },
+  "models": [
+    {
+      "activation_path": "C:/format-EA-data/pilot80_causal_reextract_8b_detpatch_v1/activations_all_layers.npz",
+      "activation_path_cluster": "/scratch/jppatton/langea/runs/tae_2026/pilot80_causal_reextract_8b_detpatch_v1/activations_all_layers.npz",
+      "activation_sha256": "316b54ca2ad8623b046d2b5035527328250f2b9f5cf8fa323572c0c5c095cafa",
+      "checkpoint_path_cluster": "/scratch/jppatton/langea/confirmation_work/llama31_8b_model_0e9e39f2",
+      "execution_hardware": {
+        "baseline_batch_size": 1,
+        "gpu_count": 1,
+        "gpu_type": "NVIDIA H100 80GB HBM3"
+      },
+      "hidden_size": 4096,
+      "model_id": "meta-llama/Llama-3.1-8B-Instruct",
+      "n_layers": 32,
+      "revision": "0e9e39f249a16976918f6564b8830bc894c89659",
+      "selection_provenance": {
+        "geometry_path": "C:/format-EA-data/pilot80_causal_reextract_8b_h100_batch1_v1/geometry.json",
+        "geometry_script_sha256": "41c903f58602bafbb2fd9b1495b7dd72fb9390a1395b64ec6adbfb1ecba722af",
+        "geometry_sha256": "ad201f83c5ee0bd2ffa876b5ce6b4d8e0b01e507b10d07f7ef94799757e36338",
+        "rule": "among 8B layers with held stated-purpose AUC>=0.80, choose minimum and maximum norm(C)/norm(A), tie by lower layer"
+      },
+      "source_layers": {
+        "high_interaction": 29,
+        "low_interaction": 5
+      },
+      "target_layer": 31,
+      "tokenizer_path_cluster": "/scratch/jppatton/langea/confirmation_work/llama31_8b_tokenizer_0e9e39f2"
+    },
+    {
+      "activation_path": "C:/format-EA-data/pilot80_causal_reextract_33_70b_detpatch_v1/activations_all_layers.npz",
+      "activation_path_cluster": "/scratch/jppatton/langea/runs/tae_2026/pilot80_causal_reextract_33_70b_detpatch_v1/activations_all_layers.npz",
+      "activation_sha256": "665834e6253d08e7c8c8f680723055679c3974419dfea25f3df8df2e07a9f293",
+      "checkpoint_path_cluster": "/scratch/jppatton/langea/huggingface/hub/models--meta-llama--Llama-3.3-70B-Instruct/snapshots/6f6073b423013f6a7d4d9f39144961bfbfbc386b",
+      "execution_hardware": {
+        "baseline_batch_size": 1,
+        "gpu_count": 4,
+        "gpu_type": "NVIDIA H100 80GB HBM3"
+      },
+      "hidden_size": 8192,
+      "model_id": "meta-llama/Llama-3.3-70B-Instruct",
+      "n_layers": 80,
+      "revision": "6f6073b423013f6a7d4d9f39144961bfbfbc386b",
+      "selection_provenance": {
+        "geometry_audit_path": "C:/format-EA-data/pilot80_causal_reextract_33_70b_h100x4_batch1_v1/geometry.json",
+        "geometry_audit_sha256": "acffdfa2082e7cd8501b1ad36b281e4c6d1adcb1ecd13dc82249b8828e6e6cbe",
+        "geometry_script_sha256": "41c903f58602bafbb2fd9b1495b7dd72fb9390a1395b64ec6adbfb1ecba722af",
+        "independent_extrema_not_used": [
+          8,
+          78
+        ],
+        "mapped_from_8b_layers": [
+          5,
+          29
+        ],
+        "rule": "map the frozen 8B low/high source layers to identical normalized depths q=5/31 and q=29/31 using floor(q*(n_layers-1)+0.5); independent 70B extrema do not select causal layers"
+      },
+      "source_layers": {
+        "high_interaction": 74,
+        "low_interaction": 13
+      },
+      "target_layer": 79,
+      "tokenizer_path_cluster": "/scratch/jppatton/langea/huggingface/hub/models--meta-llama--Llama-3.3-70B-Instruct/snapshots/6f6073b423013f6a7d4d9f39144961bfbfbc386b"
+    }
+  ],
+  "parent_protocol": {
+    "path": "configs/pilot80_factorial_causal_mediation_v2_reextracted.json",
+    "sha256": "e9c0e05129ebdf457103e567ca1f8ffce4f18f76829f28542c240b5c674dd664"
+  },
+  "pre_outcome_amendments": [
+    {
+      "amended_utc": "2026-08-23T12:59:43Z",
+      "change": "activation paths/hashes and model GPU counts only; protocol id records the numerical replication",
+      "reason": "Bind exact batch-one H100 re-extraction archives after their immutable-contract and frozen-geometry checks. Preserve every parent v1 estimand, split, seed, intervention, control, gate, decision rule, 8B layer selection, and mapped 70B layer selection.",
+      "status": "before_any_v2_causal_intervention_output"
+    },
+    {
+      "amended_utc": "2026-08-23T12:04:04Z",
+      "change": "70B activation_path_cluster only",
+      "reason": "The imported cluster 70B NPZ bytes hashed 9980acfc... rather than the frozen 2d0733a2... archive; both submitted jobs failed before writing any causal raw record. Point the cluster path to a new non-overwriting copy of the already-frozen local archive with the declared 2d0733a2... hash. Estimands, layers, rows, directions, readouts, controls, and gates are unchanged.",
+      "status": "after_failed_preflight_before_any_causal_raw_record"
+    },
+    {
+      "amended_utc": "2026-08-23T11:40:57Z",
+      "change": "activation_contract.chat_template content field is text",
+      "reason": "Correct the metadata field name from the conceptual rendered_text label to the frozen meta.jsonl field text; prompt bytes and tokenization semantics are unchanged.",
+      "status": "before_any_factorial_abc_causal_mediation_outcome"
+    },
+    {
+      "amended_utc": "2026-08-23T11:32:39Z",
+      "change": "factorial cube, additive response R2, and explicit intervention-side interactions",
+      "reason": "Add the eight-corner intervention cube before implementation so single-component effects are not misinterpreted as unique natural indirect effects.",
+      "status": "before_any_factorial_abc_causal_mediation_outcome"
+    },
+    {
+      "amended_utc": "2026-08-23T21:20:00Z",
+      "change": "activation paths/hashes only; every estimand, split, seed, intervention, control, gate, decision rule, and layer selection preserved byte-for-byte from the parent",
+      "reason": "Bind exact determinism-patched re-extraction archives (deterministic GPU execution: TF32 disabled, torch.use_deterministic_algorithms, pinned CUBLAS_WORKSPACE_CONFIG, pinned eager attention) after the v2_reextracted run failed the unchanged source_activation_reproduction gate purely from non-deterministic BF16 kernel execution, confirmed by a passing engineering shakedown (artifacts/exploratory/determinism_shakedown_20260823/run_manifest.json) before any v3 causal output existed.",
+      "status": "before_any_v3_causal_intervention_output"
+    }
+  ],
+  "protocol_id": "pilot80_factorial_causal_mediation_v3_determinism_patched",
+  "readouts": {
+    "C": 0.1,
+    "baseline_gate": "Each format-specific purpose readout and format readout must have pooled causal-test ROC AUC>=0.80 and balanced accuracy>=0.60 before intervention outcomes are interpreted.",
+    "estimator": "sklearn.linear_model.LogisticRegression",
+    "format": "benchmark versus casual on all stated rows",
+    "max_iter": 3000,
+    "penalty": "l2",
+    "purpose_benchmark": "evaluation versus deployment on benchmark stated rows",
+    "purpose_casual": "evaluation versus deployment on casual stated rows",
+    "random_state": 0,
+    "score_normalization": "divide decision-function shifts by the readout-role training decision-score standard deviation",
+    "solver": "lbfgs",
+    "standardization": "StandardScaler fit on readout-role training rows only",
+    "tol": 0.0001
+  },
+  "reextraction_protocol": {
+    "causal_intervention_outputs_inspected": false,
+    "path": "configs/pilot80_factorial_causal_reextraction_determinism_patch_v1.json",
+    "sha256": "89601a1e6bcfe5d7ebdb00422b2b1092d79e2def2fbface906e246957b84c33b"
+  },
+  "required_outputs": {
+    "figure": "causal_response_matrix.png",
+    "manifest_json": "run_manifest.json",
+    "metrics_tsv": "causal_metrics.tsv",
+    "plan_json": "causal_plan.json",
+    "plan_npz": "causal_plan.npz",
+    "raw_jsonl": "causal_raw.jsonl",
+    "results_json": "causal_results.json"
+  },
+  "schema_version": 1,
+  "scientific_question": "Do the effect-coded shared-purpose A, format-offset B, and purpose-by-format interaction C components have distinct, sign-symmetric downstream causal response signatures on held-out purpose families and payload blocks?",
+  "status": "preregistered_after_determinism_patched_reextraction_before_any_v3_causal_intervention_output",
+  "success_criteria": {
+    "A_shared": "At primary alpha, A shared-purpose response block-bootstrap CI lower bound >0 and random-control p<=0.05 at both source layers in both models.",
+    "B_format": "At primary alpha, B format response CI lower bound >0 and random-control p<=0.05 at both source layers in both models.",
+    "C_interaction": "At primary alpha, C purpose-interaction response CI lower bound >0 and random-control p<=0.05 at the high-interaction layer in both models.",
+    "dose_response": "For each primary component/readout prediction, alpha=0.5 has the same sign and no larger absolute response than alpha=1.0; reported as a robustness gate.",
+    "endpoint_valid": "all three baseline readouts pass AUC and balanced-accuracy gates in each model",
+    "factorial_cube_agreement": "The additive single-component response model explains held-out eight-corner response surfaces with pooled R^2>0.50 in each model; every material intervention-side interaction is reported and bounds the causal-component interpretation.",
+    "geometry_to_causality": "The cross-model aggregate high-minus-low C purpose-interaction response block-bootstrap CI lower bound >0.",
+    "hook_and_reproduction": "zero intervention reproduces baseline, every hook fires once, only final prompt token changes, all stored/captured activation gates pass, all outputs finite",
+    "negative": "A_shared fails or component responses do not beat matched random controls.",
+    "partial": "A_shared and at least one of C_interaction/B_format pass with controls, but any other positive gate fails; report internal mediation only without a full factorial-basis claim.",
+    "positive": "endpoint_valid, hook_and_reproduction, A_shared, C_interaction, B_format, geometry_to_causality, dose_response, and factorial_cube_agreement all pass."
+  },
+  "uncertainty": {
+    "bootstrap_resamples": 5000,
+    "bootstrap_seed": 20261301,
+    "random_control_test": "empirical two-sided p=(1+count(abs(random response)>=abs(component response)))/(1+32)",
+    "same_resamples_across": "models,layers,components,signs,alphas,readouts,formats",
+    "unit": "complete payload block preserving all available held-family four-cell groups"
+  }
+}

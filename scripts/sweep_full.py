@@ -1,0 +1,124 @@
+import json, sys, numpy as np
+from joblib import Parallel, delayed
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.linear_model import LogisticRegression
+from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import roc_auc_score, balanced_accuracy_score
+
+items, npz, out = sys.argv[1], sys.argv[2], sys.argv[3]
+# Optional 4th arg: npz path persisting every fold's probe (coef, intercept,
+# scaler mean/scale) so probes can be re-applied to new activations without
+# refitting. Keep it out of results/ — the checked-in JSONs stay the reference.
+coef_out = sys.argv[4] if len(sys.argv) > 4 else None
+rows = [json.loads(l) for l in open(items) if l.strip()]
+a = np.load(npz); A = a["X"]
+assert [str(x) for x in a["item_ids"]] == [r["item_id"] for r in rows]
+y   = np.array([int(r["label"]) for r in rows])
+fam = np.array([r["purpose_family_id"] for r in rows])
+fmt = np.array([r["format"] for r in rows])
+blk = np.array([r["payload_block_id"] for r in rows])
+pur = np.array([r["intended_purpose"] for r in rows])
+ALL = np.ones(len(rows), bool)
+CONF = ((pur=="evaluation")&(fmt=="benchmark")) | ((pur=="deployment")&(fmt=="casual"))
+
+# Permanent lexical control: fit only on the held-family training rows so the
+# n-gram vocabulary and IDF weights cannot leak from the held-out family.
+def ngram_oof(texts):
+    texts = np.asarray(texts, dtype=str)
+    s = np.full(len(rows), np.nan); p = np.full(len(rows), -1)
+    for f in sorted(set(fam)):
+        trm, tem = fam!=f, fam==f
+        v = TfidfVectorizer(ngram_range=(1, 2))
+        xtr = v.fit_transform(texts[trm])
+        xte = v.transform(texts[tem])
+        m = LogisticRegression(C=1.0, max_iter=3000, random_state=0)
+        m.fit(xtr, y[trm])
+        s[tem] = m.decision_function(xte); p[tem] = (s[tem]>=0).astype(int)
+    return {"auc": float(roc_auc_score(y, s)),
+            "bal_acc": float(balanced_accuracy_score(y, p))}
+
+cue_sentences = [r["text"].partition("\n")[0] for r in rows]
+texts_without_first_line = [r["text"].partition("\n")[2] for r in rows]
+NGRAM_CONTROL = {
+    "vectorizer": "word_tfidf",
+    "ngram_range": [1, 2],
+    "cue_sentence": ngram_oof(cue_sentences),
+    "text_without_first_line": ngram_oof(texts_without_first_line),
+}
+print(f"NGRAM cue {NGRAM_CONTROL['cue_sentence']['auc']:.3f} "
+      f"without-first-line {NGRAM_CONTROL['text_without_first_line']['auc']:.3f}", flush=True)
+
+def oof(X, yy, tr, te, collect=None, tag=""):
+    s = np.full(len(rows), np.nan); p = np.full(len(rows), -1)
+    for f in sorted(set(fam)):
+        trm, tem = (fam!=f)&tr, (fam==f)&te
+        if not tem.any(): continue
+        sc = StandardScaler()
+        m = LogisticRegression(C=0.1, max_iter=3000, random_state=0)
+        m.fit(sc.fit_transform(X[trm]), yy[trm])
+        s[tem] = m.decision_function(sc.transform(X[tem])); p[tem] = (s[tem]>=0).astype(int)
+        if collect is not None:
+            collect[f"{tag}::fold_{f}::coef"] = m.coef_[0]
+            collect[f"{tag}::fold_{f}::intercept"] = np.float64(m.intercept_[0])
+            collect[f"{tag}::fold_{f}::scaler_mean"] = sc.mean_
+            collect[f"{tag}::fold_{f}::scaler_scale"] = sc.scale_
+    return s, p
+
+def paired(s):
+    d = {}
+    for i, r in enumerate(rows):
+        if not np.isnan(s[i]): d.setdefault((blk[i], fmt[i]), {})[r["intended_purpose"]] = s[i]
+    v = [x["evaluation"]-x["deployment"] for x in d.values() if len(x)==2]
+    return (float(np.mean(np.array(v)>0)), float(np.mean(v))) if v else (float("nan"), float("nan"))
+
+def cellrates(p, m):
+    o = {}
+    for pu in ("evaluation","deployment"):
+        for ft in ("benchmark","casual"):
+            c = m & (pur==pu) & (fmt==ft)
+            if c.sum(): o[f"{pu}::{ft}"] = float(p[c].mean()*100)
+    return o
+
+REGIMES = (("confounded", CONF, ALL), ("decorrelated", ALL, ALL),
+           ("b2c", fmt=="benchmark", fmt=="casual"),
+           ("c2b", fmt=="casual", fmt=="benchmark"))
+
+def one(L, X, collect_coefs=False):
+    X = X.astype(float); r = {"layer": int(L), "ngram_control": NGRAM_CONTROL}
+    arts = {} if collect_coefs else None
+    for name, tr, te in REGIMES:
+        s, p = oof(X, y, tr, te, arts, f"layer{L:02d}::{name}"); m = ~np.isnan(s)
+        pp, pm = paired(s)
+        r[name] = {"auc": float(roc_auc_score(y[m], s[m])),
+                   "bal_acc": float(balanced_accuracy_score(y[m], p[m])),
+                   "paired_pos": pp, "paired_mean": pm, "cells": cellrates(p, m)}
+    r["decorrelated"]["auc_minus_ngram"] = (
+        r["decorrelated"]["auc"] - NGRAM_CONTROL["cue_sentence"]["auc"]
+    )
+    fy = (fmt=="benchmark").astype(int)
+    s, p = oof(X, fy, ALL, ALL, arts, f"layer{L:02d}::format"); m = ~np.isnan(s)
+    r["format"] = {"auc": float(roc_auc_score(fy[m], s[m])),
+                   "bal_acc": float(balanced_accuracy_score(fy[m], p[m]))}
+    print(f"L{L:02d} conf {r['confounded']['auc']:.3f} decorr {r['decorrelated']['auc']:.3f} "
+          f"minus-ngram {r['decorrelated']['auc_minus_ngram']:+.3f} "
+          f"b2c {r['b2c']['auc']:.3f} c2b {r['c2b']['auc']:.3f} fmt {r['format']['auc']:.3f}", flush=True)
+    return r, arts
+
+pairs = Parallel(n_jobs=10)(delayed(one)(L, A[:, L, :], coef_out is not None)
+                            for L in range(A.shape[1]))
+pairs.sort(key=lambda t: t[0]["layer"])
+res = [t[0] for t in pairs]
+json.dump(res, open(out, "w"), indent=1)
+if coef_out:
+    coefs = {}
+    for _, arts in pairs: coefs.update(arts)
+    for name, tr, te in REGIMES + (("format", ALL, ALL),):
+        coefs[f"mask::{name}::train"] = tr; coefs[f"mask::{name}::eval"] = te
+    coefs["item_ids"] = np.array([r["item_id"] for r in rows])
+    coefs["fold_families"] = np.array(sorted(set(fam)))
+    np.savez_compressed(coef_out, **coefs)
+    print(f"COEFS saved: {len(coefs)} arrays -> {coef_out}", flush=True)
+best = max(res, key=lambda r: r["decorrelated"]["auc"])
+print(f"BEST decorr layer: {best['layer']} AUC {best['decorrelated']['auc']:.3f} "
+      f"minus-ngram {best['decorrelated']['auc_minus_ngram']:+.3f}")
+print("SWEEP DONE")

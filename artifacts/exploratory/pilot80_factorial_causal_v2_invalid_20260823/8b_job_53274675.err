@@ -1,0 +1,11 @@
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:05,  1.93s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:03<00:03,  1.79s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:05<00:01,  1.74s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:05<00:00,  1.21s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:05<00:00,  1.42s/it]
+Traceback (most recent call last):
+  File "/scratch/jppatton/langea/runs/tae_2026/factorial_causal_v2_src_e9c0e051/scripts/run_pilot80_factorial_causal.py", line 692, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/scratch/jppatton/langea/runs/tae_2026/factorial_causal_v2_src_e9c0e051/scripts/run_pilot80_factorial_causal.py", line 686, in main
+    manifest = run(parse_args(argv))
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/jppatton/langea/runs/tae_2026/factorial_causal_v2_src_e9c0e051/scripts/run_pilot80_factorial_causal.py", line 601, in run
+    raise RuntimeError(f"source activation reproduction gate failed {baseline_key}: {source_max_abs} {source_cosine}")
+RuntimeError: source activation reproduction gate failed ('fg1_pf0', 29, 419): 0.25 0.9994099140167236

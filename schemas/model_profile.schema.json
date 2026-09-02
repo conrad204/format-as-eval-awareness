@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "eval_format_mvp_model_profile.schema.json",
+  "title": "Model profile (OpenRouter or Vertex AI transport)",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "profile_id",
+    "role",
+    "provider",
+    "model",
+    "canonical_slug",
+    "base_url",
+    "timeout_seconds",
+    "transport_attempts",
+    "max_output_tokens"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "profile_id": {"type": "string", "pattern": "^[a-z][a-z0-9_-]+$"},
+    "role": {"enum": ["generator", "validator"]},
+    "provider": {"enum": ["openrouter", "vertex"]},
+    "model": {"type": "string", "pattern": "^[a-z0-9_.~-]+/[a-zA-Z0-9_.:~-]+$"},
+    "canonical_slug": {"type": "string", "minLength": 3},
+    "base_url": {"type": "string", "format": "uri"},
+    "api_key_env": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]+$"},
+    "timeout_seconds": {"type": "number", "minimum": 1, "maximum": 600},
+    "transport_attempts": {"type": "integer", "minimum": 1, "maximum": 5},
+    "temperature": {"type": "number", "minimum": 0, "maximum": 2},
+    "top_p": {"type": "number", "exclusiveMinimum": 0, "maximum": 1},
+    "max_output_tokens": {"type": "integer", "minimum": 64, "maximum": 32768},
+    "reasoning_enabled": {"type": "boolean"},
+    "reasoning_effort": {
+      "enum": ["none", "minimal", "low", "medium", "high", "xhigh", "max"]
+    },
+    "require_parameters": {"const": true},
+    "allow_fallbacks": {"const": false},
+    "data_collection": {"enum": ["allow", "deny"]},
+    "http_referer": {"type": "string", "format": "uri"},
+    "app_title": {"type": "string", "minLength": 1},
+    "project": {"type": "string", "pattern": "^[a-z][a-z0-9-]{4,28}[a-z0-9]$"},
+    "location": {"type": "string", "pattern": "^[a-z0-9-]+$"}
+  },
+  "allOf": [
+    {
+      "not": {
+        "required": ["reasoning_enabled", "reasoning_effort"]
+      }
+    },
+    {
+      "if": {"properties": {"provider": {"const": "openrouter"}}},
+      "then": {
+        "required": ["api_key_env", "require_parameters", "allow_fallbacks"],
+        "properties": {
+          "base_url": {"const": "https://openrouter.ai/api/v1/chat/completions"}
+        },
+        "not": {"anyOf": [{"required": ["project"]}, {"required": ["location"]}]}
+      }
+    },
+    {
+      "if": {"properties": {"provider": {"const": "vertex"}}},
+      "then": {
+        "required": ["project", "location"],
+        "properties": {
+          "base_url": {
+            "pattern": "^https://(?:[a-z0-9-]+-)?aiplatform\\.googleapis\\.com/v1/projects/[a-z][a-z0-9-]+/locations/[a-z0-9-]+/endpoints/openapi/chat/completions$"
+          }
+        },
+        "not": {
+          "anyOf": [
+            {"required": ["api_key_env"]},
+            {"required": ["require_parameters"]},
+            {"required": ["allow_fallbacks"]},
+            {"required": ["data_collection"]},
+            {"required": ["http_referer"]},
+            {"required": ["app_title"]}
+          ]
+        }
+      }
+    }
+  ],
+  "additionalProperties": false
+}

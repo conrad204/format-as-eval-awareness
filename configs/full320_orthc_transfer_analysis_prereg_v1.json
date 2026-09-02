@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "preregistration_id": "full320_orthc_transfer_analysis_prereg_v1",
+  "frozen_utc": "2026-08-26T01:24:40Z",
+  "status": "frozen_before_activation_extraction_completed_and_before_any_transfer_causal_output",
+  "objective": "Test whether the pilot80-trained, A/B-orthogonalized purpose-by-format interaction direction transfers to pilot80-payload-disjoint full320 blocks with the same layerwise high-minus-low causal response ordering in both frozen models.",
+  "scientific_independence": {
+    "independent_units": "80 payload blocks selected prospectively from the pre-existing full320 bank with zero payload-block overlap with pilot80",
+    "not_independent": [
+      "The underlying full320 item bank and its observational activation outcomes were previously inspected.",
+      "Directions, random controls, residual scales, target readouts, source layers, target layers, checkpoints, and model set are carried forward from the completed pilot80 exploratory causal program.",
+      "This is not a new-model, new-item-bank, or broad evaluation-awareness confirmation."
+    ],
+    "valid_positive_scope": "A positive result is a held-payload-block causal transfer replication of the narrow pilot-trained orthogonalized-C internal response, not confirmation of latent evaluation awareness or a pure semantic mechanism."
+  },
+  "dataset": {
+    "selection_manifest": "artifacts/exploratory/full320_orthc_transfer_v1_bank/run_manifest.json",
+    "selection_manifest_sha256": "dbbb88b3d58143d5a199ee629af0a283a55a8b3fe815c325c9099e32d0aa485f",
+    "items_path": "artifacts/exploratory/full320_orthc_transfer_v1_bank/items.jsonl",
+    "items_sha256": "4c7d7a5b51d771982be01285d3be9b2b99b3fd6c79b7cbbf44e9b94c941f857d",
+    "rows": 2880,
+    "stated_rows_analyzed": 1920,
+    "payload_blocks": 80,
+    "topics": 16,
+    "purpose_families": ["fg1", "fg2", "fg3", "fg4", "fg5"],
+    "payload_fold_rule": "Within each topic, sort the five selected blocks by SHA256('full320_orthc_transfer_payload_fold_v1',topic_id,payload_block_id), and assign ranks 0 through 4.",
+    "test_partition": "Each stated row is evaluated exactly once in the fold matching its purpose_family_id and its payload-block fold. No direction or readout is fit on this bank."
+  },
+  "transfer_contract": {
+    "directions": "Copy the already-computed per-model, per-fold, per-source-layer orthogonalized-C vectors exactly; do not refit or renormalize except the frozen unit-vector intervention calculation.",
+    "random_controls": "Copy the 32 already-computed per-fold random directions exactly.",
+    "residual_scale": "Copy the pilot80 per-fold common residual scale exactly.",
+    "readouts": "Copy the pilot80 per-fold target-layer purpose_benchmark, purpose_casual, and format readouts, including means, scales, intercepts, and score SDs, exactly.",
+    "layers": {
+      "meta-llama/Llama-3.1-8B-Instruct": {"low_interaction": 5, "high_interaction": 29, "target": 31},
+      "meta-llama/Llama-3.3-70B-Instruct": {"low_interaction": 13, "high_interaction": 74, "target": 79}
+    },
+    "interventions": {
+      "C_alphas": [0.5, 1.0],
+      "signs": [-1, 1],
+      "random_directions": 32,
+      "random_seeds": [20261201, 20261202, 20261203, 20261204, 20261205, 20261206, 20261207, 20261208, 20261209, 20261210, 20261211, 20261212, 20261213, 20261214, 20261215, 20261216, 20261217, 20261218, 20261219, 20261220, 20261221, 20261222, 20261223, 20261224, 20261225, 20261226, 20261227, 20261228, 20261229, 20261230, 20261231, 20261232],
+      "zero_baseline": true,
+      "conditions_per_row_layer": 69,
+      "batch_size": 1,
+      "baseline_batch_size": 1
+    },
+    "activation_gate": "For every test row and source layer, unsteered captured source and target vectors must agree with stored deterministic full320 activations within max_abs<=0.125 and cosine>=0.999. Any violation invalidates that complete model run; do not inspect partial outcomes or relax the gate.",
+    "determinism": "TF32 disabled, torch.use_deterministic_algorithms(True,warn_only=True), CUBLAS_WORKSPACE_CONFIG=:4096:8 before CUDA, eager attention, exact pinned checkpoints, H100 execution, and the same GPU count as extraction."
+  },
+  "source_plans": {
+    "meta-llama/Llama-3.1-8B-Instruct": {
+      "json_path_cluster": "/scratch/jppatton/langea/runs/tae_2026/overnight_orthC_8b/plan/causal_plan.json",
+      "json_sha256": "e3adf909ef024b6f31c35459b5b822608709dcdcb0a984b9a5f3df4249a42f9d",
+      "npz_path_cluster": "/scratch/jppatton/langea/runs/tae_2026/overnight_orthC_8b/plan/causal_plan.npz",
+      "npz_sha256": "5bcd5b4739333f613682410e48d8090fe3222e4eb7cd93361f1a97c19e42050a"
+    },
+    "meta-llama/Llama-3.3-70B-Instruct": {
+      "json_path_cluster": "/scratch/jppatton/langea/runs/tae_2026/overnight_orthC_70b/plan/causal_plan.json",
+      "json_sha256": "c159ae37c4386b9f8896eb6a0ae194cb692299c25abbc5e36766c389f7dd46dc",
+      "npz_path_cluster": "/scratch/jppatton/langea/runs/tae_2026/overnight_orthC_70b/plan/causal_plan.npz",
+      "npz_sha256": "7d7433ad1e459d7836338ca0858246fb217f35da1a30da6df3cd69e8aa756d88"
+    }
+  },
+  "estimands": {
+    "row_C_response": "For each endpoint and alpha, (normalized target-readout score under +C minus score under -C)/2.",
+    "purpose_interaction_endpoint": "(purpose_benchmark readout response minus purpose_casual readout response)/2, using the copied pilot80 target readouts.",
+    "block_value": "Mean row-level response over all stated rows in one payload block; payload block is the inferential unit.",
+    "primary": "At alpha=1, payload-block purpose-interaction response at the frozen high source layer minus the response at the frozen low source layer, separately in each model.",
+    "required_supporting": "Positive alpha=1 high-layer purpose-interaction response, positive alpha=0.5 high-minus-low response, and alpha=1 primary mean exceeding the 97.5th percentile of the absolute 32 copied-random-direction high-minus-low means, separately in each model.",
+    "secondary": [
+      "Payload-block bootstrap confidence intervals for high, low, and high-minus-low C response.",
+      "Alpha=0.5 to alpha=1 high-minus-low mean ratio.",
+      "Pearson and Spearman association of paired payload-block primary effects across models.",
+      "Shared-purpose and format-readout collateral responses, descriptive only."
+    ]
+  },
+  "analysis": {
+    "unit": "payload_block_id",
+    "primary_test": "One-sided one-sample t-test of the 80 payload-block high-minus-low effects against zero, separately by model.",
+    "supporting_high_test": "One-sided one-sample t-test of the 80 high-layer payload-block effects against zero, separately by model.",
+    "multiplicity": "Holm correction across the two model-specific p-values within each of the primary and supporting-high test families.",
+    "familywise_alpha": 0.05,
+    "bootstrap": "10,000 percentile bootstrap resamples of payload blocks, deterministic seed 20260826.",
+    "decision_rule": "POSITIVE_REPLICATION only if, in both models: primary high-minus-low mean>0 and Holm p<=0.05; high-layer C interaction mean>0 and Holm p<=0.05; alpha=0.5 high-minus-low mean>0; and alpha=1 primary mean exceeds the 97.5th percentile of absolute copied-random-direction high-minus-low means. Otherwise CLEAN_NEGATIVE_OR_MIXED_REPLICATION, unless an integrity or activation gate fails, which is TECHNICALLY_INVALID.",
+    "no_selection": "No layer, alpha, endpoint, readout, model, block, threshold, tail, or random-control selection after any transfer outcome exists."
+  },
+  "power": {
+    "planned_blocks_per_model": 80,
+    "calibration_source": "Completed pilot80 orthogonalized-C private exploratory runs; used prospectively only for transfer-run power.",
+    "prior_high_minus_low_mean": {"8B": 0.8317998969, "70B": 0.855661},
+    "prior_high_minus_low_payload_block_sd": {"8B": 0.0614692712, "70B": 0.0519916030},
+    "conservative_minimum_effect_fraction_of_prior": 0.25,
+    "conservative_minimum_effect": {"8B": 0.2079499742, "70B": 0.21416525},
+    "normal_approx_one_sided_power": {"8B": 1.0, "70B": 1.0},
+    "interpretation": "The 80-block test is amply powered for a quarter-sized replication of the prior high-minus-low effect. Power is not used to reinterpret completed pilot80 evidence."
+  },
+  "claim_scope": {
+    "allowed_if_positive": "On 80 pilot80-payload-disjoint full320 blocks, the fixed pilot80-trained A/B-orthogonalized C direction reproduced a positive, random-calibrated, high-minus-low purpose-interaction response in both frozen Llama models under copied pilot80 readouts.",
+    "prohibited": [
+      "The models are evaluation-aware.",
+      "The orthogonalized-C direction is a pure semantic or evaluation-awareness mechanism.",
+      "The result is independent confirmation on a previously unseen item bank.",
+      "The full A/B/C factorial mechanism replicated; only C and random controls are transferred here.",
+      "The intervention changed behavior or generated answers.",
+      "The result generalizes beyond the two frozen models, selected full320 blocks, fixed layers, and copied readouts."
+    ]
+  },
+  "implementation_hashes": {
+    "extraction_protocol": "947f0b8102c094ee3390150dd40d0516191d482ce5b16e8bacc74b1a0fdd8d24",
+    "plan_builder": "691b8fb5b2d737a9ed4d753f90146a8afbf3fd4eb6748fbba04772842c9d00e8",
+    "causal_runner": "68b5307eaeed3f400f9778cc0a75b3cf6b54545c59f704cf12fd1495ec03cefa",
+    "causal_engine": "c3f7f0f7711f678d289c19b56795277effc6d77259d4c5a6c382485b1354efef",
+    "analysis_script": "df9a7f1c560f87ea63b2c14c10ac1bb66bfda5bc021ad00a75cd268a9c7e610b"
+  },
+  "stopping_rule": "Complete both model runs before analysis. If either model fails, preserve it as invalid, do not inspect partial outcomes, do not relax gates, and do not classify scientific endpoints. Run the frozen analyzer exactly once only after both complete manifests exist."
+}

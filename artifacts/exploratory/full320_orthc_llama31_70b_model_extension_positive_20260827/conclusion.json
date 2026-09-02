@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "conclusion_id": "full320_orthc_llama31_70b_model_extension_positive_20260827",
+  "status": "prospective_new_checkpoint_model_extension_positive",
+  "decision": "POSITIVE_MODEL_EXTENSION",
+  "strongest_defensible_result": "On the 80 prospectively selected full320 payload blocks, the fixed pilot80-trained A/B-orthogonalized C intervention extended prospectively to meta-llama/Llama-3.1-70B-Instruct revision 1605565b47bb9346c5515c34102e054115b4f98b: the predeclared layer-74-minus-layer-13 purpose-interaction response was positive, dose-linear, and larger than the frozen random-direction calibration threshold under copied pilot80 readouts.",
+  "chronology": {
+    "known_before_freeze": "The two-model payload-disjoint transfer had already returned positive effects in Llama-3.1-8B and Llama-3.3-70B, and prior observational activation banks for Llama-3.1-70B had been inspected.",
+    "prospective_unknown": "No matched pilot-trained orthogonalized-C intervention output for this Llama-3.1-70B checkpoint existed before the extension preregistration and executable plans were frozen.",
+    "classification": "Prospective new-checkpoint model extension after a known positive result; not independent source-bank confirmation and not a third member of the original two-model decision family."
+  },
+  "primary_result": {
+    "model_id": "meta-llama/Llama-3.1-70B-Instruct",
+    "revision": "1605565b47bb9346c5515c34102e054115b4f98b",
+    "payload_blocks": 80,
+    "source_layers": {"low_interaction": 13, "high_interaction": 74},
+    "target_layer": 79,
+    "high_minus_low_mean": 0.5445455250481174,
+    "high_minus_low_sd": 0.0330242486166995,
+    "high_minus_low_ci95_payload_bootstrap": [0.537385398086439, 0.5517657998199541],
+    "high_minus_low_one_sided_t_p": 1.6391391496679153e-98,
+    "all_80_blocks_positive": true,
+    "high_layer_mean": 0.545085678818156,
+    "high_layer_ci95_payload_bootstrap": [0.5379699193152676, 0.5522361298220638],
+    "high_layer_one_sided_t_p": 1.7130443753650812e-98,
+    "low_layer_mean": 0.0005401537700385633,
+    "half_alpha_high_minus_low_mean": 0.2725328531725705,
+    "half_to_full_ratio": 0.500477628841939,
+    "absolute_random_mean_97_5_percentile": 0.0275878083691173,
+    "C_exceeds_random_threshold": true
+  },
+  "descriptive_robustness": {
+    "all_16_topic_means_positive": true,
+    "all_16_leave_one_topic_out_means_positive": true,
+    "prior_two_model_means": {
+      "meta-llama/Llama-3.1-8B-Instruct": 0.7485359547,
+      "meta-llama/Llama-3.3-70B-Instruct": 0.6816911266
+    },
+    "extension_minus_prior_range": [-0.20399042965188263, -0.1371456015518826],
+    "interpretation": "The extension effect is positive and robust across the frozen payload blocks, but descriptively smaller than both already-known model effects. No cross-model scaling law was preregistered or tested."
+  },
+  "integrity": {
+    "deterministic_extraction_shapes": {
+      "pilot80": [1760, 80, 8192],
+      "full320": [2880, 80, 8192]
+    },
+    "outcome_blind_shakedown": {
+      "status": "passed",
+      "rows": 8,
+      "comparisons": 16,
+      "maximum_source_max_abs": 0.0,
+      "maximum_target_max_abs": 0.0,
+      "minimum_source_cosine": 0.9999998807907104,
+      "minimum_target_cosine": 0.9999999403953552,
+      "scientific_outcomes_computed": false
+    },
+    "complete_run": {
+      "records": 264960,
+      "expected_records": 264960,
+      "records_written_this_invocation": 264960,
+      "raw_sha256": "4c199e48afa1e2b49633610d307a7b13490e6fe0ecbeb021036269d468669ccd",
+      "slurm_job_id": 53794464,
+      "slurm_state": "COMPLETED",
+      "elapsed_seconds": 32271.02873659134
+    },
+    "analysis": {
+      "status": "completed_frozen_model_extension_analysis",
+      "one_shot_after_complete_manifest": true,
+      "script_sha256": "ce5011b65ed784100480c78847c33bd1fac7ca428957528f4aee4b8c1ce0a041"
+    },
+    "local_archive": {
+      "path": "C:/format-EA-data/full320_orthc_llama31_70b_extension_v1",
+      "files": 50,
+      "bytes": 6973721395,
+      "verification": "independent remote/local byte-size and SHA-256 equality",
+      "manifest_sha256": "7e867763097a218a3a05d132290c1cbfdd8a4e400c10d1cbc7df6e473c49d399"
+    }
+  },
+  "classification_rationale": "Every prospectively frozen success condition passed for the new checkpoint: complete and valid raw execution, positive primary and high-layer tests, positive half-dose high-minus-low response, and primary effect above the frozen absolute-random 97.5th-percentile threshold. This supports a positive checkpoint extension of the narrow internal causal-transfer result. The source bank and assay were inherited after a known positive result, so the conclusion remains an extension rather than independent confirmation.",
+  "allowed_interpretation": "The fixed pilot-train/full320-transfer orthogonalized-C internal causal response prospectively generalized to the frozen Llama-3.1-70B checkpoint, preserving the predeclared high-versus-low layer ordering with dose and random-control support.",
+  "forbidden_interpretations": [
+    "The model is evaluation-aware.",
+    "This is independent source-bank confirmation.",
+    "The response is a pure semantic or format-independent mechanism.",
+    "The full A/B/C factorial mechanism replicated in Llama-3.1-70B.",
+    "The intervention behaviorally steers evaluation awareness.",
+    "The effect is universal across Llama models or model families.",
+    "The smaller Llama-3.1-70B effect establishes a model-size or version scaling law.",
+    "The extension retroactively changes the original two-model decision or the negative pilot80 factorial decision."
+  ],
+  "evidence": {
+    "preregistration": {"path": "configs/full320_orthc_llama31_70b_model_extension_prereg_v1.json", "sha256": "361330053f2ceca334c09099a94d367944ffa4423feb37831773f549f3ccd633"},
+    "preregistration_addendum": {"path": "configs/full320_orthc_llama31_70b_model_extension_prereg_v1_addendum_20260826.json", "sha256": "c87c9a883cb4cb1107d44525c3a8928c35e285073b59432a50717976219e8354"},
+    "pilot_config": {"path": "configs/pilot80_factorial_causal_mediation_llama31_70b_model_extension_v1.json", "sha256": "d40ce02b5d82576128507e40559fecad460d10f0e56fc0c1a51e291f5e820299"},
+    "transfer_config": {"path": "configs/full320_orthogonalized_c_transfer_llama31_70b_model_extension_v1.json", "sha256": "2f84681569752a134ed11d0014416b270fc1eb2381df31d6d3b70d76d362e27f"},
+    "pilot_orthogonalized_plan": {"path": "artifacts/exploratory/full320_orthc_llama31_70b_model_extension_positive_20260827/causal_plan_orthc.json", "sha256": "a7279b0795036c6c334d21e8796bc12b02ab2c08013485b4f33d4c53e464d1f7"},
+    "transfer_plan": {"path": "artifacts/exploratory/full320_orthc_llama31_70b_model_extension_positive_20260827/causal_plan.json", "sha256": "02f9f4770f90026c328010218bb4f367e231364446650d49bbb303e7c1d7c493"},
+    "shakedown": {"path": "artifacts/exploratory/full320_orthc_llama31_70b_model_extension_positive_20260827/shakedown.json", "sha256": "ef8af908f5641a37d9be0f5e18c0ffa795185a11d76d64cb2637daa6804d9876"},
+    "runner_manifest": {"path": "artifacts/exploratory/full320_orthc_llama31_70b_model_extension_positive_20260827/runner_manifest.json", "sha256": "509ccb05938803761eed75e0abd8e200d8b21796c832c6ffa5203f5eb810f846"},
+    "results": {"path": "artifacts/exploratory/full320_orthc_llama31_70b_model_extension_positive_20260827/extension_results.json", "sha256": "99d28503225d055386c1828d20b6d3a20317899f15193103055f5f0f370f2fcd"},
+    "block_effects": {"path": "artifacts/exploratory/full320_orthc_llama31_70b_model_extension_positive_20260827/payload_block_effects.csv", "sha256": "854fdad33676c0e7bfaf51bed175608aa2159d4c7496fac778914f221b138210"},
+    "analysis_manifest": {"path": "artifacts/exploratory/full320_orthc_llama31_70b_model_extension_positive_20260827/analysis_manifest.json", "sha256": "357077b0d02a055be07bf5f3f185ca42d473f7a3651ee61abfd27e6fb70a387b"},
+    "local_archive_manifest": {"path": "artifacts/exploratory/full320_orthc_llama31_70b_model_extension_positive_20260827/local_archive_manifest.json", "sha256": "7e867763097a218a3a05d132290c1cbfdd8a4e400c10d1cbc7df6e473c49d399"}
+  }
+}

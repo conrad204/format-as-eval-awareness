@@ -1,0 +1,190 @@
+{
+  "activation_contract": {
+    "baseline_reproduction_gate": "For every transfer test row and source layer, unsteered source and target captures must have max_abs<=0.125 and cosine>=0.999 versus the stored deterministic full320 activation; otherwise invalidate the complete model run.",
+    "determinism": {
+      "attn_implementation": "eager",
+      "baseline_batch_size": 1,
+      "batch_size": 1,
+      "cublas_workspace_config": ":4096:8",
+      "torch_backends_cuda_matmul_allow_tf32": false,
+      "torch_backends_cudnn_allow_tf32": false,
+      "torch_use_deterministic_algorithms": "True, warn_only=True"
+    },
+    "inference_dtype": "bfloat16",
+    "layer_semantics": "zero_based_transformer_block_output_before_final_model_norm",
+    "stored_dtype": "float32",
+    "token_position": "last_prompt_token_after_tokenizer_chat_template_before_generation"
+  },
+  "analysis": {
+    "alpha": 0.05,
+    "bootstrap_resamples": 10000,
+    "bootstrap_seed": 20260827,
+    "decision_rule": "POSITIVE_MODEL_EXTENSION only if primary mean>0 with one-sided p<=0.05; layer-74 mean>0 with one-sided p<=0.05; alpha=0.5 high-minus-low mean>0; and alpha=1 primary mean exceeds the random 97.5th-percentile threshold. Otherwise CLEAN_NEGATIVE_OR_MIXED_MODEL_EXTENSION unless an integrity gate fails, which is TECHNICALLY_INVALID.",
+    "one_shot": "Run exactly once only after the complete raw manifest exists; do not inspect partial outcomes.",
+    "primary_estimand": "At alpha=1, mean payload-block purpose-interaction response at source layer 74 minus source layer 13 under the pilot-trained orthogonalized C direction.",
+    "primary_test": "One-sided one-sample t-test over 80 payload-block effects against zero.",
+    "prior_two_model_reference": {
+      "meta-llama/Llama-3.1-8B-Instruct": 0.7485359547,
+      "meta-llama/Llama-3.3-70B-Instruct": 0.6816911266
+    },
+    "random_specificity": "The primary C mean must exceed the 97.5th percentile of the absolute means of the 32 frozen random-direction high-minus-low effects.",
+    "script_sha256": "ce5011b65ed784100480c78847c33bd1fac7ca428957528f4aee4b8c1ce0a041",
+    "supporting_high_test": "One-sided one-sample t-test over 80 layer-74 payload-block effects against zero.",
+    "unit": "payload_block_id"
+  },
+  "claim_scope": {
+    "allowed_if_positive": "The fixed pilot-train/full320-transfer orthogonalized-C internal causal response extends prospectively to the frozen Llama-3.1-70B checkpoint, preserving the predeclared high-versus-low layer ordering with dose and random-control support.",
+    "prohibited": [
+      "latent evaluation awareness",
+      "independent source-bank confirmation",
+      "pure semantic or format-independent mechanism",
+      "full A/B/C factorial replication",
+      "behavioral steering",
+      "universal model-family mechanism",
+      "reinterpretation of the completed two-model result"
+    ]
+  },
+  "dataset": {
+    "items_path": "artifacts/exploratory/full320_orthc_transfer_v1_bank/items.jsonl",
+    "items_path_cluster": "/scratch/jppatton/langea/runs/tae_2026/full320_orthc_transfer_v1/bank/items.jsonl",
+    "items_sha256": "4c7d7a5b51d771982be01285d3be9b2b99b3fd6c79b7cbbf44e9b94c941f857d",
+    "n_payload_blocks": 80,
+    "n_rows": 2880,
+    "n_stated_rows": 1920,
+    "n_topics": 16,
+    "purpose_families": [
+      "fg1",
+      "fg2",
+      "fg3",
+      "fg4",
+      "fg5"
+    ],
+    "selection_manifest": "artifacts/exploratory/full320_orthc_transfer_v1_bank/run_manifest.json",
+    "selection_manifest_sha256": "dbbb88b3d58143d5a199ee629af0a283a55a8b3fe815c325c9099e32d0aa485f"
+  },
+  "engineering_shakedown": {
+    "engine_sha256": "4cb97c46a0d8f1e2e410910c9e1c2962b3a9e8f415d72da1e683e705ffcb29e2",
+    "pass_gate": "Every comparison max_abs<=0.125 and cosine>=0.999.",
+    "required_before_causal_runs": true,
+    "script_sha256": "b46b189ecadf21f609178b4d2a4b788f0a2c66b37672079498c2a1a100d68648",
+    "selection": "First eight stated test rows after sorting item_id by SHA256('full320_orthc_transfer_baseline_shakedown_v1',item_id), evaluated at both frozen source layers and the target layer without any intervention or readout scoring."
+  },
+  "frozen_utc": "2026-08-26T22:59:58Z",
+  "implementation": {
+    "causal_engine_sha256": "c3f7f0f7711f678d289c19b56795277effc6d77259d4c5a6c382485b1354efef",
+    "causal_runner_engine_sha256": "fe60a927795138b800e3397925071cce6086523f01d3dfdf1ee5f6a8a3436d9d",
+    "causal_runner_wrapper_sha256": "68ed78c006b33a8e104c1a2bfd7ce9350e52de3401fdf634c69e5c1d2de558ac",
+    "cluster_launcher_sha256": "31d23835a85378b3546bc5c943b3ec4391cb23e0248bf0825c11e9e5dce76fb6",
+    "orthogonalization_sha256": "531968a2984784284f5c37b5d0c6d9915e04afa457153f4a1b92de92f15058f6",
+    "pilot_plan_builder_engine_sha256": "f568481eadf5285e22124f1c730be0d70228b82de66f3f41b92b36b7906cbba3",
+    "pilot_plan_builder_wrapper_sha256": "bbf704e7812b7552ee159da29e09b47102a9973dddd4eabee7294867151a588a",
+    "transfer_plan_builder_engine_sha256": "ef416c953bd873086ce5086601c36d3e245f57b6cc1159f3d680e2839c4cc721",
+    "transfer_plan_builder_wrapper_sha256": "82abdeed1d4d8b2cab23fd9bf1cdfae77035e7497ba80870587e0f0a350d82a1"
+  },
+  "interventions": {
+    "alphas": [
+      0.5,
+      1.0
+    ],
+    "components": [
+      "C"
+    ],
+    "conditions_per_row_layer": 69,
+    "delta": "sign*alpha*copied_pilot80_common_residual_scale*unit(copied_pilot80_orthogonalized_C); random controls use alpha=1 and the copied per-fold random direction bank",
+    "random_directions": 32,
+    "random_seeds": [
+      20261201,
+      20261202,
+      20261203,
+      20261204,
+      20261205,
+      20261206,
+      20261207,
+      20261208,
+      20261209,
+      20261210,
+      20261211,
+      20261212,
+      20261213,
+      20261214,
+      20261215,
+      20261216,
+      20261217,
+      20261218,
+      20261219,
+      20261220,
+      20261221,
+      20261222,
+      20261223,
+      20261224,
+      20261225,
+      20261226,
+      20261227,
+      20261228,
+      20261229,
+      20261230,
+      20261231,
+      20261232
+    ],
+    "readouts": "copied pilot80 per-fold target-layer normalized purpose_benchmark, purpose_casual, and format readouts; no transfer-bank fitting",
+    "signs": [
+      -1,
+      1
+    ],
+    "zero_control": true
+  },
+  "models": [
+    {
+      "activation_path": "C:/format-EA-data/full320_orthc_llama31_70b_extension_v1/extract_full320/activations_all_layers.npz",
+      "activation_path_cluster": "/scratch/jppatton/langea/runs/tae_2026/full320_orthc_llama31_70b_extension_v1/extract_full320/activations_all_layers.npz",
+      "activation_sha256": "e1ca04af58af3b0fdff54a6257d60af25931f53daecef3a6f693a03d53591f84",
+      "checkpoint_path_cluster": "/scratch/jppatton/langea/huggingface/transformers/models--meta-llama--Llama-3.1-70B-Instruct/snapshots/1605565b47bb9346c5515c34102e054115b4f98b",
+      "execution_hardware": {
+        "baseline_batch_size": 1,
+        "batch_size": 1,
+        "gpu_count": 4,
+        "gpu_type": "NVIDIA H100 80GB HBM3"
+      },
+      "hidden_size": 8192,
+      "meta_sha256": "def3a6c7c74d76aec577cd864a3fdccf9f8aaba161bbac06c4190d2a95c708b0",
+      "model_id": "meta-llama/Llama-3.1-70B-Instruct",
+      "n_layers": 80,
+      "revision": "1605565b47bb9346c5515c34102e054115b4f98b",
+      "source_layers": {
+        "high_interaction": 74,
+        "low_interaction": 13
+      },
+      "source_plan": {
+        "json_path_cluster": "/scratch/jppatton/langea/runs/tae_2026/full320_orthc_llama31_70b_extension_v1/plan_pilot_orthc/causal_plan_orthc.json",
+        "json_sha256": "a7279b0795036c6c334d21e8796bc12b02ab2c08013485b4f33d4c53e464d1f7",
+        "npz_path_cluster": "/scratch/jppatton/langea/runs/tae_2026/full320_orthc_llama31_70b_extension_v1/plan_pilot_orthc/causal_plan_orthc.npz",
+        "npz_sha256": "c2f76813556513a725c9ee92a5f39d40525ee24a68e2ea8552f6dac29ce9a7b9"
+      },
+      "target_layer": 79,
+      "tokenizer_path_cluster": "/scratch/jppatton/langea/huggingface/transformers/models--meta-llama--Llama-3.1-70B-Instruct/snapshots/1605565b47bb9346c5515c34102e054115b4f98b"
+    }
+  ],
+  "parents": [
+    {
+      "path": "configs/full320_orthc_llama31_70b_model_extension_prereg_v1.json",
+      "sha256": "361330053f2ceca334c09099a94d367944ffa4423feb37831773f549f3ccd633"
+    },
+    {
+      "path": "configs/full320_orthc_llama31_70b_model_extension_prereg_v1_addendum_20260826.json",
+      "sha256": "c87c9a883cb4cb1107d44525c3a8928c35e285073b59432a50717976219e8354"
+    },
+    {
+      "path": "configs/pilot80_factorial_causal_mediation_llama31_70b_model_extension_v1.json",
+      "sha256": "d40ce02b5d82576128507e40559fecad460d10f0e56fc0c1a51e291f5e820299"
+    },
+    {
+      "path": "artifacts/exploratory/full320_orthc_transfer_positive_20260826/conclusion.json",
+      "role": "known positive two-model result motivating this prospective checkpoint extension",
+      "sha256": "dc0bac2fce42020133727d7a1d9ac46d2530c3e5bae97656a1a449e4ae0db4bc"
+    }
+  ],
+  "protocol_id": "full320_orthogonalized_c_transfer_model_extension_v1",
+  "schema_version": 1,
+  "status": "frozen_after_complete_deterministic_extraction_and_pilot_plan_fit_before_transfer_plan_build_and_before_any_llama31_70b_intervention_output",
+  "stopping_rule": "Build the immutable transfer plan, pass the outcome-blind reproduction shakedown, complete every intervention record, and only then run the frozen analyzer once. Preserve and stop on any failure; never relax a gate or inspect partial outcomes."
+}

@@ -1,0 +1,66 @@
+{
+  "analysis": "full320_exact_logistic_estimator_reversal_v1",
+  "claim_scope": {
+    "allowed_if_positive": "Under identical exact-row data, the inferred benefit of mixed format/template coverage reverses between two standard linear probe estimators, so the substantive conclusion is estimator-dependent.",
+    "prohibited": [
+      "one estimator is universally correct",
+      "evaluation awareness",
+      "behavioral or causal model effect",
+      "pure format effect",
+      "universal model claim"
+    ]
+  },
+  "criteria": {
+    "assignment_stability": true,
+    "interaction_auc_ci_positive": true,
+    "interaction_model_replication": true,
+    "logistic_auc_ci_positive": true,
+    "logistic_model_replication": true
+  },
+  "decision": "positive",
+  "elapsed_seconds": 990.1169803142548,
+  "items_sha256": "5528819d74e696d1a595062047a829836dfde1d2a45287b06a5ac1ba5d1b6c67",
+  "output_hashes": {
+    "estimator_reversal_matrix.png": {
+      "bytes": 53853,
+      "sha256": "7209359207a973a6d263de5f48f6a6aa7c11cc46fe26ccb0935f8d5493e599bb"
+    },
+    "estimator_reversal_metrics.tsv": {
+      "bytes": 14615,
+      "sha256": "ea0be89021d7ce73d1509afe32c3f391cf9cf64a4a6de192fbcc7b4657e37992"
+    },
+    "estimator_reversal_results.json": {
+      "bytes": 74272,
+      "sha256": "1313d965b37349f5ede71a18e61c2d1b85b3116e054d5a7fe6ef63badf2c1731"
+    }
+  },
+  "protocol_sha256": "d8cb6e6eba2419836c39af97069cbb4b9e69bc6b024c0e02909499fb18f023a0",
+  "repo_commit": "c43d4c01bd7f25cd9d2909bb70d58a04fed2c2eb",
+  "run_id": "full320_exact_logistic_estimator_reversal_v1_20260823",
+  "schema_version": 1,
+  "source_lda_runs": {
+    "meta-llama/Llama-3.1-70B-Instruct": {
+      "path": "X:/code/format-as-eval-awareness/artifacts/exploratory/full320_strict_equal_rows_v1_20260823_r2/strict_equal_rows_results.json",
+      "score_path": "X:/code/format-as-eval-awareness/artifacts/exploratory/full320_strict_equal_rows_v1_20260823_r2/primary_scores.npz",
+      "score_sha256": "130584338ab972dee37ccaab6c211fa418ce3a7d5dd2caba6734c22cce26c2e6",
+      "sha256": "43179ec13567287ed7a4ea637c81d773a47055c5ed7a384dcb63668e4412e3f7",
+      "source_run_id": "full320_strict_equal_rows_v1_20260823_r2"
+    },
+    "meta-llama/Llama-3.1-8B-Instruct": {
+      "path": "X:/code/format-as-eval-awareness/artifacts/exploratory/full320_strict_equal_rows_8b_scale_v1_20260823/strict_equal_rows_results.json",
+      "score_path": "X:/code/format-as-eval-awareness/artifacts/exploratory/full320_strict_equal_rows_8b_scale_v1_20260823/primary_scores.npz",
+      "score_sha256": "ffed83e84e3ae89670872d78ffe3deb50c9f3b92adba172efdae1e7be248a386",
+      "sha256": "8479f1be2ead7665ffd58610402e87d7a09fcca6c13a2893c3c2375938401c55",
+      "source_run_id": "full320_strict_equal_rows_8b_scale_v1_20260823"
+    },
+    "meta-llama/Llama-3.3-70B-Instruct": {
+      "path": "X:/code/format-as-eval-awareness/artifacts/exploratory/full320_strict_equal_rows_v1_20260823_r2/strict_equal_rows_results.json",
+      "score_path": "X:/code/format-as-eval-awareness/artifacts/exploratory/full320_strict_equal_rows_v1_20260823_r2/primary_scores.npz",
+      "score_sha256": "130584338ab972dee37ccaab6c211fa418ce3a7d5dd2caba6734c22cce26c2e6",
+      "sha256": "43179ec13567287ed7a4ea637c81d773a47055c5ed7a384dcb63668e4412e3f7",
+      "source_run_id": "full320_strict_equal_rows_v1_20260823_r2"
+    }
+  },
+  "status": "invalid_code_defect",
+  "use_for_inference": false
+}
